@@ -639,18 +639,6 @@
      </component>
      <component
            category="gateway"
-           id="org.switchyard.components:switchyard-component-remote"
-           name="Remote">
-        <description>
-           Provides support for Remote gateways.
-        </description>
-        <dependency>
-           <groupId>org.switchyard.components</groupId>
-           <artifactId>switchyard-component-remote</artifactId>
-        </dependency>
-     </component>
-     <component
-           category="gateway"
            id="org.switchyard.components:switchyard-component-camel-core"
            name="Camel Core (SEDA/Timer/URI)">
         <description>
@@ -755,6 +743,18 @@
         <dependency>
            <groupId>org.switchyard.components</groupId>
            <artifactId>switchyard-component-camel-netty</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-sca"
+           name="SCA">
+        <description>
+           Provides support for SCA gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-sca</artifactId>
         </dependency>
      </component>
      <!-- Test modules... -->
