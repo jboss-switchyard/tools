@@ -86,7 +86,9 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (element instanceof ActionType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
+                return true;
+            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(OPERATION_COLUMN)) {
                 return true;
             } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
                 return true;
@@ -105,12 +107,15 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof ActionType1 && columnIndex == 0) {
+            if (element instanceof ActionType1 && columnIndex == 1) {
                 ActionType1 tp = (ActionType1) element;
                 return (String) tp.getType().getLiteral();
-            } else if (element instanceof ActionType1 && columnIndex == 1) {
+            } else if (element instanceof ActionType1 && columnIndex == 0) {
                 ActionType1 tp = (ActionType1) element;
                 return tp.getOperation();
+            } else if (element instanceof ActionType1 && columnIndex == 2) {
+                ActionType1 tp = (ActionType1) element;
+                return tp.getId();
             }
             return null;
         }
@@ -119,15 +124,22 @@ public class RulesActionTable extends Composite implements ICellModifier {
     private TableViewer _propertyTreeTable;
 
     /**
-     * Value column.
+     * Type column.
      */
-    public static final String VALUE_COLUMN = "value";
-    /**
-     * Entry point column.
-     */
-    public static final String ENTRY_POINT_COLUMN = "entryPoint";
+    public static final String TYPE_COLUMN = "type";
 
-    private static final String[] TREE_COLUMNS = new String[] {VALUE_COLUMN, ENTRY_POINT_COLUMN };
+    /**
+     * Operation column.
+     */
+    public static final String OPERATION_COLUMN = "operation";
+
+    /**
+     * Entry Point ID column.
+     */
+    public static final String ENTRY_POINT_COLUMN = "entrypoint";
+
+    private static final String[] TREE_COLUMNS = new String[] {
+        OPERATION_COLUMN, TYPE_COLUMN, ENTRY_POINT_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -181,12 +193,17 @@ public class RulesActionTable extends Composite implements ICellModifier {
         TableColumnLayout tableLayout = new TableColumnLayout();
         tableComposite.setLayout(tableLayout);
 
-        TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Type");
-        tableLayout.setColumnData(valueColumn, new ColumnWeightData(100, 150, true));
-        TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointColumn.setText("Operation");
-        tableLayout.setColumnData(entryPointColumn, new ColumnWeightData(100, 150, true));
+        TableColumn operationColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        operationColumn.setText("Operation");
+        tableLayout.setColumnData(operationColumn, new ColumnWeightData(100, 150, true));
+
+        TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        typeColumn.setText("Type");
+        tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
+
+        TableColumn entryPointIdColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        entryPointIdColumn.setText("Entry Point ID");
+        tableLayout.setColumnData(entryPointIdColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -196,9 +213,11 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
+                new TextCellEditor(_propertyTreeTable.getTable()), 
                 new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {ActionType.EXECUTE.getLiteral(),
                         ActionType.INSERT.getLiteral(), ActionType.FIREALLRULES.getLiteral(),
-                        ActionType.FIREUNTILHALT.getLiteral() }), new TextCellEditor(_propertyTreeTable.getTable()) });
+                        ActionType.FIREUNTILHALT.getLiteral() }),
+                new TextCellEditor(_propertyTreeTable.getTable()) });
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
@@ -413,11 +432,17 @@ public class RulesActionTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
+        if (element instanceof ActionType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
             return new Integer(((ActionType1) element).getType().getValue());
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(OPERATION_COLUMN)) {
             if (((ActionType1) element).getOperation() != null) {
                 return ((ActionType1) element).getOperation();
+            } else {
+                return "";
+            }
+        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            if (((ActionType1) element).getId() != null) {
+                return ((ActionType1) element).getId();
             } else {
                 return "";
             }
@@ -434,7 +459,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
      *      java.lang.String, java.lang.Object)
      */
     public void modify(Object element, String property, final Object value) {
-        if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
+        if (element instanceof TableItem && property.equalsIgnoreCase(TYPE_COLUMN)) {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof RulesImplementationType) {
                 final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
@@ -458,7 +483,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(OPERATION_COLUMN)) {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof RulesImplementationType) {
                 final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
@@ -481,6 +506,27 @@ public class RulesActionTable extends Composite implements ICellModifier {
             }
             fireChangedEvent(this);
             // validate();
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            final TableItem ti = (TableItem) element;
+            if (getTargetObject() instanceof RulesImplementationType) {
+                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+                if (impl.eContainer() != null) {
+                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            ActionType1 parm = (ActionType1) ti.getData();
+                            parm.setId((String) value);
+                            getTableViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    ActionType1 parm = (ActionType1) ti.getData();
+                    parm.setId((String) value);
+                    getTableViewer().refresh(true);
+                }
+            }
+            fireChangedEvent(this);
         }
     }
 

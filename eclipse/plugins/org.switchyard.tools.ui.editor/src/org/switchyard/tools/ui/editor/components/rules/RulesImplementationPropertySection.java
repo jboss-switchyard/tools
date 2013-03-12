@@ -313,6 +313,10 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
                 _inputsTable.setTargetObject((ActionType1) selected);
                 _outputsTable.setTargetObject((ActionType1) selected);
                 _globalsTable.setTargetObject((ActionType1) selected);
+                
+                _inputsTable.setEnabled(selected != null);
+                _outputsTable.setEnabled(selected != null);
+                _globalsTable.setEnabled(selected != null);
             }
         });
 
@@ -333,7 +337,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         });
 
         _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, RulesPackage.eINSTANCE.getActionType1_Inputs(),
-                RulesPackage.eINSTANCE.getMappingsType_Mapping());
+                RulesPackage.eINSTANCE.getMappingsType_Mapping(), false);
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
         inputsSection.setClient(_inputsTable);
@@ -351,7 +355,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         });
 
         _outputsTable = new RulesMappingsTable(outputsSection, SWT.NONE,
-                RulesPackage.eINSTANCE.getActionType1_Outputs(), RulesPackage.eINSTANCE.getMappingsType_Mapping());
+                RulesPackage.eINSTANCE.getActionType1_Outputs(), RulesPackage.eINSTANCE.getMappingsType_Mapping(), false);
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_outputsTable);
         outputsSection.setClient(_outputsTable);
@@ -368,11 +372,15 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         });
 
         _globalsTable = new RulesMappingsTable(globalsSection, SWT.NONE,
-                RulesPackage.eINSTANCE.getActionType1_Globals(), RulesPackage.eINSTANCE.getMappingsType_Mapping());
+                RulesPackage.eINSTANCE.getActionType1_Globals(), RulesPackage.eINSTANCE.getMappingsType_Mapping(), true);
         _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_globalsTable);
         globalsSection.setClient(_globalsTable);
 
+        _inputsTable.setEnabled(false);
+        _outputsTable.setEnabled(false);
+        _globalsTable.setEnabled(false);
+        
         item.setControl(control);
     }
 
@@ -382,9 +390,30 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         control.setLayout(new GridLayout());
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
+        Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        channelsSection.setText("Channels");
+        channelsSection.setLayout(new GridLayout());
+        channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        channelsSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                _page.resizeScrolledComposite();
+            }
+        });
+
+        Composite channelsComposite = factory.createComposite(channelsSection);
+        channelsComposite.setLayout(new GridLayout(2, false));
+        channelsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        channelsSection.setClient(channelsComposite);
+
+        _channelsTable = new RulesChannelTable(channelsSection, SWT.NONE);
+        _channelsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_channelsTable);
+        channelsSection.setClient(_channelsTable);
+
         Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        propertiesSection.setText("Properties");
+        propertiesSection.setText("Drools Runtime Properties");
         propertiesSection.setLayout(new GridLayout());
         propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         propertiesSection.addExpansionListener(new ExpansionAdapter() {
@@ -400,7 +429,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         propertiesSection.setClient(_propertiesTable);
 
         Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        loggersSection.setText("Audit Loggers");
+        loggersSection.setText("Loggers");
         loggersSection.setLayout(new GridLayout());
         loggersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         loggersSection.addExpansionListener(new ExpansionAdapter() {
@@ -430,27 +459,6 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         _listenersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_listenersTable);
         listenersSection.setClient(_listenersTable);
-
-        Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        channelsSection.setText("Channels");
-        channelsSection.setLayout(new GridLayout());
-        channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        channelsSection.addExpansionListener(new ExpansionAdapter() {
-            @Override
-            public void expansionStateChanged(ExpansionEvent e) {
-                _page.resizeScrolledComposite();
-            }
-        });
-
-        Composite channelsComposite = factory.createComposite(channelsSection);
-        channelsComposite.setLayout(new GridLayout(2, false));
-        channelsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        channelsSection.setClient(channelsComposite);
-
-        _channelsTable = new RulesChannelTable(channelsSection, SWT.NONE);
-        _channelsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_channelsTable);
-        channelsSection.setClient(_channelsTable);
 
         item.setControl(control);
     }

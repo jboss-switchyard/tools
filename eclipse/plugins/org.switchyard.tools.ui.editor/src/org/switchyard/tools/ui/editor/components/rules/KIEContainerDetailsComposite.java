@@ -87,6 +87,7 @@ public class KIEContainerDetailsComposite extends Composite {
         Group releaseGroup = factory.createGroup(this, "Release ID");
         releaseGroup.setLayout(new GridLayout(2, false));
         releaseGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 4));
+        releaseGroup.setToolTipText("Release ID for resources in Maven repository");
 
         ModifyListener releaseIdListener = new ModifyListener() {
             @Override
@@ -207,7 +208,6 @@ public class KIEContainerDetailsComposite extends Composite {
                 }
             }
         });
-
         factory.adapt(this);
     }
 

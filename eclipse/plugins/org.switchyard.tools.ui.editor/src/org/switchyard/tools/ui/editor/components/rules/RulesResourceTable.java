@@ -21,12 +21,14 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnWeightData;
-import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.jface.viewers.ComboBoxCellEditor;
+import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
@@ -37,8 +39,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
@@ -49,7 +49,7 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * @author bfitzpat
  * 
  */
-public class RulesResourceTable extends Composite implements ICellModifier {
+public class RulesResourceTable extends Composite {
 
     private class PropertyTreeContentProvider implements IStructuredContentProvider {
 
@@ -84,7 +84,7 @@ public class RulesResourceTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ResourceType && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (element instanceof ResourceType && property.equalsIgnoreCase(LOCATION_COLUMN)) {
                 return true;
             } else if (element instanceof ResourceType && property.equalsIgnoreCase(TYPE_COLUMN)) {
                 return true;
@@ -117,13 +117,13 @@ public class RulesResourceTable extends Composite implements ICellModifier {
     /**
      * Value column.
      */
-    public static final String VALUE_COLUMN = "value";
+    public static final String LOCATION_COLUMN = "location";
     /**
      * Entry point column.
      */
     public static final String TYPE_COLUMN = "type";
 
-    private static final String[] TREE_COLUMNS = new String[] {VALUE_COLUMN, TYPE_COLUMN };
+    private static final String[] TREE_COLUMNS = new String[] {LOCATION_COLUMN, TYPE_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -131,6 +131,10 @@ public class RulesResourceTable extends Composite implements ICellModifier {
     private EObject _targetObj = null;
     private String _mWarning = null;
     private ListenerList _changeListeners;
+
+    private String[] _resourceTypeList = 
+            new String[] {"BPMN", "BPMN2", "BRL", "CHANGE_SET", 
+            "DESCR", "DRF", "DRL", "DSL", "DSLR", "DTABLE", "PMML", "PKG", "WID", "XDRL"};
 
     /**
      * Constructor.
@@ -177,12 +181,15 @@ public class RulesResourceTable extends Composite implements ICellModifier {
         TableColumnLayout tableLayout = new TableColumnLayout();
         tableComposite.setLayout(tableLayout);
 
-        TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Resource");
-        tableLayout.setColumnData(valueColumn, new ColumnWeightData(300, 150, true));
-        TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointColumn.setText("Type");
-        tableLayout.setColumnData(entryPointColumn, new ColumnWeightData(100, 50, true));
+        TableViewerColumn locationColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
+        locationColumn.getColumn().setText("Resource");
+        tableLayout.setColumnData(locationColumn.getColumn(), new ColumnWeightData(300, 150, true));
+        locationColumn.setEditingSupport(new ResourceColumnEditingSupport(_propertyTreeTable));
+        
+        TableViewerColumn typeColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
+        typeColumn.getColumn().setText("Type");
+        typeColumn.setEditingSupport(new TypeColumnEditingSupport(_propertyTreeTable));
+        tableLayout.setColumnData(typeColumn.getColumn(), new ColumnWeightData(100, 50, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -190,17 +197,13 @@ public class RulesResourceTable extends Composite implements ICellModifier {
 
         _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
 
-        _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTable()),
-                new TextCellEditor(_propertyTreeTable.getTable()) });
-
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
         _mAddButton.setText("Add");
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
-                addPropertyToList();
+                addPropertyToList(true);
                 if (_propertyTreeTable.getInput() == null) {
                     _propertyTreeTable.setInput(_targetObj);
                 }
@@ -247,12 +250,17 @@ public class RulesResourceTable extends Composite implements ICellModifier {
     /**
      * Add a new property to the list
      */
-    protected void addPropertyToList() {
+    protected void addPropertyToList(boolean isRules) {
         if (getTargetObject() instanceof RulesImplementationType) {
             final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
             final ResourceType newAction = RulesFactory.eINSTANCE.createResourceType();
-            newAction.setLocation("process.bpmn2");
-            newAction.setType("BPMN2");
+            if (isRules) {
+                newAction.setLocation("rules.drl");
+                newAction.setType("DRL");
+            } else {
+                newAction.setLocation("process.bpmn2");
+                newAction.setType("BPMN2");
+            }
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -390,104 +398,104 @@ public class RulesResourceTable extends Composite implements ICellModifier {
         return this._targetObj;
     }
 
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return boolean flag
-     * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object,
-     *      java.lang.String)
-     */
-    public boolean canModify(Object element, String property) {
-        return true;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return value of element property
-     * @see org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object ,
-     *      java.lang.String)
-     */
-    public Object getValue(Object element, String property) {
-        if (element instanceof ResourceType && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            if (((ResourceType) element).getLocation() != null) {
-                return ((ResourceType) element).getLocation();
-            } else {
-                return "";
-            }
-        } else if (element instanceof ResourceType && property.equalsIgnoreCase(TYPE_COLUMN)) {
-            if (((ResourceType) element).getType() != null) {
-                return ((ResourceType) element).getType();
-            } else {
-                return "";
-            }
-        }
-        return null;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @param value New property value
-     * 
-     * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
-     *      java.lang.String, java.lang.Object)
-     */
-    public void modify(Object element, String property, final Object value) {
-        if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof RulesImplementationType) {
-                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
-                final ResourceType parm = (ResourceType) ti.getData();
-                if ((value == null && parm.getLocation() == null)
-                        || (value != null && value.equals(parm.getLocation()))) {
-                    return;
-                }
-                if (impl.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            parm.setLocation((String) value);
-                            getTableViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    parm.setLocation((String) value);
-                    getTableViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(TYPE_COLUMN)) {
-            final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof RulesImplementationType) {
-                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
-                final ResourceType parm = (ResourceType) ti.getData();
-                if ((value == null && parm.getType() == null) || (value != null && value.equals(parm.getType()))) {
-                    return;
-                }
-                if (impl.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ResourceType parm = (ResourceType) ti.getData();
-                            parm.setType((String) value);
-                            getTableViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    parm.setType((String) value);
-                    getTableViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        }
-    }
-
     protected TableViewer getTableViewer() {
         return this._propertyTreeTable;
+    }
+
+    private class TypeColumnEditingSupport extends EditingSupport {
+
+        public TypeColumnEditingSupport(TableViewer viewer) {
+            super(viewer);
+        }
+
+        @Override
+        protected CellEditor getCellEditor(Object element) {
+            if (element instanceof ResourceType) {
+                return new ComboBoxCellEditor(
+                        _propertyTreeTable.getTable(), 
+                        _resourceTypeList, SWT.READ_ONLY);
+            }
+            return null;
+        }
+
+        @Override
+        protected boolean canEdit(Object element) {
+            return true;
+        }
+
+        @Override
+        protected Object getValue(Object element) {
+            if (element instanceof ResourceType) {
+                ResourceType resType = (ResourceType) element;
+                String resTypeStr = resType.getType();
+                for (int i = 0; i < _resourceTypeList.length; i++) {
+                    String array_element = _resourceTypeList[i];
+                    if (array_element.equalsIgnoreCase(resTypeStr)) {
+                        return i;
+                    }
+                }
+                return 0;
+            }            
+            return null;
+        }
+
+        @Override
+        protected void setValue(final Object element, final Object value) {
+            TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    ResourceType parm = (ResourceType) element;
+                    Integer intVal = (Integer) value;
+                    parm.setType(_resourceTypeList[intVal.intValue()]);
+                }
+            });
+            fireChangedEvent(_propertyTreeTable);
+            getTableViewer().refresh(true);
+        }
+    }
+
+    private class ResourceColumnEditingSupport extends EditingSupport {
+
+        public ResourceColumnEditingSupport(TableViewer viewer) {
+            super(viewer);
+        }
+
+        @Override
+        protected CellEditor getCellEditor(Object element) {
+            if (element instanceof ResourceType) {
+                return new TextCellEditor(_propertyTreeTable.getTable());
+            }
+            return null;
+        }
+
+        @Override
+        protected boolean canEdit(Object element) {
+            return true;
+        }
+
+        @Override
+        protected Object getValue(Object element) {
+            if (element instanceof ResourceType) {
+                ResourceType resType = (ResourceType) element;
+                return resType.getLocation();
+            }            
+            return null;
+        }
+
+        @Override
+        protected void setValue(final Object element, final Object value) {
+            TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    ResourceType parm = (ResourceType) element;
+                    String strVal = (String) value;
+                    parm.setLocation(strVal);
+                }
+            });
+            fireChangedEvent(_propertyTreeTable);
+            getTableViewer().refresh(true);
+        }
     }
 }

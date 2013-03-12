@@ -20,21 +20,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
-import org.switchyard.tools.models.switchyard1_0.rules.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
@@ -59,7 +78,9 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
     private static final String SERVICE_NAME_PARAM = "serviceName";
 
     private RulesImplementationType _implementation;
-    private NewRulesDetailsWizardPage _processPage;
+//    private NewRulesDetailsWizardPage _processPage;
+    private WizardNewFileCreationPage _page;
+    private IJavaProject _project;
 
     // private NewRulesActionConfigurationWizardPage _actionsPage;
     // private NewRulesExtraResourcesWizardPage _resourcesPage;
@@ -90,19 +111,27 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
 
     @Override
     public void addPages() {
-        super.addPages();
+//        super.addPages();
 
-        WizardNewFileCreationPage page = getFileCreationPage();
-        page.setTitle("New SwitchYard Rules File");
-        page.setDescription("Create a new SwitchYard Rules file.");
+        _page = new RulesServiceImplementationFileCreationPage("newFilePage1", getSelection());
+        _page.setTitle("New SwitchYard Rules File");
+        _page.setDescription("Create a new SwitchYard Rules file.");
         if (getService() == null) {
-            page.setFileName("RulesComponent.drl");
+            _page.setFileName("RulesComponent.drl");
         } else {
-            page.setFileName("" + getService().getName() + "Rules.drl");
+            _page.setFileName("" + getService().getName() + "Rules.drl");
         }
+        if (getCreatedFilePath() != null) {
+            _page.setFileName(getCreatedFilePath());
+        }
+        if (getFileExtension() != null) {
+            _page.setFileExtension(getFileExtension());
+        }
+        setFileCreationPage(_page);
+        addPage(_page);
 
-        _processPage = new NewRulesDetailsWizardPage(NewRulesDetailsWizardPage.class.getCanonicalName());
-        addPage(_processPage);
+//        _processPage = new NewRulesDetailsWizardPage(NewRulesDetailsWizardPage.class.getCanonicalName());
+//        addPage(_processPage);
 
         // _actionsPage = new
         // NewRulesActionConfigurationWizardPage(NewRulesActionConfigurationWizardPage.class.getCanonicalName());
@@ -113,23 +142,27 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
         // addPage(_processPage);
     }
 
+    protected WizardNewFileCreationPage getFileCreationPage() {
+        return _page;
+    }
+
     @Override
     public boolean performFinish() {
         // make sure the implementation is initialized (to get correct defaults)
         _implementation = RulesFactory.eINSTANCE.createRulesImplementationType();
 
-        if (_processPage.isAuditingEnabled()) {
-            LoggerType1 auditSettings = _processPage.getAuditSettings();
-            if (auditSettings.getLog() == null) {
-                auditSettings.eUnset(RulesPackage.eINSTANCE.getLoggerType1_Log());
-            }
-            final LoggersType loggers = RulesFactory.eINSTANCE.createLoggersType();
-            loggers.getLogger().add(auditSettings);
-            _implementation.setLoggers(loggers);
-
-        } else {
+//        if (_processPage.isAuditingEnabled()) {
+//            LoggerType1 auditSettings = _processPage.getAuditSettings();
+//            if (auditSettings.getLog() == null) {
+//                auditSettings.eUnset(RulesPackage.eINSTANCE.getLoggerType1_Log());
+//            }
+//            final LoggersType loggers = RulesFactory.eINSTANCE.createLoggersType();
+//            loggers.getLogger().add(auditSettings);
+//            _implementation.setLoggers(loggers);
+//
+//        } else {
             _implementation.setLoggers(null);
-        }
+//        }
 
         if (!super.performFinish()) {
             return false;
@@ -157,7 +190,9 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
 
     @Override
     public boolean canFinish() {
-        _processPage.update(getJavaProject());
+        ((RulesServiceImplementationFileCreationPage)_page).update(getJavaProject());
+
+        // _processPage.update(getJavaProject());
 
         // TODO: don't validate optional pages, i.e. actions and resources
         // for (IWizardPage page : getPages()) {
@@ -197,7 +232,7 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
             Template template = config.getTemplate(TEMPLATE);
 
             Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put(PACKAGE_NAME_PARAM, _processPage.getPackageName());
+            parameters.put(PACKAGE_NAME_PARAM, ((RulesServiceImplementationFileCreationPage)_page).getPackageName());
             parameters.put(COMPONENT_NAME_PARAM, getComponentName(new Path(getFileCreationPage().getFileName())));
             parameters.put(SERVICE_NAME_PARAM, getService().getName());
 
@@ -214,6 +249,164 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
                 e.fillInStackTrace();
             }
         }
+    }
+
+    protected IJavaProject getJavaProject() {
+        if (_page == null) {
+            return null;
+        }
+        IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(_page.getContainerFullPath());
+        if (resource == null || resource.getProject() == null) {
+            _project = null;
+        } else if (_project == null || !_project.getProject().equals(resource.getProject())) {
+
+            _project = JavaCore.create(resource.getProject());
+        }
+        return _project;
+    }
+
+    private class RulesServiceImplementationFileCreationPage extends WizardNewFileCreationPage {
+
+        private ContractControl _contractControl;
+        private String _packageName;
+        private Text _packageNameText;
+        private String _oldPackageName;
+
+        public RulesServiceImplementationFileCreationPage(String pageName, IStructuredSelection selection) {
+            super(pageName, selection);
+        }
+
+        @Override
+        protected InputStream getInitialContents() {
+            return NewRulesComponentWizard.this.getInitialContents();
+        }
+
+        @Override
+        protected void createAdvancedControls(Composite parent) {
+            Composite contents = new Composite(parent, SWT.NONE);
+            contents.setLayout(new GridLayout(3, false));
+            contents.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+            _contractControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
+                    NewRulesComponentWizard.this.getSupportedInterfaceTypes());
+            _contractControl.createControl(contents, 3);
+            _contractControl.addSelectionChangedListener(new ISelectionChangedListener() {
+                @Override
+                public void selectionChanged(SelectionChangedEvent event) {
+                    setPageComplete(validatePage());
+                }
+            });
+
+            if (getService() != null) {
+                _contractControl.init(getService(), null);
+                _contractControl.setEnabled(false);
+            }
+            // get the new instance
+            NewRulesComponentWizard.this.setService((ComponentService) _contractControl.getContract());
+
+            // add a separator
+            Label separator = new Label(contents, SWT.SEPARATOR | SWT.HORIZONTAL);
+            GridData lineGD = new GridData(GridData.FILL_HORIZONTAL);
+            separator.setLayoutData(lineGD);
+            
+            // now add the package field (used to be on detail page)
+            createLabel(contents, "Package Name:");
+            _packageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
+            GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+            gd.horizontalSpan = 2;
+            _packageNameText.setLayoutData(gd);
+            _packageNameText.addModifyListener(new ModifyListener() {
+                @Override
+                public void modifyText(ModifyEvent event) {
+                    _packageName = _packageNameText.getText();
+                }
+            });
+
+        }
+
+        private Label createLabel(Composite parent, String text) {
+            Label label = new Label(parent, SWT.NONE);
+            label.setText(text);
+            return label;
+        }
+
+        private String emptyForNull(String string) {
+            return string == null ? "" : string;
+        }
+
+        /**
+         * Update the default values based on the setting in the file page.
+         * 
+         * @param project the currently targeted Java project.
+         */
+        public void update(IJavaProject project) {
+            final String newPackageName;
+            if (project == null) {
+                newPackageName = "";
+            } else {
+                IJavaElement element = JavaUtil.getInitialPackageForProject(project);
+                if (element.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
+                    newPackageName = ((IPackageFragment) element).getElementName();
+                } else {
+                    newPackageName = "";
+                }
+            }
+            if (updateDefault(_oldPackageName, newPackageName, _packageNameText.getText())) {
+                setPackageName(newPackageName);
+            }
+            _oldPackageName = newPackageName;
+        }
+
+        private boolean updateDefault(String oldValue, String newValue, String currentValue) {
+            return !currentValue.equals(newValue)
+                    && (oldValue == null || oldValue.length() == 0 || currentValue.length() == 0 || oldValue
+                            .equals(currentValue));
+        }
+
+        /**
+         * @return the package name.
+         */
+        public String getPackageName() {
+            return emptyForNull(_packageName);
+        }
+
+        /**
+         * @param packageName The package name to set.
+         */
+        public void setPackageName(String packageName) {
+            if (_packageNameText == null) {
+                _packageName = packageName;
+            } else {
+                _packageNameText.setText(packageName);
+            }
+        }
+
+        @Override
+        protected boolean validatePage() {
+            if (super.validatePage()) {
+                _contractControl.setProject(getJavaProject());
+                IStatus status = _contractControl.getStatus();
+                if (status.getSeverity() < Status.ERROR) {
+                    if (!status.isOK()) {
+                        setMessage(status.getMessage(), status.getSeverity() == IStatus.WARNING ? WARNING : INFORMATION);
+                    }
+                    return true;
+                }
+                setErrorMessage(status.getMessage());
+                return false;
+            }
+            return false;
+        }
+
+        @Override
+        protected IStatus validateLinkedResource() {
+            return Status.OK_STATUS;
+        }
+
+        @Override
+        protected void createLinkTarget() {
+        }
+
     }
 
 }

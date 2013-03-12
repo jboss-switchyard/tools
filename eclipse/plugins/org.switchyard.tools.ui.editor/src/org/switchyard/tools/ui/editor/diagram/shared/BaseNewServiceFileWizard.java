@@ -67,7 +67,7 @@ import org.switchyard.tools.ui.editor.diagram.component.IComponentWizard;
 public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizard implements IComponentWizard {
 
     private final Set<InterfaceType> _supportedInterfaceTypes;
-    private ServiceImplementationFileCreationPage _page;
+    private WizardNewFileCreationPage _page;
     private Component _component;
     private ComponentService _service;
     private boolean _openFileAfterCreate = false;
@@ -165,6 +165,10 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
         return _createdFilePath;
     }
 
+    protected String getFileExtension() {
+        return _fileExtension;
+    }
+    
     /**
      * @param inPath the path to the file being created.
      */
@@ -209,6 +213,10 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
     public ComponentService getService() {
         return _service;
     }
+    
+    protected void setService(ComponentService service) {
+        this._service = service;
+    }
 
     /*
      * (non-Javadoc)
@@ -233,6 +241,10 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
      */
     protected WizardNewFileCreationPage getFileCreationPage() {
         return _page;
+    }
+    
+    protected void setFileCreationPage(WizardNewFileCreationPage page) {
+        _page = page;
     }
 
     /**
@@ -277,6 +289,10 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
             _project = JavaCore.create(resource.getProject());
         }
         return _project;
+    }
+    
+    protected Set<InterfaceType> getSupportedInterfaceTypes() {
+        return this._supportedInterfaceTypes;
     }
 
     private class ServiceImplementationFileCreationPage extends WizardNewFileCreationPage {

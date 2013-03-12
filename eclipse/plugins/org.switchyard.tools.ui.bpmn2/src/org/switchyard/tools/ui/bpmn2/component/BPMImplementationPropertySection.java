@@ -361,6 +361,10 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
                 _inputsTable.setTargetObject((ActionType1) selected);
                 _outputsTable.setTargetObject((ActionType1) selected);
                 _globalsTable.setTargetObject((ActionType1) selected);
+                
+                _inputsTable.setEnabled(selected != null);
+                _outputsTable.setEnabled(selected != null);
+                _globalsTable.setEnabled(selected != null);
             }
         });
 
@@ -421,6 +425,10 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         factory.adapt(_globalsTable);
         globalsSection.setClient(_globalsTable);
 
+        _inputsTable.setEnabled(false);
+        _outputsTable.setEnabled(false);
+        _globalsTable.setEnabled(false);
+        
         item.setControl(control);
     }
 
