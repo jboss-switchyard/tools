@@ -68,7 +68,6 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
     private Button _browseEntityClassButton;
     private Text _persistenceUnitText;
     private Text _transcationManagerText;
-    private Button _transactionManagerClassButton;
     private Button _flushOnSendCheckbox;
     private Button _usePersistCheckbox;
     private IJavaProject _project;
@@ -182,24 +181,8 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         addGridData(_persistenceUnitText, 2, GridData.FILL_HORIZONTAL);
         
         _transcationManagerText = createLabelAndText(jpaGroup, "Transaction Manager");
+        addGridData(_transcationManagerText, 2, GridData.FILL_HORIZONTAL);
 
-        _transactionManagerClassButton = new Button(jpaGroup, SWT.PUSH);
-        _transactionManagerClassButton.setText("Browse...");
-        GridData btnTMGD = new GridData();
-        _transactionManagerClassButton.setLayoutData(btnTMGD);
-        _transactionManagerClassButton.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                String newClass = handleBrowse(_transcationManagerText.getText());
-                if (newClass != null) {
-                    _transcationManagerText.setText(newClass);
-                    setHasChanged(true);
-                    handleModify(_transcationManagerText);
-                    fireChangedEvent(_transcationManagerText);
-                }
-            }
-        });
-        
         Group producerGroup = new Group(composite, SWT.NONE);
         producerGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         producerGroup.setLayout(new GridLayout(2, false));

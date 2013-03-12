@@ -97,6 +97,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     private static int _selectedTab = 0;
     private AdvancedBindingPropertyTable _advPropsTable;
     private boolean _didSomething = false;
+    private TabItem _advancedTab;
 
     /**
      * Hack to get around triggering an unwanted button push on a property page.
@@ -181,9 +182,15 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
 
     protected void createAdvancedTab(TabFolder tabFolder) {
         if (getAdvancedPropertiesFilterList() != null) {
-            TabItem advanced = new TabItem(tabFolder, SWT.NONE);
-            advanced.setText("Advanced");
-            advanced.setControl(getAdvancedTabControl(tabFolder));
+            _advancedTab = new TabItem(tabFolder, SWT.NONE);
+            _advancedTab.setText("Advanced");
+            _advancedTab.setControl(getAdvancedTabControl(tabFolder));
+        }
+    }
+    
+    protected void updateAdvancedTab() {
+        if (_advancedTab != null && getAdvancedPropertiesFilterList() != null) {
+            _advancedTab.setControl(getAdvancedTabControl(_tabFolder));
         }
     }
 

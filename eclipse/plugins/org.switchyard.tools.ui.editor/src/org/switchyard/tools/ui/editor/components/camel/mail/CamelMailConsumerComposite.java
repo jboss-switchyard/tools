@@ -57,8 +57,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
     private Text _fetchSizeText;
     private Button _unseenCheckbox;
     private Button _deleteCheckbox;
-    private Text _copyToText;
-    private Button _disconnectCheckbox;
+//    private Text _copyToText;
+//    private Button _disconnectCheckbox;
     private Button _securedCheckbox;
 
     @Override
@@ -73,16 +73,16 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
                     _deleteCheckbox.setSelection(this._binding.getConsume().isDelete());
-                    _disconnectCheckbox.setSelection(this._binding.getConsume().isDisconnect());
+//                    _disconnectCheckbox.setSelection(this._binding.getConsume().isDisconnect());
                     _unseenCheckbox.setSelection(this._binding.getConsume().isUnseen());
                 if (this._binding.getConsume().getAccountType() != null) {
                     _accountTypeCombo.select(this._binding.getConsume().getAccountType().getValue());
                 }
-                if (this._binding.getConsume().getCopyTo() != null) {
-                    _copyToText.setText(this._binding.getConsume().getCopyTo());
-                } else {
-                    _copyToText.setText("");
-                }
+//                if (this._binding.getConsume().getCopyTo() != null) {
+//                    _copyToText.setText(this._binding.getConsume().getCopyTo());
+//                } else {
+//                    _copyToText.setText("");
+//                }
                 if (this._binding.getConsume().isSetFetchSize()) {
                     setTextValue(_fetchSizeText, PropTypeUtil.getPropValueString(this._binding.getConsume().getFetchSize()));
 //                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
@@ -200,10 +200,10 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         _accountTypeCombo.add(MailConsumerAccountType.POP3.getLiteral());
         _folderNameText = createLabelAndText(consumeGroup, "Folder Name");
         _fetchSizeText = createLabelAndText(consumeGroup, "Fetch Size");
-        _unseenCheckbox = createCheckbox(consumeGroup, "Unseen");
+        _unseenCheckbox = createCheckbox(consumeGroup, "Unread Only");
         _deleteCheckbox = createCheckbox(consumeGroup, "Delete");
-        _copyToText = createLabelAndText(consumeGroup, "Copy To");
-        _disconnectCheckbox = createCheckbox(consumeGroup, "Disconnect");
+//        _copyToText = createLabelAndText(consumeGroup, "Copy To");
+//        _disconnectCheckbox = createCheckbox(consumeGroup, "Disconnect");
 
         return composite;
     }
@@ -257,10 +257,10 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             updateConsumeFeature("unseen", new Boolean(_unseenCheckbox.getSelection()));
         } else if (control.equals(_deleteCheckbox)) {
             updateConsumeFeature("delete", new Boolean(_deleteCheckbox.getSelection()));
-        } else if (control.equals(_copyToText)) {
-            updateConsumeFeature("copyTo", _copyToText.getText().trim());
-        } else if (control.equals(_disconnectCheckbox)) {
-            updateConsumeFeature("disconnect", new Boolean(_disconnectCheckbox.getSelection()));
+//        } else if (control.equals(_copyToText)) {
+//            updateConsumeFeature("copyTo", _copyToText.getText().trim());
+//        } else if (control.equals(_disconnectCheckbox)) {
+//            updateConsumeFeature("disconnect", new Boolean(_disconnectCheckbox.getSelection()));
         } else if (control.equals(_accountTypeCombo)) {
             MailConsumerAccountType acctType = MailConsumerAccountType.get(_accountTypeCombo.getSelectionIndex());
             updateConsumeFeature("accountType", acctType);
@@ -279,14 +279,14 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             if (this._binding.getConsume() != null) {
                 if (control.equals(_deleteCheckbox)) {
                     _deleteCheckbox.setSelection(this._binding.getConsume().isDelete());
-                } else if (control.equals(_disconnectCheckbox)) {
-                    _disconnectCheckbox.setSelection(this._binding.getConsume().isDisconnect());
+//                } else if (control.equals(_disconnectCheckbox)) {
+//                    _disconnectCheckbox.setSelection(this._binding.getConsume().isDisconnect());
                 } else if (control.equals(_unseenCheckbox)) {
                     _unseenCheckbox.setSelection(this._binding.getConsume().isUnseen());
                 } else if (control.equals(_accountTypeCombo)) {
                     _accountTypeCombo.select(this._binding.getConsume().getAccountType().getValue());
-                } else if (control.equals(_copyToText)) {
-                    _copyToText.setText(this._binding.getConsume().getCopyTo());
+//                } else if (control.equals(_copyToText)) {
+//                    _copyToText.setText(this._binding.getConsume().getCopyTo());
                 } else if (control.equals(_fetchSizeText)) {
                     setTextValue(_fetchSizeText, PropTypeUtil.getPropValueString(this._binding.getConsume().getFetchSize()));
 //                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
@@ -322,6 +322,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             _advancedPropsFilterList.add("useFixedDelay");
             _advancedPropsFilterList.add("sendEmptyMessageWhenIdle");
             _advancedPropsFilterList.add("timeUnit");
+            _advancedPropsFilterList.add("copyTo");
+            _advancedPropsFilterList.add("disconnect");
         }
         return _advancedPropsFilterList;
     }

@@ -21,11 +21,11 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -41,6 +41,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -53,10 +54,11 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
     private Text _queryText;
     private Text _dataSourceRefText;
     private Text _placeholderText;
-    private Button _batchCheckbox;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
+    private Text _periodText;
+    private Text _initialDelayText;
 
     @Override
     public Binding getBinding() {
@@ -83,7 +85,16 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             } else if (_placeholderText != null) {
                 _placeholderText.setText("");
             }
-            _batchCheckbox.setSelection(this._binding.isBatch());
+            if (this._binding.getInitialDelay() != null && _initialDelayText != null) {
+                setTextValue(_initialDelayText, PropTypeUtil.getPropValueString(this._binding.getInitialDelay()));
+            } else if (_initialDelayText != null) {
+                _initialDelayText.setText("");
+            }
+            if (this._binding.getPeriod() != null && _periodText != null) {
+                _periodText.setText(this._binding.getPeriod());
+            } else if (_periodText != null) {
+                _periodText.setText("");
+            }
             
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -152,8 +163,10 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
 
         _queryText = createLabelAndText(sqlGroup, "Query*");
         _dataSourceRefText = createLabelAndText(sqlGroup, "Data Source*");
-        _batchCheckbox = createCheckbox(sqlGroup, "Batch");
-//        _placeholderText = createLabelAndText(sqlGroup, "Placeholder");
+        _periodText = createLabelAndText(sqlGroup, "Period");
+        if (getTargetObject() instanceof Service) {
+            _initialDelayText = createLabelAndText(sqlGroup, "Initial Delay (MS)");
+        }
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -189,9 +202,10 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             updateFeature(_binding, "dataSourceRef", _dataSourceRefText.getText().trim());
         } else if (control.equals(_placeholderText)) {
             updateFeature(_binding, "placeholder", _placeholderText.getText().trim());
-        } else if (control.equals(_batchCheckbox)) {
-            boolean value = _batchCheckbox.getSelection();
-            updateFeature(_binding, "batch", value);
+        } else if (control.equals(_periodText)) {
+            updateFeature(_binding, "period", _periodText.getText().trim());
+        } else if (control.equals(_initialDelayText)) {
+            updateFeature(_binding, "initialDelay", _initialDelayText.getText().trim());
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
@@ -210,8 +224,10 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
                 _dataSourceRefText.setText(this._binding.getDataSourceRef());
             } else if (control.equals(_placeholderText)) {
                 _placeholderText.setText(this._binding.getPlaceholder());
-            } else if (control.equals(_batchCheckbox)) {
-                _batchCheckbox.setSelection(this._binding.isBatch());
+            } else if (control.equals(_periodText)) {
+                _periodText.setText(PropTypeUtil.getPropValueString(this._binding.getPeriod()));
+            } else if (control.equals(_initialDelayText)) {
+                _initialDelayText.setText(PropTypeUtil.getPropValueString(this._binding.getInitialDelay()));
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
@@ -226,10 +242,9 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
     protected List<String> getAdvancedPropertiesFilterList() {
         if (_advancedPropsFilterList == null) {
             _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("timerName");
-            _advancedPropsFilterList.add("period");
-            _advancedPropsFilterList.add("initialDelay");
+            _advancedPropsFilterList.add("batch");
         }
+        
         return _advancedPropsFilterList;
     }
 

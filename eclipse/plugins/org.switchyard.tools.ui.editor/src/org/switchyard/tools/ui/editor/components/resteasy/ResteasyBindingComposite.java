@@ -84,6 +84,14 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         resteasyGroup.setLayout(new GridLayout(2, false));
         resteasyGroup.setText("REST Options");
 
+        if (getTargetObject() instanceof Reference) {
+            _mAddressURLText = createLabelAndText(resteasyGroup, "Address");
+            _mAddressURLText.setEnabled(canEdit());
+            GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
+            uriGD.horizontalSpan = 2;
+            _mAddressURLText.setLayoutData(uriGD);
+        }
+
         Label interfacesLabel = new Label(resteasyGroup, SWT.NULL);
         interfacesLabel.setText("RESTful Interfaces");
         interfacesLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
@@ -102,14 +110,6 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
             }
         });
         
-        if (getTargetObject() instanceof Reference) {
-            _mAddressURLText = createLabelAndText(resteasyGroup, "Address");
-            _mAddressURLText.setEnabled(canEdit());
-            GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
-            uriGD.horizontalSpan = 2;
-            _mAddressURLText.setLayoutData(uriGD);
-        }
-
         if (getTargetObject() instanceof Service) {
             _contextPathText = createLabelAndText(resteasyGroup, "Context Path");
             _contextPathText.setEnabled(canEdit());
