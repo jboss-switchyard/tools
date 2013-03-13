@@ -307,6 +307,7 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
             // add a separator
             Label separator = new Label(contents, SWT.SEPARATOR | SWT.HORIZONTAL);
             GridData lineGD = new GridData(GridData.FILL_HORIZONTAL);
+            lineGD.horizontalSpan = 3;
             separator.setLayoutData(lineGD);
             
             // now add the package field (used to be on detail page)
