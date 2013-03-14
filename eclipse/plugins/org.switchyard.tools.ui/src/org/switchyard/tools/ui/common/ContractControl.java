@@ -103,7 +103,7 @@ public class ContractControl implements ISelectionProvider {
         _interfaceControl.createControl(parent, numColumns);
 
         Label label = new Label(parent, SWT.NONE);
-        label.setText("Name:");
+        label.setText("Service Name:");
 
         _serviceNameText = new Text(parent, SWT.SINGLE | SWT.BORDER);
         _serviceNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, numColumns - 2, 1));
