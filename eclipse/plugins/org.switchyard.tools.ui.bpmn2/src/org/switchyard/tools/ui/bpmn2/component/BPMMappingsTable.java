@@ -113,7 +113,7 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
         public String getColumnText(Object element, int columnIndex) {
             if (element instanceof MappingType && columnIndex == 0) {
                 return ((MappingType) element).getExpression();
-            } else if (element instanceof MappingType && columnIndex == 2) {
+            } else if (element instanceof MappingType && columnIndex == 1) {
                 MappingType tp = (MappingType) element;
                 return tp.getVariable();
             }
