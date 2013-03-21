@@ -68,6 +68,8 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
             case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE: return createSOAPMessageComposerType();
             case SOAPPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
+            case SOAPPackage.INTERCEPTOR_TYPE: return createInterceptorType();
+            case SOAPPackage.INTERCEPTORS_TYPE: return createInterceptorsType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -149,6 +151,26 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public SOAPBindingType createSOAPBindingType() {
         SOAPBindingTypeImpl soapBindingType = new SOAPBindingTypeImpl();
         return soapBindingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InterceptorType createInterceptorType() {
+        InterceptorTypeImpl interceptorType = new InterceptorTypeImpl();
+        return interceptorType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InterceptorsType createInterceptorsType() {
+        InterceptorsTypeImpl interceptorsType = new InterceptorsTypeImpl();
+        return interceptorsType;
     }
 
     /**

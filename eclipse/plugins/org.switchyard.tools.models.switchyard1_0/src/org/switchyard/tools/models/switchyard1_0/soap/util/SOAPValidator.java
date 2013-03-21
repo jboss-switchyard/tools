@@ -109,6 +109,10 @@ public class SOAPValidator extends EObjectValidator {
                 return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
             case SOAPPackage.SOAP_BINDING_TYPE:
                 return validateSOAPBindingType((SOAPBindingType)value, diagnostics, context);
+            case SOAPPackage.INTERCEPTOR_TYPE:
+                return validateInterceptorType((InterceptorType)value, diagnostics, context);
+            case SOAPPackage.INTERCEPTORS_TYPE:
+                return validateInterceptorsType((InterceptorsType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return validateSoapHeadersType((SoapHeadersType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
@@ -154,6 +158,24 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateSOAPBindingType(SOAPBindingType soapBindingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(soapBindingType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateInterceptorType(InterceptorType interceptorType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(interceptorType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateInterceptorsType(InterceptorsType interceptorsType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(interceptorsType, diagnostics, context);
     }
 
     /**

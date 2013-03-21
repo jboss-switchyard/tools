@@ -21,6 +21,9 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSocketAddr <em>Socket Addr</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointAddress <em>Endpoint Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSecurityAction <em>Security Action</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getOutInterceptors <em>Out Interceptors</em>}</li>
  * </ul>
  * </p>
  *
@@ -168,5 +171,87 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setEndpointAddress(String value);
+
+    /**
+     * Returns the value of the '<em><b>Security Action</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * 
+     *                                 The context path used in the HTTP URL
+     *                             
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Security Action</em>' attribute.
+     * @see #setSecurityAction(String)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_SecurityAction()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='securityAction' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getSecurityAction();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSecurityAction <em>Security Action</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Security Action</em>' attribute.
+     * @see #getSecurityAction()
+     * @generated
+     */
+    void setSecurityAction(String value);
+
+    /**
+     * Returns the value of the '<em><b>In Interceptors</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>In Interceptors</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>In Interceptors</em>' containment reference.
+     * @see #setInInterceptors(InterceptorsType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_InInterceptors()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='inInterceptors' namespace='##targetNamespace'"
+     * @generated
+     */
+    InterceptorsType getInInterceptors();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>In Interceptors</em>' containment reference.
+     * @see #getInInterceptors()
+     * @generated
+     */
+    void setInInterceptors(InterceptorsType value);
+
+    /**
+     * Returns the value of the '<em><b>Out Interceptors</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Out Interceptors</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Out Interceptors</em>' containment reference.
+     * @see #setOutInterceptors(InterceptorsType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_OutInterceptors()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='outInterceptors' namespace='##targetNamespace'"
+     * @generated
+     */
+    InterceptorsType getOutInterceptors();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getOutInterceptors <em>Out Interceptors</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Out Interceptors</em>' containment reference.
+     * @see #getOutInterceptors()
+     * @generated
+     */
+    void setOutInterceptors(InterceptorsType value);
 
 } // SOAPBindingType

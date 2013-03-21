@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getBindingSoap <em>Binding Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getContextMapperSoap <em>Context Mapper Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMessageComposerSoap <em>Message Composer Soap</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getInterceptor <em>Interceptor</em>}</li>
  * </ul>
  * </p>
  *
@@ -167,5 +168,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setMessageComposerSoap(SOAPMessageComposerType value);
+
+    /**
+     * Returns the value of the '<em><b>Interceptor</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Interceptor</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Interceptor</em>' containment reference.
+     * @see #setInterceptor(InterceptorType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_Interceptor()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='interceptor' namespace='##targetNamespace'"
+     * @generated
+     */
+    InterceptorType getInterceptor();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getInterceptor <em>Interceptor</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Interceptor</em>' containment reference.
+     * @see #getInterceptor()
+     * @generated
+     */
+    void setInterceptor(InterceptorType value);
 
 } // DocumentRoot

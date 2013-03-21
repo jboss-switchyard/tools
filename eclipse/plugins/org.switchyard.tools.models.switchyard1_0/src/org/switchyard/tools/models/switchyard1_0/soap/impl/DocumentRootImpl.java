@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
@@ -42,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getBindingSoap <em>Binding Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getContextMapperSoap <em>Context Mapper Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getMessageComposerSoap <em>Message Composer Soap</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getInterceptor <em>Interceptor</em>}</li>
  * </ul>
  * </p>
  *
@@ -219,6 +221,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public InterceptorType getInterceptor() {
+        return (InterceptorType)getMixed().get(SOAPPackage.Literals.DOCUMENT_ROOT__INTERCEPTOR, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetInterceptor(InterceptorType newInterceptor, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SOAPPackage.Literals.DOCUMENT_ROOT__INTERCEPTOR, newInterceptor, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInterceptor(InterceptorType newInterceptor) {
+        ((FeatureMap.Internal)getMixed()).set(SOAPPackage.Literals.DOCUMENT_ROOT__INTERCEPTOR, newInterceptor);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -234,6 +263,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetContextMapperSoap(null, msgs);
             case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
                 return basicSetMessageComposerSoap(null, msgs);
+            case SOAPPackage.DOCUMENT_ROOT__INTERCEPTOR:
+                return basicSetInterceptor(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -261,6 +292,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getContextMapperSoap();
             case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
                 return getMessageComposerSoap();
+            case SOAPPackage.DOCUMENT_ROOT__INTERCEPTOR:
+                return getInterceptor();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -290,6 +323,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
                 setMessageComposerSoap((SOAPMessageComposerType)newValue);
+                return;
+            case SOAPPackage.DOCUMENT_ROOT__INTERCEPTOR:
+                setInterceptor((InterceptorType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -321,6 +357,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
                 setMessageComposerSoap((SOAPMessageComposerType)null);
                 return;
+            case SOAPPackage.DOCUMENT_ROOT__INTERCEPTOR:
+                setInterceptor((InterceptorType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -345,6 +384,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getContextMapperSoap() != null;
             case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
                 return getMessageComposerSoap() != null;
+            case SOAPPackage.DOCUMENT_ROOT__INTERCEPTOR:
+                return getInterceptor() != null;
         }
         return super.eIsSet(featureID);
     }

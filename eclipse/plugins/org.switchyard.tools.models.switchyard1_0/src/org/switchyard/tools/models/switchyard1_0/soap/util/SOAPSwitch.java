@@ -105,6 +105,20 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SOAPPackage.INTERCEPTOR_TYPE: {
+                InterceptorType interceptorType = (InterceptorType)theEObject;
+                T result = caseInterceptorType(interceptorType);
+                if (result == null) result = caseCommonExtensionBase(interceptorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.INTERCEPTORS_TYPE: {
+                InterceptorsType interceptorsType = (InterceptorsType)theEObject;
+                T result = caseInterceptorsType(interceptorsType);
+                if (result == null) result = caseCommonExtensionBase(interceptorsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -166,6 +180,36 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseSOAPBindingType(SOAPBindingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Interceptor Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Interceptor Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInterceptorType(InterceptorType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Interceptors Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Interceptors Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInterceptorsType(InterceptorsType object) {
         return null;
     }
 

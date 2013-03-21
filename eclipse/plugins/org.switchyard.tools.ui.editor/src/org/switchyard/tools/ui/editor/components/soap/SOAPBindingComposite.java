@@ -85,6 +85,8 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
     private TabFolder _tabFolder;
     private Text _endpointAddressText;
     private String _endpointAddress = null;
+    private Text _securityActionText = null;
+    private String _securityAction = null;
 
     /**
      * Constructor.
@@ -214,6 +216,13 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         GridData epAddrGD = new GridData(GridData.FILL_HORIZONTAL);
         epAddrGD.horizontalSpan = 2;
         _endpointAddressText.setLayoutData(epAddrGD);
+
+        _securityActionText = createLabelAndText(composite, "Security Action");
+        _securityActionText.setEnabled(canEdit());
+        GridData saAddrGD = new GridData(GridData.FILL_HORIZONTAL);
+        saAddrGD.horizontalSpan = 2;
+        _securityActionText.setLayoutData(saAddrGD);
+        
         return composite;
     }
 
@@ -251,6 +260,9 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_endpointAddressText)) {
                 final String endpointAddress = _endpointAddressText.getText();
                 updateFeature(_binding, "endpointAddress", endpointAddress);
+            } else if (control.equals(_securityActionText)) {
+                final String securityAction = _securityActionText.getText();
+                updateFeature(_binding, "securityAction", securityAction);
             } else {
                 super.handleModify(control);
             }
@@ -290,6 +302,8 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 }
             } else if (control.equals(_endpointAddressText)) {
                 _endpointAddressText.setText(_binding.getEndpointAddress());
+            } else if (control.equals(_securityActionText)) {
+                _securityActionText.setText(_binding.getSecurityAction());
             } else {
                 super.handleUndo(control);
             }
@@ -447,6 +461,14 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                     _endpointAddressText.setText("");
                 }
             }
+            if (_securityActionText != null && !_securityActionText.isDisposed()) {
+                _securityAction  = _binding.getSecurityAction();
+                if (_securityAction != null) {
+                    _securityActionText.setText(_securityAction);
+                } else {
+                    _securityActionText.setText("");
+                }
+            }
             super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -537,6 +559,7 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         updateControlEditable(_unwrappedPayloadCheckbox);
         updateControlEditable(_soapHeadersTypeCombo);
         updateControlEditable(_endpointAddressText);
+        updateControlEditable(_securityActionText);
     }
 
     class MessageComposerOp extends ModelOperation {

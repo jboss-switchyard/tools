@@ -62,6 +62,24 @@ public interface SOAPFactory extends EFactory {
     SOAPBindingType createSOAPBindingType();
 
     /**
+     * Returns a new object of class '<em>Interceptor Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Interceptor Type</em>'.
+     * @generated
+     */
+    InterceptorType createInterceptorType();
+
+    /**
+     * Returns a new object of class '<em>Interceptors Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Interceptors Type</em>'.
+     * @generated
+     */
+    InterceptorsType createInterceptorsType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
