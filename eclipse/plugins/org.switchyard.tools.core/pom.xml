@@ -191,8 +191,8 @@
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>
                <artifactItem>
-                	<groupId>org.switchyard.components</groupId>
-                  <artifactId>switchyard-component-remote</artifactId>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-sca</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>
                 <artifactItem>

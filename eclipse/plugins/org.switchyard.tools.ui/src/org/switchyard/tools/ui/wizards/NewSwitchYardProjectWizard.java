@@ -46,7 +46,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
     // TODO: use preferences
     /** The default runtime version. */
-    public static final String DEFAULT_RUNTIME_VERSION = "0.7.0.Final";
+    public static final String DEFAULT_RUNTIME_VERSION = "0.8.0.Final";
     private static final String DEFAULT_PROJECT_NAME = "switchyard-example";
     private static final String DEFAULT_PROJECT_VERSION = "0.0.1-SNAPSHOT";
 

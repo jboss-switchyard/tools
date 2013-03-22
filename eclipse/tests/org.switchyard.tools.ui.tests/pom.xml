@@ -129,12 +129,6 @@
 <!--                 </artifactItem> -->
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-hornetq-binding</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <outputDirectory>test-data/quickstart-configs/hornetq-binding</outputDirectory>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-http-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/http-binding</outputDirectory>
