@@ -120,7 +120,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
 
             String loadBalanceValue = (String) getFunkyAttributeValue("loadBalance");
             if (loadBalanceValue != null && (!(loadBalanceValue.equalsIgnoreCase("RandomStrategy") 
-                    || loadBalanceValue.equalsIgnoreCase("RoundRobin") || loadBalanceValue.trim().length() == 0))) {
+                    || loadBalanceValue.equalsIgnoreCase("RoundRobinStrategy") || loadBalanceValue.trim().length() == 0))) {
                 // custom class
                 setTextValue(_loadBalancingCombo, "Custom Load Balance Strategy");
                 _loadBalancingCustomClassText.setEnabled(true);
@@ -210,7 +210,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
             addGridData(_loadBalancingCombo, 3, GridData.FILL_HORIZONTAL);
             _loadBalancingCombo.removeAll();
             _loadBalancingCombo.add("");
-            _loadBalancingCombo.add("RoundRobin");
+            _loadBalancingCombo.add("RoundRobinStrategy");
             _loadBalancingCombo.add("RandomStrategy");
             _loadBalancingCombo.add("Custom Load Balance Strategy");
             
@@ -395,8 +395,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 _targetNamespaceText.setText(value);
             } else if (control.equals(_loadBalancingCombo) || control.equals(_loadBalancingCustomClassText)) {
                 String value = (String) getFunkyAttributeValue("loadBalance");
-                if (!(value.equalsIgnoreCase("RoundRobinStrategy") 
-                        || value.equalsIgnoreCase("RoundRobin"))) {
+                if (!(value.equalsIgnoreCase("RoundRobinStrategy"))) {
                     // custom class
                     setTextValue(_loadBalancingCombo, "Custom Load Balance Strategy");
                     _loadBalancingCustomClassText.setEnabled(true);
