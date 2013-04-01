@@ -336,8 +336,46 @@
               menubarPath="org.switchyard.tools.ui.switchyard">
         </action>
      </objectContribution>
+     <objectContribution
+           adaptable="true"
+           id="org.switchyard.tools.ui.configuration.contribution2"
+           objectClass="org.eclipse.core.resources.IProject">
+          <enablement>
+          		<and>
+		         <instanceof
+		               value="org.eclipse.core.resources.IProject">
+		         </instanceof>
+               <test
+		             forcePluginActivation="true"
+                     property="org.switchyard.tools.ui.isOpenShiftProject">
+               </test>
+               <not>
+		           <adapt
+		                 type="org.eclipse.core.resources.IProject">
+		              <test
+		                    property="org.eclipse.wst.common.project.facet.core.projectFacet"
+		                    value="switchyard.core">
+		              </test>
+		           </adapt>
+               </not>
+		      </and>
+          </enablement>
+        <visibility>
+	           <objectState
+	                 name="projectNature"
+	                 value="org.eclipse.m2e.core.maven2Nature">
+	           </objectState>
+        </visibility>
+        <action
+              class="org.switchyard.tools.ui.actions.ConvertWarToJarAction"
+              enablesFor="1"
+              id="org.switchyard.tools.ui.configuration.action.war2jar"
+              label="Update OpenShift Project for SwitchYard..."
+              menubarPath="org.eclipse.ui.projectConfigure/additions">
+        </action>
+     </objectContribution>
   </extension>
-
+  
    <!-- Project Explorer View content -->
 	<extension
       point="org.eclipse.ui.navigator.navigatorContent">
@@ -1063,4 +1101,14 @@
        </constraints>
     </constraintProvider>
   </extension>
+
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+	    <propertyTester
+	      id="org.switchyard.tools.ui.OpenShiftProjectTester"
+	      type="org.eclipse.core.resources.IProject"
+	      namespace="org.switchyard.tools.ui"
+	      properties="isOpenShiftProject"
+	      class="org.switchyard.tools.ui.actions.OpenShiftProjectTester">
+	    </propertyTester>
+	  </extension>
 </plugin>
