@@ -26,7 +26,7 @@ package org.switchyard.tools.models.switchyard1_0.soap;
 public interface ContextMapperType extends org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType {
     /**
      * Returns the value of the '<em><b>Soap Headers Type</b></em>' attribute.
-     * The default value is <code>""</code>.
+     * The default value is <code>"VALUE"</code>.
      * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType}.
      * <!-- begin-user-doc -->
      * <p>
@@ -38,7 +38,7 @@ public interface ContextMapperType extends org.switchyard.tools.models.switchyar
      * @see org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType
      * @see #setSoapHeadersType(SoapHeadersType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getContextMapperType_SoapHeadersType()
-     * @model default=""
+     * @model default="VALUE"
      *        extendedMetaData="kind='attribute' name='soapHeadersType'"
      * @generated
      */

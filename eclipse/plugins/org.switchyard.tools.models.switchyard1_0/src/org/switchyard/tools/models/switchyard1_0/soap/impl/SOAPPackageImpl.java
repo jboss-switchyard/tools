@@ -693,7 +693,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(contextMapperTypeEClass, ContextMapperType.class, "ContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getContextMapperType_SoapHeadersType(), this.getSoapHeadersType(), "soapHeadersType", "", 0, 1, ContextMapperType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getContextMapperType_SoapHeadersType(), this.getSoapHeadersType(), "soapHeadersType", "VALUE", 0, 1, ContextMapperType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(soapMessageComposerTypeEClass, SOAPMessageComposerType.class, "SOAPMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getSOAPMessageComposerType_Unwrapped(), theXMLTypePackage.getBoolean(), "unwrapped", null, 0, 1, SOAPMessageComposerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

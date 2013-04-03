@@ -8,7 +8,7 @@
       <details key="namespace" value="##targetNamespace"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="soapHeadersType" eType="#//SoapHeadersType"
-        defaultValueLiteral="">
+        defaultValueLiteral="VALUE">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="soapHeadersType"/>
