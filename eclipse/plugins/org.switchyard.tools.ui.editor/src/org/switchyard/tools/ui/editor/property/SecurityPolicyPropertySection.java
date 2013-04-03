@@ -55,11 +55,13 @@ public class SecurityPolicyPropertySection extends GFPropertySection implements 
 
     private static final String CONFIDENTIALITY = "confidentiality";
     private static final String CLIENT_AUTHENTICATION = "clientAuthentication";
+    private static final String AUTHORIZATION = "authorization";
     private Object _businessObject;
     private boolean _inUpdate = false;
     private TransactionalEditingDomain _domain = null;
     private Button _clientAuthCheckbox;
     private Button _confidentialityCheckbox;
+    private Button _authorizationCheckbox;
 
     /**
      * Constructor.
@@ -97,11 +99,20 @@ public class SecurityPolicyPropertySection extends GFPropertySection implements 
         securityGroup.setLayoutData(data);
         securityGroup.setLayout(new FormLayout());
         
-        _clientAuthCheckbox = factory.createButton(securityGroup, "Client Authentication", SWT.CHECK);
+        _authorizationCheckbox = factory.createButton(securityGroup, "Authorization", SWT.CHECK);
         data = new FormData();
         data.left = new FormAttachment(1, 0);
         data.right = new FormAttachment(100, 0);
         data.top = new FormAttachment(0, VSPACE);
+        _authorizationCheckbox.setLayoutData(data);
+        _authorizationCheckbox.addSelectionListener(new CheckboxSelectionListener());
+        _authorizationCheckbox.setData(AUTHORIZATION);
+
+        _clientAuthCheckbox = factory.createButton(securityGroup, "Client Authentication", SWT.CHECK);
+        data = new FormData();
+        data.left = new FormAttachment(1, 0);
+        data.right = new FormAttachment(100, 0);
+        data.top = new FormAttachment(_authorizationCheckbox, 5, VSPACE);
         _clientAuthCheckbox.setLayoutData(data);
         _clientAuthCheckbox.addSelectionListener(new CheckboxSelectionListener());
         _clientAuthCheckbox.setData(CLIENT_AUTHENTICATION);
@@ -167,6 +178,7 @@ public class SecurityPolicyPropertySection extends GFPropertySection implements 
                     _inUpdate = true;
                     boolean clientAuthentication = false;
                     boolean confidentiality = false;
+                    boolean authentication = false;
                     List<QName> requires = contract.getRequires();
                     if (requires != null) {
                         for (QName requiresItem : requires) {
@@ -177,13 +189,18 @@ public class SecurityPolicyPropertySection extends GFPropertySection implements 
                             if (CONFIDENTIALITY.contentEquals(localPart)) {
                                 confidentiality = true;
                             }
+                            if (AUTHORIZATION.contentEquals(localPart)) {
+                                authentication = true;
+                            }
                         }
                     }
                     boolean showClientAuthCheckbox = true;
                     if (contract.eContainer() instanceof Component && contract instanceof ComponentReference) {
                         showClientAuthCheckbox = false;
                     }
-                    _clientAuthCheckbox.setEnabled(showClientAuthCheckbox);
+                    if (!_clientAuthCheckbox.isDisposed()) {
+                        _clientAuthCheckbox.setEnabled(showClientAuthCheckbox);
+                    }
 
                     if (clientAuthentication && _clientAuthCheckbox != null && !_clientAuthCheckbox.isDisposed())  {
                         _clientAuthCheckbox.setSelection(clientAuthentication);
@@ -191,6 +208,18 @@ public class SecurityPolicyPropertySection extends GFPropertySection implements 
                     
                     if (confidentiality && !_confidentialityCheckbox.isDisposed())  {
                         _confidentialityCheckbox.setSelection(confidentiality);
+                    }
+
+                    boolean showAuthorizationCheckbox = true;
+                    if (contract.eContainer() instanceof Component && contract instanceof ComponentReference) {
+                        showAuthorizationCheckbox = false;
+                    }
+                    if (!_authorizationCheckbox.isDisposed()) {
+                        _authorizationCheckbox.setEnabled(showAuthorizationCheckbox);
+                    }
+
+                    if (authentication && !_authorizationCheckbox.isDisposed())  {
+                        _authorizationCheckbox.setSelection(confidentiality);
                     }
                     _inUpdate = false;
                 }
