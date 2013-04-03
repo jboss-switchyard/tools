@@ -75,19 +75,24 @@ public class CreateWrapperCustomFeature extends AbstractCustomFeature implements
     private ICreateContext adaptCustomContextToCreateContext(ICustomContext customContext) {
         CreateContext createContext = new CreateContext();
         PictogramElement[] picElements = customContext.getPictogramElements();
-        createContext.setTargetContainer((ContainerShape) picElements[0]);
+        if (picElements[0] instanceof ContainerShape) {
+            createContext.setTargetContainer((ContainerShape) picElements[0]);
 
-        // making the absolute location point relative to the container
-        int x = createContext.getTargetContainer().getGraphicsAlgorithm().getX() + 20;
-        int y = createContext.getTargetContainer().getGraphicsAlgorithm().getY() + 20;
-        createContext.setLocation(x, y);
+            // making the absolute location point relative to the container
+            int x = createContext.getTargetContainer().getGraphicsAlgorithm().getX() + 20;
+            int y = createContext.getTargetContainer().getGraphicsAlgorithm().getY() + 20;
+            createContext.setLocation(x, y);
+        }
         
         return createContext;
     }
 
     @Override
     public boolean canExecute(ICustomContext context) {
-        ICreateContext createContext = adaptCustomContextToCreateContext(context);
-        return _createFeature.canExecute(createContext);
+        if (this._createFeature != null) {
+            ICreateContext createContext = adaptCustomContextToCreateContext(context);
+            return _createFeature.canExecute(createContext);
+        }
+        return false;
     }
 }
