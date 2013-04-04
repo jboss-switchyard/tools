@@ -108,12 +108,12 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
         if (_settingsGroup == null) {
             return;
         }
-        if (_config.isPropertySet(RUNTIME_PROVIDED)) {
-            _settingsGroup.getRuntimeProvidedCheckbox().setSelection(_config.getBooleanProperty(RUNTIME_PROVIDED));
-        } else {
-            _settingsGroup.getRuntimeProvidedCheckbox().setSelection(
-                    (Boolean) _config.getDefaultProperty(RUNTIME_PROVIDED));
-        }
+        // if (_config.isPropertySet(RUNTIME_PROVIDED)) {
+        // _settingsGroup.getRuntimeProvidedCheckbox().setSelection(_config.getBooleanProperty(RUNTIME_PROVIDED));
+        // } else {
+        // _settingsGroup.getRuntimeProvidedCheckbox().setSelection(
+        // (Boolean) _config.getDefaultProperty(RUNTIME_PROVIDED));
+        // }
         if (_config.isPropertySet(RUNTIME_VERSION)) {
             _settingsGroup.getRuntimeVersionsList().setSelection(
                     new StructuredSelection(_config.getProperty(RUNTIME_VERSION)), true);

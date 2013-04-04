@@ -15,6 +15,8 @@ import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYAR
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_JAR_PRESET_ID;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -36,6 +38,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionDelegate;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
+import org.eclipse.wst.common.project.facet.core.IDynamicPreset;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IPreset;
@@ -112,27 +115,28 @@ public class SwitchYardSettingsAction extends ActionDelegate implements IObjectA
 
     private void installSwitchYardFacet(final IFacetedProjectWorkingCopy fpwc) {
         try {
-            boolean installed = false;
             final String installPresetId;
             if (isJarPackaging()) {
                 installPresetId = SWITCHYARD_JAR_PRESET_ID;
             } else {
                 installPresetId = SWITCHYARD_BASIC_PRESET_ID;
             }
-            for (IPreset preset : fpwc.getAvailablePresets()) {
-                if (installPresetId.equals(preset.getId())) {
-                    // this should setup the java facet correctly
-                    for (IProjectFacetVersion pfv : preset.getProjectFacets()) {
-                        fpwc.addProjectFacet(pfv);
-                    }
-                    installed = true;
-                    break;
-                }
+            IPreset preset = ProjectFacetsManager.getPreset(installPresetId);
+            if (preset instanceof IDynamicPreset) {
+                final Map<String, Object> context = new HashMap<String, Object>();
+                context.put(IDynamicPreset.CONTEXT_KEY_FACETED_PROJECT, fpwc);
+                context.put(IDynamicPreset.CONTEXT_KEY_PRIMARY_RUNTIME, fpwc.getPrimaryRuntime());
+                context.put(IDynamicPreset.CONTEXT_KEY_FIXED_FACETS, fpwc.getFixedProjectFacets());
+                preset = ((IDynamicPreset) preset).resolve(context);
             }
-            if (!installed) {
-                // TODO: maybe show an error saying we couldn't install the sy
-                // facet.
+            if (preset == null) {
+                MessageDialog.openError(_targetPart.getSite().getShell(), "Error Installing SwitchYard Facet",
+                        "Failed to install SwitchYard facet on project.");
                 return;
+            }
+            // this should setup the java facet correctly
+            for (IProjectFacetVersion pfv : preset.getProjectFacets()) {
+                fpwc.addProjectFacet(pfv);
             }
             if (fpwc.getProjectFacetAction(SWITCHYARD_FACET) != null) {
                 Object config = fpwc.getProjectFacetAction(SWITCHYARD_FACET).getConfig();

@@ -65,7 +65,9 @@ public class SwitchYardBasicPresetFactory implements IPresetFactory, ISwitchYard
         facets.add(javaFacetVersion);
 
         // JBoss Maven Integration facet (if available)
-        if (ProjectFacetsManager.isProjectFacetDefined(JBOSS_M2_FACET_ID)) {
+        // JBIDE-13929, m2 installation will fail if jst.seam is missing
+        if (ProjectFacetsManager.isProjectFacetDefined(JBOSS_M2_FACET_ID)
+                && ProjectFacetsManager.isProjectFacetDefined("jst.seam")) {
             facets.add(ProjectFacetsManager.getProjectFacet(JBOSS_M2_FACET_ID).getDefaultVersion());
         }
 
