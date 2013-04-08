@@ -89,6 +89,9 @@ public class NewBeanComponentWizard extends NewBeanServiceWizard implements ICom
             List<ComponentService> services = scanner.getServices();
             if (services != null && services.size() > 0) {
                 _component.getService().add(services.get(0));
+            } else if (getServiceContract() instanceof ComponentService) {
+                // fallback to service contract
+                _component.getService().add((ComponentService) getServiceContract());
             }
             List<ComponentReference> references = scanner.getReferences();
             if (references != null) {

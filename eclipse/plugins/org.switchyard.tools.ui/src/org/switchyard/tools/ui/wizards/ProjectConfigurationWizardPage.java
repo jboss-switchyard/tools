@@ -31,6 +31,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.sonatype.aether.util.version.GenericVersionScheme;
+import org.sonatype.aether.version.InvalidVersionSpecificationException;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.common.ILayoutUtilities;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
@@ -200,13 +202,17 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
 
     private void initRuntimeVersionsList() {
         List<Version> versions = _settingsGroup.getAvailableVersions();
-        if (versions == null || versions.size() == 0) {
-            _settingsGroup.getRuntimeVersionsList().setSelection(
-                    new StructuredSelection(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION));
-        } else {
+        try {
             // TODO: allow use of preferred version or allow association of
             // server runtime version.
-            _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(versions.get(0)), true);
+            _settingsGroup.getRuntimeVersionsList().setSelection(
+                    new StructuredSelection(new GenericVersionScheme()
+                            .parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION)));
+        } catch (InvalidVersionSpecificationException e) {
+            e.printStackTrace();
+            if (versions != null && versions.size() > 0) {
+                _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(versions.get(0)), true);
+            }
         }
     }
 

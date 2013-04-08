@@ -30,6 +30,7 @@ import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
 
 /**
  * SwitchYardFacetInstallConfigFactory
@@ -44,6 +45,20 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
     private List<Version> _versions;
     private Version _defaultVersion;
     private ISwitchYardProject _switchYardProject;
+
+    /**
+     * Create a new SwitchYardFacetInstallConfigFactory.
+     */
+    public SwitchYardFacetInstallConfigFactory() {
+        super();
+        try {
+            // TODO: we should look this up from preferences
+            _defaultVersion = new GenericVersionScheme()
+                    .parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
+        } catch (InvalidVersionSpecificationException e) {
+            e.printStackTrace();
+        }
+    }
 
     @SuppressWarnings({"rawtypes", "unchecked" })
     @Override
@@ -64,14 +79,14 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
         }
 
         // the default version
-        for (ListIterator<Version> lit = _versions.listIterator(_versions.size()); lit.hasPrevious();) {
-            Version version = lit.previous();
-            if (_defaultVersion == null) {
+        if (_defaultVersion == null) {
+            for (ListIterator<Version> lit = _versions.listIterator(_versions.size()); lit.hasPrevious();) {
+                Version version = lit.previous();
                 _defaultVersion = version;
-            }
-            if (!version.toString().endsWith("-SNAPSHOT")) {
-                _defaultVersion = version;
-                break;
+                if (!version.toString().endsWith("-SNAPSHOT")) {
+                    _defaultVersion = version;
+                    break;
+                }
             }
         }
         if (_switchYardProject != null) {
