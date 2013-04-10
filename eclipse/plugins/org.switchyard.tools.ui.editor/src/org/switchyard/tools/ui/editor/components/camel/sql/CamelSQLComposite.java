@@ -96,9 +96,11 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
                 _periodText.setText("");
             }
             
-            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-            _opSelectorComposite.setBinding(this._binding);
-            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+                _opSelectorComposite.setBinding(this._binding);
+                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            }
 
             super.setTabsBinding(_binding);
             setInUpdate(false);
@@ -148,6 +150,12 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         one.setText("SQL Gateway");
         one.setControl(getSQLTabControl(_tabFolder));
 
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+            }
+        }
+
         addTabs(_tabFolder);
     }
 
@@ -168,15 +176,17 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             _initialDelayText = createLabelAndText(sqlGroup, "Initial Delay (MS)");
         }
 
-        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        _opSelectorComposite.setLayout(new GridLayout(2, false));
-        _opSelectorComposite.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                handleModify(_opSelectorComposite);
-            }
-         });
+        if (getTargetObject() instanceof Service) {
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            _opSelectorComposite.setLayout(new GridLayout(2, false));
+            _opSelectorComposite.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    handleModify(_opSelectorComposite);
+                }
+             });
+        }
 
         return composite;
     }

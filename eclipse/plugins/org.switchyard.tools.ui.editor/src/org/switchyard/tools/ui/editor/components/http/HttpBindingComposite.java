@@ -82,6 +82,12 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         one.setText("HTTP");
         one.setControl(getHttpControl(_tabFolder));
 
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+            }
+        }
+
         addTabs(_tabFolder);
     }
 
@@ -101,18 +107,18 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             GridData cpGD = new GridData(GridData.FILL_HORIZONTAL);
             cpGD.horizontalSpan = 2;
             _contextPathText.setLayoutData(cpGD);
-        }
 
-        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        _opSelectorComposite.setLayout(new GridLayout(2, false));
-        _opSelectorComposite.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                handleModify(_opSelectorComposite);
-            }
-         });
-        _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            _opSelectorComposite.setLayout(new GridLayout(2, false));
+            _opSelectorComposite.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    handleModify(_opSelectorComposite);
+                }
+             });
+            _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+        }
 
         if (getTargetObject() instanceof Reference) {
             _mAddressURLText = createLabelAndText(httpGroup, "Address");
@@ -229,9 +235,11 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             setTextValue(_contentTypeText, _binding.getContentType());
             setTextValue(_methodCombo, _binding.getMethod());
 
-            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-            _opSelectorComposite.setBinding(this._binding);
-            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+                _opSelectorComposite.setBinding(this._binding);
+                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            }
 
             if (_contextPathText != null && !_contextPathText.isDisposed()) {
                 if (_binding.getContextPath() != null) {

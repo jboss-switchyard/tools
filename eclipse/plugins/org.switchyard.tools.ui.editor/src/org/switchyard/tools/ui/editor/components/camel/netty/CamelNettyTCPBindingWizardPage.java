@@ -53,8 +53,8 @@ public class CamelNettyTCPBindingWizardPage extends WizardPage {
                 setPageComplete(_nettyTCPComposite.getErrorMessage() == null);
             }
         });
-        _nettyTCPComposite.createContents(parent, SWT.NONE);
         _nettyTCPComposite.setTargetObject(_targetContainer);
+        _nettyTCPComposite.createContents(parent, SWT.NONE);
         _nettyTCPComposite.setBinding(_binding);
 
         setControl(_nettyTCPComposite.getPanel());

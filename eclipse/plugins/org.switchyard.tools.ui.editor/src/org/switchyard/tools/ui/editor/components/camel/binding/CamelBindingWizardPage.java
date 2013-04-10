@@ -53,8 +53,8 @@ public class CamelBindingWizardPage extends WizardPage {
                 setPageComplete(_camelComposite.getErrorMessage() == null);
             }
         });
-        _camelComposite.createContents(parent, SWT.NONE);
         _camelComposite.setTargetObject(_targetContainer);
+        _camelComposite.createContents(parent, SWT.NONE);
         _camelComposite.setBinding(_binding);
 
         setControl(_camelComposite.getPanel());

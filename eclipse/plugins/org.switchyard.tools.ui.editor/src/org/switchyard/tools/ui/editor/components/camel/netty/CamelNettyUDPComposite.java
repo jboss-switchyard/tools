@@ -21,6 +21,7 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -76,9 +77,11 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
             _broadcastCheckbox.setSelection(this._binding.isBroadcast());
 
-            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-            _opSelectorComposite.setBinding(this._binding);
-            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+                _opSelectorComposite.setBinding(this._binding);
+                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            }
 
             super.setTabsBinding(_binding);
             setInUpdate(false);
@@ -130,12 +133,18 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
 
         TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("Netty UDP Gateway");
-        one.setControl(getSchedulerTabControl(_tabFolder));
+        one.setControl(getNettyUDPTabControl(_tabFolder));
+
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+            }
+        }
 
         addTabs(_tabFolder);
     }
 
-    private Control getSchedulerTabControl(TabFolder tabFolder) {
+    private Control getNettyUDPTabControl(TabFolder tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(1, false);
         composite.setLayout(gl);
@@ -149,15 +158,17 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
         _portText = createLabelAndText(udpGroup, "Port*");
         _broadcastCheckbox = createCheckbox(udpGroup, "Broadcast");
 
-        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        _opSelectorComposite.setLayout(new GridLayout(2, false));
-        _opSelectorComposite.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                handleModify(_opSelectorComposite);
-            }
-         });
+        if (getTargetObject() instanceof Service) {
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            _opSelectorComposite.setLayout(new GridLayout(2, false));
+            _opSelectorComposite.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    handleModify(_opSelectorComposite);
+                }
+             });
+        }
 
         return composite;
     }

@@ -29,7 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlFactory;
  */
 public class CamelSqlBindingWizardPage extends WizardPage {
 
-    private CamelSQLComposite _quartzComposite = null;
+    private CamelSQLComposite _sqlComposite = null;
     private CamelSqlBindingType _binding = SqlFactory.eINSTANCE.createCamelSqlBindingType();
     private Contract _targetContainer;
 
@@ -45,20 +45,20 @@ public class CamelSqlBindingWizardPage extends WizardPage {
     @Override
     public void createControl(Composite parent) {
         _targetContainer = ((CamelSqlBindingWizard)getWizard()).getTargetContainer();
-        _quartzComposite = new CamelSQLComposite();
-        _quartzComposite.addChangeListener(new ChangeListener() {
+        _sqlComposite = new CamelSQLComposite();
+        _sqlComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
-                setErrorMessage(_quartzComposite.getErrorMessage());
-                setPageComplete(_quartzComposite.getErrorMessage() == null);
+                setErrorMessage(_sqlComposite.getErrorMessage());
+                setPageComplete(_sqlComposite.getErrorMessage() == null);
             }
         });
-        _quartzComposite.createContents(parent, SWT.NONE);
-        _quartzComposite.setTargetObject(_targetContainer);
-        _quartzComposite.setBinding(_binding);
+        _sqlComposite.setTargetObject(_targetContainer);
+        _sqlComposite.createContents(parent, SWT.NONE);
+        _sqlComposite.setBinding(_binding);
 
-        setControl(_quartzComposite.getPanel());
-        setPageComplete(_quartzComposite.getErrorMessage() == null);
+        setControl(_sqlComposite.getPanel());
+        setPageComplete(_sqlComposite.getErrorMessage() == null);
 
         setErrorMessage(null);
     }

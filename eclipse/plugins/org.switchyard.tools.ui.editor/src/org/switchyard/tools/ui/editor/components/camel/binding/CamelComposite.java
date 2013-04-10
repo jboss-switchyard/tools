@@ -14,7 +14,13 @@ package org.switchyard.tools.ui.editor.components.camel.binding;
 
 import java.util.List;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -28,8 +34,11 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 
 /**
  * @author bfitzpat
@@ -41,6 +50,7 @@ public class CamelComposite extends AbstractSYBindingComposite {
     private CamelBindingType _binding = null;
     private Text _configURIText;
     private TabFolder _tabFolder;
+    private OperationSelectorComposite _opSelectorComposite;
 
     @Override
     public Binding getBinding() {
@@ -58,6 +68,12 @@ public class CamelComposite extends AbstractSYBindingComposite {
                 _configURIText.setText("");
             }
 
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+                _opSelectorComposite.setBinding(this._binding);
+                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            }
+
             setInUpdate(false);
             super.setTabsBinding(_binding);
             validate();
@@ -70,6 +86,9 @@ public class CamelComposite extends AbstractSYBindingComposite {
     @Override
     public void setTargetObject(Object target) {
         super.setTargetObject(target);
+        if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+            _opSelectorComposite.setTargetObject((EObject) target);
+        }
     }
 
     @Override
@@ -98,6 +117,12 @@ public class CamelComposite extends AbstractSYBindingComposite {
         one.setText("Camel");
         one.setControl(getSchedulerTabControl(_tabFolder));
 
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+            }
+        }
+        
         addTabs(_tabFolder);
     }
 
@@ -113,6 +138,18 @@ public class CamelComposite extends AbstractSYBindingComposite {
 
         _configURIText = createLabelAndText(schedulerGroup, "Config URI*");
 
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            _opSelectorComposite.setLayout(new GridLayout(2, false));
+            _opSelectorComposite.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    handleModify(_opSelectorComposite);
+                }
+             });
+        }
+
         return composite;
     }
 
@@ -124,6 +161,9 @@ public class CamelComposite extends AbstractSYBindingComposite {
     protected void handleModify(final Control control) {
         if (control.equals(_configURIText)) {
             updateFeature(_binding, "configURI", _configURIText.getText().trim());
+        } else if (control.equals(_opSelectorComposite)) {
+            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
+            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         }
         super.handleModify(control);
         setHasChanged(false);

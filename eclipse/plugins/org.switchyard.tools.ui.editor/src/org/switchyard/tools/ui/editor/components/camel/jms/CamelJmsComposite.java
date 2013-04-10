@@ -128,9 +128,12 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             } else {
                 _selectorText.setText("");
             }
-            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-            _opSelectorComposite.setBinding(this._binding);
-            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+                _opSelectorComposite.setBinding(this._binding);
+                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            }
 
             if (this._binding.getConnectionFactory() == null || this._binding.getConnectionFactory().trim().isEmpty()) {
                 _connectionFactoryText.setText("#ConnectionFactory");
@@ -205,12 +208,13 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         }
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
             one.setText("JMS Consumer");
+            one.setControl(getJmsTabControl(_tabFolder));
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+                _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+            }
         } else if (getTargetObject() != null && getTargetObject() instanceof Reference) {
             one.setText("JMS Producer");
-        }
-        one.setControl(getJmsTabControl(_tabFolder));
-        if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
-            _opSelectorComposite.setTargetObject((EObject) getTargetObject());
+            one.setControl(getJmsTabControl(_tabFolder));
         }
 
         addTabs(_tabFolder);
@@ -250,15 +254,17 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         _transactionManagerText = createLabelAndText(jmsGroup, "Transaction Manager");
         _transactedButton = createCheckbox(jmsGroup, "Transacted");
 
-        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        _opSelectorComposite.setLayout(new GridLayout(2, false));
-        _opSelectorComposite.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                handleModify(_opSelectorComposite);
-            }
-         });
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            _opSelectorComposite.setLayout(new GridLayout(2, false));
+            _opSelectorComposite.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    handleModify(_opSelectorComposite);
+                }
+             });
+        }
 
         return composite;
     }
