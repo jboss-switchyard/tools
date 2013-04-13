@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2013 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -7,8 +7,6 @@
  * 
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
- *
- * @author bfitzpat
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
@@ -16,14 +14,16 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * @author bfitzpat
+ * ContractControlPropertyPage
  * 
+ * <p/>
+ * Property page implementation for Contract Interface.
  */
-public class InterfaceControlPropertiesSection extends AbstractTabbedPropertySection<Contract> {
+public class ContractControlPropertyPage extends AbstractPropertyPage<Contract> {
 
     @Override
     protected AbstractModelComposite<Contract> createComposite(Composite parent, int style) {
-        return new InterfaceControlComposite(this, parent, style);
+        return new ContractControlComposite(this, parent, style);
     }
 
 }

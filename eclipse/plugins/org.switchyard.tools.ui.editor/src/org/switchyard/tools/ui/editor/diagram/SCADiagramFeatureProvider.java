@@ -361,6 +361,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         }
         features.add(new SynchronizeGeneratedModelFeature(this));
         features.add(new ValidateModelFeature(this));
+        features.add(new PropertiesDialogFeature(this));
         return features.toArray(new ICustomFeature[features.size()]);
     }
 

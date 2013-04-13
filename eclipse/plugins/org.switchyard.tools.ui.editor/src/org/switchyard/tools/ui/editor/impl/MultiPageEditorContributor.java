@@ -21,6 +21,9 @@ import org.eclipse.graphiti.ui.editor.DiagramEditorActionBarContributor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.actions.RetargetAction;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.wst.xml.ui.internal.tabletree.SourcePageActionContributor;
@@ -45,6 +48,12 @@ public class MultiPageEditorContributor extends MultiPageEditorActionBarContribu
     public MultiPageEditorContributor() {
         super();
         _designActionBarContributor = new DiagramEditorActionBarContributor() {
+            @Override
+            protected void buildActions() {
+                super.buildActions();
+                addRetargetAction((RetargetAction) ActionFactory.PROPERTIES.create(PlatformUI.getWorkbench().getActiveWorkbenchWindow()));
+            }
+
             @Override
             public void setActiveEditor(IEditorPart editor) {
                 if (editor == null) {

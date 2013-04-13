@@ -979,6 +979,48 @@
               type="org.eclipse.core.resources.IResource">
         </adapter>
      </factory>
+     <!-- Model child adapters -->
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Component"
+           class="org.switchyard.tools.ui.ModelChildAdapterFactory">
+        <adapter
+              type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+        </adapter>
+        <adapter
+              type="org.eclipse.soa.sca.sca1_1.model.sca.Interface">
+        </adapter>
+        <adapter
+              type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Contract"
+           class="org.switchyard.tools.ui.ModelChildAdapterFactory">
+        <adapter
+              type="org.eclipse.soa.sca.sca1_1.model.sca.Interface">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType"
+           class="org.switchyard.tools.ui.WorkbenchAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.model.IWorkbenchAdapter">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Component"
+           class="org.switchyard.tools.ui.WorkbenchAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.model.IWorkbenchAdapter">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Contract"
+           class="org.switchyard.tools.ui.WorkbenchAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.model.IWorkbenchAdapter">
+        </adapter>
+     </factory>
   </extension>
   <extension
         id="projectValidator"

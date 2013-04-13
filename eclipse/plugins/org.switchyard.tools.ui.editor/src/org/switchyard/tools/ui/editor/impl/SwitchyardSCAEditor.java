@@ -72,6 +72,7 @@ import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IUpdateContext;
@@ -100,7 +101,9 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.ide.IGotoMarker;
+import org.eclipse.ui.internal.WorkbenchMessages;
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
@@ -118,6 +121,7 @@ import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.diagram.PropertiesDialogFeature;
 import org.switchyard.tools.ui.editor.diagram.SynchronizeGeneratedModelFeature;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelAdapterFactory;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -246,6 +250,13 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
         setActiveEditor(this);
         super.init(site, input);
+    }
+
+    @Override
+    protected void createActions() {
+        super.createActions();
+        
+        getActionRegistry().registerAction(new PropertiesDialogAction(this));
     }
 
     @Override
@@ -972,6 +983,29 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
     }
 
+    private class PropertiesDialogAction extends SelectionAction {
+        public PropertiesDialogAction(IWorkbenchPart part) {
+            super(part);
+            setId(ActionFactory.PROPERTIES.getId());
+            setActionDefinitionId(ActionFactory.PROPERTIES.getCommandId());
+            setText(WorkbenchMessages.Workbench_properties);
+        }
+
+        @Override
+        protected boolean calculateEnabled() {
+            PropertiesDialogFeature feature = new PropertiesDialogFeature(getDiagramTypeProvider().getFeatureProvider());
+            CustomContext context = new CustomContext(getSelectedPictogramElements());
+            return feature.canExecute(context);
+        }
+
+        @Override
+        public void run() {
+            PropertiesDialogFeature feature = new PropertiesDialogFeature(getDiagramTypeProvider().getFeatureProvider());
+            CustomContext context = new CustomContext(getSelectedPictogramElements());
+            executeFeature(feature, context);
+        }
+    }
+    
     /**
      * @param resourceSet register all the EMF packages for the SY resource set
      */

@@ -332,4 +332,20 @@
           class="org.switchyard.tools.ui.bpmn2.component.BPMComponentTypeExtension">
     </componentExtension>
    </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.switchyard.tools.ui.bpmn2.component.BPMImplementationPropertyPage"
+            id="org.switchyard.tools.ui.bpmn2.propertyPage"
+            name="Implementation">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+               <instanceof
+                     value="org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType">
+               </instanceof>
+            </adapt>
+         </enabledWhen>
+      </page>
+   </extension>
 </plugin>

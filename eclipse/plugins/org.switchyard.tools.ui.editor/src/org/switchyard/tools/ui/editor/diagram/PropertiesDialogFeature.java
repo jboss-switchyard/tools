@@ -14,10 +14,15 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.preference.IPreferenceNode;
+import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.IShellProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
@@ -33,6 +38,10 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  */
 public class PropertiesDialogFeature extends AbstractCustomFeature {
 
+    private boolean _hasMadeChanges;
+    private ICustomContext _context;
+    private PropertyDialogAction _openProperties;
+
     /**
      * Create a new AutoLayoutFeature.
      * 
@@ -40,6 +49,24 @@ public class PropertiesDialogFeature extends AbstractCustomFeature {
      */
     public PropertiesDialogFeature(IFeatureProvider fp) {
         super(fp);
+        _openProperties = new PropertyDialogAction(new IShellProvider() {
+            public Shell getShell() {
+                return SwitchyardSCAEditor.getEditor(getDiagram()).getEditorSite().getShell();
+            }
+        }, new ISelectionProvider() {
+            public void addSelectionChangedListener(ISelectionChangedListener listener) {
+            }
+
+            public ISelection getSelection() {
+                return getSelectionForContext();
+            }
+
+            public void removeSelectionChangedListener(ISelectionChangedListener listener) {
+            }
+
+            public void setSelection(ISelection selection) {
+            }
+        });
     }
 
     @Override
@@ -54,53 +81,40 @@ public class PropertiesDialogFeature extends AbstractCustomFeature {
 
     @Override
     public boolean canExecute(ICustomContext context) {
-        PictogramElement[] elements = context.getPictogramElements();
-        return elements != null && elements.length == 1 && getBusinessObjectForPictogramElement(elements[0]) != null;
+        _context = context;
+        _openProperties.selectionChanged(getSelectionForContext());
+        return _openProperties.isApplicableForSelection();
     }
 
     @Override
     public void execute(ICustomContext context) {
-        PropertyDialogAction openProperties= new PropertyDialogAction(
-                new IShellProvider() {
-                    public Shell getShell() {
-                        return SwitchyardSCAEditor.getActiveEditor().getSite().getShell();
-                    }
-                },
-                new ISelectionProvider() {
-                    public void addSelectionChangedListener(ISelectionChangedListener
-                            listener) {
-                    }
-                    public ISelection getSelection() {
-                        PictogramElement[] elements =
-                                SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
-                        Object bo = getBusinessObjectForPictogramElement(elements[0]);
-                        return new StructuredSelection(bo);
-                    }
-                    public void removeSelectionChangedListener(ISelectionChangedListener
-                            listener) {
-                    }
-                    public void setSelection(ISelection selection) {
-                    }
-                });
-        openProperties.run();
+        PreferenceDialog dialog = _openProperties.createDialog();
+        dialog.getTreeViewer().addFilter(new ViewerFilter() {
+            @Override
+            public boolean select(Viewer viewer, Object parentElement, Object element) {
+                String id = element == null ? null : ((IPreferenceNode) element).getId();
+                // filter out run/debug and svn info
+                return id != null && !id.startsWith("org.eclipse.debug.ui.") && !id.startsWith("org.eclipse.team.");
+            }
+        });
+        _hasMadeChanges = dialog.open() == Dialog.OK;
     }
 
-//    private void openProperties(Object bo) {
-//        // look at - http://wiki.eclipse.org/FAQ_How_do_I_open_a_Property_dialog%3F
-//        ISelection sel = new StructuredSelection(bo);
-//        TabbedPropertySheetPage namepage = new TabbedPropertySheetPage(new ITabbedPropertySheetPageContributor() {
-//            public String getContributorId() {
-//                return "contributorId";
-//            }
-//        });
-//        PropertyPage page = null; // how do I get from a tabbed property sheet page to a PropertyPage?
-//        PreferenceManager mgr = new PreferenceManager();
-//        IPreferenceNode node = new PreferenceNode("1", page);
-//        mgr.addToRoot(node);
-//        PropertyDialog dialog = new PropertyDialog(shell, mgr, sel);
-//        dialog.create();
-//        dialog.setMessage(page.getTitle());
-//        dialog.open();
-//    }
+    @Override
+    public boolean hasDoneChanges() {
+        return _hasMadeChanges;
+    }
+
+    private ISelection getSelectionForContext() {
+        PictogramElement[] elements = _context == null ? null : _context.getPictogramElements();
+        if (elements == null || elements.length != 1) {
+            return StructuredSelection.EMPTY;
+        }
+        Object bo = getBusinessObjectForPictogramElement(elements[0]);
+        if (bo == null) {
+            return StructuredSelection.EMPTY;
+        }
+        return new StructuredSelection(bo);
+    }
 
 }

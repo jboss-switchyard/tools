@@ -137,7 +137,7 @@
                tab="switchyard.binding.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesInterfacesSection"
+               class="org.switchyard.tools.ui.editor.property.InterfaceControlPropertiesSection"
                filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesInterfacesFilter"
                id="switchyard.interface.tab.details"
                tab="switchyard.interface.tab">
@@ -380,4 +380,65 @@
        </constraints>
     </constraintProvider>
   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.switchyard.tools.ui.editor.property.ContractControlPropertyPage"
+            id="org.switchyard.tools.ui.contract.propertyPage"
+            name="Contract">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.switchyard.tools.ui.contract.propertyPage"
+            class="org.switchyard.tools.ui.editor.property.InteractionPolicyPropertyPage"
+            id="org.switchyard.tools.ui.contract.policy.transaction.propertyPage"
+            name="Transaction Policy">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
+               <or>
+                  <instanceof
+                        value="org.eclipse.soa.sca.sca1_1.model.sca.ComponentService">
+                  </instanceof>
+                  <instanceof
+                        value="org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference">
+                  </instanceof>
+               </or>
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.switchyard.tools.ui.contract.propertyPage"
+            class="org.switchyard.tools.ui.editor.property.SecurityPolicyPropertyPage"
+            id="org.switchyard.tools.ui.contract.policy.security.propertyPage"
+            name="Security Policy">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
+               <or>
+                  <instanceof
+                        value="org.eclipse.soa.sca.sca1_1.model.sca.ComponentService">
+                  </instanceof>
+                  <instanceof
+                        value="org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference">
+                  </instanceof>
+               </or>
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.property.ImplementationPolicyPropertyPage"
+            id="org.switchyard.tools.ui.component.policy.transaction.propertyPage"
+            name="Transaction Policy">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Component">
+            </adapt>
+         </enabledWhen>
+      </page>
+   </extension>
 </plugin>
