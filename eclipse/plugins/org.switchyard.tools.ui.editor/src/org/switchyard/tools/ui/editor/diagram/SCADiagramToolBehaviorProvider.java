@@ -614,6 +614,10 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         
         // create a create context for when we need it
         ICreateContext createContext = adaptCustomContextToCreateContext(customContext);
+        
+        data.getDomainSpecificContextButtons().add(
+                new ContextButtonEntry(new PropertiesDialogFeature(getFeatureProvider()),
+                        new CustomContext(new PictogramElement[] {context.getPictogramElement() })));
 
         if (bo instanceof Composite) {
             // just update, no delete

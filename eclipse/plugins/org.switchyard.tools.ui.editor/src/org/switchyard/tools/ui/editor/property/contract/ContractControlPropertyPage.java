@@ -7,23 +7,25 @@
  * 
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
- *
- * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.contract;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.ui.editor.property.contract.BindingsControlComposite;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractPropertyPage;
 
 /**
- * @author bfitzpat
+ * ContractControlPropertyPage
  * 
+ * <p/>
+ * Property page implementation for Contract Interface.
  */
-public class SwitchyardSCAPropertiesBindingsSection extends AbstractTabbedPropertySection<Contract> {
+public class ContractControlPropertyPage extends AbstractPropertyPage<Contract> {
 
     @Override
     protected AbstractModelComposite<Contract> createComposite(Composite parent, int style) {
-        return new BindingsControlComposite(this, parent, style);
+        return new ContractControlComposite(this, parent, style);
     }
+
 }

@@ -16,6 +16,8 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -50,19 +52,21 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
 import org.switchyard.tools.ui.JavaUtil;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IImplementationComposite;
+import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.property.AbstractChangeAwareModelComposite;
+import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
 /**
  * @author bfitzpat
  * 
  */
-public class CamelJavaRouteComposite extends AbstractSwitchyardComposite implements IImplementationComposite {
+public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<Component> {
 
     private Composite _panel;
     private CamelImplementationType _implementation = null;
@@ -71,21 +75,20 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
     private Link _newClassLink;
     private Text _mClassText;
     private Button _browseClassBtn;
+    private boolean _updating;
 
     /**
-     * Constructor.
+     * Create a new BeanImplementationComposite.
+     * 
+     * @param container the container.
+     * @param parent the parent composite.
+     * @param style style bits.
      */
-    public CamelJavaRouteComposite() {
-        // empty
-    }
+    public CamelJavaRouteComposite(ICompositeContainer container, Composite parent, int style) {
+        super(Component.class, container, parent, style);
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
-    public void createContents(Composite parent, int style) {
-
-        _panel = new Composite(parent, SWT.NONE);
+        final FormToolkit factory = getWidgetFactory();
+        _panel = this;
         _panel.setLayout(new GridLayout(3, false));
 
         _newClassLink = new Link(_panel, SWT.NONE);
@@ -115,7 +118,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
                 }
             }
         });
-        _mClassText = new Text(_panel, SWT.BORDER | SWT.READ_ONLY);
+        _mClassText = factory.createText(_panel, "", SWT.BORDER | SWT.READ_ONLY);
         _mClassText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 handleModify(_mClassText);
@@ -125,8 +128,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
         _mClassText.setLayoutData(uriGD);
 
-        _browseClassBtn = new Button(_panel, SWT.PUSH);
-        _browseClassBtn.setText("Browse...");
+        _browseClassBtn = factory.createButton(_panel, "Browse...", SWT.PUSH);
         GridData btnGD = new GridData();
         _browseClassBtn.setLayoutData(btnGD);
         _browseClassBtn.addSelectionListener(new SelectionAdapter() {
@@ -149,6 +151,8 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
         });
 
         validate();
+
+        adaptChildren(this);
     }
 
     /**
@@ -275,7 +279,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
     protected void handleModify(Control control) {
         _routeClassName = _mClassText.getText().trim();
         validate();
-        if (!inUpdate()) {
+        if (!_updating) {
             if (_mClassText != null && !_mClassText.isDisposed()) {
                 if (_implementation == null) {
                     _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
@@ -290,21 +294,25 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
                 _implementation.setXml(null);
             }
         }
-        setHasChanged(false);
     }
 
-    protected boolean validate() {
-        setErrorMessage(null);
+    @Override
+    public IStatus validate() {
+        String errMessage = null;
 
         // test to make sure class is valid
         String className = _mClassText.getText();
 
         if (className == null || className.trim().length() == 0) {
-            setErrorMessage("No Class specified");
+            errMessage = "No Class specified";
         } else if (className.trim().length() < className.length()) {
-            setErrorMessage("No spaces allowed in class name");
+            errMessage = "No spaces allowed in class name";
         }
-        return (getErrorMessage() == null);
+
+        if (errMessage != null) {
+            return new Status(IStatus.ERROR, Activator.PLUGIN_ID, errMessage);
+        }
+        return Status.OK_STATUS;
     }
 
     /**
@@ -320,7 +328,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
     public void setImplementation(Implementation impl) {
         if (impl instanceof CamelImplementationType) {
             _implementation = (CamelImplementationType) impl;
-            setInUpdate(true);
+            _updating = true;
             if (_implementation != null && _mClassText != null) {
                 if (_implementation.getJava() != null) {
                     this._mClassText.setText(_implementation.getJava().getClass_());
@@ -328,7 +336,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
                     handleModify(_mClassText);
                 }
             }
-            setInUpdate(false);
+            _updating = false;
         }
     }
 
@@ -364,5 +372,23 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
             }
         }
         return _service;
+    }
+
+    @Override
+    public void refresh() {
+        _implementation = null;
+        final Component bo = getTargetObject();
+        if (bo != null) {
+            _implementation = (CamelImplementationType) ((Component) bo).getImplementation();
+            _updating = true;
+            if (_implementation != null && _mClassText != null) {
+                if (_implementation.getJava() != null) {
+                    this._mClassText.setText(_implementation.getJava().getClass_());
+                } else {
+                    handleModify(_mClassText);
+                }
+            }
+            _updating = false;
+        }
     }
 }

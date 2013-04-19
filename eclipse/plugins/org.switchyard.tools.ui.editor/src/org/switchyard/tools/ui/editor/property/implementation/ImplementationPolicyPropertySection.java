@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2013 Red Hat, Inc. 
+ * Copyright (c) 2012 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -10,20 +10,21 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.implementation;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.ui.editor.property.contract.BindingsControlComposite;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractTabbedPropertySection;
 
 /**
  * @author bfitzpat
  * 
  */
-public class SwitchyardSCAPropertiesBindingsSection extends AbstractTabbedPropertySection<Contract> {
+public class ImplementationPolicyPropertySection extends AbstractTabbedPropertySection<Component> {
 
     @Override
-    protected AbstractModelComposite<Contract> createComposite(Composite parent, int style) {
-        return new BindingsControlComposite(this, parent, style);
+    protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
+        return new ImplementationPolicyComposite(this, parent, style);
     }
 }

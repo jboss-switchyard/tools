@@ -357,8 +357,11 @@ public class InterfaceControl implements ISelectionProvider {
         if (radio == null) {
             _text.setText("");
             return;
+        } else {
+            _javaRadio.setSelection(radio.equals(_javaRadio));
+            _wsdlRadio.setSelection(radio.equals(_wsdlRadio));
+            _esbRadio.setSelection(radio.equals(_esbRadio));
         }
-        radio.setSelection(true);
         updateAdapter(adapter);
     }
 

@@ -12,20 +12,19 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.xml;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractModelWizardPage;
 
 /**
  * @author bfitzpat
  * 
  */
-public class CamelXMLRouteImplementationPage extends WizardPage {
+public class CamelXMLRouteImplementationPage extends AbstractModelWizardPage<Component> {
 
     private ComponentService _serviceInterface;
     private CamelXMLRouteComposite _camelComposite = null;
@@ -45,6 +44,9 @@ public class CamelXMLRouteImplementationPage extends WizardPage {
      */
     public void init(CamelImplementationType implementation) {
         _implementation = implementation;
+        if (_camelComposite != null) {
+            _camelComposite.setImplementation(_implementation);
+        }
     }
 
     /**
@@ -55,23 +57,20 @@ public class CamelXMLRouteImplementationPage extends WizardPage {
      */
     public void forceServiceInterfaceType(ComponentService serviceInterface) {
         _serviceInterface = serviceInterface;
+        if (_camelComposite != null) {
+            _camelComposite.forceServiceInterfaceType(_serviceInterface);
+        }
     }
 
     @Override
-    public void createControl(Composite parent) {
-        _camelComposite = new CamelXMLRouteComposite();
-        _camelComposite.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent arg0) {
-                setErrorMessage(_camelComposite.getErrorMessage());
-                setPageComplete(_camelComposite.getErrorMessage() == null);
-            }
-        });
-        _camelComposite.setImplementation(_implementation);
-        _camelComposite.forceServiceInterfaceType(_serviceInterface);
-        _camelComposite.createContents(parent, SWT.NONE);
+    protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
+        _camelComposite = new CamelXMLRouteComposite(this, parent, style);
+        return _camelComposite;
+    }
 
-        setControl(_camelComposite.getPanel());
+    @Override
+    public EObject getSelectedBusinessObject() {
+        return _camelComposite.getService();
     }
 
     /**

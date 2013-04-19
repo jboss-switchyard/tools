@@ -10,7 +10,7 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.intfc;
 
 import java.util.EnumSet;
 
@@ -22,6 +22,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.ui.common.InterfaceControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
 /**
  * @author bfitzpat
@@ -67,6 +69,8 @@ public class InterfaceControlComposite extends AbstractModelComposite<Contract> 
                 }
             }
         });
+        
+        adaptChildren(this);
     }
 
     @Override

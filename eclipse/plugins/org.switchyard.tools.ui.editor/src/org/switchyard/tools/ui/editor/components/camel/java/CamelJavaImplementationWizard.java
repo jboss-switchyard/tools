@@ -74,7 +74,7 @@ public class CamelJavaImplementationWizard extends LinkedWizardBase implements I
 
     @Override
     public boolean doFinish() {
-        _service = _page.getService();
+        _service = (ComponentService) _page.getSelectedBusinessObject();
         // TODO: _page.getReferences()
         _references = Collections.emptyList();
         return true;

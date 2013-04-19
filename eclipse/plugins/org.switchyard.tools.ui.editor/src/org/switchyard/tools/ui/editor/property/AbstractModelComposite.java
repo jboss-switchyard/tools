@@ -19,6 +19,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.Activator;
 
@@ -129,6 +130,21 @@ public abstract class AbstractModelComposite<T extends EObject> extends Composit
                 runner.run();
             } catch (Exception e) {
                 Activator.logError(e);
+            }
+        }
+    }
+    
+    protected void adaptChildren(Control control) {
+        if (control != null) {
+            if (control instanceof Composite) {
+                Composite composite = (Composite) control;
+                Control[] kids = composite.getChildren();
+                for (Control kid : kids) {
+                    adaptChildren(kid);
+                }
+                getWidgetFactory().adapt(composite);
+            } else {
+                getWidgetFactory().adapt(control, false, false);
             }
         }
     }

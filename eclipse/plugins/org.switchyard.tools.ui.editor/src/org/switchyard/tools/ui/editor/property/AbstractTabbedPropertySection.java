@@ -25,6 +25,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
@@ -61,8 +62,14 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
         if (_page == null) {
             return;
         }
-        _page.resizeScrolledComposite();
-    }
+        Display.getCurrent().syncExec(new Runnable(){
+
+            @Override
+            public void run() {
+                _page.resizeScrolledComposite();
+            }
+        });
+   }
 
     @Override
     public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {

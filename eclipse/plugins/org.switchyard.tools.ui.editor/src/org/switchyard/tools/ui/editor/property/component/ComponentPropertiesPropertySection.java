@@ -10,26 +10,22 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.component;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractTabbedPropertySection;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
-public class ComponentPropertiesPropertyFilter extends AbstractPropertySectionFilter {
+public class ComponentPropertiesPropertySection extends AbstractTabbedPropertySection<Component>  {
 
     @Override
-    protected boolean accept(PictogramElement pe) {
-        EObject bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-        if (bo instanceof Component) {
-            return true;
-        }
-        return false;
+    protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
+        return new ComponentPropertiesComposite(this, parent, style);
     }
+
 }

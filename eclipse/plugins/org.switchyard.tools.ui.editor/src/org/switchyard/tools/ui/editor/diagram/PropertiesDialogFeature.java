@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2012 Red Hat, Inc. and others.
+ * Copyright (c) 2013 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,13 +26,14 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.IShellProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
+import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
- * AutoLayoutFeature
+ * PropertiesDialogFeature
  * 
  * <p/>
- * Automatically lays out diagram using Zest.
+ * Opens the properties dialog for the selected object.
  * 
  * @author Rob Cernich
  */
@@ -77,6 +78,11 @@ public class PropertiesDialogFeature extends AbstractCustomFeature {
     @Override
     public String getName() {
         return "Properties";
+    }
+
+    @Override
+    public String getImageId() {
+        return ImageProvider.IMG_16_PROPERTIES;
     }
 
     @Override

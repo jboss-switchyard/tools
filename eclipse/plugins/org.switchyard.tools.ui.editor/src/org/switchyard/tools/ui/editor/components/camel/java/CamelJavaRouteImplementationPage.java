@@ -12,31 +12,44 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.java;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractModelWizardPage;
 
 /**
  * @author bfitzpat
  * 
  */
-public class CamelJavaRouteImplementationPage extends WizardPage {
+public class CamelJavaRouteImplementationPage extends AbstractModelWizardPage<Component> {
 
     private ComponentService _serviceInterface;
-    private CamelJavaRouteComposite _camelComposite = null;
+    private CamelJavaRouteComposite _composite = null;
     private CamelImplementationType _implementation;
 
-    protected CamelJavaRouteImplementationPage(String pageName) {
-        super(pageName);
+    /**
+     * @param name String name of page
+     */
+    public CamelJavaRouteImplementationPage(String name) {
+        super(name);
         setTitle("Camel Java Route Details");
         setDescription("Specify the details for the Camel route.");
         // we don't validate until the control is created
         setPageComplete(false);
+    }
+
+    @Override
+    protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
+        _composite = new CamelJavaRouteComposite(this, parent, style);
+        return _composite;
+    }
+
+    @Override
+    public EObject getSelectedBusinessObject() {
+        return _composite.getService();
     }
 
     /**
@@ -45,6 +58,9 @@ public class CamelJavaRouteImplementationPage extends WizardPage {
      */
     public void init(CamelImplementationType implementation) {
         _implementation = implementation;
+        if (_composite != null) {
+            _composite.setImplementation(_implementation);
+        }
     }
 
     /**
@@ -55,30 +71,8 @@ public class CamelJavaRouteImplementationPage extends WizardPage {
      */
     public void forceServiceInterfaceType(ComponentService serviceInterface) {
         _serviceInterface = serviceInterface;
+        if (_composite != null) {
+            _composite.forceServiceInterfaceType(_serviceInterface);
+        }
     }
-
-    @Override
-    public void createControl(Composite parent) {
-        _camelComposite = new CamelJavaRouteComposite();
-        _camelComposite.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent arg0) {
-                setErrorMessage(_camelComposite.getErrorMessage());
-                setPageComplete(_camelComposite.getErrorMessage() == null);
-            }
-        });
-        _camelComposite.setImplementation(_implementation);
-        _camelComposite.forceServiceInterfaceType(_serviceInterface);
-        _camelComposite.createContents(parent, SWT.NONE);
-
-        setControl(_camelComposite.getPanel());
-    }
-
-    /**
-     * @return the component service that may be associated with the route.
-     */
-    public ComponentService getService() {
-        return _camelComposite.getService();
-    }
-
 }

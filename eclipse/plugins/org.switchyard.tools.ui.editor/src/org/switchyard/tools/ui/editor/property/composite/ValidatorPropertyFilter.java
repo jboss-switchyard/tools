@@ -10,28 +10,25 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.composite;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
-import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 
 /**
  * @author bfitzpat
  *
  */
-public class ImplementationPolicyPropertyFilter extends AbstractPropertySectionFilter {
+public class ValidatorPropertyFilter extends AbstractPropertySectionFilter {
 
     @Override
     protected boolean accept(PictogramElement pe) {
         EObject bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-        if (bo instanceof Component) {
-            Component component = (Component) bo;
-            if (component.getImplementation() != null) {
-                return true;
-            }
+        if (bo instanceof Composite) {
+            return true;
         }
         return false;
     }

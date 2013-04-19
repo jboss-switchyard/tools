@@ -199,6 +199,7 @@ public abstract class SCAPropertyTable extends Composite implements ICellModifie
         gd11.heightHint = 100;
         _propertyTreeTable.getTree().setLayoutData(gd11);
         _propertyTreeTable.getTree().setHeaderVisible(true);
+        _propertyTreeTable.getTree().setLinesVisible(true);
         TreeColumn nameColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
         nameColumn.setText("Name");
         nameColumn.setWidth(200);

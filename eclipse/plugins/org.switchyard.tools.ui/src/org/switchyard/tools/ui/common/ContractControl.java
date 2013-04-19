@@ -239,6 +239,7 @@ public class ContractControl implements ISelectionProvider {
             return;
         }
         _service = (Contract) ((IStructuredSelection) selection).getFirstElement();
+        init(_service, null);
         if (_service.getInterface() != null) {
             _interfaceControl.setSelection(new StructuredSelection(_service.getInterface()));
         }

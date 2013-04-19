@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2013 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -10,7 +10,7 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.composite;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -22,7 +22,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
  * @author bfitzpat
  *
  */
-public class ValidatorPropertyFilter extends AbstractPropertySectionFilter {
+public class CompositePropertiesPropertyFilter extends AbstractPropertySectionFilter {
 
     @Override
     protected boolean accept(PictogramElement pe) {

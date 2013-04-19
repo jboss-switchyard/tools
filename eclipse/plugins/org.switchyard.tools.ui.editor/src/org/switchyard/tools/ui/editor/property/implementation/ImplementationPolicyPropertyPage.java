@@ -8,22 +8,24 @@
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.implementation;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractPropertyPage;
 
 /**
  * ContractControlPropertyPage
  * 
  * <p/>
- * Property page implementation for Contract Interface.
+ * Property page implementation for Component policy.
  */
-public class ContractControlPropertyPage extends AbstractPropertyPage<Contract> {
+public class ImplementationPolicyPropertyPage extends AbstractPropertyPage<Component> {
 
     @Override
-    protected AbstractModelComposite<Contract> createComposite(Composite parent, int style) {
-        return new ContractControlComposite(this, parent, style);
+    protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
+        return new ImplementationPolicyComposite(this, parent, style);
     }
 
 }

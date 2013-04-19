@@ -7,24 +7,26 @@
  * 
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
+ *
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.bpel;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.ui.editor.property.implementation.ImplementationPolicyComposite;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractPropertyPage;
 
 /**
- * ContractControlPropertyPage
+ * BPELImplementationPropertyPage
  * 
  * <p/>
- * Property page implementation for Component policy.
+ * Property page implementation for BPM implementations.
  */
-public class InteractionPolicyPropertyPage extends AbstractPropertyPage<Component> {
+public class BPELImplementationPropertyPage extends AbstractPropertyPage<Component> {
 
     @Override
     protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
-        return new ImplementationPolicyComposite(this, parent, style);
+        return new BPELImplementationComposite(this, parent, style);
     }
 
 }

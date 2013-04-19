@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2013 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -10,7 +10,7 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.composite;
 
 import java.util.List;
 
@@ -26,9 +26,6 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -47,9 +44,9 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -58,11 +55,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
@@ -70,6 +64,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.editor.transform.wizards.AddTransformWizard;
 import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
@@ -78,124 +74,96 @@ import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
  * @author bfitzpat
  * 
  */
-public class TransformPropertySection extends GFPropertySection implements ITabbedPropertyConstants,
-        ResourceSetListener {
+public class TransformsControlComposite extends AbstractModelComposite<org.eclipse.soa.sca.sca1_1.model.sca.Composite>
+    implements ResourceSetListener {
 
+    private org.eclipse.soa.sca.sca1_1.model.sca.Composite _composite;
     private TransformType _transformer = null;
     private TableViewer _tableViewer;
     private FormToolkit _toolkit = null;
-    private Section _tableSection;
-    private Composite _tableComposite;
     private Button _addButton;
     private Button _removeButton;
     private TransactionalEditingDomain _domain = null;
 
     /**
-     * Constructor.
-     */
-    public TransformPropertySection() {
-        super();
-    }
-
-    /*
-     * (non-Javadoc)
+     * Create a new InterfaceControlComposite.
      * 
-     * @see
-     * org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#createControls
-     * (org.eclipse.swt.widgets.Composite,
-     * org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage)
+     * @param container the container
+     * @param parent the parent composite
+     * @param style the style bits
      */
-    @Override
-    public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
-        super.createControls(parent, tabbedPropertySheetPage);
+    public TransformsControlComposite(ICompositeContainer container, Composite parent, int style) {
+        super(org.eclipse.soa.sca.sca1_1.model.sca.Composite.class, container, parent, style);
 
-        parent.setLayout(new GridLayout(2, false));
-        _toolkit = this.getWidgetFactory();
+        FormLayout layout = new FormLayout();
+        layout.marginBottom = ITabbedPropertyConstants.VMARGIN;
+        layout.marginTop = ITabbedPropertyConstants.VMARGIN;
+        layout.marginLeft = ITabbedPropertyConstants.HMARGIN;
+        layout.marginRight = ITabbedPropertyConstants.HMARGIN;
+        setLayout(layout);
 
-        _tableSection = _toolkit.createSection(parent, ExpandableComposite.TITLE_BAR);
-//        _tableSection.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
-        _tableSection.setLayout(new FillLayout());
-        _tableSection.setText("Transforms List");
-        _tableSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 2));
-
-        _tableComposite = _toolkit.createComposite(_tableSection, SWT.NONE);
-//        _tableComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
-        _tableSection.setClient(_tableComposite);
-        _tableComposite.setLayout(new GridLayout(3, false));
-        createTableAndButtons(_tableComposite, SWT.NONE);
-
-        addDomainListener();
-    }
-
-    private void handleSelectListItem() {
-        if (_removeButton != null && !_removeButton.isDisposed()) {
-            URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile().getFullPath().toString(), true);
-            if (_transformer.eResource().getURI().equals(_modelUri)) {
-                _removeButton.setEnabled(_transformer != null);
-            } else {
-                _removeButton.setEnabled(false);
+        _toolkit = getWidgetFactory();
+        
+        _addButton = _toolkit.createButton(this, "Add", SWT.PUSH);
+        _addButton.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                addTransform();
             }
-        }
-    }
 
-    private SwitchYardType getSwitchYardRoot() {
-        PictogramElement pe = getSelectedPictogramElement();
-        if (pe != null) {
-            return MergedModelUtil.getSwitchYard(Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
-                    pe));
-        }
-        return null;
-    }
-
-    @Override
-    public void refresh() {
-        Display.getDefault().asyncExec(new Runnable() {
-            public void run() {
-                final SwitchYardType switchYardRoot = getSwitchYardRoot();
-                if (_tableViewer.getTable().isDisposed()) {
-                    return;
-                }
-                if (switchYardRoot == null) {
-                    _tableViewer.setInput(null);
-                } else {
-                    _tableViewer.setInput(MergedModelUtil
-                            .getAdapter(switchYardRoot, SwitchYardMergedModelAdapter.class).getTransforms());
-                }
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
             }
         });
-    }
-    
-    private void createTableAndButtons(Composite parent, int style) {
 
-        GridData gridData;
+        _removeButton = _toolkit.createButton(this, "Remove", SWT.PUSH);
+        _removeButton.setEnabled(false);
+        _removeButton.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                IStructuredSelection ssel = (IStructuredSelection) _tableViewer.getSelection();
+                removeTransform((TransformType) ssel.getFirstElement());
+            }
 
-        Composite tableAndButtonsComposite = _toolkit.createComposite(parent, SWT.NONE);
-//        tableAndButtonsComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_GREEN));
-        gridData = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1);
-        gridData.verticalIndent = -5;
-        tableAndButtonsComposite.setLayoutData(gridData);
-        tableAndButtonsComposite.setLayout(new GridLayout(3, false));
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
 
-        Composite buttonsComposite = _toolkit.createComposite(tableAndButtonsComposite);
-//        buttonsComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_MAGENTA));
-        buttonsComposite.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
-        buttonsComposite.setLayout(new FillLayout(SWT.VERTICAL));
-        
-        Composite tableComposite = _toolkit.createComposite(tableAndButtonsComposite);
-//        tableComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN));
-        gridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
-        gridData.widthHint = 100;
-        gridData.heightHint = 100;
-        tableComposite.setLayoutData(gridData);
         TableColumnLayout tableLayout = new TableColumnLayout();
+        Composite tableComposite = _toolkit.createComposite(this);
         tableComposite.setLayout(tableLayout);
-
         _tableViewer = new TableViewer(tableComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
                 | SWT.FULL_SELECTION);
-        gridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
-        gridData.widthHint = 100;
-        gridData.heightHint = 100;
-        _tableViewer.getTable().setLayoutData(gridData);
+        
+        Label legend = new Label(this, SWT.NONE);
+        legend.setText("* = Generated Transform");
+
+        FormData data = new FormData();
+        data.right = new FormAttachment(100, 0);
+        data.width = 80;
+        data.top = new FormAttachment(0, 0);
+        _addButton.setLayoutData(data);
+        
+        data = new FormData();
+        data.right = new FormAttachment(100, 0);
+        data.width = 80;
+        data.top = new FormAttachment(_addButton, 5);
+        _removeButton.setLayoutData(data);
+
+        data = new FormData();
+        data.right = new FormAttachment(_addButton, -5, SWT.LEFT);
+        data.left = new FormAttachment(0, 0);
+        data.top = new FormAttachment(0, 0);
+        data.bottom = new FormAttachment(95,0);
+        tableComposite.setLayoutData(data);
+        
+        data = new FormData();
+        data.left = new FormAttachment(0, 0);
+        data.top = new FormAttachment(tableComposite, 5);
+        legend.setLayoutData(data);
 
         Table table = _tableViewer.getTable();
 
@@ -251,38 +219,51 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                 }
             }
         });
+        
+        addDomainListener();
+        
+    }
 
-        Label legend = new Label(tableAndButtonsComposite, SWT.NONE);
-        legend.setText("* = Generated Transform");
-        gridData = new GridData(SWT.RIGHT, SWT.TOP, true, false, 2, 1);
-        legend.setLayoutData(gridData);
+    @Override
+    public void refresh() {
+        final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = getTargetObject();
+        if (composite != null) {
 
-        _addButton = _toolkit.createButton(buttonsComposite, "Add", SWT.PUSH);
-        _addButton.addSelectionListener(new SelectionListener() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                addTransform();
-            }
+            _composite = composite;
+            
+            Display.getDefault().asyncExec(new Runnable() {
+                public void run() {
+                    final SwitchYardType switchYardRoot = getSwitchYardRoot(composite);
+                    if (_tableViewer.getTable().isDisposed()) {
+                        return;
+                    }
+                    if (switchYardRoot == null) {
+                        _tableViewer.setInput(null);
+                    } else {
+                        _tableViewer.setInput(MergedModelUtil
+                                .getAdapter(switchYardRoot, SwitchYardMergedModelAdapter.class).getTransforms());
+                    }
+                }
+            });
+        }
+    }
 
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
+    private void handleSelectListItem() {
+        if (_removeButton != null && !_removeButton.isDisposed()) {
+            URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile().getFullPath().toString(), true);
+            if (_transformer.eResource().getURI().equals(_modelUri)) {
+                _removeButton.setEnabled(_transformer != null);
+            } else {
+                _removeButton.setEnabled(false);
             }
-        });
-        _removeButton = _toolkit.createButton(buttonsComposite, "Remove", SWT.PUSH);
-        _removeButton.setEnabled(false);
-        _removeButton.addSelectionListener(new SelectionListener() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                IStructuredSelection ssel = (IStructuredSelection) _tableViewer.getSelection();
-                removeTransform((TransformType) ssel.getFirstElement());
-            }
+        }
+    }
 
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
+    private SwitchYardType getSwitchYardRoot(EObject object) {
+        if (object != null) {
+            return MergedModelUtil.getSwitchYard(object);
+        }
+        return null;
     }
 
     private Object removeListItem(EObject object, EStructuralFeature feature, int index) {
@@ -293,7 +274,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
 
     private TransformType addTransform() {
         TransformType newTransform = null;
-        AddTransformWizard wizard = new AddTransformWizard(getSwitchYardRoot());
+        AddTransformWizard wizard = new AddTransformWizard(getSwitchYardRoot(_composite));
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
         int rtn_code = wizDialog.open();
@@ -304,7 +285,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                 _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                     @Override
                     protected void doExecute() {
-                        SwitchYardType switchYardRoot = getSwitchYardRoot();
+                        SwitchYardType switchYardRoot = getSwitchYardRoot(_composite);
                         TransformsType transforms = switchYardRoot.getTransforms();
                         if (transforms == null) {
                             switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
@@ -324,7 +305,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
             _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
-                    SwitchYardType switchYardRoot = getSwitchYardRoot();
+                    SwitchYardType switchYardRoot = getSwitchYardRoot(_composite);
                     TransformsType transforms = switchYardRoot.getTransforms();
                     int index = transforms.getTransform().indexOf(selected);
                     EStructuralFeature feature = transforms.eClass().getEStructuralFeature("transform");
@@ -523,4 +504,5 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         removeDomainListener();
         super.dispose();
     }
+
 }

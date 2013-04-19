@@ -10,20 +10,21 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.composite;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.ui.editor.property.contract.BindingsControlComposite;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractTabbedPropertySection;
 
 /**
  * @author bfitzpat
  * 
  */
-public class SwitchyardSCAPropertiesBindingsSection extends AbstractTabbedPropertySection<Contract> {
+public class ValidatorPropertySection extends AbstractTabbedPropertySection<org.eclipse.soa.sca.sca1_1.model.sca.Composite> {
 
     @Override
-    protected AbstractModelComposite<Contract> createComposite(Composite parent, int style) {
-        return new BindingsControlComposite(this, parent, style);
+    protected AbstractModelComposite<org.eclipse.soa.sca.sca1_1.model.sca.Composite> createComposite(Composite parent, int style) {
+        return new ValidatorsControlComposite(this, parent, style);
     }
+
 }

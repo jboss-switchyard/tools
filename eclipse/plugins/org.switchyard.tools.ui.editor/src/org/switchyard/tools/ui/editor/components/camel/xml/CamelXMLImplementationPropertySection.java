@@ -18,31 +18,21 @@
  */
 package org.switchyard.tools.ui.editor.components.camel.xml;
 
-import org.eclipse.swt.SWT;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.ui.editor.diagram.shared.IImplementationComposite;
-import org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesImplementationSection;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractTabbedPropertySection;
 
 /**
  * CamelXMLImplementationPropertySection
  * 
  * Property sheet composite for Camel XML component implementations.
  */
-public class CamelXMLImplementationPropertySection extends SwitchyardSCAPropertiesImplementationSection {
-
-    /**
-     * Create a new CamelXMLImplementationPropertySection.
-     */
-    public CamelXMLImplementationPropertySection() {
-        super();
-    }
+public class CamelXMLImplementationPropertySection extends AbstractTabbedPropertySection<Component> {
 
     @Override
-    protected IImplementationComposite createComposite(Composite parent) {
-        final CamelXMLRouteComposite retVal = new CamelXMLRouteComposite();
-        retVal.createContents(parent, SWT.NONE);
-        getWidgetFactory().adapt(retVal.getPanel());
-        return retVal;
+    protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
+        return new CamelXMLRouteComposite(this, parent, style);
     }
 
 }

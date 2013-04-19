@@ -188,6 +188,9 @@ public class ImageProvider extends AbstractImageProvider {
 
     /** Image for SCA binding. **/
     public static final String IMG_16_SCA = PREFIX + "SCA" + DOT16;
+    
+    /** Image for Properties dialog. **/
+    public static final String IMG_16_PROPERTIES = PREFIX + "PROPERTIES" + DOT16;
 
     @Override
     protected void addAvailableImages() {
@@ -242,6 +245,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_WSDL_2_JAVA, ICONS_16 + "wsdl2java.png");
         addImageFilePath(IMG_16_TEST_CLASS, ICONS_16 + "test-class.png");
         addImageFilePath(IMG_16_SCA, ICONS_16 + "sca.png");
+        addImageFilePath(IMG_16_PROPERTIES, ICONS_16 + "properties.gif");
     }
 
 }

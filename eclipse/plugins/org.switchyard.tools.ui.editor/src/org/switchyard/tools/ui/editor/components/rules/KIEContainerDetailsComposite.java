@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.ui.editor.Activator;
@@ -60,9 +60,8 @@ public class KIEContainerDetailsComposite extends Composite {
      * @param parent the parent composite.
      * @param factory the widget factory.
      */
-    public KIEContainerDetailsComposite(Composite parent, TabbedPropertySheetWidgetFactory factory) {
+    public KIEContainerDetailsComposite(Composite parent, FormToolkit factory) {
         super(parent, SWT.NONE);
-
         setLayout(new GridLayout(3, false));
 
         factory.createLabel(this, "Session Name:");
@@ -84,7 +83,8 @@ public class KIEContainerDetailsComposite extends Composite {
             }
         });
 
-        Group releaseGroup = factory.createGroup(this, "Release ID");
+        Group releaseGroup = new Group(this, SWT.NONE); 
+        releaseGroup.setText("Release ID");
         releaseGroup.setLayout(new GridLayout(2, false));
         releaseGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 4));
         releaseGroup.setToolTipText("Release ID for resources in Maven repository");
@@ -208,7 +208,6 @@ public class KIEContainerDetailsComposite extends Composite {
                 }
             }
         });
-        factory.adapt(this);
     }
 
     /**

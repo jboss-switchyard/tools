@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2013 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -18,12 +18,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
@@ -56,20 +50,20 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.ui.JavaUtil;
-import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
 /**
  * @author bfitzpat
  * 
  */
-public class BeanImplementationComposite extends GFPropertySection {
+public class BeanImplementationComposite extends AbstractModelComposite<Component> {
 
     private Composite _panel;
     private BeanImplementationType _implementation = null;
@@ -80,49 +74,18 @@ public class BeanImplementationComposite extends GFPropertySection {
     private boolean _updating;
 
     /**
-     * Constructor.
+     * Create a new BeanImplementationComposite.
+     * 
+     * @param container the container.
+     * @param parent the parent composite.
+     * @param style style bits.
      */
-    public BeanImplementationComposite() {
-        // empty
-    }
+    public BeanImplementationComposite(ICompositeContainer container, Composite parent, int style) {
+        super(Component.class, container, parent, style);
 
-    @Override
-    public void refresh() {
-        _implementation = null;
-        _project = null;
-        final PictogramElement pe = getSelectedPictogramElement();
-        if (pe != null) {
-            final Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-            _implementation = (BeanImplementationType) ((Component) bo).getImplementation();
-        }
-        _updating = true;
-        if (_implementation.getClass_() != null) {
-            _beanClassText.setText(_implementation.getClass_());
-        } else {
-            _beanClassText.setText("");
-        }
-        final boolean enabled = !MergedModelUtil.isReadOnly(_implementation);
-        _browseBeanButton.setEnabled(enabled);
-        _newBeanLink.setEnabled(enabled);
-        _updating = false;
-
-        final Resource resource = MergedModelUtil.getSwitchYard(_implementation).eResource();
-        if (resource.getURI().isPlatformResource()) {
-            final IFile file = ResourcesPlugin.getWorkspace().getRoot()
-                    .getFile(new Path(resource.getURI().toPlatformString(true)));
-            if (file != null) {
-                _project = JavaCore.create(file.getProject());
-            }
-        }
-    }
-
-    @Override
-    public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
-        super.createControls(parent, tabbedPropertySheetPage);
-
-        final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-        _panel = factory.createComposite(parent);
-        _panel.setLayout(new GridLayout(3, false));
+        final FormToolkit factory = getWidgetFactory();
+        _panel = this;
+        setLayout(new GridLayout(3, false));
 
         _newBeanLink = new Link(_panel, SWT.NONE);
         factory.adapt(_newBeanLink, true, true);
@@ -154,6 +117,38 @@ public class BeanImplementationComposite extends GFPropertySection {
                 handleBrowse();
             }
         });
+    }
+
+    @Override
+    public void refresh() {
+        _implementation = null;
+        _project = null;
+        final Component bo = getTargetObject();
+        if (bo != null) {
+            _implementation = (BeanImplementationType) ((Component) bo).getImplementation();
+        }
+        _updating = true;
+        try {
+            if (_implementation.getClass_() != null) {
+                _beanClassText.setText(_implementation.getClass_());
+            } else {
+                _beanClassText.setText("");
+            }
+            final boolean enabled = !MergedModelUtil.isReadOnly(_implementation);
+            _browseBeanButton.setEnabled(enabled);
+            _newBeanLink.setEnabled(enabled);
+
+            final Resource resource = MergedModelUtil.getSwitchYard(_implementation).eResource();
+            if (resource.getURI().isPlatformResource()) {
+                final IFile file = ResourcesPlugin.getWorkspace().getRoot()
+                        .getFile(new Path(resource.getURI().toPlatformString(true)));
+                if (file != null) {
+                    _project = JavaCore.create(file.getProject());
+                }
+            }
+        } finally {
+            _updating = false;
+       }
     }
 
     private void handleModify(Control control) {
@@ -218,25 +213,4 @@ public class BeanImplementationComposite extends GFPropertySection {
         }
     }
 
-    private void wrapOperation(final Runnable runner) {
-        TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(_implementation);
-        if (domain != null) {
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
-                @Override
-                protected void doExecute() {
-                    try {
-                        runner.run();
-                    } catch (Exception e) {
-                        Activator.logError(e);
-                    }
-                }
-            });
-        } else {
-            try {
-                runner.run();
-            } catch (Exception e) {
-                Activator.logError(e);
-            }
-        }
-    }
 }

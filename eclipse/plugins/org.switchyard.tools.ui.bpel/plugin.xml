@@ -56,5 +56,21 @@
         </dependency>
      </component>
    </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.switchyard.tools.ui.bpel.BPELImplementationPropertyPage"
+            id="org.switchyard.tools.ui.bpel.propertyPage"
+            name="Implementation">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+               <instanceof
+                     value="org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation">
+               </instanceof>
+            </adapt>
+         </enabledWhen>
+      </page>
+   </extension>
 
 </plugin>

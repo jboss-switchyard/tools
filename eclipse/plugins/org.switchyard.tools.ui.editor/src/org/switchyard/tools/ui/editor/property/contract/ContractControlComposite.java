@@ -8,7 +8,7 @@
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.property.contract;
 
 import java.util.EnumSet;
 
@@ -21,6 +21,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
 /**
  * ContractControlComposite
@@ -58,6 +60,8 @@ public class ContractControlComposite extends AbstractModelComposite<Contract> {
                 }
             }
         });
+
+        adaptChildren(this);
     }
 
     @Override

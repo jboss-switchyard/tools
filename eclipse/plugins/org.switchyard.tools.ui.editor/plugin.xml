@@ -137,13 +137,13 @@
                tab="switchyard.binding.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.InterfaceControlPropertiesSection"
+               class="org.switchyard.tools.ui.editor.property.intfc.InterfaceControlPropertiesSection"
                filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesInterfacesFilter"
                id="switchyard.interface.tab.details"
                tab="switchyard.interface.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.components.bean.BeanImplementationComposite"
+               class="org.switchyard.tools.ui.editor.components.bean.BeanImplementationPropertySection"
                filter="org.switchyard.tools.ui.editor.components.bean.BeanImplementationPropertySectionFilter"
                id="switchyard.implementation.bean.tab.details"
                tab="switchyard.implementation.bean.tab">
@@ -167,14 +167,14 @@
                tab="switchyard.implementation.rules.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.TransformPropertySection"
-               filter="org.switchyard.tools.ui.editor.property.TransformPropertyFilter"
+               class="org.switchyard.tools.ui.editor.property.composite.TransformPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.composite.TransformPropertyFilter"
                id="switchyard.transform.tab.details"
                tab="switchyard.transform.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.ValidatorPropertySection"
-               filter="org.switchyard.tools.ui.editor.property.ValidatorPropertyFilter"
+               class="org.switchyard.tools.ui.editor.property.composite.ValidatorPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.composite.ValidatorPropertyFilter"
                id="switchyard.validate.tab.details"
                tab="switchyard.validate.tab">
          </propertySection>
@@ -185,8 +185,8 @@
                tab="switchyard.interaction.policy.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.ImplementationPolicyPropertySection"
-               filter="org.switchyard.tools.ui.editor.property.ImplementationPolicyPropertyFilter"
+               class="org.switchyard.tools.ui.editor.property.implementation.ImplementationPolicyPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.implementation.ImplementationPolicyPropertyFilter"
                id="switchyard.implementation.policy.tab.details"
                tab="switchyard.implementation.policy.tab">
          </propertySection>
@@ -197,14 +197,14 @@
                tab="switchyard.security.policy.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.CompositePropertiesPropertySection"
-               filter="org.switchyard.tools.ui.editor.property.CompositePropertiesPropertyFilter"
+               class="org.switchyard.tools.ui.editor.property.composite.CompositePropertiesPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.composite.CompositePropertiesPropertyFilter"
                id="switchyard.composite.property.tab.details"
                tab="switchyard.composite.property.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.ComponentPropertiesPropertySection"
-               filter="org.switchyard.tools.ui.editor.property.ComponentPropertiesPropertyFilter"
+               class="org.switchyard.tools.ui.editor.property.component.ComponentPropertiesPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.component.ComponentPropertiesPropertyFilter"
                id="switchyard.component.property.tab.details"
                tab="switchyard.component.property.tab">
          </propertySection>
@@ -383,7 +383,7 @@
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            class="org.switchyard.tools.ui.editor.property.ContractControlPropertyPage"
+            class="org.switchyard.tools.ui.editor.property.contract.ContractControlPropertyPage"
             id="org.switchyard.tools.ui.contract.propertyPage"
             name="Contract">
          <enabledWhen>
@@ -431,7 +431,7 @@
          </enabledWhen>
       </page>
       <page
-            class="org.switchyard.tools.ui.editor.property.ImplementationPolicyPropertyPage"
+            class="org.switchyard.tools.ui.editor.property.implementation.ImplementationPolicyPropertyPage"
             id="org.switchyard.tools.ui.component.policy.transaction.propertyPage"
             name="Transaction Policy">
          <enabledWhen>
@@ -440,5 +440,154 @@
             </adapt>
          </enabledWhen>
       </page>
+      <page
+            class="org.switchyard.tools.ui.editor.property.contract.BindingsPropertyPage"
+            id="org.switchyard.tools.ui.bindings.propertyPage"
+            name="Bindings">
+         <enabledWhen>
+               <or>
+                  <instanceof
+                        value="org.eclipse.soa.sca.sca1_1.model.sca.Service">
+                  </instanceof>
+                  <instanceof
+                        value="org.eclipse.soa.sca.sca1_1.model.sca.Reference">
+                  </instanceof>
+               </or>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.property.component.ComponentMainPropertyPage"
+            id="org.switchyard.tools.ui.component.name.propertyPage"
+            name="Component">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Component">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.switchyard.tools.ui.component.name.propertyPage"
+            class="org.switchyard.tools.ui.editor.property.component.ComponentPropertiesPropertyPage"
+            id="org.switchyard.tools.ui.component.properties.propertyPage"
+            name="Properties">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Component">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.switchyard.tools.ui.composite.name.propertyPage"
+            class="org.switchyard.tools.ui.editor.property.composite.CompositePropertiesPropertyPage"
+            id="org.switchyard.tools.ui.composite.properties.propertyPage"
+            name="Properties">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.property.composite.CompositeMainPropertyPage"
+            id="org.switchyard.tools.ui.composite.name.propertyPage"
+            name="Composite">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.property.composite.TransformsPropertyPage"
+            id="org.switchyard.tools.ui.composite.transforms.propertyPage"
+            name="Transforms">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.property.composite.ValidatorsPropertyPage"
+            id="org.switchyard.tools.ui.composite.validators.propertyPage"
+            name="Validators">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.components.bean.BeanImplementationPropertyPage"
+            id="org.switchyard.tools.ui.bean.implementation.propertyPage"
+            name="Implementation">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+               <instanceof
+                     value="org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType">
+               </instanceof>
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationPropertyPage"
+            id="org.switchyard.tools.ui.camel.java.implementation.propertyPage"
+            name="Implementation">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+	               <adapt
+	                     type="org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType">
+	               </adapt>
+	         </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLImplementationPropertyPage"
+            id="org.switchyard.tools.ui.camel.xml.implementation.propertyPage"
+            name="Implementation">
+         <enabledWhen>
+         	<and>
+	            <adapt
+	                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+	               <instanceof
+	                     value="org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType">
+	               </instanceof>
+	            </adapt>
+	            <not>
+		            <adapt
+		                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+			               <adapt
+			                     type="org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType">
+			               </adapt>
+			         </adapt>
+	           	</not>
+	        </and>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.components.rules.RulesImplementationPropertyPage"
+            id="org.switchyard.tools.ui.rules.implementation.propertyPage"
+            name="Implementation">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+               <instanceof
+                     value="org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType">
+               </instanceof>
+            </adapt>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Implementation"
+            class="org.switchyard.tools.ui.editor.components.camel.java.CamelJavaRouteAdapter">
+         <adapter
+               type="org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType">
+         </adapter>
+      </factory>
    </extension>
 </plugin>
