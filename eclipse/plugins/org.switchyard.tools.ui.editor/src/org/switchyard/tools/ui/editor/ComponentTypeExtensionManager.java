@@ -14,9 +14,11 @@ package org.switchyard.tools.ui.editor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -26,7 +28,9 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.ImageDecorator;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 
 /**
  * ComponentTypeExtensionManager
@@ -44,6 +48,24 @@ public final class ComponentTypeExtensionManager {
      */
     public static ComponentTypeExtensionManager instance() {
         return INSTANCE;
+    }
+
+    /**
+     * Helper method which returns the set of interface types supported by the
+     * component's implementation.
+     * 
+     * @param component the component to check.
+     * @return the set of supported interface types.
+     */
+    public static Set<InterfaceType> getSupportedInterfaceTypes(Component component) {
+        final Implementation implementation = component.getImplementation();
+        if (implementation == null) {
+            return EnumSet.allOf(InterfaceType.class);
+        }
+        final IComponentTypeExtension extension = ComponentTypeExtensionManager.instance().getExtensionFor(
+                implementation.getClass());
+        return extension == null ? Collections.<InterfaceType> emptySet() : extension
+                .getSupportedInterfaceTypes(implementation);
     }
 
     private Map<Class<? extends Implementation>, IComponentTypeExtension> _cache = new HashMap<Class<? extends Implementation>, IComponentTypeExtension>();
@@ -119,6 +141,16 @@ public final class ComponentTypeExtensionManager {
         @Override
         public List<String> getRequiredCapabilities(Implementation object) {
             return Collections.emptyList();
+        }
+
+        @Override
+        public Set<InterfaceType> getSupportedInterfaceTypes(Implementation implementation) {
+            return Collections.emptySet();
+        }
+
+        @Override
+        public String getTypeName(Implementation object) {
+            return "Unknown";
         }
     }
 }

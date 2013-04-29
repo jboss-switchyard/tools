@@ -11,7 +11,10 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor;
 
+import java.util.Set;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.switchyard.tools.ui.common.InterfaceControl;
 
 /**
  * IComponentTypeExtension
@@ -27,5 +30,11 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  * component.
  */
 public interface IComponentTypeExtension extends IEditorTypeExtension<Implementation> {
+
+    /**
+     * @param implementation the implementation
+     * @return the set of interface types supported by the implementation.
+     */
+    Set<InterfaceControl.InterfaceType> getSupportedInterfaceTypes(Implementation implementation);
 
 }

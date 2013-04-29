@@ -58,4 +58,9 @@ public class BindingSCATypeExtension implements IBindingTypeExtension {
     public List<String> getRequiredCapabilities(Binding object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-sca");
     }
+
+    @Override
+    public String getTypeName(Binding object) {
+        return "SCA";
+    }
 }

@@ -75,7 +75,13 @@ public enum ValidationProblem {
     /** Missing capability, e.g. SOAP binding, but no SOAP capability. */
     UnusedCapability(
             "Unused Capability: The \"{0}\" capability is configured on the project, but is not required by any SwitchYard binding or implementation types used in the project.",
-            IStatus.WARNING, false);
+            IStatus.WARNING, false),
+    /**
+     * Incompatible interface, e.g. a WSDL interface provided by a Bean service.
+     */
+    IncompatibleInterfaceType(
+            "Incompatible Interface Type: \"{0}\" interfaces cannot be used with \"{1}\" components ({2}/{3}).",
+            IStatus.ERROR, false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
     public static final String PROBLEM_CODE = "ValidationProblem.code";

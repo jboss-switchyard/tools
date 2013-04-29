@@ -58,4 +58,9 @@ public class ResteasyBindingTypeExtension implements IBindingTypeExtension {
     public List<String> getRequiredCapabilities(Binding object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-resteasy");
     }
+
+    @Override
+    public String getTypeName(Binding object) {
+        return "REST";
+    }
 }

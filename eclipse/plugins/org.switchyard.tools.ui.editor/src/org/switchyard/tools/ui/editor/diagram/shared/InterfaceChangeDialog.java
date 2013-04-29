@@ -29,6 +29,7 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.swt.SWT;
@@ -39,25 +40,33 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.switchyard.tools.ui.common.InterfaceControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
- * This dialog takes an incoming Contract (Service or Reference), prompts the user
- * to change it. 
+ * This dialog takes an incoming Contract (Service or Reference), prompts the
+ * user to change it.
+ * 
  * @author bfitzpat
- *
+ * 
  */
-public class InterfaceChangeDialog extends TitleAreaDialog 
-    implements ISelectionProvider {
-    
+public class InterfaceChangeDialog extends TitleAreaDialog implements ISelectionProvider {
+
+    private static Set<InterfaceType> getSupportedInterfaceTypes(Interface original) {
+        if (original.eContainer() == null || !(original.eContainer().eContainer() instanceof Component)) {
+            return EnumSet.allOf(InterfaceType.class);
+        }
+        return ComponentTypeExtensionManager.getSupportedInterfaceTypes((Component) original.eContainer().eContainer());
+    }
+
     private InterfaceControl _interfaceControl;
     private Contract _service;
     private Interface _originalInterface;
-    private Set<ISelectionChangedListener> _listeners = 
-            new LinkedHashSet<ISelectionChangedListener>();
+    private Set<ISelectionChangedListener> _listeners = new LinkedHashSet<ISelectionChangedListener>();
 
     /**
      * Opens a dialog to allow changing the interface.
+     * 
      * @param parentShell parent shell
      * @param container the container
      * @param originalIntfc the original interface class from the contract
@@ -65,8 +74,7 @@ public class InterfaceChangeDialog extends TitleAreaDialog
     public InterfaceChangeDialog(Shell parentShell, IContainer container, Interface originalIntfc) {
         super(parentShell);
         _originalInterface = originalIntfc;
-        _interfaceControl = new InterfaceControl(null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL,
-                InterfaceType.ESB));
+        _interfaceControl = new InterfaceControl(null, getSupportedInterfaceTypes(originalIntfc));
     }
 
     @Override
@@ -111,6 +119,7 @@ public class InterfaceChangeDialog extends TitleAreaDialog
 
     /**
      * Adds a new selection changed listener..
+     * 
      * @param listener New listener to add
      * @see org.eclipse.jface.viewers.ISelectionProvider#addSelectionChangedListener(org.eclipse.jface.viewers.ISelectionChangedListener)
      */
@@ -120,6 +129,7 @@ public class InterfaceChangeDialog extends TitleAreaDialog
 
     /**
      * Removes an existing selection changed listener..
+     * 
      * @param listener New listener to remove
      * @see org.eclipse.jface.viewers.ISelectionProvider#addSelectionChangedListener(org.eclipse.jface.viewers.ISelectionChangedListener)
      */
@@ -129,6 +139,7 @@ public class InterfaceChangeDialog extends TitleAreaDialog
 
     /**
      * Retrieve the current selection (returns the new interface).
+     * 
      * @return ISelection - containing the new interface
      * @see org.eclipse.jface.viewers.ISelectionProvider#getSelection()
      */
@@ -136,10 +147,11 @@ public class InterfaceChangeDialog extends TitleAreaDialog
         Interface intfc = _interfaceControl.getInterface();
         return new StructuredSelection(intfc);
     }
-    
+
     /**
-     * Sets the selection. In this case, it should be the incoming Contract with the interface
-     * to change.
+     * Sets the selection. In this case, it should be the incoming Contract with
+     * the interface to change.
+     * 
      * @param selection Incoming with Contract object
      * @see org.eclipse.jface.viewers.ISelectionProvider#setSelection(org.eclipse.jface.viewers.ISelection)
      */
@@ -151,7 +163,7 @@ public class InterfaceChangeDialog extends TitleAreaDialog
         if (_service.getInterface() != null) {
             Interface intfc = _service.getInterface();
             _interfaceControl.setSelection(new StructuredSelection(intfc));
-            
+
         }
     }
 
@@ -181,7 +193,7 @@ public class InterfaceChangeDialog extends TitleAreaDialog
         if (getErrorMessage() == null) {
             setMessage("Specify details for the new interface.");
         }
-        
+
         Interface intfc = _interfaceControl.getInterface();
         if (intfc.equals(_originalInterface)) {
             setMessage("Specify details for the new interface. Original interface type selected.");

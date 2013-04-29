@@ -62,4 +62,9 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
     public List<String> getRequiredCapabilities(Binding object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-camel-jpa");
     }
+
+    @Override
+    public String getTypeName(Binding object) {
+        return "JPA";
+    }
 }

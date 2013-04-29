@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>org.switchyard.tools.tests:wiring-validation-tests</name>
   <properties>
-    <switchyard.version>0.8.0-SNAPSHOT</switchyard.version>
+    <switchyard.version>1.0.0-SNAPSHOT</switchyard.version>
   </properties>
   <dependencies>
     <dependency>

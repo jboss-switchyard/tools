@@ -62,4 +62,9 @@ public class CamelFTPBindingTypeExtension implements IBindingTypeExtension {
     public List<String> getRequiredCapabilities(Binding object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-camel-ftp");
     }
+
+    @Override
+    public String getTypeName(Binding object) {
+        return "FTP";
+    }
 }

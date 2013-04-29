@@ -62,4 +62,9 @@ public class JCABindingTypeExtension implements IBindingTypeExtension {
     public List<String> getRequiredCapabilities(Binding object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-jca");
     }
+
+    @Override
+    public String getTypeName(Binding object) {
+        return "JCA";
+    }
 }

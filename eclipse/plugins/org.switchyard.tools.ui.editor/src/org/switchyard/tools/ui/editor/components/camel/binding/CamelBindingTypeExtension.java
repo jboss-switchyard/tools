@@ -58,4 +58,9 @@ public class CamelBindingTypeExtension implements IBindingTypeExtension {
     public List<String> getRequiredCapabilities(Binding object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-camel-core");
     }
+
+    @Override
+    public String getTypeName(Binding object) {
+        return "Camel URI";
+    }
 }

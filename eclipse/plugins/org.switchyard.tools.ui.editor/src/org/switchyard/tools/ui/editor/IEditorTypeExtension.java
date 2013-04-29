@@ -43,6 +43,12 @@ public interface IEditorTypeExtension<T extends EObject> {
      * @return an IImageDecorator that represents the model object.
      */
     public IImageDecorator getImageDecorator(T object);
+    
+    /**
+     * @param object the model object.
+     * @return the display text for the object type.
+     */
+    public String getTypeName(T object);
 
     /**
      * @param type the type

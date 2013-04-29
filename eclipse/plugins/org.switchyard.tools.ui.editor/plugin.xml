@@ -377,6 +377,24 @@
                    class="Composite">
              </target>
           </constraint>
+          <constraint
+                class="org.switchyard.tools.ui.editor.validation.InterfaceTypeValidation"
+                id="org.switchyard.tools.validation.constraint/interfaceTypes"
+                isEnabledByDefault="true"
+                lang="Java"
+                mode="Batch"
+                name="SwitchYard Interface Type Validator"
+                statusCode="1003">
+             <message>
+                Validates that contracts provide an interface whose type is supported by the underlying implementation.
+             </message>
+             <target
+                   class="ComponentService">
+             </target>
+             <target
+                   class="ComponentReference">
+             </target>
+          </constraint>
        </constraints>
     </constraintProvider>
   </extension>

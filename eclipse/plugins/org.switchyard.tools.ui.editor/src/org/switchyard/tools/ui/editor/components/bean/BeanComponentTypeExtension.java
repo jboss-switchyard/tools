@@ -12,7 +12,9 @@
 package org.switchyard.tools.ui.editor.components.bean;
 
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -20,10 +22,9 @@ import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
+import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
@@ -38,6 +39,8 @@ import org.switchyard.tools.ui.editor.diagram.shared.CompositeCreateFeature;
  */
 public class BeanComponentTypeExtension implements IComponentTypeExtension {
 
+    private static final Set<InterfaceType> TYPES = EnumSet.of(InterfaceType.Java);
+
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
         return new ICreateFeature[] {new CompositeCreateFeature(fp, "Bean",
@@ -49,21 +52,9 @@ public class BeanComponentTypeExtension implements IComponentTypeExtension {
                     @Override
                     public boolean canCreate(ICreateContext context) {
                         if (super.canCreate(context)) {
-                            Component component = (Component) getBusinessObjectForPictogramElement(context
-                                    .getTargetContainer());
-                            if (component.getService() == null) {
-                                // no service contract defined
-                                return true;
-                            }
-                            for (ComponentService service : component.getService()) {
-                                // only allow this if the component has a java
-                                // contract
-                                // defined
-                                return service.getInterface() == null
-                                        || service.getInterface() instanceof JavaInterface;
-                            }
-                            // no service contract defined
-                            return true;
+                            return InterfaceType.interfacesAreCompatible(
+                                    (Component) getBusinessObjectForPictogramElement(context.getTargetContainer()),
+                                    TYPES);
                         }
                         return false;
                     }
@@ -83,5 +74,15 @@ public class BeanComponentTypeExtension implements IComponentTypeExtension {
     @Override
     public List<String> getRequiredCapabilities(Implementation object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-bean");
+    }
+
+    @Override
+    public Set<InterfaceType> getSupportedInterfaceTypes(Implementation implementation) {
+        return TYPES;
+    }
+
+    @Override
+    public String getTypeName(Implementation object) {
+        return "Bean";
     }
 }

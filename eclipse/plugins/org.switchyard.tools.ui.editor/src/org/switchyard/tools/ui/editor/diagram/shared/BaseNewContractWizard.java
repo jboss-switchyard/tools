@@ -10,6 +10,8 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
+import java.util.Set;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -17,6 +19,7 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 
 /**
  * BaseNewContractWizard
@@ -41,6 +44,21 @@ public class BaseNewContractWizard extends Wizard {
     public BaseNewContractWizard(String title, String description, EClass contractType) {
         _page = new NewContractWizardPage(NewContractWizardPage.class.getCanonicalName(), title, description,
                 contractType);
+        setWindowTitle(title);
+    }
+
+    /**
+     * Create a new BaseNewContractWizard.
+     * 
+     * @param title the title for the page (e.g. New Composite Service)
+     * @param description the description for the page.
+     * @param contractType the type of contract.
+     * @param interfaceTypes the available interface types
+     */
+    public BaseNewContractWizard(String title, String description, EClass contractType,
+            Set<InterfaceType> interfaceTypes) {
+        _page = new NewContractWizardPage(NewContractWizardPage.class.getCanonicalName(), title, description,
+                contractType, interfaceTypes);
         setWindowTitle(title);
     }
 

@@ -12,6 +12,7 @@ package org.switchyard.tools.ui.common;
 
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -28,6 +29,9 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
@@ -90,10 +94,78 @@ public class InterfaceControl implements ISelectionProvider {
         ESB(SwitchyardPackage.eINSTANCE.getEsbInterface());
 
         /**
+         * Helper method to check component interfaces against supported types.
+         * 
+         * @param component the component to check
+         * @param types the supported interface types
+         * @return true if the interfaces referenced by the component compatible
+         *         with the supported types.
+         */
+        public static boolean interfacesAreCompatible(Component component, Set<InterfaceType> types) {
+            if (component == null) {
+                return true;
+            } else if (types == null || types.size() == 0) {
+                return false;
+            }
+            // if there are no services or references, they are supported
+            boolean retVal = true;
+            for (Iterator<ComponentService> serviceIt = component.getService().iterator(); serviceIt.hasNext()
+                    && retVal;) {
+                final ComponentService service = serviceIt.next();
+                final Interface intf = service == null ? null : service.getInterface();
+                retVal = retVal && isInstance(intf, types);
+            }
+            for (Iterator<ComponentReference> referenceIt = component.getReference().iterator(); referenceIt.hasNext()
+                    && retVal;) {
+                final ComponentReference reference = referenceIt.next();
+                final Interface intf = reference == null ? null : reference.getInterface();
+                retVal = retVal && isInstance(intf, types);
+            }
+            return retVal;
+        }
+
+        /**
+         * Helper method to check component interfaces against supported types.
+         * 
+         * @param intf the interface to check
+         * @param types the supported interface types
+         * @return true if the interfaces referenced by the component compatible
+         *         with the supported types.
+         */
+        public static boolean isInstance(Interface intf, Set<InterfaceType> types) {
+            boolean interfaceIsCompatible = false;
+            for (Iterator<InterfaceType> typeIt = types.iterator(); typeIt.hasNext() && !interfaceIsCompatible;) {
+                interfaceIsCompatible = typeIt.next().isInstance(intf);
+            }
+            return interfaceIsCompatible;
+        }
+
+        /**
+         * @param intf the interface
+         * @return the type of interface
+         */
+        public static InterfaceType valueOf(Interface intf) {
+            for (InterfaceType type : EnumSet.allOf(InterfaceType.class)) {
+                if (type.isInstance(intf)) {
+                    return type;
+                }
+            }
+            return null;
+        }
+
+        /**
          * @return the EClass supported by the type.
          */
         public EClass eClass() {
             return _eClass;
+        }
+
+        /**
+         * @param intf the interface to test.
+         * @return true if the interface is an instance of this type.
+         */
+        public boolean isInstance(Interface intf) {
+            return _eClass.isInstance(intf);
         }
 
         private EClass _eClass;
@@ -240,6 +312,14 @@ public class InterfaceControl implements ISelectionProvider {
 
         init(_interface, _related);
         setEnabled(_enabled);
+    }
+
+    /**
+     * @param supportedTypes the types of interfaces that should be available.
+     */
+    public void setSupportedTypes(Set<InterfaceType> supportedTypes) {
+        _supportedTypes = supportedTypes;
+        setEnabled(getEnabled());
     }
 
     /**

@@ -15,12 +15,14 @@ import java.util.EnumSet;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
@@ -70,8 +72,13 @@ public class ContractControlComposite extends AbstractModelComposite<Contract> {
         Contract contract = getTargetObject();
         if (contract != null) {
             _serviceControl.setSelection(new StructuredSelection(contract));
+            if (contract.eContainer() instanceof Component) {
+                _serviceControl.setSupportedInterfaceTypes(ComponentTypeExtensionManager
+                        .getSupportedInterfaceTypes((Component) contract.eContainer()));
+            } else {
+                _serviceControl.setSupportedInterfaceTypes(EnumSet.allOf(InterfaceType.class));
+            }
         }
         _inUpdate = false;
     }
-
 }

@@ -132,6 +132,13 @@ public class ContractControl implements ISelectionProvider {
     }
 
     /**
+     * @param supportedTypes the types of interfaces that should be available.
+     */
+    public void setSupportedInterfaceTypes(Set<InterfaceType> supportedTypes) {
+        _interfaceControl.setSupportedTypes(supportedTypes);
+    }
+
+    /**
      * @return the enablement state of the controls.
      */
     public boolean getEnabled() {

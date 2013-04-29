@@ -60,4 +60,9 @@ public class CamelJMSBindingTypeExtension implements IBindingTypeExtension {
     public List<String> getRequiredCapabilities(Binding object) {
         return Collections.singletonList("org.switchyard.components:switchyard-component-camel-jms");
     }
+
+    @Override
+    public String getTypeName(Binding object) {
+        return "JMS";
+    }
 }

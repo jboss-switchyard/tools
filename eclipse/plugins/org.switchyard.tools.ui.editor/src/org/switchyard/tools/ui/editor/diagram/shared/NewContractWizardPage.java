@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui.editor.diagram.shared;
 
 import java.util.EnumSet;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
@@ -47,10 +48,23 @@ public class NewContractWizardPage extends WizardPage {
      * @param contractType the type of contract.
      */
     public NewContractWizardPage(String pageName, String title, String description, EClass contractType) {
+        this(pageName, title, description, contractType, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL,
+                InterfaceType.ESB));
+    }
+
+    /**
+     * Create a new NewContractWizardPage.
+     * 
+     * @param pageName the page name
+     * @param title the page title
+     * @param description the description for the page.
+     * @param contractType the type of contract.
+     * @param interfaceTypes the available interface types
+     */
+    public NewContractWizardPage(String pageName, String title, String description, EClass contractType, Set<InterfaceType> interfaceTypes) {
         super(pageName, title, null);
         setDescription(description);
-        _contractControl = new ContractControl(contractType, null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL,
-                InterfaceType.ESB));
+        _contractControl = new ContractControl(contractType, null, interfaceTypes);
     }
 
     @Override

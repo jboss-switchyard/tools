@@ -128,6 +128,11 @@ public final class BindingTypeExtensionManager {
         public List<String> getRequiredCapabilities(Binding object) {
             return Collections.emptyList();
         }
+
+        @Override
+        public String getTypeName(Binding object) {
+            return "Unknown";
+        }
     }
 
     private static final class DefaultBindingComposite extends AbstractSwitchyardComposite implements IBindingComposite {

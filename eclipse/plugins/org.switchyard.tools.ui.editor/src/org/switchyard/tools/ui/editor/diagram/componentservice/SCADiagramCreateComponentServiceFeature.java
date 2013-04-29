@@ -22,6 +22,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
 
@@ -49,6 +50,7 @@ public class SCADiagramCreateComponentServiceFeature extends AbstractCreateFeatu
     public boolean canCreate(ICreateContext context) {
         final Object bo = getBusinessObjectForPictogramElement(context.getTargetContainer());
         return bo instanceof Component && ((Component) bo).getService().size() == 0
+                && ComponentTypeExtensionManager.getSupportedInterfaceTypes((Component) bo).size() > 0
                 && !getDiagramEditor().getEditingDomain().isReadOnly(((Component) bo).eResource());
     }
 
@@ -57,7 +59,8 @@ public class SCADiagramCreateComponentServiceFeature extends AbstractCreateFeatu
         ComponentService newService = null;
         Component component = (Component) getBusinessObjectForPictogramElement(context.getTargetContainer());
         BaseNewContractWizard wizard = new BaseNewContractWizard("New Service", "Specify details for the new service.",
-                ScaPackage.eINSTANCE.getComponentService());
+                ScaPackage.eINSTANCE.getComponentService(),
+                ComponentTypeExtensionManager.getSupportedInterfaceTypes(component));
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
         wizard.init(component);
