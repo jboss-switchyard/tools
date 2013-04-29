@@ -26,4 +26,10 @@ public class SwitchyardSCAPropertiesBindingsSection extends AbstractTabbedProper
     protected AbstractModelComposite<Contract> createComposite(Composite parent, int style) {
         return new BindingsControlComposite(this, parent, style);
     }
+    
+    @Override
+    public boolean shouldUseExtraSpace() {
+        return true;
+    }
+
 }

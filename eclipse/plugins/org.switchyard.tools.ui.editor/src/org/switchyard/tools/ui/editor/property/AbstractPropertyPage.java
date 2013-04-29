@@ -82,7 +82,9 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
 
     @Override
     public void layout() {
-        _composite.layout(true);
+        if (!_composite.isDisposed()) {
+            _composite.layout(true);
+        }
     }
 
     @Override

@@ -43,7 +43,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -54,11 +53,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.part.PageBook;
+import org.eclipse.ui.forms.widgets.ScrolledPageBook;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
@@ -86,9 +83,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
     private TransactionalEditingDomain _domain = null;
     private IBindingComposite _composite = null;
     private Map<String, IBindingComposite> _composites = new HashMap<String, IBindingComposite>();
-    private PageBook _pageBook = null;
-    private ScrolledComposite _scrolled = null;
-    private Label _defaultLabel = null;
+    private ScrolledPageBook _pageBook = null;
     private String _validError = null;
 
     /**
@@ -117,12 +112,11 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(100);
         _sashForm.setLayoutData(data);
-        _sashForm.setLayout(new FormLayout());
+        _sashForm.setLayout(new FillLayout());
 
         _tableComposite = _toolkit.createComposite(_sashForm, SWT.NONE);
         _tableComposite.setLayout(new FillLayout());
         createTableAndButtons(_tableComposite, SWT.NONE);
-        _toolkit.adapt(_tableComposite);
         data = new FormData();
         data.top = new FormAttachment(0);
         data.bottom = new FormAttachment(100);
@@ -130,17 +124,13 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         data.right = new FormAttachment(20);
         _tableComposite.setLayoutData(data);
 
-        _scrolled = new ScrolledComposite(_sashForm, SWT.V_SCROLL);
-        _pageBook = new PageBook(_scrolled, SWT.NONE);
-        _scrolled.setContent(_pageBook);
-        _toolkit.adapt(_pageBook);
+        _pageBook = new ScrolledPageBook(_sashForm);
         data = new FormData();
-        data.top = new FormAttachment(0);
-        data.bottom = new FormAttachment(100);
+        data.top = new FormAttachment(0, 0);
+        data.bottom = new FormAttachment(100, 0);
         data.left = new FormAttachment(20, 5);
-        data.right = new FormAttachment(100);
-        _scrolled.setLayoutData(data);
-        _scrolled.setLayout(new FillLayout());
+        data.right = new FormAttachment(100, 0);
+        _pageBook.setLayoutData(data);
 
         _sashForm.setWeights(new int[] {25, 75 });
 
@@ -160,7 +150,6 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         // //////////////////////////////////////////////////////////
         Composite tableAndButtonsComposite = _toolkit.createComposite(parent, SWT.NONE);
         tableAndButtonsComposite.setLayout(new GridLayout(3, false));
-        _toolkit.adapt(tableAndButtonsComposite);
 
         // //////////////////////////////////////////////////////////
         // Create button section for add/remove/up/down buttons
@@ -168,7 +157,6 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         Composite buttonsComposite = _toolkit.createComposite(tableAndButtonsComposite);
         buttonsComposite.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
         buttonsComposite.setLayout(new FillLayout(SWT.VERTICAL));
-        _toolkit.adapt(buttonsComposite);
 
         int span = 2;
         if (!showButtons) {
@@ -179,7 +167,6 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         gridData.widthHint = 100;
         gridData.heightHint = 100;
         _listViewer.getList().setLayoutData(gridData);
-        _toolkit.adapt(_listViewer.getList(), false, false);
 
         _listViewer.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
@@ -222,7 +209,6 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                     _binding = testBinding;
                     handleSelectListItem(justRefresh);
                 }
-
             }
         });
 
@@ -278,6 +264,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
 
             Display.getDefault().asyncExec(new Runnable() {
                 public void run() {
+                    getContainer().layout();
                     if (_listViewer.getList().isDisposed()) {
                         return;
                     }
@@ -322,10 +309,12 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                                 _listViewer.setSelection(new StructuredSelection(bindings.get(0)));
                             }
                         } else {
-                            _pageBook.showPage(getDefaultControl());
+                            _pageBook.showEmptyPage();
+//                            _pageBook.showPage(getDefaultControl());
                         }
                         _listViewer.getControl().setFocus();
                     }
+                    _pageBook.getContainer().layout();
                     getContainer().layout();
                 }
             });
@@ -336,20 +325,13 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         return binding.getClass().getCanonicalName() + binding.eContainer().getClass().getCanonicalName();
     }
 
-    private Control getDefaultControl() {
-        if (_defaultLabel != null) {
-            return _defaultLabel;
-        }
-        _defaultLabel = _toolkit.createLabel(_pageBook, "No bindings specified.", SWT.WRAP);
-        return _defaultLabel;
-    }
-
     private void handleSelectListItem(boolean justRefresh) {
         if (_removeButton != null && !_removeButton.isDisposed()) {
             _removeButton.setEnabled(_binding != null);
         }
         if (_binding != null) {
-            IBindingComposite composite = _composites.get(createKey(_binding));
+            String bindingKey = createKey(_binding);
+            IBindingComposite composite = _composites.get(bindingKey);
             if (((AbstractSwitchyardComposite) composite).getPanel() == null) {
                 ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
                 if (composite instanceof AbstractSYBindingComposite) {
@@ -366,21 +348,16 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                         }
                     });
                 }
-                ((AbstractSwitchyardComposite) composite).createContents(_pageBook, SWT.NONE);
-//                ((AbstractSwitchyardComposite) composite).setRootGridData(new GridData(SWT.FILL, SWT.FILL, true, true));
+                ((AbstractSwitchyardComposite) composite).createContents(_pageBook.getContainer(), SWT.NONE);
+                _pageBook.registerPage(bindingKey, ((AbstractSwitchyardComposite) composite).getPanel());
                 adaptChildren(((AbstractSwitchyardComposite) composite).getPanel());
             }
             _composite = composite;
             composite.setBinding(_binding);
-            _pageBook.showPage(((AbstractSwitchyardComposite) composite).getPanel());
+            _pageBook.showPage(bindingKey);
         } else {
-            _pageBook.showPage(getDefaultControl());
+            _pageBook.showEmptyPage();
         }
-        _scrolled.setMinSize(_pageBook.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-        _scrolled.setContent(_pageBook);
-        _scrolled.setExpandVertical(true);
-        _scrolled.setExpandHorizontal(true);
-        _scrolled.setAlwaysShowScrollBars(true);
         getContainer().layout();
     }
 

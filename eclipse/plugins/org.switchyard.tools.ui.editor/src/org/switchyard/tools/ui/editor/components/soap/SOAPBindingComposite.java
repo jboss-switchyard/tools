@@ -56,6 +56,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.diagram.shared.TabFolderLayout;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
@@ -110,6 +111,7 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         }
 
         _tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder.setLayout(new TabFolderLayout(_tabFolder));
         _tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         TabItem one = new TabItem(_tabFolder, SWT.NONE);

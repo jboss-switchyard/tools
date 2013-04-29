@@ -159,32 +159,30 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
         legend.setText("* = Generated Validator");
 
         FormData data = new FormData();
-        data.right = new FormAttachment(100, 0);
+        data.right = new FormAttachment(95, 0);
         data.width = 80;
-        data.top = new FormAttachment(0, 0);
         _addButton.setLayoutData(data);
         
         data = new FormData();
-        data.right = new FormAttachment(100, 0);
+        data.right = new FormAttachment(95, 0);
         data.width = 80;
         data.top = new FormAttachment(_addButton, 5);
         _editButton.setLayoutData(data);
         
         data = new FormData();
-        data.right = new FormAttachment(100, 0);
+        data.right = new FormAttachment(95, 0);
         data.width = 80;
         data.top = new FormAttachment(_editButton, 5);
         _removeButton.setLayoutData(data);
 
         data = new FormData();
-        data.right = new FormAttachment(_addButton, -5, SWT.LEFT);
+        data.right = new FormAttachment(_addButton, -5);
         data.left = new FormAttachment(0, 0);
         data.top = new FormAttachment(0, 0);
-        data.bottom = new FormAttachment(95,0);
+        data.bottom = new FormAttachment(90,0);
         tableComposite.setLayoutData(data);
         
         data = new FormData();
-        data.left = new FormAttachment(0, 0);
         data.top = new FormAttachment(tableComposite, 5);
         legend.setLayoutData(data);
 
@@ -232,6 +230,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
             }
         });
         
+        adaptChildren(this);
         addDomainListener();
         
     }
@@ -254,6 +253,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
                         _tableViewer.setInput(MergedModelUtil
                                 .getAdapter(switchYardRoot, SwitchYardMergedModelAdapter.class).getValidates());
                     }
+                    getContainer().layout();
                 }
             });
         }

@@ -43,6 +43,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.diagram.shared.TabFolderLayout;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
@@ -181,6 +182,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         }
 
         _tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder.setLayout(new TabFolderLayout(_tabFolder));
 
         TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("Consumer");
