@@ -170,6 +170,10 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
 
             SAXBuilder builder = new SAXBuilder();
             File xmlFile = new File(configFile.getLocationURI());
+            
+            if (!xmlFile.exists()) {
+                return;
+            }
 
             try {
                 Document doc = (Document) builder.build(xmlFile);
