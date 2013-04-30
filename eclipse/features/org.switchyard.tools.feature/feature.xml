@@ -35,6 +35,7 @@
       <import feature="org.eclipse.m2e.wtp.feature" version="0.16.0" match="greaterOrEqual"/>
       <import plugin="javax.wsdl" version="1.6.2" match="equivalent"/>
       <import feature="org.jboss.ide.eclipse.freemarker.feature" version="1.2.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.zest" version="1.5.0" match="compatible"/>
    </requires>
 
    <plugin

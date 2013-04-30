@@ -19,6 +19,8 @@
 
    <requires>
       <import feature="org.switchyard.tools.feature" version="1.0.0.qualifier"/>
+      <import feature="org.eclipse.bpel.feature" version="1.0.2" match="compatible"/>
+      <import feature="org.eclipse.bpel.common.feature" version="1.0.2" match="compatible"/>
    </requires>
 
    <plugin
