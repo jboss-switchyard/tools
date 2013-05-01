@@ -1131,12 +1131,20 @@
           category="org.switchyard.tools.validationCategory/sca"
           context="org.switchyard.tools.validationContext">
     </binding>
+    <binding
+          category="org.switchyard.tools.validationCategory/bean"
+          context="org.switchyard.tools.validationContext">
+    </binding>
   </extension>
   <extension
        point="org.eclipse.emf.validation.constraintProviders">
     <category
           id="org.switchyard.tools.validationCategory/sca"
           name="SwitchYard SCA Constraints">
+    </category>
+    <category
+          id="org.switchyard.tools.validationCategory/bean"
+          name="SwitchYard Bean Component Constraints">
     </category>
     <constraintProvider
           cache="true">
@@ -1177,6 +1185,30 @@
              </description>
              <target
                    class="Contract">
+             </target>
+          </constraint>
+       </constraints>
+    </constraintProvider>
+    <constraintProvider
+          cache="true">
+       <package
+             namespaceUri="urn:switchyard-component-bean:config:1.0">
+       </package>
+       <constraints
+             categories="org.switchyard.tools.validationCategory/bean">
+          <constraint
+                class="org.switchyard.tools.ui.validation.BeanComponentConstraint"
+                id="org.switchyard.tools.validation.constraint.component/bean"
+                isEnabledByDefault="true"
+                lang="Java"
+                mode="Batch"
+                name="Bean Component Constraints"
+                statusCode="0">
+             <message>
+                Bean component constraints.
+             </message>
+             <target
+                   class="BeanImplementationType">
              </target>
           </constraint>
        </constraints>

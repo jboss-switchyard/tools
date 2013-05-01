@@ -19,9 +19,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
+import org.switchyard.tools.ui.JavaTypeScanner;
 import org.switchyard.tools.ui.editor.diagram.implementation.IImplementationWizard;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
-import org.switchyard.tools.ui.editor.util.JavaTypeScanner;
 
 /**
  * BeanImplementationWizard

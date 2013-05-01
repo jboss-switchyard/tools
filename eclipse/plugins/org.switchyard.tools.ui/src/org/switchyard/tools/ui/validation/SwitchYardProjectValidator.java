@@ -11,6 +11,9 @@
 package org.switchyard.tools.ui.validation;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -20,6 +23,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -32,6 +36,8 @@ import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.wst.validation.AbstractValidator;
 import org.eclipse.wst.validation.ValidationEvent;
 import org.eclipse.wst.validation.ValidationResult;
@@ -127,8 +133,11 @@ public class SwitchYardProjectValidator extends AbstractValidator {
                 result.add(message);
             } else {
                 IBatchValidator validator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
+                ValidationAdapter adapter = new ValidationAdapter(switchYardOutput, result.getDependsOn());
+                resource.eAdapters().add(adapter);
                 processStatus(validator.validate(resource.getContents(), monitor), event.getResource(), result,
                         !switchYardOutput.equals(event.getResource()));
+                result.setDependsOn(adapter._dependencies.toArray(new IResource[adapter._dependencies.size()]));
             }
             return result;
         } finally {
@@ -199,4 +208,48 @@ public class SwitchYardProjectValidator extends AbstractValidator {
         }
     }
 
+    /**
+     * EMF adapter which provides contextual information for use by SwitchYard
+     * constraint validators.
+     */
+    public static final class ValidationAdapter extends AdapterImpl {
+        private final Set<IResource> _dependencies = new LinkedHashSet<IResource>();
+        private final IResource _switchYardFile;
+        private IJavaProject _javaProject;
+
+        private ValidationAdapter(IResource switchYardFile, IResource[] dependencies) {
+            _switchYardFile = switchYardFile;
+            if (dependencies != null) {
+                _dependencies.addAll(Arrays.asList(dependencies));
+            }
+        }
+
+        /**
+         * @return the Java project associated with the switchyard.xml file
+         *         being validated.
+         */
+        public synchronized IJavaProject getJavaProject() {
+            if (_javaProject == null) {
+                _javaProject = JavaCore.create(_switchYardFile.getProject());
+            }
+            return _javaProject;
+        }
+
+        /**
+         * Add a resource that, when updated, should trigger a validation of the
+         * switchyard.xml file.
+         * 
+         * @param dependency a dependency of the switchyard.xml file.
+         */
+        public void addDependency(IResource dependency) {
+            if (dependency != null) {
+                _dependencies.add(dependency);
+            }
+        }
+
+        @Override
+        public boolean isAdapterForType(Object type) {
+            return type == getClass();
+        }
+    }
 }

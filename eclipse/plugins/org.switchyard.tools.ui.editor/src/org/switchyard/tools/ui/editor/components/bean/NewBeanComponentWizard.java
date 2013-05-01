@@ -25,10 +25,10 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
+import org.switchyard.tools.ui.JavaTypeScanner;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.diagram.component.IComponentWizard;
-import org.switchyard.tools.ui.editor.util.JavaTypeScanner;
 import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
 /**

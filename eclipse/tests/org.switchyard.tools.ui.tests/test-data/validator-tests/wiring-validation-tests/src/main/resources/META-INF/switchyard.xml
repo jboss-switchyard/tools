@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:bean="urn:switchyard-component-bean:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="validation-tests" targetNamespace="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT">
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:bean="urn:switchyard-component-bean:config:1.0" xmlns:ftp="urn:switchyard-component-camel-ftp:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="validation-tests" targetNamespace="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT">
   <sca:composite name="validation-tests" targetNamespace="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT">
     <sca:component name="BaseServiceBean">
       <bean:implementation.bean class="org.switchyard.tools.tests.wiring_validation_tests.BaseServiceBean"/>
@@ -61,6 +61,13 @@
     </sca:component>
     <sca:service name="UnboundService">
       <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+      <ftp:binding.ftp>
+        <ftp:contextMapper/>
+        <ftp:directory>foo</ftp:directory>
+        <ftp:autoCreate>false</ftp:autoCreate>
+        <ftp:host>localhost</ftp:host>
+        <ftp:consume/>
+      </ftp:binding.ftp>
     </sca:service>
     <sca:service name="InheritedService" promote="AllOk/InheritedService"/>
     <sca:reference name="InheritedReference" multiplicity="0..1" promote="Component/InheritedReference Component2/InheritedReference"/>

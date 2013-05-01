@@ -38,14 +38,19 @@
     </dependency>
     <dependency>
       <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-camel</artifactId>
+      <artifactId>switchyard-component-test-mixin-cdi</artifactId>
+      <version>${switchyard.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-camel-file</artifactId>
       <version>${switchyard.version}</version>
     </dependency>
     <dependency>
       <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-test-mixin-cdi</artifactId>
+      <artifactId>switchyard-component-bean</artifactId>
       <version>${switchyard.version}</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
   <repositories>

@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.util;
+package org.switchyard.tools.ui;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -70,8 +70,8 @@ public enum ValidationProblem {
             IStatus.WARNING, false),
     /** Missing capability, e.g. SOAP binding, but no SOAP capability. */
     RequiredCapabilityMissing(
-            "Required Capability Missing: The \"{0}\" capability should be configured on the project when using this type of {1}.", IStatus.ERROR,
-            false),
+            "Required Capability Missing: The \"{0}\" capability should be configured on the project when using this type of {1}.",
+            IStatus.ERROR, false),
     /** Missing capability, e.g. SOAP binding, but no SOAP capability. */
     UnusedCapability(
             "Unused Capability: The \"{0}\" capability is configured on the project, but is not required by any SwitchYard binding or implementation types used in the project.",
@@ -81,7 +81,45 @@ public enum ValidationProblem {
      */
     IncompatibleInterfaceType(
             "Incompatible Interface Type: \"{0}\" interfaces cannot be used with \"{1}\" components ({2}/{3}).",
-            IStatus.ERROR, false);
+            IStatus.ERROR, false),
+    /** No class specified on implementation.bean. */
+    BeanUnspecifiedClass(
+            "Unspecified Bean Class: \"{0}\" component is implemented as a bean, but no class is specified.",
+            IStatus.ERROR, false),
+    /** Class cannot be resolved for implementation.bean. */
+    BeanUnresolvableClass("Unresolvable Bean Class: \"{0}\" cannot be resolved for \"{1}\".", IStatus.ERROR, false),
+    /** Service specified on implementation, but not in switchyard.xml. */
+    MissingServiceDeclaration(
+            "Missing Component Service: Service \"{0}\" is declared by the implementation but is missing from \"{1}\" component in switchyard.xml.",
+            IStatus.ERROR, false),
+    /**
+     * Service interface on implementation does not match interface in
+     * switchyard.xml.
+     */
+    ServiceInterfaceMismatch(
+            "Service Interface Mismatch: Interface for service \"{0}\" in component \"{1}\" does not match the interface provided by the implementation.",
+            IStatus.ERROR, false),
+    /** Service declaration is missing from implementation. */
+    UnusedServiceDeclaration(
+            "Unimplemented Service Declaration: Service \"{0}\" defined by component \"{1}\" is not provided by the component's implementation.",
+            IStatus.ERROR, false),
+    /**
+     * Reference specified on implementation, but not in switchyard.xml.
+     */
+    MissingReferenceDeclaration(
+            "Missing Component Reference: Reference \"{0}\" is used by the implementation but is missing from \"{1}\" component in switchyard.xml.",
+            IStatus.ERROR, false),
+    /**
+     * Reference interface on implementation does not match interface in
+     * switchyard.xml.
+     */
+    ReferenceInterfaceMismatch(
+            "Reference Interface Mismatch: Interface for reference \"{0}\" in component \"{1}\" does not match the interface used by the implementation.",
+            IStatus.ERROR, false),
+    /** Reference is not used by implementation. */
+    UnusedReferenceDeclaration(
+            "Unused Component Reference: Reference \"{0}\" defined by component \"{1}\" is not used by the component's implementation.",
+            IStatus.WARNING, false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
     public static final String PROBLEM_CODE = "ValidationProblem.code";
