@@ -219,7 +219,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
 
                 @Override
                 public void widgetSelected(SelectionEvent e) {
-                    if (e.widget.equals(_removeButton) && _removeButton.isEnabled() && _removeButton.isFocusControl()) {
+                    if (e.widget.equals(_removeButton) && _removeButton.isEnabled()) {
                         if (_composite != null && ((AbstractSYBindingComposite) _composite).getDidSomething()) {
                             ((AbstractSYBindingComposite) _composite).setDidSomething(false);
                             return;
