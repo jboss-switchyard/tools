@@ -10,9 +10,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.ui.editor.property.implementation.ImplementationPolicyComposite;
 
 /**
  * ContractControlPropertyPage
@@ -20,11 +19,11 @@ import org.switchyard.tools.ui.editor.property.implementation.ImplementationPoli
  * <p/>
  * Property page implementation for Component policy.
  */
-public class InteractionPolicyPropertyPage extends AbstractPropertyPage<Component> {
+public class InteractionPolicyPropertyPage extends AbstractPropertyPage<Contract> {
 
     @Override
-    protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
-        return new ImplementationPolicyComposite(this, parent, style);
+    protected AbstractModelComposite<Contract> createComposite(Composite parent, int style) {
+        return new InteractionPolicyComposite(this, parent, style);
     }
 
 }

@@ -145,7 +145,7 @@ public class CamelXMLRouteComposite extends AbstractChangeAwareModelComposite<Co
 
     protected void handleModify(Control control) {
         _camelRouteFilePath = _mXMLText.getText().trim();
-        validate();
+        getContainer().validated(validate());
         if (!_updating) {
             if (_mXMLText != null && !_mXMLText.isDisposed()) {
                 if (_implementation == null) {

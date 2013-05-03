@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.property.intfc;
 
 import java.util.EnumSet;
 
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
@@ -21,6 +22,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.common.InterfaceControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
@@ -71,7 +73,7 @@ public class InterfaceControlComposite extends AbstractModelComposite<Contract> 
                 }
             }
         });
-        
+
         adaptChildren(this);
     }
 
@@ -85,6 +87,8 @@ public class InterfaceControlComposite extends AbstractModelComposite<Contract> 
 
             // init controls
             _interfaceControl.init(_interface, null);
+            _interfaceControl
+                    .setProject(JavaCore.create(PlatformResourceAdapterFactory.getContainingProject(contract)));
             if (_service.eContainer() instanceof Component) {
                 _interfaceControl.setSupportedTypes(ComponentTypeExtensionManager
                         .getSupportedInterfaceTypes((Component) contract.eContainer()));

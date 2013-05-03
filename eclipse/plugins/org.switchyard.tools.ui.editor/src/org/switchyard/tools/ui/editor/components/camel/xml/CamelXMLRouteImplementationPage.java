@@ -65,12 +65,18 @@ public class CamelXMLRouteImplementationPage extends AbstractModelWizardPage<Com
     @Override
     protected AbstractModelComposite<Component> createComposite(Composite parent, int style) {
         _camelComposite = new CamelXMLRouteComposite(this, parent, style);
+        if (_serviceInterface != null) {
+            _camelComposite.forceServiceInterfaceType(_serviceInterface);
+        }
+        if (_implementation != null) {
+            _camelComposite.setImplementation(_implementation);
+        }
         return _camelComposite;
     }
 
     @Override
     public EObject getSelectedBusinessObject() {
-        return _camelComposite.getService();
+        return null;
     }
 
     /**

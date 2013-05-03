@@ -168,14 +168,14 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
         boolean changed = false;
 
         AddContext addServiceContext = new AddContext();
-        addServiceContext.setX(StyleUtil.COMPONENT_EDGE - 8);
-        addServiceContext.setY(2 * StyleUtil.COMPONENT_EDGE + StyleUtil.COMPONENT_CHILD_V_SPACING
+        addServiceContext.setX(StyleUtil.COMPONENT_EDGE - 10);
+        addServiceContext.setY(StyleUtil.COMPONENT_EDGE + 10 + StyleUtil.COMPONENT_CHILD_V_SPACING
                 * getChildShapeCount(containerShape, ComponentService.class));
         addServiceContext.setTargetContainer(containerShape);
 
         AddContext addReferenceContext = new AddContext();
-        addReferenceContext.setX(containerShape.getGraphicsAlgorithm().getWidth() - StyleUtil.COMPONENT_EDGE - 8);
-        addReferenceContext.setY(2 * StyleUtil.COMPONENT_EDGE + StyleUtil.COMPONENT_CHILD_V_SPACING
+        addReferenceContext.setX(containerShape.getGraphicsAlgorithm().getWidth() - StyleUtil.COMPONENT_EDGE - 10);
+        addReferenceContext.setY(StyleUtil.COMPONENT_EDGE + 10 + StyleUtil.COMPONENT_CHILD_V_SPACING
                 * getChildShapeCount(containerShape, ComponentReference.class));
         addReferenceContext.setTargetContainer(containerShape);
 

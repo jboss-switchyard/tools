@@ -133,7 +133,7 @@ public final class StyleUtil {
     /**
      * Component edge for the invisible rectangle.
      */
-    public static final int COMPONENT_EDGE = 10;
+    public static final int COMPONENT_EDGE = 15;
 
     /** Spacing between ComponentService and ComponentReference nubs. */
     public static final int COMPONENT_CHILD_V_SPACING = 20;

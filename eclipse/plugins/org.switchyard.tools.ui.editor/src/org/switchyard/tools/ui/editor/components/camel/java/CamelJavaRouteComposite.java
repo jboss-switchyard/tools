@@ -278,7 +278,7 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
 
     protected void handleModify(Control control) {
         _routeClassName = _mClassText.getText().trim();
-        validate();
+        getContainer().validated(validate());
         if (!_updating) {
             if (_mClassText != null && !_mClassText.isDisposed()) {
                 if (_implementation == null) {

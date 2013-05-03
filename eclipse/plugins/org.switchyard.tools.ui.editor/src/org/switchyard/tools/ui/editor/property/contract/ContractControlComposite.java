@@ -12,6 +12,7 @@ package org.switchyard.tools.ui.editor.property.contract;
 
 import java.util.EnumSet;
 
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -20,6 +21,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
@@ -71,6 +73,7 @@ public class ContractControlComposite extends AbstractModelComposite<Contract> {
         _inUpdate = true;
         Contract contract = getTargetObject();
         if (contract != null) {
+            _serviceControl.setProject(JavaCore.create(PlatformResourceAdapterFactory.getContainingProject(contract)));
             _serviceControl.setSelection(new StructuredSelection(contract));
             if (contract.eContainer() instanceof Component) {
                 _serviceControl.setSupportedInterfaceTypes(ComponentTypeExtensionManager

@@ -86,7 +86,6 @@ public abstract class AbstractModelWizardPage<T extends EObject> extends WizardP
 
         _composite = createComposite(parent, SWT.NONE);
 
-        _composite.refresh();
         _composite.validate();
         setErrorMessage(null);
 

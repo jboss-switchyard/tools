@@ -52,6 +52,7 @@ public class ContractControl implements ISelectionProvider {
     private String _oldServiceName;
     private Text _serviceNameText;
     private Set<ISelectionChangedListener> _listeners = new LinkedHashSet<ISelectionChangedListener>();
+    private boolean _updating;
 
     /**
      * Create a new ContractControl.
@@ -69,6 +70,9 @@ public class ContractControl implements ISelectionProvider {
         _interfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
+                if (_updating) {
+                    return;
+                }
                 Interface intf = _interfaceControl.getInterface();
                 _service.getInterfaceGroup().clear();
                 if (intf != null) {
@@ -169,13 +173,18 @@ public class ContractControl implements ISelectionProvider {
         if (contract == null) {
             return;
         }
-        _oldServiceName = InterfaceControl.getSimpleServiceInterfaceName(contract.getInterface());
-        if (_serviceNameText == null) {
-            _service.setName(contract.getName());
-        } else if (contract.getName() != null) {
-            _serviceNameText.setText(contract.getName());
+        _updating = true;
+        try {
+            _oldServiceName = InterfaceControl.getSimpleServiceInterfaceName(contract.getInterface());
+            if (_serviceNameText == null) {
+                _service.setName(contract.getName());
+            } else if (contract.getName() != null) {
+                _serviceNameText.setText(contract.getName());
+            }
+            _interfaceControl.init(contract.getInterface(), related == null ? null : related.getInterface());
+        } finally {
+            _updating = false;
         }
-        _interfaceControl.init(contract.getInterface(), related == null ? null : related.getInterface());
     }
 
     /**
@@ -247,9 +256,6 @@ public class ContractControl implements ISelectionProvider {
         }
         _service = (Contract) ((IStructuredSelection) selection).getFirstElement();
         init(_service, null);
-        if (_service.getInterface() != null) {
-            _interfaceControl.setSelection(new StructuredSelection(_service.getInterface()));
-        }
     }
 
     private void fireSelectionChanged() {

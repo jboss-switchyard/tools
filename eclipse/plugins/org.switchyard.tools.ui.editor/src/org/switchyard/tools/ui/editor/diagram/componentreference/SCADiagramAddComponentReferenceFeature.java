@@ -77,7 +77,7 @@ public class SCADiagramAddComponentReferenceFeature extends AbstractAddShapeFeat
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         IGaService gaService = Graphiti.getGaService();
 
-        int anchorY = 2 * StyleUtil.COMPONENT_EDGE + references.indexOf(reference)
+        int anchorY = StyleUtil.COMPONENT_EDGE + 10 + references.indexOf(reference)
                 * StyleUtil.COMPONENT_CHILD_V_SPACING;
         int anchorX = targetContainer.getGraphicsAlgorithm().getWidth() - StyleUtil.COMPONENT_EDGE - 10;
         final ContainerShape container = peCreateService.createContainerShape(targetContainer, true);

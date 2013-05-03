@@ -103,8 +103,8 @@ public abstract class AbstractModelComposite<T extends EObject> extends Composit
             return null;
         }
         EObject target = _container.getSelectedBusinessObject();
-        return _type.isInstance(target) ? _type.cast(target) : _type.cast(Platform.getAdapterManager().getAdapter(
-                target, _type));
+        return target == null ? null : _type.isInstance(target) ? _type.cast(target) : _type.cast(Platform
+                .getAdapterManager().getAdapter(target, _type));
     }
 
     /**
@@ -133,7 +133,7 @@ public abstract class AbstractModelComposite<T extends EObject> extends Composit
             }
         }
     }
-    
+
     protected void adaptChildren(Control control) {
         if (control != null) {
             if (control instanceof Composite) {

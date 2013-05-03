@@ -10,11 +10,13 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram;
 
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.preference.IPreferenceNode;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -94,16 +96,38 @@ public class PropertiesDialogFeature extends AbstractCustomFeature {
 
     @Override
     public void execute(ICustomContext context) {
-        PreferenceDialog dialog = _openProperties.createDialog();
-        dialog.getTreeViewer().addFilter(new ViewerFilter() {
-            @Override
-            public boolean select(Viewer viewer, Object parentElement, Object element) {
-                String id = element == null ? null : ((IPreferenceNode) element).getId();
-                // filter out run/debug and svn info
-                return id != null && !id.startsWith("org.eclipse.debug.ui.") && !id.startsWith("org.eclipse.team.");
+        final InternalTransactionalEditingDomain transactionalDomain = (InternalTransactionalEditingDomain) getDiagramEditor()
+                .getEditingDomain();
+        try {
+            /*
+             * create a transaction to wrap the transaction used by the property
+             * pages. this will allow us to determine if any changes have been
+             * made to the model so we can set hasDoneChanges appropriately.
+             */
+            final Transaction newTransaction = transactionalDomain.startTransaction(false, null);
+            PreferenceDialog dialog = _openProperties.createDialog();
+            dialog.getTreeViewer().addFilter(new ViewerFilter() {
+                @Override
+                public boolean select(Viewer viewer, Object parentElement, Object element) {
+                    String id = element == null ? null : ((IPreferenceNode) element).getId();
+                    // filter out run/debug and svn info
+                    return id != null && !id.startsWith("org.eclipse.debug.ui.") && !id.startsWith("org.eclipse.team.");
+                }
+            });
+            try {
+                dialog.open();
+                newTransaction.commit();
+                /*
+                 * change description will be empty if no changes were made
+                 * (i.e. rolled back or just no changes).
+                 */
+                _hasMadeChanges = !newTransaction.getChangeDescription().isEmpty();
+            } catch (RollbackException e) {
+                e.printStackTrace();
             }
-        });
-        _hasMadeChanges = dialog.open() == Dialog.OK;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

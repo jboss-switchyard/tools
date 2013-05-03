@@ -31,7 +31,6 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.FocusEvent;
@@ -375,13 +374,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
 
         @Override
         public void notifyChanged(Notification msg) {
-            if (msg.getFeature().equals(ScaPackage.eINSTANCE.getComposite_Name())) {
-                refresh();
-            } else if (msg.getFeature().equals(ScaPackage.eINSTANCE.getComponent_Name())) {
-                refresh();
-            } else {
-                refresh();
-            }
+            refresh();
             super.notifyChanged(msg);
         }
 

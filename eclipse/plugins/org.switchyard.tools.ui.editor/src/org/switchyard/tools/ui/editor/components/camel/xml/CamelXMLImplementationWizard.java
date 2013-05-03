@@ -33,6 +33,7 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  */
 public class CamelXMLImplementationWizard extends LinkedWizardBase implements IImplementationWizard {
 
+    private Component _component;
     private CamelImplementationType _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
     private CamelXMLRouteImplementationPage _page;
     private ComponentService _service;
@@ -48,6 +49,7 @@ public class CamelXMLImplementationWizard extends LinkedWizardBase implements II
 
     @Override
     public void init(Component container) {
+        _component = container;
         if (container == null || container.getService() == null) {
             return;
         }
@@ -80,6 +82,10 @@ public class CamelXMLImplementationWizard extends LinkedWizardBase implements II
         _service = _page.getService();
         // TODO: _page.getReferences()
         _references = Collections.emptyList();
+        if (_component != null) {
+            _component.getImplementationGroup().clear();
+            _component.setImplementation(_implementation);
+        }
         return true;
     }
 

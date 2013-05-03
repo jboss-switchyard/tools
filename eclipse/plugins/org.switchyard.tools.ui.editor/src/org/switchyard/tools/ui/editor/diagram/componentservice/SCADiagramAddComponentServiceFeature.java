@@ -77,9 +77,9 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         IGaService gaService = Graphiti.getGaService();
 
-        int anchorY = 2 * StyleUtil.COMPONENT_EDGE + (services.indexOf(service))
+        int anchorY = StyleUtil.COMPONENT_EDGE + 10 + (services.indexOf(service))
                 * StyleUtil.COMPONENT_CHILD_V_SPACING;
-        int anchorX = StyleUtil.COMPONENT_EDGE - 5;
+        int anchorX = StyleUtil.COMPONENT_EDGE - 10;
         final ContainerShape container = peCreateService.createContainerShape(targetContainer, true);
         // use the image to represent the service component
         final Image image = gaService.createImage(container, ImageProvider.IMG_COMPONENT_SERVICE_SCALEABLE);
