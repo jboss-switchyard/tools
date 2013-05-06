@@ -19,6 +19,7 @@
             project="true">
          <description>Create a new SwitchYard project.</description>
       </wizard>
+      <!--
       <wizard
             category="org.switchyard.tools.ui"
             class="org.switchyard.tools.ui.wizards.NewBeanServiceWizard"
@@ -28,6 +29,7 @@
             name="SwitchYard Bean Component">
          <description>Create a new SwitchYard Bean service.</description>
       </wizard>
+      -->
       <wizard
             category="org.switchyard.tools.ui"
             class="org.switchyard.tools.ui.wizards.NewServiceTestClassWizard"
@@ -62,6 +64,7 @@
          </selection>
       </wizard>
    </extension>
+   <!--
    <extension
          point="org.eclipse.m2e.core.indexes">
       <index
@@ -70,6 +73,7 @@
             repositoryUrl="http://repository.jboss.org/nexus/content/groups/public">
       </index>
    </extension>
+   -->
    <extension
          point="org.eclipse.wst.common.project.facet.core.presets">
       <dynamic-preset
@@ -416,6 +420,7 @@
        <commonSorter
              class="org.switchyard.tools.ui.explorer.SwitchYardViewerSorter">
        </commonSorter>
+       <!--
        <commonWizard
              menuGroupId="switchyard.group"
              type="new"
@@ -440,6 +445,7 @@
              </or>
           </enablement>
        </commonWizard>
+       -->
        <commonWizard
              menuGroupId="switchyard.group"
              type="new"
