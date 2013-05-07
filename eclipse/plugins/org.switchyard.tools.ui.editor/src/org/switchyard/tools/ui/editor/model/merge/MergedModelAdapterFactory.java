@@ -19,26 +19,25 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.diff.merge.service.MergeService;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
-import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
-import org.eclipse.emf.compare.diff.service.DiffService;
-import org.eclipse.emf.compare.match.metamodel.Match2Elements;
-import org.eclipse.emf.compare.match.metamodel.MatchFactory;
-import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.metamodel.MatchPackage;
-import org.eclipse.emf.compare.match.service.MatchService;
+import org.eclipse.emf.compare.AttributeChange;
+import org.eclipse.emf.compare.CompareFactory;
+import org.eclipse.emf.compare.ComparePackage;
+import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.DifferenceKind;
+import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.Match;
+import org.eclipse.emf.compare.ReferenceChange;
+import org.eclipse.emf.compare.diff.DiffBuilder;
+import org.eclipse.emf.compare.merge.BatchMerger;
+import org.eclipse.emf.compare.rcp.EMFCompareRCPPlugin;
+import org.eclipse.emf.compare.util.CompareSwitch;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -64,7 +63,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
-import org.switchyard.tools.ui.editor.Activator;
+
+import com.google.common.base.Predicate;
 
 /**
  * MergedModelAdapterFactory
@@ -79,7 +79,7 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
     private Resource _generated;
     private SwitchYardType _switchYard;
     private MatchCrossReferencer _crossReferencedMatches;
-    private DiffModel _differences;
+    private Comparison _comparison;
     private Map<AbstractMergedModelAdapter, Map<EStructuralFeature, Object>> _cache = new HashMap<AbstractMergedModelAdapter, Map<EStructuralFeature, Object>>();
     private MergedModelUpdateAdapter _mergedModelUpdater;
 
@@ -138,47 +138,41 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
             }
 
             // calculate differences from the currently loaded generated model
-            try {
-                final MatchModel match = MatchService.doResourceMatch(generatedResource, _generated,
-                        Collections.<String, Object> emptyMap());
-                final DiffModel generatedDifferences = DiffService.doDiff(match);
-                if (generatedDifferences.getDifferences().size() > 0) {
-                    final EList<DiffElement> diffs = generatedDifferences.getDifferences();
-                    final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(_switchYard);
-                    final InternalTransaction transaction;
-                    if (domain instanceof TransactionalEditingDomainImpl) {
-                        transaction = ((TransactionalEditingDomainImpl) domain).getActiveTransaction();
-                    } else {
-                        transaction = null;
-                    }
+            final Comparison comparison = createComparison(generatedResource, _generated);
+            final List<Diff> generatedDifferences = comparison.getDifferences();
+            if (generatedDifferences.size() > 0) {
+                final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(_switchYard);
+                final InternalTransaction transaction;
+                if (domain instanceof TransactionalEditingDomainImpl) {
+                    transaction = ((TransactionalEditingDomainImpl) domain).getActiveTransaction();
+                } else {
+                    transaction = null;
+                }
+                if (transaction != null) {
+                    transaction.pause();
+                }
+                try {
+                    new BatchMerger(EMFCompareRCPPlugin.getDefault().getMergerRegistry(), new Predicate<Diff>() {
+                        public boolean apply(Diff object) {
+                            return object.getKind() != DifferenceKind.MOVE;
+                        }
+                    }).copyAllLeftToRight(generatedDifferences, BasicMonitor.toMonitor(new NullProgressMonitor()));
+                    pruneMissingReferences();
+                } finally {
                     if (transaction != null) {
-                        transaction.pause();
-                    }
-                    try {
-                        MergeService.merge(diffs, true);
-                        pruneMissingReferences();
-                    } finally {
-                        if (transaction != null) {
-                            transaction.resume(null);
-                        }
-                    }
-                    calculateDifferences();
-                    final DiagramAffectedDiffSwitch affectedSwitch = new DiagramAffectedDiffSwitch();
-                    for (DiffElement element : diffs) {
-                        final Boolean affected = affectedSwitch.doSwitch(element);
-                        if (affected != null && affected) {
-                            // we only care about ordering. other changes should
-                            // be picked up by an update feature.
-                            return true;
-                        }
+                        transaction.resume(null);
                     }
                 }
-            } catch (InterruptedException e) {
-                Activator
-                        .getDefault()
-                        .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "Error occurred while updating generated content in SwitchYard editor.", e));
+                calculateDifferences();
+                final DiagramAffectedDiffSwitch affectedSwitch = new DiagramAffectedDiffSwitch();
+                for (Diff element : generatedDifferences) {
+                    final Boolean affected = affectedSwitch.doSwitch(element);
+                    if (affected != null && affected) {
+                        // we only care about ordering. other changes should
+                        // be picked up by an update feature.
+                        return true;
+                    }
+                }
             }
         } finally {
             generatedResource.unload();
@@ -239,11 +233,11 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
      * 
      * @return the current differences
      */
-    protected DiffModel getDifferences(EObject target) {
+    protected Comparison getDifferences(EObject target) {
         if (target == null || target.eResource() != _source) {
             return null;
         }
-        return _differences;
+        return _comparison;
     }
 
     /**
@@ -284,8 +278,8 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
             return null;
         }
         for (final EStructuralFeature.Setting setting : settings) {
-            if (setting.getEStructuralFeature() == MatchPackage.eINSTANCE.getMatch2Elements_LeftElement()) {
-                return ((Match2Elements) setting.getEObject()).getRightElement();
+            if (setting.getEStructuralFeature() == ComparePackage.eINSTANCE.getMatch_Left()) {
+                return ((Match) setting.getEObject()).getRight();
             }
         }
         // assume this is the generated object
@@ -306,8 +300,8 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
             return generated;
         }
         for (final EStructuralFeature.Setting setting : settings) {
-            if (setting.getEStructuralFeature() == MatchPackage.eINSTANCE.getMatch2Elements_RightElement()) {
-                return ((Match2Elements) setting.getEObject()).getLeftElement();
+            if (setting.getEStructuralFeature() == ComparePackage.eINSTANCE.getMatch_Right()) {
+                return ((Match) setting.getEObject()).getLeft();
             }
         }
         // this must be the source object
@@ -318,17 +312,16 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         if (_crossReferencedMatches == null) {
             return;
         }
-        Match2Elements match = getMatch(source, true);
+        Match match = getMatch(source, true);
         if (match == null) {
             return;
         }
         // pair them up
-        match.setRightElement(generated);
-        match.setSimilarity(1d);
+        match.setRight(generated);
 
         // update the cross reference
         _crossReferencedMatches.getCollection(generated).add(
-                ((InternalEObject) match).eSetting(MatchPackage.eINSTANCE.getMatch2Elements_RightElement()));
+                ((InternalEObject) match).eSetting(ComparePackage.eINSTANCE.getMatch_Right()));
     }
 
     @SuppressWarnings("rawtypes")
@@ -336,41 +329,39 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         if (!(source instanceof EObject)) {
             return;
         }
-        Match2Elements match = getMatch((EObject) source, true);
+        Match match = getMatch((EObject) source, true);
         ((Collection) match.eContainer().eGet(match.eContainingFeature())).remove(match);
         _crossReferencedMatches.remove((EObject) source);
-        if (match.getRightElement() != null) {
-            _crossReferencedMatches.remove(match.getRightElement());
+        if (match.getRight() != null) {
+            _crossReferencedMatches.remove(match.getRight());
         }
     }
 
-    private Match2Elements getMatch(EObject object, boolean isLeft) {
+    private Match getMatch(EObject object, boolean isLeft) {
         if (object == null) {
             return null;
         }
         Collection<EStructuralFeature.Setting> settings = _crossReferencedMatches.getCollection(object);
         if (settings.isEmpty()) {
-            Match2Elements parentMatch = getMatch(object.eContainer(), isLeft);
+            Match parentMatch = getMatch(object.eContainer(), isLeft);
             if (parentMatch == null) {
                 return null;
             }
-            Match2Elements newMatch = MatchFactory.eINSTANCE.createMatch2Elements();
+            Match newMatch = CompareFactory.eINSTANCE.createMatch();
             if (isLeft) {
-                newMatch.setLeftElement(object);
+                newMatch.setLeft(object);
                 // update the cross reference
-                settings.add(((InternalEObject) newMatch).eSetting(MatchPackage.eINSTANCE
-                        .getMatch2Elements_LeftElement()));
+                settings.add(((InternalEObject) newMatch).eSetting(ComparePackage.eINSTANCE.getMatch_Left()));
             } else {
-                newMatch.setRightElement(object);
+                newMatch.setRight(object);
                 // update the cross reference
-                settings.add(((InternalEObject) newMatch).eSetting(MatchPackage.eINSTANCE
-                        .getMatch2Elements_RightElement()));
+                settings.add(((InternalEObject) newMatch).eSetting(ComparePackage.eINSTANCE.getMatch_Right()));
             }
-            parentMatch.getSubMatchElements().add(newMatch);
+            parentMatch.getSubmatches().add(newMatch);
             return newMatch;
         }
         for (final EStructuralFeature.Setting setting : settings) {
-            return (Match2Elements) setting.getEObject();
+            return (Match) setting.getEObject();
         }
         // no matches???
         return null;
@@ -381,24 +372,21 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
      */
     public void calculateDifferences() {
         if (_generated == null) {
-            _differences = null;
+            _comparison = null;
             _crossReferencedMatches = null;
             return;
         }
-        try {
-            MatchModel matches = MatchService.doResourceMatch(_source, _generated,
-                    Collections.<String, Object> emptyMap());
-            _differences = DiffService.doDiff(matches);
-            _crossReferencedMatches = new MatchCrossReferencer(matches);
-        } catch (InterruptedException e) {
-            Activator
-                    .getDefault()
-                    .getLog()
-                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Error occurred while calculating generated switchyard.xml content.", e));
-        }
+        _comparison = createComparison(_source, _generated);
+        _crossReferencedMatches = new MatchCrossReferencer(_comparison.getMatches());
         // clear the cache
         _cache.clear();
+    }
+
+    private Comparison createComparison(Notifier source, Notifier generated) {
+        return EMFCompare.builder()
+                .setMatchEngineFactoryRegistry(EMFCompareRCPPlugin.getDefault().getMatchEngineFactoryRegistry())
+                .setDiffEngine(new SwitchYardDiffEngine(new DiffBuilder())).build()
+                .compare(EMFCompare.createDefaultScope(source, generated));
     }
 
     protected boolean isCopiedSource(EObject source, EObject generated) {
@@ -409,21 +397,16 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
             return false;
         }
         final EObject sourceParent = getSource(generated.eContainer());
-        for (DiffElement diff : getDifferencesFor(generated)) {
-            if (new DiffSwitch<Boolean>() {
+        for (Diff diff : getDifferencesFor(generated)) {
+            if (new CompareSwitch<Boolean>() {
                 @Override
-                public Boolean caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
-                    return object.getLeftElement() == sourceParent;
+                public Boolean caseAttributeChange(AttributeChange object) {
+                    return object.getMatch().getLeft() == sourceParent;
                 }
 
                 @Override
-                public Boolean caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
-                    return object.getLeftParent() == sourceParent;
-                }
-
-                @Override
-                public Boolean caseReferenceChangeRightTarget(ReferenceChangeRightTarget object) {
-                    return object.getLeftElement() == sourceParent;
+                public Boolean caseReferenceChange(ReferenceChange object) {
+                    return object.getMatch().getLeft() == sourceParent;
                 }
 
                 @Override
@@ -448,12 +431,12 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
      * 
      * @return the differences for the object.
      */
-    protected List<DiffElement> getDifferencesFor(EObject object) {
-        if (_differences == null) {
+    protected List<Diff> getDifferencesFor(EObject object) {
+        if (_comparison == null) {
             return Collections.emptyList();
         }
-        final List<DiffElement> objectDifferences = new ArrayList<DiffElement>();
-        for (DiffElement diff : _differences.getDifferences()) {
+        final List<Diff> objectDifferences = new ArrayList<Diff>();
+        for (Diff diff : _comparison.getDifferences()) {
             if (isPertinentDiff(diff, object)) {
                 objectDifferences.add(diff);
             }
@@ -462,21 +445,16 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         return objectDifferences;
     }
 
-    private boolean isPertinentDiff(final DiffElement diff, final EObject modelElement) {
-        return new DiffSwitch<Boolean>() {
+    private boolean isPertinentDiff(final Diff diff, final EObject modelElement) {
+        return new CompareSwitch<Boolean>() {
             @Override
-            public Boolean caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
-                return object.getLeftElement() == modelElement || object.getRightTarget() == modelElement;
+            public Boolean caseAttributeChange(AttributeChange object) {
+                return object.getMatch().getLeft() == modelElement || object.getMatch().getRight() == modelElement;
             }
 
             @Override
-            public Boolean caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
-                return object.getLeftParent() == modelElement || object.getRightElement() == modelElement;
-            }
-
-            @Override
-            public Boolean caseReferenceChangeRightTarget(ReferenceChangeRightTarget object) {
-                return object.getLeftElement() == modelElement || object.getRightTarget() == modelElement;
+            public Boolean caseReferenceChange(ReferenceChange object) {
+                return object.getMatch().getLeft() == modelElement || object.getMatch().getRight() == modelElement;
             }
 
             @Override
@@ -490,15 +468,15 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         /** The serialVersionUID */
         private static final long serialVersionUID = 1L;
 
-        private MatchCrossReferencer(EObject eObject) {
-            super(eObject);
+        private MatchCrossReferencer(Collection<?> emfObjects) {
+            super(emfObjects);
             crossReference();
         }
 
         @Override
         protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
-            return eReference == MatchPackage.eINSTANCE.getMatch2Elements_LeftElement()
-                    || eReference == MatchPackage.eINSTANCE.getMatch2Elements_RightElement();
+            return eReference == ComparePackage.eINSTANCE.getMatch_Left()
+                    || eReference == ComparePackage.eINSTANCE.getMatch_Right();
         }
 
         @Override
@@ -526,12 +504,15 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         }
     }
 
-    private static final class DiagramAffectedDiffSwitch extends DiffSwitch<Boolean> {
+    private static final class DiagramAffectedDiffSwitch extends CompareSwitch<Boolean> {
 
         @Override
-        public Boolean caseMoveModelElement(MoveModelElement object) {
-            final EObject leftTarget = object.getLeftTarget();
-            final EObject rightTarget = object.getRightTarget();
+        public Boolean caseDiff(Diff object) {
+            if (object.getKind() != DifferenceKind.MOVE) {
+                return false;
+            }
+            final EObject leftTarget = object.getMatch().getLeft();
+            final EObject rightTarget = object.getMatch().getRight();
             return leftTarget instanceof Component || leftTarget instanceof Contract
                     || rightTarget instanceof Component || rightTarget instanceof Contract;
         }

@@ -51,7 +51,7 @@ public class SCADiagramCreateComponentServiceFeature extends AbstractCreateFeatu
         final Object bo = getBusinessObjectForPictogramElement(context.getTargetContainer());
         return bo instanceof Component && ((Component) bo).getService().size() == 0
                 && ComponentTypeExtensionManager.getSupportedInterfaceTypes((Component) bo).size() > 0
-                && !getDiagramEditor().getEditingDomain().isReadOnly(((Component) bo).eResource());
+                && !getDiagramBehavior().getEditingDomain().isReadOnly(((Component) bo).eResource());
     }
 
     @Override

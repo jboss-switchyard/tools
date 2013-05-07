@@ -23,12 +23,9 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.WorkbenchPartAction;
-import org.eclipse.graphiti.ui.editor.DiagramEditorContextMenuProvider;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -159,8 +156,8 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     }
 
     private SwitchYardType getSwitchYardRoot() {
-        SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(getDiagramEditor().getResourceSet()
-                .getResources().get(0));
+        SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(getDiagramEditor().getEditingDomain()
+                .getResourceSet().getResources().get(0));
         SwitchYardMergedModelAdapter mergedAdapter = MergedModelUtil.getAdapter(switchYardRoot,
                 SwitchYardMergedModelAdapter.class);
         return mergedAdapter.getSwitchYard();
@@ -222,20 +219,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 }
             };
             registry.registerAction(action);
-        }
-
-        @Override
-        protected ContextMenuProvider createContextMenuProvider() {
-            return new DiagramEditorContextMenuProvider(getGraphicalViewer(), getActionRegistry(),
-                    getDiagramTypeProvider()) {
-                @Override
-                public void buildContextMenu(IMenuManager manager) {
-                    super.buildContextMenu(manager);
-                    IAction action = getActionRegistry().getAction("show.or.hide.source.view");
-                    action.setText(action.getText());
-                    manager.add(action);
-                }
-            };
         }
 
         @Override

@@ -79,7 +79,7 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
         final PictogramElement pe = context.getTargetContainer();
         final Object bo = getBusinessObjectForPictogramElement(pe);
         return pe != null && _containerClass.isInstance(bo)
-                && !getDiagramEditor().getEditingDomain().isReadOnly(((EObject) bo).eResource());
+                && !getDiagramBehavior().getEditingDomain().isReadOnly(((EObject) bo).eResource());
     }
 
     @Override

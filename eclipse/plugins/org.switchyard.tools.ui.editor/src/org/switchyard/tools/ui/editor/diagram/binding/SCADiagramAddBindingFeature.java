@@ -60,7 +60,7 @@ public class SCADiagramAddBindingFeature extends AbstractAddShapeFeature {
 
         // nothing really to add - just refresh the object so the decorator
         // appears
-        getDiagramEditor().refreshRenderingDecorators(targetContainer);
+        getDiagramBehavior().refreshRenderingDecorators(targetContainer);
 
         return targetContainer;
     }

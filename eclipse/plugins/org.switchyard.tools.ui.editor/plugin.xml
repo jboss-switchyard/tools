@@ -259,31 +259,13 @@
 			id="org.switchyard.tools.ui.editor.ImageProvider">
 		</imageProvider>
 	</extension>
- <extension
-       point="org.eclipse.emf.compare.match.engine">
-    <matchengine
-          contentType="org.switchyard.tools.ui.editor.content-type.xml"
-          engineClass="org.switchyard.tools.ui.editor.model.merge.SwitchYardMatchEngine"
-          label="org.switchyard.tools.ui.editor.model.merge.SwitchYardMatchEngine"
-          priority="normal">
-    </matchengine>
- </extension>
- <extension
-       point="org.eclipse.emf.compare.diff.engine">
-    <diffengine
-          contentType="org.switchyard.tools.ui.editor.content-type.xml"
-          engineClass="org.switchyard.tools.ui.editor.model.merge.SwitchYardDiffEngine"
-          label="org.switchyard.tools.ui.editor.model.merge.SwitchYardDiffEngine"
-          priority="normal">
-    </diffengine>
- </extension>
- <extension
-       point="org.eclipse.emf.compare.diff.mergerprovider">
-    <mergerprovider
-          mergerProviderClass="org.switchyard.tools.ui.editor.model.merge.SwitchYardMergerProvider"
-          priority="normal">
-    </mergerprovider>
- </extension>
+   <extension
+         point="org.eclipse.emf.compare.rcp.matchEngine">
+      <engineFactory
+            class="org.switchyard.tools.ui.editor.model.merge.SwitchYardMatchEngineFactory"
+            ranking="20">
+      </engineFactory>
+   </extension>
  <extension
        point="org.switchyard.tools.ui.editor.editorExtension">
     <componentExtension

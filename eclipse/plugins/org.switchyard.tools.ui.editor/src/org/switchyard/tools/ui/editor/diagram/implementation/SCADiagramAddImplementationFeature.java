@@ -50,7 +50,7 @@ public class SCADiagramAddImplementationFeature extends AbstractAddShapeFeature 
     public PictogramElement add(IAddContext context) {
         ContainerShape targetContainer = context.getTargetContainer();
 
-        getDiagramEditor().refresh();
+        getDiagramBehavior().refresh();
 
         return targetContainer;
     }

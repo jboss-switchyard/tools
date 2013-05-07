@@ -33,6 +33,7 @@
   </modules>
 
   <repositories>
+    <!-- Base Juno dependencies. 
     <repository>
       <id>jbosstools-target-site</id>
       <url>http://download.jboss.org/jbosstools/updates/juno/SR1a/REPO/</url>
@@ -57,7 +58,7 @@
     </repository>
     <repository>
       <id>graphiti-update-site</id>
-      <url>http://download.eclipse.org/graphiti/updates/0.9.0/</url>
+      <url>http://download.eclipse.org/graphiti/updates/milestones/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
@@ -77,7 +78,8 @@
         <enabled>true</enabled>
       </releases>
     </repository>
-    <!-- The following provide dependencies required by the bpmn2 plugin. -->
+    -->
+    <!-- The following provide dependencies required by the bpmn2 plugin. 
     <repository>
       <id>bpmn2-model-update-site</id>
       <url>https://hudson.eclipse.org/hudson/job/bpmn2-nightly/lastSuccessfulBuild/artifact/org.eclipse.bpmn2.site/target/site/</url>
@@ -111,7 +113,8 @@
         <enabled>true</enabled>
       </releases>
     </repository>
-    <!-- provides ...emf.validation.ocl -->
+    -->
+    <!-- provides ...emf.validation.ocl 
     <repository>
       <id>emf-update-site</id>
       <url>http://download.eclipse.org/modeling/emf/updates/releases/</url>
@@ -123,7 +126,8 @@
         <enabled>true</enabled>
       </releases>
     </repository>
-    <!-- provides ..emf.ocl -->
+    -->
+    <!-- provides ..emf.ocl 
     <repository>
       <id>mdt-ocl-update-site</id>
       <url>http://download.eclipse.org/modeling/mdt/ocl/updates/</url>
@@ -135,6 +139,7 @@
         <enabled>true</enabled>
       </releases>
     </repository>
+    -->
   </repositories>
 
   <build>
@@ -153,6 +158,15 @@
         <version>${tycho-version}</version>
         <configuration>
           <resolver>p2</resolver>
+          <target>
+            <artifact>
+              <groupId>org.jboss.tools.integration-stack</groupId>
+              <artifactId>target-platform</artifactId>
+              <version>4.0.1-SNAPSHOT</version>
+              <type>target</type>
+              <classifier>base</classifier>
+            </artifact>
+          </target>
           <environments>
             <environment>
               <os>linux</os>

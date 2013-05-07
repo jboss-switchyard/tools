@@ -17,16 +17,16 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
+import org.eclipse.emf.compare.AttributeChange;
+import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.DifferenceKind;
+import org.eclipse.emf.compare.ReferenceChange;
+import org.eclipse.emf.compare.util.CompareSwitch;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.util.FeatureMap;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 
 /**
@@ -113,8 +113,8 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
             return generated.eGet(feature);
         }
         final Object value = source.eGet(feature);
-        final DiffModel diffModel = _factory == null ? null : _factory.getDifferences(source);
-        if (diffModel == null) {
+        final Comparison comparison = _factory == null ? null : _factory.getDifferences(source);
+        if (comparison == null) {
             return value;
         }
         if (feature.isMany()) {
@@ -142,13 +142,13 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
                         }
                     }
                 } else {
-                    for (DiffElement difference : _factory.getDifferencesFor(source)) {
+                    for (Diff difference : _factory.getDifferencesFor(source)) {
                         /*
                          * Because of the way we compare, generated content is
                          * marked as "deleted" from the source, i.e. the source
                          * file is missing the generated content.
                          */
-                        if (difference.getKind() == DifferenceKind.DELETION) {
+                        if (difference.getKind() == DifferenceKind.DELETE) {
                             Object addedElement = getRightTarget(feature, difference);
                             if (addedElement != null) {
                                 added.add(addedElement);
@@ -167,13 +167,13 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
         } else if (!source.eIsSet(feature)) {
             Object added = _factory.getCachedFeatureDifferences(this, feature);
             if (added == null) {
-                for (DiffElement difference : _factory.getDifferencesFor(source)) {
+                for (Diff difference : _factory.getDifferencesFor(source)) {
                     /*
                      * Because of the way we compare, generated content is
                      * marked as "deleted" from the source, i.e. the source file
                      * is missing the generated content.
                      */
-                    if (difference.getKind() == DifferenceKind.DELETION) {
+                    if (difference.getKind() == DifferenceKind.DELETE) {
                         added = getRightTarget(feature, difference);
                         if (added != null) {
                             _factory.cacheFeatureDifferences(this, feature, added);
@@ -192,32 +192,34 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
         return value;
     }
 
-    private Object getRightTarget(final EStructuralFeature feature, final DiffElement difference) {
-        return new DiffSwitch<Object>() {
+    private Object getRightTarget(final EStructuralFeature feature, final Diff difference) {
+        return new CompareSwitch<Object>() {
             @Override
-            public Object caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
-                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getLeftElement().eClass(),
+            public Object caseAttributeChange(AttributeChange object) {
+                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getMatch().getLeft().eClass(),
                         object.getAttribute()))) {
-                    return object.getRightTarget();
+                    return object.getValue();
+                } else if (ExtendedMetaData.INSTANCE.getGroup(feature) == object.getAttribute()) {
+                    FeatureMap.Entry entry = (FeatureMap.Entry) object.getValue();
+                    if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getMatch().getLeft().eClass(),
+                            entry.getEStructuralFeature()))) {
+                        return entry.getValue();
+                    }
                 }
                 return null;
             }
 
             @Override
-            public Object caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
-                final EObject rightTarget = object.getRightElement();
-                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getLeftParent().eClass(),
-                        rightTarget.eContainmentFeature()))) {
-                    return rightTarget;
-                }
-                return null;
-            }
-
-            @Override
-            public Object caseReferenceChangeRightTarget(ReferenceChangeRightTarget object) {
-                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getLeftElement().eClass(),
+            public Object caseReferenceChange(ReferenceChange object) {
+                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getMatch().getLeft().eClass(),
                         object.getReference()))) {
-                    return object.getRightTarget();
+                    return object.getValue();
+                } else if (ExtendedMetaData.INSTANCE.getGroup(feature) == object.getReference()) {
+                    FeatureMap.Entry entry = (FeatureMap.Entry) object.getValue();
+                    if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getMatch().getLeft().eClass(),
+                            entry.getEStructuralFeature()))) {
+                        return entry.getValue();
+                    }
                 }
                 return null;
             }

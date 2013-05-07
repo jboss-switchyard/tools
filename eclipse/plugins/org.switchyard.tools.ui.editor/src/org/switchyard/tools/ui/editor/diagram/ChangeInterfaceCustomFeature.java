@@ -83,7 +83,7 @@ public class ChangeInterfaceCustomFeature extends AbstractCustomFeature implemen
         return isAvailable(context)
                 && bo instanceof EObject
                 && (((EObject) bo).eResource() == null || !getFeatureProvider().getDiagramTypeProvider()
-                .getDiagramEditor().getEditingDomain().isReadOnly(((EObject) bo).eResource()));
+                .getDiagramBehavior().getEditingDomain().isReadOnly(((EObject) bo).eResource()));
     }
 
     @Override
@@ -106,7 +106,7 @@ public class ChangeInterfaceCustomFeature extends AbstractCustomFeature implemen
 
             // nothing really to add - just refresh the object so the decorator
             // appears
-            getDiagramEditor().refreshRenderingDecorators(context.getPictogramElements()[0]);
+            getDiagramBehavior().refreshRenderingDecorators(context.getPictogramElements()[0]);
         }
          
     }

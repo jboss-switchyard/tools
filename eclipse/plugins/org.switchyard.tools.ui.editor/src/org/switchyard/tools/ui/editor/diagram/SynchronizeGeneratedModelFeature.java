@@ -56,7 +56,7 @@ public class SynchronizeGeneratedModelFeature extends AbstractCustomFeature {
     @Override
     public void execute(ICustomContext context) {
         _hasDoneChanges = false;
-        final ResourceSet rs = getDiagramEditor().getResourceSet();
+        final ResourceSet rs = getDiagramBehavior().getEditingDomain().getResourceSet();
         final SwitchyardSCAEditorAdapter editorAdapter = (SwitchyardSCAEditorAdapter) EcoreUtil.getAdapter(
                 rs.eAdapters(), SwitchyardSCAEditorAdapter.class);
         if (editorAdapter == null) {
@@ -92,7 +92,7 @@ public class SynchronizeGeneratedModelFeature extends AbstractCustomFeature {
     @Override
     public boolean canExecute(ICustomContext context) {
         final SwitchyardSCAEditorAdapter editorAdapter = (SwitchyardSCAEditorAdapter) EcoreUtil.getAdapter(
-                getDiagramEditor().getEditingDomain().getResourceSet().eAdapters(), SwitchyardSCAEditorAdapter.class);
+                getDiagramBehavior().getEditingDomain().getResourceSet().eAdapters(), SwitchyardSCAEditorAdapter.class);
         return editorAdapter != null && editorAdapter.getSwitchyardEditor().needToSynchronizeGeneratedModel();
     }
 

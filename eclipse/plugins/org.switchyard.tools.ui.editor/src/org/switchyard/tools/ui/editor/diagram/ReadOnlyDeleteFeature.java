@@ -38,7 +38,7 @@ public class ReadOnlyDeleteFeature extends DefaultDeleteFeature {
         return super.canDelete(context)
                 && bo instanceof EObject
                 && (((EObject) bo).eResource() == null || !getFeatureProvider().getDiagramTypeProvider()
-                        .getDiagramEditor().getEditingDomain().isReadOnly(((EObject) bo).eResource()));
+                        .getDiagramBehavior().getEditingDomain().isReadOnly(((EObject) bo).eResource()));
     }
 
 }

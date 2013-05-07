@@ -46,11 +46,11 @@ public class ConnectionDeleteFeature extends DefaultDeleteFeature {
             final Object endBO = getBusinessObjectForPictogramElement(connection.getEnd());
             if (startBO instanceof Service) {
                 return ((EObject) startBO).eResource() == null
-                        || !getFeatureProvider().getDiagramTypeProvider().getDiagramEditor().getEditingDomain()
+                        || !getFeatureProvider().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain()
                                 .isReadOnly(((EObject) startBO).eResource());
             } else if (endBO instanceof Reference) {
                 return ((EObject) endBO).eResource() == null
-                        || !getFeatureProvider().getDiagramTypeProvider().getDiagramEditor().getEditingDomain()
+                        || !getFeatureProvider().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain()
                                 .isReadOnly(((EObject) endBO).eResource());
             }
         }

@@ -35,6 +35,7 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -91,7 +92,9 @@ import org.eclipse.graphiti.ui.editor.DefaultMarkerBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultPersistencyBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultRefreshBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultUpdateBehavior;
+import org.eclipse.graphiti.ui.editor.DiagramBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
+import org.eclipse.graphiti.ui.editor.IDiagramContainerUI;
 import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
@@ -252,15 +255,18 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     }
 
     @Override
+    protected DiagramBehavior createDiagramBehavior() {
+        SwitchYardDiagramBehavior diagramBehavior =  new SwitchYardDiagramBehavior(this);
+        diagramBehavior.setParentPart(this);
+        diagramBehavior.initDefaultBehaviors();
+        return diagramBehavior;
+    }
+
+    @Override
     protected void createActions() {
         super.createActions();
         
         getActionRegistry().registerAction(new PropertiesDialogAction(this));
-    }
-
-    @Override
-    protected DefaultPersistencyBehavior createPersistencyBehavior() {
-        return new SwitchYardPersistencyBehavior(this);
     }
 
     private Set<EObject> loadValidationStatus(List<IMarker> markers) {
@@ -374,65 +380,6 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             }
         }
         return result;
-    }
-
-    @Override
-    protected DefaultUpdateBehavior createUpdateBehavior() {
-        return new SwitchYardUpdateBehavior(this);
-    }
-
-    @Override
-    protected DefaultRefreshBehavior createRefreshBehavior() {
-        return new DefaultRefreshBehavior(this) {
-            @Override
-            public void refreshRenderingDecorators(PictogramElement pe) {
-                super.refreshRenderingDecorators(pe);
-                if (pe instanceof AnchorContainer) {
-                    for (Anchor anchor : ((AnchorContainer) pe).getAnchors()) {
-                        for (Connection connection : anchor.getOutgoingConnections()) {
-                            for (ConnectionDecorator decorator : connection.getConnectionDecorators()) {
-                                super.refreshRenderingDecorators(decorator);
-                            }
-                        }
-                    }
-                }
-            }
-
-            @Override
-            protected void autoUpdate() {
-                super.autoUpdate();
-                // clear dirty flag after auto-update
-                diagramEditor.getEditingDomain().getCommandStack().flush();
-                diagramEditor.updateDirtyState();
-            }
-        };
-    }
-
-    @Override
-    protected DefaultMarkerBehavior createMarkerBehavior() {
-        return new DefaultMarkerBehavior(this) {
-            @Override
-            public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-                // we have an external validator that creates problem markers
-                return Diagnostic.OK_INSTANCE;
-            }
-        };
-    }
-
-    @Override
-    protected PictogramElement[] getPictogramElementsForSelection() {
-        // filter out invisible elements when setting selection
-        ArrayList<PictogramElement> visibleList = new ArrayList<PictogramElement>();
-        PictogramElement[] pictogramElements = super.getPictogramElementsForSelection();
-        if (pictogramElements == null) {
-            return null;
-        }
-        for (PictogramElement pe : pictogramElements) {
-            if (pe.isVisible()) {
-                visibleList.add(pe);
-            }
-        }
-        return visibleList.toArray(new PictogramElement[visibleList.size()]);
     }
 
     @Override
@@ -577,7 +524,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         try {
             loadValidationStatus(Arrays.asList(_modelFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID,
                     true, IResource.DEPTH_ZERO)));
-            refresh();
+            getDiagramBehavior().refresh();
         } catch (CoreException e) {
             e.fillInStackTrace();
         }
@@ -628,7 +575,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                         return;
                     } else if (_modelFile.equals(project.getSwitchYardConfigurationFile())) {
                         _needsSynchronization = true;
-                        if (isDirty() || isDirectEditingActive()) {
+                        if (isDirty() || getDiagramBehavior().isDirectEditingActive()) {
                             /*
                              * don't do anything if the editor is dirty. this
                              * could hork the in memory generated model.
@@ -637,7 +584,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                         }
                         getEditorSite().getShell().getDisplay().asyncExec(new Runnable() {
                             public void run() {
-                                executeFeature(new SynchronizeGeneratedModelFeature(getDiagramTypeProvider()
+                                getDiagramBehavior().executeFeature(new SynchronizeGeneratedModelFeature(getDiagramTypeProvider()
                                         .getFeatureProvider(), true), new CustomContext());
                             }
                         });
@@ -656,7 +603,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     }
 
     private void processMarkerDeltas(final IResourceDelta modelFileDelta) {
-        if (modelFileDelta == null || getGraphicalControl().isDisposed()) {
+        if (modelFileDelta == null || getGraphicalControl() == null || getGraphicalControl().isDisposed()) {
             return;
         }
         final IMarkerDelta[] markerDeltas = modelFileDelta.getMarkerDeltas();
@@ -729,13 +676,17 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         for (EObject eobject : updatedObjects) {
             PictogramElement pe = featureProvider.getPictogramElementForBusinessObject(eobject);
             if (pe != null) {
-                getRefreshBehavior().refreshRenderingDecorators(pe);
+                getDiagramBehavior().getRefreshBehavior().refreshRenderingDecorators(pe);
             }
         }
     }
 
+    private ResourceSet getResourceSet() {
+        return getEditingDomain().getResourceSet();
+    }
+
     private final class SwitchYardPersistencyBehavior extends DefaultPersistencyBehavior {
-        private SwitchYardPersistencyBehavior(DiagramEditor editor) {
+        private SwitchYardPersistencyBehavior(DiagramBehavior editor) {
             super(editor);
         }
 
@@ -904,7 +855,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         }
 
         @Override
-        protected Set<Resource> save(TransactionalEditingDomain editingDomain, Map<Resource, Map<?, ?>> saveOptions) {
+        protected Set<Resource> save(TransactionalEditingDomain editingDomain, Map<Resource, Map<?, ?>> saveOptions,
+                IProgressMonitor monitor) {
             for (Resource resource : saveOptions.keySet()) {
                 if ("switchyard".equals(resource.getURI().scheme())) {
                     // prevent notifications
@@ -915,7 +867,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                     break;
                 }
             }
-            return super.save(editingDomain, saveOptions);
+            return super.save(editingDomain, saveOptions, monitor);
         }
 
     }
@@ -949,7 +901,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             }
         };
 
-        private SwitchYardUpdateBehavior(DiagramEditor diagramEditor) {
+        private SwitchYardUpdateBehavior(DiagramBehavior diagramEditor) {
             super(diagramEditor);
         }
 
@@ -1001,10 +953,94 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         public void run() {
             PropertiesDialogFeature feature = new PropertiesDialogFeature(getDiagramTypeProvider().getFeatureProvider());
             CustomContext context = new CustomContext(getSelectedPictogramElements());
-            executeFeature(feature, context);
+            getDiagramBehavior().executeFeature(feature, context);
         }
     }
     
+    private final class SwitchYardDiagramBehavior extends DiagramBehavior {
+
+        public SwitchYardDiagramBehavior(IDiagramContainerUI diagramContainer) {
+            super(diagramContainer);
+        }
+        
+        @Override
+        protected void initDefaultBehaviors() {
+            // this needs to be exposed to our create method in SwitchyardSCAEditor
+            super.initDefaultBehaviors();
+        }
+
+        @Override
+        protected void setParentPart(IWorkbenchPart parentPart) {
+            // this needs to be exposed to our create method in SwitchyardSCAEditor
+            super.setParentPart(parentPart);
+        }
+
+        @Override
+        protected DefaultPersistencyBehavior createPersistencyBehavior() {
+            return new SwitchYardPersistencyBehavior(this);
+        }
+
+        @Override
+        protected DefaultMarkerBehavior createMarkerBehavior() {
+            return new DefaultMarkerBehavior(this) {
+                @Override
+                public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
+                    // we have an external validator that creates problem markers
+                    return Diagnostic.OK_INSTANCE;
+                }
+            };
+        }
+
+        @Override
+        protected DefaultRefreshBehavior createRefreshBehavior() {
+            return new DefaultRefreshBehavior(this) {
+                @Override
+                public void refreshRenderingDecorators(PictogramElement pe) {
+                    super.refreshRenderingDecorators(pe);
+                    if (pe instanceof AnchorContainer) {
+                        for (Anchor anchor : ((AnchorContainer) pe).getAnchors()) {
+                            for (Connection connection : anchor.getOutgoingConnections()) {
+                                for (ConnectionDecorator decorator : connection.getConnectionDecorators()) {
+                                    super.refreshRenderingDecorators(decorator);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                protected void autoUpdate() {
+                    super.autoUpdate();
+                    // clear dirty flag after auto-update
+                    diagramBehavior.getEditingDomain().getCommandStack().flush();
+                    diagramBehavior.getDiagramContainer().updateDirtyState();
+                }
+            };
+        }
+
+        @Override
+        protected DefaultUpdateBehavior createUpdateBehavior() {
+            return new SwitchYardUpdateBehavior(this);
+        }
+
+        @Override
+        protected PictogramElement[] getPictogramElementsForSelection() {
+            // filter out invisible elements when setting selection
+            ArrayList<PictogramElement> visibleList = new ArrayList<PictogramElement>();
+            PictogramElement[] pictogramElements = super.getPictogramElementsForSelection();
+            if (pictogramElements == null) {
+                return null;
+            }
+            for (PictogramElement pe : pictogramElements) {
+                if (pe.isVisible()) {
+                    visibleList.add(pe);
+                }
+            }
+            return visibleList.toArray(new PictogramElement[visibleList.size()]);
+        }
+
+    }
+
     /**
      * @param resourceSet register all the EMF packages for the SY resource set
      */

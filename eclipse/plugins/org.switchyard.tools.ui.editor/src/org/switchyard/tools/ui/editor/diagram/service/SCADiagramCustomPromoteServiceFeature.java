@@ -60,7 +60,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
             if (bo instanceof ComponentService) {
                 ComponentService componentService = (ComponentService) bo;
                 createService(componentService, (Shape) pes[0]);
-                getDiagramEditor().refresh();
+                getDiagramBehavior().refresh();
             }
         }
     }

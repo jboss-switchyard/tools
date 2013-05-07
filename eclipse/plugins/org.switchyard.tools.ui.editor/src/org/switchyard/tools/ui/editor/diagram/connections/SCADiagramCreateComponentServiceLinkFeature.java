@@ -43,11 +43,11 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
             Object target = getAnchorObject(context.getTargetAnchor());
             if (source != null && target != null) {
                 if (source instanceof Service && target instanceof ComponentService
-                        && !getDiagramEditor().getEditingDomain().isReadOnly(((Service) source).eResource())) {
+                        && !getDiagramBehavior().getEditingDomain().isReadOnly(((Service) source).eResource())) {
                     return true;
                 }
                 if (source instanceof ComponentService && target instanceof Service
-                        && !getDiagramEditor().getEditingDomain().isReadOnly(((Service) target).eResource())) {
+                        && !getDiagramBehavior().getEditingDomain().isReadOnly(((Service) target).eResource())) {
                     return true;
                 }
             }

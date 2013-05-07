@@ -89,7 +89,7 @@ public class ValidateModelFeature extends AbstractCustomFeature {
         for (EObject target : seenTargets) {
             PictogramElement pe = getFeatureProvider().getPictogramElementForBusinessObject(target);
             if (pe != null) {
-                getDiagramEditor().refreshRenderingDecorators(pe);
+                getDiagramBehavior().refreshRenderingDecorators(pe);
             }
         }
     }

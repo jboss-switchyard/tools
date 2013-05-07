@@ -365,7 +365,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             }
         }
 
-        if (getDiagramTypeProvider().getDiagramEditor().getEditingDomain().isReadOnly(((EObject) bo).eResource())) {
+        if (getDiagramTypeProvider().getDiagramBehavior().getEditingDomain().isReadOnly(((EObject) bo).eResource())) {
             decorators.add(new BorderDecorator(IColorConstant.GRAY, null, Graphics.LINE_DASH));
         }
         return decorators.toArray(new IDecorator[decorators.size()]);
@@ -512,7 +512,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 return name;
             }
         }
-        return super.getToolTip(ga);
+        return null;
     }
 
     @Override

@@ -96,7 +96,7 @@ public class PropertiesDialogFeature extends AbstractCustomFeature {
 
     @Override
     public void execute(ICustomContext context) {
-        final InternalTransactionalEditingDomain transactionalDomain = (InternalTransactionalEditingDomain) getDiagramEditor()
+        final InternalTransactionalEditingDomain transactionalDomain = (InternalTransactionalEditingDomain) getDiagramBehavior()
                 .getEditingDomain();
         try {
             /*

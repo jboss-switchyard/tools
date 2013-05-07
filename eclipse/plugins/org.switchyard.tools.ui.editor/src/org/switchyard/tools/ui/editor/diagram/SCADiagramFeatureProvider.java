@@ -282,7 +282,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         Object bo = getBusinessObjectForPictogramElement(pe);
         if (bo instanceof EObject
                 && ((EObject) bo).eResource() != null
-                && getDiagramTypeProvider().getDiagramEditor().getEditingDomain()
+                && getDiagramTypeProvider().getDiagramBehavior().getEditingDomain()
                         .isReadOnly(((EObject) bo).eResource())) {
             return null;
         }

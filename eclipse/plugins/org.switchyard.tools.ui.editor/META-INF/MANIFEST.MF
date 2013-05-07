@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.switchyard.tools.ui.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.switchyard.tools.ui.editor.Activator
 Bundle-Vendor: JBoss.org
-Require-Bundle: org.eclipse.graphiti,
+Require-Bundle: org.eclipse.graphiti;bundle-version="[0.10.0,0.11.0)",
  org.eclipse.graphiti.ui,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
@@ -44,9 +44,8 @@ Require-Bundle: org.eclipse.graphiti,
  org.switchyard.tools.models.sca.core.edit,
  org.switchyard.tools.models.sca.sca1_1.edit,
  org.switchyard.tools.models.switchyard1_0.edit,
- org.eclipse.emf.compare;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.emf.compare.diff,
- org.eclipse.emf.compare.match
+ org.eclipse.emf.compare;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.emf.compare.rcp;bundle-version="[2.1.0,3.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui.editor,
@@ -65,5 +64,6 @@ Export-Package: org.switchyard.tools.ui.editor,
  org.switchyard.tools.ui.editor.impl,
  org.switchyard.tools.ui.editor.property,
  org.switchyard.tools.ui.editor.util
-Import-Package: org.eclipse.core.filesystem,
+Import-Package: com.google.common.base;version="[11.0.0,15.0.0)",
+ org.eclipse.core.filesystem,
  org.eclipse.core.filesystem.provider

@@ -30,8 +30,9 @@
       <import feature="org.eclipse.wst.xml_core.feature" version="3.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.wst.xml_ui.feature" version="3.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.emf.compare" version="1.2.0" match="compatible"/>
-      <import feature="org.eclipse.graphiti.feature" version="0.9.0" match="equivalent"/>
+      <import feature="org.eclipse.emf.compare" version="2.1.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.compare.rcp" version="2.1.0" match="compatible"/>
+      <import feature="org.eclipse.graphiti.feature" version="0.10.0" match="equivalent"/>
       <import feature="org.eclipse.m2e.wtp.feature" version="0.16.0" match="greaterOrEqual"/>
       <import plugin="javax.wsdl" version="1.6.2" match="equivalent"/>
       <import feature="org.jboss.ide.eclipse.freemarker.feature" version="1.2.0" match="greaterOrEqual"/>

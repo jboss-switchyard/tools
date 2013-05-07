@@ -44,10 +44,10 @@ public class SCADiagramCreateReferenceLinkFeature extends AbstractCreateConnecti
             Object target = getBusinessObjectForPictogramElement(context.getTargetAnchor());
             if (source != null && target != null) {
                 if (source instanceof ComponentReference && target instanceof Reference
-                        && !getDiagramEditor().getEditingDomain().isReadOnly(((Reference) target).eResource())) {
+                        && !getDiagramBehavior().getEditingDomain().isReadOnly(((Reference) target).eResource())) {
                     return true;
                 } else if (source instanceof ComponentReference && target instanceof ComponentService
-                        && !getDiagramEditor().getEditingDomain().isReadOnly(((ComponentReference) source).eResource())) {
+                        && !getDiagramBehavior().getEditingDomain().isReadOnly(((ComponentReference) source).eResource())) {
                     return true;
                 }
             }
