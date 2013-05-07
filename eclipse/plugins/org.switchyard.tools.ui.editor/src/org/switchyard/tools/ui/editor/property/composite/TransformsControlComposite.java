@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property.composite;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -26,6 +27,7 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -51,10 +53,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
@@ -67,7 +67,8 @@ import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
-import org.switchyard.tools.ui.editor.transform.wizards.AddTransformWizard;
+import org.switchyard.tools.ui.editor.transform.NewTransformWizard;
+import org.switchyard.tools.ui.editor.transform.TransformDetails;
 import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
 
 /**
@@ -219,7 +220,6 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
         });
         
         adaptChildren(this);
-        addDomainListener();
         
     }
 
@@ -229,6 +229,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
         if (composite != null) {
 
             _composite = composite;
+            addDomainListener();
             
             Display.getDefault().asyncExec(new Runnable() {
                 public void run() {
@@ -273,31 +274,50 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
     }
 
     private TransformType addTransform() {
-        TransformType newTransform = null;
-        AddTransformWizard wizard = new AddTransformWizard(getSwitchYardRoot(_composite));
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        WizardDialog wizDialog = new WizardDialog(shell, wizard);
-        int rtn_code = wizDialog.open();
-        if (rtn_code == Window.OK) {
-            newTransform = wizard.getTransform();
+        TransformDetails details = null;
+        try {
+            final SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(_composite);
+            details = new TransformDetails(switchYardRoot);
+
+            if (details.getDeclaredTransforms().containsAll(details.getRequiredTransforms())) {
+                MessageDialog.openInformation(this.getShell(), "No New Transformers Required",
+                        "All required transformers have been created.");
+                return null;
+            }
+            final NewTransformWizard wizard = new NewTransformWizard();
+            wizard.init(details);
+            WizardDialog dialog = new WizardDialog(this.getShell(), wizard);
+            if (dialog.open() != Window.OK) {
+                return null;
+            }
             if (_domain != null) {
-                final TransformType transform = newTransform;
                 _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                     @Override
                     protected void doExecute() {
-                        SwitchYardType switchYardRoot = getSwitchYardRoot(_composite);
+                        final Collection<TransformType> newTransforms = wizard.getCreatedTransforms();
+                        if (newTransforms == null || newTransforms.isEmpty()) {
+                            refresh();
+                            return;
+                        }
                         TransformsType transforms = switchYardRoot.getTransforms();
                         if (transforms == null) {
                             switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
                             transforms = switchYardRoot.getTransforms();
                         }
-                        transforms.getTransform().add(transform);
+                        Collection<TransformType> transformsList = transforms.getTransform();
+                        for (TransformType newTransform : newTransforms) {
+                            transformsList.add(newTransform);
+                        }
+                        refresh();
                     }
                 });
-                refresh();
             }
+        } catch (Exception e) {
+            MessageDialog.openError(this.getShell(), "Error Resolving Transformers", "Could not resolve required transformers.\n"
+                    + e.getMessage());
+            return null;
         }
-        return newTransform;
+        return null;
     }
 
     private void removeTransform(final TransformType selected) {
@@ -488,7 +508,8 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
 
     private void addDomainListener() {
         if (_domain == null) {
-            _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getEditor(getTargetObject())
+                    .getEditingDomain();
             _domain.addResourceSetListener(this);
         }
     }
