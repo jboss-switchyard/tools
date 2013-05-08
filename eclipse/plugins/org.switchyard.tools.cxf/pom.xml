@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.switchyard.tools</groupId>
     <artifactId>switchyard-tools-eclipse-plugins</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.8.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>org.switchyard.tools.cxf</artifactId>
@@ -30,6 +30,11 @@
   <dependencyManagement>
     <!-- SwitchYard parent excludes a lot of the transitive dependencies, so redeclare them. -->
     <dependencies>
+      <dependency>
+        <groupId>org.apache.velocity</groupId>
+        <artifactId>velocity</artifactId>
+        <version>1.7</version>
+      </dependency>
       <dependency>
         <groupId>org.apache.cxf</groupId>
         <artifactId>cxf-tools-java2ws</artifactId>
