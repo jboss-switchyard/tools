@@ -53,7 +53,7 @@ public class JavaTypeScanner {
                 if (annoTypes == null || annoTypes.length == 0) {
                     continue;
                 }
-                if (!"org.switchyard.component.bean".equals(annoTypes[0][0]) && !"Service".equals(annoTypes[0][1])) {
+                if (!"org.switchyard.component.bean".equals(annoTypes[0][0]) || !"Service".equals(annoTypes[0][1])) {
                     continue;
                 }
                 for (IMemberValuePair pair : annotation.getMemberValuePairs()) {
@@ -112,7 +112,7 @@ public class JavaTypeScanner {
                             continue;
                         }
                         if (!"org.switchyard.component.bean".equals(annoTypes[0][0])
-                                && !"Reference".equals(annoTypes[0][1])) {
+                                || !"Reference".equals(annoTypes[0][1])) {
                             continue;
                         }
 
