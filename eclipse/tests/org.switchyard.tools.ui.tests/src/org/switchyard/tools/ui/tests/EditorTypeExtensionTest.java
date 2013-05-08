@@ -21,11 +21,11 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.junit.Assert;
 import org.junit.Test;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;

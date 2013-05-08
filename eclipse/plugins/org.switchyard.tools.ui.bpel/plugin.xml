@@ -4,7 +4,7 @@
   <extension
         point="org.eclipse.core.runtime.adapters">
      <factory
-           adaptableType="org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation"
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation"
            class="org.switchyard.tools.ui.bpel.BPELResourceAdapterFactory">
         <adapter
               type="org.eclipse.core.resources.IResource">
@@ -66,7 +66,7 @@
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
                <instanceof
-                     value="org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation">
+                     value="org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation">
                </instanceof>
             </adapt>
          </enabledWhen>

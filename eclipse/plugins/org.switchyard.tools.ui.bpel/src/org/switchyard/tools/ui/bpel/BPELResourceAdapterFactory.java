@@ -16,7 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdapterFactory;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 
 /**

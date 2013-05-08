@@ -8,8 +8,7 @@ Bundle-Activator: org.switchyard.tools.models.switchyard1_0.bean.provider.Switch
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.open.oasis.docs.ns.opencsa.sca.bpel.provider,
- org.switchyard.tools.models.switchyard1_0.bean.provider,
+Export-Package: org.switchyard.tools.models.switchyard1_0.bean.provider,
  org.switchyard.tools.models.switchyard1_0.bpm.provider,
  org.switchyard.tools.models.switchyard1_0.camel.provider,
  org.switchyard.tools.models.switchyard1_0.clojure.provider,

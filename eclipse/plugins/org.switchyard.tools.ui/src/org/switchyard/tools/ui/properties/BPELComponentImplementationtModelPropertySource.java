@@ -13,7 +13,7 @@ package org.switchyard.tools.ui.properties;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
-import org.switchyard.component.bpel.config.model.BPELComponentImplementationModel;
+import org.switchyard.config.model.implementation.bpel.BPELComponentImplementationModel;
 
 /**
  * BPELComponentImplementationtModelPropertySource

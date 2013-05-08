@@ -29,9 +29,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbenchPage;
@@ -40,8 +42,6 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.PortType;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELFactory;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.bpel.util.ICreationDetails;
@@ -112,7 +112,7 @@ public class BPELComponentWizard extends BaseNewServiceFileWizard implements INe
 
     @Override
     public boolean performFinish() {
-        _implementation = BPELFactory.eINSTANCE.createBPELImplementation();
+        _implementation = ScaFactory.eINSTANCE.createBPELImplementation();
 
         if (!super.performFinish()) {
             return false;

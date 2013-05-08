@@ -33,7 +33,6 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.tabbed.AdvancedPropertySection;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.provider.BPELItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.BeanItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.provider.BPMItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.provider.CamelItemProviderAdapterFactory;
@@ -163,7 +162,6 @@ public class SwitchyardAdvancedPropertySection extends AdvancedPropertySection i
         factories.add(new CamelItemProviderAdapterFactory());
         factories.add(new BPMItemProviderAdapterFactory());
         factories.add(new BeanItemProviderAdapterFactory());
-        factories.add(new BPELItemProviderAdapterFactory());
         factories.add(new AddressingItemProviderAdapterFactory());
         factories.add(new InstanceItemProviderAdapterFactory());
         factories.add(new PolicyItemProviderAdapterFactory());

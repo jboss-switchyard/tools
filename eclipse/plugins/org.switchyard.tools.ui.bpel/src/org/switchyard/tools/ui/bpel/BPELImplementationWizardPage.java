@@ -25,8 +25,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -41,8 +43,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELFactory;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -185,7 +185,7 @@ public class BPELImplementationWizardPage extends WizardPage {
             if (result.length > 0 && result[0] instanceof IFile) {
                 IFile bpelFile = (IFile) result[0];
                 String bpelFilePath = JavaUtil.getJavaPathForResource(bpelFile).toString();
-                _implementation = BPELFactory.eINSTANCE.createBPELImplementation();
+                _implementation = ScaFactory.eINSTANCE.createBPELImplementation();
 
                 // load process
                 final QName processName = Activator.getDefault().getProcessForFile(bpelFile);

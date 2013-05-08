@@ -13,11 +13,11 @@ package org.switchyard.tools.ui.bpel;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation;
 import org.switchyard.tools.ui.editor.diagram.implementation.IImplementationWizard;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 

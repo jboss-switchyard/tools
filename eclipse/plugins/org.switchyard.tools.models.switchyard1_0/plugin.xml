@@ -19,13 +19,6 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://docs.oasis-open.org/ns/opencsa/sca/200903"
-            class="org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage"
-            genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
             uri="urn:switchyard-component-bpm:config:1.0"
             class="org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage"
             genModel="model/switchyard_1.0.genmodel"/>

@@ -7,10 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.open.oasis.docs.ns.opencsa.sca.bpel,
- org.open.oasis.docs.ns.opencsa.sca.bpel.impl,
- org.open.oasis.docs.ns.opencsa.sca.bpel.util,
- org.switchyard.tools.models.switchyard1_0.bean,
+Export-Package: org.switchyard.tools.models.switchyard1_0.bean,
  org.switchyard.tools.models.switchyard1_0.bean.impl,
  org.switchyard.tools.models.switchyard1_0.bean.util,
  org.switchyard.tools.models.switchyard1_0.bpm,
