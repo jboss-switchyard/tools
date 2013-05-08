@@ -24,6 +24,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
@@ -941,5 +942,14 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
             }
         }
         wrapOperation(ops);
+    }
+
+    protected TransactionalEditingDomain getDomain(EObject object) {
+        TransactionalEditingDomain domain = null;
+        if ((object != null && object.eContainer() != null) || getTargetObject() != null) {
+            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            return domain;
+        }
+        return null;
     }
 }

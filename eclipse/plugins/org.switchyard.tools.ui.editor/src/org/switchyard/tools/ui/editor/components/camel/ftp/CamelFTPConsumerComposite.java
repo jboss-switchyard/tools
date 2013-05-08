@@ -134,9 +134,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             } else {
                 _hostText.setText("");
             }
-            if (this._binding.isSetPort()) {
+            if (this._binding.getPort() != null) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
-//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else {
                 _portText.setText("");
             }
@@ -179,20 +178,6 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (_directoryText.getText().trim().isEmpty()) {
                 setErrorMessage("Directory may not be empty.");
                 return false;
-//            } else if (!_delayText.getText().trim().isEmpty()) {
-//                try {
-//                    new BigInteger(_delayText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Delay value must be a valid number.");
-//                    return false;
-//                }
-//            } else if (!_portText.getText().trim().isEmpty()) {
-//                try {
-//                    new Integer(_portText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Port value must be a valid number.");
-//                    return false;
-//                }
             }
         }
         super.validateTabs();
@@ -339,12 +324,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_binaryButton)) {
             updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection()));
         } else if (control.equals(_portText)) {
-            try {
-                int port = Integer.parseInt(_portText.getText().trim());
-                updateFeature(_binding, "port", port);
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "port", _portText.getText().trim());
-            }
+            updateFeature(_binding, "port", _portText.getText().trim());
         } else {
             handleConsumer(control);
         }

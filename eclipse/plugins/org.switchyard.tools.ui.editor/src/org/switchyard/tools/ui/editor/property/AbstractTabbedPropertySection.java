@@ -66,7 +66,9 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
 
             @Override
             public void run() {
-                _page.resizeScrolledComposite();
+                if (!_page.getControl().isDisposed()) {
+                    _page.resizeScrolledComposite();
+                }
             }
         });
    }

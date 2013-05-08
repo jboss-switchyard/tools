@@ -95,9 +95,8 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             } else {
                 _hostText.setText("");
             }
-            if (this._binding.isSetPort()) {
+            if (this._binding.getPort() != null) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
-//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else {
                 _portText.setText("");
             }
@@ -127,12 +126,6 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
                 setErrorMessage("Directory may not be empty.");
-//            } else if (!_portText.getText().trim().isEmpty()) {
-//                try {
-//                    new Integer(_portText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Port value must be a valid number.");
-//                }
             }
         }
         super.validateTabs();
@@ -224,12 +217,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_binaryButton)) {
             updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection()));
         } else if (control.equals(_portText)) {
-            try {
-                int port = Integer.parseInt(_portText.getText().trim());
-                updateFeature(_binding, "port", port);
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "port", _portText.getText().trim());
-            }
+            updateFeature(_binding, "port", _portText.getText().trim());
         } else if (control.equals(_fileExistText)) {
             updateProduceFeature("fileExist", _fileExistText.getText().trim());
         } else if (control.equals(_tempPrefixText)) {
@@ -254,7 +242,6 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
-//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else if (control.equals(_usernameText)) {
                 _usernameText.setText(this._binding.getUsername());
             } else if (control.equals(_pwdText)) {
