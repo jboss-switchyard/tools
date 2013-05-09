@@ -9,7 +9,7 @@
  * Red Hat, Inc. - initial API and implementation 
  *
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.components.camel.ftp;
+package org.switchyard.tools.ui.editor.components.camel.ftps;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +20,6 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
-import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
@@ -33,31 +32,30 @@ import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
  * <p/>
  * Editor extension support Camel FTP bindings.
  */
-public class CamelFTPBindingTypeExtension implements IBindingTypeExtension {
+public class CamelFTPSBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelFTPBindingFactory(), "FTP",
-                "A Camel FTP based endpoint.", ImageProvider.IMG_16_FTP) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelFTPSBindingFactory(), "FTPS",
+                "A Camel FTPS based endpoint.", ImageProvider.IMG_16_FTPS) };
     }
 
     @Override
     public IImageDecorator getImageDecorator(Binding binding) {
-        return new ImageDecorator(ImageProvider.IMG_16_FTP);
+        return new ImageDecorator(ImageProvider.IMG_16_FTPS);
     }
 
     @Override
     public boolean supports(Class<? extends Binding> type) {
-        return CamelFtpBindingType.class.isAssignableFrom(type)
-               && !(CamelFtpsBindingType.class.isAssignableFrom(type));
+        return CamelFtpsBindingType.class.isAssignableFrom(type);
     }
 
     @Override
     public IBindingComposite createComposite(Binding binding) {
         if (binding.eContainer() instanceof Service) {
-            return new CamelFTPConsumerComposite();
+            return new CamelFTPSConsumerComposite();
         }
-        return new CamelFTPProducerComposite();
+        return new CamelFTPSProducerComposite();
     }
 
     @Override
@@ -67,6 +65,6 @@ public class CamelFTPBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public String getTypeName(Binding object) {
-        return "FTP";
+        return "FTPS";
     }
 }

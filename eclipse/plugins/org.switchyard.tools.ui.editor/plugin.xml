@@ -301,6 +301,12 @@
           class="org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPBindingTypeExtension">
     </bindingExtension>
     <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.ftps.CamelFTPSBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.sftp.CamelSFTPBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
           class="org.switchyard.tools.ui.editor.components.camel.jms.CamelJMSBindingTypeExtension">
     </bindingExtension>
     <bindingExtension

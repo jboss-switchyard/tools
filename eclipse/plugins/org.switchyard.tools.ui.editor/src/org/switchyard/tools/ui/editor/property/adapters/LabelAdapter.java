@@ -30,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
@@ -105,6 +106,8 @@ public final class LabelAdapter {
             return "Scheduler";
         } else if (binding instanceof CamelSftpBindingType) {
             return "SFTP";
+        } else if (binding instanceof CamelFtpsBindingType) {
+            return "FTPS";
         } else if (binding instanceof CamelFtpBindingType) {
             return "FTP";
         } else if (binding instanceof CamelNettyTcpBindingType) {

@@ -105,6 +105,12 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for ftp. **/
     public static final String IMG_16_FTP = PREFIX + "ftp" + DOT16;
     
+    /** Image for ftps. **/
+    public static final String IMG_16_FTPS = PREFIX + "ftps" + DOT16;
+
+    /** Image for sftp. **/
+    public static final String IMG_16_SFTP = PREFIX + "sftp" + DOT16;
+
     /** Image for http. **/
     public static final String IMG_16_HTTP = PREFIX + "http" + DOT16;
     
@@ -217,6 +223,8 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_CAMEL_JAVA, ICONS_16 + "camel_java.png");
         addImageFilePath(IMG_16_FILE, ICONS_16 + "file.png");
         addImageFilePath(IMG_16_FTP, ICONS_16 + "ftp.png");
+        addImageFilePath(IMG_16_FTPS, ICONS_16 + "ftps.png");
+        addImageFilePath(IMG_16_SFTP, ICONS_16 + "sftp.png");
         addImageFilePath(IMG_16_HTTP, ICONS_16 + "http.png");
         addImageFilePath(IMG_16_NETTY, ICONS_16 + "netty.png");
         addImageFilePath(IMG_16_NETTY_TCP, ICONS_16 + "netty_tcp.png");
