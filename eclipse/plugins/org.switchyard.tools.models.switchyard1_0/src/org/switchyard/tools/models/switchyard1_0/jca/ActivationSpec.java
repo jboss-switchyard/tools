@@ -22,9 +22,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getCreate <em>Create</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getJndiName <em>Jndi Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -67,118 +64,6 @@ public interface ActivationSpec extends EObject {
      * @generated
      */
     FeatureMap getAny();
-
-    /**
-     * Returns the value of the '<em><b>Create</b></em>' attribute.
-     * The default value is <code>"ifNotExist"</code>.
-     * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.jca.JCACreateResource}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Create</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Create</em>' attribute.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCACreateResource
-     * @see #isSetCreate()
-     * @see #unsetCreate()
-     * @see #setCreate(JCACreateResource)
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getActivationSpec_Create()
-     * @model default="ifNotExist" unsettable="true"
-     *        extendedMetaData="kind='attribute' name='create'"
-     * @generated
-     */
-    JCACreateResource getCreate();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getCreate <em>Create</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Create</em>' attribute.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCACreateResource
-     * @see #isSetCreate()
-     * @see #unsetCreate()
-     * @see #getCreate()
-     * @generated
-     */
-    void setCreate(JCACreateResource value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getCreate <em>Create</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetCreate()
-     * @see #getCreate()
-     * @see #setCreate(JCACreateResource)
-     * @generated
-     */
-    void unsetCreate();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getCreate <em>Create</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Create</em>' attribute is set.
-     * @see #unsetCreate()
-     * @see #getCreate()
-     * @see #setCreate(JCACreateResource)
-     * @generated
-     */
-    boolean isSetCreate();
-
-    /**
-     * Returns the value of the '<em><b>Jndi Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Jndi Name</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Jndi Name</em>' attribute.
-     * @see #setJndiName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getActivationSpec_JndiName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
-     *        extendedMetaData="kind='attribute' name='jndiName'"
-     * @generated
-     */
-    String getJndiName();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getJndiName <em>Jndi Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Jndi Name</em>' attribute.
-     * @see #getJndiName()
-     * @generated
-     */
-    void setJndiName(String value);
-
-    /**
-     * Returns the value of the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Type</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Type</em>' attribute.
-     * @see #setType(String)
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getActivationSpec_Type()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NMTOKEN"
-     *        extendedMetaData="kind='attribute' name='type'"
-     * @generated
-     */
-    String getType();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getType <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type</em>' attribute.
-     * @see #getType()
-     * @generated
-     */
-    void setType(String value);
 
     /**
      * Returns the value of the '<em><b>Any Attribute</b></em>' attribute list.

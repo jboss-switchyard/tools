@@ -38,8 +38,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getJndiURL <em>Jndi URL</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInitialContextFactory <em>Initial Context Factory</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getOutboundConnection <em>Outbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInboundConnection <em>Inbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInboundInteraction <em>Inbound Interaction</em>}</li>
@@ -52,46 +50,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * @generated
  */
 public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABinding {
-    /**
-     * The default value of the '{@link #getJndiURL() <em>Jndi URL</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getJndiURL()
-     * @generated
-     * @ordered
-     */
-    protected static final String JNDI_URL_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getJndiURL() <em>Jndi URL</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getJndiURL()
-     * @generated
-     * @ordered
-     */
-    protected String jndiURL = JNDI_URL_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getInitialContextFactory() <em>Initial Context Factory</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getInitialContextFactory()
-     * @generated
-     * @ordered
-     */
-    protected static final String INITIAL_CONTEXT_FACTORY_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getInitialContextFactory() <em>Initial Context Factory</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getInitialContextFactory()
-     * @generated
-     * @ordered
-     */
-    protected String initialContextFactory = INITIAL_CONTEXT_FACTORY_EDEFAULT;
-
     /**
      * The cached value of the '{@link #getOutboundConnection() <em>Outbound Connection</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -179,48 +137,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     protected EClass eStaticClass() {
         return JcaPackage.Literals.JCA_BINDING;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getJndiURL() {
-        return jndiURL;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setJndiURL(String newJndiURL) {
-        String oldJndiURL = jndiURL;
-        jndiURL = newJndiURL;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__JNDI_URL, oldJndiURL, jndiURL));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getInitialContextFactory() {
-        return initialContextFactory;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setInitialContextFactory(String newInitialContextFactory) {
-        String oldInitialContextFactory = initialContextFactory;
-        initialContextFactory = newInitialContextFactory;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY, oldInitialContextFactory, initialContextFactory));
     }
 
     /**
@@ -458,10 +374,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case JcaPackage.JCA_BINDING__JNDI_URL:
-                return getJndiURL();
-            case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
-                return getInitialContextFactory();
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 return getOutboundConnection();
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
@@ -487,12 +399,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case JcaPackage.JCA_BINDING__JNDI_URL:
-                setJndiURL((String)newValue);
-                return;
-            case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
-                setInitialContextFactory((String)newValue);
-                return;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 setOutboundConnection((JCAOutboundConnection)newValue);
                 return;
@@ -524,12 +430,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case JcaPackage.JCA_BINDING__JNDI_URL:
-                setJndiURL(JNDI_URL_EDEFAULT);
-                return;
-            case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
-                setInitialContextFactory(INITIAL_CONTEXT_FACTORY_EDEFAULT);
-                return;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 setOutboundConnection((JCAOutboundConnection)null);
                 return;
@@ -560,10 +460,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case JcaPackage.JCA_BINDING__JNDI_URL:
-                return JNDI_URL_EDEFAULT == null ? jndiURL != null : !JNDI_URL_EDEFAULT.equals(jndiURL);
-            case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
-                return INITIAL_CONTEXT_FACTORY_EDEFAULT == null ? initialContextFactory != null : !INITIAL_CONTEXT_FACTORY_EDEFAULT.equals(initialContextFactory);
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 return outboundConnection != null;
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
@@ -590,11 +486,7 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (jndiURL: ");
-        result.append(jndiURL);
-        result.append(", initialContextFactory: ");
-        result.append(initialContextFactory);
-        result.append(", extensions: ");
+        result.append(" (extensions: ");
         result.append(extensions);
         result.append(')');
         return result.toString();

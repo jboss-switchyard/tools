@@ -236,7 +236,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             if (_binding != null && _binding.getOutboundConnection() != null
                     && _binding.getOutboundConnection().getResourceAdapter() == null) {
                 ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-                resAdapter.setType("javax.resource.spi.ResourceAdapter");
+//                resAdapter.setType("javax.resource.spi.ResourceAdapter");
                 setFeatureValue(_binding.getOutboundConnection(), "resourceAdapter", resAdapter);
             }
         }

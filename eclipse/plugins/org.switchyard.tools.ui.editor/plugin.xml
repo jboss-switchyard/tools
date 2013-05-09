@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="editorExtension" name="editorExtension" schema="schema/editorExtension.exsd"/>
+   <extension-point id="jcaResourceAdapterExtension" name="jcaResourceAdapterExtension" schema="schema/jcaResourceAdapterExtension.exsd"/>
    <extension
          point="org.eclipse.graphiti.ui.diagramTypes">
       <diagramType
@@ -613,5 +614,21 @@
                type="org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType">
          </adapter>
       </factory>
+   </extension>
+   <extension
+         point="org.switchyard.tools.ui.editor.jcaResourceAdapterExtension">
+      <jcaRAExtension
+            class="org.switchyard.tools.ui.editor.components.jca.JCAGenericResourceAdapterExtension"
+            raDisplayName="Custom Resource Adapter">
+      </jcaRAExtension>
+      <jcaRAExtension
+            class="org.switchyard.tools.ui.editor.components.jca.JCAHornetQQueueResourceAdapterExtension"
+            isDefault="true"
+            raDisplayName="HornetQ Resource Adapter - Queue">
+      </jcaRAExtension>
+      <jcaRAExtension
+            class="org.switchyard.tools.ui.editor.components.jca.JCAHornetQTopicResourceAdapterExtension"
+            raDisplayName="HornetQ Resource Adapter - Topic">
+      </jcaRAExtension>
    </extension>
 </plugin>

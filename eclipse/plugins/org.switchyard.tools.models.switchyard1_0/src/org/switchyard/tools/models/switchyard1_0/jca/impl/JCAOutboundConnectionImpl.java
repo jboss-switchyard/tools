@@ -34,9 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getResourceAdapter <em>Resource Adapter</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getConnection <em>Connection</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getResAuth <em>Res Auth</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getManaged <em>Managed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -65,35 +63,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
     protected Connection connection;
 
     /**
-     * The default value of the '{@link #getResAuth() <em>Res Auth</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getResAuth()
-     * @generated
-     * @ordered
-     */
-    protected static final ResAuth RES_AUTH_EDEFAULT = ResAuth.CONTAINER;
-
-    /**
-     * The cached value of the '{@link #getResAuth() <em>Res Auth</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getResAuth()
-     * @generated
-     * @ordered
-     */
-    protected ResAuth resAuth = RES_AUTH_EDEFAULT;
-
-    /**
-     * This is true if the Res Auth attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean resAuthESet;
-
-    /**
      * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -102,35 +71,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
      * @ordered
      */
     protected FeatureMap any;
-
-    /**
-     * The default value of the '{@link #getManaged() <em>Managed</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getManaged()
-     * @generated
-     * @ordered
-     */
-    protected static final Boolean MANAGED_EDEFAULT = Boolean.TRUE;
-
-    /**
-     * The cached value of the '{@link #getManaged() <em>Managed</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getManaged()
-     * @generated
-     * @ordered
-     */
-    protected Boolean managed = MANAGED_EDEFAULT;
-
-    /**
-     * This is true if the Managed attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean managedESet;
 
     /**
      * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
@@ -252,103 +192,11 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
      * <!-- end-user-doc -->
      * @generated
      */
-    public ResAuth getResAuth() {
-        return resAuth;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setResAuth(ResAuth newResAuth) {
-        ResAuth oldResAuth = resAuth;
-        resAuth = newResAuth == null ? RES_AUTH_EDEFAULT : newResAuth;
-        boolean oldResAuthESet = resAuthESet;
-        resAuthESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_OUTBOUND_CONNECTION__RES_AUTH, oldResAuth, resAuth, !oldResAuthESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetResAuth() {
-        ResAuth oldResAuth = resAuth;
-        boolean oldResAuthESet = resAuthESet;
-        resAuth = RES_AUTH_EDEFAULT;
-        resAuthESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, JcaPackage.JCA_OUTBOUND_CONNECTION__RES_AUTH, oldResAuth, RES_AUTH_EDEFAULT, oldResAuthESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetResAuth() {
-        return resAuthESet;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public FeatureMap getAny() {
         if (any == null) {
             any = new BasicFeatureMap(this, JcaPackage.JCA_OUTBOUND_CONNECTION__ANY);
         }
         return any;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Boolean getManaged() {
-        return managed;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setManaged(Boolean newManaged) {
-        Boolean oldManaged = managed;
-        managed = newManaged;
-        boolean oldManagedESet = managedESet;
-        managedESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED, oldManaged, managed, !oldManagedESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetManaged() {
-        Boolean oldManaged = managed;
-        boolean oldManagedESet = managedESet;
-        managed = MANAGED_EDEFAULT;
-        managedESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED, oldManaged, MANAGED_EDEFAULT, oldManagedESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetManaged() {
-        return managedESet;
     }
 
     /**
@@ -395,13 +243,9 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
                 return getResourceAdapter();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 return getConnection();
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__RES_AUTH:
-                return getResAuth();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
                 if (coreType) return getAny();
                 return ((FeatureMap.Internal)getAny()).getWrapper();
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED:
-                return getManaged();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
                 if (coreType) return getAnyAttribute();
                 return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
@@ -423,14 +267,8 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 setConnection((Connection)newValue);
                 return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__RES_AUTH:
-                setResAuth((ResAuth)newValue);
-                return;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
                 ((FeatureMap.Internal)getAny()).set(newValue);
-                return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED:
-                setManaged((Boolean)newValue);
                 return;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
                 ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
@@ -453,14 +291,8 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 setConnection((Connection)null);
                 return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__RES_AUTH:
-                unsetResAuth();
-                return;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
                 getAny().clear();
-                return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED:
-                unsetManaged();
                 return;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
                 getAnyAttribute().clear();
@@ -481,12 +313,8 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
                 return resourceAdapter != null;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 return connection != null;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__RES_AUTH:
-                return isSetResAuth();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
                 return any != null && !any.isEmpty();
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED:
-                return isSetManaged();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
                 return anyAttribute != null && !anyAttribute.isEmpty();
         }
@@ -503,12 +331,8 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (resAuth: ");
-        if (resAuthESet) result.append(resAuth); else result.append("<unset>");
-        result.append(", any: ");
+        result.append(" (any: ");
         result.append(any);
-        result.append(", managed: ");
-        if (managedESet) result.append(managed); else result.append("<unset>");
         result.append(", anyAttribute: ");
         result.append(anyAttribute);
         result.append(')');

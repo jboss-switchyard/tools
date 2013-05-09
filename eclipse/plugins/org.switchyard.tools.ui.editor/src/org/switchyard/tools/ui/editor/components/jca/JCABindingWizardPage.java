@@ -50,6 +50,7 @@ public class JCABindingWizardPage extends WizardPage {
         _targetContainer = ((JCABindingWizard)getWizard()).getTargetContainer();
         if (_targetContainer instanceof Service) {
             _binding.setInboundConnection(JcaFactory.eINSTANCE.createJCAInboundConnection());
+            _binding.getInboundConnection().setActivationSpec(JcaFactory.eINSTANCE.createActivationSpec());
             _binding.setInboundInteraction(JcaFactory.eINSTANCE.createJCAInboundInteraction());
             _jcaInComposite = new JCABindingInboundComposite();
             _jcaInComposite.addChangeListener(new ChangeListener() {

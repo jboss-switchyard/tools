@@ -37,7 +37,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.Property;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ConnectionSpecImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ConnectionSpecImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ConnectionSpecImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ConnectionSpecImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -64,26 +63,6 @@ public class ConnectionSpecImpl extends EObjectImpl implements ConnectionSpec {
      * @ordered
      */
     protected FeatureMap any;
-
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected static final String TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected String type = TYPE_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
@@ -143,27 +122,6 @@ public class ConnectionSpecImpl extends EObjectImpl implements ConnectionSpec {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.CONNECTION_SPEC__TYPE, oldType, type));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public FeatureMap getAnyAttribute() {
         if (anyAttribute == null) {
             anyAttribute = new BasicFeatureMap(this, JcaPackage.CONNECTION_SPEC__ANY_ATTRIBUTE);
@@ -202,8 +160,6 @@ public class ConnectionSpecImpl extends EObjectImpl implements ConnectionSpec {
             case JcaPackage.CONNECTION_SPEC__ANY:
                 if (coreType) return getAny();
                 return ((FeatureMap.Internal)getAny()).getWrapper();
-            case JcaPackage.CONNECTION_SPEC__TYPE:
-                return getType();
             case JcaPackage.CONNECTION_SPEC__ANY_ATTRIBUTE:
                 if (coreType) return getAnyAttribute();
                 return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
@@ -227,9 +183,6 @@ public class ConnectionSpecImpl extends EObjectImpl implements ConnectionSpec {
             case JcaPackage.CONNECTION_SPEC__ANY:
                 ((FeatureMap.Internal)getAny()).set(newValue);
                 return;
-            case JcaPackage.CONNECTION_SPEC__TYPE:
-                setType((String)newValue);
-                return;
             case JcaPackage.CONNECTION_SPEC__ANY_ATTRIBUTE:
                 ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
                 return;
@@ -251,9 +204,6 @@ public class ConnectionSpecImpl extends EObjectImpl implements ConnectionSpec {
             case JcaPackage.CONNECTION_SPEC__ANY:
                 getAny().clear();
                 return;
-            case JcaPackage.CONNECTION_SPEC__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
             case JcaPackage.CONNECTION_SPEC__ANY_ATTRIBUTE:
                 getAnyAttribute().clear();
                 return;
@@ -273,8 +223,6 @@ public class ConnectionSpecImpl extends EObjectImpl implements ConnectionSpec {
                 return property != null && !property.isEmpty();
             case JcaPackage.CONNECTION_SPEC__ANY:
                 return any != null && !any.isEmpty();
-            case JcaPackage.CONNECTION_SPEC__TYPE:
-                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
             case JcaPackage.CONNECTION_SPEC__ANY_ATTRIBUTE:
                 return anyAttribute != null && !anyAttribute.isEmpty();
         }
@@ -293,8 +241,6 @@ public class ConnectionSpecImpl extends EObjectImpl implements ConnectionSpec {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (any: ");
         result.append(any);
-        result.append(", type: ");
-        result.append(type);
         result.append(", anyAttribute: ");
         result.append(anyAttribute);
         result.append(')');

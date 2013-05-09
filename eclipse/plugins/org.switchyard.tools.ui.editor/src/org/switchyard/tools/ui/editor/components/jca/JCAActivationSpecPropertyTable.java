@@ -95,7 +95,6 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                             }
                             if (binding.getInboundConnection().getActivationSpec() == null) {
                                 ActivationSpec newspec = JcaFactory.eINSTANCE.createActivationSpec();
-                                newspec.setType("javax.resource.spi.ActivationSpec");
                                 setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec);
                             }
                             ActivationSpec actSpec = binding.getInboundConnection().getActivationSpec();
@@ -115,7 +114,6 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                     }
                     if (binding.getInboundConnection().getActivationSpec() == null) {
                         ActivationSpec newspec = JcaFactory.eINSTANCE.createActivationSpec();
-                        newspec.setType("javax.resource.spi.ActivationSpec");
                         setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec);
                     }
                     ActivationSpec actSpec = binding.getInboundConnection().getActivationSpec();

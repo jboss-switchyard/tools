@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getConnectionSpec <em>Connection Spec</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getInteractionSpec <em>Interaction Spec</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getProcessor <em>Processor</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getAny <em>Any</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getAnyAttribute <em>Any Attribute</em>}</li>
@@ -85,33 +84,6 @@ public interface JCAOutboundInteraction extends EObject {
      * @generated
      */
     void setInteractionSpec(InteractionSpec value);
-
-    /**
-     * Returns the value of the '<em><b>Operation</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Operation</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Operation</em>' containment reference.
-     * @see #setOperation(Operation)
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAOutboundInteraction_Operation()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='operation' namespace='##targetNamespace'"
-     * @generated
-     */
-    Operation getOperation();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getOperation <em>Operation</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Operation</em>' containment reference.
-     * @see #getOperation()
-     * @generated
-     */
-    void setOperation(Operation value);
 
     /**
      * Returns the value of the '<em><b>Processor</b></em>' containment reference.

@@ -18,8 +18,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getJndiURL <em>Jndi URL</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInitialContextFactory <em>Initial Context Factory</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getOutboundConnection <em>Outbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInboundConnection <em>Inbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInboundInteraction <em>Inbound Interaction</em>}</li>
@@ -34,60 +32,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @generated
  */
 public interface JCABinding extends SwitchYardBindingType {
-    /**
-     * Returns the value of the '<em><b>Jndi URL</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Jndi URL</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Jndi URL</em>' attribute.
-     * @see #setJndiURL(String)
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCABinding_JndiURL()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
-     *        extendedMetaData="kind='attribute' name='jndiURL'"
-     * @generated
-     */
-    String getJndiURL();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getJndiURL <em>Jndi URL</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Jndi URL</em>' attribute.
-     * @see #getJndiURL()
-     * @generated
-     */
-    void setJndiURL(String value);
-
-    /**
-     * Returns the value of the '<em><b>Initial Context Factory</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Initial Context Factory</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Initial Context Factory</em>' attribute.
-     * @see #setInitialContextFactory(String)
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCABinding_InitialContextFactory()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
-     *        extendedMetaData="kind='attribute' name='initialContextFactory'"
-     * @generated
-     */
-    String getInitialContextFactory();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInitialContextFactory <em>Initial Context Factory</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Initial Context Factory</em>' attribute.
-     * @see #getInitialContextFactory()
-     * @generated
-     */
-    void setInitialContextFactory(String value);
-
     /**
      * Returns the value of the '<em><b>Outbound Connection</b></em>' containment reference.
      * <!-- begin-user-doc -->

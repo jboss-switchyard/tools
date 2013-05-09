@@ -35,7 +35,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.Processor;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getConnectionSpec <em>Connection Spec</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getInteractionSpec <em>Interaction Spec</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getProcessor <em>Processor</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getAny <em>Any</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getAnyAttribute <em>Any Attribute</em>}</li>
@@ -64,16 +63,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
      * @ordered
      */
     protected InteractionSpec interactionSpec;
-
-    /**
-     * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getOperation()
-     * @generated
-     * @ordered
-     */
-    protected Operation operation;
 
     /**
      * The cached value of the '{@link #getProcessor() <em>Processor</em>}' containment reference.
@@ -215,49 +204,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
      * <!-- end-user-doc -->
      * @generated
      */
-    public Operation getOperation() {
-        return operation;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetOperation(Operation newOperation, NotificationChain msgs) {
-        Operation oldOperation = operation;
-        operation = newOperation;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION, oldOperation, newOperation);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setOperation(Operation newOperation) {
-        if (newOperation != operation) {
-            NotificationChain msgs = null;
-            if (operation != null)
-                msgs = ((InternalEObject)operation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION, null, msgs);
-            if (newOperation != null)
-                msgs = ((InternalEObject)newOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION, null, msgs);
-            msgs = basicSetOperation(newOperation, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION, newOperation, newOperation));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public Processor getProcessor() {
         return processor;
     }
@@ -332,8 +278,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return basicSetConnectionSpec(null, msgs);
             case JcaPackage.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC:
                 return basicSetInteractionSpec(null, msgs);
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION:
-                return basicSetOperation(null, msgs);
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 return basicSetProcessor(null, msgs);
             case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
@@ -356,8 +300,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return getConnectionSpec();
             case JcaPackage.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC:
                 return getInteractionSpec();
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION:
-                return getOperation();
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 return getProcessor();
             case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
@@ -383,9 +325,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC:
                 setInteractionSpec((InteractionSpec)newValue);
-                return;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION:
-                setOperation((Operation)newValue);
                 return;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 setProcessor((Processor)newValue);
@@ -414,9 +353,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
             case JcaPackage.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC:
                 setInteractionSpec((InteractionSpec)null);
                 return;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION:
-                setOperation((Operation)null);
-                return;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 setProcessor((Processor)null);
                 return;
@@ -442,8 +378,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return connectionSpec != null;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC:
                 return interactionSpec != null;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION:
-                return operation != null;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 return processor != null;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:

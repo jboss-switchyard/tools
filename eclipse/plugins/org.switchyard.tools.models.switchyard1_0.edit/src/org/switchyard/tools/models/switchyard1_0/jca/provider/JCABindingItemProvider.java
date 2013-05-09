@@ -70,55 +70,9 @@ public class JCABindingItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addJndiURLPropertyDescriptor(object);
-            addInitialContextFactoryPropertyDescriptor(object);
             addExtensionsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Jndi URL feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addJndiURLPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_JCABinding_jndiURL_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_JCABinding_jndiURL_feature", "_UI_JCABinding_type"),
-                 JcaPackage.Literals.JCA_BINDING__JNDI_URL,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Initial Context Factory feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addInitialContextFactoryPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_JCABinding_initialContextFactory_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_JCABinding_initialContextFactory_feature", "_UI_JCABinding_type"),
-                 JcaPackage.Literals.JCA_BINDING__INITIAL_CONTEXT_FACTORY,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -214,8 +168,6 @@ public class JCABindingItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(JCABinding.class)) {
-            case JcaPackage.JCA_BINDING__JNDI_URL:
-            case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
             case JcaPackage.JCA_BINDING__EXTENSIONS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

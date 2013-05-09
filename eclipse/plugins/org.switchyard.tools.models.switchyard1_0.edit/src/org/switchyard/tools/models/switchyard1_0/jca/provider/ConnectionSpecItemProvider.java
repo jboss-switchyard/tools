@@ -101,31 +101,8 @@ public class ConnectionSpecItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ConnectionSpec_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ConnectionSpec_type_feature", "_UI_ConnectionSpec_type"),
-                 JcaPackage.Literals.CONNECTION_SPEC__TYPE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -179,10 +156,7 @@ public class ConnectionSpecItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ConnectionSpec)object).getType();
-        return label == null || label.length() == 0 ?
-            getString("_UI_ConnectionSpec_type") :
-            getString("_UI_ConnectionSpec_type") + " " + label;
+        return getString("_UI_ConnectionSpec_type");
     }
 
     /**
@@ -197,9 +171,6 @@ public class ConnectionSpecItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(ConnectionSpec.class)) {
-            case JcaPackage.CONNECTION_SPEC__TYPE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case JcaPackage.CONNECTION_SPEC__PROPERTY:
             case JcaPackage.CONNECTION_SPEC__ANY:
             case JcaPackage.CONNECTION_SPEC__ANY_ATTRIBUTE:

@@ -44,7 +44,7 @@ public final class Switchyard_1EditPlugin extends EMFPlugin {
         super
           (new ResourceLocator [] {
              ScaEditPlugin.INSTANCE,
-             CoreSCAEditPlugin.INSTANCE
+             CoreSCAEditPlugin.INSTANCE,
            });
     }
 

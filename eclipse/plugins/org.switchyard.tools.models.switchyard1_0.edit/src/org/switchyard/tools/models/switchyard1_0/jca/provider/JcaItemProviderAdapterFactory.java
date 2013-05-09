@@ -214,6 +214,29 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BatchCommitItemProvider batchCommitItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBatchCommitAdapter() {
+        if (batchCommitItemProvider == null) {
+            batchCommitItemProvider = new BatchCommitItemProvider(this);
+        }
+
+        return batchCommitItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -606,6 +629,7 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (jcaContextMapperTypeItemProvider != null) jcaContextMapperTypeItemProvider.dispose();
         if (jcaMessageComposerTypeItemProvider != null) jcaMessageComposerTypeItemProvider.dispose();
+        if (batchCommitItemProvider != null) batchCommitItemProvider.dispose();
     }
 
 }

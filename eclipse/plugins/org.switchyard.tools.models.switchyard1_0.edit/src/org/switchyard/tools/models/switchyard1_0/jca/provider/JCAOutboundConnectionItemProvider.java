@@ -102,54 +102,8 @@ public class JCAOutboundConnectionItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addResAuthPropertyDescriptor(object);
-            addManagedPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Res Auth feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addResAuthPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_JCAOutboundConnection_resAuth_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_JCAOutboundConnection_resAuth_feature", "_UI_JCAOutboundConnection_type"),
-                 JcaPackage.Literals.JCA_OUTBOUND_CONNECTION__RES_AUTH,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Managed feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addManagedPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_JCAOutboundConnection_managed_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_JCAOutboundConnection_managed_feature", "_UI_JCAOutboundConnection_type"),
-                 JcaPackage.Literals.JCA_OUTBOUND_CONNECTION__MANAGED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -204,11 +158,7 @@ public class JCAOutboundConnectionItemProvider
      */
     @Override
     public String getText(Object object) {
-        ResAuth labelValue = ((JCAOutboundConnection)object).getResAuth();
-        String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ?
-            getString("_UI_JCAOutboundConnection_type") :
-            getString("_UI_JCAOutboundConnection_type") + " " + label;
+        return getString("_UI_JCAOutboundConnection_type");
     }
 
     /**
@@ -223,10 +173,6 @@ public class JCAOutboundConnectionItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(JCAOutboundConnection.class)) {
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__RES_AUTH:
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__RESOURCE_ADAPTER:
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:

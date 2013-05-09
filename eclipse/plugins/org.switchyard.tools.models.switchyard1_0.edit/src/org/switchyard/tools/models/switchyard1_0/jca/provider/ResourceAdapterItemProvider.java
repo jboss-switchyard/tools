@@ -102,7 +102,6 @@ public class ResourceAdapterItemProvider
             super.getPropertyDescriptors(object);
 
             addNamePropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -121,28 +120,6 @@ public class ResourceAdapterItemProvider
                  getString("_UI_ResourceAdapter_name_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ResourceAdapter_name_feature", "_UI_ResourceAdapter_type"),
                  JcaPackage.Literals.RESOURCE_ADAPTER__NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ResourceAdapter_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceAdapter_type_feature", "_UI_ResourceAdapter_type"),
-                 JcaPackage.Literals.RESOURCE_ADAPTER__TYPE,
                  true,
                  false,
                  false,
@@ -221,7 +198,6 @@ public class ResourceAdapterItemProvider
 
         switch (notification.getFeatureID(ResourceAdapter.class)) {
             case JcaPackage.RESOURCE_ADAPTER__NAME:
-            case JcaPackage.RESOURCE_ADAPTER__TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case JcaPackage.RESOURCE_ADAPTER__PROPERTY:

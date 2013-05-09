@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -65,33 +64,6 @@ public interface ConnectionSpec extends EObject {
      * @generated
      */
     FeatureMap getAny();
-
-    /**
-     * Returns the value of the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Type</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Type</em>' attribute.
-     * @see #setType(String)
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getConnectionSpec_Type()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NMTOKEN"
-     *        extendedMetaData="kind='attribute' name='type'"
-     * @generated
-     */
-    String getType();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getType <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type</em>' attribute.
-     * @see #getType()
-     * @generated
-     */
-    void setType(String value);
 
     /**
      * Returns the value of the '<em><b>Any Attribute</b></em>' attribute list.

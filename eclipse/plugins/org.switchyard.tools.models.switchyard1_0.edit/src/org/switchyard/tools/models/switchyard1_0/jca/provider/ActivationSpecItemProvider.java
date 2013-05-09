@@ -101,77 +101,8 @@ public class ActivationSpecItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addCreatePropertyDescriptor(object);
-            addJndiNamePropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Create feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addCreatePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ActivationSpec_create_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActivationSpec_create_feature", "_UI_ActivationSpec_type"),
-                 JcaPackage.Literals.ACTIVATION_SPEC__CREATE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Jndi Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addJndiNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ActivationSpec_jndiName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActivationSpec_jndiName_feature", "_UI_ActivationSpec_type"),
-                 JcaPackage.Literals.ACTIVATION_SPEC__JNDI_NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ActivationSpec_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActivationSpec_type_feature", "_UI_ActivationSpec_type"),
-                 JcaPackage.Literals.ACTIVATION_SPEC__TYPE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -225,10 +156,7 @@ public class ActivationSpecItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ActivationSpec)object).getJndiName();
-        return label == null || label.length() == 0 ?
-            getString("_UI_ActivationSpec_type") :
-            getString("_UI_ActivationSpec_type") + " " + label;
+        return getString("_UI_ActivationSpec_type");
     }
 
     /**
@@ -243,11 +171,6 @@ public class ActivationSpecItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(ActivationSpec.class)) {
-            case JcaPackage.ACTIVATION_SPEC__CREATE:
-            case JcaPackage.ACTIVATION_SPEC__JNDI_NAME:
-            case JcaPackage.ACTIVATION_SPEC__TYPE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case JcaPackage.ACTIVATION_SPEC__PROPERTY:
             case JcaPackage.ACTIVATION_SPEC__ANY:
             case JcaPackage.ACTIVATION_SPEC__ANY_ATTRIBUTE:

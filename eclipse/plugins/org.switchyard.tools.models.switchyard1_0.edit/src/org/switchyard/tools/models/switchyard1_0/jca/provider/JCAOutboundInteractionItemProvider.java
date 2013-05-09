@@ -117,7 +117,6 @@ public class JCAOutboundInteractionItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__CONNECTION_SPEC);
             childrenFeatures.add(JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC);
-            childrenFeatures.add(JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__OPERATION);
             childrenFeatures.add(JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__PROCESSOR);
             childrenFeatures.add(JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY);
             childrenFeatures.add(JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE);
@@ -174,7 +173,6 @@ public class JCAOutboundInteractionItemProvider
         switch (notification.getFeatureID(JCAOutboundInteraction.class)) {
             case JcaPackage.JCA_OUTBOUND_INTERACTION__CONNECTION_SPEC:
             case JcaPackage.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC:
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__OPERATION:
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
             case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
             case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE:
@@ -204,11 +202,6 @@ public class JCAOutboundInteractionItemProvider
             (createChildParameter
                 (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC,
                  JcaFactory.eINSTANCE.createInteractionSpec()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__OPERATION,
-                 JcaFactory.eINSTANCE.createOperation()));
 
         newChildDescriptors.add
             (createChildParameter

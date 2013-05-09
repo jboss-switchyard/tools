@@ -101,33 +101,9 @@ public class ConnectionItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addCreatePropertyDescriptor(object);
             addJndiNamePropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Create feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addCreatePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Connection_create_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Connection_create_feature", "_UI_Connection_type"),
-                 JcaPackage.Literals.CONNECTION__CREATE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -144,28 +120,6 @@ public class ConnectionItemProvider
                  getString("_UI_Connection_jndiName_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Connection_jndiName_feature", "_UI_Connection_type"),
                  JcaPackage.Literals.CONNECTION__JNDI_NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Connection_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Connection_type_feature", "_UI_Connection_type"),
-                 JcaPackage.Literals.CONNECTION__TYPE,
                  true,
                  false,
                  false,
@@ -243,9 +197,7 @@ public class ConnectionItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(Connection.class)) {
-            case JcaPackage.CONNECTION__CREATE:
             case JcaPackage.CONNECTION__JNDI_NAME:
-            case JcaPackage.CONNECTION__TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case JcaPackage.CONNECTION__PROPERTY:

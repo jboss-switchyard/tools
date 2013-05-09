@@ -320,7 +320,9 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
      * @param properties incoming property list
      */
     public void setSelection(EList<Property> properties) {
-        _propertyTreeTable.setInput(properties);
+        if (!_propertyTreeTable.getTree().isDisposed()) {
+            _propertyTreeTable.setInput(properties);
+        }
         updatePropertyButtons();
     }
 

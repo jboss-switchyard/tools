@@ -38,9 +38,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.Property;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ActivationSpecImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ActivationSpecImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ActivationSpecImpl#getCreate <em>Create</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ActivationSpecImpl#getJndiName <em>Jndi Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ActivationSpecImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ActivationSpecImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -67,75 +64,6 @@ public class ActivationSpecImpl extends EObjectImpl implements ActivationSpec {
      * @ordered
      */
     protected FeatureMap any;
-
-    /**
-     * The default value of the '{@link #getCreate() <em>Create</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCreate()
-     * @generated
-     * @ordered
-     */
-    protected static final JCACreateResource CREATE_EDEFAULT = JCACreateResource.IF_NOT_EXIST;
-
-    /**
-     * The cached value of the '{@link #getCreate() <em>Create</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCreate()
-     * @generated
-     * @ordered
-     */
-    protected JCACreateResource create = CREATE_EDEFAULT;
-
-    /**
-     * This is true if the Create attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean createESet;
-
-    /**
-     * The default value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getJndiName()
-     * @generated
-     * @ordered
-     */
-    protected static final String JNDI_NAME_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getJndiName()
-     * @generated
-     * @ordered
-     */
-    protected String jndiName = JNDI_NAME_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected static final String TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected String type = TYPE_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
@@ -195,94 +123,6 @@ public class ActivationSpecImpl extends EObjectImpl implements ActivationSpec {
      * <!-- end-user-doc -->
      * @generated
      */
-    public JCACreateResource getCreate() {
-        return create;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setCreate(JCACreateResource newCreate) {
-        JCACreateResource oldCreate = create;
-        create = newCreate == null ? CREATE_EDEFAULT : newCreate;
-        boolean oldCreateESet = createESet;
-        createESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.ACTIVATION_SPEC__CREATE, oldCreate, create, !oldCreateESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetCreate() {
-        JCACreateResource oldCreate = create;
-        boolean oldCreateESet = createESet;
-        create = CREATE_EDEFAULT;
-        createESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, JcaPackage.ACTIVATION_SPEC__CREATE, oldCreate, CREATE_EDEFAULT, oldCreateESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetCreate() {
-        return createESet;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getJndiName() {
-        return jndiName;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setJndiName(String newJndiName) {
-        String oldJndiName = jndiName;
-        jndiName = newJndiName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.ACTIVATION_SPEC__JNDI_NAME, oldJndiName, jndiName));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.ACTIVATION_SPEC__TYPE, oldType, type));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public FeatureMap getAnyAttribute() {
         if (anyAttribute == null) {
             anyAttribute = new BasicFeatureMap(this, JcaPackage.ACTIVATION_SPEC__ANY_ATTRIBUTE);
@@ -321,12 +161,6 @@ public class ActivationSpecImpl extends EObjectImpl implements ActivationSpec {
             case JcaPackage.ACTIVATION_SPEC__ANY:
                 if (coreType) return getAny();
                 return ((FeatureMap.Internal)getAny()).getWrapper();
-            case JcaPackage.ACTIVATION_SPEC__CREATE:
-                return getCreate();
-            case JcaPackage.ACTIVATION_SPEC__JNDI_NAME:
-                return getJndiName();
-            case JcaPackage.ACTIVATION_SPEC__TYPE:
-                return getType();
             case JcaPackage.ACTIVATION_SPEC__ANY_ATTRIBUTE:
                 if (coreType) return getAnyAttribute();
                 return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
@@ -350,15 +184,6 @@ public class ActivationSpecImpl extends EObjectImpl implements ActivationSpec {
             case JcaPackage.ACTIVATION_SPEC__ANY:
                 ((FeatureMap.Internal)getAny()).set(newValue);
                 return;
-            case JcaPackage.ACTIVATION_SPEC__CREATE:
-                setCreate((JCACreateResource)newValue);
-                return;
-            case JcaPackage.ACTIVATION_SPEC__JNDI_NAME:
-                setJndiName((String)newValue);
-                return;
-            case JcaPackage.ACTIVATION_SPEC__TYPE:
-                setType((String)newValue);
-                return;
             case JcaPackage.ACTIVATION_SPEC__ANY_ATTRIBUTE:
                 ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
                 return;
@@ -380,15 +205,6 @@ public class ActivationSpecImpl extends EObjectImpl implements ActivationSpec {
             case JcaPackage.ACTIVATION_SPEC__ANY:
                 getAny().clear();
                 return;
-            case JcaPackage.ACTIVATION_SPEC__CREATE:
-                unsetCreate();
-                return;
-            case JcaPackage.ACTIVATION_SPEC__JNDI_NAME:
-                setJndiName(JNDI_NAME_EDEFAULT);
-                return;
-            case JcaPackage.ACTIVATION_SPEC__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
             case JcaPackage.ACTIVATION_SPEC__ANY_ATTRIBUTE:
                 getAnyAttribute().clear();
                 return;
@@ -408,12 +224,6 @@ public class ActivationSpecImpl extends EObjectImpl implements ActivationSpec {
                 return property != null && !property.isEmpty();
             case JcaPackage.ACTIVATION_SPEC__ANY:
                 return any != null && !any.isEmpty();
-            case JcaPackage.ACTIVATION_SPEC__CREATE:
-                return isSetCreate();
-            case JcaPackage.ACTIVATION_SPEC__JNDI_NAME:
-                return JNDI_NAME_EDEFAULT == null ? jndiName != null : !JNDI_NAME_EDEFAULT.equals(jndiName);
-            case JcaPackage.ACTIVATION_SPEC__TYPE:
-                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
             case JcaPackage.ACTIVATION_SPEC__ANY_ATTRIBUTE:
                 return anyAttribute != null && !anyAttribute.isEmpty();
         }
@@ -432,12 +242,6 @@ public class ActivationSpecImpl extends EObjectImpl implements ActivationSpec {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (any: ");
         result.append(any);
-        result.append(", create: ");
-        if (createESet) result.append(create); else result.append("<unset>");
-        result.append(", jndiName: ");
-        result.append(jndiName);
-        result.append(", type: ");
-        result.append(type);
         result.append(", anyAttribute: ");
         result.append(anyAttribute);
         result.append(')');

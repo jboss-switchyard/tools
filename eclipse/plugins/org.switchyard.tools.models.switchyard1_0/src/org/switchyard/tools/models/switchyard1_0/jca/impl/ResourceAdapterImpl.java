@@ -38,7 +38,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getAny <em>Any</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -85,26 +84,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
      * @ordered
      */
     protected String name = NAME_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected static final String TYPE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected String type = TYPE_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
@@ -185,27 +164,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.RESOURCE_ADAPTER__TYPE, oldType, type));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public FeatureMap getAnyAttribute() {
         if (anyAttribute == null) {
             anyAttribute = new BasicFeatureMap(this, JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE);
@@ -246,8 +204,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
                 return ((FeatureMap.Internal)getAny()).getWrapper();
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 return getName();
-            case JcaPackage.RESOURCE_ADAPTER__TYPE:
-                return getType();
             case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
                 if (coreType) return getAnyAttribute();
                 return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
@@ -274,9 +230,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 setName((String)newValue);
                 return;
-            case JcaPackage.RESOURCE_ADAPTER__TYPE:
-                setType((String)newValue);
-                return;
             case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
                 ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
                 return;
@@ -301,9 +254,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 setName(NAME_EDEFAULT);
                 return;
-            case JcaPackage.RESOURCE_ADAPTER__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
             case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
                 getAnyAttribute().clear();
                 return;
@@ -325,8 +275,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
                 return any != null && !any.isEmpty();
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case JcaPackage.RESOURCE_ADAPTER__TYPE:
-                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
             case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
                 return anyAttribute != null && !anyAttribute.isEmpty();
         }
@@ -347,8 +295,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
         result.append(any);
         result.append(", name: ");
         result.append(name);
-        result.append(", type: ");
-        result.append(type);
         result.append(", anyAttribute: ");
         result.append(anyAttribute);
         result.append(')');

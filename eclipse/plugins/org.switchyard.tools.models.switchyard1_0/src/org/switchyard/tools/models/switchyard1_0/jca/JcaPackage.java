@@ -92,40 +92,13 @@ public interface JcaPackage extends EPackage {
     int ACTIVATION_SPEC__ANY = 1;
 
     /**
-     * The feature id for the '<em><b>Create</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTIVATION_SPEC__CREATE = 2;
-
-    /**
-     * The feature id for the '<em><b>Jndi Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTIVATION_SPEC__JNDI_NAME = 3;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTIVATION_SPEC__TYPE = 4;
-
-    /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTIVATION_SPEC__ANY_ATTRIBUTE = 5;
+    int ACTIVATION_SPEC__ANY_ATTRIBUTE = 2;
 
     /**
      * The number of structural features of the '<em>Activation Spec</em>' class.
@@ -134,7 +107,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTIVATION_SPEC_FEATURE_COUNT = 6;
+    int ACTIVATION_SPEC_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ConnectionImpl <em>Connection</em>}' class.
@@ -165,31 +138,13 @@ public interface JcaPackage extends EPackage {
     int CONNECTION__ANY = 1;
 
     /**
-     * The feature id for the '<em><b>Create</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CONNECTION__CREATE = 2;
-
-    /**
      * The feature id for the '<em><b>Jndi Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CONNECTION__JNDI_NAME = 3;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CONNECTION__TYPE = 4;
+    int CONNECTION__JNDI_NAME = 2;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -198,7 +153,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CONNECTION__ANY_ATTRIBUTE = 5;
+    int CONNECTION__ANY_ATTRIBUTE = 3;
 
     /**
      * The number of structural features of the '<em>Connection</em>' class.
@@ -207,7 +162,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CONNECTION_FEATURE_COUNT = 6;
+    int CONNECTION_FEATURE_COUNT = 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ConnectionSpecImpl <em>Connection Spec</em>}' class.
@@ -238,22 +193,13 @@ public interface JcaPackage extends EPackage {
     int CONNECTION_SPEC__ANY = 1;
 
     /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CONNECTION_SPEC__TYPE = 2;
-
-    /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CONNECTION_SPEC__ANY_ATTRIBUTE = 3;
+    int CONNECTION_SPEC__ANY_ATTRIBUTE = 2;
 
     /**
      * The number of structural features of the '<em>Connection Spec</em>' class.
@@ -262,7 +208,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CONNECTION_SPEC_FEATURE_COUNT = 4;
+    int CONNECTION_SPEC_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -638,31 +584,13 @@ public interface JcaPackage extends EPackage {
     int JCA_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
-     * The feature id for the '<em><b>Jndi URL</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_BINDING__JNDI_URL = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Initial Context Factory</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_BINDING__INITIAL_CONTEXT_FACTORY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
-
-    /**
      * The feature id for the '<em><b>Outbound Connection</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JCA_BINDING__OUTBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int JCA_BINDING__OUTBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Inbound Connection</b></em>' containment reference.
@@ -671,7 +599,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__INBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+    int JCA_BINDING__INBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Inbound Interaction</b></em>' containment reference.
@@ -680,7 +608,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__INBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+    int JCA_BINDING__INBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Outbound Interaction</b></em>' containment reference.
@@ -689,7 +617,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__OUTBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+    int JCA_BINDING__OUTBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -698,7 +626,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__PROPERTY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int JCA_BINDING__PROPERTY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Extensions</b></em>' attribute.
@@ -707,7 +635,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__EXTENSIONS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+    int JCA_BINDING__EXTENSIONS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>JCA Binding</em>' class.
@@ -716,7 +644,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+    int JCA_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Resource Adapter</b></em>' containment reference.
@@ -845,31 +773,13 @@ public interface JcaPackage extends EPackage {
     int JCA_OUTBOUND_CONNECTION__CONNECTION = 1;
 
     /**
-     * The feature id for the '<em><b>Res Auth</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_OUTBOUND_CONNECTION__RES_AUTH = 2;
-
-    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JCA_OUTBOUND_CONNECTION__ANY = 3;
-
-    /**
-     * The feature id for the '<em><b>Managed</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_OUTBOUND_CONNECTION__MANAGED = 4;
+    int JCA_OUTBOUND_CONNECTION__ANY = 2;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -878,7 +788,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE = 5;
+    int JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE = 3;
 
     /**
      * The number of structural features of the '<em>JCA Outbound Connection</em>' class.
@@ -887,7 +797,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_OUTBOUND_CONNECTION_FEATURE_COUNT = 6;
+    int JCA_OUTBOUND_CONNECTION_FEATURE_COUNT = 4;
 
     /**
      * The feature id for the '<em><b>Connection Spec</b></em>' containment reference.
@@ -908,22 +818,13 @@ public interface JcaPackage extends EPackage {
     int JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC = 1;
 
     /**
-     * The feature id for the '<em><b>Operation</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_OUTBOUND_INTERACTION__OPERATION = 2;
-
-    /**
      * The feature id for the '<em><b>Processor</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JCA_OUTBOUND_INTERACTION__PROCESSOR = 3;
+    int JCA_OUTBOUND_INTERACTION__PROCESSOR = 2;
 
     /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -932,7 +833,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_OUTBOUND_INTERACTION__ANY = 4;
+    int JCA_OUTBOUND_INTERACTION__ANY = 3;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -941,7 +842,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE = 5;
+    int JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE = 4;
 
     /**
      * The number of structural features of the '<em>JCA Outbound Interaction</em>' class.
@@ -950,7 +851,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_OUTBOUND_INTERACTION_FEATURE_COUNT = 6;
+    int JCA_OUTBOUND_INTERACTION_FEATURE_COUNT = 5;
 
     /**
      * The feature id for the '<em><b>Interaction Spec</b></em>' containment reference.
@@ -1097,22 +998,13 @@ public interface JcaPackage extends EPackage {
     int RESOURCE_ADAPTER__NAME = 2;
 
     /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int RESOURCE_ADAPTER__TYPE = 3;
-
-    /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESOURCE_ADAPTER__ANY_ATTRIBUTE = 4;
+    int RESOURCE_ADAPTER__ANY_ATTRIBUTE = 3;
 
     /**
      * The number of structural features of the '<em>Resource Adapter</em>' class.
@@ -1121,7 +1013,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESOURCE_ADAPTER_FEATURE_COUNT = 5;
+    int RESOURCE_ADAPTER_FEATURE_COUNT = 4;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -1389,39 +1281,6 @@ public interface JcaPackage extends EPackage {
     EAttribute getActivationSpec_Any();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getCreate <em>Create</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getCreate()
-     * @see #getActivationSpec()
-     * @generated
-     */
-    EAttribute getActivationSpec_Create();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getJndiName <em>Jndi Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Jndi Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getJndiName()
-     * @see #getActivationSpec()
-     * @generated
-     */
-    EAttribute getActivationSpec_JndiName();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getType()
-     * @see #getActivationSpec()
-     * @generated
-     */
-    EAttribute getActivationSpec_Type();
-
-    /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec#getAnyAttribute <em>Any Attribute</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1465,17 +1324,6 @@ public interface JcaPackage extends EPackage {
     EAttribute getConnection_Any();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.Connection#getCreate <em>Create</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.Connection#getCreate()
-     * @see #getConnection()
-     * @generated
-     */
-    EAttribute getConnection_Create();
-
-    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.Connection#getJndiName <em>Jndi Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1485,17 +1333,6 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EAttribute getConnection_JndiName();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.Connection#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.Connection#getType()
-     * @see #getConnection()
-     * @generated
-     */
-    EAttribute getConnection_Type();
 
     /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.jca.Connection#getAnyAttribute <em>Any Attribute</em>}'.
@@ -1539,17 +1376,6 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EAttribute getConnectionSpec_Any();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getType()
-     * @see #getConnectionSpec()
-     * @generated
-     */
-    EAttribute getConnectionSpec_Type();
 
     /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec#getAnyAttribute <em>Any Attribute</em>}'.
@@ -1809,28 +1635,6 @@ public interface JcaPackage extends EPackage {
     EClass getJCABinding();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getJndiURL <em>Jndi URL</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Jndi URL</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getJndiURL()
-     * @see #getJCABinding()
-     * @generated
-     */
-    EAttribute getJCABinding_JndiURL();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInitialContextFactory <em>Initial Context Factory</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Initial Context Factory</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInitialContextFactory()
-     * @see #getJCABinding()
-     * @generated
-     */
-    EAttribute getJCABinding_InitialContextFactory();
-
-    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getOutboundConnection <em>Outbound Connection</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2059,17 +1863,6 @@ public interface JcaPackage extends EPackage {
     EReference getJCAOutboundConnection_Connection();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getResAuth <em>Res Auth</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Res Auth</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getResAuth()
-     * @see #getJCAOutboundConnection()
-     * @generated
-     */
-    EAttribute getJCAOutboundConnection_ResAuth();
-
-    /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getAny <em>Any</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2079,17 +1872,6 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EAttribute getJCAOutboundConnection_Any();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged <em>Managed</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Managed</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged()
-     * @see #getJCAOutboundConnection()
-     * @generated
-     */
-    EAttribute getJCAOutboundConnection_Managed();
 
     /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getAnyAttribute <em>Any Attribute</em>}'.
@@ -2133,17 +1915,6 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EReference getJCAOutboundInteraction_InteractionSpec();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getOperation <em>Operation</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Operation</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getOperation()
-     * @see #getJCAOutboundInteraction()
-     * @generated
-     */
-    EReference getJCAOutboundInteraction_Operation();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction#getProcessor <em>Processor</em>}'.
@@ -2306,17 +2077,6 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EAttribute getResourceAdapter_Name();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter#getType()
-     * @see #getResourceAdapter()
-     * @generated
-     */
-    EAttribute getResourceAdapter_Type();
 
     /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter#getAnyAttribute <em>Any Attribute</em>}'.
@@ -2530,30 +2290,6 @@ public interface JcaPackage extends EPackage {
         EAttribute ACTIVATION_SPEC__ANY = eINSTANCE.getActivationSpec_Any();
 
         /**
-         * The meta object literal for the '<em><b>Create</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ACTIVATION_SPEC__CREATE = eINSTANCE.getActivationSpec_Create();
-
-        /**
-         * The meta object literal for the '<em><b>Jndi Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ACTIVATION_SPEC__JNDI_NAME = eINSTANCE.getActivationSpec_JndiName();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ACTIVATION_SPEC__TYPE = eINSTANCE.getActivationSpec_Type();
-
-        /**
          * The meta object literal for the '<em><b>Any Attribute</b></em>' attribute list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2588,28 +2324,12 @@ public interface JcaPackage extends EPackage {
         EAttribute CONNECTION__ANY = eINSTANCE.getConnection_Any();
 
         /**
-         * The meta object literal for the '<em><b>Create</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CONNECTION__CREATE = eINSTANCE.getConnection_Create();
-
-        /**
          * The meta object literal for the '<em><b>Jndi Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         EAttribute CONNECTION__JNDI_NAME = eINSTANCE.getConnection_JndiName();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CONNECTION__TYPE = eINSTANCE.getConnection_Type();
 
         /**
          * The meta object literal for the '<em><b>Any Attribute</b></em>' attribute list feature.
@@ -2644,14 +2364,6 @@ public interface JcaPackage extends EPackage {
          * @generated
          */
         EAttribute CONNECTION_SPEC__ANY = eINSTANCE.getConnectionSpec_Any();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CONNECTION_SPEC__TYPE = eINSTANCE.getConnectionSpec_Type();
 
         /**
          * The meta object literal for the '<em><b>Any Attribute</b></em>' attribute list feature.
@@ -2860,22 +2572,6 @@ public interface JcaPackage extends EPackage {
         EClass JCA_BINDING = eINSTANCE.getJCABinding();
 
         /**
-         * The meta object literal for the '<em><b>Jndi URL</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute JCA_BINDING__JNDI_URL = eINSTANCE.getJCABinding_JndiURL();
-
-        /**
-         * The meta object literal for the '<em><b>Initial Context Factory</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute JCA_BINDING__INITIAL_CONTEXT_FACTORY = eINSTANCE.getJCABinding_InitialContextFactory();
-
-        /**
          * The meta object literal for the '<em><b>Outbound Connection</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3050,28 +2746,12 @@ public interface JcaPackage extends EPackage {
         EReference JCA_OUTBOUND_CONNECTION__CONNECTION = eINSTANCE.getJCAOutboundConnection_Connection();
 
         /**
-         * The meta object literal for the '<em><b>Res Auth</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute JCA_OUTBOUND_CONNECTION__RES_AUTH = eINSTANCE.getJCAOutboundConnection_ResAuth();
-
-        /**
          * The meta object literal for the '<em><b>Any</b></em>' attribute list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         EAttribute JCA_OUTBOUND_CONNECTION__ANY = eINSTANCE.getJCAOutboundConnection_Any();
-
-        /**
-         * The meta object literal for the '<em><b>Managed</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute JCA_OUTBOUND_CONNECTION__MANAGED = eINSTANCE.getJCAOutboundConnection_Managed();
 
         /**
          * The meta object literal for the '<em><b>Any Attribute</b></em>' attribute list feature.
@@ -3106,14 +2786,6 @@ public interface JcaPackage extends EPackage {
          * @generated
          */
         EReference JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC = eINSTANCE.getJCAOutboundInteraction_InteractionSpec();
-
-        /**
-         * The meta object literal for the '<em><b>Operation</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference JCA_OUTBOUND_INTERACTION__OPERATION = eINSTANCE.getJCAOutboundInteraction_Operation();
 
         /**
          * The meta object literal for the '<em><b>Processor</b></em>' containment reference feature.
@@ -3240,14 +2912,6 @@ public interface JcaPackage extends EPackage {
          * @generated
          */
         EAttribute RESOURCE_ADAPTER__NAME = eINSTANCE.getResourceAdapter_Name();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute RESOURCE_ADAPTER__TYPE = eINSTANCE.getResourceAdapter_Type();
 
         /**
          * The meta object literal for the '<em><b>Any Attribute</b></em>' attribute list feature.

@@ -463,35 +463,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActivationSpec_Create() {
-        return (EAttribute)activationSpecEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getActivationSpec_JndiName() {
-        return (EAttribute)activationSpecEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getActivationSpec_Type() {
-        return (EAttribute)activationSpecEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getActivationSpec_AnyAttribute() {
-        return (EAttribute)activationSpecEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)activationSpecEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -526,7 +499,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getConnection_Create() {
+    public EAttribute getConnection_JndiName() {
         return (EAttribute)connectionEClass.getEStructuralFeatures().get(2);
     }
 
@@ -535,26 +508,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getConnection_JndiName() {
-        return (EAttribute)connectionEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getConnection_Type() {
-        return (EAttribute)connectionEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getConnection_AnyAttribute() {
-        return (EAttribute)connectionEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)connectionEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -589,17 +544,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getConnectionSpec_Type() {
-        return (EAttribute)connectionSpecEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getConnectionSpec_AnyAttribute() {
-        return (EAttribute)connectionSpecEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)connectionSpecEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -814,26 +760,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJCABinding_JndiURL() {
-        return (EAttribute)jcaBindingEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getJCABinding_InitialContextFactory() {
-        return (EAttribute)jcaBindingEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getJCABinding_OutboundConnection() {
-        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(2);
+        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -842,7 +770,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EReference getJCABinding_InboundConnection() {
-        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(3);
+        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -851,7 +779,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EReference getJCABinding_InboundInteraction() {
-        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(4);
+        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -860,7 +788,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EReference getJCABinding_OutboundInteraction() {
-        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(5);
+        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -869,7 +797,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EReference getJCABinding_Property() {
-        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(6);
+        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -878,7 +806,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EAttribute getJCABinding_Extensions() {
-        return (EAttribute)jcaBindingEClass.getEStructuralFeatures().get(7);
+        return (EAttribute)jcaBindingEClass.getEStructuralFeatures().get(5);
     }
 
     /**
@@ -1021,7 +949,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJCAOutboundConnection_ResAuth() {
+    public EAttribute getJCAOutboundConnection_Any() {
         return (EAttribute)jcaOutboundConnectionEClass.getEStructuralFeatures().get(2);
     }
 
@@ -1030,26 +958,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJCAOutboundConnection_Any() {
-        return (EAttribute)jcaOutboundConnectionEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getJCAOutboundConnection_Managed() {
-        return (EAttribute)jcaOutboundConnectionEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getJCAOutboundConnection_AnyAttribute() {
-        return (EAttribute)jcaOutboundConnectionEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)jcaOutboundConnectionEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -1084,7 +994,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCAOutboundInteraction_Operation() {
+    public EReference getJCAOutboundInteraction_Processor() {
         return (EReference)jcaOutboundInteractionEClass.getEStructuralFeatures().get(2);
     }
 
@@ -1093,17 +1003,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCAOutboundInteraction_Processor() {
-        return (EReference)jcaOutboundInteractionEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getJCAOutboundInteraction_Any() {
-        return (EAttribute)jcaOutboundInteractionEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)jcaOutboundInteractionEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -1112,7 +1013,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EAttribute getJCAOutboundInteraction_AnyAttribute() {
-        return (EAttribute)jcaOutboundInteractionEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)jcaOutboundInteractionEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -1228,17 +1129,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getResourceAdapter_Type() {
-        return (EAttribute)resourceAdapterEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getResourceAdapter_AnyAttribute() {
-        return (EAttribute)resourceAdapterEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)resourceAdapterEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -1398,23 +1290,17 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         activationSpecEClass = createEClass(ACTIVATION_SPEC);
         createEReference(activationSpecEClass, ACTIVATION_SPEC__PROPERTY);
         createEAttribute(activationSpecEClass, ACTIVATION_SPEC__ANY);
-        createEAttribute(activationSpecEClass, ACTIVATION_SPEC__CREATE);
-        createEAttribute(activationSpecEClass, ACTIVATION_SPEC__JNDI_NAME);
-        createEAttribute(activationSpecEClass, ACTIVATION_SPEC__TYPE);
         createEAttribute(activationSpecEClass, ACTIVATION_SPEC__ANY_ATTRIBUTE);
 
         connectionEClass = createEClass(CONNECTION);
         createEReference(connectionEClass, CONNECTION__PROPERTY);
         createEAttribute(connectionEClass, CONNECTION__ANY);
-        createEAttribute(connectionEClass, CONNECTION__CREATE);
         createEAttribute(connectionEClass, CONNECTION__JNDI_NAME);
-        createEAttribute(connectionEClass, CONNECTION__TYPE);
         createEAttribute(connectionEClass, CONNECTION__ANY_ATTRIBUTE);
 
         connectionSpecEClass = createEClass(CONNECTION_SPEC);
         createEReference(connectionSpecEClass, CONNECTION_SPEC__PROPERTY);
         createEAttribute(connectionSpecEClass, CONNECTION_SPEC__ANY);
-        createEAttribute(connectionSpecEClass, CONNECTION_SPEC__TYPE);
         createEAttribute(connectionSpecEClass, CONNECTION_SPEC__ANY_ATTRIBUTE);
 
         endpointEClass = createEClass(ENDPOINT);
@@ -1436,8 +1322,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         createEAttribute(interactionSpecEClass, INTERACTION_SPEC__ANY_ATTRIBUTE);
 
         jcaBindingEClass = createEClass(JCA_BINDING);
-        createEAttribute(jcaBindingEClass, JCA_BINDING__JNDI_URL);
-        createEAttribute(jcaBindingEClass, JCA_BINDING__INITIAL_CONTEXT_FACTORY);
         createEReference(jcaBindingEClass, JCA_BINDING__OUTBOUND_CONNECTION);
         createEReference(jcaBindingEClass, JCA_BINDING__INBOUND_CONNECTION);
         createEReference(jcaBindingEClass, JCA_BINDING__INBOUND_INTERACTION);
@@ -1462,15 +1346,12 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         jcaOutboundConnectionEClass = createEClass(JCA_OUTBOUND_CONNECTION);
         createEReference(jcaOutboundConnectionEClass, JCA_OUTBOUND_CONNECTION__RESOURCE_ADAPTER);
         createEReference(jcaOutboundConnectionEClass, JCA_OUTBOUND_CONNECTION__CONNECTION);
-        createEAttribute(jcaOutboundConnectionEClass, JCA_OUTBOUND_CONNECTION__RES_AUTH);
         createEAttribute(jcaOutboundConnectionEClass, JCA_OUTBOUND_CONNECTION__ANY);
-        createEAttribute(jcaOutboundConnectionEClass, JCA_OUTBOUND_CONNECTION__MANAGED);
         createEAttribute(jcaOutboundConnectionEClass, JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE);
 
         jcaOutboundInteractionEClass = createEClass(JCA_OUTBOUND_INTERACTION);
         createEReference(jcaOutboundInteractionEClass, JCA_OUTBOUND_INTERACTION__CONNECTION_SPEC);
         createEReference(jcaOutboundInteractionEClass, JCA_OUTBOUND_INTERACTION__INTERACTION_SPEC);
-        createEReference(jcaOutboundInteractionEClass, JCA_OUTBOUND_INTERACTION__OPERATION);
         createEReference(jcaOutboundInteractionEClass, JCA_OUTBOUND_INTERACTION__PROCESSOR);
         createEAttribute(jcaOutboundInteractionEClass, JCA_OUTBOUND_INTERACTION__ANY);
         createEAttribute(jcaOutboundInteractionEClass, JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE);
@@ -1495,7 +1376,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         createEReference(resourceAdapterEClass, RESOURCE_ADAPTER__PROPERTY);
         createEAttribute(resourceAdapterEClass, RESOURCE_ADAPTER__ANY);
         createEAttribute(resourceAdapterEClass, RESOURCE_ADAPTER__NAME);
-        createEAttribute(resourceAdapterEClass, RESOURCE_ADAPTER__TYPE);
         createEAttribute(resourceAdapterEClass, RESOURCE_ADAPTER__ANY_ATTRIBUTE);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
@@ -1563,23 +1443,17 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEClass(activationSpecEClass, ActivationSpec.class, "ActivationSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getActivationSpec_Property(), this.getProperty(), null, "property", null, 0, -1, ActivationSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActivationSpec_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, ActivationSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActivationSpec_Create(), this.getJCACreateResource(), "create", "ifNotExist", 0, 1, ActivationSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActivationSpec_JndiName(), theXMLTypePackage.getAnyURI(), "jndiName", null, 0, 1, ActivationSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActivationSpec_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 0, 1, ActivationSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActivationSpec_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, ActivationSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getConnection_Property(), this.getProperty(), null, "property", null, 0, -1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConnection_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getConnection_Create(), this.getJCACreateResource(), "create", "ifNotExist", 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConnection_JndiName(), theXMLTypePackage.getAnyURI(), "jndiName", null, 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getConnection_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConnection_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(connectionSpecEClass, ConnectionSpec.class, "ConnectionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getConnectionSpec_Property(), this.getProperty(), null, "property", null, 0, -1, ConnectionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConnectionSpec_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, ConnectionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getConnectionSpec_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 0, 1, ConnectionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConnectionSpec_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, ConnectionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(endpointEClass, Endpoint.class, "Endpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1601,8 +1475,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEAttribute(getInteractionSpec_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, InteractionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jcaBindingEClass, JCABinding.class, "JCABinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getJCABinding_JndiURL(), theXMLTypePackage.getAnyURI(), "jndiURL", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJCABinding_InitialContextFactory(), theXMLTypePackage.getAnyURI(), "initialContextFactory", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCABinding_OutboundConnection(), this.getJCAOutboundConnection(), null, "outboundConnection", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCABinding_InboundConnection(), this.getJCAInboundConnection(), null, "inboundConnection", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCABinding_InboundInteraction(), this.getJCAInboundInteraction(), null, "inboundInteraction", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1627,15 +1499,12 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEClass(jcaOutboundConnectionEClass, JCAOutboundConnection.class, "JCAOutboundConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getJCAOutboundConnection_ResourceAdapter(), this.getResourceAdapter(), null, "resourceAdapter", null, 0, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCAOutboundConnection_Connection(), this.getConnection(), null, "connection", null, 1, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJCAOutboundConnection_ResAuth(), this.getResAuth(), "resAuth", null, 0, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAOutboundConnection_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJCAOutboundConnection_Managed(), theXMLTypePackage.getBooleanObject(), "managed", "true", 0, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAOutboundConnection_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jcaOutboundInteractionEClass, JCAOutboundInteraction.class, "JCAOutboundInteraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getJCAOutboundInteraction_ConnectionSpec(), this.getConnectionSpec(), null, "connectionSpec", null, 0, 1, JCAOutboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCAOutboundInteraction_InteractionSpec(), this.getInteractionSpec(), null, "interactionSpec", null, 0, 1, JCAOutboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJCAOutboundInteraction_Operation(), this.getOperation(), null, "operation", null, 0, 1, JCAOutboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCAOutboundInteraction_Processor(), this.getProcessor(), null, "processor", null, 0, 1, JCAOutboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAOutboundInteraction_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, JCAOutboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAOutboundInteraction_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, JCAOutboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1660,7 +1529,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEReference(getResourceAdapter_Property(), this.getProperty(), null, "property", null, 0, -1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getResourceAdapter_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getResourceAdapter_Name(), theXMLTypePackage.getNMTOKEN(), "name", null, 0, 1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getResourceAdapter_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 0, 1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getResourceAdapter_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1734,27 +1602,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "processing", "lax"
            });		
         addAnnotation
-          (getActivationSpec_Create(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "create"
-           });		
-        addAnnotation
-          (getActivationSpec_JndiName(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "jndiName"
-           });		
-        addAnnotation
-          (getActivationSpec_Type(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "type"
-           });		
-        addAnnotation
           (getActivationSpec_AnyAttribute(), 
            source, 
            new String[] {
@@ -1788,25 +1635,11 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "processing", "lax"
            });		
         addAnnotation
-          (getConnection_Create(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "create"
-           });		
-        addAnnotation
           (getConnection_JndiName(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "jndiName"
-           });		
-        addAnnotation
-          (getConnection_Type(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "type"
            });		
         addAnnotation
           (getConnection_AnyAttribute(), 
@@ -1840,13 +1673,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "wildcards", "##other",
              "name", ":1",
              "processing", "lax"
-           });		
-        addAnnotation
-          (getConnectionSpec_Type(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "type"
            });		
         addAnnotation
           (getConnectionSpec_AnyAttribute(), 
@@ -1982,20 +1808,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
            new String[] {
              "name", "JCABinding",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getJCABinding_JndiURL(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "jndiURL"
-           });		
-        addAnnotation
-          (getJCABinding_InitialContextFactory(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "initialContextFactory"
            });		
         addAnnotation
           (getJCABinding_OutboundConnection(), 
@@ -2167,14 +1979,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getJCAOutboundConnection_ResAuth(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "resAuth",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
           (getJCAOutboundConnection_Any(), 
            source, 
            new String[] {
@@ -2182,13 +1986,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "wildcards", "##other",
              "name", ":3",
              "processing", "lax"
-           });		
-        addAnnotation
-          (getJCAOutboundConnection_Managed(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "managed"
            });		
         addAnnotation
           (getJCAOutboundConnection_AnyAttribute(), 
@@ -2220,14 +2017,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
            new String[] {
              "kind", "element",
              "name", "interactionSpec",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJCAOutboundInteraction_Operation(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "operation",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -2387,13 +2176,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
            new String[] {
              "kind", "attribute",
              "name", "name"
-           });		
-        addAnnotation
-          (getResourceAdapter_Type(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "type"
            });		
         addAnnotation
           (getResourceAdapter_AnyAttribute(), 

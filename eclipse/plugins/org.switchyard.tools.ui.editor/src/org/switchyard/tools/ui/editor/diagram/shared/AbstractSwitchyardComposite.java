@@ -286,8 +286,11 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
             if (!inUpdate() && e.diff != null && !e.diff.getOldValue().equals(e.diff.getNewValue())) {
                 System.out.println("AbstractSwitchyardComposite:TextValueChanged: " + e.diff);
                 SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
-                handleChange((Control) decorator.getWidget());
-                ErrorUtils.showErrorMessage(null);
+                Control ctrl = (Control) decorator.getWidget();
+                if (!ctrl.isDisposed()) {
+                    handleChange((Control) decorator.getWidget());
+                    ErrorUtils.showErrorMessage(null);
+                }
             }
         }
     }
@@ -346,6 +349,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         Iterator<Control> iter = _observableControls.iterator();
         while (iter.hasNext()) {
             Control ctrl = iter.next();
+            if (ctrl.isDisposed()) {
+                continue;
+            }
             if (ctrl instanceof Text) {
                 Text newText = (Text) ctrl;
 

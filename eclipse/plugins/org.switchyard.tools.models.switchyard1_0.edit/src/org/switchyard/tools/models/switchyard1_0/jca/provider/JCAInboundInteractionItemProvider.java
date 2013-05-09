@@ -164,6 +164,7 @@ public class JCAInboundInteractionItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__ENDPOINT);
+            childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__BATCH_COMMIT);
             childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__ANY);
             childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE);
         }
@@ -225,6 +226,7 @@ public class JCAInboundInteractionItemProvider
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
+            case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -248,6 +250,11 @@ public class JCAInboundInteractionItemProvider
             (createChildParameter
                 (JcaPackage.Literals.JCA_INBOUND_INTERACTION__ENDPOINT,
                  JcaFactory.eINSTANCE.createEndpoint()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.JCA_INBOUND_INTERACTION__BATCH_COMMIT,
+                 JcaFactory.eINSTANCE.createBatchCommit()));
 
         newChildDescriptors.add
             (createChildParameter
