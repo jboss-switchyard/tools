@@ -194,15 +194,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
         if (control.equals(_hostText)) {
             updateFeature(_binding, "host", _hostText.getText().trim());
         } else if (control.equals(_portText)) {
-            int portInt = -1;
-            try {
-                portInt = Integer.valueOf(_portText.getText().trim());
-                if (portInt > -1) {
-                    updateFeature(_binding, "port", portInt);
-                }
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "port", _portText.getText().trim());
-            }
+            updateFeature(_binding, "port", _portText.getText().trim());
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
