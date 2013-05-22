@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -74,6 +75,11 @@ public class DocumentRootItemProvider
 
             addBindingSwitchyardPropertyDescriptor(object);
             addResourcePropertyDescriptor(object);
+            addTargetPropertyDescriptor(object);
+            addTargetNamespacePropertyDescriptor(object);
+            addClusteredPropertyDescriptor(object);
+            addLoadBalancePropertyDescriptor(object);
+            addSecurityAttrPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -123,6 +129,116 @@ public class DocumentRootItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Target feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTargetPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_DocumentRoot_target_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentRoot_target_feature", "_UI_DocumentRoot_type"),
+                 SwitchyardPackage.Literals.DOCUMENT_ROOT__TARGET,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Target Namespace feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTargetNamespacePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_DocumentRoot_targetNamespace_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentRoot_targetNamespace_feature", "_UI_DocumentRoot_type"),
+                 SwitchyardPackage.Literals.DOCUMENT_ROOT__TARGET_NAMESPACE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Clustered feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addClusteredPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_DocumentRoot_clustered_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentRoot_clustered_feature", "_UI_DocumentRoot_type"),
+                 SwitchyardPackage.Literals.DOCUMENT_ROOT__CLUSTERED,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Load Balance feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addLoadBalancePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_DocumentRoot_loadBalance_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentRoot_loadBalance_feature", "_UI_DocumentRoot_type"),
+                 SwitchyardPackage.Literals.DOCUMENT_ROOT__LOAD_BALANCE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Security Attr feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSecurityAttrPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_DocumentRoot_securityAttr_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentRoot_securityAttr_feature", "_UI_DocumentRoot_type"),
+                 SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY_ATTR,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -155,6 +271,7 @@ public class DocumentRootItemProvider
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES);
         }
         return childrenFeatures;
     }
@@ -191,7 +308,10 @@ public class DocumentRootItemProvider
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_DocumentRoot_type");
+        String label = ((DocumentRoot)object).getTargetNamespace();
+        return label == null || label.length() == 0 ?
+            getString("_UI_DocumentRoot_type") :
+            getString("_UI_DocumentRoot_type") + " " + label;
     }
 
     /**
@@ -208,6 +328,11 @@ public class DocumentRootItemProvider
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE:
+            case SwitchyardPackage.DOCUMENT_ROOT__CLUSTERED:
+            case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY_ATTR:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
@@ -231,6 +356,9 @@ public class DocumentRootItemProvider
             case SwitchyardPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+                return;
         }
         super.notifyChanged(notification);
     }
@@ -385,6 +513,11 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY,
                  SwitchyardFactory.eINSTANCE.createSecurityType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES,
+                 SwitchyardFactory.eINSTANCE.createSecuritiesType()));
     }
 
     /**

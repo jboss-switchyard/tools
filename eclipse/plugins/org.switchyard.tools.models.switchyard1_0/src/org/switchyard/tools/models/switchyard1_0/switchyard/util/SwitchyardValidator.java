@@ -151,6 +151,8 @@ public class SwitchyardValidator extends EObjectValidator {
                 return validateXPathOperationSelectorType((XPathOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.SECURITY_TYPE:
                 return validateSecurityType((SecurityType)value, diagnostics, context);
+            case SwitchyardPackage.SECURITIES_TYPE:
+                return validateSecuritiesType((SecuritiesType)value, diagnostics, context);
             case SwitchyardPackage.PROP_BOOLEAN:
                 return validatePropBoolean(value, diagnostics, context);
             case SwitchyardPackage.PROPERTY_VALUE:
@@ -378,6 +380,15 @@ public class SwitchyardValidator extends EObjectValidator {
      */
     public boolean validateSecurityType(SecurityType securityType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(securityType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateSecuritiesType(SecuritiesType securitiesType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(securitiesType, diagnostics, context);
     }
 
     /**

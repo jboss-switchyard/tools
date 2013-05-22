@@ -206,6 +206,15 @@ public interface SwitchyardFactory extends EFactory {
     SecurityType createSecurityType();
 
     /**
+     * Returns a new object of class '<em>Securities Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Securities Type</em>'.
+     * @generated
+     */
+    SecuritiesType createSecuritiesType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

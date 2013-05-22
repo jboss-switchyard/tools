@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
@@ -35,7 +36,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getHandlers <em>Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getSecurity <em>Security</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getSecurities <em>Securities</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,14 +104,14 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSecurity() <em>Security</em>}' containment reference.
+     * The cached value of the '{@link #getSecurities() <em>Securities</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSecurity()
+     * @see #getSecurities()
      * @generated
      * @ordered
      */
-    protected SecurityType security;
+    protected SecuritiesType securities;
 
     /**
      * <!-- begin-user-doc -->
@@ -329,8 +330,8 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
      * <!-- end-user-doc -->
      * @generated
      */
-    public SecurityType getSecurity() {
-        return security;
+    public SecuritiesType getSecurities() {
+        return securities;
     }
 
     /**
@@ -338,11 +339,11 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetSecurity(SecurityType newSecurity, NotificationChain msgs) {
-        SecurityType oldSecurity = security;
-        security = newSecurity;
+    public NotificationChain basicSetSecurities(SecuritiesType newSecurities, NotificationChain msgs) {
+        SecuritiesType oldSecurities = securities;
+        securities = newSecurities;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITY, oldSecurity, newSecurity);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITIES, oldSecurities, newSecurities);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -353,18 +354,18 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSecurity(SecurityType newSecurity) {
-        if (newSecurity != security) {
+    public void setSecurities(SecuritiesType newSecurities) {
+        if (newSecurities != securities) {
             NotificationChain msgs = null;
-            if (security != null)
-                msgs = ((InternalEObject)security).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITY, null, msgs);
-            if (newSecurity != null)
-                msgs = ((InternalEObject)newSecurity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITY, null, msgs);
-            msgs = basicSetSecurity(newSecurity, msgs);
+            if (securities != null)
+                msgs = ((InternalEObject)securities).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITIES, null, msgs);
+            if (newSecurities != null)
+                msgs = ((InternalEObject)newSecurities).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITIES, null, msgs);
+            msgs = basicSetSecurities(newSecurities, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITY, newSecurity, newSecurity));
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITIES, newSecurities, newSecurities));
     }
 
     /**
@@ -383,8 +384,8 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return basicSetProperties(null, msgs);
             case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
                 return basicSetHandlers(null, msgs);
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITY:
-                return basicSetSecurity(null, msgs);
+            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+                return basicSetSecurities(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -407,8 +408,8 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return getHandlers();
             case SwitchyardPackage.DOMAIN_TYPE__NAME:
                 return getName();
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITY:
-                return getSecurity();
+            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+                return getSecurities();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -436,8 +437,8 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
             case SwitchyardPackage.DOMAIN_TYPE__NAME:
                 setName((String)newValue);
                 return;
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITY:
-                setSecurity((SecurityType)newValue);
+            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+                setSecurities((SecuritiesType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -466,8 +467,8 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
             case SwitchyardPackage.DOMAIN_TYPE__NAME:
                 setName(NAME_EDEFAULT);
                 return;
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITY:
-                setSecurity((SecurityType)null);
+            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+                setSecurities((SecuritiesType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -491,8 +492,8 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return handlers != null;
             case SwitchyardPackage.DOMAIN_TYPE__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITY:
-                return security != null;
+            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+                return securities != null;
         }
         return super.eIsSet(featureID);
     }

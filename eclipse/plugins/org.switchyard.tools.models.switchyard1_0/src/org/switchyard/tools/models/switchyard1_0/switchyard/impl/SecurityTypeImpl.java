@@ -23,10 +23,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getCallbackHandler <em>Callback Handler</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getModuleName <em>Module Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getRolesAllowed <em>Roles Allowed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getRunAs <em>Run As</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getSecurityDomain <em>Security Domain</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,24 +55,24 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
     protected String callbackHandler = CALLBACK_HANDLER_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getModuleName() <em>Module Name</em>}' attribute.
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModuleName()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected static final String MODULE_NAME_EDEFAULT = null;
+    protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getModuleName() <em>Module Name</em>}' attribute.
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModuleName()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected String moduleName = MODULE_NAME_EDEFAULT;
+    protected String name = NAME_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
@@ -124,6 +125,26 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
     protected String runAs = RUN_AS_EDEFAULT;
 
     /**
+     * The default value of the '{@link #getSecurityDomain() <em>Security Domain</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSecurityDomain()
+     * @generated
+     * @ordered
+     */
+    protected static final String SECURITY_DOMAIN_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSecurityDomain() <em>Security Domain</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSecurityDomain()
+     * @generated
+     * @ordered
+     */
+    protected String securityDomain = SECURITY_DOMAIN_EDEFAULT;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -168,8 +189,8 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getModuleName() {
-        return moduleName;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -177,11 +198,11 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setModuleName(String newModuleName) {
-        String oldModuleName = moduleName;
-        moduleName = newModuleName;
+    public void setName(String newName) {
+        String oldName = name;
+        name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__MODULE_NAME, oldModuleName, moduleName));
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__NAME, oldName, name));
     }
 
     /**
@@ -274,6 +295,27 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getSecurityDomain() {
+        return securityDomain;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSecurityDomain(String newSecurityDomain) {
+        String oldSecurityDomain = securityDomain;
+        securityDomain = newSecurityDomain;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN, oldSecurityDomain, securityDomain));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -293,14 +335,16 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
         switch (featureID) {
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 return getCallbackHandler();
-            case SwitchyardPackage.SECURITY_TYPE__MODULE_NAME:
-                return getModuleName();
+            case SwitchyardPackage.SECURITY_TYPE__NAME:
+                return getName();
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 return getProperties();
             case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
                 return getRolesAllowed();
             case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
                 return getRunAs();
+            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+                return getSecurityDomain();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -316,8 +360,8 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 setCallbackHandler((String)newValue);
                 return;
-            case SwitchyardPackage.SECURITY_TYPE__MODULE_NAME:
-                setModuleName((String)newValue);
+            case SwitchyardPackage.SECURITY_TYPE__NAME:
+                setName((String)newValue);
                 return;
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 setProperties((PropertiesType)newValue);
@@ -327,6 +371,9 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
                 return;
             case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
                 setRunAs((String)newValue);
+                return;
+            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+                setSecurityDomain((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -343,8 +390,8 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 setCallbackHandler(CALLBACK_HANDLER_EDEFAULT);
                 return;
-            case SwitchyardPackage.SECURITY_TYPE__MODULE_NAME:
-                setModuleName(MODULE_NAME_EDEFAULT);
+            case SwitchyardPackage.SECURITY_TYPE__NAME:
+                setName(NAME_EDEFAULT);
                 return;
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 setProperties((PropertiesType)null);
@@ -354,6 +401,9 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
                 return;
             case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
                 setRunAs(RUN_AS_EDEFAULT);
+                return;
+            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+                setSecurityDomain(SECURITY_DOMAIN_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -369,14 +419,16 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
         switch (featureID) {
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 return CALLBACK_HANDLER_EDEFAULT == null ? callbackHandler != null : !CALLBACK_HANDLER_EDEFAULT.equals(callbackHandler);
-            case SwitchyardPackage.SECURITY_TYPE__MODULE_NAME:
-                return MODULE_NAME_EDEFAULT == null ? moduleName != null : !MODULE_NAME_EDEFAULT.equals(moduleName);
+            case SwitchyardPackage.SECURITY_TYPE__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 return properties != null;
             case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
                 return ROLES_ALLOWED_EDEFAULT == null ? rolesAllowed != null : !ROLES_ALLOWED_EDEFAULT.equals(rolesAllowed);
             case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
                 return RUN_AS_EDEFAULT == null ? runAs != null : !RUN_AS_EDEFAULT.equals(runAs);
+            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+                return SECURITY_DOMAIN_EDEFAULT == null ? securityDomain != null : !SECURITY_DOMAIN_EDEFAULT.equals(securityDomain);
         }
         return super.eIsSet(featureID);
     }
@@ -393,12 +445,14 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (callbackHandler: ");
         result.append(callbackHandler);
-        result.append(", moduleName: ");
-        result.append(moduleName);
+        result.append(", name: ");
+        result.append(name);
         result.append(", rolesAllowed: ");
         result.append(rolesAllowed);
         result.append(", runAs: ");
         result.append(runAs);
+        result.append(", securityDomain: ");
+        result.append(securityDomain);
         result.append(')');
         return result.toString();
     }

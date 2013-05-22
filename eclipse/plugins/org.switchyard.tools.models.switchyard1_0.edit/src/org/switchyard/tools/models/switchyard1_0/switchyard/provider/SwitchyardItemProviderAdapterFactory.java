@@ -37,6 +37,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.util.ScaSwitch;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
@@ -563,6 +564,29 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
     }
 
                 /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SecuritiesTypeItemProvider securitiesTypeItemProvider;
+
+                /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createSecuritiesTypeAdapter() {
+        if (securitiesTypeItemProvider == null) {
+            securitiesTypeItemProvider = new SecuritiesTypeItemProvider(this);
+        }
+
+        return securitiesTypeItemProvider;
+    }
+
+                /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -708,6 +732,7 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
         if (staticOperationSelectorTypeItemProvider != null) staticOperationSelectorTypeItemProvider.dispose();
         if (xPathOperationSelectorTypeItemProvider != null) xPathOperationSelectorTypeItemProvider.dispose();
         if (securityTypeItemProvider != null) securityTypeItemProvider.dispose();
+        if (securitiesTypeItemProvider != null) securitiesTypeItemProvider.dispose();
     }
 
     /**
@@ -804,6 +829,34 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
                 return null;
             }
  
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            public Object caseSca_DocumentRoot(DocumentRoot object) {
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(),
+                         SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType()));
+
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(),
+                         SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType()));
+
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(),
+                         SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()));
+
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(),
+                         SwitchyardFactory.eINSTANCE.createXPathOperationSelectorType()));
+
+                return null;
+            }
             /*
 			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->

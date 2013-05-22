@@ -34,6 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
@@ -83,6 +84,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getTargetNamespace <em>Target Namespace</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getLoadBalance <em>Load Balance</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getSecurityAttr <em>Security Attr</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getSecurities <em>Securities</em>}</li>
  * </ul>
  * </p>
  *
@@ -198,6 +201,26 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * @ordered
      */
     protected String loadBalance = LOAD_BALANCE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getSecurityAttr() <em>Security Attr</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSecurityAttr()
+     * @generated
+     * @ordered
+     */
+    protected static final String SECURITY_ATTR_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSecurityAttr() <em>Security Attr</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSecurityAttr()
+     * @generated
+     * @ordered
+     */
+    protected String securityAttr = SECURITY_ATTR_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -941,6 +964,54 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
                 /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getSecurityAttr() {
+        return securityAttr;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSecurityAttr(String newSecurityAttr) {
+        String oldSecurityAttr = securityAttr;
+        securityAttr = newSecurityAttr;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOCUMENT_ROOT__SECURITY_ATTR, oldSecurityAttr, securityAttr));
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SecuritiesType getSecurities() {
+        return (SecuritiesType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES, true);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetSecurities(SecuritiesType newSecurities, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES, newSecurities, msgs);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSecurities(SecuritiesType newSecurities) {
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES, newSecurities);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -999,6 +1070,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetStaticOperationSelectorSwitchyard(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
                 return basicSetSecurity(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
+                return basicSetSecurities(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -1074,6 +1147,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return isClustered();
             case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
                 return getLoadBalance();
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY_ATTR:
+                return getSecurityAttr();
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
+                return getSecurities();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1163,6 +1240,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
                 setLoadBalance((String)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY_ATTR:
+                setSecurityAttr((String)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
+                setSecurities((SecuritiesType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -1254,6 +1337,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
                 setLoadBalance(LOAD_BALANCE_EDEFAULT);
                 return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY_ATTR:
+                setSecurityAttr(SECURITY_ATTR_EDEFAULT);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
+                setSecurities((SecuritiesType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1326,6 +1415,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return clustered != CLUSTERED_EDEFAULT;
             case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
                 return LOAD_BALANCE_EDEFAULT == null ? loadBalance != null : !LOAD_BALANCE_EDEFAULT.equals(loadBalance);
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY_ATTR:
+                return SECURITY_ATTR_EDEFAULT == null ? securityAttr != null : !SECURITY_ATTR_EDEFAULT.equals(securityAttr);
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
+                return getSecurities() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -1350,6 +1443,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
         result.append(clustered);
         result.append(", loadBalance: ");
         result.append(loadBalance);
+        result.append(", securityAttr: ");
+        result.append(securityAttr);
         result.append(')');
         return result.toString();
     }

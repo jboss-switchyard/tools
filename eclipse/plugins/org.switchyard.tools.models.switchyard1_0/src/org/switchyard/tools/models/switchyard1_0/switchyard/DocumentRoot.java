@@ -50,6 +50,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTargetNamespace <em>Target Namespace</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getLoadBalance <em>Load Balance</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurityAttr <em>Security Attr</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurities <em>Securities</em>}</li>
  * </ul>
  * </p>
  *
@@ -795,5 +797,59 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setLoadBalance(String value);
+
+                /**
+     * Returns the value of the '<em><b>Security Attr</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Security Attr</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Security Attr</em>' attribute.
+     * @see #setSecurityAttr(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_SecurityAttr()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='security' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getSecurityAttr();
+
+                /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurityAttr <em>Security Attr</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Security Attr</em>' attribute.
+     * @see #getSecurityAttr()
+     * @generated
+     */
+    void setSecurityAttr(String value);
+
+                /**
+     * Returns the value of the '<em><b>Securities</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Securities</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Securities</em>' containment reference.
+     * @see #setSecurities(SecuritiesType)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_Securities()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='securities' namespace='##targetNamespace'"
+     * @generated
+     */
+    SecuritiesType getSecurities();
+
+                /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurities <em>Securities</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Securities</em>' containment reference.
+     * @see #getSecurities()
+     * @generated
+     */
+    void setSecurities(SecuritiesType value);
 
 } // DocumentRoot

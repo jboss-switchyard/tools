@@ -173,6 +173,10 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createSecurityTypeAdapter();
             }
             @Override
+            public Adapter caseSecuritiesType(SecuritiesType object) {
+                return createSecuritiesTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -527,6 +531,20 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSecurityTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType <em>Securities Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType
+     * @generated
+     */
+    public Adapter createSecuritiesTypeAdapter() {
         return null;
     }
 

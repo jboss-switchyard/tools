@@ -472,13 +472,31 @@ public interface SwitchyardPackage extends EPackage {
     int DOCUMENT_ROOT__LOAD_BALANCE = 29;
 
                 /**
+     * The feature id for the '<em><b>Security Attr</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__SECURITY_ATTR = 30;
+
+                /**
+     * The feature id for the '<em><b>Securities</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__SECURITIES = 31;
+
+                /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 30;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 32;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -536,13 +554,13 @@ public interface SwitchyardPackage extends EPackage {
 	int DOMAIN_TYPE__NAME = 4;
 
 	/**
-     * The feature id for the '<em><b>Security</b></em>' containment reference.
+     * The feature id for the '<em><b>Securities</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOMAIN_TYPE__SECURITY = 5;
+    int DOMAIN_TYPE__SECURITIES = 5;
 
     /**
      * The number of structural features of the '<em>Domain Type</em>' class.
@@ -1430,13 +1448,13 @@ public interface SwitchyardPackage extends EPackage {
     int SECURITY_TYPE__CALLBACK_HANDLER = 0;
 
                 /**
-     * The feature id for the '<em><b>Module Name</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SECURITY_TYPE__MODULE_NAME = 1;
+    int SECURITY_TYPE__NAME = 1;
 
                 /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -1466,14 +1484,51 @@ public interface SwitchyardPackage extends EPackage {
     int SECURITY_TYPE__RUN_AS = 4;
 
                 /**
+     * The feature id for the '<em><b>Security Domain</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__SECURITY_DOMAIN = 5;
+
+                /**
      * The number of structural features of the '<em>Security Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SECURITY_TYPE_FEATURE_COUNT = 5;
+    int SECURITY_TYPE_FEATURE_COUNT = 6;
 
+
+                /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl <em>Securities Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecuritiesType()
+     * @generated
+     */
+    int SECURITIES_TYPE = 24;
+
+                /**
+     * The feature id for the '<em><b>Security</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITIES_TYPE__SECURITY = 0;
+
+                /**
+     * The number of structural features of the '<em>Securities Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITIES_TYPE_FEATURE_COUNT = 1;
 
                 /**
      * The meta object id for the '<em>Prop Boolean</em>' data type.
@@ -1483,7 +1538,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropBoolean()
      * @generated
      */
-    int PROP_BOOLEAN = 24;
+    int PROP_BOOLEAN = 25;
 
                 /**
      * The meta object id for the '<em>Property Value</em>' data type.
@@ -1493,7 +1548,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyValue()
      * @generated
      */
-    int PROPERTY_VALUE = 25;
+    int PROPERTY_VALUE = 26;
 
                 /**
      * The meta object id for the '<em>Prop Integer</em>' data type.
@@ -1503,7 +1558,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropInteger()
      * @generated
      */
-    int PROP_INTEGER = 26;
+    int PROP_INTEGER = 27;
 
                 /**
      * The meta object id for the '<em>Prop Long</em>' data type.
@@ -1513,7 +1568,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropLong()
      * @generated
      */
-    int PROP_LONG = 27;
+    int PROP_LONG = 28;
 
 
                 /**
@@ -1975,6 +2030,28 @@ public interface SwitchyardPackage extends EPackage {
     EAttribute getDocumentRoot_LoadBalance();
 
                 /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurityAttr <em>Security Attr</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Security Attr</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurityAttr()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EAttribute getDocumentRoot_SecurityAttr();
+
+                /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurities <em>Securities</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Securities</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurities()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Securities();
+
+                /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType <em>Domain Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2040,15 +2117,15 @@ public interface SwitchyardPackage extends EPackage {
 	EAttribute getDomainType_Name();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurity <em>Security</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurities <em>Securities</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Security</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurity()
+     * @return the meta object for the containment reference '<em>Securities</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurities()
      * @see #getDomainType()
      * @generated
      */
-    EReference getDomainType_Security();
+    EReference getDomainType_Securities();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface <em>Esb Interface</em>}'.
@@ -2594,15 +2671,15 @@ public interface SwitchyardPackage extends EPackage {
     EAttribute getSecurityType_CallbackHandler();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getModuleName <em>Module Name</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getName <em>Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Module Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getModuleName()
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getName()
      * @see #getSecurityType()
      * @generated
      */
-    EAttribute getSecurityType_ModuleName();
+    EAttribute getSecurityType_Name();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getProperties <em>Properties</em>}'.
@@ -2636,6 +2713,38 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      */
     EAttribute getSecurityType_RunAs();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getSecurityDomain <em>Security Domain</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Security Domain</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getSecurityDomain()
+     * @see #getSecurityType()
+     * @generated
+     */
+    EAttribute getSecurityType_SecurityDomain();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType <em>Securities Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Securities Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType
+     * @generated
+     */
+    EClass getSecuritiesType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType#getSecurity <em>Security</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Security</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType#getSecurity()
+     * @see #getSecuritiesType()
+     * @generated
+     */
+    EReference getSecuritiesType_Security();
 
     /**
      * Returns the meta object for data type '{@link java.lang.Object <em>Prop Boolean</em>}'.
@@ -3062,6 +3171,22 @@ public interface SwitchyardPackage extends EPackage {
         EAttribute DOCUMENT_ROOT__LOAD_BALANCE = eINSTANCE.getDocumentRoot_LoadBalance();
 
                                 /**
+         * The meta object literal for the '<em><b>Security Attr</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DOCUMENT_ROOT__SECURITY_ATTR = eINSTANCE.getDocumentRoot_SecurityAttr();
+
+                                /**
+         * The meta object literal for the '<em><b>Securities</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__SECURITIES = eINSTANCE.getDocumentRoot_Securities();
+
+                                /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3112,12 +3237,12 @@ public interface SwitchyardPackage extends EPackage {
 		EAttribute DOMAIN_TYPE__NAME = eINSTANCE.getDomainType_Name();
 
 		/**
-         * The meta object literal for the '<em><b>Security</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Securities</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference DOMAIN_TYPE__SECURITY = eINSTANCE.getDomainType_Security();
+        EReference DOMAIN_TYPE__SECURITIES = eINSTANCE.getDomainType_Securities();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl <em>Esb Interface</em>}' class.
@@ -3564,12 +3689,12 @@ public interface SwitchyardPackage extends EPackage {
         EAttribute SECURITY_TYPE__CALLBACK_HANDLER = eINSTANCE.getSecurityType_CallbackHandler();
 
         /**
-         * The meta object literal for the '<em><b>Module Name</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute SECURITY_TYPE__MODULE_NAME = eINSTANCE.getSecurityType_ModuleName();
+        EAttribute SECURITY_TYPE__NAME = eINSTANCE.getSecurityType_Name();
 
         /**
          * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
@@ -3594,6 +3719,32 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
         EAttribute SECURITY_TYPE__RUN_AS = eINSTANCE.getSecurityType_RunAs();
+
+                                /**
+         * The meta object literal for the '<em><b>Security Domain</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SECURITY_TYPE__SECURITY_DOMAIN = eINSTANCE.getSecurityType_SecurityDomain();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl <em>Securities Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecuritiesType()
+         * @generated
+         */
+        EClass SECURITIES_TYPE = eINSTANCE.getSecuritiesType();
+
+        /**
+         * The meta object literal for the '<em><b>Security</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SECURITIES_TYPE__SECURITY = eINSTANCE.getSecuritiesType_Security();
 
                                 /**
          * The meta object literal for the '<em>Prop Boolean</em>' data type.

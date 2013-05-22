@@ -13,7 +13,6 @@
 package org.switchyard.tools.ui.editor.impl;
 
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
@@ -28,19 +27,8 @@ import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.WorkbenchPartAction;
 import org.eclipse.graphiti.ui.editor.DiagramEditorContextMenuProvider;
-import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.core.search.IJavaSearchScope;
-import org.eclipse.jdt.core.search.SearchEngine;
-import org.eclipse.jdt.ui.IJavaElementSearchConstants;
-import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.databinding.swt.ISWTObservableValue;
-import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -59,15 +47,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.ide.IDE;
@@ -83,11 +68,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyInputDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyTable;
+import org.switchyard.tools.ui.editor.impl.security.SecurityInstanceTable;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
 import org.w3c.dom.Attr;
@@ -110,17 +95,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private TransactionalEditingDomain _editDomain = null;
     private SwitchYardType _syRoot = null;
     private DomainPropertyTable _domainProperties = null;
-    private DomainPropertyTable _securityProperties = null;
-    private Text _callbackHandlerText;
-    private Text _moduleNameText;
-    private Text _runAsText;
-    private Text _rolesAllowedText;
-    private ModuleNameTextValueChangeListener _moduleNameListener;
-    private ISWTObservableValue _moduleNameFocusObserver;
-    private RolesAllowedTextValueChangeListener _rolesAllowedListener;
-    private ISWTObservableValue _rolesAllowedFocusObserver;
-    private RunAsTextValueChangeListener _runAsListener;
-    private ISWTObservableValue _runAsFocusObserver;
+    private SecurityInstanceTable _securityInstanceTable;
 
     /**
      * Creates a multi-page editor example.
@@ -137,7 +112,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     @Override
     public void dispose() {
         removeDomainListener();
-        removeObservableListeners();
         super.dispose();
     }
 
@@ -350,21 +324,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         return null;
     }
 
-    private EList<PropertyType> getSecurityPropertyList() {
-        if (_syRoot != null) {
-            DomainType domain = _syRoot.getDomain();
-            if (domain != null && domain.getSecurity() != null) {
-                SecurityType security = domain.getSecurity();
-                PropertiesType properties = security.getProperties();
-                if (properties != null) {
-                    EList<PropertyType> propertyList = properties.getProperty();
-                    return propertyList;
-                }
-            }
-        }
-        return null;
-    }
-
     private void removeDomainProperty(final PropertyType property) {
         if (_syRoot != null) {
             DomainType domain = _syRoot.getDomain();
@@ -408,57 +367,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         }
     }
 
-    private void removeSecurityProperty(final PropertyType property) {
-        if (_syRoot != null) {
-            DomainType domain = _syRoot.getDomain();
-            if (domain != null) {
-                SecurityType security = domain.getSecurity();
-                if (security != null) {
-                    final PropertiesType properties = security.getProperties();
-                    if (properties != null) {
-                        _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                            @Override
-                            protected void doExecute() {
-                                properties.getProperty().remove(property);
-                            }
-                        });
-                    }
-                }
-            }
-        }
-    }
-
-    private void addSecurityProperty(final String name, final String value) {
-        if (_syRoot != null) {
-            final SwitchYardType finalRoot = _syRoot;
-            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                @Override
-                protected void doExecute() {
-                    DomainType domain = finalRoot.getDomain();
-                    if (domain == null) {
-                        domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                        finalRoot.setDomain(domain);
-                    }
-                    SecurityType security = domain.getSecurity();
-                    if (security == null) {
-                        security = SwitchyardFactory.eINSTANCE.createSecurityType();
-                        domain.setSecurity(security);
-                    }
-                    PropertiesType properties = security.getProperties();
-                    if (properties == null) {
-                        properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
-                        security.setProperties(properties);
-                    }
-                    EList<PropertyType> propertyList = properties.getProperty();
-                    PropertyType newProperty = SwitchyardFactory.eINSTANCE.createPropertyType();
-                    newProperty.setName(name);
-                    newProperty.setValue(value);
-                    propertyList.add(newProperty);
-                }
-            });
-        }
-    }
-
     private void removeMessageTraceHandler() {
         if (_syRoot != null) {
             DomainType domain = _syRoot.getDomain();
@@ -477,88 +385,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                     handlersList.remove(handlerToRemove);
                 }
             }
-        }
-    }
-
-    private DomainType getDomain(final SwitchYardType root) {
-        DomainType domain = root.getDomain();
-        if (domain == null) {
-            domain = SwitchyardFactory.eINSTANCE.createDomainType();
-            root.setDomain(domain);
-        }
-        return root.getDomain();
-    }
-    
-    private SecurityType getSecurity(final DomainType domain) {
-        SecurityType security = domain.getSecurity();
-        if (security == null) {
-            security = SwitchyardFactory.eINSTANCE.createSecurityType();
-            domain.setSecurity(security);
-        }
-        return domain.getSecurity();
-    }
-    
-    private void updateRolesAllowed(final String value) {
-        if (_syRoot != null) {
-            final SwitchYardType finalRoot = _syRoot;
-            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                @Override
-                protected void doExecute() {
-                    DomainType domain = getDomain(finalRoot);
-                    SecurityType security = getSecurity(domain);
-                    security.setRolesAllowed(value);
-                }
-            });
-        }
-    }
-
-    private void updateRunAs(final String value) {
-        if (_syRoot != null) {
-            final SwitchYardType finalRoot = _syRoot;
-            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                @Override
-                protected void doExecute() {
-                    DomainType domain = getDomain(finalRoot);
-                    SecurityType security = getSecurity(domain);
-                    security.setRunAs(value);
-                }
-            });
-        }
-    }
-    
-    private void updateModuleName(final String value) {
-        if (_syRoot != null) {
-            final SwitchYardType finalRoot = _syRoot;
-            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                @Override
-                protected void doExecute() {
-                    DomainType domain = getDomain(finalRoot);
-                    SecurityType security = getSecurity(domain);
-                    security.setModuleName(value);
-                }
-            });
-        }
-    }
-
-    private void updateCallbackHandler(final String value) {
-        if (_syRoot != null) {
-            final SwitchYardType finalRoot = _syRoot;
-            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                @Override
-                protected void doExecute() {
-                    DomainType domain = finalRoot.getDomain();
-                    if (domain == null) {
-                        domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                        finalRoot.setDomain(domain);
-                    }
-                    SecurityType security = domain.getSecurity();
-                    if (security == null) {
-                        security = SwitchyardFactory.eINSTANCE.createSecurityType();
-                        domain.setSecurity(security);
-                    }
-                    security.setCallbackHandler(value);
-                }
-            });
         }
     }
 
@@ -690,159 +516,21 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         section.setClient(client);
     }
 
-    private void handleBrowse() {
-        IJavaSearchScope scope = null;
-        IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
-        IJavaProject javaProject = JavaCore.create(project);
-        if (javaProject == null) {
-            scope = SearchEngine.createWorkspaceScope();
-        } else {
-            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {javaProject });
-        }
-        try {
-            SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
-                    IJavaElementSearchConstants.CONSIDER_CLASSES, false);
-            if (dialog.open() == SelectionDialog.OK) {
-                Object[] result = dialog.getResult();
-                if (result.length > 0 && result[0] instanceof IType) {
-                    IType clazz = (IType) result[0];
-                    String className = clazz.getFullyQualifiedName();
-                    if (_syRoot != null) {
-                        DomainType domain = _syRoot.getDomain();
-                        if (domain != null && domain.getSecurity() != null) {
-                            if (domain.getSecurity().getCallbackHandler() != null) {
-                                boolean isSame = domain.getSecurity().getCallbackHandler().contentEquals(className);
-                                if (!isSame) {
-                                    _callbackHandlerText.setText(className);
-                                    updateCallbackHandler(className);
-                                }
-                            } else {
-                                _callbackHandlerText.setText(className);
-                                updateCallbackHandler(className);
-                            }
-                        } else {
-                            _callbackHandlerText.setText(className);
-                            updateCallbackHandler(className);
-                        }
-                    }
-                }
-            }
-        } catch (JavaModelException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void updateListener(DomainPropertyTextValueChangeListener listener, 
-            ISWTObservableValue focus, Text control) {
-        if (listener != null && focus != null) {
-            focus.removeValueChangeListener(listener);
-        }
-        if (focus == null) {
-            focus = SWTObservables.observeText(control, SWT.FocusOut);
-        }
-        focus.addValueChangeListener(listener);
-    }
-
-    private void removeListener(DomainPropertyTextValueChangeListener listener, 
-            ISWTObservableValue focus) {
-        if (listener != null && focus != null) {
-            focus.removeValueChangeListener(listener);
-            focus.dispose();
-            listener = null;
-        }
-    }
-    
-    private void addObservableListeners() {
-        if (_moduleNameListener == null) {
-            _moduleNameListener = new ModuleNameTextValueChangeListener();
-        }
-        updateListener(_moduleNameListener, _moduleNameFocusObserver, _moduleNameText);
-        if (_rolesAllowedListener == null) {
-            _rolesAllowedListener = new RolesAllowedTextValueChangeListener();
-        }
-        updateListener(_rolesAllowedListener, _rolesAllowedFocusObserver, _rolesAllowedText);
-        if (_runAsListener == null) {
-            _runAsListener = new RunAsTextValueChangeListener();
-        }
-        updateListener(_runAsListener, _runAsFocusObserver, _runAsText);
-    }
-    
-    private void removeObservableListeners() {
-        removeListener(_moduleNameListener, _moduleNameFocusObserver);
-        removeListener(_rolesAllowedListener, _rolesAllowedFocusObserver);
-        removeListener(_runAsListener, _runAsFocusObserver);
-    }
-    
     private void createDomainSecuritySettingsSection(FormToolkit toolkit, Composite parent) {
         Section section3 = toolkit.createSection(_domainPage, Section.TITLE_BAR);
-        section3.setText("Security Properties"); //$NON-NLS-1$
+        section3.setText("Security Configurations"); //$NON-NLS-1$
         section3.setLayout(new GridLayout(1, false));
         section3.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
 
         // Composite for storing controls of the main section
         Composite client3 = toolkit.createComposite(section3, SWT.WRAP);
-        GridLayout layout3 = new GridLayout();
-        layout3.numColumns = 3;
-        layout3.marginWidth = 2;
-        layout3.marginHeight = 2;
+        GridLayout layout3 = new GridLayout(1, false);
         client3.setLayout(layout3);
-
-        toolkit.createLabel(client3, "Callback Handler Class");
-        _callbackHandlerText = toolkit.createText(client3, "", SWT.READ_ONLY);
-        _callbackHandlerText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
-
-        Button _callbackHandlerBrowseBtn = toolkit.createButton(client3, "Browse...", SWT.PUSH);
-        _callbackHandlerBrowseBtn.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                handleBrowse();
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
-        toolkit.createLabel(client3, "Module Name");
-        _moduleNameText = toolkit.createText(client3, "");
-        _moduleNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
-
-        toolkit.createLabel(client3, "Roles Allowed");
-        _rolesAllowedText = toolkit.createText(client3, "");
-        _rolesAllowedText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
-
-        toolkit.createLabel(client3, "Run As");
-        _runAsText = toolkit.createText(client3, "");
-        _runAsText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
-
-        Label separator = toolkit.createLabel(client3, null, SWT.HORIZONTAL);
-        separator.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
         
-        _securityProperties = new DomainPropertyTable(client3, SWT.NONE) {
-
-            @Override
-            protected void removeFromList() {
-                final PropertyType toRemove = _securityProperties.getTableSelection();
-                if (toRemove != null) {
-                    removeSecurityProperty(toRemove);
-                }
-            }
-
-            @Override
-            protected void addPropertyTypeToList() {
-                final DomainPropertyInputDialog dialog = new DomainPropertyInputDialog(Display.getCurrent()
-                        .getActiveShell());
-                int rtn_value = dialog.open();
-                if (rtn_value == DomainPropertyInputDialog.OK) {
-                    final String name = dialog.getPropertyName();
-                    final String value = dialog.getPropertyValue();
-                    addSecurityProperty(name, value);
-                }
-
-            }
-        };
-        _securityProperties.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 5));
+        _securityInstanceTable = new SecurityInstanceTable(client3, SWT.NONE);
+        _securityInstanceTable.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 1, 5));
+        _securityInstanceTable.setSwitchYardRoot(_syRoot);
+        _securityInstanceTable.setEditingDomain(_editDomain);
 
         section3.setClient(client3);
     }
@@ -1098,66 +786,16 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         createSourceViewer();
     }
 
-    class ModuleNameTextValueChangeListener extends DomainPropertyTextValueChangeListener {
-        
-        @Override
-        protected void updateField(Text control) {
-            String value = control.getText();
-            if (value.trim().isEmpty()) {
-                value = null;
-            }
-            updateModuleName(value);
-        }
-    }
-
-    class RolesAllowedTextValueChangeListener extends DomainPropertyTextValueChangeListener {
-        @Override
-        protected void updateField(Text control) {
-            String value = control.getText();
-            if (value.trim().isEmpty()) {
-                value = null;
-            }
-            updateRolesAllowed(value);
-        }
-    }
-
-    class RunAsTextValueChangeListener extends DomainPropertyTextValueChangeListener {
-        @Override
-        protected void updateField(Text control) {
-            String value = control.getText();
-            if (value.trim().isEmpty()) {
-                value = null;
-            }
-            updateRunAs(value);
-        }
-    }
-
     private void refresh() {
         Display.getDefault().asyncExec(new Runnable() {
             public void run() {
                 _messageTraceCheckbox.setSelection(testForMessageTraceHandler());
                 _domainProperties.setSelection(getDomainPropertyList());
-                _securityProperties.setSelection(getSecurityPropertyList());
                 if (_syRoot != null) {
                     DomainType domain = _syRoot.getDomain();
                     if (domain != null) {
                         _domainProperties.setTargetObject(domain);
-                        if (domain.getSecurity() != null) {
-                            _securityProperties.setTargetObject(domain.getSecurity());
-                            if (domain.getSecurity().getCallbackHandler() != null) {
-                                _callbackHandlerText.setText(domain.getSecurity().getCallbackHandler());
-                            }
-                            if (domain.getSecurity().getModuleName() != null) {
-                                _moduleNameText.setText(domain.getSecurity().getModuleName());
-                            }
-                            if (domain.getSecurity().getRolesAllowed() != null) {
-                                _rolesAllowedText.setText(domain.getSecurity().getRolesAllowed());
-                            }
-                            if (domain.getSecurity().getRunAs() != null) {
-                                _runAsText.setText(domain.getSecurity().getRunAs());
-                            }
-                            addObservableListeners();
-                        }
+                        _securityInstanceTable.setSecurity(domain.getSecurities());
                     }
                 }
             }

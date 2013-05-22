@@ -13,10 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getCallbackHandler <em>Callback Handler</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getModuleName <em>Module Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRolesAllowed <em>Roles Allowed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRunAs <em>Run As</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getSecurityDomain <em>Security Domain</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,31 +54,31 @@ public interface SecurityType extends EObject {
     void setCallbackHandler(String value);
 
     /**
-     * Returns the value of the '<em><b>Module Name</b></em>' attribute.
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Module Name</em>' attribute isn't clear,
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Module Name</em>' attribute.
-     * @see #setModuleName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSecurityType_ModuleName()
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSecurityType_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="kind='attribute' name='moduleName'"
+     *        extendedMetaData="kind='attribute' name='name'"
      * @generated
      */
-    String getModuleName();
+    String getName();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getModuleName <em>Module Name</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getName <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Module Name</em>' attribute.
-     * @see #getModuleName()
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
      * @generated
      */
-    void setModuleName(String value);
+    void setName(String value);
 
     /**
      * Returns the value of the '<em><b>Properties</b></em>' containment reference.
@@ -159,5 +160,32 @@ public interface SecurityType extends EObject {
      * @generated
      */
     void setRunAs(String value);
+
+    /**
+     * Returns the value of the '<em><b>Security Domain</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Security Domain</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Security Domain</em>' attribute.
+     * @see #setSecurityDomain(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSecurityType_SecurityDomain()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='securityDomain'"
+     * @generated
+     */
+    String getSecurityDomain();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getSecurityDomain <em>Security Domain</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Security Domain</em>' attribute.
+     * @see #getSecurityDomain()
+     * @generated
+     */
+    void setSecurityDomain(String value);
 
 } // SecurityType

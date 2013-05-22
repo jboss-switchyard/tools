@@ -65,9 +65,10 @@ public class SecurityTypeItemProvider
             super.getPropertyDescriptors(object);
 
             addCallbackHandlerPropertyDescriptor(object);
-            addModuleNamePropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
             addRolesAllowedPropertyDescriptor(object);
             addRunAsPropertyDescriptor(object);
+            addSecurityDomainPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -95,19 +96,19 @@ public class SecurityTypeItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Module Name feature.
+     * This adds a property descriptor for the Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addModuleNamePropertyDescriptor(Object object) {
+    protected void addNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_SecurityType_moduleName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_SecurityType_moduleName_feature", "_UI_SecurityType_type"),
-                 SwitchyardPackage.Literals.SECURITY_TYPE__MODULE_NAME,
+                 getString("_UI_SecurityType_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SecurityType_name_feature", "_UI_SecurityType_type"),
+                 SwitchyardPackage.Literals.SECURITY_TYPE__NAME,
                  true,
                  false,
                  false,
@@ -152,6 +153,28 @@ public class SecurityTypeItemProvider
                  getString("_UI_SecurityType_runAs_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_SecurityType_runAs_feature", "_UI_SecurityType_type"),
                  SwitchyardPackage.Literals.SECURITY_TYPE__RUN_AS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Security Domain feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSecurityDomainPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_SecurityType_securityDomain_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SecurityType_securityDomain_feature", "_UI_SecurityType_type"),
+                 SwitchyardPackage.Literals.SECURITY_TYPE__SECURITY_DOMAIN,
                  true,
                  false,
                  false,
@@ -209,7 +232,7 @@ public class SecurityTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((SecurityType)object).getModuleName();
+        String label = ((SecurityType)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_SecurityType_type") :
             getString("_UI_SecurityType_type") + " " + label;
@@ -228,9 +251,10 @@ public class SecurityTypeItemProvider
 
         switch (notification.getFeatureID(SecurityType.class)) {
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
-            case SwitchyardPackage.SECURITY_TYPE__MODULE_NAME:
+            case SwitchyardPackage.SECURITY_TYPE__NAME:
             case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
             case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
