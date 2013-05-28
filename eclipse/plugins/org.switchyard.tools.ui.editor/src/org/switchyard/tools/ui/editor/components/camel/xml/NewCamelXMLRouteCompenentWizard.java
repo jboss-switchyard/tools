@@ -31,6 +31,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.spring.FromDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.LogDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.RouteDefinition;
+import org.switchyard.tools.models.switchyard1_0.spring.RoutesDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.SpringFactory;
 import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
 import org.switchyard.tools.models.switchyard1_0.spring.util.SpringResourceFactoryImpl;
@@ -94,6 +95,7 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
         ByteArrayOutputStream baos = null;
         try {
             DocumentRoot doc = SpringFactory.eINSTANCE.createDocumentRoot();
+            RoutesDefinition routes = SpringFactory.eINSTANCE.createRoutesDefinition();
             RouteDefinition route = SpringFactory.eINSTANCE.createRouteDefinition();
             FromDefinition from = SpringFactory.eINSTANCE.createFromDefinition();
             LogDefinition log = SpringFactory.eINSTANCE.createLogDefinition();
@@ -102,9 +104,11 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
             from.setUri("switchyard://" + serviceName);
             log.setMessage("" + serviceName + " - message received: ${body}");
 
+            doc.setRoutes(routes);
             doc.setRoute(route);
             route.getFrom().add(from);
             route.getLog().add(log);
+            routes.getRoute().add(route);
 
             doc.getXMLNSPrefixMap().put("", SpringPackage.eNS_URI);
 
