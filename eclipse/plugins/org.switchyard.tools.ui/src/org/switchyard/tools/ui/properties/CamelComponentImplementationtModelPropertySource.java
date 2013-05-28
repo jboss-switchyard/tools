@@ -50,7 +50,7 @@ public class CamelComponentImplementationtModelPropertySource implements IProper
         if (PROP_JAVA_CLASS.equals(id)) {
             return _model.getJavaClass();
         } else if (PROP_ROUTE.equals(id)) {
-            return _model.getRoute();
+            return _model.getXMLPath();
         }
         return null;
     }
