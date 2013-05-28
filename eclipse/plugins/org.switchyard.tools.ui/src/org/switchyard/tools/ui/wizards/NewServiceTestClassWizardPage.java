@@ -331,7 +331,10 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     }
 
     private String getTestMethodName(String name) {
-        return "test" + name.substring(0, 1).toUpperCase() + name.substring(1);
+        // ESB interfaces only have a single, unnamed "process" method
+        return "test"
+                + (name == null || name.length() == 0 ? "Process" : name.substring(0, 1).toUpperCase()
+                        + name.substring(1));
     }
 
     private StringBuffer getTestMethodPreface(String testMethodName, ImportsManager imports, String lineDelimiter) {
