@@ -14,9 +14,11 @@ import static org.switchyard.tools.ui.M2EUtils.getSwitchYardOutputFile;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -45,7 +47,21 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.Signature;
+import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.ArrayInitializer;
+import org.eclipse.jdt.core.dom.ChildListPropertyDescriptor;
+import org.eclipse.jdt.core.dom.MemberValuePair;
+import org.eclipse.jdt.core.dom.Name;
+import org.eclipse.jdt.core.dom.NormalAnnotation;
+import org.eclipse.jdt.core.dom.SingleMemberAnnotation;
+import org.eclipse.jdt.core.dom.StructuralPropertyDescriptor;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
+import org.eclipse.jdt.core.dom.TypeLiteral;
+import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
+import org.eclipse.jdt.internal.core.CreateElementInCUOperation;
 import org.eclipse.jdt.internal.ui.dialogs.StatusInfo;
 import org.eclipse.jdt.internal.ui.wizards.dialogfields.ComboDialogField;
 import org.eclipse.jdt.internal.ui.wizards.dialogfields.DialogField;
@@ -53,16 +69,30 @@ import org.eclipse.jdt.internal.ui.wizards.dialogfields.IDialogFieldListener;
 import org.eclipse.jdt.ui.CodeGeneration;
 import org.eclipse.jdt.ui.wizards.NewTypeWizardPage;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
+import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
+import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TableLayout;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.window.ToolTip;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.project.MavenProjectUtils;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.switchyard.config.model.composite.ComponentServiceModel;
 import org.switchyard.config.model.composite.InterfaceModel;
 import org.switchyard.metadata.ServiceInterface;
@@ -73,7 +103,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResou
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.common.ISwitchYardTestMixInExtension;
 import org.switchyard.tools.ui.common.InterfaceControl;
+import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.common.SwitchYardTestMixInExtensionManager;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentService;
 
@@ -99,6 +133,8 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     private IMavenProjectFacade _mavenProjectFacade;
     private IProject _project;
     private String _oldTypeName;
+    private CheckboxTableViewer _componentsTable;
+    private Object[] _checkedMixins = new Object[0];
 
     /**
      * Create a new NewServiceTestClassWizardPage.
@@ -133,7 +169,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         initTypePage(elem);
         // clear out super types
         setSuperClass("", true);
-        setSuperInterfaces(Collections.<String>emptyList(), true);
+        setSuperInterfaces(Collections.<String> emptyList(), true);
         setModifiers(Flags.AccPublic, false);
         if (getTypeName().length() == 0) {
             String simpleServiceInterfaceName = getSimpleServiceInterfaceName();
@@ -178,6 +214,10 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         createSeparator(composite, nColumns);
 
         createServiceInterfaceControls(composite, nColumns);
+
+        createSeparator(composite, nColumns);
+
+        createMixInsTable(composite, nColumns);
 
         createSeparator(composite, nColumns);
 
@@ -277,27 +317,16 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     }
 
     @Override
-    protected String constructCUContent(ICompilationUnit cu, String typeContent, String lineDelimiter)
-            throws CoreException {
-        // add annotations to the basic type.
-        return super.constructCUContent(cu, "@RunWith(SwitchYardRunner.class)" + lineDelimiter
-                + "@SwitchYardTestCaseConfig(mixins=CDIMixIn.class, config=SwitchYardTestCaseConfig.SWITCHYARD_XML)"
-                + lineDelimiter + typeContent, lineDelimiter);
-    }
-
-    @Override
     protected void createTypeMembers(IType type, ImportsManager imports, IProgressMonitor monitor) throws CoreException {
-        // add imports
-        imports.addImport("org.junit.Assert");
-        imports.addImport("org.junit.Test");
-        imports.addImport("org.junit.runner.RunWith");
-        imports.addImport("org.switchyard.test.Invoker");
-        imports.addImport("org.switchyard.test.ServiceOperation");
-        imports.addImport("org.switchyard.test.SwitchYardRunner");
-        imports.addImport("org.switchyard.test.SwitchYardTestCaseConfig");
-        imports.addImport("org.switchyard.component.test.mixins.cdi.CDIMixIn");
+        addTypeAnnotations(type, imports, monitor);
 
         String lineDelimiter = getJavaProject().getJavaModel().findRecommendedLineSeparator();
+        type.createField("private " + imports.addImport("org.switchyard.test.SwitchYardTestKit") + " testKit;", null,
+                false, new SubProgressMonitor(monitor, 1));
+        for (String mixin : getSelectedMixinClasses()) {
+            type.createField("private " + imports.addImport(mixin) + " " + getFieldNameForType(mixin) + ";", null,
+                    false, new SubProgressMonitor(monitor, 1));
+        }
         type.createField(
                 "@" + imports.addImport("org.switchyard.test.ServiceOperation") + "(\""
                         + getSimpleServiceInterfaceName() + "\")" + lineDelimiter + "private "
@@ -314,6 +343,28 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         if (monitor != null) {
             monitor.done();
         }
+    }
+
+    private String getFieldNameForType(String mixin) {
+        final int lastDot = mixin.lastIndexOf('.');
+        StringBuffer simpleName = new StringBuffer();
+        if (lastDot > 0) {
+            simpleName.append(mixin.substring(lastDot + 1));
+        } else {
+            simpleName.append(mixin);
+        }
+        for (int lastUpper = 0, nextUpper = 1, length = simpleName.length(); lastUpper < length
+                && Character.isUpperCase(simpleName.charAt(lastUpper))
+                && (nextUpper == length || Character.isUpperCase(simpleName.charAt(nextUpper))); lastUpper++, nextUpper++) {
+            simpleName.setCharAt(lastUpper, Character.toLowerCase(simpleName.charAt(lastUpper)));
+        }
+        return simpleName.toString();
+    }
+
+    private void addTypeAnnotations(IType type, ImportsManager imports, IProgressMonitor monitor)
+            throws JavaModelException {
+        new CreateSwitchYardTestAnnotationOperation(type, imports).runOperation(monitor);
+        new CreateRunWithAnnotationOperation(type, imports).runOperation(monitor);
     }
 
     private void createTestMethodsForType(IType type, ServiceInterface interfaceType, ICompilationUnit cu,
@@ -538,8 +589,8 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new SwitchyardResourceFactoryImpl());
             try {
                 resource = rs.getResource(URI.createPlatformResourceURI(
-                        MavenProjectUtils.getFullPath(_mavenProjectFacade.getProject(), switchYardOutputFile).toString(),
-                        true), true);
+                        MavenProjectUtils.getFullPath(_mavenProjectFacade.getProject(), switchYardOutputFile)
+                                .toString(), true), true);
             } catch (Exception e) {
                 e.fillInStackTrace();
             }
@@ -553,6 +604,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             if (composite == null) {
                 return;
             }
+            // TreeMap gets us a sorted list when using values() or keys().
             _configuredServices = new TreeMap<String, Contract>();
             // services first. any like-named component services will overwrite
             for (Contract contract : composite.getService()) {
@@ -567,6 +619,8 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                     }
                 }
             }
+            // allow the user to deselect services
+            _configuredServices.put("", null);
         } finally {
             _servicesCache.put(switchYardOutputFile, _configuredServices);
             if (resource != null) {
@@ -614,7 +668,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
 
         Contract contract = getServiceContract();
         if (contract == null) {
-            _serviceInterfaceStatus.setError("A service must be specified.");
+            _serviceInterfaceStatus.setWarning("No service is specified. A simple stub class will be created.");
         } else if (contract.getInterface() == null) {
             _serviceInterfaceStatus.setError("Selected service does not define any interface.");
         }
@@ -660,6 +714,227 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 || currentValue.length() == 0
                 || (!currentValue.equals(newValue) && (oldValue == null || oldValue.length() == 0 || oldValue
                         .equals(currentValue)));
+    }
+
+    private void createMixInsTable(Composite parent, int nColumns) {
+        Label label = new Label(parent, SWT.NONE);
+        label.setText("Test Mix-ins:");
+        label.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+
+        _componentsTable = CheckboxTableViewer.newCheckList(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
+                | SWT.V_SCROLL);
+        _componentsTable.setLabelProvider(new MixInsLabelProvider());
+        _componentsTable.setContentProvider(ArrayContentProvider.getInstance());
+        _componentsTable.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, nColumns - 2, 1));
+        _componentsTable.setComparator(new ViewerSorter());
+        ColumnViewerToolTipSupport.enableFor(_componentsTable, ToolTip.NO_RECREATE);
+        TableLayout layout = new TableLayout();
+        _componentsTable.getTable().setLayout(layout);
+        TableViewerColumn column = new TableViewerColumn(_componentsTable, SWT.LEFT);
+        layout.addColumnData(new ColumnWeightData(100));
+        column.setLabelProvider(new ColumnLabelProvider() {
+            @Override
+            public String getText(Object element) {
+                if (element instanceof ISwitchYardTestMixInExtension) {
+                    return ((ISwitchYardTestMixInExtension) element).getName();
+                }
+                return super.getText(element);
+            }
+
+            @Override
+            public String getToolTipText(Object element) {
+                if (element instanceof ISwitchYardTestMixInExtension) {
+                    final ISwitchYardTestMixInExtension extension = (ISwitchYardTestMixInExtension) element;
+                    if (extension.getDescription() == null) {
+                        if (extension.getMixInClass() == null) {
+                            return extension.getName();
+                        }
+                        return extension.getMixInClass();
+                    }
+                    return extension.getDescription();
+                }
+                return super.getToolTipText(element);
+            }
+        });
+        _componentsTable.addCheckStateListener(new ICheckStateListener() {
+            @Override
+            public void checkStateChanged(CheckStateChangedEvent event) {
+                _checkedMixins = _componentsTable.getCheckedElements();
+            }
+        });
+        _componentsTable.setInput(SwitchYardTestMixInExtensionManager.instance().getExtensions());
+        // spacer
+        new Label(parent, SWT.NONE);
+    }
+
+    private Collection<String> getSelectedMixinClasses() {
+        final Collection<String> mixins = new LinkedHashSet<String>();
+        // always add CDI mixin
+        mixins.add("org.switchyard.component.test.mixins.cdi.CDIMixIn");
+        for (Object o : _checkedMixins) {
+            final String mixin = ((ISwitchYardTestMixInExtension) o).getMixInClass();
+            if (mixin != null) {
+                mixins.add(mixin);
+            }
+        }
+        return mixins;
+    }
+
+    private final static class MixInsLabelProvider extends LabelProvider {
+        public String getText(Object element) {
+            if (element instanceof ISwitchYardTestMixInExtension) {
+                return ((ISwitchYardTestMixInExtension) element).getName();
+            }
+            return super.getText(element);
+        }
+    }
+
+    private final static class CreateRunWithAnnotationOperation extends CreateElementInCUOperation {
+
+        private final ImportsManager _imports;
+
+        private CreateRunWithAnnotationOperation(IType type, ImportsManager imports) {
+            super(type);
+            _imports = imports;
+        }
+
+        @Override
+        protected StructuralPropertyDescriptor getChildPropertyDescriptor(ASTNode parent) {
+            return TypeDeclaration.MODIFIERS2_PROPERTY;
+        }
+
+        @Override
+        protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) throws JavaModelException {
+            final AST ast = cuAST.getAST();
+            final SingleMemberAnnotation annotation = ast.newSingleMemberAnnotation();
+            final TypeLiteral value = ast.newTypeLiteral();
+            value.setType(ast.newSimpleType(createTypeName(ast, "org.switchyard.test.SwitchYardRunner")));
+            annotation.setTypeName(createTypeName(ast, "org.junit.runner.RunWith"));
+            annotation.setValue(value);
+            return annotation;
+        }
+
+        @Override
+        protected IJavaElement generateResultHandle() {
+            return getType().getAnnotation(_imports.addImport("org.junit.runner.RunWith"));
+        }
+
+        @Override
+        public String getMainTaskName() {
+            return "Creating annotation";
+        }
+
+        @Override
+        protected void insertASTNode(ASTRewrite rewriter, ASTNode parent, ASTNode child) throws JavaModelException {
+            final ChildListPropertyDescriptor childListPropertyDescriptor = (ChildListPropertyDescriptor) getChildPropertyDescriptor(parent);
+            rewriter.getListRewrite(parent, childListPropertyDescriptor).insertFirst(child, null);
+        }
+
+        private IType getType() {
+            return (IType) getParentElement();
+        }
+
+        private Name createTypeName(final AST ast, final String qualifiedName) {
+            final String simpleName = _imports.addImport(qualifiedName);
+            if (simpleName.equals(qualifiedName)) {
+                return ast.newName(qualifiedName);
+            }
+            return ast.newSimpleName(simpleName);
+        }
+    }
+
+    private final class CreateSwitchYardTestAnnotationOperation extends CreateElementInCUOperation {
+
+        private final ImportsManager _imports;
+
+        private CreateSwitchYardTestAnnotationOperation(IType type, ImportsManager imports) {
+            super(type);
+            _imports = imports;
+        }
+
+        @Override
+        protected StructuralPropertyDescriptor getChildPropertyDescriptor(ASTNode parent) {
+            return TypeDeclaration.MODIFIERS2_PROPERTY;
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) throws JavaModelException {
+            final AST ast = cuAST.getAST();
+            final NormalAnnotation annotation = ast.newNormalAnnotation();
+            annotation.setTypeName(createTypeName(ast, "org.switchyard.test.SwitchYardTestCaseConfig"));
+            annotation.values().add(createConfigValue(ast));
+            annotation.values().add(createMixInsValue(ast));
+            return annotation;
+        }
+
+        private Object createConfigValue(AST ast) {
+            final MemberValuePair pair = ast.newMemberValuePair();
+            final Name value = ast.newQualifiedName(
+                    createTypeName(ast, "org.switchyard.test.SwitchYardTestCaseConfig"),
+                    ast.newSimpleName("SWITCHYARD_XML"));
+            pair.setName(ast.newSimpleName("config"));
+            pair.setValue(value);
+            return pair;
+        }
+
+        @SuppressWarnings("unchecked")
+        private Object createMixInsValue(AST ast) {
+            final MemberValuePair pair = ast.newMemberValuePair();
+            final ArrayInitializer value = ast.newArrayInitializer();
+            pair.setName(ast.newSimpleName("mixins"));
+            for (String mixin : getSelectedMixinClasses()) {
+                final TypeLiteral mixinType = ast.newTypeLiteral();
+                mixinType.setType(ast.newSimpleType(createTypeName(ast, mixin)));
+                value.expressions().add(mixinType);
+            }
+            pair.setValue(value);
+            return pair;
+        }
+
+        @Override
+        protected IJavaElement generateResultHandle() {
+            return getType().getAnnotation(_imports.addImport("org.switchyard.test.SwitchYardTestCaseConfig"));
+        }
+
+        @Override
+        public String getMainTaskName() {
+            return "Creating annotation";
+        }
+
+        @Override
+        protected void insertASTNode(ASTRewrite rewriter, ASTNode parent, ASTNode child) throws JavaModelException {
+            final ChildListPropertyDescriptor childListPropertyDescriptor = (ChildListPropertyDescriptor) getChildPropertyDescriptor(parent);
+            rewriter.getListRewrite(parent, childListPropertyDescriptor).insertFirst(child, null);
+        }
+
+        private IType getType() {
+            return (IType) getParentElement();
+        }
+
+        private Name createTypeName(final AST ast, final String qualifiedName) {
+            final String simpleName = _imports.addImport(qualifiedName);
+            if (simpleName.equals(qualifiedName)) {
+                return ast.newName(qualifiedName);
+            }
+            return ast.newSimpleName(simpleName);
+        }
+    }
+
+    /**
+     * @return list of required components
+     */
+    public Collection<ISwitchYardComponentExtension> getSelectedMixInComponents() {
+        final Collection<ISwitchYardComponentExtension> retValue = new LinkedHashSet<ISwitchYardComponentExtension>();
+        // always included; provides CDI mixin
+        retValue.add(SwitchYardComponentExtensionManager.instance().getRuntimeComponentExtension());
+        for (Object o : _checkedMixins) {
+            ISwitchYardComponentExtension component = ((ISwitchYardTestMixInExtension) o).getRequiredComponent();
+            if (component != null) {
+                retValue.add(component);
+            }
+        }
+        return retValue;
     }
 
 }

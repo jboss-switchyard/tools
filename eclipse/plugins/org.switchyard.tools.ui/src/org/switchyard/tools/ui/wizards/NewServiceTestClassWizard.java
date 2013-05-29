@@ -84,10 +84,10 @@ public class NewServiceTestClassWizard extends BasicNewResourceWizard {
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error creating bean service class.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error creating test class.",
                                 realException));
             }
-            MessageDialog.openError(getShell(), "Error Creating Bean Service", realException.getMessage());
+            MessageDialog.openError(getShell(), "Error Creating Test Class", realException.getMessage());
             if (!_newClassPage.getModifiedResource().exists()) {
                 return false;
             }

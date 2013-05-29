@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="switchYardComponent" name="SwitchYardComponent" schema="schema/switchYardComponent.exsd"/>
    <extension-point id="repositorySupport" name="RepositorySupport" schema="schema/repositorySupport.exsd"/>
+   <extension-point id="switchYardTestMixIn" name="switchYardTestMixIn" schema="schema/switchYardTestMixIn.exsd"/>
    <extension
          point="org.eclipse.ui.newWizards">
       <category
@@ -36,8 +37,8 @@
             descriptionImage="icons/switchyard_logo_200px.png"
             icon="icons/switchyard_icon_16px.png"
             id="org.switchyard.tools.ui.wizards.NewServiceTestWizard"
-            name="SwitchYard Service Test">
-         <description>Create a new SwitchYard service test.</description>
+            name="SwitchYard Test">
+         <description>Create a new SwitchYard test case.</description>
       </wizard>
       <wizard
             category="org.switchyard.tools.ui"
@@ -919,6 +920,65 @@
            <scope>test</scope>
         </dependency>
      </component>
+  </extension>
+  <extension
+        point="org.switchyard.tools.ui.switchYardTestMixIn">
+     <switchYardTestMixIn
+           componentId="org.switchyard:switchyard-runtime"
+           description="%mixin.cdi.description"
+           mixInClass="org.switchyard.component.test.mixins.cdi.CDIMixIn"
+           name="%mixin.cdi.name">
+     </switchYardTestMixIn>
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-http"
+           description="%mixin.http.description"
+           mixInClass="org.switchyard.component.test.mixins.http.HTTPMixIn"
+           name="%mixin.http.name">
+     </switchYardTestMixIn>
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-bpm"
+           description="%mixin.bpm.description"
+           mixInClass="org.switchyard.component.test.mixins.bpm.BPMMixIn"
+           name="%mixin.bpm.name">
+     </switchYardTestMixIn>
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-smooks"
+           description="%mixin.smooks.description"
+           mixInClass="org.switchyard.component.test.mixins.smooks.SmooksMixIn"
+           name="%mixin.smooks.name">
+     </switchYardTestMixIn>
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-jca"
+           description="%mixin.transaction.description"
+           mixInClass="org.switchyard.component.test.mixins.transaction.TransactionMixIn"
+           name="%mixin.transaction.name">
+     </switchYardTestMixIn>
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-jca"
+           description="%mixin.jca.description"
+           mixInClass="org.switchyard.component.test.mixins.jca.JCAMixIn"
+           name="%mixin.jca.name">
+     </switchYardTestMixIn>
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-naming"
+           description="%mixin.naming.description"
+           mixInClass="org.switchyard.component.test.mixins.naming.NamingMixIn"
+           name="%mixin.naming.name">
+     </switchYardTestMixIn>
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-hornetq"
+           description="%mixin.hornetq.description"
+           mixInClass="org.switchyard.component.test.mixins.hornetq.HornetQMixIn"
+           name="%mixin.hornetq.name">
+     </switchYardTestMixIn>
+     <!-- not currently provided by tooling
+     <switchYardTestMixIn
+           componentId="org.switchyard.components:switchyard-component-test-mixin-amqp"
+           description="%mixin.ampq.description"
+           mixInClass="org.switchyard.component.test.mixins.amqp.AMQPMixIn"
+           name="%mixin.amqp.name">
+     </switchYardTestMixIn>
+     -->
   </extension>
   <extension
         point="org.switchyard.tools.ui.repositorySupport">

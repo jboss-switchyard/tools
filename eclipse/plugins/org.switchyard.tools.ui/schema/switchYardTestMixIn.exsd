@@ -3,10 +3,10 @@
 <schema targetNamespace="org.switchyard.tools.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.switchyard.tools.ui" id="switchYardComponent" name="SwitchYardComponent"/>
+         <meta.schema plugin="org.switchyard.tools.ui" id="switchYardTestMixIn" name="switchYardTestMixIn"/>
       </appinfo>
       <documentation>
-         This extension point is used for contributing SwitchYard component types with the tooling.
+         [Enter description of this extension point.]
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <choice minOccurs="1" maxOccurs="unbounded">
-            <element ref="component"/>
+            <element ref="switchYardTestMixIn"/>
          </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,100 +47,40 @@
       </complexType>
    </element>
 
-   <element name="component">
+   <element name="switchYardTestMixIn">
       <complexType>
-         <sequence>
-            <element ref="description" minOccurs="0" maxOccurs="1"/>
-            <element ref="dependency" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
+         <attribute name="mixInClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of MixIn class to be included in SwitchYardTestCaseConfig.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="componentId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ID of the switchYardComponent extension which provides support for this mix-in.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.switchyard.tools.ui.switchYardComponent/component/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  The text to display for this component.
+                  Display name for this mix-in.
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="id" type="string" use="required">
+         <attribute name="description" type="string">
             <annotation>
                <documentation>
-                  the ID used for referencing this component.
+                  An optional description for this mix-in.
                </documentation>
             </annotation>
-         </attribute>
-         <attribute name="scannerClass" type="string">
-            <annotation>
-               <documentation>
-                  The name of a scanner class that should be added to the SwitchYard configuration plugin.
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="category">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-            <simpleType>
-               <restriction base="string">
-                  <enumeration value="implementation">
-                  </enumeration>
-                  <enumeration value="gateway">
-                  </enumeration>
-                  <enumeration value="test">
-                  </enumeration>
-               </restriction>
-            </simpleType>
          </attribute>
       </complexType>
-   </element>
-
-   <element name="dependency">
-      <annotation>
-         <documentation>
-            Represents a required SwitchYard dependency for the component.
-         </documentation>
-      </annotation>
-      <complexType>
-         <choice>
-            <sequence>
-               <element ref="artifactId"/>
-               <element ref="groupId"/>
-               <element ref="scope"/>
-            </sequence>
-            <sequence>
-               <element ref="groupId"/>
-               <element ref="artifactId"/>
-               <element ref="scope"/>
-            </sequence>
-         </choice>
-      </complexType>
-   </element>
-
-   <element name="artifactId" type="string">
-      <annotation>
-         <documentation>
-            The Maven artifactId for the dependency.
-         </documentation>
-      </annotation>
-   </element>
-
-   <element name="groupId" type="string">
-      <annotation>
-         <documentation>
-            The Maven groupId for the dependency.
-         </documentation>
-      </annotation>
-   </element>
-
-   <element name="scope" type="string">
-      <annotation>
-         <documentation>
-            The Maven scope for the dependency.
-         </documentation>
-      </annotation>
-   </element>
-
-   <element name="description" type="string">
    </element>
 
    <annotation>

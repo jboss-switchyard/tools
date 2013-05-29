@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: SwitchYard Tools UI
 Bundle-SymbolicName: org.switchyard.tools.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
 Bundle-Activator: org.switchyard.tools.ui.Activator
 Bundle-Vendor: www.jboss.org
 Require-Bundle: org.eclipse.ui,

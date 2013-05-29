@@ -10,8 +10,6 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.operations;
 
-import java.util.Collections;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -19,7 +17,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.switchyard.tools.ui.Activator;
-import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
 
 /**
@@ -40,9 +37,8 @@ public class CreateServiceTestOperation extends AbstractSwitchYardProjectOperati
      * @param uiInfo adaptable for UI Shell, may be null.
      */
     public CreateServiceTestOperation(NewServiceTestClassWizardPage serviceTestClassPage, IAdaptable uiInfo) {
-        super(null, Collections
-                .singleton(SwitchYardComponentExtensionManager.instance().getRuntimeComponentExtension()), false,
-                "Creating new SwitchYard service test.", uiInfo);
+        super(null, serviceTestClassPage.getSelectedMixInComponents(), false, "Creating new SwitchYard service test.",
+                uiInfo);
         _serviceTestClassPage = serviceTestClassPage;
     }
 
