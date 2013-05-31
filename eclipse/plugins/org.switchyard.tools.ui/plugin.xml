@@ -1290,4 +1290,11 @@
 	      class="org.switchyard.tools.ui.actions.OpenShiftProjectTester">
 	    </propertyTester>
 	  </extension>
+ <extension
+       point="org.jboss.tools.cdi.core.cdiextensions">
+    <cdiextension
+          class="org.switchyard.tools.ui.cdi.SwitchYardCDIExtension"
+          runtime="org.switchyard.component.bean.SwitchYardCDIServiceDiscovery">
+    </cdiextension>
+ </extension>
 </plugin>
