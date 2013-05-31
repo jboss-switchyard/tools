@@ -477,7 +477,9 @@ public class SecurityInstanceTable extends Composite {
      * @param securities set the incoming security objects
      */
     public void setSecurity(SecuritiesType securities) {
-        _propertyTreeTable.setInput(securities.getSecurity());
+        if (securities != null) {
+            _propertyTreeTable.setInput(securities.getSecurity());
+        }
         updateSecurityTypeButtons();
     }
 

@@ -274,17 +274,19 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         if (parent != null && parent instanceof SwitchYardType) {
             SwitchYardType root = (SwitchYardType) parent;
             DomainType domain = root.getDomain();
-            SecuritiesType securities = domain.getSecurities();
-            if (securities != null) {
-                Iterator<SecurityType> securityTypes = securities.getSecurity().iterator();
-                while (securityTypes.hasNext()) {
-                    SecurityType security = securityTypes.next();
-                    String name = "default";
-                    if (security.getName() != null) {
-                        name = security.getName();
+            if (domain != null) {
+                SecuritiesType securities = domain.getSecurities();
+                if (securities != null) {
+                    Iterator<SecurityType> securityTypes = securities.getSecurity().iterator();
+                    while (securityTypes.hasNext()) {
+                        SecurityType security = securityTypes.next();
+                        String name = "default";
+                        if (security.getName() != null) {
+                            name = security.getName();
+                        }
+                        _securityCombo.add(name);
+                        _securityCombo.setData(name, security);
                     }
-                    _securityCombo.add(name);
-                    _securityCombo.setData(name, security);
                 }
             }
         }
