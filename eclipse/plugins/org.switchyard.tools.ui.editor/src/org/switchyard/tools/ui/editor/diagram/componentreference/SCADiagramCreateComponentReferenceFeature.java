@@ -13,7 +13,10 @@
 package org.switchyard.tools.ui.editor.diagram.componentreference;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.ICreateContext;
+import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -75,7 +78,13 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
         component.getReference().add(newReference);
 
         // do the add
-        addGraphicalRepresentation(context, newReference);
+        final IUpdateContext updateContext = new UpdateContext(context.getTargetContainer());
+        final IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
+        if (updateFeature.updateNeeded(updateContext).toBoolean()) {
+            // need to check otherwise, if no work is done, we'll nuke the
+            // previous item on the undo stack
+            updateFeature.update(updateContext);
+        }
 
         // activate direct editing after object creation
         getFeatureProvider().getDirectEditingInfo().setActive(true);

@@ -103,24 +103,26 @@ public class SCADiagramLayoutComponentFeature extends AbstractLayoutFeature {
                     anythingChanged = true;
                 }
             } else if (ga instanceof RoundedRectangle) {
-                if (minWidth != size.getWidth() || minHeight != size.getHeight()) {
-                    RoundedRectangle rt = (RoundedRectangle) ga;
-                    rt.setX(StyleUtil.COMPONENT_EDGE);
-                    rt.setY(StyleUtil.COMPONENT_EDGE);
-                    rt.setHeight(minHeight);
-                    rt.setWidth(minWidth);
-                    // make sure the references are on the edge
-                    final int serviceX = StyleUtil.COMPONENT_EDGE - 9;
-                    final int referenceX = containerGa.getWidth() - StyleUtil.COMPONENT_EDGE - 11;
-                    for (Shape child : containerShape.getChildren()) {
-                        Object bo = getBusinessObjectForPictogramElement(child);
-                        if (bo instanceof ComponentReference) {
-                            GraphicsAlgorithm childGa = child.getGraphicsAlgorithm();
-                            childGa.setX(referenceX);
-                        } else if (bo instanceof ComponentService) {
-                            GraphicsAlgorithm childGa = child.getGraphicsAlgorithm();
-                            childGa.setX(serviceX);
-                        }
+                RoundedRectangle rt = (RoundedRectangle) ga;
+                rt.setX(StyleUtil.COMPONENT_EDGE);
+                rt.setY(StyleUtil.COMPONENT_EDGE);
+                rt.setHeight(minHeight);
+                rt.setWidth(minWidth);
+                // make sure the references are on the edge
+                final int serviceX = StyleUtil.COMPONENT_EDGE - 10;
+                final int referenceX = containerGa.getWidth() - StyleUtil.COMPONENT_EDGE - 10;
+                for (Shape child : containerShape.getChildren()) {
+                    Object bo = getBusinessObjectForPictogramElement(child);
+                    if (bo instanceof ComponentReference) {
+                        GraphicsAlgorithm childGa = child.getGraphicsAlgorithm();
+                        childGa.setX(referenceX);
+                        childGa.setY(StyleUtil.COMPONENT_EDGE + 10 + component.getReference().indexOf(bo)
+                                * StyleUtil.COMPONENT_CHILD_V_SPACING);
+                    } else if (bo instanceof ComponentService) {
+                        GraphicsAlgorithm childGa = child.getGraphicsAlgorithm();
+                        childGa.setX(serviceX);
+                        childGa.setY(StyleUtil.COMPONENT_EDGE + 10 + component.getService().indexOf(bo)
+                                * StyleUtil.COMPONENT_CHILD_V_SPACING);
                     }
                     anythingChanged = true;
                 }

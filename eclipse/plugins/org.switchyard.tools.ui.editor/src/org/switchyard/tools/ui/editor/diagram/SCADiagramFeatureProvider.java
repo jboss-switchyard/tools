@@ -42,12 +42,14 @@ import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
+import org.eclipse.graphiti.features.context.impl.LayoutContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.ui.features.DefaultDeleteFeature;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
@@ -382,6 +384,29 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             Object bo = getBusinessObjectForPictogramElement(pe);
             if (bo instanceof Composite) {
                 return new SCADiagramDeleteCompositeFeature(this);
+            } else {
+                return new DefaultDeleteFeature(this) {
+                    private PictogramElement _parentElement;
+
+                    @Override
+                    public void preDelete(IDeleteContext context) {
+                        super.preDelete(context);
+                        PictogramElement pe = context.getPictogramElement();
+                        if (pe instanceof Shape) {
+                            _parentElement = ((Shape) pe).getContainer();
+                        } else {
+                            _parentElement = null;
+                        }
+                    }
+
+                    @Override
+                    public void postDelete(IDeleteContext context) {
+                        super.postDelete(context);
+                        if (hasDoneChanges() && _parentElement != null) {
+                            layoutIfPossible(new LayoutContext(_parentElement));
+                        }
+                    }
+                };
             }
         }
         return new ReadOnlyDeleteFeature(this);
