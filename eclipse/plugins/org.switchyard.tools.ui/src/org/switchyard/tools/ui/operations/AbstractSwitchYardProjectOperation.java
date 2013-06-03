@@ -51,6 +51,13 @@ import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
  */
 public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRunnable {
 
+    private final static String BEANS_XML_CONTENT = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+            + "<beans xmlns=\"http://java.sun.com/xml/ns/javaee\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+            + "    xsi:schemaLocation=\"\n"
+            + "      http://java.sun.com/xml/ns/javaee \n"
+            + "      http://java.sun.com/xml/ns/javaee/beans_1_0.xsd\">\n"
+            + "</beans>\n";
+    private final static byte[] BEANS_XML_BYTES;
     private ISwitchYardProjectWorkingCopy _workingCopy;
     private String _switchYardVersion;
     private Collection<ISwitchYardComponentExtension> _components;
@@ -219,7 +226,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             // TODO: find the first resource root that would include a beans.xml
             // file
             IFile beansIFile = project.getFolder(resourceLocations[0]).getFile("META-INF/beans.xml");
-            CreateFileOperation op = new CreateFileOperation(beansIFile, null, null, "Creating beans.xml file.");
+            CreateFileOperation op = new CreateFileOperation(beansIFile, null, new ByteArrayInputStream(BEANS_XML_BYTES), "Creating beans.xml file.");
             op.execute(monitor, _uiInfo);
         }
     }
@@ -294,4 +301,13 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
         }
     }
 
+    static {
+        byte[] bytes = new byte[0];
+        try {
+            bytes = BEANS_XML_CONTENT.getBytes("UTF-8");
+        } catch (Exception e) {
+            bytes = BEANS_XML_CONTENT.getBytes();
+        }
+        BEANS_XML_BYTES = bytes;
+    }
 }

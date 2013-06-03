@@ -14,6 +14,7 @@ import org.apache.maven.plugin.MojoExecution;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.m2e.core.lifecyclemapping.model.IPluginExecutionMetadata;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.project.configurator.AbstractBuildParticipant;
@@ -22,6 +23,7 @@ import org.eclipse.m2e.core.project.configurator.ILifecycleMappingConfiguration;
 import org.eclipse.m2e.core.project.configurator.MojoExecutionKey;
 import org.eclipse.m2e.core.project.configurator.ProjectConfigurationRequest;
 import org.eclipse.m2e.wtp.ResourceCleaner;
+import org.eclipse.m2e.wtp.WTPProjectsUtil;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IPreset;
@@ -77,6 +79,9 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
                 // Remove any unwanted MANIFEST.MF the Facet installation has
                 // created
                 fileCleaner.cleanUp();
+                // remove M2E classpath container
+                WTPProjectsUtil.setNonDependencyAttributeToContainer(request.getProject(), new SubProgressMonitor(
+                        monitor, 1));
             }
         }
     }
