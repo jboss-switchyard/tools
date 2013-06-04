@@ -11,7 +11,10 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.bpmn2.editor;
 
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ReadonlyTextObjectEditor;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmDataAssociationDetailComposite;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -34,7 +37,8 @@ public class InputOutputAssociationDetailComposite extends JbpmDataAssociationDe
     }
 
     @Override
-    protected DataInputOutputDetailComposite createDataInputOutputDetailComposite(EObject be, Composite parent, int style) {
+    protected DataInputOutputDetailComposite createDataInputOutputDetailComposite(EObject be, Composite parent,
+            int style) {
         return new MyDataInputOutputDetailComposite(parent, style);
     }
 
@@ -50,7 +54,20 @@ public class InputOutputAssociationDetailComposite extends JbpmDataAssociationDe
 
         @Override
         protected boolean isModelObjectEnabled(EClass eclass, EStructuralFeature feature) {
-            return false;
+            return "name".equals(feature.getName());
+        }
+
+        @Override
+        protected void bindAttribute(Composite parent, EObject object, EAttribute attribute, String label) {
+            if ("name".equals(attribute.getName())) {
+                if (label == null) {
+                    label = getPropertiesProvider().getLabel(object, attribute);
+                }
+                ObjectEditor editor = new ReadonlyTextObjectEditor(this, object, attribute);
+                editor.createControl(parent, label);
+                return;
+            }
+            super.bindAttribute(parent, object, attribute, label);
         }
 
     }

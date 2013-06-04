@@ -27,7 +27,7 @@
             description="This task represents the invocation of a SwitchYard service."
             featureContainer="org.switchyard.tools.ui.bpmn2.editor.SwitchYardCustomTaskFeatureContainer"
             id="org.switchyard.tools.ui.bpmn2.switchYardCustomTask"
-            name="SwitchYard Dynamic Service Task"
+            name="SwitchYard Service Task"
             icon="switchyard_task.png"
             propertyTabs="org.switchyard.tools.ui.bpmn2.switchYardCustomTask.tab"
             category="SwitchYard"
