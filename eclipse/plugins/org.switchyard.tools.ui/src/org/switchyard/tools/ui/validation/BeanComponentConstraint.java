@@ -77,6 +77,11 @@ public class BeanComponentConstraint extends AbstractModelConstraint {
         final IJavaProject javaProject = adapter.getJavaProject();
         try {
             final IType javaClass = javaProject.findType(className);
+            if (javaClass == null) {
+                return ConstraintStatus.createStatus(ctx, component, null, BeanUnresolvableClass.getSeverity(),
+                        BeanUnresolvableClass.ordinal(), BeanUnresolvableClass.getMessage(), className,
+                        component.getName());
+            }
             final List<IStatus> statuses = new ArrayList<IStatus>();
             final JavaTypeScanner scanner = new JavaTypeScanner(javaClass);
             adapter.addDependency(javaClass.getResource());
@@ -119,9 +124,9 @@ public class BeanComponentConstraint extends AbstractModelConstraint {
                      */
                     if (!EcoreUtil.equals(javaContract.getInterface(), switchYardContract.getInterface())) {
                         // interface mismatch
-                        statuses.add(ConstraintStatus.createStatus(ctx, switchYardContract, null, mismatchProblem.getSeverity(),
-                                mismatchProblem.ordinal(), mismatchProblem.getMessage(), javaContract.getName(),
-                                component.getName()));
+                        statuses.add(ConstraintStatus.createStatus(ctx, switchYardContract, null,
+                                mismatchProblem.getSeverity(), mismatchProblem.ordinal(), mismatchProblem.getMessage(),
+                                javaContract.getName(), component.getName()));
                     }
                     // else no problem
                     switchIt.remove();

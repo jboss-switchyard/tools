@@ -23,6 +23,7 @@ import org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher;
 import org.eclipse.emf.compare.match.eobject.internal.ReflectiveWeightProvider;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
@@ -79,6 +80,12 @@ public class SwitchYardMatchEngineFactory implements Factory {
                             return 8;
                         }
                         return super.getWeight(feature);
+                    }
+
+                    @Override
+                    protected boolean irrelevant(EStructuralFeature feat) {
+                        return !(feat.isTransient() && ExtendedMetaData.INSTANCE.getGroup(feat) != null)
+                                && (super.irrelevant(feat) || ExtendedMetaData.INSTANCE.getFeatureKind(feat) == ExtendedMetaData.GROUP_FEATURE);
                     }
                 }).build();
         IEObjectMatcher matcher = new IdentifierEObjectMatcher(new ProximityEObjectMatcher(meter));

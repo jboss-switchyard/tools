@@ -17,7 +17,7 @@ import org.eclipse.emf.compare.diff.IDiffEngine;
 import org.eclipse.emf.compare.diff.IDiffProcessor;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
 /**
  * SwitchYardDiffEngine
@@ -42,14 +42,15 @@ public class SwitchYardDiffEngine extends DefaultDiffEngine implements IDiffEngi
         return new FeatureFilter() {
             @Override
             protected boolean isIgnoredAttribute(EAttribute attribute) {
-                return !attribute.isTransient()
-                        && (super.isIgnoredAttribute(attribute) || FeatureMapUtil.isFeatureMap(attribute));
+                return !(attribute.isTransient() && ExtendedMetaData.INSTANCE.getGroup(attribute) != null)
+                        && (super.isIgnoredAttribute(attribute) || ExtendedMetaData.INSTANCE.getFeatureKind(attribute) == ExtendedMetaData.GROUP_FEATURE);
             }
 
             @Override
             protected boolean isIgnoredReference(Match match, EReference reference) {
-                return !reference.isTransient()
-                        && (super.isIgnoredReference(match, reference) || FeatureMapUtil.isFeatureMap(reference));
+                return !(reference.isTransient() && ExtendedMetaData.INSTANCE.getGroup(reference) != null)
+                        && (super.isIgnoredReference(match, reference) || ExtendedMetaData.INSTANCE
+                                .getFeatureKind(reference) == ExtendedMetaData.GROUP_FEATURE);
             }
         };
     }

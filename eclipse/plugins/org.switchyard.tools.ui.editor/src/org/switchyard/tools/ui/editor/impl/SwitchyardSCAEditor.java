@@ -885,10 +885,13 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 for (Notification notification : event.getNotifications()) {
                     if (notification.getNotifier() instanceof EObject) {
                         final EObject notifier = (EObject) notification.getNotifier();
-                        if (notifier.eResource() != null && event.getEditingDomain().isReadOnly(notifier.eResource())
-                                && objectChanges.contains(notifier)) {
-                            throw new RollbackException(new Status(Status.CANCEL, Activator.PLUGIN_ID,
-                                    "Cannot modify generated configuration."));
+                        if (notifier.eResource() != null && event.getEditingDomain().isReadOnly(notifier.eResource())) {
+                            for (Map.Entry<EObject, EList<FeatureChange>> change : objectChanges) {
+                                if (change.getKey() == notifier) {
+                                    throw new RollbackException(new Status(Status.CANCEL, Activator.PLUGIN_ID,
+                                            "Cannot modify generated configuration."));
+                                }
+                            }
                         }
                     }
                 }
