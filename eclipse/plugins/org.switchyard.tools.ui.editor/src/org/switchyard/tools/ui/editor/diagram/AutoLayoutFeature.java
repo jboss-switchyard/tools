@@ -19,7 +19,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.IRemoveContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
+import org.eclipse.graphiti.features.context.impl.CustomContext;
+import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
@@ -247,6 +252,42 @@ public class AutoLayoutFeature extends AbstractCustomFeature {
             }
         });
         return components;
+    }
+
+    /**
+     * RecreateDiagramFeature
+     * <p/>
+     * Recreate and layout the entire diagram.
+     */
+    public static final class RecreateDiagramFeature extends AutoLayoutFeature {
+
+        /**
+         * Create a new RecreateDiagramFeature.
+         * 
+         * @param fp the feature provider.
+         */
+        public RecreateDiagramFeature(IFeatureProvider fp) {
+            super(fp);
+        }
+
+        @Override
+        public void execute(ICustomContext context) {
+            final ContainerShape shape = (ContainerShape) context.getPictogramElements()[0];
+            final Composite composite = (Composite) getBusinessObjectForPictogramElement(shape);
+            final IRemoveContext removeContext = new RemoveContext(shape);
+            final IRemoveFeature removeFeature = new CascadingRemoveFeature(getFeatureProvider());
+            if (removeFeature.canExecute(removeContext)) {
+                removeFeature.execute(removeContext);
+                final AddContext addContext = new AddContext();
+                addContext.setTargetContainer(getDiagram());
+                addContext.setNewObject(composite);
+                final PictogramElement newCompositeShape = getFeatureProvider().addIfPossible(addContext);
+                super.execute(new CustomContext(new PictogramElement[] {newCompositeShape }));
+            } else {
+                super.execute(context);
+            }
+        }
+        
     }
 
     private static final class ConnectionRelationship extends SimpleRelationship {

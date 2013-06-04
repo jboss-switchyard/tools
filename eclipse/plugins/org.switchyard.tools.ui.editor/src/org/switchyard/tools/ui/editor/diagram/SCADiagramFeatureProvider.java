@@ -67,6 +67,7 @@ import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
+import org.switchyard.tools.ui.editor.diagram.AutoLayoutFeature.RecreateDiagramFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.component.AbstractComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
@@ -350,7 +351,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             } else if (bo instanceof ComponentReference) {
                 features.add(new SCADiagramCustomPromoteReferenceFeature(this));
             } else if (bo instanceof Composite) {
-                features.add(new AutoLayoutFeature(this));
+                features.add(new RecreateDiagramFeature(this));
                 features.add(new CustomAddTransformFeature(this));
             }
             if (bo instanceof Contract) {

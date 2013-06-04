@@ -76,6 +76,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.diagram.AutoLayoutFeature.RecreateDiagramFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.component.AbstractComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
@@ -628,7 +629,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     new ContextButtonEntry(new SynchronizeGeneratedModelFeature(getFeatureProvider()),
                             new CustomContext(new PictogramElement[] {context.getPictogramElement() })));
             
-            AutoLayoutFeature autoLayout = new AutoLayoutFeature(getFeatureProvider());
+            AutoLayoutFeature autoLayout = new RecreateDiagramFeature(getFeatureProvider());
             ContextButtonEntry autoLayoutButton = new ContextButtonEntry(autoLayout, customContext);
             data.getDomainSpecificContextButtons().add(autoLayoutButton);
 
