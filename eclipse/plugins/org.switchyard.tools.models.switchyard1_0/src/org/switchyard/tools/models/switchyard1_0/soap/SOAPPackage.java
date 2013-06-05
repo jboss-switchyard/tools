@@ -248,13 +248,22 @@ public interface SOAPPackage extends EPackage {
     int DOCUMENT_ROOT__INTERCEPTOR = 6;
 
     /**
+     * The feature id for the '<em><b>Mtom</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__MTOM = 7;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 7;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 8;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
@@ -447,13 +456,22 @@ public interface SOAPPackage extends EPackage {
     int SOAP_BINDING_TYPE__OUT_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
     /**
+     * The feature id for the '<em><b>Mtom</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SOAP_BINDING_TYPE__MTOM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+
+    /**
      * The number of structural features of the '<em>Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl <em>Interceptor Type</em>}' class.
@@ -548,6 +566,70 @@ public interface SOAPPackage extends EPackage {
     int INTERCEPTORS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MtomTypeImpl <em>Mtom Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.MtomTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getMtomType()
+     * @generated
+     */
+    int MTOM_TYPE = 6;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MTOM_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MTOM_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MTOM_TYPE__ENABLED = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Threshold</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MTOM_TYPE__THRESHOLD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Xop Expand</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MTOM_TYPE__XOP_EXPAND = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Mtom Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MTOM_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -555,7 +637,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersType()
      * @generated
      */
-    int SOAP_HEADERS_TYPE = 6;
+    int SOAP_HEADERS_TYPE = 7;
 
     /**
      * The meta object id for the '<em>Soap Headers Type Object</em>' data type.
@@ -565,7 +647,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersTypeObject()
      * @generated
      */
-    int SOAP_HEADERS_TYPE_OBJECT = 7;
+    int SOAP_HEADERS_TYPE_OBJECT = 8;
 
     /**
      * The meta object id for the '<em>Wsdl Port Type</em>' data type.
@@ -575,7 +657,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getWsdlPortType()
      * @generated
      */
-    int WSDL_PORT_TYPE = 8;
+    int WSDL_PORT_TYPE = 9;
 
 
     /**
@@ -708,6 +790,17 @@ public interface SOAPPackage extends EPackage {
     EReference getDocumentRoot_Interceptor();
 
     /**
+     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom <em>Mtom</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Mtom</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Mtom();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType <em>Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -806,6 +899,17 @@ public interface SOAPPackage extends EPackage {
     EReference getSOAPBindingType_OutInterceptors();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Mtom</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom()
+     * @see #getSOAPBindingType()
+     * @generated
+     */
+    EReference getSOAPBindingType_Mtom();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType <em>Interceptor Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -846,6 +950,49 @@ public interface SOAPPackage extends EPackage {
      * @generated
      */
     EReference getInterceptorsType_Interceptor();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType <em>Mtom Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Mtom Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.MtomType
+     * @generated
+     */
+    EClass getMtomType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isEnabled <em>Enabled</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Enabled</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.MtomType#isEnabled()
+     * @see #getMtomType()
+     * @generated
+     */
+    EAttribute getMtomType_Enabled();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#getThreshold <em>Threshold</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Threshold</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.MtomType#getThreshold()
+     * @see #getMtomType()
+     * @generated
+     */
+    EAttribute getMtomType_Threshold();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isXopExpand <em>Xop Expand</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Xop Expand</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.MtomType#isXopExpand()
+     * @see #getMtomType()
+     * @generated
+     */
+    EAttribute getMtomType_XopExpand();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}'.
@@ -1006,6 +1153,14 @@ public interface SOAPPackage extends EPackage {
         EReference DOCUMENT_ROOT__INTERCEPTOR = eINSTANCE.getDocumentRoot_Interceptor();
 
         /**
+         * The meta object literal for the '<em><b>Mtom</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__MTOM = eINSTANCE.getDocumentRoot_Mtom();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1080,6 +1235,14 @@ public interface SOAPPackage extends EPackage {
         EReference SOAP_BINDING_TYPE__OUT_INTERCEPTORS = eINSTANCE.getSOAPBindingType_OutInterceptors();
 
         /**
+         * The meta object literal for the '<em><b>Mtom</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SOAP_BINDING_TYPE__MTOM = eINSTANCE.getSOAPBindingType_Mtom();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl <em>Interceptor Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1114,6 +1277,40 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EReference INTERCEPTORS_TYPE__INTERCEPTOR = eINSTANCE.getInterceptorsType_Interceptor();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MtomTypeImpl <em>Mtom Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.MtomTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getMtomType()
+         * @generated
+         */
+        EClass MTOM_TYPE = eINSTANCE.getMtomType();
+
+        /**
+         * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MTOM_TYPE__ENABLED = eINSTANCE.getMtomType_Enabled();
+
+        /**
+         * The meta object literal for the '<em><b>Threshold</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MTOM_TYPE__THRESHOLD = eINSTANCE.getMtomType_Threshold();
+
+        /**
+         * The meta object literal for the '<em><b>Xop Expand</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MTOM_TYPE__XOP_EXPAND = eINSTANCE.getMtomType_XopExpand();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.

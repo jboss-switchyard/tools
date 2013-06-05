@@ -47,6 +47,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
@@ -88,6 +89,9 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
     private String _endpointAddress = null;
     private Text _securityActionText = null;
     private String _securityAction = null;
+    private Button _enableMtomCheckbox = null;
+    private Button _enableXopExpandCheckbox = null;
+    private Button _disableMtomCheckbox =  null;
 
     /**
      * Constructor.
@@ -225,6 +229,26 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         saAddrGD.horizontalSpan = 2;
         _securityActionText.setLayoutData(saAddrGD);
         
+        Composite mtomComposite = new Composite(composite, SWT.NONE);
+        mtomComposite.setLayout(new GridLayout(3, false));
+        GridData mtomCompositeGD = new GridData();
+        mtomCompositeGD.horizontalSpan = 3;
+        mtomCompositeGD.horizontalIndent = -5;
+        mtomCompositeGD.verticalIndent = -5;
+        mtomComposite.setLayoutData(mtomCompositeGD);
+        
+        _enableMtomCheckbox = createCheckbox(mtomComposite, "MTom");
+        GridData enableMtomChxGD = new GridData();
+        _enableMtomCheckbox.setLayoutData(enableMtomChxGD);
+
+        _disableMtomCheckbox = createCheckbox(mtomComposite, "Disable");
+        GridData disableMtomChxGD = new GridData();
+        _disableMtomCheckbox.setLayoutData(disableMtomChxGD);
+
+        _enableXopExpandCheckbox = createCheckbox(mtomComposite, "xopExpand");
+        GridData enableXopExpandChxGD = new GridData();
+        _enableXopExpandCheckbox.setLayoutData(enableXopExpandChxGD);
+
         return composite;
     }
 
@@ -265,6 +289,20 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_securityActionText)) {
                 final String securityAction = _securityActionText.getText();
                 updateFeature(_binding, "securityAction", securityAction);
+            } else if (control.equals(_enableMtomCheckbox)) {
+                _disableMtomCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
+                _enableXopExpandCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
+                if (!_enableMtomCheckbox.getSelection()) {
+                    _disableMtomCheckbox.setSelection(false);
+                    _enableXopExpandCheckbox.setSelection(false);
+                    removeMTomFeature();
+                } else {
+                    updateMTomFeature(null, null);
+                }
+            } else if (control.equals(_disableMtomCheckbox)) {
+                updateMTomFeature("enabled", !_disableMtomCheckbox.getSelection());
+            } else if (control.equals(_enableXopExpandCheckbox)) {
+                updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection());
             } else {
                 super.handleModify(control);
             }
@@ -306,6 +344,29 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 _endpointAddressText.setText(_binding.getEndpointAddress());
             } else if (control.equals(_securityActionText)) {
                 _securityActionText.setText(_binding.getSecurityAction());
+            } else if (control.equals(_enableMtomCheckbox)) {
+                _enableMtomCheckbox.setSelection(_binding.getMtom() != null);
+                if (_binding.getMtom() != null) {
+                    _enableXopExpandCheckbox.setEnabled(true);
+                    _disableMtomCheckbox.setEnabled(true);
+                    if (_binding.getMtom().isEnabled()) {
+                        _disableMtomCheckbox.setSelection(!_binding.getMtom().isEnabled());
+                        if (_binding.getMtom().isXopExpand()) {
+                            _enableXopExpandCheckbox.setSelection(_binding.getMtom().isXopExpand());
+                        }
+                    }
+                } else {
+                    _enableXopExpandCheckbox.setEnabled(false);
+                    _disableMtomCheckbox.setEnabled(false);
+                }
+            } else if (control.equals(_disableMtomCheckbox)) {
+                if (_binding.getMtom() != null) {
+                    _disableMtomCheckbox.setSelection(!_binding.getMtom().isEnabled());
+                }
+            } else if (control.equals(_enableXopExpandCheckbox)) {
+                if (_binding.getMtom() != null) {
+                    _enableXopExpandCheckbox.setSelection(!_binding.getMtom().isXopExpand());
+                }
             } else {
                 super.handleUndo(control);
             }
@@ -471,6 +532,18 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                     _securityActionText.setText("");
                 }
             }
+            if (_enableMtomCheckbox != null && !_enableMtomCheckbox.isDisposed()) {
+                _enableMtomCheckbox.setSelection(_binding.getMtom() != null);
+                if (_binding.getMtom() != null) {
+                    _enableXopExpandCheckbox.setEnabled(true);
+                    _disableMtomCheckbox.setEnabled(true);
+                    _disableMtomCheckbox.setSelection(!_binding.getMtom().isEnabled());
+                    _enableXopExpandCheckbox.setSelection(_binding.getMtom().isXopExpand());
+                } else {
+                    _enableXopExpandCheckbox.setEnabled(false);
+                    _disableMtomCheckbox.setEnabled(false);
+                }
+            }
             super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -573,11 +646,45 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             }
         }
     }
+    
+    class AddMTomOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getMtom() == null) {
+                MtomType mtomType = SOAPFactory.eINSTANCE.createMtomType();
+                setFeatureValue(_binding, "mtom", mtomType);
+            }
+        }
+    }
+
+    class RemoveMTomOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getMtom() != null) {
+                setFeatureValue(_binding, "mtom", null);
+            }
+        }
+    }
 
     protected void updateMessageComposerFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new MessageComposerOp());
         ops.add(new BasicOperation("messageComposer", featureId, value));
+        wrapOperation(ops);
+    }
+    
+    protected void updateMTomFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new AddMTomOp());
+        if (featureId != null) {
+            ops.add(new BasicOperation("mtom", featureId, value));
+        }
+        wrapOperation(ops);
+    }
+    
+    protected void removeMTomFeature() {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveMTomOp());
         wrapOperation(ops);
     }
 }

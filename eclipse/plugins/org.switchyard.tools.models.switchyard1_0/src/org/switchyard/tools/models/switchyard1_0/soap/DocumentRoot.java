@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getContextMapperSoap <em>Context Mapper Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMessageComposerSoap <em>Message Composer Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getInterceptor <em>Interceptor</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom <em>Mtom</em>}</li>
  * </ul>
  * </p>
  *
@@ -195,5 +196,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setInterceptor(InterceptorType value);
+
+    /**
+     * Returns the value of the '<em><b>Mtom</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Mtom</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Mtom</em>' reference.
+     * @see #setMtom(MtomType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_Mtom()
+     * @model upper="-2"
+     *        extendedMetaData="kind='element' name='mtom' namespace='##targetNamespace'"
+     * @generated
+     */
+    MtomType getMtom();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom <em>Mtom</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Mtom</em>' reference.
+     * @see #getMtom()
+     * @generated
+     */
+    void setMtom(MtomType value);
 
 } // DocumentRoot

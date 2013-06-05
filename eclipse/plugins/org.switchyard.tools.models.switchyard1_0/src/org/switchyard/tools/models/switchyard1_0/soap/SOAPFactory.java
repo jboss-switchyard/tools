@@ -80,6 +80,15 @@ public interface SOAPFactory extends EFactory {
     InterceptorsType createInterceptorsType();
 
     /**
+     * Returns a new object of class '<em>Mtom Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mtom Type</em>'.
+     * @generated
+     */
+    MtomType createMtomType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

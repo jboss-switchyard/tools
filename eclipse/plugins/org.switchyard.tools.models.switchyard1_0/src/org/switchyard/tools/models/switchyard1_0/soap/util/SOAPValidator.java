@@ -113,6 +113,8 @@ public class SOAPValidator extends EObjectValidator {
                 return validateInterceptorType((InterceptorType)value, diagnostics, context);
             case SOAPPackage.INTERCEPTORS_TYPE:
                 return validateInterceptorsType((InterceptorsType)value, diagnostics, context);
+            case SOAPPackage.MTOM_TYPE:
+                return validateMtomType((MtomType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return validateSoapHeadersType((SoapHeadersType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
@@ -176,6 +178,15 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateInterceptorsType(InterceptorsType interceptorsType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(interceptorsType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateMtomType(MtomType mtomType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(mtomType, diagnostics, context);
     }
 
     /**

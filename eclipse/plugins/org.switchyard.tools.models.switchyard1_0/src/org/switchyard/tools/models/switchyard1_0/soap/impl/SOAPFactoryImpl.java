@@ -35,7 +35,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
      */
     public static SOAPFactory init() {
         try {
-            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-soap:config:1.0"); 
+            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory(SOAPPackage.eNS_URI);
             if (theSOAPFactory != null) {
                 return theSOAPFactory;
             }
@@ -70,6 +70,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
             case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
             case SOAPPackage.INTERCEPTOR_TYPE: return createInterceptorType();
             case SOAPPackage.INTERCEPTORS_TYPE: return createInterceptorsType();
+            case SOAPPackage.MTOM_TYPE: return createMtomType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -171,6 +172,16 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public InterceptorsType createInterceptorsType() {
         InterceptorsTypeImpl interceptorsType = new InterceptorsTypeImpl();
         return interceptorsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MtomType createMtomType() {
+        MtomTypeImpl mtomType = new MtomTypeImpl();
+        return mtomType;
     }
 
     /**

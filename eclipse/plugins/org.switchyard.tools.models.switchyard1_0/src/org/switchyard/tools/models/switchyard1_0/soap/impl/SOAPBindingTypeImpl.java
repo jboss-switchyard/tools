@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType;
+import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
@@ -31,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getSecurityAction <em>Security Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getInInterceptors <em>In Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getOutInterceptors <em>Out Interceptors</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getMtom <em>Mtom</em>}</li>
  * </ul>
  * </p>
  *
@@ -176,6 +178,16 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * @ordered
      */
     protected InterceptorsType outInterceptors;
+
+    /**
+     * The cached value of the '{@link #getMtom() <em>Mtom</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMtom()
+     * @generated
+     * @ordered
+     */
+    protected MtomType mtom;
 
     /**
      * <!-- begin-user-doc -->
@@ -413,6 +425,49 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
+    public MtomType getMtom() {
+        return mtom;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMtom(MtomType newMtom, NotificationChain msgs) {
+        MtomType oldMtom = mtom;
+        mtom = newMtom;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__MTOM, oldMtom, newMtom);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMtom(MtomType newMtom) {
+        if (newMtom != mtom) {
+            NotificationChain msgs = null;
+            if (mtom != null)
+                msgs = ((InternalEObject)mtom).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__MTOM, null, msgs);
+            if (newMtom != null)
+                msgs = ((InternalEObject)newMtom).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__MTOM, null, msgs);
+            msgs = basicSetMtom(newMtom, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__MTOM, newMtom, newMtom));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -420,6 +475,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return basicSetInInterceptors(null, msgs);
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
                 return basicSetOutInterceptors(null, msgs);
+            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
+                return basicSetMtom(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -448,6 +505,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return getInInterceptors();
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
                 return getOutInterceptors();
+            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
+                return getMtom();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -483,6 +542,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
                 setOutInterceptors((InterceptorsType)newValue);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
+                setMtom((MtomType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -520,6 +582,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
                 setOutInterceptors((InterceptorsType)null);
                 return;
+            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
+                setMtom((MtomType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -548,6 +613,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return inInterceptors != null;
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
                 return outInterceptors != null;
+            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
+                return mtom != null;
         }
         return super.eIsSet(featureID);
     }

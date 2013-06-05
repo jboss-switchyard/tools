@@ -119,6 +119,13 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SOAPPackage.MTOM_TYPE: {
+                MtomType mtomType = (MtomType)theEObject;
+                T result = caseMtomType(mtomType);
+                if (result == null) result = caseCommonExtensionBase(mtomType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -210,6 +217,21 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseInterceptorsType(InterceptorsType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Mtom Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Mtom Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMtomType(MtomType object) {
         return null;
     }
 

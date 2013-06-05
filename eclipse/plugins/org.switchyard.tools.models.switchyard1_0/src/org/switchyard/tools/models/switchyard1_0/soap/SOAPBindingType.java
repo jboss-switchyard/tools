@@ -24,6 +24,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSecurityAction <em>Security Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getOutInterceptors <em>Out Interceptors</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}</li>
  * </ul>
  * </p>
  *
@@ -253,5 +254,32 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setOutInterceptors(InterceptorsType value);
+
+    /**
+     * Returns the value of the '<em><b>Mtom</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Mtom</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Mtom</em>' containment reference.
+     * @see #setMtom(MtomType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_Mtom()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='mtom' namespace='##targetNamespace'"
+     * @generated
+     */
+    MtomType getMtom();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Mtom</em>' containment reference.
+     * @see #getMtom()
+     * @generated
+     */
+    void setMtom(MtomType value);
 
 } // SOAPBindingType
