@@ -27,15 +27,15 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditP
 
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.MappingsType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.OutputsType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingsTypeItemProvider
+public class OutputsTypeItemProvider
     extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class MappingsTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsTypeItemProvider(AdapterFactory adapterFactory) {
+    public OutputsTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -80,7 +80,7 @@ public class MappingsTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BPMPackage.Literals.MAPPINGS_TYPE__MAPPING);
+            childrenFeatures.add(BPMPackage.Literals.OUTPUTS_TYPE__OUTPUT);
         }
         return childrenFeatures;
     }
@@ -99,14 +99,14 @@ public class MappingsTypeItemProvider
     }
 
     /**
-     * This returns MappingsType.gif.
+     * This returns OutputsType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingsType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/OutputsType"));
     }
 
     /**
@@ -117,7 +117,7 @@ public class MappingsTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_MappingsType_type");
+        return getString("_UI_OutputsType_type");
     }
 
     /**
@@ -131,8 +131,8 @@ public class MappingsTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(MappingsType.class)) {
-            case BPMPackage.MAPPINGS_TYPE__MAPPING:
+        switch (notification.getFeatureID(OutputsType.class)) {
+            case BPMPackage.OUTPUTS_TYPE__OUTPUT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -152,7 +152,7 @@ public class MappingsTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.MAPPINGS_TYPE__MAPPING,
+                (BPMPackage.Literals.OUTPUTS_TYPE__OUTPUT,
                  BPMFactory.eINSTANCE.createMappingType()));
     }
 

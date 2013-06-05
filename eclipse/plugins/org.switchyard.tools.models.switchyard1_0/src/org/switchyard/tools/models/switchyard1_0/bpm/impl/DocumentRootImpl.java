@@ -31,13 +31,15 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
-import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
@@ -60,15 +62,17 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getGlobal <em>Global</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getImplementationBpm <em>Implementation Bpm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getListener <em>Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getListeners <em>Listeners</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getLogger <em>Logger</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getLoggers <em>Loggers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getManifest <em>Manifest</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
@@ -307,8 +311,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType getGlobals() {
-        return (MappingsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS, true);
+    public MappingType getGlobal() {
+        return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL, true);
     }
 
     /**
@@ -316,7 +320,34 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetGlobals(MappingsType newGlobals, NotificationChain msgs) {
+    public NotificationChain basicSetGlobal(MappingType newGlobal, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL, newGlobal, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setGlobal(MappingType newGlobal) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL, newGlobal);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GlobalsType getGlobals() {
+        return (GlobalsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetGlobals(GlobalsType newGlobals, NotificationChain msgs) {
         return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS, newGlobals, msgs);
     }
 
@@ -325,7 +356,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setGlobals(MappingsType newGlobals) {
+    public void setGlobals(GlobalsType newGlobals) {
         ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS, newGlobals);
     }
 
@@ -361,8 +392,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType getInputs() {
-        return (MappingsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__INPUTS, true);
+    public MappingType getInput() {
+        return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__INPUT, true);
     }
 
     /**
@@ -370,7 +401,34 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetInputs(MappingsType newInputs, NotificationChain msgs) {
+    public NotificationChain basicSetInput(MappingType newInput, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__INPUT, newInput, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInput(MappingType newInput) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__INPUT, newInput);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InputsType getInputs() {
+        return (InputsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__INPUTS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetInputs(InputsType newInputs, NotificationChain msgs) {
         return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__INPUTS, newInputs, msgs);
     }
 
@@ -379,7 +437,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInputs(MappingsType newInputs) {
+    public void setInputs(InputsType newInputs) {
         ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__INPUTS, newInputs);
     }
 
@@ -523,8 +581,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingType getMapping() {
-        return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__MAPPING, true);
+    public MappingType getOutput() {
+        return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT, true);
     }
 
     /**
@@ -532,8 +590,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetMapping(MappingType newMapping, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping, msgs);
+    public NotificationChain basicSetOutput(MappingType newOutput, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT, newOutput, msgs);
     }
 
     /**
@@ -541,8 +599,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMapping(MappingType newMapping) {
-        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping);
+    public void setOutput(MappingType newOutput) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT, newOutput);
     }
 
     /**
@@ -550,8 +608,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType getOutputs() {
-        return (MappingsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS, true);
+    public OutputsType getOutputs() {
+        return (OutputsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS, true);
     }
 
     /**
@@ -559,7 +617,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetOutputs(MappingsType newOutputs, NotificationChain msgs) {
+    public NotificationChain basicSetOutputs(OutputsType newOutputs, NotificationChain msgs) {
         return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS, newOutputs, msgs);
     }
 
@@ -568,7 +626,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOutputs(MappingsType newOutputs) {
+    public void setOutputs(OutputsType newOutputs) {
         ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS, newOutputs);
     }
 
@@ -758,10 +816,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetChannels(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return basicSetContainer(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__GLOBAL:
+                return basicSetGlobal(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
                 return basicSetGlobals(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 return basicSetImplementationBpm(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__INPUT:
+                return basicSetInput(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
                 return basicSetInputs(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__LISTENER:
@@ -774,8 +836,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetLoggers(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 return basicSetManifest(null, msgs);
-            case BPMPackage.DOCUMENT_ROOT__MAPPING:
-                return basicSetMapping(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__OUTPUT:
+                return basicSetOutput(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
                 return basicSetOutputs(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__PROPERTIES:
@@ -821,10 +883,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getChannels();
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return getContainer();
+            case BPMPackage.DOCUMENT_ROOT__GLOBAL:
+                return getGlobal();
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
                 return getGlobals();
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 return getImplementationBpm();
+            case BPMPackage.DOCUMENT_ROOT__INPUT:
+                return getInput();
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
                 return getInputs();
             case BPMPackage.DOCUMENT_ROOT__LISTENER:
@@ -837,8 +903,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getLoggers();
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 return getManifest();
-            case BPMPackage.DOCUMENT_ROOT__MAPPING:
-                return getMapping();
+            case BPMPackage.DOCUMENT_ROOT__OUTPUT:
+                return getOutput();
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
                 return getOutputs();
             case BPMPackage.DOCUMENT_ROOT__PROPERTIES:
@@ -889,14 +955,20 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 setContainer((ContainerType)newValue);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__GLOBAL:
+                setGlobal((MappingType)newValue);
+                return;
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
-                setGlobals((MappingsType)newValue);
+                setGlobals((GlobalsType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 setImplementationBpm((BPMImplementationType)newValue);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__INPUT:
+                setInput((MappingType)newValue);
+                return;
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
-                setInputs((MappingsType)newValue);
+                setInputs((InputsType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__LISTENER:
                 setListener((ListenerType)newValue);
@@ -913,11 +985,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 setManifest((ManifestType)newValue);
                 return;
-            case BPMPackage.DOCUMENT_ROOT__MAPPING:
-                setMapping((MappingType)newValue);
+            case BPMPackage.DOCUMENT_ROOT__OUTPUT:
+                setOutput((MappingType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
-                setOutputs((MappingsType)newValue);
+                setOutputs((OutputsType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__PROPERTIES:
                 setProperties((PropertiesType)newValue);
@@ -973,14 +1045,20 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 setContainer((ContainerType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__GLOBAL:
+                setGlobal((MappingType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
-                setGlobals((MappingsType)null);
+                setGlobals((GlobalsType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 setImplementationBpm((BPMImplementationType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__INPUT:
+                setInput((MappingType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
-                setInputs((MappingsType)null);
+                setInputs((InputsType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__LISTENER:
                 setListener((ListenerType)null);
@@ -997,11 +1075,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 setManifest((ManifestType)null);
                 return;
-            case BPMPackage.DOCUMENT_ROOT__MAPPING:
-                setMapping((MappingType)null);
+            case BPMPackage.DOCUMENT_ROOT__OUTPUT:
+                setOutput((MappingType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
-                setOutputs((MappingsType)null);
+                setOutputs((OutputsType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__PROPERTIES:
                 setProperties((PropertiesType)null);
@@ -1049,10 +1127,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getChannels() != null;
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return getContainer() != null;
+            case BPMPackage.DOCUMENT_ROOT__GLOBAL:
+                return getGlobal() != null;
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
                 return getGlobals() != null;
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 return getImplementationBpm() != null;
+            case BPMPackage.DOCUMENT_ROOT__INPUT:
+                return getInput() != null;
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
                 return getInputs() != null;
             case BPMPackage.DOCUMENT_ROOT__LISTENER:
@@ -1065,8 +1147,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getLoggers() != null;
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 return getManifest() != null;
-            case BPMPackage.DOCUMENT_ROOT__MAPPING:
-                return getMapping() != null;
+            case BPMPackage.DOCUMENT_ROOT__OUTPUT:
+                return getOutput() != null;
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
                 return getOutputs() != null;
             case BPMPackage.DOCUMENT_ROOT__PROPERTIES:

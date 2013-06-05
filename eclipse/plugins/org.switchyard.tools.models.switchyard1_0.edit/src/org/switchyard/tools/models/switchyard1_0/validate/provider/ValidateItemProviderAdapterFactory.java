@@ -145,6 +145,75 @@ public class ValidateItemProviderAdapterFactory extends ValidateAdapterFactory i
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SchemaFilesTypeItemProvider schemaFilesTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createSchemaFilesTypeAdapter() {
+        if (schemaFilesTypeItemProvider == null) {
+            schemaFilesTypeItemProvider = new SchemaFilesTypeItemProvider(this);
+        }
+
+        return schemaFilesTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SchemaCatalogsTypeItemProvider schemaCatalogsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createSchemaCatalogsTypeAdapter() {
+        if (schemaCatalogsTypeItemProvider == null) {
+            schemaCatalogsTypeItemProvider = new SchemaCatalogsTypeItemProvider(this);
+        }
+
+        return schemaCatalogsTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.validate.FileEntryType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FileEntryTypeItemProvider fileEntryTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.validate.FileEntryType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createFileEntryTypeAdapter() {
+        if (fileEntryTypeItemProvider == null) {
+            fileEntryTypeItemProvider = new FileEntryTypeItemProvider(this);
+        }
+
+        return fileEntryTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -246,6 +315,9 @@ public class ValidateItemProviderAdapterFactory extends ValidateAdapterFactory i
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (javaValidateTypeItemProvider != null) javaValidateTypeItemProvider.dispose();
         if (xmlValidateTypeItemProvider != null) xmlValidateTypeItemProvider.dispose();
+        if (schemaFilesTypeItemProvider != null) schemaFilesTypeItemProvider.dispose();
+        if (schemaCatalogsTypeItemProvider != null) schemaCatalogsTypeItemProvider.dispose();
+        if (fileEntryTypeItemProvider != null) fileEntryTypeItemProvider.dispose();
     }
 
 }

@@ -65,6 +65,14 @@ public class CamelNettyBindingTypeItemProvider
             addPortPropertyDescriptor(object);
             addReceiveBufferSizePropertyDescriptor(object);
             addSendBufferSizePropertyDescriptor(object);
+            addSslPropertyDescriptor(object);
+            addSslHandlerPropertyDescriptor(object);
+            addPassphrasePropertyDescriptor(object);
+            addSecurityProviderPropertyDescriptor(object);
+            addKeyStoreFormatPropertyDescriptor(object);
+            addKeyStoreFilePropertyDescriptor(object);
+            addTrustStoreFilePropertyDescriptor(object);
+            addSslContextParametersRefPropertyDescriptor(object);
             addReuseAddressPropertyDescriptor(object);
             addEncodersPropertyDescriptor(object);
             addDecodersPropertyDescriptor(object);
@@ -115,7 +123,7 @@ public class CamelNettyBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -137,7 +145,7 @@ public class CamelNettyBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -159,7 +167,183 @@ public class CamelNettyBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Ssl feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSslPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_ssl_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_ssl_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__SSL,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Ssl Handler feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSslHandlerPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_sslHandler_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_sslHandler_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Passphrase feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addPassphrasePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_passphrase_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_passphrase_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Security Provider feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSecurityProviderPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_securityProvider_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_securityProvider_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Key Store Format feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addKeyStoreFormatPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_keyStoreFormat_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_keyStoreFormat_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Key Store File feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addKeyStoreFilePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_keyStoreFile_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_keyStoreFile_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Trust Store File feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTrustStoreFilePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_trustStoreFile_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_trustStoreFile_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Ssl Context Parameters Ref feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSslContextParametersRefPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelNettyBindingType_sslContextParametersRef_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelNettyBindingType_sslContextParametersRef_feature", "_UI_CamelNettyBindingType_type"),
+                 NettyPackage.Literals.CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -269,7 +453,7 @@ public class CamelNettyBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -348,6 +532,14 @@ public class CamelNettyBindingTypeItemProvider
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PORT:
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE:
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE:
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF:
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS:
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS:

@@ -88,15 +88,17 @@ public class DocumentRootItemProvider
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__CHANNEL);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__CHANNELS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__CONTAINER);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_BPM);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__INPUT);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__INPUTS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__LISTENER);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__LISTENERS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__LOGGER);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__LOGGERS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__MANIFEST);
-            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__MAPPING);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__PROPERTIES);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__PROPERTY);
@@ -160,15 +162,17 @@ public class DocumentRootItemProvider
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
+            case BPMPackage.DOCUMENT_ROOT__GLOBAL:
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
+            case BPMPackage.DOCUMENT_ROOT__INPUT:
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
             case BPMPackage.DOCUMENT_ROOT__LISTENER:
             case BPMPackage.DOCUMENT_ROOT__LISTENERS:
             case BPMPackage.DOCUMENT_ROOT__LOGGER:
             case BPMPackage.DOCUMENT_ROOT__LOGGERS:
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
-            case BPMPackage.DOCUMENT_ROOT__MAPPING:
+            case BPMPackage.DOCUMENT_ROOT__OUTPUT:
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
             case BPMPackage.DOCUMENT_ROOT__PROPERTIES:
             case BPMPackage.DOCUMENT_ROOT__PROPERTY:
@@ -220,8 +224,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL,
+                 BPMFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS,
-                 BPMFactory.eINSTANCE.createMappingsType()));
+                 BPMFactory.eINSTANCE.createGlobalsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -230,8 +239,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__INPUT,
+                 BPMFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__INPUTS,
-                 BPMFactory.eINSTANCE.createMappingsType()));
+                 BPMFactory.eINSTANCE.createInputsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -260,13 +274,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.DOCUMENT_ROOT__MAPPING,
+                (BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT,
                  BPMFactory.eINSTANCE.createMappingType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS,
-                 BPMFactory.eINSTANCE.createMappingsType()));
+                 BPMFactory.eINSTANCE.createOutputsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -311,9 +325,9 @@ public class DocumentRootItemProvider
         Object childObject = child;
 
         boolean qualify =
-            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS ||
-            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__INPUTS ||
-            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS;
+            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL ||
+            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__INPUT ||
+            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT;
 
         if (qualify) {
             return getString

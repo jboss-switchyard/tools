@@ -19,26 +19,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ScopeType implements Enumerator {
     /**
-     * The '<em><b>IN</b></em>' literal object.
+     * The '<em><b>MESSAGE</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #IN_VALUE
+     * @see #MESSAGE_VALUE
      * @generated
      * @ordered
      */
-    IN(0, "IN", "IN"),
-
-    /**
-     * The '<em><b>OUT</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #OUT_VALUE
-     * @generated
-     * @ordered
-     */
-    OUT(1, "OUT", "OUT"),
-
-    /**
+    MESSAGE(0, "MESSAGE", "MESSAGE"), /**
      * The '<em><b>EXCHANGE</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -46,37 +34,22 @@ public enum ScopeType implements Enumerator {
      * @generated
      * @ordered
      */
-    EXCHANGE(2, "EXCHANGE", "EXCHANGE");
+    EXCHANGE(1, "EXCHANGE", "EXCHANGE");
 
     /**
-     * The '<em><b>IN</b></em>' literal value.
+     * The '<em><b>MESSAGE</b></em>' literal value.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of '<em><b>IN</b></em>' literal object isn't clear,
+     * If the meaning of '<em><b>MESSAGE</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #IN
+     * @see #MESSAGE
      * @model
      * @generated
      * @ordered
      */
-    public static final int IN_VALUE = 0;
-
-    /**
-     * The '<em><b>OUT</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of '<em><b>OUT</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @see #OUT
-     * @model
-     * @generated
-     * @ordered
-     */
-    public static final int OUT_VALUE = 1;
+    public static final int MESSAGE_VALUE = 0;
 
     /**
      * The '<em><b>EXCHANGE</b></em>' literal value.
@@ -91,7 +64,7 @@ public enum ScopeType implements Enumerator {
      * @generated
      * @ordered
      */
-    public static final int EXCHANGE_VALUE = 2;
+    public static final int EXCHANGE_VALUE = 1;
 
     /**
      * An array of all the '<em><b>Scope Type</b></em>' enumerators.
@@ -101,8 +74,7 @@ public enum ScopeType implements Enumerator {
      */
     private static final ScopeType[] VALUES_ARRAY =
         new ScopeType[] {
-            IN,
-            OUT,
+            MESSAGE,
             EXCHANGE,
         };
 
@@ -154,8 +126,7 @@ public enum ScopeType implements Enumerator {
      */
     public static ScopeType get(int value) {
         switch (value) {
-            case IN_VALUE: return IN;
-            case OUT_VALUE: return OUT;
+            case MESSAGE_VALUE: return MESSAGE;
             case EXCHANGE_VALUE: return EXCHANGE;
         }
         return null;

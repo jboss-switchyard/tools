@@ -408,7 +408,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EsbInterface" eSuperTypes="../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Interface">
+  <eClassifiers xsi:type="ecore:EClass" name="EsbInterface" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Interface">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="EsbInterface"/>
       <details key="kind" value="empty"/>
@@ -528,7 +528,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwitchYardBindingType" abstract="true"
-      eSuperTypes="../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Binding">
+      eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Binding">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SwitchYardBindingType"/>
       <details key="kind" value="elementOnly"/>
@@ -551,7 +551,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwitchYardOperationSelectorType" abstract="true"
-      eSuperTypes="../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//OperationSelectorType">
+      eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//OperationSelectorType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SwitchYardOperationSelectorType"/>
       <details key="kind" value="elementOnly"/>
@@ -574,7 +574,7 @@
         <details key="name" value="targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="ecore:EClass ../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Composite"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="ecore:EClass platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Composite"
         containment="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>

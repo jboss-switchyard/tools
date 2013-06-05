@@ -113,6 +113,20 @@ public class RulesSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case RulesPackage.GLOBALS_TYPE: {
+                GlobalsType globalsType = (GlobalsType)theEObject;
+                T result = caseGlobalsType(globalsType);
+                if (result == null) result = caseCommonExtensionBase(globalsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case RulesPackage.INPUTS_TYPE: {
+                InputsType inputsType = (InputsType)theEObject;
+                T result = caseInputsType(inputsType);
+                if (result == null) result = caseCommonExtensionBase(inputsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case RulesPackage.LISTENERS_TYPE: {
                 ListenersType listenersType = (ListenersType)theEObject;
                 T result = caseListenersType(listenersType);
@@ -148,17 +162,17 @@ public class RulesSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case RulesPackage.MAPPINGS_TYPE: {
-                MappingsType mappingsType = (MappingsType)theEObject;
-                T result = caseMappingsType(mappingsType);
-                if (result == null) result = caseCommonExtensionBase(mappingsType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case RulesPackage.MAPPING_TYPE: {
                 MappingType mappingType = (MappingType)theEObject;
                 T result = caseMappingType(mappingType);
                 if (result == null) result = caseCommonExtensionBase(mappingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case RulesPackage.OUTPUTS_TYPE: {
+                OutputsType outputsType = (OutputsType)theEObject;
+                T result = caseOutputsType(outputsType);
+                if (result == null) result = caseCommonExtensionBase(outputsType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -293,6 +307,36 @@ public class RulesSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Globals Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Globals Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseGlobalsType(GlobalsType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Inputs Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Inputs Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInputsType(InputsType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Listeners Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -368,21 +412,6 @@ public class RulesSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Mappings Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Mappings Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseMappingsType(MappingsType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Mapping Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -394,6 +423,21 @@ public class RulesSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseMappingType(MappingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Outputs Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Outputs Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseOutputsType(OutputsType object) {
         return null;
     }
 

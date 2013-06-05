@@ -19,7 +19,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getOutputs <em>Outputs</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getId <em>Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getEventId <em>Event Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getType <em>Type</em>}</li>
  * </ul>
@@ -40,13 +40,13 @@ public interface ActionType1 extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Globals</em>' containment reference.
-     * @see #setGlobals(MappingsType)
+     * @see #setGlobals(GlobalsType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Globals()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='globals' namespace='##targetNamespace'"
      * @generated
      */
-    MappingsType getGlobals();
+    GlobalsType getGlobals();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getGlobals <em>Globals</em>}' containment reference.
@@ -56,7 +56,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * @see #getGlobals()
      * @generated
      */
-    void setGlobals(MappingsType value);
+    void setGlobals(GlobalsType value);
 
     /**
      * Returns the value of the '<em><b>Inputs</b></em>' containment reference.
@@ -67,13 +67,13 @@ public interface ActionType1 extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Inputs</em>' containment reference.
-     * @see #setInputs(MappingsType)
+     * @see #setInputs(InputsType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Inputs()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='inputs' namespace='##targetNamespace'"
      * @generated
      */
-    MappingsType getInputs();
+    InputsType getInputs();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getInputs <em>Inputs</em>}' containment reference.
@@ -83,7 +83,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * @see #getInputs()
      * @generated
      */
-    void setInputs(MappingsType value);
+    void setInputs(InputsType value);
 
     /**
      * Returns the value of the '<em><b>Outputs</b></em>' containment reference.
@@ -94,13 +94,13 @@ public interface ActionType1 extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Outputs</em>' containment reference.
-     * @see #setOutputs(MappingsType)
+     * @see #setOutputs(OutputsType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Outputs()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='outputs' namespace='##targetNamespace'"
      * @generated
      */
-    MappingsType getOutputs();
+    OutputsType getOutputs();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getOutputs <em>Outputs</em>}' containment reference.
@@ -110,34 +110,34 @@ public interface ActionType1 extends CommonExtensionBase {
      * @see #getOutputs()
      * @generated
      */
-    void setOutputs(MappingsType value);
+    void setOutputs(OutputsType value);
 
     /**
-     * Returns the value of the '<em><b>Id</b></em>' attribute.
+     * Returns the value of the '<em><b>Event Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Id</em>' attribute isn't clear,
+     * If the meaning of the '<em>Event Id</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Id</em>' attribute.
-     * @see #setId(String)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Id()
+     * @return the value of the '<em>Event Id</em>' attribute.
+     * @see #setEventId(String)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_EventId()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="kind='attribute' name='id'"
+     *        extendedMetaData="kind='attribute' name='eventId'"
      * @generated
      */
-    String getId();
+    String getEventId();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getId <em>Id</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getEventId <em>Event Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Id</em>' attribute.
-     * @see #getId()
+     * @param value the new value of the '<em>Event Id</em>' attribute.
+     * @see #getEventId()
      * @generated
      */
-    void setId(String value);
+    void setEventId(String value);
 
     /**
      * Returns the value of the '<em><b>Operation</b></em>' attribute.

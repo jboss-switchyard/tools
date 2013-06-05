@@ -200,7 +200,7 @@
       <details key="pattern" value="\{.+\}.+:[^:]+|.+:[^:]+|[^:]+"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InterceptorType" eSuperTypes="../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
+  <eClassifiers xsi:type="ecore:EClass" name="InterceptorType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="InterceptorType"/>
       <details key="kind" value="empty"/>

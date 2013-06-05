@@ -1294,6 +1294,16 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 BPMFactory.eINSTANCE.createGlobalsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 BPMFactory.eINSTANCE.createInputsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  BPMFactory.eINSTANCE.createListenersType()));
 
         newChildDescriptors.add
@@ -1319,12 +1329,12 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 BPMFactory.eINSTANCE.createMappingsType()));
+                 BPMFactory.eINSTANCE.createMappingType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 BPMFactory.eINSTANCE.createMappingType()));
+                 BPMFactory.eINSTANCE.createOutputsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1454,6 +1464,11 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SwitchyardFactory.eINSTANCE.createSecuritiesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  ClojureFactory.eINSTANCE.createClojureImplementationType()));
 
         newChildDescriptors.add
@@ -1524,6 +1539,16 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 RulesFactory.eINSTANCE.createGlobalsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 RulesFactory.eINSTANCE.createInputsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  RulesFactory.eINSTANCE.createListenersType()));
 
         newChildDescriptors.add
@@ -1549,12 +1574,12 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 RulesFactory.eINSTANCE.createMappingsType()));
+                 RulesFactory.eINSTANCE.createMappingType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 RulesFactory.eINSTANCE.createMappingType()));
+                 RulesFactory.eINSTANCE.createOutputsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1599,6 +1624,16 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SOAPFactory.eINSTANCE.createInterceptorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SOAPFactory.eINSTANCE.createInterceptorsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  TransformFactory.eINSTANCE.createJavaTransformType1()));
 
         newChildDescriptors.add
@@ -1630,6 +1665,21 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  ValidateFactory.eINSTANCE.createXmlValidateType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 ValidateFactory.eINSTANCE.createSchemaFilesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 ValidateFactory.eINSTANCE.createSchemaCatalogsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 ValidateFactory.eINSTANCE.createFileEntryType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1730,6 +1780,11 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  JcaFactory.eINSTANCE.createJCAMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 JcaFactory.eINSTANCE.createBatchCommit()));
 
         newChildDescriptors.add
             (createChildParameter

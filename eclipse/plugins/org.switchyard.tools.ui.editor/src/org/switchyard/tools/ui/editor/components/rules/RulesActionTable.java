@@ -115,7 +115,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
                 return tp.getOperation();
             } else if (element instanceof ActionType1 && columnIndex == 2) {
                 ActionType1 tp = (ActionType1) element;
-                return tp.getId();
+                return tp.getEventId();
             }
             return null;
         }
@@ -202,7 +202,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
         tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
 
         TableColumn entryPointIdColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointIdColumn.setText("Entry Point ID");
+        entryPointIdColumn.setText("Event ID");
         tableLayout.setColumnData(entryPointIdColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -441,8 +441,8 @@ public class RulesActionTable extends Composite implements ICellModifier {
                 return "";
             }
         } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
-            if (((ActionType1) element).getId() != null) {
-                return ((ActionType1) element).getId();
+            if (((ActionType1) element).getEventId() != null) {
+                return ((ActionType1) element).getEventId();
             } else {
                 return "";
             }
@@ -516,13 +516,13 @@ public class RulesActionTable extends Composite implements ICellModifier {
                         @Override
                         protected void doExecute() {
                             ActionType1 parm = (ActionType1) ti.getData();
-                            parm.setId((String) value);
+                            parm.setEventId((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     ActionType1 parm = (ActionType1) ti.getData();
-                    parm.setId((String) value);
+                    parm.setEventId((String) value);
                     getTableViewer().refresh(true);
                 }
             }

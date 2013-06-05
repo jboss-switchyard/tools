@@ -1,6 +1,6 @@
 /**
  */
-package org.switchyard.tools.models.switchyard1_0.bpm.impl;
+package org.switchyard.tools.models.switchyard1_0.rules.impl;
 
 import java.util.Collection;
 
@@ -16,40 +16,40 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
-import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mappings Type</b></em>'.
+ * An implementation of the model object '<em><b>Globals Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.MappingsTypeImpl#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.GlobalsTypeImpl#getGlobal <em>Global</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MappingsTypeImpl extends CommonExtensionBaseImpl implements MappingsType {
+public class GlobalsTypeImpl extends CommonExtensionBaseImpl implements GlobalsType {
     /**
-     * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference list.
+     * The cached value of the '{@link #getGlobal() <em>Global</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMapping()
+     * @see #getGlobal()
      * @generated
      * @ordered
      */
-    protected EList<MappingType> mapping;
+    protected EList<MappingType> global;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected MappingsTypeImpl() {
+    protected GlobalsTypeImpl() {
         super();
     }
 
@@ -60,7 +60,7 @@ public class MappingsTypeImpl extends CommonExtensionBaseImpl implements Mapping
      */
     @Override
     protected EClass eStaticClass() {
-        return BPMPackage.Literals.MAPPINGS_TYPE;
+        return RulesPackage.Literals.GLOBALS_TYPE;
     }
 
     /**
@@ -68,11 +68,11 @@ public class MappingsTypeImpl extends CommonExtensionBaseImpl implements Mapping
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<MappingType> getMapping() {
-        if (mapping == null) {
-            mapping = new EObjectContainmentEList<MappingType>(MappingType.class, this, BPMPackage.MAPPINGS_TYPE__MAPPING);
+    public EList<MappingType> getGlobal() {
+        if (global == null) {
+            global = new EObjectContainmentEList<MappingType>(MappingType.class, this, RulesPackage.GLOBALS_TYPE__GLOBAL);
         }
-        return mapping;
+        return global;
     }
 
     /**
@@ -83,8 +83,8 @@ public class MappingsTypeImpl extends CommonExtensionBaseImpl implements Mapping
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case BPMPackage.MAPPINGS_TYPE__MAPPING:
-                return ((InternalEList<?>)getMapping()).basicRemove(otherEnd, msgs);
+            case RulesPackage.GLOBALS_TYPE__GLOBAL:
+                return ((InternalEList<?>)getGlobal()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -97,8 +97,8 @@ public class MappingsTypeImpl extends CommonExtensionBaseImpl implements Mapping
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BPMPackage.MAPPINGS_TYPE__MAPPING:
-                return getMapping();
+            case RulesPackage.GLOBALS_TYPE__GLOBAL:
+                return getGlobal();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -112,9 +112,9 @@ public class MappingsTypeImpl extends CommonExtensionBaseImpl implements Mapping
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BPMPackage.MAPPINGS_TYPE__MAPPING:
-                getMapping().clear();
-                getMapping().addAll((Collection<? extends MappingType>)newValue);
+            case RulesPackage.GLOBALS_TYPE__GLOBAL:
+                getGlobal().clear();
+                getGlobal().addAll((Collection<? extends MappingType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -128,8 +128,8 @@ public class MappingsTypeImpl extends CommonExtensionBaseImpl implements Mapping
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BPMPackage.MAPPINGS_TYPE__MAPPING:
-                getMapping().clear();
+            case RulesPackage.GLOBALS_TYPE__GLOBAL:
+                getGlobal().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -143,10 +143,10 @@ public class MappingsTypeImpl extends CommonExtensionBaseImpl implements Mapping
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BPMPackage.MAPPINGS_TYPE__MAPPING:
-                return mapping != null && !mapping.isEmpty();
+            case RulesPackage.GLOBALS_TYPE__GLOBAL:
+                return global != null && !global.isEmpty();
         }
         return super.eIsSet(featureID);
     }
 
-} //MappingsTypeImpl
+} //GlobalsTypeImpl

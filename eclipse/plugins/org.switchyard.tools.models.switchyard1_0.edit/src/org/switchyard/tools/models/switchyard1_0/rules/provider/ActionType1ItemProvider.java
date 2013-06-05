@@ -71,7 +71,7 @@ public class ActionType1ItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addIdPropertyDescriptor(object);
+            addEventIdPropertyDescriptor(object);
             addOperationPropertyDescriptor(object);
             addTypePropertyDescriptor(object);
         }
@@ -79,19 +79,19 @@ public class ActionType1ItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Id feature.
+     * This adds a property descriptor for the Event Id feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addIdPropertyDescriptor(Object object) {
+    protected void addEventIdPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ActionType1_id_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_id_feature", "_UI_ActionType1_type"),
-                 RulesPackage.Literals.ACTION_TYPE1__ID,
+                 getString("_UI_ActionType1_eventId_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_eventId_feature", "_UI_ActionType1_type"),
+                 RulesPackage.Literals.ACTION_TYPE1__EVENT_ID,
                  true,
                  false,
                  false,
@@ -195,7 +195,7 @@ public class ActionType1ItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ActionType1)object).getId();
+        String label = ((ActionType1)object).getEventId();
         return label == null || label.length() == 0 ?
             getString("_UI_ActionType1_type") :
             getString("_UI_ActionType1_type") + " " + label;
@@ -213,7 +213,7 @@ public class ActionType1ItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(ActionType1.class)) {
-            case RulesPackage.ACTION_TYPE1__ID:
+            case RulesPackage.ACTION_TYPE1__EVENT_ID:
             case RulesPackage.ACTION_TYPE1__OPERATION:
             case RulesPackage.ACTION_TYPE1__TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -241,47 +241,17 @@ public class ActionType1ItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (RulesPackage.Literals.ACTION_TYPE1__GLOBALS,
-                 RulesFactory.eINSTANCE.createMappingsType()));
+                 RulesFactory.eINSTANCE.createGlobalsType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (RulesPackage.Literals.ACTION_TYPE1__INPUTS,
-                 RulesFactory.eINSTANCE.createMappingsType()));
+                 RulesFactory.eINSTANCE.createInputsType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (RulesPackage.Literals.ACTION_TYPE1__OUTPUTS,
-                 RulesFactory.eINSTANCE.createMappingsType()));
-    }
-
-    /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        Object childFeature = feature;
-        Object childObject = child;
-
-        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
-            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
-            childFeature = entry.getEStructuralFeature();
-            childObject = entry.getValue();
-        }
-
-        boolean qualify =
-            childFeature == RulesPackage.Literals.ACTION_TYPE1__GLOBALS ||
-            childFeature == RulesPackage.Literals.ACTION_TYPE1__INPUTS ||
-            childFeature == RulesPackage.Literals.ACTION_TYPE1__OUTPUTS;
-
-        if (qualify) {
-            return getString
-                ("_UI_CreateChild_text2",
-                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-        }
-        return super.getCreateChildText(owner, feature, child, selection);
+                 RulesFactory.eINSTANCE.createOutputsType()));
     }
 
     /**

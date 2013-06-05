@@ -68,6 +68,7 @@ public class JavaTransformType1ItemProvider
             super.getPropertyDescriptors(object);
 
             addClassPropertyDescriptor(object);
+            addBeanPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -86,6 +87,28 @@ public class JavaTransformType1ItemProvider
                  getString("_UI_JavaTransformType1_class_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_JavaTransformType1_class_feature", "_UI_JavaTransformType1_type"),
                  TransformPackage.Literals.JAVA_TRANSFORM_TYPE1__CLASS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Bean feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addBeanPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JavaTransformType1_bean_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JavaTransformType1_bean_feature", "_UI_JavaTransformType1_type"),
+                 TransformPackage.Literals.JAVA_TRANSFORM_TYPE1__BEAN,
                  true,
                  false,
                  false,
@@ -132,6 +155,7 @@ public class JavaTransformType1ItemProvider
 
         switch (notification.getFeatureID(JavaTransformType1.class)) {
             case TransformPackage.JAVA_TRANSFORM_TYPE1__CLASS:
+            case TransformPackage.JAVA_TRANSFORM_TYPE1__BEAN:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

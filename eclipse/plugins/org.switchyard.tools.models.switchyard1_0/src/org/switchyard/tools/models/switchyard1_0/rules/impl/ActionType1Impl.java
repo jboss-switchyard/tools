@@ -16,7 +16,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType;
 
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.rules.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.rules.InputsType;
+import org.switchyard.tools.models.switchyard1_0.rules.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 /**
@@ -29,7 +31,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getOutputs <em>Outputs</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getId <em>Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getEventId <em>Event Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getType <em>Type</em>}</li>
  * </ul>
@@ -46,7 +48,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @generated
      * @ordered
      */
-    protected MappingsType globals;
+    protected GlobalsType globals;
     /**
      * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -55,7 +57,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @generated
      * @ordered
      */
-    protected MappingsType inputs;
+    protected InputsType inputs;
     /**
      * The cached value of the '{@link #getOutputs() <em>Outputs</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -64,25 +66,25 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @generated
      * @ordered
      */
-    protected MappingsType outputs;
+    protected OutputsType outputs;
     /**
-     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+     * The default value of the '{@link #getEventId() <em>Event Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getId()
+     * @see #getEventId()
      * @generated
      * @ordered
      */
-    protected static final String ID_EDEFAULT = null;
+    protected static final String EVENT_ID_EDEFAULT = null;
     /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+     * The cached value of the '{@link #getEventId() <em>Event Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getId()
+     * @see #getEventId()
      * @generated
      * @ordered
      */
-    protected String id = ID_EDEFAULT;
+    protected String eventId = EVENT_ID_EDEFAULT;
     /**
      * The default value of the '{@link #getOperation() <em>Operation</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -151,7 +153,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType getGlobals() {
+    public GlobalsType getGlobals() {
         return globals;
     }
 
@@ -160,8 +162,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetGlobals(MappingsType newGlobals, NotificationChain msgs) {
-        MappingsType oldGlobals = globals;
+    public NotificationChain basicSetGlobals(GlobalsType newGlobals, NotificationChain msgs) {
+        GlobalsType oldGlobals = globals;
         globals = newGlobals;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.ACTION_TYPE1__GLOBALS, oldGlobals, newGlobals);
@@ -175,7 +177,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setGlobals(MappingsType newGlobals) {
+    public void setGlobals(GlobalsType newGlobals) {
         if (newGlobals != globals) {
             NotificationChain msgs = null;
             if (globals != null)
@@ -194,7 +196,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType getInputs() {
+    public InputsType getInputs() {
         return inputs;
     }
 
@@ -203,8 +205,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetInputs(MappingsType newInputs, NotificationChain msgs) {
-        MappingsType oldInputs = inputs;
+    public NotificationChain basicSetInputs(InputsType newInputs, NotificationChain msgs) {
+        InputsType oldInputs = inputs;
         inputs = newInputs;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.ACTION_TYPE1__INPUTS, oldInputs, newInputs);
@@ -218,7 +220,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInputs(MappingsType newInputs) {
+    public void setInputs(InputsType newInputs) {
         if (newInputs != inputs) {
             NotificationChain msgs = null;
             if (inputs != null)
@@ -237,7 +239,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType getOutputs() {
+    public OutputsType getOutputs() {
         return outputs;
     }
 
@@ -246,8 +248,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetOutputs(MappingsType newOutputs, NotificationChain msgs) {
-        MappingsType oldOutputs = outputs;
+    public NotificationChain basicSetOutputs(OutputsType newOutputs, NotificationChain msgs) {
+        OutputsType oldOutputs = outputs;
         outputs = newOutputs;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.ACTION_TYPE1__OUTPUTS, oldOutputs, newOutputs);
@@ -261,7 +263,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOutputs(MappingsType newOutputs) {
+    public void setOutputs(OutputsType newOutputs) {
         if (newOutputs != outputs) {
             NotificationChain msgs = null;
             if (outputs != null)
@@ -280,8 +282,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getId() {
-        return id;
+    public String getEventId() {
+        return eventId;
     }
 
     /**
@@ -289,11 +291,11 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setId(String newId) {
-        String oldId = id;
-        id = newId;
+    public void setEventId(String newEventId) {
+        String oldEventId = eventId;
+        eventId = newEventId;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.ACTION_TYPE1__ID, oldId, id));
+            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.ACTION_TYPE1__EVENT_ID, oldEventId, eventId));
     }
 
     /**
@@ -395,8 +397,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
                 return getInputs();
             case RulesPackage.ACTION_TYPE1__OUTPUTS:
                 return getOutputs();
-            case RulesPackage.ACTION_TYPE1__ID:
-                return getId();
+            case RulesPackage.ACTION_TYPE1__EVENT_ID:
+                return getEventId();
             case RulesPackage.ACTION_TYPE1__OPERATION:
                 return getOperation();
             case RulesPackage.ACTION_TYPE1__TYPE:
@@ -414,16 +416,16 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case RulesPackage.ACTION_TYPE1__GLOBALS:
-                setGlobals((MappingsType)newValue);
+                setGlobals((GlobalsType)newValue);
                 return;
             case RulesPackage.ACTION_TYPE1__INPUTS:
-                setInputs((MappingsType)newValue);
+                setInputs((InputsType)newValue);
                 return;
             case RulesPackage.ACTION_TYPE1__OUTPUTS:
-                setOutputs((MappingsType)newValue);
+                setOutputs((OutputsType)newValue);
                 return;
-            case RulesPackage.ACTION_TYPE1__ID:
-                setId((String)newValue);
+            case RulesPackage.ACTION_TYPE1__EVENT_ID:
+                setEventId((String)newValue);
                 return;
             case RulesPackage.ACTION_TYPE1__OPERATION:
                 setOperation((String)newValue);
@@ -444,16 +446,16 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     public void eUnset(int featureID) {
         switch (featureID) {
             case RulesPackage.ACTION_TYPE1__GLOBALS:
-                setGlobals((MappingsType)null);
+                setGlobals((GlobalsType)null);
                 return;
             case RulesPackage.ACTION_TYPE1__INPUTS:
-                setInputs((MappingsType)null);
+                setInputs((InputsType)null);
                 return;
             case RulesPackage.ACTION_TYPE1__OUTPUTS:
-                setOutputs((MappingsType)null);
+                setOutputs((OutputsType)null);
                 return;
-            case RulesPackage.ACTION_TYPE1__ID:
-                setId(ID_EDEFAULT);
+            case RulesPackage.ACTION_TYPE1__EVENT_ID:
+                setEventId(EVENT_ID_EDEFAULT);
                 return;
             case RulesPackage.ACTION_TYPE1__OPERATION:
                 setOperation(OPERATION_EDEFAULT);
@@ -479,8 +481,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
                 return inputs != null;
             case RulesPackage.ACTION_TYPE1__OUTPUTS:
                 return outputs != null;
-            case RulesPackage.ACTION_TYPE1__ID:
-                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+            case RulesPackage.ACTION_TYPE1__EVENT_ID:
+                return EVENT_ID_EDEFAULT == null ? eventId != null : !EVENT_ID_EDEFAULT.equals(eventId);
             case RulesPackage.ACTION_TYPE1__OPERATION:
                 return OPERATION_EDEFAULT == null ? operation != null : !OPERATION_EDEFAULT.equals(operation);
             case RulesPackage.ACTION_TYPE1__TYPE:
@@ -499,8 +501,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (id: ");
-        result.append(id);
+        result.append(" (eventId: ");
+        result.append(eventId);
         result.append(", operation: ");
         result.append(operation);
         result.append(", type: ");

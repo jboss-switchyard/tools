@@ -107,7 +107,7 @@ public class SwitchYardCustomTaskFeatureContainer extends JbpmCustomTaskFeatureC
             // in the plugin.xml, so we need to add the assignments manually.
             for (DataInputAssociation inputAssociation : task.getDataInputAssociations()) {
                 DataInput input = (DataInput) inputAssociation.getTargetRef();
-                if ("ContentInputName".equals(input.getName()) || "ContentOutputName".equals(input.getName())) {
+                if ("ParameterName".equals(input.getName()) || "ResultName".equals(input.getName())) {
                     addInputAssignment(resource, inputAssociation.getAssignment(), input);
                 }
             }

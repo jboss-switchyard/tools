@@ -373,8 +373,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _inputsTable = new BPMMappingsTable(inputsSection, SWT.NONE, BPMPackage.eINSTANCE.getActionType1_Inputs(),
-                BPMPackage.eINSTANCE.getMappingsType_Mapping());
+        _inputsTable = new BPMMappingsTable(inputsSection, SWT.NONE, "message.content", "Parameter",
+                BPMPackage.eINSTANCE.getActionType1_Inputs(), BPMPackage.eINSTANCE.getInputsType_Input());
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
         inputsSection.setClient(_inputsTable);
@@ -391,8 +391,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _outputsTable = new BPMMappingsTable(outputsSection, SWT.NONE, BPMPackage.eINSTANCE.getActionType1_Outputs(),
-                BPMPackage.eINSTANCE.getMappingsType_Mapping());
+        _outputsTable = new BPMMappingsTable(outputsSection, SWT.NONE, "Result", "message.content",
+                BPMPackage.eINSTANCE.getActionType1_Outputs(), BPMPackage.eINSTANCE.getOutputsType_Output());
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_outputsTable);
         outputsSection.setClient(_outputsTable);
@@ -408,8 +408,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE, BPMPackage.eINSTANCE.getActionType1_Globals(),
-                BPMPackage.eINSTANCE.getMappingsType_Mapping());
+        _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE,"message.content", "", 
+                BPMPackage.eINSTANCE.getActionType1_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global());
         _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_globalsTable);
         globalsSection.setClient(_globalsTable);

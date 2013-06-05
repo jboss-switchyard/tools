@@ -45,7 +45,6 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
-import org.switchyard.tools.models.switchyard1_0.bpm.ExpressionType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -92,9 +91,9 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof MappingType && property.equalsIgnoreCase(EXPRESSION_COLUMN)) {
+            if (element instanceof MappingType && property.equalsIgnoreCase(FROM_COLUMN)) {
                 return true;
-            } else if (element instanceof MappingType && property.equalsIgnoreCase(VARIABLE_COLUMN)) {
+            } else if (element instanceof MappingType && property.equalsIgnoreCase(TO_COLUMN)) {
                 return true;
             }
             return false;
@@ -112,10 +111,10 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
         @Override
         public String getColumnText(Object element, int columnIndex) {
             if (element instanceof MappingType && columnIndex == 0) {
-                return ((MappingType) element).getExpression();
+                return ((MappingType) element).getFrom();
             } else if (element instanceof MappingType && columnIndex == 1) {
                 MappingType tp = (MappingType) element;
-                return tp.getVariable();
+                return tp.getTo();
             }
             return null;
         }
@@ -126,15 +125,15 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
     /**
      * Expression column.
      */
-    public static final String EXPRESSION_COLUMN = "expression";
+    public static final String FROM_COLUMN = "from";
 
     /**
-     * Variable column.
+     * To column.
      */
-    public static final String VARIABLE_COLUMN = "variable";
+    public static final String TO_COLUMN = "to";
 
 
-    private static final String[] TREE_COLUMNS = new String[] {EXPRESSION_COLUMN, VARIABLE_COLUMN};
+    private static final String[] TREE_COLUMNS = new String[] {FROM_COLUMN, TO_COLUMN};
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -144,19 +143,23 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
     private ListenerList _changeListeners;
     private final EReference _mappingsFeature;
     private final EReference _actionVariableFeature;
+    private final String _defaultFrom;
+    private final String _defaultTo;
 
     /**
      * Constructor.
      * 
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
+     * @param defaultFrom default text for "from"
+     * @param defaultTo default text for "to"
      * @param actionVariableFeature the feature describing the variable type
      *            (e.g. inputs, outputs, globals).
      * @param mappingsFeature the feature describing the "mappings" feature on
      *            the variable type.
      */
-    public BPMMappingsTable(Composite parent, int style, EReference actionVariableFeature, EReference mappingsFeature) {
-        this(parent, style, false, actionVariableFeature, mappingsFeature);
+    public BPMMappingsTable(Composite parent, int style, String defaultFrom, String defaultTo, EReference actionVariableFeature, EReference mappingsFeature) {
+        this(parent, style, false, defaultFrom, defaultTo, actionVariableFeature, mappingsFeature);
     }
 
     /**
@@ -165,18 +168,22 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
      * @param parent composite parent
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
+     * @param defaultFrom default text for "from"
+     * @param defaultTo default text for "to"
      * @param actionVariableFeature the feature describing the variable type
      *            (e.g. inputs, outputs, globals).
      * @param mappingsFeature the feature describing the "mappings" feature on
      *            the variable type.
      */
-    public BPMMappingsTable(Composite parent, int style, boolean isReadOnly, EReference actionVariableFeature,
+    public BPMMappingsTable(Composite parent, int style, boolean isReadOnly, String defaultFrom, String defaultTo, EReference actionVariableFeature,
             EReference mappingsFeature) {
         super(parent, style);
         _isReadOnly = isReadOnly;
         _changeListeners = new ListenerList();
         _actionVariableFeature = actionVariableFeature;
         _mappingsFeature = mappingsFeature;
+        _defaultFrom = defaultFrom;
+        _defaultTo = defaultTo;
 
         int additionalStyles = SWT.NONE;
         if (isReadOnly) {
@@ -202,10 +209,10 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText("Expression");
+        nameColumn.setText("From");
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointColumn.setText("Variable");
+        entryPointColumn.setText("To");
         tableLayout.setColumnData(entryPointColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -278,9 +285,8 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
         if (getTargetObject() instanceof ActionType1) {
             final ActionType1 impl = (ActionType1) getTargetObject();
             final MappingType newMapping = BPMFactory.eINSTANCE.createMappingType();
-            newMapping.setExpression("message.content");
-            newMapping.setVariable("variable");
-            newMapping.setExpressionType(ExpressionType.MVEL);
+            newMapping.setFrom(_defaultFrom);
+            newMapping.setTo(_defaultTo);
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -456,15 +462,15 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof MappingType && property.equalsIgnoreCase(EXPRESSION_COLUMN)) {
-            if (((MappingType) element).getExpression() != null) {
-                return ((MappingType) element).getExpression();
+        if (element instanceof MappingType && property.equalsIgnoreCase(FROM_COLUMN)) {
+            if (((MappingType) element).getFrom() != null) {
+                return ((MappingType) element).getFrom();
             } else {
                 return "";
             }
-        } else if (element instanceof MappingType && property.equalsIgnoreCase(VARIABLE_COLUMN)) {
-            if (((MappingType) element).getVariable() != null) {
-                return ((MappingType) element).getVariable();
+        } else if (element instanceof MappingType && property.equalsIgnoreCase(TO_COLUMN)) {
+            if (((MappingType) element).getTo() != null) {
+                return ((MappingType) element).getTo();
             } else {
                 return "";
             }
@@ -481,7 +487,7 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
      *      java.lang.String, java.lang.Object)
      */
     public void modify(Object element, String property, final Object value) {
-        if (element instanceof TableItem && property.equalsIgnoreCase(EXPRESSION_COLUMN)) {
+        if (element instanceof TableItem && property.equalsIgnoreCase(FROM_COLUMN)) {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof ActionType1) {
                 final ActionType1 impl = (ActionType1) getTargetObject();
@@ -492,19 +498,19 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
                         @Override
                         protected void doExecute() {
                             MappingType parm = (MappingType) ti.getData();
-                            parm.setExpression(newValue);
+                            parm.setFrom(newValue);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     MappingType parm = (MappingType) ti.getData();
-                    parm.setExpression(newValue);
+                    parm.setFrom(newValue);
                     getTableViewer().refresh(true);
                 }
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(VARIABLE_COLUMN)) {
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(TO_COLUMN)) {
             final TableItem ti = (TableItem) element;
             final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
             if (getTargetObject() instanceof ActionType1) {
@@ -515,13 +521,13 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
                         @Override
                         protected void doExecute() {
                             MappingType parm = (MappingType) ti.getData();
-                            parm.setVariable(newValue);
+                            parm.setTo(newValue);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     MappingType parm = (MappingType) ti.getData();
-                    parm.setVariable(newValue);
+                    parm.setTo(newValue);
                     getTableViewer().refresh(true);
                 }
             }

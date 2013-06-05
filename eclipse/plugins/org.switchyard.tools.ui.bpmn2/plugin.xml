@@ -36,7 +36,7 @@
 
 			<property
          name="taskName"
-         value="SwitchYard Service">
+         value="SwitchYard Service Task">
 			</property>
 			<property
          name="icon"
@@ -58,7 +58,7 @@
 							<property
              description="The name of the operation to be invoked on the SwitchYard service."
              name="name"
-             value="ServiceOperationName"/>
+             value="OperationName"/>
 						</value>
 					</property>
 					<property name="dataInputs">
@@ -66,7 +66,7 @@
 							<property
              description="The name of the variable used to store the input message to be passed to the SwitchYard servce.  It must match the &quot;ContentInputName&quot; property."
              name="name"
-             value="ContentInputName"/>
+             value="ParameterName"/>
 						</value>
 					</property>
 					<property name="dataInputs">
@@ -74,7 +74,7 @@
 							<property
              description="The name of the variable used to store the output message from the SwitchYard servce.  It must match the &quot;ContentOutputName&quot; property."
              name="name"
-             value="ContentOutputName"/>
+             value="ResultName"/>
 						</value>
 					</property>
 					<property name="dataInputs">
@@ -90,7 +90,7 @@
 							<property
              description="The name of the fault event type to be invoked on the SwitchYard service."
              name="name"
-             value="FaultSignalId"/>
+             value="FaultEventId"/>
 						</value>
 					</property>
 					<property name="dataInputs">
@@ -139,7 +139,7 @@
 							</property>
 							<property name="from" type="FormalExpression">
 								<value>
-									<property name="body" value="contentInput"/>
+									<property name="body" value="Parameter"/>
 								</value>
 							</property>
 						</value>
@@ -158,7 +158,7 @@
 							</property>
 							<property name="from" type="FormalExpression">
 								<value>
-									<property name="body" value="contentOutput"/>
+									<property name="body" value="Result"/>
 								</value>
 							</property>
 						</value>

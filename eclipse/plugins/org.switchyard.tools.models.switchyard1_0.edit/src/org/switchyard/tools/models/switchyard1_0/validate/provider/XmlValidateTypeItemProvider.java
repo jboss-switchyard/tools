@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditP
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.provider.ValidateTypeItemProvider;
 
+import org.switchyard.tools.models.switchyard1_0.validate.ValidateFactory;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
 
@@ -68,8 +70,8 @@ public class XmlValidateTypeItemProvider
             super.getPropertyDescriptors(object);
 
             addSchemaTypePropertyDescriptor(object);
-            addSchemaFilePropertyDescriptor(object);
             addFailOnWarningPropertyDescriptor(object);
+            addNamespaceAwarePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -88,28 +90,6 @@ public class XmlValidateTypeItemProvider
                  getString("_UI_XmlValidateType_schemaType_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_XmlValidateType_schemaType_feature", "_UI_XmlValidateType_type"),
                  ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_TYPE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Schema File feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addSchemaFilePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_XmlValidateType_schemaFile_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_XmlValidateType_schemaFile_feature", "_UI_XmlValidateType_type"),
-                 ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_FILES,
                  true,
                  false,
                  false,
@@ -138,6 +118,59 @@ public class XmlValidateTypeItemProvider
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
+    }
+
+    /**
+     * This adds a property descriptor for the Namespace Aware feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNamespaceAwarePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_XmlValidateType_namespaceAware_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_XmlValidateType_namespaceAware_feature", "_UI_XmlValidateType_type"),
+                 ValidatePackage.Literals.XML_VALIDATE_TYPE__NAMESPACE_AWARE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_FILES);
+            childrenFeatures.add(ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_CATALOGS);
+        }
+        return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
     }
 
     /**
@@ -178,9 +211,13 @@ public class XmlValidateTypeItemProvider
 
         switch (notification.getFeatureID(XmlValidateType.class)) {
             case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_TYPE:
-            case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_FILES:
             case ValidatePackage.XML_VALIDATE_TYPE__FAIL_ON_WARNING:
+            case ValidatePackage.XML_VALIDATE_TYPE__NAMESPACE_AWARE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_FILES:
+            case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_CATALOGS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -196,6 +233,16 @@ public class XmlValidateTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_FILES,
+                 ValidateFactory.eINSTANCE.createSchemaFilesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_CATALOGS,
+                 ValidateFactory.eINSTANCE.createSchemaCatalogsType()));
     }
 
     /**

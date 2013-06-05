@@ -237,6 +237,52 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected GlobalsTypeItemProvider globalsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createGlobalsTypeAdapter() {
+        if (globalsTypeItemProvider == null) {
+            globalsTypeItemProvider = new GlobalsTypeItemProvider(this);
+        }
+
+        return globalsTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.InputsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected InputsTypeItemProvider inputsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.InputsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createInputsTypeAdapter() {
+        if (inputsTypeItemProvider == null) {
+            inputsTypeItemProvider = new InputsTypeItemProvider(this);
+        }
+
+        return inputsTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ListenersType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -352,29 +398,6 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.MappingsType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected MappingsTypeItemProvider mappingsTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.MappingsType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createMappingsTypeAdapter() {
-        if (mappingsTypeItemProvider == null) {
-            mappingsTypeItemProvider = new MappingsTypeItemProvider(this);
-        }
-
-        return mappingsTypeItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.MappingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -395,6 +418,29 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
         }
 
         return mappingTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.OutputsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected OutputsTypeItemProvider outputsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.OutputsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createOutputsTypeAdapter() {
+        if (outputsTypeItemProvider == null) {
+            outputsTypeItemProvider = new OutputsTypeItemProvider(this);
+        }
+
+        return outputsTypeItemProvider;
     }
 
     /**
@@ -641,13 +687,15 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
         if (channelTypeItemProvider != null) channelTypeItemProvider.dispose();
         if (containerTypeItemProvider != null) containerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (globalsTypeItemProvider != null) globalsTypeItemProvider.dispose();
+        if (inputsTypeItemProvider != null) inputsTypeItemProvider.dispose();
         if (listenersTypeItemProvider != null) listenersTypeItemProvider.dispose();
         if (listenerTypeItemProvider != null) listenerTypeItemProvider.dispose();
         if (loggersTypeItemProvider != null) loggersTypeItemProvider.dispose();
         if (loggerType1ItemProvider != null) loggerType1ItemProvider.dispose();
         if (manifestTypeItemProvider != null) manifestTypeItemProvider.dispose();
-        if (mappingsTypeItemProvider != null) mappingsTypeItemProvider.dispose();
         if (mappingTypeItemProvider != null) mappingTypeItemProvider.dispose();
+        if (outputsTypeItemProvider != null) outputsTypeItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
         if (resourcesTypeItemProvider != null) resourcesTypeItemProvider.dispose();

@@ -18,6 +18,8 @@
  */
 package org.switchyard.tools.ui.editor.components.rules;
 
+import java.util.Arrays;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -336,8 +338,9 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
             }
         });
 
-        _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, RulesPackage.eINSTANCE.getActionType1_Inputs(),
-                RulesPackage.eINSTANCE.getMappingsType_Mapping(), false);
+        _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, "message.content", null,
+                RulesPackage.eINSTANCE.getActionType1_Inputs(), RulesPackage.eINSTANCE.getInputsType_Input(),
+                Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
         inputsSection.setClient(_inputsTable);
@@ -354,8 +357,9 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
             }
         });
 
-        _outputsTable = new RulesMappingsTable(outputsSection, SWT.NONE,
-                RulesPackage.eINSTANCE.getActionType1_Outputs(), RulesPackage.eINSTANCE.getMappingsType_Mapping(), false);
+        _outputsTable = new RulesMappingsTable(outputsSection, SWT.NONE, null, "message.content",
+                RulesPackage.eINSTANCE.getActionType1_Outputs(), RulesPackage.eINSTANCE.getOutputsType_Output(),
+                Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_outputsTable);
         outputsSection.setClient(_outputsTable);
@@ -371,8 +375,9 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
             }
         });
 
-        _globalsTable = new RulesMappingsTable(globalsSection, SWT.NONE,
-                RulesPackage.eINSTANCE.getActionType1_Globals(), RulesPackage.eINSTANCE.getMappingsType_Mapping(), true);
+        _globalsTable = new RulesMappingsTable(globalsSection, SWT.NONE, "message.content", null,
+                RulesPackage.eINSTANCE.getActionType1_Globals(), RulesPackage.eINSTANCE.getGlobalsType_Global(),
+                Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_globalsTable);
         globalsSection.setClient(_globalsTable);

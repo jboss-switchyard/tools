@@ -168,6 +168,52 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected InterceptorTypeItemProvider interceptorTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createInterceptorTypeAdapter() {
+        if (interceptorTypeItemProvider == null) {
+            interceptorTypeItemProvider = new InterceptorTypeItemProvider(this);
+        }
+
+        return interceptorTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected InterceptorsTypeItemProvider interceptorsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createInterceptorsTypeAdapter() {
+        if (interceptorsTypeItemProvider == null) {
+            interceptorsTypeItemProvider = new InterceptorsTypeItemProvider(this);
+        }
+
+        return interceptorsTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -270,6 +316,8 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
         if (soapMessageComposerTypeItemProvider != null) soapMessageComposerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (soapBindingTypeItemProvider != null) soapBindingTypeItemProvider.dispose();
+        if (interceptorTypeItemProvider != null) interceptorTypeItemProvider.dispose();
+        if (interceptorsTypeItemProvider != null) interceptorsTypeItemProvider.dispose();
     }
 
 }

@@ -31,6 +31,8 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditP
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType} object.
@@ -102,7 +104,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -124,7 +126,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -212,7 +214,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -278,7 +280,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -501,14 +503,14 @@ public class JpaConsumerTypeItemProvider
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, "1000"))));
+                     SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.Literals.PROP_INTEGER, "1000"))));
 
         newChildDescriptors.add
             (createChildParameter
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, "500"))));
+                     SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.Literals.PROP_INTEGER, "500"))));
 
         newChildDescriptors.add
             (createChildParameter
@@ -536,7 +538,7 @@ public class JpaConsumerTypeItemProvider
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, "0"))));
+                     SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.Literals.PROP_INTEGER, "0"))));
     }
 
     /**

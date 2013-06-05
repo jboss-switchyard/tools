@@ -29,11 +29,12 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
-import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
@@ -101,24 +102,24 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         if (_processPage.getMessageInName() == null) {
             startAction.setInputs(null);
         } else {
-            final MappingsType inputs = BPMFactory.eINSTANCE.createMappingsType();
+            final InputsType inputs = BPMFactory.eINSTANCE.createInputsType();
             final MappingType inputMapping = BPMFactory.eINSTANCE.createMappingType();
-            inputMapping.setVariable(_processPage.getMessageInName());
-            inputMapping.setExpression("message.content");
+            inputMapping.setFrom("message.content");
+            inputMapping.setTo(_processPage.getMessageInName());
 
-            inputs.getMapping().add(inputMapping);
+            inputs.getInput().add(inputMapping);
             startAction.setInputs(inputs);
         }
 
         if (_processPage.getMessageOutName() == null) {
             startAction.setOutputs(null);
         } else {
-            final MappingsType outputs = BPMFactory.eINSTANCE.createMappingsType();
+            final OutputsType outputs = BPMFactory.eINSTANCE.createOutputsType();
             final MappingType outputMapping = BPMFactory.eINSTANCE.createMappingType();
-            outputMapping.setVariable(_processPage.getMessageOutName());
-            outputMapping.setExpression("message.content");
+            outputMapping.setFrom(_processPage.getMessageOutName());
+            outputMapping.setTo("message.content");
 
-            outputs.getMapping().add(outputMapping);
+            outputs.getOutput().add(outputMapping);
             startAction.setOutputs(outputs);
         }
 
@@ -202,8 +203,10 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
     protected InputStream getInitialContents() {
         // this is crappy. ideally we would be using the bpmn2 model to do this.
         final StringBuffer buf = new StringBuffer();
-        final String messageIn = _processPage.getMessageInName();
-        final String messageOut = _processPage.getMessageOutName();
+        final String messageIn = _processPage.getMessageInName() == null ? "Parameter" : _processPage
+                .getMessageInName();
+        final String messageOut = _processPage.getMessageOutName() == null ? "Result" : _processPage
+                .getMessageOutName();
         final String messageInItem = "_" + messageIn + "Item";
         final String messageOutItem = "_" + messageOut + "Item";
         String lineSeparator;

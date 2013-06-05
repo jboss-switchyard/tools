@@ -80,6 +80,24 @@ public interface RulesFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+     * Returns a new object of class '<em>Globals Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Globals Type</em>'.
+     * @generated
+     */
+    GlobalsType createGlobalsType();
+
+    /**
+     * Returns a new object of class '<em>Inputs Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Inputs Type</em>'.
+     * @generated
+     */
+    InputsType createInputsType();
+
+    /**
      * Returns a new object of class '<em>Listeners Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -125,15 +143,6 @@ public interface RulesFactory extends EFactory {
     ManifestType createManifestType();
 
     /**
-     * Returns a new object of class '<em>Mappings Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Mappings Type</em>'.
-     * @generated
-     */
-    MappingsType createMappingsType();
-
-    /**
      * Returns a new object of class '<em>Mapping Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -141,6 +150,15 @@ public interface RulesFactory extends EFactory {
      * @generated
      */
     MappingType createMappingType();
+
+    /**
+     * Returns a new object of class '<em>Outputs Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Outputs Type</em>'.
+     * @generated
+     */
+    OutputsType createOutputsType();
 
     /**
      * Returns a new object of class '<em>Properties Type</em>'.

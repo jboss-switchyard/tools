@@ -25,17 +25,17 @@ import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProv
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.rules.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.rules.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.MappingsType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.OutputsType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingsTypeItemProvider
+public class OutputsTypeItemProvider
     extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class MappingsTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsTypeItemProvider(AdapterFactory adapterFactory) {
+    public OutputsTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -80,7 +80,7 @@ public class MappingsTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(RulesPackage.Literals.MAPPINGS_TYPE__MAPPING);
+            childrenFeatures.add(RulesPackage.Literals.OUTPUTS_TYPE__OUTPUT);
         }
         return childrenFeatures;
     }
@@ -99,14 +99,14 @@ public class MappingsTypeItemProvider
     }
 
     /**
-     * This returns MappingsType.gif.
+     * This returns OutputsType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingsType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/OutputsType"));
     }
 
     /**
@@ -117,7 +117,7 @@ public class MappingsTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_MappingsType_type");
+        return getString("_UI_OutputsType_type");
     }
 
     /**
@@ -131,8 +131,8 @@ public class MappingsTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(MappingsType.class)) {
-            case RulesPackage.MAPPINGS_TYPE__MAPPING:
+        switch (notification.getFeatureID(OutputsType.class)) {
+            case RulesPackage.OUTPUTS_TYPE__OUTPUT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -152,7 +152,7 @@ public class MappingsTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.MAPPINGS_TYPE__MAPPING,
+                (RulesPackage.Literals.OUTPUTS_TYPE__OUTPUT,
                  RulesFactory.eINSTANCE.createMappingType()));
     }
 

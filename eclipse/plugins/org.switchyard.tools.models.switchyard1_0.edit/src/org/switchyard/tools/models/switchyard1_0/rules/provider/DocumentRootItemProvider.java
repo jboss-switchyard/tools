@@ -88,15 +88,17 @@ public class DocumentRootItemProvider
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CHANNELS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CONTAINER);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__GLOBAL);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__INPUT);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__INPUTS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LISTENER);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LISTENERS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LOGGER);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LOGGERS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__MANIFEST);
-            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__OUTPUT);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTIES);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY);
@@ -158,15 +160,17 @@ public class DocumentRootItemProvider
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
             case RulesPackage.DOCUMENT_ROOT__CHANNELS:
             case RulesPackage.DOCUMENT_ROOT__CONTAINER:
+            case RulesPackage.DOCUMENT_ROOT__GLOBAL:
             case RulesPackage.DOCUMENT_ROOT__GLOBALS:
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
+            case RulesPackage.DOCUMENT_ROOT__INPUT:
             case RulesPackage.DOCUMENT_ROOT__INPUTS:
             case RulesPackage.DOCUMENT_ROOT__LISTENER:
             case RulesPackage.DOCUMENT_ROOT__LISTENERS:
             case RulesPackage.DOCUMENT_ROOT__LOGGER:
             case RulesPackage.DOCUMENT_ROOT__LOGGERS:
             case RulesPackage.DOCUMENT_ROOT__MANIFEST:
-            case RulesPackage.DOCUMENT_ROOT__MAPPING:
+            case RulesPackage.DOCUMENT_ROOT__OUTPUT:
             case RulesPackage.DOCUMENT_ROOT__OUTPUTS:
             case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
             case RulesPackage.DOCUMENT_ROOT__PROPERTY:
@@ -216,8 +220,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__GLOBAL,
+                 RulesFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS,
-                 RulesFactory.eINSTANCE.createMappingsType()));
+                 RulesFactory.eINSTANCE.createGlobalsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -226,8 +235,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__INPUT,
+                 RulesFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__INPUTS,
-                 RulesFactory.eINSTANCE.createMappingsType()));
+                 RulesFactory.eINSTANCE.createInputsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -256,13 +270,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.DOCUMENT_ROOT__MAPPING,
+                (RulesPackage.Literals.DOCUMENT_ROOT__OUTPUT,
                  RulesFactory.eINSTANCE.createMappingType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS,
-                 RulesFactory.eINSTANCE.createMappingsType()));
+                 RulesFactory.eINSTANCE.createOutputsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -297,9 +311,9 @@ public class DocumentRootItemProvider
         Object childObject = child;
 
         boolean qualify =
-            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS ||
-            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__INPUTS ||
-            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS;
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__GLOBAL ||
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__INPUT ||
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__OUTPUT;
 
         if (qualify) {
             return getString

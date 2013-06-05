@@ -68,13 +68,15 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.CHANNEL_TYPE: return createChannelType();
             case BPMPackage.CONTAINER_TYPE: return createContainerType();
             case BPMPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case BPMPackage.GLOBALS_TYPE: return createGlobalsType();
+            case BPMPackage.INPUTS_TYPE: return createInputsType();
             case BPMPackage.LISTENERS_TYPE: return createListenersType();
             case BPMPackage.LISTENER_TYPE: return createListenerType();
             case BPMPackage.LOGGERS_TYPE: return createLoggersType();
             case BPMPackage.LOGGER_TYPE1: return createLoggerType1();
             case BPMPackage.MANIFEST_TYPE: return createManifestType();
-            case BPMPackage.MAPPINGS_TYPE: return createMappingsType();
             case BPMPackage.MAPPING_TYPE: return createMappingType();
+            case BPMPackage.OUTPUTS_TYPE: return createOutputsType();
             case BPMPackage.PROPERTIES_TYPE: return createPropertiesType();
             case BPMPackage.PROPERTY_TYPE: return createPropertyType();
             case BPMPackage.RESOURCES_TYPE: return createResourcesType();
@@ -219,6 +221,26 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    public GlobalsType createGlobalsType() {
+        GlobalsTypeImpl globalsType = new GlobalsTypeImpl();
+        return globalsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InputsType createInputsType() {
+        InputsTypeImpl inputsType = new InputsTypeImpl();
+        return inputsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ListenersType createListenersType() {
         ListenersTypeImpl listenersType = new ListenersTypeImpl();
         return listenersType;
@@ -269,9 +291,9 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType createMappingsType() {
-        MappingsTypeImpl mappingsType = new MappingsTypeImpl();
-        return mappingsType;
+    public MappingType createMappingType() {
+        MappingTypeImpl mappingType = new MappingTypeImpl();
+        return mappingType;
     }
 
     /**
@@ -279,9 +301,9 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingType createMappingType() {
-        MappingTypeImpl mappingType = new MappingTypeImpl();
-        return mappingType;
+    public OutputsType createOutputsType() {
+        OutputsTypeImpl outputsType = new OutputsTypeImpl();
+        return outputsType;
     }
 
     /**

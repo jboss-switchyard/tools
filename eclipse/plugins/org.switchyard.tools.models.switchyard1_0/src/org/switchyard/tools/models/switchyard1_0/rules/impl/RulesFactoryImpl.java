@@ -67,13 +67,15 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
             case RulesPackage.CHANNEL_TYPE: return createChannelType();
             case RulesPackage.CONTAINER_TYPE: return createContainerType();
             case RulesPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case RulesPackage.GLOBALS_TYPE: return createGlobalsType();
+            case RulesPackage.INPUTS_TYPE: return createInputsType();
             case RulesPackage.LISTENERS_TYPE: return createListenersType();
             case RulesPackage.LISTENER_TYPE: return createListenerType();
             case RulesPackage.LOGGERS_TYPE: return createLoggersType();
             case RulesPackage.LOGGER_TYPE1: return createLoggerType1();
             case RulesPackage.MANIFEST_TYPE: return createManifestType();
-            case RulesPackage.MAPPINGS_TYPE: return createMappingsType();
             case RulesPackage.MAPPING_TYPE: return createMappingType();
+            case RulesPackage.OUTPUTS_TYPE: return createOutputsType();
             case RulesPackage.PROPERTIES_TYPE: return createPropertiesType();
             case RulesPackage.PROPERTY_TYPE: return createPropertyType();
             case RulesPackage.RESOURCES_TYPE: return createResourcesType();
@@ -207,6 +209,26 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    public GlobalsType createGlobalsType() {
+        GlobalsTypeImpl globalsType = new GlobalsTypeImpl();
+        return globalsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InputsType createInputsType() {
+        InputsTypeImpl inputsType = new InputsTypeImpl();
+        return inputsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ListenersType createListenersType() {
         ListenersTypeImpl listenersType = new ListenersTypeImpl();
         return listenersType;
@@ -257,9 +279,9 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingsType createMappingsType() {
-        MappingsTypeImpl mappingsType = new MappingsTypeImpl();
-        return mappingsType;
+    public MappingType createMappingType() {
+        MappingTypeImpl mappingType = new MappingTypeImpl();
+        return mappingType;
     }
 
     /**
@@ -267,9 +289,9 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingType createMappingType() {
-        MappingTypeImpl mappingType = new MappingTypeImpl();
-        return mappingType;
+    public OutputsType createOutputsType() {
+        OutputsTypeImpl outputsType = new OutputsTypeImpl();
+        return outputsType;
     }
 
     /**
