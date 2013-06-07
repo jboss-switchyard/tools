@@ -32,7 +32,6 @@ import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICreateContext;
-import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.wst.common.project.facet.core.FacetedProjectFramework;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 
@@ -64,11 +63,6 @@ public class SwitchYardCustomTaskFeatureContainer extends JbpmCustomTaskFeatureC
             @Override
             public IAddFeature getAddFeature(IFeatureProvider fp) {
                 return new JbpmAddTaskFeature(fp);
-            }
-
-            @Override
-            public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
-                return new ICustomFeature[] {new ConfigureWorkItemFeature(fp) };
             }
 
         };

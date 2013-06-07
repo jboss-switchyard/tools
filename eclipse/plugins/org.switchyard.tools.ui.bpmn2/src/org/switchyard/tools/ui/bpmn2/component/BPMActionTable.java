@@ -111,6 +111,9 @@ public class BPMActionTable extends Composite implements ICellModifier {
             } else if (element instanceof ActionType1 && columnIndex == 0) {
                 ActionType1 tp = (ActionType1) element;
                 return tp.getOperation();
+            } else if (element instanceof ActionType1 && columnIndex == 2) {
+                ActionType1 tp = (ActionType1) element;
+                return tp.getEventId();
             }
             return null;
         }
@@ -122,13 +125,18 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * Type column.
      */
     public static final String TYPE_COLUMN = "type";
-    
+
     /**
      * Operation column.
      */
     public static final String OPERATION_COLUMN = "operation";
 
-    private static final String[] TREE_COLUMNS = new String[] {OPERATION_COLUMN, TYPE_COLUMN};
+    /**
+     * Event ID column.
+     */
+    public static final String EVENT_ID_COLUMN = "eventId";
+
+    private static final String[] TREE_COLUMNS = new String[] {OPERATION_COLUMN, TYPE_COLUMN, EVENT_ID_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -189,7 +197,11 @@ public class BPMActionTable extends Composite implements ICellModifier {
         TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         typeColumn.setText("Type");
         tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
-        
+
+        TableColumn eventIdColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        eventIdColumn.setText("Event ID");
+        tableLayout.setColumnData(eventIdColumn, new ColumnWeightData(100, 150, true));
+
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
         _propertyTreeTable.setLabelProvider(new PropertyTreeLabelProvider());
@@ -201,8 +213,8 @@ public class BPMActionTable extends Composite implements ICellModifier {
                 new TextCellEditor(_propertyTreeTable.getTable()),
                 new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {
                         ActionType.STARTPROCESS.getLiteral(), ActionType.SIGNALEVENT.getLiteral(),
-                        ActionType.ABORTPROCESSINSTANCE.getLiteral() })
-                });
+                        ActionType.ABORTPROCESSINSTANCE.getLiteral() }),
+                new TextCellEditor(_propertyTreeTable.getTable()) });
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
@@ -424,6 +436,12 @@ public class BPMActionTable extends Composite implements ICellModifier {
             } else {
                 return "";
             }
+        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(EVENT_ID_COLUMN)) {
+            if (((ActionType1) element).getEventId() != null) {
+                return ((ActionType1) element).getEventId();
+            } else {
+                return "";
+            }
         }
         return null;
     }
@@ -479,6 +497,29 @@ public class BPMActionTable extends Composite implements ICellModifier {
                 } else {
                     ActionType1 parm = (ActionType1) ti.getData();
                     parm.setOperation(newValue);
+                    getTableViewer().refresh(true);
+                }
+            }
+            fireChangedEvent(this);
+            // validate();
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(EVENT_ID_COLUMN)) {
+            final TableItem ti = (TableItem) element;
+            if (getTargetObject() instanceof BPMImplementationType) {
+                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+                final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
+                if (impl.eContainer() != null) {
+                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            ActionType1 parm = (ActionType1) ti.getData();
+                            parm.setEventId(newValue);
+                            getTableViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    ActionType1 parm = (ActionType1) ti.getData();
+                    parm.setEventId(newValue);
                     getTableViewer().refresh(true);
                 }
             }
