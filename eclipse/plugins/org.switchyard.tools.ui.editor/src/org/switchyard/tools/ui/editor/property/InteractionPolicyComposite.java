@@ -88,23 +88,29 @@ public class InteractionPolicyComposite extends AbstractModelComposite<Contract>
             @Override
             public void run() {
                 List<QName> requires = contract.getRequires();
-                if (requires == null) {
-                    requires = new ArrayList<QName>();
-                    contract.setRequires(requires);
-                }
-                for (QName requiresItem : requires) {
-                    String localPart = requiresItem.getLocalPart();
-                    if (_supportedInteractionPolicies.contains(localPart)) {
-                        requires.remove(requiresItem);
-                        break;
+                ArrayList<String> existing = new ArrayList<String>();
+                
+                if (requires != null) {
+                    for (QName requiresItem : requires) {
+                        String localPart = requiresItem.getLocalPart();
+                        if (!_supportedInteractionPolicies.contains(localPart)) {
+                            existing.add(localPart);
+                        }
                     }
+                }
+                contract.setRequires(null);
+
+                requires = new ArrayList<QName>();
+                for (String existingItem : existing) {
+                    QName newQName = new QName(existingItem);
+                    requires.add(newQName);
                 }
                 if (!value.trim().contentEquals("None")) {
                     QName newQName = new QName(value);
                     requires.add(newQName);
                 }
-                if (requires.isEmpty()) {
-                    contract.setRequires(null);
+                if (!requires.isEmpty()) {
+                    contract.setRequires(requires);
                 }
             }
         });

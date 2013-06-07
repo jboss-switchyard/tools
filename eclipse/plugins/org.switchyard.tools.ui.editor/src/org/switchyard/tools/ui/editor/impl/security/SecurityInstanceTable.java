@@ -338,7 +338,9 @@ public class SecurityInstanceTable extends Composite {
      */
     protected void addSecurityTypeToList() {
         NewSecurityTypeWizard wizard = new NewSecurityTypeWizard();
-        wizard.setSecuritiesType(_syRoot.getDomain().getSecurities());
+        if (_syRoot.getDomain() != null && _syRoot.getDomain().getSecurities() != null) {
+            wizard.setSecuritiesType(_syRoot.getDomain().getSecurities());
+        }
         WizardDialog dialog = new WizardDialog(this.getShell(), wizard);
         int rtn_code = dialog.open();
         if (rtn_code == Window.OK) {

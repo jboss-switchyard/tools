@@ -58,6 +58,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
     private Button _authorizationCheckbox;
     private Combo _securityCombo;
     private Contract _contract;
+    private ArrayList<String> _supportedSecurityPolicies;
     
     /**
      * Create a new SecurityPolicyComposite.
@@ -68,6 +69,11 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
      */
     public SecurityPolicyComposite(ICompositeContainer container, Composite parent, int style) {
         super(Contract.class, container, parent, style);
+
+        _supportedSecurityPolicies = new ArrayList<String>();
+        _supportedSecurityPolicies.add(CONFIDENTIALITY);
+        _supportedSecurityPolicies.add(CLIENT_AUTHENTICATION);
+        _supportedSecurityPolicies.add(AUTHORIZATION);
 
         FormLayout layout = new FormLayout();
         layout.marginBottom = ITabbedPropertyConstants.VMARGIN;
@@ -138,23 +144,29 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
             @Override
             public void run() {
                 List<QName> requires = contract.getRequires();
-                if (requires == null) {
-                    requires = new ArrayList<QName>();
-                    contract.setRequires(requires);
-                }
-                for (QName requiresItem : requires) {
-                    String localPart = requiresItem.getLocalPart();
-                    if (securityPolicy.contentEquals(localPart)) {
-                        requires.remove(requiresItem);
-                        break;
+                ArrayList<String> existing = new ArrayList<String>();
+                
+                if (requires != null) {
+                    for (QName requiresItem : requires) {
+                        String localPart = requiresItem.getLocalPart();
+                        existing.add(localPart);
                     }
+                    if (existing.contains(securityPolicy)) {
+                        existing.remove(securityPolicy);
+                    }
+                }
+                contract.setRequires(null);
+                requires = new ArrayList<QName>();
+                for (String existingItem : existing) {
+                    QName newQName = new QName(existingItem);
+                    requires.add(newQName);
                 }
                 if (control.getSelection()) {
                     QName newQName = new QName(securityPolicy);
                     requires.add(newQName);
                 }
-                if (requires.isEmpty()) {
-                    contract.setRequires(null);
+                if (!requires.isEmpty()) {
+                    contract.setRequires(requires);
                 }
             }
         });
@@ -166,7 +178,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         try {
             boolean clientAuthentication = false;
             boolean confidentiality = false;
-            boolean authentication = false;
+            boolean authorization = false;
             boolean showClientAuthCheckbox = true;
             boolean showAuthorizationCheckbox = true;
             boolean hasSecurityAttr = false;
@@ -185,7 +197,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                             confidentiality = true;
                         }
                         if (AUTHORIZATION.contentEquals(localPart)) {
-                            authentication = true;
+                            authorization = true;
                         }
                     }
                 }
@@ -217,8 +229,8 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                 _authorizationCheckbox.setEnabled(showAuthorizationCheckbox);
             }
 
-            if (authentication && !_authorizationCheckbox.isDisposed()) {
-                _authorizationCheckbox.setSelection(confidentiality);
+            if (authorization && _authorizationCheckbox != null && !_authorizationCheckbox.isDisposed()) {
+                _authorizationCheckbox.setSelection(authorization);
             }
             
             if (!_securityCombo.isDisposed()) {

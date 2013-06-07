@@ -19,6 +19,7 @@ import javax.xml.namespace.QName;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTException;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -37,6 +38,8 @@ import org.switchyard.tools.ui.editor.property.ICompositeContainer;
  */
 public class ImplementationPolicyComposite extends AbstractModelComposite<Component> implements
         ITabbedPropertyConstants {
+    
+    private final String _noneString = "None";
 
     private class ComboSelectionListener implements SelectionListener {
         @Override
@@ -79,7 +82,7 @@ public class ImplementationPolicyComposite extends AbstractModelComposite<Compon
 
         _implementationCombo = new Combo(this, SWT.DROP_DOWN | SWT.BORDER | SWT.READ_ONLY);
         factory.adapt(_implementationCombo, true, false);
-        _implementationCombo.add("None");
+        _implementationCombo.add(_noneString);
         for (String policy : _supportedImplementationPolicies) {
             _implementationCombo.add(policy);
         }
@@ -92,24 +95,14 @@ public class ImplementationPolicyComposite extends AbstractModelComposite<Compon
         wrapOperation(new Runnable() {
             @Override
             public void run() {
-                List<QName> requires = component.getImplementation().getRequires();
-                if (requires == null) {
-                    requires = new ArrayList<QName>();
-                    component.getImplementation().setRequires(requires);
-                }
-                for (QName requiresItem : requires) {
-                    String localPart = requiresItem.getLocalPart();
-                    if (_supportedImplementationPolicies.contains(localPart)) {
-                        requires.remove(requiresItem);
-                        break;
-                    }
-                }
-                if (!value.trim().isEmpty()) {
+                List<QName> requires = new ArrayList<QName>();
+                component.getImplementation().setRequires(null);
+                if (!value.trim().isEmpty() && !value.contentEquals(_noneString)) {
                     QName newQName = new QName(value);
                     requires.add(newQName);
                 }
-                if (requires.isEmpty()) {
-                    component.getImplementation().setRequires(null);
+                if (!requires.isEmpty()) {
+                    component.getImplementation().setRequires(requires);
                 }
             }
         });
@@ -129,15 +122,26 @@ public class ImplementationPolicyComposite extends AbstractModelComposite<Compon
                             String localPart = requiresItem.getLocalPart();
                             if (_supportedImplementationPolicies.contains(localPart)) {
                                 implementationPolicy = localPart;
+                                break;
                             }
                         }
                     }
                 }
             }
             if (implementationPolicy != null && !_implementationCombo.isDisposed()) {
-                _implementationCombo.setText(implementationPolicy);
-            } else {
-                _implementationCombo.setText("None");
+                try {
+                    _implementationCombo.setText(implementationPolicy);
+                } catch (SWTException se) {
+                    // ignore this - is a post-commit listener issue
+                    se.fillInStackTrace();
+                }
+            } else if (!_implementationCombo.isDisposed()) {
+                try {
+                    _implementationCombo.setText(_noneString);
+                } catch (SWTException se) {
+                    // ignore this - is a post-commit listener issue
+                    se.fillInStackTrace();
+                }
             }
         } finally {
             _inUpdate = false;
