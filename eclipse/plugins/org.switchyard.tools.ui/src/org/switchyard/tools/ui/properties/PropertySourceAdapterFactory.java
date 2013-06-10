@@ -16,7 +16,6 @@ import org.switchyard.component.bean.config.model.BeanComponentImplementationMod
 import org.switchyard.component.bpm.config.model.BPMComponentImplementationModel;
 import org.switchyard.component.camel.model.CamelComponentImplementationModel;
 import org.switchyard.component.clojure.config.model.ClojureComponentImplementationModel;
-import org.switchyard.component.hornetq.config.model.HornetQBindingModel;
 import org.switchyard.component.rules.config.model.RulesComponentImplementationModel;
 import org.switchyard.component.soap.config.model.SOAPBindingModel;
 import org.switchyard.config.model.Model;
@@ -125,8 +124,6 @@ public class PropertySourceAdapterFactory implements IAdapterFactory {
             return new CompositeReferenceModelPropertySource((CompositeReferenceModel) adaptableObject);
         } else if (adaptableObject instanceof CompositeServiceModel) {
             return new CompositeServiceModelPropertySource((CompositeServiceModel) adaptableObject);
-        } else if (adaptableObject instanceof HornetQBindingModel) {
-            return new HornetQBindingModelPropertySource((HornetQBindingModel) adaptableObject);
         } else if (adaptableObject instanceof SOAPBindingModel) {
             return new SOAPBindingModelPropertySource((SOAPBindingModel) adaptableObject);
         } else if (adaptableObject instanceof BindingModel) {

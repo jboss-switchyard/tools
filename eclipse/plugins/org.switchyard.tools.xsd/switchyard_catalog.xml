@@ -22,7 +22,6 @@
   <public publicId="urn:switchyard-component-camel-quartz:config:1.0" uri="camel-quartz-v1.xsd" />
   <public publicId="urn:switchyard-component-camel-sql:config:1.0" uri="camel-sql-v1.xsd" />
   <public publicId="urn:switchyard-component-clojure:config:1.0" uri="clojure-v1.xsd" />
-  <public publicId="urn:switchyard-component-hornetq:config:1.0" uri="hornetq-v1.xsd" />
   <public publicId="urn:switchyard-component-rules:config:1.0" uri="rules-v1.xsd" />
   <public publicId="urn:switchyard-component-soap:config:1.0" uri="soap-v1.xsd" />
   <public publicId="urn:switchyard-component-jca:config:1.0" uri="jca-v1.xsd" />
