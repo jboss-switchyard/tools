@@ -126,6 +126,27 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SOAPPackage.PROPERTY_TYPE: {
+                PropertyType propertyType = (PropertyType)theEObject;
+                T result = casePropertyType(propertyType);
+                if (result == null) result = caseCommonExtensionBase(propertyType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.PROPERTIES_TYPE: {
+                PropertiesType propertiesType = (PropertiesType)theEObject;
+                T result = casePropertiesType(propertiesType);
+                if (result == null) result = caseCommonExtensionBase(propertiesType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.ENDPOINT_CONFIG_TYPE: {
+                EndpointConfigType endpointConfigType = (EndpointConfigType)theEObject;
+                T result = caseEndpointConfigType(endpointConfigType);
+                if (result == null) result = caseCommonExtensionBase(endpointConfigType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -232,6 +253,51 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseMtomType(MtomType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Property Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Property Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePropertyType(PropertyType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Properties Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Properties Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePropertiesType(PropertiesType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Endpoint Config Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Endpoint Config Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseEndpointConfigType(EndpointConfigType object) {
         return null;
     }
 

@@ -71,6 +71,9 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
             case SOAPPackage.INTERCEPTOR_TYPE: return createInterceptorType();
             case SOAPPackage.INTERCEPTORS_TYPE: return createInterceptorsType();
             case SOAPPackage.MTOM_TYPE: return createMtomType();
+            case SOAPPackage.PROPERTY_TYPE: return createPropertyType();
+            case SOAPPackage.PROPERTIES_TYPE: return createPropertiesType();
+            case SOAPPackage.ENDPOINT_CONFIG_TYPE: return createEndpointConfigType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -182,6 +185,36 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public MtomType createMtomType() {
         MtomTypeImpl mtomType = new MtomTypeImpl();
         return mtomType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertyType createPropertyType() {
+        PropertyTypeImpl propertyType = new PropertyTypeImpl();
+        return propertyType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertiesType createPropertiesType() {
+        PropertiesTypeImpl propertiesType = new PropertiesTypeImpl();
+        return propertiesType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EndpointConfigType createEndpointConfigType() {
+        EndpointConfigTypeImpl endpointConfigType = new EndpointConfigTypeImpl();
+        return endpointConfigType;
     }
 
     /**

@@ -13,6 +13,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,5 +48,32 @@ public interface InterceptorType extends CommonExtensionBase {
      * @generated
      */
     void setClass(String value);
+
+    /**
+     * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Properties</em>' containment reference.
+     * @see #setProperties(PropertiesType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getInterceptorType_Properties()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='properties' namespace='##targetNamespace'"
+     * @generated
+     */
+    PropertiesType getProperties();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getProperties <em>Properties</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Properties</em>' containment reference.
+     * @see #getProperties()
+     * @generated
+     */
+    void setProperties(PropertiesType value);
 
 } // InterceptorType

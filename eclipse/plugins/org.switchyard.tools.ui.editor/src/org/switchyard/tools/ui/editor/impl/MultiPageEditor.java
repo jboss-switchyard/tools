@@ -772,13 +772,21 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private void refresh() {
         Display.getDefault().asyncExec(new Runnable() {
             public void run() {
-                _messageTraceCheckbox.setSelection(testForMessageTraceHandler());
-                _domainProperties.setSelection(getDomainPropertyList());
+                if (!_messageTraceCheckbox.isDisposed()) {
+                    _messageTraceCheckbox.setSelection(testForMessageTraceHandler());
+                }
+                if (!_domainProperties.isDisposed()) {
+                    _domainProperties.setSelection(getDomainPropertyList());
+                }
                 if (_syRoot != null) {
                     DomainType domain = _syRoot.getDomain();
                     if (domain != null) {
-                        _domainProperties.setTargetObject(domain);
-                        _securityInstanceTable.setSecurity(domain.getSecurities());
+                        if (!_domainProperties.isDisposed()) {
+                            _domainProperties.setTargetObject(domain);
+                        }
+                        if (!_securityInstanceTable.isDisposed()) {
+                            _securityInstanceTable.setSecurity(domain.getSecurities());
+                        }
                     }
                 }
             }

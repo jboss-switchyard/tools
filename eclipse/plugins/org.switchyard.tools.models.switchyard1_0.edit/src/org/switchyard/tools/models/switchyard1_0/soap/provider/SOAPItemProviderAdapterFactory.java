@@ -214,6 +214,98 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.MtomType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MtomTypeItemProvider mtomTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.MtomType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createMtomTypeAdapter() {
+        if (mtomTypeItemProvider == null) {
+            mtomTypeItemProvider = new MtomTypeItemProvider(this);
+        }
+
+        return mtomTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.PropertyType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PropertyTypeItemProvider propertyTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.PropertyType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPropertyTypeAdapter() {
+        if (propertyTypeItemProvider == null) {
+            propertyTypeItemProvider = new PropertyTypeItemProvider(this);
+        }
+
+        return propertyTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.PropertiesType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PropertiesTypeItemProvider propertiesTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.PropertiesType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPropertiesTypeAdapter() {
+        if (propertiesTypeItemProvider == null) {
+            propertiesTypeItemProvider = new PropertiesTypeItemProvider(this);
+        }
+
+        return propertiesTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EndpointConfigTypeItemProvider endpointConfigTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createEndpointConfigTypeAdapter() {
+        if (endpointConfigTypeItemProvider == null) {
+            endpointConfigTypeItemProvider = new EndpointConfigTypeItemProvider(this);
+        }
+
+        return endpointConfigTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -318,6 +410,10 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
         if (soapBindingTypeItemProvider != null) soapBindingTypeItemProvider.dispose();
         if (interceptorTypeItemProvider != null) interceptorTypeItemProvider.dispose();
         if (interceptorsTypeItemProvider != null) interceptorsTypeItemProvider.dispose();
+        if (mtomTypeItemProvider != null) mtomTypeItemProvider.dispose();
+        if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
+        if (endpointConfigTypeItemProvider != null) endpointConfigTypeItemProvider.dispose();
     }
 
 }

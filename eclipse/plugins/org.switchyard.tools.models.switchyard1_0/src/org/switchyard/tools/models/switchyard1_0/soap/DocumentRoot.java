@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMessageComposerSoap <em>Message Composer Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getInterceptor <em>Interceptor</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom <em>Mtom</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getEndpointConfig <em>Endpoint Config</em>}</li>
  * </ul>
  * </p>
  *
@@ -223,5 +224,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setMtom(MtomType value);
+
+    /**
+     * Returns the value of the '<em><b>Endpoint Config</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Endpoint Config</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Endpoint Config</em>' reference.
+     * @see #setEndpointConfig(EndpointConfigType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_EndpointConfig()
+     * @model upper="-2"
+     *        extendedMetaData="kind='element' name='endpointConfig' namespace='##targetNamespace'"
+     * @generated
+     */
+    EndpointConfigType getEndpointConfig();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getEndpointConfig <em>Endpoint Config</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Endpoint Config</em>' reference.
+     * @see #getEndpointConfig()
+     * @generated
+     */
+    void setEndpointConfig(EndpointConfigType value);
 
 } // DocumentRoot

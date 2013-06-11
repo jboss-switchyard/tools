@@ -115,6 +115,12 @@ public class SOAPValidator extends EObjectValidator {
                 return validateInterceptorsType((InterceptorsType)value, diagnostics, context);
             case SOAPPackage.MTOM_TYPE:
                 return validateMtomType((MtomType)value, diagnostics, context);
+            case SOAPPackage.PROPERTY_TYPE:
+                return validatePropertyType((PropertyType)value, diagnostics, context);
+            case SOAPPackage.PROPERTIES_TYPE:
+                return validatePropertiesType((PropertiesType)value, diagnostics, context);
+            case SOAPPackage.ENDPOINT_CONFIG_TYPE:
+                return validateEndpointConfigType((EndpointConfigType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return validateSoapHeadersType((SoapHeadersType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
@@ -187,6 +193,33 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateMtomType(MtomType mtomType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(mtomType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validatePropertyType(PropertyType propertyType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(propertyType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validatePropertiesType(PropertiesType propertiesType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(propertiesType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateEndpointConfigType(EndpointConfigType endpointConfigType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(endpointConfigType, diagnostics, context);
     }
 
     /**

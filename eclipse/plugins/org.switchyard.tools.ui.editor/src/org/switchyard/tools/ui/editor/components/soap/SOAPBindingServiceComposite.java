@@ -39,6 +39,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
@@ -47,6 +49,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
+import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
@@ -67,9 +71,7 @@ import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
  * @author bfitzpat
  * 
  */
-public class SOAPBindingComposite extends AbstractSYBindingComposite {
-
-    private static final String WSDL = "wsdl";
+public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private Text _mWSDLURIText;
@@ -83,20 +85,21 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
     private Text _portNameText = null;
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
+    private Button _browseBtnConfigWorkspace;
     private Link _newWSDLLink;
     private TabFolder _tabFolder;
-    private Text _endpointAddressText;
-    private String _endpointAddress = null;
-    private Text _securityActionText = null;
-    private String _securityAction = null;
     private Button _enableMtomCheckbox = null;
     private Button _enableXopExpandCheckbox = null;
     private Button _disableMtomCheckbox =  null;
+    private Text _configFileText;
+    private Text _configNameText;
+    private InterceptorTable _inInterceptorTable;
+    private InterceptorTable _outInterceptorTable;
 
     /**
      * Constructor.
      */
-    public SOAPBindingComposite() {
+    public SOAPBindingServiceComposite() {
         // empty
     }
 
@@ -121,10 +124,114 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("Consumer");
         one.setControl(getSOAPTabControl(_tabFolder));
+        
+        TabItem two = new TabItem(_tabFolder, SWT.NONE);
+        two.setText("Interceptors");
+        two.setControl(getInterceptorsTabControl(_tabFolder));
 
         addTabs(_tabFolder);
     }
 
+    private Control getInterceptorsTabControl(TabFolder tabFolder) {
+        Composite composite = new Composite(tabFolder, SWT.NONE);
+        GridLayout gl = new GridLayout(1, false);
+        composite.setLayout(gl);
+        
+        Group inGroup = new Group(composite, SWT.NONE);
+        inGroup.setText("Inbound Interceptors");
+        GridData inGrpGD = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
+        inGroup.setLayoutData(inGrpGD);
+        inGroup.setLayout(new GridLayout(2, false));
+        
+        _inInterceptorTable = new InterceptorTable(inGroup, SWT.NONE) {
+            
+            @Override
+            protected void removeFromList() {
+                final InterceptorType interceptor = _inInterceptorTable.getTableSelection();
+                if (interceptor != null) {
+                    removeInInterceptorTypeFeature(interceptor);
+                }
+            }
+            
+            @Override
+            protected void addInterceptorTypeToList() {
+                final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
+                        .getActiveShell());
+                InterceptorType interceptor = SOAPFactory.eINSTANCE.createInterceptorType();
+                dialog.setInterceptor(interceptor);
+                int rtn_value = dialog.open();
+                if (rtn_value == InterceptorTypeInputDialog.OK) {
+                    addInInterceptorTypeFeature(interceptor);
+                    _inInterceptorTable.setSelection(_binding.getInInterceptors().getInterceptor());
+                }
+            }
+
+            @Override
+            protected void editInterceptorType() {
+                final InterceptorType interceptor = _inInterceptorTable.getTableSelection();
+                if (interceptor != null) {
+                    final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
+                            .getActiveShell());
+                    dialog.setInterceptor(interceptor);
+                    int rtn_value = dialog.open();
+                    if (rtn_value == InterceptorTypeInputDialog.OK) {
+                        addInInterceptorTypeFeature(interceptor);
+                        _inInterceptorTable.setSelection(_binding.getInInterceptors().getInterceptor());
+                    }
+                }
+            }
+        };
+        _inInterceptorTable.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
+
+        Group outGroup = new Group(composite, SWT.NONE);
+        outGroup.setText("Outbound Interceptors");
+        GridData outGrpGD = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
+        outGroup.setLayoutData(outGrpGD);
+        outGroup.setLayout(new GridLayout(2, false));
+
+        _outInterceptorTable = new InterceptorTable(outGroup, SWT.NONE) {
+            
+            @Override
+            protected void removeFromList() {
+                final InterceptorType interceptor = _outInterceptorTable.getTableSelection();
+                if (interceptor != null) {
+                    removeOutInterceptorTypeFeature(interceptor);
+                }
+            }
+            
+            @Override
+            protected void addInterceptorTypeToList() {
+                final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
+                        .getActiveShell());
+                InterceptorType interceptor = SOAPFactory.eINSTANCE.createInterceptorType();
+                dialog.setInterceptor(interceptor);
+                int rtn_value = dialog.open();
+                if (rtn_value == InterceptorTypeInputDialog.OK) {
+                    addOutInterceptorTypeFeature(interceptor);
+                    _outInterceptorTable.setSelection(_binding.getOutInterceptors().getInterceptor());
+                }
+            }
+
+            @Override
+            protected void editInterceptorType() {
+                final InterceptorType interceptor = _outInterceptorTable.getTableSelection();
+                if (interceptor != null) {
+                    final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
+                            .getActiveShell());
+                    dialog.setInterceptor(interceptor);
+                    int rtn_value = dialog.open();
+                    if (rtn_value == InterceptorTypeInputDialog.OK) {
+                        addOutInterceptorTypeFeature(interceptor);
+                        _outInterceptorTable.setSelection(_binding.getOutInterceptors().getInterceptor());
+                    }
+                }
+            }
+        };
+        _outInterceptorTable.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
+
+        return composite;
+    }
+    
     private Control getSOAPTabControl(TabFolder tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(3, false);
@@ -161,7 +268,6 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         _mWSDLURIText.setEnabled(canEdit());
 
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
-        // uriGD.horizontalSpan = 2;
         _mWSDLURIText.setLayoutData(uriGD);
 
         _browseBtnWorkspace = new Button(composite, SWT.PUSH);
@@ -171,7 +277,7 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         _browseBtnWorkspace.setLayoutData(btnGD);
         _browseBtnWorkspace.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
-                String result = selectResourceFromWorkspace(_panel.getShell(), WSDL);
+                String result = selectResourceFromWorkspace(_panel.getShell(), "*.wsdl");
                 if (result != null) {
                     _mWSDLURIText.setText(result);
                     setHasChanged(true);
@@ -216,19 +322,43 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             _soapHeadersTypeCombo.add(SoapHeadersType.get(i).getLiteral(), i);
         }
         _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
-
-        _endpointAddressText = createLabelAndText(composite, "Endpoint Address");
-        _endpointAddressText.setEnabled(canEdit());
-        GridData epAddrGD = new GridData(GridData.FILL_HORIZONTAL);
-        epAddrGD.horizontalSpan = 2;
-        _endpointAddressText.setLayoutData(epAddrGD);
-
-        _securityActionText = createLabelAndText(composite, "Security Action");
-        _securityActionText.setEnabled(canEdit());
-        GridData saAddrGD = new GridData(GridData.FILL_HORIZONTAL);
-        saAddrGD.horizontalSpan = 2;
-        _securityActionText.setLayoutData(saAddrGD);
         
+        Group endpointConfigGroup = new Group(composite, SWT.NONE);
+        endpointConfigGroup.setText("Endpoint Configuration");
+        GridData epGrpGD = new GridData(GridData.FILL_HORIZONTAL);
+        epGrpGD.horizontalSpan = 3;
+        endpointConfigGroup.setLayoutData(epGrpGD);
+        GridLayout groupGridLayout = new GridLayout(3, false);
+        groupGridLayout.marginLeft = -5;
+        endpointConfigGroup.setLayout(groupGridLayout);
+        
+        _configFileText = createLabelAndText(endpointConfigGroup,  "Config File");
+        _configFileText.setEnabled(canEdit());
+        _configFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+        _browseBtnConfigWorkspace = new Button(endpointConfigGroup, SWT.PUSH);
+        _browseBtnConfigWorkspace.setText("Browse...");
+        _browseBtnConfigWorkspace.setEnabled(canEdit());
+        GridData btnConfigGD = new GridData();
+        _browseBtnConfigWorkspace.setLayoutData(btnConfigGD);
+        _browseBtnConfigWorkspace.addSelectionListener(new SelectionAdapter() {
+            public void widgetSelected(final SelectionEvent e) {
+                String result = selectResourceFromWorkspace(_panel.getShell(), "*.xml");
+                if (result != null) {
+                    _configFileText.setText(result);
+                    setHasChanged(true);
+                    handleModify(_configFileText);
+                    fireChangedEvent(_configFileText);
+                }
+            }
+        });
+
+        _configNameText = createLabelAndText(endpointConfigGroup,  "Config Name");
+        _configNameText.setEnabled(canEdit());
+        GridData cnGD = new GridData(GridData.FILL_HORIZONTAL);
+        cnGD.horizontalSpan = 2;
+        _configNameText.setLayoutData(cnGD);
+
         Composite mtomComposite = new Composite(composite, SWT.NONE);
         mtomComposite.setLayout(new GridLayout(3, false));
         GridData mtomCompositeGD = new GridData();
@@ -283,12 +413,6 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_portNameText)) {
                 final String wsdlPort = _portNameText.getText();
                 updateFeature(_binding, "wsdlPort", wsdlPort);
-            } else if (control.equals(_endpointAddressText)) {
-                final String endpointAddress = _endpointAddressText.getText();
-                updateFeature(_binding, "endpointAddress", endpointAddress);
-            } else if (control.equals(_securityActionText)) {
-                final String securityAction = _securityActionText.getText();
-                updateFeature(_binding, "securityAction", securityAction);
             } else if (control.equals(_enableMtomCheckbox)) {
                 _disableMtomCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
                 _enableXopExpandCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
@@ -303,6 +427,18 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 updateMTomFeature("enabled", !_disableMtomCheckbox.getSelection());
             } else if (control.equals(_enableXopExpandCheckbox)) {
                 updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection());
+            } else if (control.equals(_configFileText)) {
+                if (_configFileText.getText().trim().isEmpty() && _configNameText.getText().trim().isEmpty()) {
+                    removeEndpointConfigFeature();
+                } else {
+                    updateEndpointConfigFeature("configFile", _configFileText.getText().trim());
+                }
+            } else if (control.equals(_configNameText)) {
+                if (_configFileText.getText().trim().isEmpty() && _configNameText.getText().trim().isEmpty()) {
+                    removeEndpointConfigFeature();
+                } else {
+                    updateEndpointConfigFeature("configName", _configNameText.getText().trim());
+                }
             } else {
                 super.handleModify(control);
             }
@@ -340,10 +476,6 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                         _soapHeadersTypeCombo.select(index);
                     }
                 }
-            } else if (control.equals(_endpointAddressText)) {
-                _endpointAddressText.setText(_binding.getEndpointAddress());
-            } else if (control.equals(_securityActionText)) {
-                _securityActionText.setText(_binding.getSecurityAction());
             } else if (control.equals(_enableMtomCheckbox)) {
                 _enableMtomCheckbox.setSelection(_binding.getMtom() != null);
                 if (_binding.getMtom() != null) {
@@ -366,6 +498,20 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_enableXopExpandCheckbox)) {
                 if (_binding.getMtom() != null) {
                     _enableXopExpandCheckbox.setSelection(!_binding.getMtom().isXopExpand());
+                }
+            } else if (control.equals(_configFileText)) {
+                if (_binding.getEndpointConfig() != null) {
+                    String configFile = _binding.getEndpointConfig().getConfigFile();
+                    setTextValue(_configFileText, configFile);
+                } else {
+                    setTextValue(_configFileText, null);
+                }
+            } else if (control.equals(_configNameText)) {
+                if (_binding.getEndpointConfig() != null) {
+                    String configName = _binding.getEndpointConfig().getConfigName();
+                    setTextValue(_configNameText, configName);
+                } else {
+                    setTextValue(_configNameText, null);
                 }
             } else {
                 super.handleUndo(control);
@@ -516,20 +662,18 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             } else {
                 _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
             }
-            if (_endpointAddressText != null && !_endpointAddressText.isDisposed()) {
-                _endpointAddress  = _binding.getEndpointAddress();
-                if (_endpointAddress != null) {
-                    _endpointAddressText.setText(_endpointAddress);
-                } else {
-                    _endpointAddressText.setText("");
+            if (_binding.getEndpointConfig() != null) {
+                if (_configFileText != null && !_configFileText.isDisposed()) {
+                    String configFile = _binding.getEndpointConfig().getConfigFile();
+                    if (configFile != null && !configFile.trim().isEmpty()) {
+                        _configFileText.setText(configFile);
+                    }
                 }
-            }
-            if (_securityActionText != null && !_securityActionText.isDisposed()) {
-                _securityAction  = _binding.getSecurityAction();
-                if (_securityAction != null) {
-                    _securityActionText.setText(_securityAction);
-                } else {
-                    _securityActionText.setText("");
+                if (_configNameText != null && !_configNameText.isDisposed()) {
+                    String configName = _binding.getEndpointConfig().getConfigName();
+                    if (configName != null && !configName.trim().isEmpty()) {
+                        _configNameText.setText(configName);
+                    }
                 }
             }
             if (_enableMtomCheckbox != null && !_enableMtomCheckbox.isDisposed()) {
@@ -543,6 +687,12 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                     _enableXopExpandCheckbox.setEnabled(false);
                     _disableMtomCheckbox.setEnabled(false);
                 }
+            }
+            if (_binding.getInInterceptors() != null && !_inInterceptorTable.isDisposed()) {
+                _inInterceptorTable.setSelection(_binding.getInInterceptors().getInterceptor());
+            }
+            if (_binding.getOutInterceptors() != null && !_outInterceptorTable.isDisposed()) {
+                _outInterceptorTable.setSelection(_binding.getOutInterceptors().getInterceptor());
             }
             super.setTabsBinding(_binding);
             setInUpdate(false);
@@ -561,12 +711,13 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
     /**
      * @param shell Shell for dialog
      * @param project java project to use for resolving classpaths
+     * @param initialPattern the file type to look for (*.xml, *.wsdl, etc)
      * @return PortType result
      */
-    public Port browse(Shell shell, IJavaProject project) {
+    public Port browse(Shell shell, IJavaProject project, String initialPattern) {
         WSDLPortSelectionDialog dialog = new WSDLPortSelectionDialog(shell, project == null ? ResourcesPlugin
                 .getWorkspace().getRoot() : project.getProject());
-        dialog.setInitialPattern("*.wsdl");
+        dialog.setInitialPattern(initialPattern);
         if (dialog.open() == WSDLPortSelectionDialog.OK) {
             Port result = dialog.getSelectedPort();
             if (result != null) {
@@ -585,7 +736,7 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 javaProject = JavaCore.create(modelFile.getProject());
             }
         }
-        Port port = browse(shell, javaProject);
+        Port port = browse(shell, javaProject, extension);
         if (port != null) {
             this._portNameText.setText(port.getName());
             IPath filePath = new Path(port.eResource().getURI().toPlatformString(true));
@@ -633,8 +784,6 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         updateControlEditable(_mWSDLSocketText);
         updateControlEditable(_unwrappedPayloadCheckbox);
         updateControlEditable(_soapHeadersTypeCombo);
-        updateControlEditable(_endpointAddressText);
-        updateControlEditable(_securityActionText);
     }
 
     class MessageComposerOp extends ModelOperation {
@@ -685,6 +834,147 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
     protected void removeMTomFeature() {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new RemoveMTomOp());
+        wrapOperation(ops);
+    }
+
+    class AddEndpointConfigOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getEndpointConfig() == null) {
+                EndpointConfigType endpointConfigType = SOAPFactory.eINSTANCE.createEndpointConfigType();
+                _binding.setEndpointConfig(endpointConfigType);
+//                setFeatureValue(_binding, "endpointConfig", endpointConfigType);
+            }
+        }
+    }
+
+    class RemoveEndpointConfigOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getEndpointConfig() != null) {
+                setFeatureValue(_binding, "endpointConfig", null);
+            }
+        }
+    }
+    
+    protected void updateEndpointConfigFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        String epName = null;
+        String epFile =  null;
+        if (_binding.getEndpointConfig() != null) {
+            epName = _binding.getEndpointConfig().getConfigName();
+            epFile = _binding.getEndpointConfig().getConfigFile();
+        }
+        if (featureId.equalsIgnoreCase("configName")) {
+            epName = (String) value;
+        } else if (featureId.equalsIgnoreCase("configFile")) {
+            epFile = (String) value;
+        }
+        ops.add(new RemoveEndpointConfigOp());
+        if (epName != null || epFile != null) {
+            ops.add(new AddEndpointConfigOp());
+            ops.add(new BasicOperation("endpointConfig", "configName", epName));
+            ops.add(new BasicOperation("endpointConfig", "configFile",  epFile));
+        }
+        wrapOperation(ops);
+    }
+
+    protected void removeEndpointConfigFeature() {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveEndpointConfigOp());
+        wrapOperation(ops);
+    }
+    
+    class AddInInterceptorTypeOp extends ModelOperation {
+        
+        private InterceptorType _interceptor = null;
+        
+        public AddInInterceptorTypeOp(InterceptorType interceptor) {
+            _interceptor = interceptor;
+        }
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getInInterceptors() == null) {
+                _binding.setInInterceptors(SOAPFactory.eINSTANCE.createInterceptorsType());
+            }
+            if (_binding.getInInterceptors().getInterceptor().contains(_interceptor)) {
+                _binding.getInInterceptors().getInterceptor().remove(_interceptor);
+            }
+            _binding.getInInterceptors().getInterceptor().add(_interceptor);
+        }
+    }
+    
+    class RemoveInInterceptorTypeOp extends ModelOperation {
+        private InterceptorType _interceptor = null;
+        
+        public RemoveInInterceptorTypeOp(InterceptorType interceptor) {
+            _interceptor = interceptor;
+        }
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getInInterceptors() != null) {
+                _binding.getInInterceptors().getInterceptor().remove(_interceptor);
+            }
+            if (_binding.getInInterceptors().getInterceptor().isEmpty()) {
+                setFeatureValue(_binding, "inInterceptors", null);
+            }
+        }
+    }
+    
+    class AddOutInterceptorTypeOp extends ModelOperation {
+        
+        private InterceptorType _interceptor = null;
+        
+        public AddOutInterceptorTypeOp(InterceptorType interceptor) {
+            _interceptor = interceptor;
+        }
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getOutInterceptors() == null) {
+                _binding.setOutInterceptors(SOAPFactory.eINSTANCE.createInterceptorsType());
+            }
+            _binding.getOutInterceptors().getInterceptor().add(_interceptor);
+        }
+    }
+
+    class RemoveOutInterceptorTypeOp extends ModelOperation {
+        private InterceptorType _interceptor = null;
+        
+        public RemoveOutInterceptorTypeOp(InterceptorType interceptor) {
+            _interceptor = interceptor;
+        }
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getOutInterceptors() != null) {
+                _binding.getOutInterceptors().getInterceptor().remove(_interceptor);
+            }
+            if (_binding.getOutInterceptors().getInterceptor().isEmpty()) {
+                setFeatureValue(_binding, "outInterceptors", null);
+            }
+        }
+    }
+
+    protected void addInInterceptorTypeFeature(final InterceptorType interceptor) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new AddInInterceptorTypeOp(interceptor));
+        wrapOperation(ops);
+    }
+    
+    protected void removeInInterceptorTypeFeature(final InterceptorType interceptor) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveInInterceptorTypeOp(interceptor));
+        wrapOperation(ops);
+    }
+
+    protected void addOutInterceptorTypeFeature(final InterceptorType interceptor) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new AddOutInterceptorTypeOp(interceptor));
+        wrapOperation(ops);
+    }
+
+    protected void removeOutInterceptorTypeFeature(final InterceptorType interceptor) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveOutInterceptorTypeOp(interceptor));
         wrapOperation(ops);
     }
 }

@@ -106,6 +106,18 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createMtomTypeAdapter();
             }
             @Override
+            public Adapter casePropertyType(PropertyType object) {
+                return createPropertyTypeAdapter();
+            }
+            @Override
+            public Adapter casePropertiesType(PropertiesType object) {
+                return createPropertiesTypeAdapter();
+            }
+            @Override
+            public Adapter caseEndpointConfigType(EndpointConfigType object) {
+                return createEndpointConfigTypeAdapter();
+            }
+            @Override
             public Adapter caseSwitchyard_ContextMapperType(org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType object) {
                 return createSwitchyard_ContextMapperTypeAdapter();
             }
@@ -240,6 +252,48 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createMtomTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.PropertyType <em>Property Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.PropertyType
+     * @generated
+     */
+    public Adapter createPropertyTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.PropertiesType <em>Properties Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.PropertiesType
+     * @generated
+     */
+    public Adapter createPropertiesTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType <em>Endpoint Config Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType
+     * @generated
+     */
+    public Adapter createEndpointConfigTypeAdapter() {
         return null;
     }
 

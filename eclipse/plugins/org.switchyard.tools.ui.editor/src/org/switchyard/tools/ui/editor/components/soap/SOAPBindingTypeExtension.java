@@ -19,6 +19,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
@@ -51,7 +52,11 @@ public class SOAPBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public IBindingComposite createComposite(Binding binding) {
-        return new SOAPBindingComposite();
+        if (binding.eContainer() instanceof Service) {
+            return new SOAPBindingServiceComposite();
+        } else {
+            return new SOAPBindingReferenceComposite();
+        }
     }
 
     @Override

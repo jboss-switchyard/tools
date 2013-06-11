@@ -257,13 +257,22 @@ public interface SOAPPackage extends EPackage {
     int DOCUMENT_ROOT__MTOM = 7;
 
     /**
+     * The feature id for the '<em><b>Endpoint Config</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__ENDPOINT_CONFIG = 8;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 8;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 9;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
@@ -429,22 +438,13 @@ public interface SOAPPackage extends EPackage {
     int SOAP_BINDING_TYPE__ENDPOINT_ADDRESS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
-     * The feature id for the '<em><b>Security Action</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SOAP_BINDING_TYPE__SECURITY_ACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
-
-    /**
      * The feature id for the '<em><b>In Interceptors</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__IN_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int SOAP_BINDING_TYPE__IN_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The feature id for the '<em><b>Out Interceptors</b></em>' containment reference.
@@ -453,7 +453,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__OUT_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+    int SOAP_BINDING_TYPE__OUT_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Mtom</b></em>' containment reference.
@@ -462,7 +462,16 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__MTOM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+    int SOAP_BINDING_TYPE__MTOM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Endpoint Config</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SOAP_BINDING_TYPE__ENDPOINT_CONFIG = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
 
     /**
      * The number of structural features of the '<em>Binding Type</em>' class.
@@ -511,13 +520,22 @@ public interface SOAPPackage extends EPackage {
     int INTERCEPTOR_TYPE__CLASS = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERCEPTOR_TYPE__PROPERTIES = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Interceptor Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INTERCEPTOR_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+    int INTERCEPTOR_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorsTypeImpl <em>Interceptors Type</em>}' class.
@@ -630,6 +648,162 @@ public interface SOAPPackage extends EPackage {
     int MTOM_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl <em>Property Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getPropertyType()
+     * @generated
+     */
+    int PROPERTY_TYPE = 7;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Prop Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_TYPE__PROP_NAME = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Prop Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_TYPE__PROP_VALUE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Property Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertiesTypeImpl <em>Properties Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.PropertiesTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getPropertiesType()
+     * @generated
+     */
+    int PROPERTIES_TYPE = 8;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTIES_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTIES_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Property</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTIES_TYPE__PROPERTY = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Properties Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTIES_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.EndpointConfigTypeImpl <em>Endpoint Config Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.EndpointConfigTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getEndpointConfigType()
+     * @generated
+     */
+    int ENDPOINT_CONFIG_TYPE = 9;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT_CONFIG_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT_CONFIG_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Config File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT_CONFIG_TYPE__CONFIG_FILE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Config Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT_CONFIG_TYPE__CONFIG_NAME = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Endpoint Config Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT_CONFIG_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -637,7 +811,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersType()
      * @generated
      */
-    int SOAP_HEADERS_TYPE = 7;
+    int SOAP_HEADERS_TYPE = 10;
 
     /**
      * The meta object id for the '<em>Soap Headers Type Object</em>' data type.
@@ -647,7 +821,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersTypeObject()
      * @generated
      */
-    int SOAP_HEADERS_TYPE_OBJECT = 8;
+    int SOAP_HEADERS_TYPE_OBJECT = 11;
 
     /**
      * The meta object id for the '<em>Wsdl Port Type</em>' data type.
@@ -657,7 +831,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getWsdlPortType()
      * @generated
      */
-    int WSDL_PORT_TYPE = 9;
+    int WSDL_PORT_TYPE = 12;
 
 
     /**
@@ -801,6 +975,17 @@ public interface SOAPPackage extends EPackage {
     EReference getDocumentRoot_Mtom();
 
     /**
+     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getEndpointConfig <em>Endpoint Config</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Endpoint Config</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getEndpointConfig()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_EndpointConfig();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType <em>Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -866,17 +1051,6 @@ public interface SOAPPackage extends EPackage {
     EAttribute getSOAPBindingType_EndpointAddress();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSecurityAction <em>Security Action</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Security Action</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSecurityAction()
-     * @see #getSOAPBindingType()
-     * @generated
-     */
-    EAttribute getSOAPBindingType_SecurityAction();
-
-    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -910,6 +1084,17 @@ public interface SOAPPackage extends EPackage {
     EReference getSOAPBindingType_Mtom();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointConfig <em>Endpoint Config</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Endpoint Config</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointConfig()
+     * @see #getSOAPBindingType()
+     * @generated
+     */
+    EReference getSOAPBindingType_EndpointConfig();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType <em>Interceptor Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -929,6 +1114,17 @@ public interface SOAPPackage extends EPackage {
      * @generated
      */
     EAttribute getInterceptorType_Class();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getProperties <em>Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Properties</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getProperties()
+     * @see #getInterceptorType()
+     * @generated
+     */
+    EReference getInterceptorType_Properties();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType <em>Interceptors Type</em>}'.
@@ -993,6 +1189,91 @@ public interface SOAPPackage extends EPackage {
      * @generated
      */
     EAttribute getMtomType_XopExpand();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.PropertyType <em>Property Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Property Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.PropertyType
+     * @generated
+     */
+    EClass getPropertyType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.PropertyType#getPropName <em>Prop Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Prop Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.PropertyType#getPropName()
+     * @see #getPropertyType()
+     * @generated
+     */
+    EAttribute getPropertyType_PropName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.PropertyType#getPropValue <em>Prop Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Prop Value</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.PropertyType#getPropValue()
+     * @see #getPropertyType()
+     * @generated
+     */
+    EAttribute getPropertyType_PropValue();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.PropertiesType <em>Properties Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Properties Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.PropertiesType
+     * @generated
+     */
+    EClass getPropertiesType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.soap.PropertiesType#getProperty <em>Property</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Property</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.PropertiesType#getProperty()
+     * @see #getPropertiesType()
+     * @generated
+     */
+    EReference getPropertiesType_Property();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType <em>Endpoint Config Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Endpoint Config Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType
+     * @generated
+     */
+    EClass getEndpointConfigType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType#getConfigFile <em>Config File</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Config File</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType#getConfigFile()
+     * @see #getEndpointConfigType()
+     * @generated
+     */
+    EAttribute getEndpointConfigType_ConfigFile();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType#getConfigName <em>Config Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Config Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType#getConfigName()
+     * @see #getEndpointConfigType()
+     * @generated
+     */
+    EAttribute getEndpointConfigType_ConfigName();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}'.
@@ -1161,6 +1442,14 @@ public interface SOAPPackage extends EPackage {
         EReference DOCUMENT_ROOT__MTOM = eINSTANCE.getDocumentRoot_Mtom();
 
         /**
+         * The meta object literal for the '<em><b>Endpoint Config</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__ENDPOINT_CONFIG = eINSTANCE.getDocumentRoot_EndpointConfig();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1211,14 +1500,6 @@ public interface SOAPPackage extends EPackage {
         EAttribute SOAP_BINDING_TYPE__ENDPOINT_ADDRESS = eINSTANCE.getSOAPBindingType_EndpointAddress();
 
         /**
-         * The meta object literal for the '<em><b>Security Action</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute SOAP_BINDING_TYPE__SECURITY_ACTION = eINSTANCE.getSOAPBindingType_SecurityAction();
-
-        /**
          * The meta object literal for the '<em><b>In Interceptors</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1243,6 +1524,14 @@ public interface SOAPPackage extends EPackage {
         EReference SOAP_BINDING_TYPE__MTOM = eINSTANCE.getSOAPBindingType_Mtom();
 
         /**
+         * The meta object literal for the '<em><b>Endpoint Config</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SOAP_BINDING_TYPE__ENDPOINT_CONFIG = eINSTANCE.getSOAPBindingType_EndpointConfig();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl <em>Interceptor Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1259,6 +1548,14 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EAttribute INTERCEPTOR_TYPE__CLASS = eINSTANCE.getInterceptorType_Class();
+
+        /**
+         * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INTERCEPTOR_TYPE__PROPERTIES = eINSTANCE.getInterceptorType_Properties();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorsTypeImpl <em>Interceptors Type</em>}' class.
@@ -1311,6 +1608,76 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EAttribute MTOM_TYPE__XOP_EXPAND = eINSTANCE.getMtomType_XopExpand();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl <em>Property Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getPropertyType()
+         * @generated
+         */
+        EClass PROPERTY_TYPE = eINSTANCE.getPropertyType();
+
+        /**
+         * The meta object literal for the '<em><b>Prop Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTY_TYPE__PROP_NAME = eINSTANCE.getPropertyType_PropName();
+
+        /**
+         * The meta object literal for the '<em><b>Prop Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTY_TYPE__PROP_VALUE = eINSTANCE.getPropertyType_PropValue();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertiesTypeImpl <em>Properties Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.PropertiesTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getPropertiesType()
+         * @generated
+         */
+        EClass PROPERTIES_TYPE = eINSTANCE.getPropertiesType();
+
+        /**
+         * The meta object literal for the '<em><b>Property</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROPERTIES_TYPE__PROPERTY = eINSTANCE.getPropertiesType_Property();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.EndpointConfigTypeImpl <em>Endpoint Config Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.EndpointConfigTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getEndpointConfigType()
+         * @generated
+         */
+        EClass ENDPOINT_CONFIG_TYPE = eINSTANCE.getEndpointConfigType();
+
+        /**
+         * The meta object literal for the '<em><b>Config File</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ENDPOINT_CONFIG_TYPE__CONFIG_FILE = eINSTANCE.getEndpointConfigType_ConfigFile();
+
+        /**
+         * The meta object literal for the '<em><b>Config Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ENDPOINT_CONFIG_TYPE__CONFIG_NAME = eINSTANCE.getEndpointConfigType_ConfigName();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.

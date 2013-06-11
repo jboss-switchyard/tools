@@ -89,6 +89,33 @@ public interface SOAPFactory extends EFactory {
     MtomType createMtomType();
 
     /**
+     * Returns a new object of class '<em>Property Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Property Type</em>'.
+     * @generated
+     */
+    PropertyType createPropertyType();
+
+    /**
+     * Returns a new object of class '<em>Properties Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Properties Type</em>'.
+     * @generated
+     */
+    PropertiesType createPropertiesType();
+
+    /**
+     * Returns a new object of class '<em>Endpoint Config Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Endpoint Config Type</em>'.
+     * @generated
+     */
+    EndpointConfigType createEndpointConfigType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

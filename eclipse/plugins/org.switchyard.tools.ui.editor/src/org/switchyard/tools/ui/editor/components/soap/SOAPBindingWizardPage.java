@@ -32,7 +32,8 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 public class SOAPBindingWizardPage extends WizardPage {
 
     private SOAPBindingType _binding = SOAPFactory.eINSTANCE.createSOAPBindingType();
-    private SOAPBindingComposite _soapComposite = null;
+    private SOAPBindingServiceComposite _soapServiceComposite = null;
+    private SOAPBindingReferenceComposite _soapReferenceComposite = null;
     private Contract _targetContainer;
 
     /**
@@ -61,20 +62,35 @@ public class SOAPBindingWizardPage extends WizardPage {
                 }
             }
         }
-        _soapComposite = new SOAPBindingComposite();
-        _soapComposite.setTargetObject(_targetContainer);
-        _soapComposite.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent arg0) {
-                setErrorMessage(_soapComposite.getErrorMessage());
-                setPageComplete(_soapComposite.getErrorMessage() == null);
-            }
-        });
-        _soapComposite.createContents(parent, SWT.NONE);
-        _soapComposite.setBinding(_binding);
-
-        setControl(_soapComposite.getPanel());
-        setPageComplete(_soapComposite.getErrorMessage() == null);
+        if (_targetContainer instanceof Reference) {
+            _soapReferenceComposite = new SOAPBindingReferenceComposite();
+            _soapReferenceComposite.setTargetObject(_targetContainer);
+            _soapReferenceComposite.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent arg0) {
+                    setErrorMessage(_soapReferenceComposite.getErrorMessage());
+                    setPageComplete(_soapReferenceComposite.getErrorMessage() == null);
+                }
+            });
+            _soapReferenceComposite.createContents(parent, SWT.NONE);
+            _soapReferenceComposite.setBinding(_binding);
+            setControl(_soapReferenceComposite.getPanel());
+            setPageComplete(_soapReferenceComposite.getErrorMessage() == null);
+        } else {
+            _soapServiceComposite = new SOAPBindingServiceComposite();
+            _soapServiceComposite.setTargetObject(_targetContainer);
+            _soapServiceComposite.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent arg0) {
+                    setErrorMessage(_soapServiceComposite.getErrorMessage());
+                    setPageComplete(_soapServiceComposite.getErrorMessage() == null);
+                }
+            });
+            _soapServiceComposite.createContents(parent, SWT.NONE);
+            _soapServiceComposite.setBinding(_binding);
+            setControl(_soapServiceComposite.getPanel());
+            setPageComplete(_soapServiceComposite.getErrorMessage() == null);
+        }
         setErrorMessage(null);
     }
 
@@ -82,7 +98,7 @@ public class SOAPBindingWizardPage extends WizardPage {
      * @return the binding being edited.
      */
     public Binding getBinding() {
-        return _soapComposite.getBinding();
+        return _soapServiceComposite.getBinding();
     }
 
 }

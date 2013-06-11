@@ -21,10 +21,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSocketAddr <em>Socket Addr</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointAddress <em>Endpoint Address</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSecurityAction <em>Security Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getOutInterceptors <em>Out Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointConfig <em>Endpoint Config</em>}</li>
  * </ul>
  * </p>
  *
@@ -174,34 +174,6 @@ public interface SOAPBindingType extends SwitchYardBindingType {
     void setEndpointAddress(String value);
 
     /**
-     * Returns the value of the '<em><b>Security Action</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * 
-     *                                 The context path used in the HTTP URL
-     *                             
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Security Action</em>' attribute.
-     * @see #setSecurityAction(String)
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_SecurityAction()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="kind='element' name='securityAction' namespace='##targetNamespace'"
-     * @generated
-     */
-    String getSecurityAction();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSecurityAction <em>Security Action</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Security Action</em>' attribute.
-     * @see #getSecurityAction()
-     * @generated
-     */
-    void setSecurityAction(String value);
-
-    /**
      * Returns the value of the '<em><b>In Interceptors</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -281,5 +253,32 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setMtom(MtomType value);
+
+    /**
+     * Returns the value of the '<em><b>Endpoint Config</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Endpoint Config</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Endpoint Config</em>' containment reference.
+     * @see #setEndpointConfig(EndpointConfigType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_EndpointConfig()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='endpointConfig' namespace='##targetNamespace'"
+     * @generated
+     */
+    EndpointConfigType getEndpointConfig();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointConfig <em>Endpoint Config</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Endpoint Config</em>' containment reference.
+     * @see #getEndpointConfig()
+     * @generated
+     */
+    void setEndpointConfig(EndpointConfigType value);
 
 } // SOAPBindingType

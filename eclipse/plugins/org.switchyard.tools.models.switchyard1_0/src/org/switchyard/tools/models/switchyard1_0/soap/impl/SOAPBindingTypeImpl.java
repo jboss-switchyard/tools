@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -29,10 +30,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getSocketAddr <em>Socket Addr</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getEndpointAddress <em>Endpoint Address</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getSecurityAction <em>Security Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getInInterceptors <em>In Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getOutInterceptors <em>Out Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getMtom <em>Mtom</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getEndpointConfig <em>Endpoint Config</em>}</li>
  * </ul>
  * </p>
  *
@@ -140,26 +141,6 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
     protected String endpointAddress = ENDPOINT_ADDRESS_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getSecurityAction() <em>Security Action</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSecurityAction()
-     * @generated
-     * @ordered
-     */
-    protected static final String SECURITY_ACTION_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getSecurityAction() <em>Security Action</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSecurityAction()
-     * @generated
-     * @ordered
-     */
-    protected String securityAction = SECURITY_ACTION_EDEFAULT;
-
-    /**
      * The cached value of the '{@link #getInInterceptors() <em>In Interceptors</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -188,6 +169,16 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * @ordered
      */
     protected MtomType mtom;
+
+    /**
+     * The cached value of the '{@link #getEndpointConfig() <em>Endpoint Config</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEndpointConfig()
+     * @generated
+     * @ordered
+     */
+    protected EndpointConfigType endpointConfig;
 
     /**
      * <!-- begin-user-doc -->
@@ -311,27 +302,6 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
         endpointAddress = newEndpointAddress;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS, oldEndpointAddress, endpointAddress));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getSecurityAction() {
-        return securityAction;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSecurityAction(String newSecurityAction) {
-        String oldSecurityAction = securityAction;
-        securityAction = newSecurityAction;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__SECURITY_ACTION, oldSecurityAction, securityAction));
     }
 
     /**
@@ -468,6 +438,49 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
+    public EndpointConfigType getEndpointConfig() {
+        return endpointConfig;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetEndpointConfig(EndpointConfigType newEndpointConfig, NotificationChain msgs) {
+        EndpointConfigType oldEndpointConfig = endpointConfig;
+        endpointConfig = newEndpointConfig;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG, oldEndpointConfig, newEndpointConfig);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setEndpointConfig(EndpointConfigType newEndpointConfig) {
+        if (newEndpointConfig != endpointConfig) {
+            NotificationChain msgs = null;
+            if (endpointConfig != null)
+                msgs = ((InternalEObject)endpointConfig).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG, null, msgs);
+            if (newEndpointConfig != null)
+                msgs = ((InternalEObject)newEndpointConfig).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG, null, msgs);
+            msgs = basicSetEndpointConfig(newEndpointConfig, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG, newEndpointConfig, newEndpointConfig));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -477,6 +490,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return basicSetOutInterceptors(null, msgs);
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
                 return basicSetMtom(null, msgs);
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
+                return basicSetEndpointConfig(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -499,14 +514,14 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return getContextPath();
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 return getEndpointAddress();
-            case SOAPPackage.SOAP_BINDING_TYPE__SECURITY_ACTION:
-                return getSecurityAction();
             case SOAPPackage.SOAP_BINDING_TYPE__IN_INTERCEPTORS:
                 return getInInterceptors();
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
                 return getOutInterceptors();
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
                 return getMtom();
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
+                return getEndpointConfig();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -534,9 +549,6 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 setEndpointAddress((String)newValue);
                 return;
-            case SOAPPackage.SOAP_BINDING_TYPE__SECURITY_ACTION:
-                setSecurityAction((String)newValue);
-                return;
             case SOAPPackage.SOAP_BINDING_TYPE__IN_INTERCEPTORS:
                 setInInterceptors((InterceptorsType)newValue);
                 return;
@@ -545,6 +557,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
                 setMtom((MtomType)newValue);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
+                setEndpointConfig((EndpointConfigType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -573,9 +588,6 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 setEndpointAddress(ENDPOINT_ADDRESS_EDEFAULT);
                 return;
-            case SOAPPackage.SOAP_BINDING_TYPE__SECURITY_ACTION:
-                setSecurityAction(SECURITY_ACTION_EDEFAULT);
-                return;
             case SOAPPackage.SOAP_BINDING_TYPE__IN_INTERCEPTORS:
                 setInInterceptors((InterceptorsType)null);
                 return;
@@ -584,6 +596,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
                 setMtom((MtomType)null);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
+                setEndpointConfig((EndpointConfigType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -607,14 +622,14 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return CONTEXT_PATH_EDEFAULT == null ? contextPath != null : !CONTEXT_PATH_EDEFAULT.equals(contextPath);
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 return ENDPOINT_ADDRESS_EDEFAULT == null ? endpointAddress != null : !ENDPOINT_ADDRESS_EDEFAULT.equals(endpointAddress);
-            case SOAPPackage.SOAP_BINDING_TYPE__SECURITY_ACTION:
-                return SECURITY_ACTION_EDEFAULT == null ? securityAction != null : !SECURITY_ACTION_EDEFAULT.equals(securityAction);
             case SOAPPackage.SOAP_BINDING_TYPE__IN_INTERCEPTORS:
                 return inInterceptors != null;
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
                 return outInterceptors != null;
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
                 return mtom != null;
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
+                return endpointConfig != null;
         }
         return super.eIsSet(featureID);
     }
@@ -639,8 +654,6 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
         result.append(contextPath);
         result.append(", endpointAddress: ");
         result.append(endpointAddress);
-        result.append(", securityAction: ");
-        result.append(securityAction);
         result.append(')');
         return result.toString();
     }

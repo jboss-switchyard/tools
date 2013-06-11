@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -48,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getMessageComposerSoap <em>Message Composer Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getInterceptor <em>Interceptor</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getMtom <em>Mtom</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getEndpointConfig <em>Endpoint Config</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,6 +95,16 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * @ordered
      */
     protected MtomType mtom;
+
+    /**
+     * The cached value of the '{@link #getEndpointConfig() <em>Endpoint Config</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEndpointConfig()
+     * @generated
+     * @ordered
+     */
+    protected EndpointConfigType endpointConfig;
 
     /**
      * <!-- begin-user-doc -->
@@ -300,6 +312,44 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EndpointConfigType getEndpointConfig() {
+        if (endpointConfig != null && endpointConfig.eIsProxy()) {
+            InternalEObject oldEndpointConfig = (InternalEObject)endpointConfig;
+            endpointConfig = (EndpointConfigType)eResolveProxy(oldEndpointConfig);
+            if (endpointConfig != oldEndpointConfig) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG, oldEndpointConfig, endpointConfig));
+            }
+        }
+        return endpointConfig;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EndpointConfigType basicGetEndpointConfig() {
+        return endpointConfig;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setEndpointConfig(EndpointConfigType newEndpointConfig) {
+        EndpointConfigType oldEndpointConfig = endpointConfig;
+        endpointConfig = newEndpointConfig;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG, oldEndpointConfig, endpointConfig));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -349,6 +399,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SOAPPackage.DOCUMENT_ROOT__MTOM:
                 if (resolve) return getMtom();
                 return basicGetMtom();
+            case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
+                if (resolve) return getEndpointConfig();
+                return basicGetEndpointConfig();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -384,6 +437,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SOAPPackage.DOCUMENT_ROOT__MTOM:
                 setMtom((MtomType)newValue);
+                return;
+            case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
+                setEndpointConfig((EndpointConfigType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -421,6 +477,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SOAPPackage.DOCUMENT_ROOT__MTOM:
                 setMtom((MtomType)null);
                 return;
+            case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
+                setEndpointConfig((EndpointConfigType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -449,6 +508,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getInterceptor() != null;
             case SOAPPackage.DOCUMENT_ROOT__MTOM:
                 return mtom != null;
+            case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
+                return endpointConfig != null;
         }
         return super.eIsSet(featureID);
     }

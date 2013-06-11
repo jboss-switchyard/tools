@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,17 +25,16 @@ import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProv
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.soap.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.PropertyType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InterceptorTypeItemProvider
+public class PropertyTypeItemProvider
     extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
@@ -50,7 +48,7 @@ public class InterceptorTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public InterceptorTypeItemProvider(AdapterFactory adapterFactory) {
+    public PropertyTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -65,25 +63,26 @@ public class InterceptorTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addClassPropertyDescriptor(object);
+            addPropNamePropertyDescriptor(object);
+            addPropValuePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Class feature.
+     * This adds a property descriptor for the Prop Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addClassPropertyDescriptor(Object object) {
+    protected void addPropNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_InterceptorType_class_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_InterceptorType_class_feature", "_UI_InterceptorType_type"),
-                 SOAPPackage.Literals.INTERCEPTOR_TYPE__CLASS,
+                 getString("_UI_PropertyType_propName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyType_propName_feature", "_UI_PropertyType_type"),
+                 SOAPPackage.Literals.PROPERTY_TYPE__PROP_NAME,
                  true,
                  false,
                  false,
@@ -93,44 +92,36 @@ public class InterceptorTypeItemProvider
     }
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * This adds a property descriptor for the Prop Value feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(SOAPPackage.Literals.INTERCEPTOR_TYPE__PROPERTIES);
-        }
-        return childrenFeatures;
+    protected void addPropValuePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_PropertyType_propValue_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyType_propValue_feature", "_UI_PropertyType_type"),
+                 SOAPPackage.Literals.PROPERTY_TYPE__PROP_VALUE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
-
-        return super.getChildFeature(object, child);
-    }
-
-    /**
-     * This returns InterceptorType.gif.
+     * This returns PropertyType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/InterceptorType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyType"));
     }
 
     /**
@@ -141,10 +132,10 @@ public class InterceptorTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((InterceptorType)object).getClass_();
+        String label = ((PropertyType)object).getPropName();
         return label == null || label.length() == 0 ?
-            getString("_UI_InterceptorType_type") :
-            getString("_UI_InterceptorType_type") + " " + label;
+            getString("_UI_PropertyType_type") :
+            getString("_UI_PropertyType_type") + " " + label;
     }
 
     /**
@@ -158,12 +149,10 @@ public class InterceptorTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(InterceptorType.class)) {
-            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
+        switch (notification.getFeatureID(PropertyType.class)) {
+            case SOAPPackage.PROPERTY_TYPE__PROP_NAME:
+            case SOAPPackage.PROPERTY_TYPE__PROP_VALUE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case SOAPPackage.INTERCEPTOR_TYPE__PROPERTIES:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -179,11 +168,6 @@ public class InterceptorTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SOAPPackage.Literals.INTERCEPTOR_TYPE__PROPERTIES,
-                 SOAPFactory.eINSTANCE.createPropertiesType()));
     }
 
     /**

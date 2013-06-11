@@ -76,7 +76,6 @@ public class SOAPBindingTypeItemProvider
             addSocketAddrPropertyDescriptor(object);
             addContextPathPropertyDescriptor(object);
             addEndpointAddressPropertyDescriptor(object);
-            addSecurityActionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -192,28 +191,6 @@ public class SOAPBindingTypeItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Security Action feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addSecurityActionPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_SOAPBindingType_securityAction_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_SOAPBindingType_securityAction_feature", "_UI_SOAPBindingType_type"),
-                 SOAPPackage.Literals.SOAP_BINDING_TYPE__SECURITY_ACTION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -227,6 +204,8 @@ public class SOAPBindingTypeItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__IN_INTERCEPTORS);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__OUT_INTERCEPTORS);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__MTOM);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG);
         }
         return childrenFeatures;
     }
@@ -286,11 +265,12 @@ public class SOAPBindingTypeItemProvider
             case SOAPPackage.SOAP_BINDING_TYPE__SOCKET_ADDR:
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH:
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
-            case SOAPPackage.SOAP_BINDING_TYPE__SECURITY_ACTION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__IN_INTERCEPTORS:
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
+            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -317,6 +297,16 @@ public class SOAPBindingTypeItemProvider
             (createChildParameter
                 (SOAPPackage.Literals.SOAP_BINDING_TYPE__OUT_INTERCEPTORS,
                  SOAPFactory.eINSTANCE.createInterceptorsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__MTOM,
+                 SOAPFactory.eINSTANCE.createMtomType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG,
+                 SOAPFactory.eINSTANCE.createEndpointConfigType()));
     }
 
     /**
