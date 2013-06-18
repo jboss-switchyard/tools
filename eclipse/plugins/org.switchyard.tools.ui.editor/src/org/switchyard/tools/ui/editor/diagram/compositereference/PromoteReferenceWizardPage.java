@@ -20,10 +20,14 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
+import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -31,6 +35,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
@@ -129,6 +134,12 @@ public class PromoteReferenceWizardPage extends NewContractWizardPage {
 
     @Override
     protected void validate() {
+        super.validate();
+        boolean canPromote = validatePromotion();
+        if (!canPromote) {
+            setErrorMessage("A composite reference already exists with the name '" + getContract().getName() + "' and a different interface type. Please provide a different name.");
+        }
+        
         final IFile newTargetResource = PlatformResourceAdapterFactory.getFileForObject(getContract(), _project);
         if (newTargetResource != null && _sourceResource != null && !newTargetResource.equals(_sourceResource)
                 && newTargetResource.exists() && _sourceResource.exists()) {
@@ -166,7 +177,7 @@ public class PromoteReferenceWizardPage extends NewContractWizardPage {
             _targetResource = newTargetResource;
         }
         _creatingTransformers = _createTransformersCheck.isEnabled() && _createTransformersCheck.getSelection();
-        super.validate();
+        setPageComplete(getErrorMessage() == null);
     }
 
     protected IWizard getNextWizard() {
@@ -176,4 +187,67 @@ public class PromoteReferenceWizardPage extends NewContractWizardPage {
         return null;
     }
 
+    /*
+     * Check to see if the promotion is valid. If it has the same name and interface, it's good.
+     * If it has the same name and a different interface, it's invalid.
+     * If it has a different name, it's fine.
+     * @return true/false this is a valid promotion
+     */
+    private boolean validatePromotion() {
+        EList<Reference> refs = _switchYard.getComposite().getReference();
+        for (Reference ref : refs) {
+            boolean nameMatch = false;
+            boolean foundDupe = false;
+            if (ref.getName().equals(getContract().getName())) {
+                nameMatch = true;
+                if (ref.getInterface().eClass().getName().equals(getContract().getInterface().eClass().getName())) {
+                    if (ref.getInterface() instanceof JavaInterface) {
+                        JavaInterface refIntfc = (JavaInterface) ref.getInterface();
+                        JavaInterface newRefIntfc = (JavaInterface) getContract().getInterface();
+                        if (refIntfc.getInterface().equals(newRefIntfc.getInterface())) {
+                            foundDupe = true;
+                        }
+                    } else if (ref.getInterface() instanceof EsbInterface) {
+                        EsbInterface refIntfc = (EsbInterface) ref.getInterface();
+                        EsbInterface newRefIntfc = (EsbInterface) getContract().getInterface();
+                        boolean inputMatch = false;
+                        if (refIntfc.getInputType() != null && refIntfc.getInputType().equals(newRefIntfc.getInputType())) {
+                            inputMatch = true;
+                        } else if (refIntfc.getInputType() == null && newRefIntfc.getInputType() == null) {
+                            inputMatch = true;
+                        }
+                        boolean outputMatch = false;
+                        if (refIntfc.getOutputType() != null && refIntfc.getOutputType().equals(newRefIntfc.getOutputType())) {
+                            outputMatch = true;
+                        } else if (refIntfc.getOutputType() == null && newRefIntfc.getOutputType() == null) {
+                            outputMatch = true;
+                        }
+                        boolean faultMatch = false;
+                        if (refIntfc.getFaultType() != null && refIntfc.getFaultType().equals(newRefIntfc.getFaultType())) {
+                            faultMatch = true;
+                        } else if (refIntfc.getFaultType() == null && newRefIntfc.getFaultType() == null) {
+                            faultMatch = true;
+                        }
+                        if (inputMatch && outputMatch && faultMatch) {
+                            foundDupe = true;
+                        }
+                    } else if (ref.getInterface() instanceof WSDLPortType) {
+                        WSDLPortType refIntfc = (WSDLPortType) ref.getInterface();
+                        WSDLPortType newRefIntfc = (WSDLPortType) getContract().getInterface();
+                        if (refIntfc.getInterface().equals(newRefIntfc.getInterface())) {
+                            foundDupe = true;
+                        }
+                    }
+                }
+            }
+            if (foundDupe && nameMatch) {
+                // found a dupe
+                return true;
+            } else if (!foundDupe && nameMatch) {
+                // invalid - name match but no interface match
+                return false;
+            }
+        }
+        return true;
+    }
 }
