@@ -99,6 +99,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     private AdvancedBindingPropertyTable _advPropsTable;
     private boolean _didSomething = false;
     private TabItem _advancedTab;
+    private Text _bindingNameText;
 
     /**
      * Hack to get around triggering an unwanted button push on a property page.
@@ -122,8 +123,9 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     public void addTabs(final TabFolder tabFolder) {
         _tabFolder = tabFolder;
         createComposerTab(_tabFolder);
+        createDetailsTab(_tabFolder);
         createAdvancedTab(_tabFolder);
-
+        
         _tabFolder.addSelectionListener(new SelectionListener() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -148,6 +150,8 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
             createComposerTab(_tabFolder);
         }
         
+        createDetailsTab(_tabFolder);
+
         if (advanced) {
             createAdvancedTab(_tabFolder);
         }
@@ -189,6 +193,12 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         }
     }
     
+    protected void createDetailsTab(TabFolder tabFolder) {
+        TabItem composer = new TabItem(tabFolder, SWT.NONE);
+        composer.setText("Details");
+        composer.setControl(getDetailsTabControl(tabFolder));
+    }
+
     protected void updateAdvancedTab() {
         if (_advancedTab != null && getAdvancedPropertiesFilterList() != null) {
             _advancedTab.setControl(getAdvancedTabControl(_tabFolder));
@@ -206,7 +216,19 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
 
         return composite;
     }
+    
+    protected Control getDetailsTabControl(Composite parent) {
+        Composite composite = new Composite(parent, SWT.NONE);
+        GridLayout gl = new GridLayout(2, false);
+        composite.setLayout(gl);
 
+        _bindingNameText = createLabelAndText(composite, "Binding Name");
+        _bindingNameText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
+        _bindingNameText.setToolTipText("Optional name to override the default generated at runtime to uniquely \nidentify a binding used with a service or reference.");
+
+        return composite;
+    }
+    
     protected List<String> getAdvancedPropertiesFilterList() {
         return null;
     }
@@ -398,6 +420,10 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
                 setTextValue(_excludesNSText, binding.getContextMapper().getExcludeNamespaces());
             }
             getAdvancedProperties(switchYardBindingType);
+            
+            if (_bindingNameText != null && !_bindingNameText.isDisposed()) {
+                setTextValue(_bindingNameText, binding.getName());
+            }
         }
         resetSelectedTab();
     }
@@ -516,6 +542,32 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         ops.add(new BasicOperation("contextMapper", featureId, value));
         wrapOperation(ops);
     }
+    
+    class BindingNameOp extends ModelOperation {
+        
+        private String _name = null;
+        
+        public BindingNameOp(String name) {
+            _name = name;
+        }
+        
+        @Override
+        public void run() throws Exception {
+            if (_binding != null) {
+                setFeatureValue((Binding)_binding, "name", _name);
+            }
+        }
+    }
+
+    protected void updateBindingNameFeature(Text control) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        String value = control.getText().trim();
+        if (value.isEmpty()) {
+            value = null;
+        }
+        ops.add(new BindingNameOp(value));
+        wrapOperation(ops);
+    }
 
     protected void updateContextMapperFeatureClearRegex(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
@@ -606,6 +658,8 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
                 updateContextMapperFeature(_includesNSText);
             } else if (control.equals(_excludesNSText)) {
                 updateContextMapperFeature(_excludesNSText);
+            } else if (control.equals(_bindingNameText)) {
+                updateBindingNameFeature(_bindingNameText);
             }
         }
     }

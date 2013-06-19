@@ -94,54 +94,58 @@ public final class LabelAdapter {
      * @return String label
      */
     private static String getLabelForBindingType(Binding binding) {
+        String bindingLabel = null;
         if (binding instanceof SOAPBindingType) {
-            return "SOAP";
+            bindingLabel =  "SOAP";
         } else if (binding instanceof BindingType) {
-            return "HornetQ";
+            bindingLabel =  "HornetQ";
         } else if (binding instanceof CamelBindingType) {
-            return "Camel";
+            bindingLabel =  "Camel";
         } else if (binding instanceof CamelFileBindingType) {
-            return "File";
+            bindingLabel =  "File";
         } else if (binding instanceof CamelQuartzBindingType) {
-            return "Scheduler";
+            bindingLabel =  "Scheduler";
         } else if (binding instanceof CamelSftpBindingType) {
-            return "SFTP";
+            bindingLabel =  "SFTP";
         } else if (binding instanceof CamelFtpsBindingType) {
-            return "FTPS";
+            bindingLabel =  "FTPS";
         } else if (binding instanceof CamelFtpBindingType) {
-            return "FTP";
+            bindingLabel =  "FTP";
         } else if (binding instanceof CamelNettyTcpBindingType) {
-            return "Netty TCP";
+            bindingLabel =  "Netty TCP";
         } else if (binding instanceof CamelNettyUdpBindingType) {
-            return "Netty UDP";
+            bindingLabel =  "Netty UDP";
         } else if (binding instanceof CamelJmsBindingType) {
-            return "JMS";
+            bindingLabel =  "JMS";
         } else if (binding instanceof CamelAtomBindingType) {
-            return "Atom";
+            bindingLabel =  "Atom";
         } else if (binding instanceof CamelDirectBindingType) {
-            return "Direct";
+            bindingLabel =  "Direct";
         } else if (binding instanceof CamelSedaBindingType) {
-            return "Seda";
+            bindingLabel =  "Seda";
         } else if (binding instanceof CamelTimerBindingType) {
-            return "Timer";
+            bindingLabel =  "Timer";
         } else if (binding instanceof CamelSqlBindingType) {
-            return "SQL";
+            bindingLabel =  "SQL";
         } else if (binding instanceof JCABinding) {
-            return "JCA";
+            bindingLabel =  "JCA";
         } else if (binding instanceof RESTBindingType) {
-            return "REST";
+            bindingLabel =  "REST";
         } else if (binding instanceof HttpBindingType) {
-            return "HTTP";
+            bindingLabel =  "HTTP";
         } else if (binding instanceof CamelMailBindingType) {
-            return "Mail";
+            bindingLabel =  "Mail";
         } else if (binding instanceof CamelJPABindingType) {
-            return "JPA";
+            bindingLabel =  "JPA";
         } else if (binding instanceof SCABinding) {
-            return "SCA";
+            bindingLabel =  "SCA";
         } else {
-            return "Unsupported (" + binding.eClass().getClass().getName() + ")";
+            bindingLabel =  "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }
-
+        if (binding.getName() != null && !binding.getName().trim().isEmpty()) {
+            bindingLabel = bindingLabel + " (" + binding.getName() + ")";
+        }
+        return bindingLabel;
     }
     
     private static String getLabelForImplementationType(Implementation impl) {
