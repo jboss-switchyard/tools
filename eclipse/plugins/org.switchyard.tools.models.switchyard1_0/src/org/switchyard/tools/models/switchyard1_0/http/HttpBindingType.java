@@ -20,6 +20,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getMethod <em>Method</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getContentType <em>Content Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getBasic <em>Basic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getNtlm <em>Ntlm</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,5 +133,59 @@ public interface HttpBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setContentType(String value);
+
+    /**
+     * Returns the value of the '<em><b>Basic</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Basic</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Basic</em>' containment reference.
+     * @see #setBasic(BasicAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getHttpBindingType_Basic()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='basic' namespace='##targetNamespace'"
+     * @generated
+     */
+    BasicAuthenticationType getBasic();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getBasic <em>Basic</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Basic</em>' containment reference.
+     * @see #getBasic()
+     * @generated
+     */
+    void setBasic(BasicAuthenticationType value);
+
+    /**
+     * Returns the value of the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ntlm</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ntlm</em>' containment reference.
+     * @see #setNtlm(NTLMAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getHttpBindingType_Ntlm()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='ntlm' namespace='##targetNamespace'"
+     * @generated
+     */
+    NTLMAuthenticationType getNtlm();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getNtlm <em>Ntlm</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ntlm</em>' containment reference.
+     * @see #getNtlm()
+     * @generated
+     */
+    void setNtlm(NTLMAuthenticationType value);
 
 } // HttpBindingType

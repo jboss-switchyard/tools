@@ -8,13 +8,17 @@ package org.switchyard.tools.models.switchyard1_0.http.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
+import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
@@ -28,6 +32,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getMethod <em>Method</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getContentType <em>Content Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getBasic <em>Basic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getNtlm <em>Ntlm</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,6 +119,26 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
      * @ordered
      */
     protected String contentType = CONTENT_TYPE_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getBasic() <em>Basic</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getBasic()
+     * @generated
+     * @ordered
+     */
+    protected BasicAuthenticationType basic;
+
+    /**
+     * The cached value of the '{@link #getNtlm() <em>Ntlm</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getNtlm()
+     * @generated
+     * @ordered
+     */
+    protected NTLMAuthenticationType ntlm;
 
     /**
      * <!-- begin-user-doc -->
@@ -222,6 +248,108 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
      * <!-- end-user-doc -->
      * @generated
      */
+    public BasicAuthenticationType getBasic() {
+        return basic;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBasic(BasicAuthenticationType newBasic, NotificationChain msgs) {
+        BasicAuthenticationType oldBasic = basic;
+        basic = newBasic;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__BASIC, oldBasic, newBasic);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBasic(BasicAuthenticationType newBasic) {
+        if (newBasic != basic) {
+            NotificationChain msgs = null;
+            if (basic != null)
+                msgs = ((InternalEObject)basic).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__BASIC, null, msgs);
+            if (newBasic != null)
+                msgs = ((InternalEObject)newBasic).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__BASIC, null, msgs);
+            msgs = basicSetBasic(newBasic, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__BASIC, newBasic, newBasic));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NTLMAuthenticationType getNtlm() {
+        return ntlm;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetNtlm(NTLMAuthenticationType newNtlm, NotificationChain msgs) {
+        NTLMAuthenticationType oldNtlm = ntlm;
+        ntlm = newNtlm;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__NTLM, oldNtlm, newNtlm);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setNtlm(NTLMAuthenticationType newNtlm) {
+        if (newNtlm != ntlm) {
+            NotificationChain msgs = null;
+            if (ntlm != null)
+                msgs = ((InternalEObject)ntlm).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__NTLM, null, msgs);
+            if (newNtlm != null)
+                msgs = ((InternalEObject)newNtlm).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__NTLM, null, msgs);
+            msgs = basicSetNtlm(newNtlm, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__NTLM, newNtlm, newNtlm));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case HttpPackage.HTTP_BINDING_TYPE__BASIC:
+                return basicSetBasic(null, msgs);
+            case HttpPackage.HTTP_BINDING_TYPE__NTLM:
+                return basicSetNtlm(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -233,6 +361,10 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
                 return getMethod();
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 return getContentType();
+            case HttpPackage.HTTP_BINDING_TYPE__BASIC:
+                return getBasic();
+            case HttpPackage.HTTP_BINDING_TYPE__NTLM:
+                return getNtlm();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -256,6 +388,12 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
                 return;
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 setContentType((String)newValue);
+                return;
+            case HttpPackage.HTTP_BINDING_TYPE__BASIC:
+                setBasic((BasicAuthenticationType)newValue);
+                return;
+            case HttpPackage.HTTP_BINDING_TYPE__NTLM:
+                setNtlm((NTLMAuthenticationType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -281,6 +419,12 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 setContentType(CONTENT_TYPE_EDEFAULT);
                 return;
+            case HttpPackage.HTTP_BINDING_TYPE__BASIC:
+                setBasic((BasicAuthenticationType)null);
+                return;
+            case HttpPackage.HTTP_BINDING_TYPE__NTLM:
+                setNtlm((NTLMAuthenticationType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -301,6 +445,10 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
                 return METHOD_EDEFAULT == null ? method != null : !METHOD_EDEFAULT.equals(method);
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 return CONTENT_TYPE_EDEFAULT == null ? contentType != null : !CONTENT_TYPE_EDEFAULT.equals(contentType);
+            case HttpPackage.HTTP_BINDING_TYPE__BASIC:
+                return basic != null;
+            case HttpPackage.HTTP_BINDING_TYPE__NTLM:
+                return ntlm != null;
         }
         return super.eIsSet(featureID);
     }

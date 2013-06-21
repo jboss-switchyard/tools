@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
@@ -61,6 +62,7 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.http.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType;
@@ -68,6 +70,7 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
+import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
@@ -136,6 +139,20 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
     private EClass documentRootEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass basicAuthenticationTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass ntlmAuthenticationTypeEClass = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -183,6 +200,7 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
 
         // Initialize simple dependencies
         ScaPackage.eINSTANCE.eClass();
+        XMLTypePackage.eINSTANCE.eClass();
 
         // Obtain or create and register interdependencies
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
@@ -330,6 +348,24 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getHttpBindingType_Basic() {
+        return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getHttpBindingType_Ntlm() {
+        return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getHttpContextMapperType() {
         return httpContextMapperTypeEClass;
     }
@@ -411,6 +447,96 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_Basic() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Ntlm() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBasicAuthenticationType() {
+        return basicAuthenticationTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_User() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Password() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Realm() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Host() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Port() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getNTLMAuthenticationType() {
+        return ntlmAuthenticationTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getNTLMAuthenticationType_Domain() {
+        return (EAttribute)ntlmAuthenticationTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public HttpFactory getHttpFactory() {
         return (HttpFactory)getEFactoryInstance();
     }
@@ -439,6 +565,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__ADDRESS);
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__METHOD);
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__CONTENT_TYPE);
+        createEReference(httpBindingTypeEClass, HTTP_BINDING_TYPE__BASIC);
+        createEReference(httpBindingTypeEClass, HTTP_BINDING_TYPE__NTLM);
 
         httpContextMapperTypeEClass = createEClass(HTTP_CONTEXT_MAPPER_TYPE);
 
@@ -451,6 +579,18 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_HTTP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BASIC);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__NTLM);
+
+        basicAuthenticationTypeEClass = createEClass(BASIC_AUTHENTICATION_TYPE);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__USER);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__PASSWORD);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__REALM);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__HOST);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__PORT);
+
+        ntlmAuthenticationTypeEClass = createEClass(NTLM_AUTHENTICATION_TYPE);
+        createEAttribute(ntlmAuthenticationTypeEClass, NTLM_AUTHENTICATION_TYPE__DOMAIN);
     }
 
     /**
@@ -478,6 +618,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
 
         // Obtain other dependent packages
         SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
+        ScaPackage theScaPackage = (ScaPackage)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI);
+        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
 
@@ -487,6 +629,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         httpBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
         httpContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
         httpMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
+        basicAuthenticationTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        ntlmAuthenticationTypeEClass.getESuperTypes().add(this.getBasicAuthenticationType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(httpBindingTypeEClass, HttpBindingType.class, "HttpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -494,6 +638,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         initEAttribute(getHttpBindingType_Address(), ecorePackage.getEString(), "address", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHttpBindingType_Method(), ecorePackage.getEString(), "method", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHttpBindingType_ContentType(), ecorePackage.getEString(), "contentType", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getHttpBindingType_Basic(), this.getBasicAuthenticationType(), null, "basic", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getHttpBindingType_Ntlm(), this.getNTLMAuthenticationType(), null, "ntlm", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(httpContextMapperTypeEClass, HttpContextMapperType.class, "HttpContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -506,6 +652,18 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         initEReference(getDocumentRoot_BindingHTTP(), this.getHttpBindingType(), null, "bindingHTTP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ContextMapper(), this.getHttpContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_MessageComposer(), this.getHttpMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Basic(), this.getBasicAuthenticationType(), null, "basic", null, 0, -2, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Ntlm(), this.getNTLMAuthenticationType(), null, "ntlm", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(basicAuthenticationTypeEClass, BasicAuthenticationType.class, "BasicAuthenticationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getBasicAuthenticationType_User(), ecorePackage.getEString(), "user", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Password(), ecorePackage.getEString(), "password", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Realm(), ecorePackage.getEString(), "realm", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Host(), ecorePackage.getEString(), "host", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(ntlmAuthenticationTypeEClass, NTLMAuthenticationType.class, "NTLMAuthenticationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getNTLMAuthenticationType_Domain(), ecorePackage.getEString(), "domain", null, 0, 1, NTLMAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -560,6 +718,22 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
            new String[] {
              "kind", "element",
              "name", "contentType",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getHttpBindingType_Basic(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "basic",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getHttpBindingType_Ntlm(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "ntlm",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -632,6 +806,86 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
              "name", "messageComposer",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
+           });		
+        addAnnotation
+          (getDocumentRoot_Basic(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "basic",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Ntlm(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "ntlm",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (basicAuthenticationTypeEClass, 
+           source, 
+           new String[] {
+             "name", "BasicAuthenticationType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBasicAuthenticationType_User(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "user",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBasicAuthenticationType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBasicAuthenticationType_Realm(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "realm",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBasicAuthenticationType_Host(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "host",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBasicAuthenticationType_Port(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "port",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (ntlmAuthenticationTypeEClass, 
+           source, 
+           new String[] {
+             "name", "NTLMAuthenticationType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getNTLMAuthenticationType_Domain(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "domain",
+             "namespace", "##targetNamespace"
            });
     }
 

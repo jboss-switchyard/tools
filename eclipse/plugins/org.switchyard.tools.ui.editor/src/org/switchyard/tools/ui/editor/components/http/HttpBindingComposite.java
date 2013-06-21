@@ -25,6 +25,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -35,10 +37,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
@@ -63,6 +67,13 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
+    private Combo _authTypeCombo;
+    private Text _userText;
+    private Text _passwordText;
+    private Text _realmText;
+    private Text _hostText;
+    private Text _portText;
+    private Text _domainText;
 
     /**
      * @param parent composite parent
@@ -88,9 +99,56 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             }
         }
 
+        if (getTargetObject() instanceof Reference) {
+            TabItem two = new TabItem(_tabFolder, SWT.NONE);
+            two.setText("Authentication");
+            two.setControl(getAuthenticationControl(_tabFolder));
+        }
+        
         addTabs(_tabFolder);
     }
 
+    private Control getAuthenticationControl(TabFolder tabFolder) {
+        Composite composite = new Composite(tabFolder, SWT.NONE);
+        GridLayout gl = new GridLayout(2, false);
+        composite.setLayout(gl);
+        
+        _authTypeCombo = createLabelAndCombo(composite, "Authentication Type", true);
+        _authTypeCombo.add("Basic");
+        _authTypeCombo.add("NTLM");
+        _authTypeCombo.setText("Basic");
+        _authTypeCombo.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                _domainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+                _userText.setText("");
+                _passwordText.setText("");
+                _realmText.setText("");
+                _hostText.setText("");
+                _portText.setText("");
+                _domainText.setText("");
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        
+        _userText = createLabelAndText(composite, "User");
+        _passwordText = createLabelAndText(composite, "Password");
+        _realmText = createLabelAndText(composite, "Realm");
+        _hostText = createLabelAndText(composite, "Host");
+        _portText = createLabelAndText(composite, "Port");
+        _domainText = createLabelAndText(composite, "Domain");
+        
+        _authTypeCombo.select(0);
+        _domainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+        
+        return composite;
+    }
+    
     private Control getHttpControl(TabFolder tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(1, false);
@@ -168,12 +226,45 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_contentTypeText)) {
                 String contentType = _contentTypeText.getText().trim();
                 updateFeature(_binding, "contentType", contentType);
+            } else if (control.equals(_userText)) {
+                String user = _userText.getText().trim();
+                updateAuthFeature("user", user);
+            } else if (control.equals(_passwordText)) {
+                String password = _passwordText.getText().trim();
+                updateAuthFeature("password", password);
+            } else if (control.equals(_portText)) {
+                String port = _portText.getText().trim();
+                try {
+                    Integer portInt = Integer.parseInt(port);
+                    updateAuthFeature("port", portInt);
+                } catch (NumberFormatException nfe) {
+                    // ignore
+                    nfe.fillInStackTrace();
+                }
+            } else if (control.equals(_realmText)) {
+                String realm = _realmText.getText().trim();
+                updateAuthFeature("realm", realm);
+            } else if (control.equals(_hostText)) {
+                String host = _hostText.getText().trim();
+                updateAuthFeature("host", host);
+            } else if (control.equals(_domainText)) {
+                String domain = _domainText.getText().trim();
+                updateAuthFeature("domain", domain);
             }
         }
         super.handleModify(control);
         validate();
         setHasChanged(false);
         setDidSomething(true);
+    }
+    
+    private void updateAuthFeature(String featureId, Object value) {
+        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic");
+        if (basicAuth) {
+            updateBasicAuthFeature(featureId, value);
+        } else {
+            updateNtlmAuthFeature(featureId, value);
+        }
     }
 
     @Override
@@ -200,6 +291,17 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
 //                        setErrorMessage("Invalid address URL");
 //                        return false;
 //                    }
+                }
+            }
+        }
+        String portText = null;
+        if (_portText != null && !_portText.isDisposed()) {
+            portText = _portText.getText();
+            if (!portText.trim().isEmpty()) {
+                try {
+                    Integer.parseInt(portText);
+                } catch (NumberFormatException nfe) {
+                    setErrorMessage("The authentication port must be a valid integer");
                 }
             }
         }
@@ -260,6 +362,40 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                     }
                 }
             }
+            
+            if (this._binding.getBasic() != null) {
+                _authTypeCombo.select(0);
+                setTextValue(_userText, this._binding.getBasic().getUser());
+                setTextValue(_passwordText, this._binding.getBasic().getPassword());
+                setTextValue(_hostText, this._binding.getBasic().getHost());
+                setTextValue(_realmText, this._binding.getBasic().getRealm());
+                if (this._binding.getBasic().getPort() != null) {
+                    setTextValue(_portText, this._binding.getBasic().getPort().toString());
+                } else {
+                    setTextValue(_portText, "");
+                }
+            } else if (this._binding.getNtlm() != null) {
+                _authTypeCombo.select(1);
+                setTextValue(_userText, this._binding.getNtlm().getUser());
+                setTextValue(_passwordText, this._binding.getNtlm().getPassword());
+                setTextValue(_hostText, this._binding.getNtlm().getHost());
+                setTextValue(_realmText, this._binding.getNtlm().getRealm());
+                setTextValue(_domainText, this._binding.getNtlm().getDomain());
+                if (this._binding.getNtlm().getPort() != null) {
+                    setTextValue(_portText, this._binding.getNtlm().getPort().toString());
+                } else {
+                    setTextValue(_portText, "");
+                }
+            } else {
+                _authTypeCombo.select(0);
+                setTextValue(_userText, null);
+                setTextValue(_passwordText, null);
+                setTextValue(_hostText, null);
+                setTextValue(_realmText, null);
+                setTextValue(_domainText, null);
+                setTextValue(_portText, null);
+            }
+            _domainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
             setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -380,5 +516,59 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             }
         }
         resetSelectedTab();
+    }
+
+    class RemoveBasicAuthenticationOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getBasic() != null) {
+                setFeatureValue(_binding, "basic", null);
+            }
+        }
+    }
+    
+    class RemoveNtlmAuthenticationOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getNtlm() != null) {
+                setFeatureValue(_binding, "ntlm", null);
+            }
+        }
+    }
+
+    class AddBasicAuthenticatiOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getBasic() == null) {
+                BasicAuthenticationType basicAuth = HttpFactory.eINSTANCE.createBasicAuthenticationType();
+                _binding.setBasic(basicAuth);
+            }
+        }
+    }
+    
+    class AddNtlmAuthenticatiOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getNtlm() == null) {
+                NTLMAuthenticationType ntlmAuth = HttpFactory.eINSTANCE.createNTLMAuthenticationType();
+                _binding.setNtlm(ntlmAuth);
+            }
+        }
+    }
+
+    protected void updateBasicAuthFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveNtlmAuthenticationOp());
+        ops.add(new AddBasicAuthenticatiOp());
+        ops.add(new BasicOperation("basic", featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void updateNtlmAuthFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveBasicAuthenticationOp());
+        ops.add(new AddNtlmAuthenticatiOp());
+        ops.add(new BasicOperation("ntlm", featureId, value));
+        wrapOperation(ops);
     }
 }

@@ -62,6 +62,24 @@ public interface HttpFactory extends EFactory {
     DocumentRoot createDocumentRoot();
 
     /**
+     * Returns a new object of class '<em>Basic Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Basic Authentication Type</em>'.
+     * @generated
+     */
+    BasicAuthenticationType createBasicAuthenticationType();
+
+    /**
+     * Returns a new object of class '<em>NTLM Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>NTLM Authentication Type</em>'.
+     * @generated
+     */
+    NTLMAuthenticationType createNTLMAuthenticationType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

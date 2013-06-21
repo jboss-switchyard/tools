@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
@@ -216,13 +217,31 @@ public interface HttpPackage extends EPackage {
     int HTTP_BINDING_TYPE__CONTENT_TYPE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
+     * The feature id for the '<em><b>Basic</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int HTTP_BINDING_TYPE__BASIC = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int HTTP_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+
+    /**
      * The number of structural features of the '<em>Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
@@ -381,13 +400,205 @@ public interface HttpPackage extends EPackage {
     int DOCUMENT_ROOT__MESSAGE_COMPOSER = 5;
 
     /**
+     * The feature id for the '<em><b>Basic</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__BASIC = 6;
+
+    /**
+     * The feature id for the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__NTLM = 7;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 6;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 8;
+
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl#getBasicAuthenticationType()
+     * @generated
+     */
+    int BASIC_AUTHENTICATION_TYPE = 4;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Realm</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__REALM = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__HOST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__PORT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
+
+    /**
+     * The number of structural features of the '<em>Basic Authentication Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 5;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.NTLMAuthenticationTypeImpl <em>NTLM Authentication Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.http.impl.NTLMAuthenticationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl#getNTLMAuthenticationType()
+     * @generated
+     */
+    int NTLM_AUTHENTICATION_TYPE = 5;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__DOCUMENTATION = BASIC_AUTHENTICATION_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__ANY_ATTRIBUTE = BASIC_AUTHENTICATION_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__USER = BASIC_AUTHENTICATION_TYPE__USER;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__PASSWORD = BASIC_AUTHENTICATION_TYPE__PASSWORD;
+
+    /**
+     * The feature id for the '<em><b>Realm</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__REALM = BASIC_AUTHENTICATION_TYPE__REALM;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__HOST = BASIC_AUTHENTICATION_TYPE__HOST;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__PORT = BASIC_AUTHENTICATION_TYPE__PORT;
+
+    /**
+     * The feature id for the '<em><b>Domain</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__DOMAIN = BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>NTLM Authentication Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE_FEATURE_COUNT = BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT + 1;
 
 
     /**
@@ -443,6 +654,28 @@ public interface HttpPackage extends EPackage {
      * @generated
      */
     EAttribute getHttpBindingType_ContentType();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getBasic <em>Basic</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Basic</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getBasic()
+     * @see #getHttpBindingType()
+     * @generated
+     */
+    EReference getHttpBindingType_Basic();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getNtlm <em>Ntlm</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Ntlm</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getNtlm()
+     * @see #getHttpBindingType()
+     * @generated
+     */
+    EReference getHttpBindingType_Ntlm();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType <em>Context Mapper Type</em>}'.
@@ -541,6 +774,114 @@ public interface HttpPackage extends EPackage {
     EReference getDocumentRoot_MessageComposer();
 
     /**
+     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBasic <em>Basic</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Basic</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBasic()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Basic();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getNtlm <em>Ntlm</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Ntlm</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getNtlm()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Ntlm();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType <em>Basic Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Basic Authentication Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType
+     * @generated
+     */
+    EClass getBasicAuthenticationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getUser <em>User</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>User</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getUser()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_User();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getPassword()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Password();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getRealm <em>Realm</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Realm</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getRealm()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Realm();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getHost <em>Host</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Host</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getHost()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Host();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getPort <em>Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getPort()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Port();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType <em>NTLM Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>NTLM Authentication Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType
+     * @generated
+     */
+    EClass getNTLMAuthenticationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType#getDomain <em>Domain</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Domain</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType#getDomain()
+     * @see #getNTLMAuthenticationType()
+     * @generated
+     */
+    EAttribute getNTLMAuthenticationType_Domain();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -603,6 +944,22 @@ public interface HttpPackage extends EPackage {
          * @generated
          */
         EAttribute HTTP_BINDING_TYPE__CONTENT_TYPE = eINSTANCE.getHttpBindingType_ContentType();
+
+        /**
+         * The meta object literal for the '<em><b>Basic</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference HTTP_BINDING_TYPE__BASIC = eINSTANCE.getHttpBindingType_Basic();
+
+        /**
+         * The meta object literal for the '<em><b>Ntlm</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference HTTP_BINDING_TYPE__NTLM = eINSTANCE.getHttpBindingType_Ntlm();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
@@ -681,6 +1038,90 @@ public interface HttpPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
+
+        /**
+         * The meta object literal for the '<em><b>Basic</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__BASIC = eINSTANCE.getDocumentRoot_Basic();
+
+        /**
+         * The meta object literal for the '<em><b>Ntlm</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__NTLM = eINSTANCE.getDocumentRoot_Ntlm();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl#getBasicAuthenticationType()
+         * @generated
+         */
+        EClass BASIC_AUTHENTICATION_TYPE = eINSTANCE.getBasicAuthenticationType();
+
+        /**
+         * The meta object literal for the '<em><b>User</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__USER = eINSTANCE.getBasicAuthenticationType_User();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__PASSWORD = eINSTANCE.getBasicAuthenticationType_Password();
+
+        /**
+         * The meta object literal for the '<em><b>Realm</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__REALM = eINSTANCE.getBasicAuthenticationType_Realm();
+
+        /**
+         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__HOST = eINSTANCE.getBasicAuthenticationType_Host();
+
+        /**
+         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__PORT = eINSTANCE.getBasicAuthenticationType_Port();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.NTLMAuthenticationTypeImpl <em>NTLM Authentication Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.http.impl.NTLMAuthenticationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl#getNTLMAuthenticationType()
+         * @generated
+         */
+        EClass NTLM_AUTHENTICATION_TYPE = eINSTANCE.getNTLMAuthenticationType();
+
+        /**
+         * The meta object literal for the '<em><b>Domain</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute NTLM_AUTHENTICATION_TYPE__DOMAIN = eINSTANCE.getNTLMAuthenticationType_Domain();
 
     }
 

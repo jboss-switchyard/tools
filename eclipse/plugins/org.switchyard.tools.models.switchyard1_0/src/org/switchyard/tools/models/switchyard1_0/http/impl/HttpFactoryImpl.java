@@ -31,7 +31,7 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
      */
     public static HttpFactory init() {
         try {
-            HttpFactory theHttpFactory = (HttpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-http:config:1.0"); 
+            HttpFactory theHttpFactory = (HttpFactory)EPackage.Registry.INSTANCE.getEFactory(HttpPackage.eNS_URI);
             if (theHttpFactory != null) {
                 return theHttpFactory;
             }
@@ -64,6 +64,8 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
             case HttpPackage.HTTP_CONTEXT_MAPPER_TYPE: return createHttpContextMapperType();
             case HttpPackage.HTTP_MESSAGE_COMPOSER_TYPE: return createHttpMessageComposerType();
             case HttpPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case HttpPackage.BASIC_AUTHENTICATION_TYPE: return createBasicAuthenticationType();
+            case HttpPackage.NTLM_AUTHENTICATION_TYPE: return createNTLMAuthenticationType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -107,6 +109,26 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BasicAuthenticationType createBasicAuthenticationType() {
+        BasicAuthenticationTypeImpl basicAuthenticationType = new BasicAuthenticationTypeImpl();
+        return basicAuthenticationType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NTLMAuthenticationType createNTLMAuthenticationType() {
+        NTLMAuthenticationTypeImpl ntlmAuthenticationType = new NTLMAuthenticationTypeImpl();
+        return ntlmAuthenticationType;
     }
 
     /**

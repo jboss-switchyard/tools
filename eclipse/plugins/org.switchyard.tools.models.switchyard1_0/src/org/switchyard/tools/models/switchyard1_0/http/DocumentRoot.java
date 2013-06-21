@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBindingHTTP <em>Binding HTTP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMessageComposer <em>Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBasic <em>Basic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getNtlm <em>Ntlm</em>}</li>
  * </ul>
  * </p>
  *
@@ -167,5 +169,59 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setMessageComposer(HttpMessageComposerType value);
+
+    /**
+     * Returns the value of the '<em><b>Basic</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Basic</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Basic</em>' reference.
+     * @see #setBasic(BasicAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_Basic()
+     * @model upper="-2"
+     *        extendedMetaData="kind='element' name='basic' namespace='##targetNamespace'"
+     * @generated
+     */
+    BasicAuthenticationType getBasic();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBasic <em>Basic</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Basic</em>' reference.
+     * @see #getBasic()
+     * @generated
+     */
+    void setBasic(BasicAuthenticationType value);
+
+    /**
+     * Returns the value of the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ntlm</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ntlm</em>' containment reference.
+     * @see #setNtlm(NTLMAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_Ntlm()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='ntlm' namespace='##targetNamespace'"
+     * @generated
+     */
+    NTLMAuthenticationType getNtlm();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getNtlm <em>Ntlm</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ntlm</em>' containment reference.
+     * @see #getNtlm()
+     * @generated
+     */
+    void setNtlm(NTLMAuthenticationType value);
 
 } // DocumentRoot

@@ -95,6 +95,14 @@ public class HttpAdapterFactory extends AdapterFactoryImpl {
                 return createDocumentRootAdapter();
             }
             @Override
+            public Adapter caseBasicAuthenticationType(BasicAuthenticationType object) {
+                return createBasicAuthenticationTypeAdapter();
+            }
+            @Override
+            public Adapter caseNTLMAuthenticationType(NTLMAuthenticationType object) {
+                return createNTLMAuthenticationTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -187,6 +195,34 @@ public class HttpAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createDocumentRootAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType <em>Basic Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType
+     * @generated
+     */
+    public Adapter createBasicAuthenticationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType <em>NTLM Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType
+     * @generated
+     */
+    public Adapter createNTLMAuthenticationTypeAdapter() {
         return null;
     }
 
