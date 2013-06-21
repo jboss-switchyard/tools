@@ -17,7 +17,6 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
@@ -42,8 +41,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
-import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
+import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -51,9 +49,10 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * @author bfitzpat
  * 
  */
-public class BPMChannelTable extends Composite implements ICellModifier {
+public class BPMUserGroupCallbackPropertyTable extends Composite implements ICellModifier {
 
     private class PropertyTreeContentProvider implements IStructuredContentProvider {
+
         @Override
         public void dispose() {
         }
@@ -66,8 +65,8 @@ public class BPMChannelTable extends Composite implements ICellModifier {
         public Object[] getElements(Object inputElement) {
             if (inputElement instanceof BPMImplementationType) {
                 final BPMImplementationType bpmImpl = (BPMImplementationType) inputElement;
-                if (bpmImpl.getChannels() != null) {
-                    return bpmImpl.getChannels().getChannel().toArray();
+                if (bpmImpl.getUserGroupCallback() != null && bpmImpl.getUserGroupCallback().getProperties() != null) {
+                    return bpmImpl.getUserGroupCallback().getProperties().getProperty().toArray();
                 }
             }
             return new Object[0];
@@ -85,13 +84,9 @@ public class BPMChannelTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ChannelType && property.equalsIgnoreCase(NAME_COLUMN)) {
+            if (element instanceof PropertyType && property.equalsIgnoreCase(NAME_COLUMN)) {
                 return true;
-            } else if (element instanceof ChannelType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
-                return true;
-            } else if (element instanceof ChannelType && property.equalsIgnoreCase(REFERENCE_COLUMN)) {
-                return true;
-            } else if (element instanceof ChannelType && property.equalsIgnoreCase(CLASS_COLUMN)) {
+            } else if (element instanceof PropertyType && property.equalsIgnoreCase(VALUE_COLUMN)) {
                 return true;
             }
             return false;
@@ -108,14 +103,10 @@ public class BPMChannelTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof ChannelType && columnIndex == 0) {
-                return ((ChannelType) element).getName();
-            } else if (element instanceof ChannelType && columnIndex == 1) {
-                return ((ChannelType) element).getOperation();
-            } else if (element instanceof ChannelType && columnIndex == 2) {
-                return ((ChannelType) element).getReference();
-            } else if (element instanceof ChannelType && columnIndex == 3) {
-                return ((ChannelType) element).getClass_();
+            if (element instanceof PropertyType && columnIndex == 0) {
+                return ((PropertyType) element).getName();
+            } else if (element instanceof PropertyType && columnIndex == 1) {
+                return ((PropertyType) element).getValue();
             }
             return null;
         }
@@ -123,13 +114,16 @@ public class BPMChannelTable extends Composite implements ICellModifier {
 
     private TableViewer _propertyTreeTable;
 
-    private static final String NAME_COLUMN = "name";
-    private static final String OPERATION_COLUMN = "operation";
-    private static final String REFERENCE_COLUMN = "reference";
-    private static final String CLASS_COLUMN = "class";
+    /**
+     * Value column.
+     */
+    public static final String NAME_COLUMN = "name";
+    /**
+     * Entry point column.
+     */
+    public static final String VALUE_COLUMN = "value";
 
-    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, OPERATION_COLUMN, REFERENCE_COLUMN,
-            CLASS_COLUMN };
+    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -144,7 +138,7 @@ public class BPMChannelTable extends Composite implements ICellModifier {
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
      */
-    public BPMChannelTable(Composite parent, int style) {
+    public BPMUserGroupCallbackPropertyTable(Composite parent, int style) {
         this(parent, style, false);
     }
 
@@ -155,7 +149,7 @@ public class BPMChannelTable extends Composite implements ICellModifier {
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
      */
-    public BPMChannelTable(Composite parent, int style, boolean isReadOnly) {
+    public BPMUserGroupCallbackPropertyTable(Composite parent, int style, boolean isReadOnly) {
         super(parent, style);
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
@@ -186,15 +180,9 @@ public class BPMChannelTable extends Composite implements ICellModifier {
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         nameColumn.setText("Name");
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
-        TableColumn operationColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        operationColumn.setText("Operation");
-        tableLayout.setColumnData(operationColumn, new ColumnWeightData(100, 150, true));
-        TableColumn referenceColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        referenceColumn.setText("Reference");
-        tableLayout.setColumnData(referenceColumn, new ColumnWeightData(100, 150, true));
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Class");
-        tableLayout.setColumnData(valueColumn, new ColumnWeightData(200, 300, true));
+        valueColumn.setText("Value");
+        tableLayout.setColumnData(valueColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -203,16 +191,8 @@ public class BPMChannelTable extends Composite implements ICellModifier {
         _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
 
         _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {
-                new TextCellEditor(_propertyTreeTable.getTable()),
-                new TextCellEditor(_propertyTreeTable.getTable()),
-                new TextCellEditor(_propertyTreeTable.getTable()),
-                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.Channel", "Channel",
-                        "Select channel implementation.") {
-                    protected Resource getResource() {
-                        return _targetObj == null ? null : _targetObj.eResource();
-                    }
-                } });
+        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTable()),
+                new TextCellEditor(_propertyTreeTable.getTable()) });
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
@@ -270,28 +250,32 @@ public class BPMChannelTable extends Composite implements ICellModifier {
     protected void addPropertyToList() {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final ChannelType newAction = BPMFactory.eINSTANCE.createChannelType();
-            newAction.setName("ChannelName");
-            newAction.setOperation("ChannelOperation");
-            newAction.setReference("ChannelReference");
-            newAction.setClass("NewChannel");
+            final PropertyType newAction = BPMFactory.eINSTANCE.createPropertyType();
+            newAction.setName("property");
+            newAction.setValue("value");
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        if (impl.getChannels() == null) {
-                            impl.setChannels(BPMFactory.eINSTANCE.createChannelsType());
+                        if (impl.getUserGroupCallback() == null) {
+                            impl.setUserGroupCallback(BPMFactory.eINSTANCE.createUserGroupCallbackType());
                         }
-                        impl.getChannels().getChannel().add(newAction);
+                        if (impl.getUserGroupCallback().getProperties() == null) {
+                            impl.getUserGroupCallback().setProperties(BPMFactory.eINSTANCE.createPropertiesType());
+                        }
+                        impl.getUserGroupCallback().getProperties().getProperty().add(newAction);
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                if (impl.getChannels() == null) {
-                    impl.setChannels(BPMFactory.eINSTANCE.createChannelsType());
+                if (impl.getUserGroupCallback() == null) {
+                    impl.setUserGroupCallback(BPMFactory.eINSTANCE.createUserGroupCallbackType());
                 }
-                impl.getChannels().getChannel().add(newAction);
+                if (impl.getUserGroupCallback().getProperties() == null) {
+                    impl.getUserGroupCallback().setProperties(BPMFactory.eINSTANCE.createPropertiesType());
+                }
+                impl.getUserGroupCallback().getProperties().getProperty().add(newAction);
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -304,23 +288,23 @@ public class BPMChannelTable extends Composite implements ICellModifier {
     protected void removeFromList() {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final ChannelType actionToRemove = getTableSelection();
+            final PropertyType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getChannels().getChannel().remove(actionToRemove);
-                        if (impl.getChannels().getChannel().isEmpty()) {
-                            impl.setChannels(null);
+                        impl.getUserGroupCallback().getProperties().getProperty().remove(actionToRemove);
+                        if (impl.getUserGroupCallback().getProperties().getProperty().isEmpty()) {
+                            impl.getUserGroupCallback().setProperties(null);
                         }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getChannels().getChannel().remove(actionToRemove);
-                if (impl.getChannels().getChannel().isEmpty()) {
-                    impl.setChannels(null);
+                impl.getUserGroupCallback().getProperties().getProperty().remove(actionToRemove);
+                if (impl.getUserGroupCallback().getProperties().getProperty().isEmpty()) {
+                    impl.getUserGroupCallback().setProperties(null);
                 }
                 getTableViewer().refresh(true);
             }
@@ -328,11 +312,11 @@ public class BPMChannelTable extends Composite implements ICellModifier {
         }
     }
 
-    protected ChannelType getTableSelection() {
+    protected PropertyType getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof ChannelType) {
-                return (ChannelType) ssel.getFirstElement();
+            if (ssel.getFirstElement() instanceof PropertyType) {
+                return (PropertyType) ssel.getFirstElement();
             }
         }
         return null;
@@ -425,27 +409,15 @@ public class BPMChannelTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ChannelType && property.equalsIgnoreCase(NAME_COLUMN)) {
-            if (((ChannelType) element).getName() != null) {
-                return ((ChannelType) element).getName();
+        if (element instanceof PropertyType && property.equalsIgnoreCase(NAME_COLUMN)) {
+            if (((PropertyType) element).getName() != null) {
+                return ((PropertyType) element).getName();
             } else {
                 return "";
             }
-        } else if (element instanceof ChannelType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
-            if (((ChannelType) element).getOperation() != null) {
-                return ((ChannelType) element).getOperation();
-            } else {
-                return "";
-            }
-        } else if (element instanceof ChannelType && property.equalsIgnoreCase(REFERENCE_COLUMN)) {
-            if (((ChannelType) element).getReference() != null) {
-                return ((ChannelType) element).getReference();
-            } else {
-                return "";
-            }
-        } else if (element instanceof ChannelType && property.equalsIgnoreCase(CLASS_COLUMN)) {
-            if (((ChannelType) element).getClass_() != null) {
-                return ((ChannelType) element).getClass_();
+        } else if (element instanceof PropertyType && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (((PropertyType) element).getValue() != null) {
+                return ((PropertyType) element).getValue();
             } else {
                 return "";
             }
@@ -466,7 +438,7 @@ public class BPMChannelTable extends Composite implements ICellModifier {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-                final ChannelType parm = (ChannelType) ti.getData();
+                final PropertyType parm = (PropertyType) ti.getData();
                 if ((value == null && parm.getName() == null) || (value != null && value.equals(parm.getName()))) {
                     return;
                 }
@@ -486,13 +458,12 @@ public class BPMChannelTable extends Composite implements ICellModifier {
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(OPERATION_COLUMN)) {
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-                final ChannelType parm = (ChannelType) ti.getData();
-                if ((value == null && parm.getOperation() == null)
-                        || (value != null && value.equals(parm.getOperation()))) {
+                final PropertyType parm = (PropertyType) ti.getData();
+                if ((value == null && parm.getValue() == null) || (value != null && value.equals(parm.getValue()))) {
                     return;
                 }
                 if (impl.eContainer() != null) {
@@ -500,64 +471,13 @@ public class BPMChannelTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ChannelType parm = (ChannelType) ti.getData();
-                            parm.setOperation((String) value);
+                            PropertyType parm = (PropertyType) ti.getData();
+                            parm.setValue((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    parm.setClass((String) value);
-                    getTableViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(REFERENCE_COLUMN)) {
-            final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof BPMImplementationType) {
-                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-                final ChannelType parm = (ChannelType) ti.getData();
-                if ((value == null && parm.getReference() == null)
-                        || (value != null && value.equals(parm.getReference()))) {
-                    return;
-                }
-                if (impl.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ChannelType parm = (ChannelType) ti.getData();
-                            parm.setReference((String) value);
-                            getTableViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    parm.setClass((String) value);
-                    getTableViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(CLASS_COLUMN)) {
-            final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof BPMImplementationType) {
-                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-                final ChannelType parm = (ChannelType) ti.getData();
-                if ((value == null && parm.getClass_() == null) || (value != null && value.equals(parm.getClass_()))) {
-                    return;
-                }
-                if (impl.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ChannelType parm = (ChannelType) ti.getData();
-                            parm.setClass((String) value);
-                            getTableViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    parm.setClass((String) value);
+                    parm.setValue((String) value);
                     getTableViewer().refresh(true);
                 }
             }

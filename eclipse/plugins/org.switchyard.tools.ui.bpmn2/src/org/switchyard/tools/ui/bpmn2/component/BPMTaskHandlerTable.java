@@ -196,7 +196,7 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
                 new TextCellEditor(_propertyTreeTable.getTable()),
-                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.runtime.process.WorkItemHandler",
+                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.process.WorkItemHandler",
                         "Work Item Handler", "Select work item handler class.") {
                     protected Resource getResource() {
                         return _targetObj == null ? null : _targetObj.eResource();

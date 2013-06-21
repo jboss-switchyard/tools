@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getLoggers <em>Loggers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getManifest <em>Manifest</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getUserGroupCallback <em>User Group Callback</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessId <em>Process Id</em>}</li>
@@ -195,6 +196,33 @@ public interface BPMImplementationType extends Implementation {
      * @generated
      */
     void setProperties(PropertiesType value);
+
+    /**
+     * Returns the value of the '<em><b>User Group Callback</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>User Group Callback</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>User Group Callback</em>' containment reference.
+     * @see #setUserGroupCallback(UserGroupCallbackType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_UserGroupCallback()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='userGroupCallback' namespace='##targetNamespace'"
+     * @generated
+     */
+    UserGroupCallbackType getUserGroupCallback();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getUserGroupCallback <em>User Group Callback</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>User Group Callback</em>' containment reference.
+     * @see #getUserGroupCallback()
+     * @generated
+     */
+    void setUserGroupCallback(UserGroupCallbackType value);
 
     /**
      * Returns the value of the '<em><b>Work Item Handlers</b></em>' containment reference.

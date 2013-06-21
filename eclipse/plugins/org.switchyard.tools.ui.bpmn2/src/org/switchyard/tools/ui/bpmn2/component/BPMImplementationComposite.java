@@ -18,9 +18,31 @@
  */
 package org.switchyard.tools.ui.bpmn2.component;
 
+import java.util.ArrayList;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.internal.core.PackageFragment;
+import org.eclipse.jdt.ui.IJavaElementSearchConstants;
+import org.eclipse.jdt.ui.JavaUI;
+import org.eclipse.jdt.ui.actions.OpenNewClassWizardAction;
+import org.eclipse.jdt.ui.wizards.NewClassWizardPage;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -36,10 +58,16 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
+import org.eclipse.swt.widgets.Link;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.events.ExpansionAdapter;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -50,6 +78,9 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
+import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
@@ -58,6 +89,7 @@ import org.switchyard.tools.ui.editor.property.ICompositeContainer;
  * 
  * Composite for BPM component implementations.
  */
+@SuppressWarnings("restriction")
 public class BPMImplementationComposite extends AbstractModelComposite<Component> {
 
     private Composite _panel;
@@ -81,6 +113,9 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
     private ResourcesType _resources;
     private ContainerType _container;
     private boolean _updating;
+    private Text _userGroupCallbackClassText;
+    private BPMUserGroupCallbackPropertyTable _userCallbackPropertiesTable;
+    private Link _callbackLinkLabel;
 
     /**
      * Create a new BPMImplementationComposite.
@@ -179,6 +214,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             _handlersTable.setTargetObject(_implementation);
             _listenersTable.setTargetObject(_implementation);
             _channelsTable.setTargetObject(_implementation);
+            _userCallbackPropertiesTable.setTargetObject(_implementation);
             if (_implementation == null) {
                 _processIDText.setText("");
                 _persistentButton.setSelection(false);
@@ -202,6 +238,13 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
             // initialize container controls
             _containerDetailsControls.setContainer(_container);
+            if (_implementation.getUserGroupCallback() != null) {
+                String value = _implementation.getUserGroupCallback().getClass_();
+                if (value == null) {
+                    value = "";
+                }
+                _userGroupCallbackClassText.setText(value);
+            }
         } finally {
             _updating = false;
         }
@@ -508,7 +551,256 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         factory.adapt(_channelsTable);
         channelsSection.setClient(_channelsTable);
 
+        addUserGroupCallBackSection(factory, control);
+
         item.setControl(control);
     }
+    
+    private void addUserGroupCallBackSection(final FormToolkit factory, final Composite control) {
+        Section userGroupCallbackSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        userGroupCallbackSection.setText("User Group Callback");
+        userGroupCallbackSection.setLayout(new GridLayout());
+        userGroupCallbackSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        userGroupCallbackSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                getContainer().layout();
+            }
+        });
 
+        Composite userGroupCallbackControl = factory.createComposite(userGroupCallbackSection);
+        userGroupCallbackControl.setLayout(new GridLayout(3, false));
+        userGroupCallbackControl.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        _callbackLinkLabel = new Link(userGroupCallbackControl, SWT.NONE);
+        String message = "<a>Callback Class:</a>";
+        _callbackLinkLabel.setText(message);
+        _callbackLinkLabel.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                handleClassLink(_userGroupCallbackClassText, _callbackLinkLabel,
+                        "org.kie.internal.task.api.UserGroupCallback");
+            }
+        });
+
+        _userGroupCallbackClassText = factory.createText(userGroupCallbackControl, "", SWT.BORDER);
+        _userGroupCallbackClassText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        _userGroupCallbackClassText.addModifyListener(new ModifyListener() {
+            @Override
+            public void modifyText(ModifyEvent e) {
+                final String newValue = _userGroupCallbackClassText.getText().length() == 0 ? null : _userGroupCallbackClassText.getText();
+                if (!_updating) {
+                    wrapOperation(new Runnable() {
+                        public void run() {
+                            if (_implementation.getUserGroupCallback() == null) {
+                                _implementation.setUserGroupCallback(BPMFactory.eINSTANCE.createUserGroupCallbackType());
+                            }
+                            
+                            _implementation.getUserGroupCallback().setClass(newValue);
+
+                            if (_implementation.getUserGroupCallback().getClass_() == null
+                                    && _implementation.getUserGroupCallback().getProperties() == null) {
+                                _implementation.setUserGroupCallback(null);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        Button _userGroupCallbackClassBrowseBtn = factory.createButton(userGroupCallbackControl, "...", SWT.PUSH);
+        _userGroupCallbackClassBrowseBtn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        _userGroupCallbackClassBrowseBtn.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                try {
+                    IProject project = null;
+                    if (_implementation != null) {
+                        project = PlatformResourceAdapterFactory.getContainingProject(_implementation);
+                    }
+                    IType selected = selectType(_panel.getShell(), "org.kie.internal.task.api.UserGroupCallback", project);
+                    if (selected != null) {
+                        _userGroupCallbackClassText.setText(selected.getFullyQualifiedName());
+                    }
+                } catch (JavaModelException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        
+        Label callbackPropsLabel = factory.createLabel(userGroupCallbackControl, "Callback Properties:");
+        callbackPropsLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1));
+        
+        _userCallbackPropertiesTable = new BPMUserGroupCallbackPropertyTable(userGroupCallbackControl, SWT.NONE);
+        _userCallbackPropertiesTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 5));
+        factory.adapt(_userCallbackPropertiesTable);
+
+        userGroupCallbackSection.setClient(userGroupCallbackControl);
+    }
+
+    /**
+     * @param shell Shell for the window
+     * @param superTypeName supertype to search for
+     * @param project project to look in
+     * @return IType the type created
+     * @throws JavaModelException exception thrown
+     */
+    public IType selectType(Shell shell, String superTypeName, IProject project) throws JavaModelException {
+        IJavaSearchScope searchScope = null;
+        if (project == null) {
+            ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+                    .getSelection();
+            IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
+            if (selection instanceof IStructuredSelection) {
+                selectionToPass = (IStructuredSelection) selection;
+                if (selectionToPass.getFirstElement() instanceof IFile) {
+                    project = ((IFile) selectionToPass.getFirstElement()).getProject();
+                }
+            }
+        }
+        if (superTypeName != null && !superTypeName.equals("java.lang.Object")) { //$NON-NLS-1$
+            if (project == null && _implementation != null) {
+                project = PlatformResourceAdapterFactory.getContainingProject(_implementation);
+            }
+            IJavaProject javaProject = JavaCore.create(project);
+            IType superType = javaProject.findType(superTypeName);
+            if (superType != null) {
+                searchScope = SearchEngine.createStrictHierarchyScope(javaProject, superType, true, false, null);
+            }
+        } else {
+            searchScope = SearchEngine.createWorkspaceScope();
+        }
+        SelectionDialog dialog = JavaUI.createTypeDialog(shell, new ProgressMonitorDialog(shell), searchScope,
+                IJavaElementSearchConstants.CONSIDER_CLASSES_AND_INTERFACES, false);
+        dialog.setTitle("Select entries");
+        dialog.setMessage("Matching items");
+        if (dialog.open() == IDialogConstants.CANCEL_ID) {
+            return null;
+        }
+        Object[] types = dialog.getResult();
+        if (types == null || types.length == 0) {
+            return null;
+        }
+        return (IType) types[0];
+    }
+
+    private String handleCreateJavaClass(String className, String interfaceName) throws JavaModelException {
+        IProject project = null;
+        IJavaProject javaProject = null;
+        OpenNewClassWizardAction action = new OpenNewClassWizardAction();
+        IFile modelFile = SwitchyardSCAEditor.getEditor(_implementation).getModelFile();
+        IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
+        if (modelFile != null) {
+            selectionToPass = new StructuredSelection(modelFile);
+            project = ((IFile) selectionToPass.getFirstElement()).getProject();
+        }
+        NewClassWizardPage page = new NewClassWizardPage();
+        ArrayList<String> interfaces = new ArrayList<String>();
+        if (interfaceName != null && interfaceName.trim().length() > 0) {
+            interfaces.add(interfaceName);
+            page.setSuperInterfaces(interfaces, false);
+        }
+        IPackageFragmentRoot packRoot = null;
+        if (project != null) { //$NON-NLS-1$
+            javaProject = JavaCore.create(project);
+            if (!className.isEmpty()) {
+                if (className.contains(".")) {
+                    className = className.substring(className.lastIndexOf('.') + 1);
+                }
+                page.setTypeName(className, true);
+            }
+            packRoot = JavaUtil.getFirstJavaSourceRoot(javaProject);
+            page.setPackageFragmentRoot(packRoot, true);
+        }
+        action.setSelection(selectionToPass);
+        if (javaProject != null) {
+            IJavaElement[] roots = packRoot.getChildren();
+            PackageFragment stashFrag = null;
+            for (int i = 0; i < roots.length; i++) {
+                PackageFragment frag = (PackageFragment) roots[i];
+                if (!frag.isDefaultPackage() && !frag.hasSubpackages()) {
+                    stashFrag = frag;
+                    break;
+                }
+            }
+            if (stashFrag != null) {
+                page.setPackageFragment(stashFrag, true);
+            }
+        }
+        action.setConfiguredWizardPage(page);
+        action.setOpenEditorOnFinish(false);
+        action.run();
+        IJavaElement createdElement = action.getCreatedElement();
+        if (createdElement != null && createdElement instanceof IType) {
+            IType stype = (IType) createdElement;
+            String name = stype.getFullyQualifiedName();
+            if (name != null) {
+                return name;
+            }
+        }
+        return null;
+    }
+
+    private void handleClassLink(Text classText, Link classLink, String interfaceName) {
+        if (classText != null && !classText.isDisposed()) {
+            String classname = classText.getText();
+            try {
+                IType foundClass = canFindClass(classname);
+                if (foundClass == null) {
+                    String className = handleCreateJavaClass(classname, interfaceName);
+                    if (className != null) {
+                        classText.setText(className);
+                    }
+                    return;
+                } else {
+                    handleOpenJavaClass(foundClass);
+                }
+            } catch (JavaModelException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    private IType canFindClass(String classname) throws JavaModelException {
+        IProject project = null;
+        ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+                .getSelection();
+        IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
+        if (selection instanceof IStructuredSelection) {
+            selectionToPass = (IStructuredSelection) selection;
+            if (selectionToPass.getFirstElement() instanceof IFile) {
+                project = ((IFile) selectionToPass.getFirstElement()).getProject();
+            } else if (selectionToPass.getFirstElement() instanceof AbstractGraphicalEditPart) {
+                project = PlatformResourceAdapterFactory.getContainingProject(_implementation); 
+            }
+        }
+        if (selectionToPass == StructuredSelection.EMPTY) {
+            project = PlatformResourceAdapterFactory.getContainingProject(_implementation); 
+        }
+        if (project != null && classname != null) { //$NON-NLS-1$
+            IJavaProject javaProject = JavaCore.create(project);
+            IType superType = javaProject.findType(classname);
+            if (superType != null) {
+                return superType;
+            }
+        }
+        return null;
+    }
+
+    private void handleOpenJavaClass(IType classToOpen) {
+        if (classToOpen != null) {
+            try {
+                JavaUI.openInEditor(classToOpen);
+            } catch (PartInitException e) {
+                e.printStackTrace();
+            } catch (JavaModelException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

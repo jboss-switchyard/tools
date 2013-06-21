@@ -226,6 +226,13 @@ public class BPMSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BPMPackage.USER_GROUP_CALLBACK_TYPE: {
+                UserGroupCallbackType userGroupCallbackType = (UserGroupCallbackType)theEObject;
+                T result = caseUserGroupCallbackType(userGroupCallbackType);
+                if (result == null) result = caseCommonExtensionBase(userGroupCallbackType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -557,6 +564,21 @@ public class BPMSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseWorkItemHandlerType(WorkItemHandlerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>User Group Callback Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>User Group Callback Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseUserGroupCallbackType(UserGroupCallbackType object) {
         return null;
     }
 

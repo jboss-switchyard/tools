@@ -162,6 +162,10 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createWorkItemHandlerTypeAdapter();
             }
             @Override
+            public Adapter caseUserGroupCallbackType(UserGroupCallbackType object) {
+                return createUserGroupCallbackTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -494,6 +498,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createWorkItemHandlerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType <em>User Group Callback Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType
+     * @generated
+     */
+    public Adapter createUserGroupCallbackTypeAdapter() {
         return null;
     }
 

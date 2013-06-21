@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResources <em>Resources</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandler <em>Work Item Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getUserGroupCallback <em>User Group Callback</em>}</li>
  * </ul>
  * </p>
  *
@@ -727,5 +728,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setWorkItemHandlers(WorkItemHandlersType value);
+
+    /**
+     * Returns the value of the '<em><b>User Group Callback</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>User Group Callback</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>User Group Callback</em>' containment reference.
+     * @see #setUserGroupCallback(UserGroupCallbackType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_UserGroupCallback()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='userGroupCallback' namespace='##targetNamespace'"
+     * @generated
+     */
+    UserGroupCallbackType getUserGroupCallback();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getUserGroupCallback <em>User Group Callback</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>User Group Callback</em>' containment reference.
+     * @see #getUserGroupCallback()
+     * @generated
+     */
+    void setUserGroupCallback(UserGroupCallbackType value);
 
 } // DocumentRoot

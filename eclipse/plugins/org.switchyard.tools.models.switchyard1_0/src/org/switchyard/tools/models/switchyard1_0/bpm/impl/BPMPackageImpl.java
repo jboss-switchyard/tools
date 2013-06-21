@@ -49,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ScopeType;
+import org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
@@ -258,6 +259,13 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     private EClass workItemHandlerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass userGroupCallbackTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -610,7 +618,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBPMImplementationType_WorkItemHandlers() {
+    public EReference getBPMImplementationType_UserGroupCallback() {
         return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(6);
     }
 
@@ -619,8 +627,17 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getBPMImplementationType_WorkItemHandlers() {
+        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getBPMImplementationType_ProcessId() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(8);
+        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(9);
     }
 
     /**
@@ -629,7 +646,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EAttribute getBPMImplementationType_Persistent() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(7);
+        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(8);
     }
 
     /**
@@ -997,6 +1014,15 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_UserGroupCallback() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(26);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getGlobalsType() {
         return globalsTypeEClass;
     }
@@ -1327,6 +1353,33 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getUserGroupCallbackType() {
+        return userGroupCallbackTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getUserGroupCallbackType_Properties() {
+        return (EReference)userGroupCallbackTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getUserGroupCallbackType_Class() {
+        return (EAttribute)userGroupCallbackTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1443,6 +1496,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__LOGGERS);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MANIFEST);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROPERTIES);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PERSISTENT);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROCESS_ID);
@@ -1490,6 +1544,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCES);
         createEReference(documentRootEClass, DOCUMENT_ROOT__WORK_ITEM_HANDLER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__WORK_ITEM_HANDLERS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__USER_GROUP_CALLBACK);
 
         globalsTypeEClass = createEClass(GLOBALS_TYPE);
         createEReference(globalsTypeEClass, GLOBALS_TYPE__GLOBAL);
@@ -1542,6 +1597,10 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         workItemHandlerTypeEClass = createEClass(WORK_ITEM_HANDLER_TYPE);
         createEAttribute(workItemHandlerTypeEClass, WORK_ITEM_HANDLER_TYPE__CLASS);
         createEAttribute(workItemHandlerTypeEClass, WORK_ITEM_HANDLER_TYPE__NAME);
+
+        userGroupCallbackTypeEClass = createEClass(USER_GROUP_CALLBACK_TYPE);
+        createEReference(userGroupCallbackTypeEClass, USER_GROUP_CALLBACK_TYPE__PROPERTIES);
+        createEAttribute(userGroupCallbackTypeEClass, USER_GROUP_CALLBACK_TYPE__CLASS);
 
         // Create enums
         actionTypeEEnum = createEEnum(ACTION_TYPE);
@@ -1610,6 +1669,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         resourceTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         workItemHandlersTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         workItemHandlerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        userGroupCallbackTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
         initEClass(actionsTypeEClass, ActionsType.class, "ActionsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1630,6 +1690,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEReference(getBPMImplementationType_Loggers(), this.getLoggersType(), null, "loggers", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBPMImplementationType_Manifest(), this.getManifestType(), null, "manifest", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBPMImplementationType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_UserGroupCallback(), this.getUserGroupCallbackType(), null, "userGroupCallback", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBPMImplementationType_WorkItemHandlers(), this.getWorkItemHandlersType(), null, "workItemHandlers", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBPMImplementationType_Persistent(), theXMLTypePackage.getBoolean(), "persistent", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBPMImplementationType_ProcessId(), theXMLTypePackage.getString(), "processId", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1677,6 +1738,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEReference(getDocumentRoot_Resources(), this.getResourcesType(), null, "resources", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_WorkItemHandler(), this.getWorkItemHandlerType(), null, "workItemHandler", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_WorkItemHandlers(), this.getWorkItemHandlersType(), null, "workItemHandlers", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_UserGroupCallback(), this.getUserGroupCallbackType(), null, "userGroupCallback", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(globalsTypeEClass, GlobalsType.class, "GlobalsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGlobalsType_Global(), this.getMappingType(), null, "global", null, 0, -1, GlobalsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1729,6 +1791,10 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEClass(workItemHandlerTypeEClass, WorkItemHandlerType.class, "WorkItemHandlerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getWorkItemHandlerType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, WorkItemHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getWorkItemHandlerType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, WorkItemHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(userGroupCallbackTypeEClass, UserGroupCallbackType.class, "UserGroupCallbackType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getUserGroupCallbackType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, UserGroupCallbackType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getUserGroupCallbackType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, UserGroupCallbackType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
@@ -1903,6 +1969,14 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            new String[] {
              "kind", "element",
              "name", "properties",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBPMImplementationType_UserGroupCallback(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "userGroupCallback",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -2233,6 +2307,14 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getDocumentRoot_UserGroupCallback(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "userGroupCallback",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (expressionTypeEEnum, 
            source, 
            new String[] {
@@ -2539,6 +2621,28 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            new String[] {
              "kind", "attribute",
              "name", "name"
+           });		
+        addAnnotation
+          (userGroupCallbackTypeEClass, 
+           source, 
+           new String[] {
+             "name", "UserGroupCallbackType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getUserGroupCallbackType_Properties(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "properties",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getUserGroupCallbackType_Class(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "class"
            });
     }
 

@@ -459,13 +459,22 @@ public interface BPMPackage extends EPackage {
     int BPM_IMPLEMENTATION_TYPE__PROPERTIES = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 5;
 
     /**
+     * The feature id for the '<em><b>User Group Callback</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 6;
+
+    /**
      * The feature id for the '<em><b>Work Item Handlers</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 6;
+    int BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Persistent</b></em>' attribute.
@@ -474,7 +483,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__PERSISTENT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 7;
+    int BPM_IMPLEMENTATION_TYPE__PERSISTENT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Process Id</b></em>' attribute.
@@ -483,7 +492,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__PROCESS_ID = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 8;
+    int BPM_IMPLEMENTATION_TYPE__PROCESS_ID = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 9;
 
     /**
      * The number of structural features of the '<em>Implementation Type</em>' class.
@@ -492,7 +501,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 9;
+	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 10;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ChannelsTypeImpl <em>Channels Type</em>}' class.
@@ -940,13 +949,22 @@ public interface BPMPackage extends EPackage {
     int DOCUMENT_ROOT__WORK_ITEM_HANDLERS = 25;
 
     /**
+     * The feature id for the '<em><b>User Group Callback</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__USER_GROUP_CALLBACK = 26;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 26;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 27;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.GlobalsTypeImpl <em>Globals Type</em>}' class.
@@ -1702,6 +1720,61 @@ public interface BPMPackage extends EPackage {
     int WORK_ITEM_HANDLER_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.UserGroupCallbackTypeImpl <em>User Group Callback Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.UserGroupCallbackTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getUserGroupCallbackType()
+     * @generated
+     */
+    int USER_GROUP_CALLBACK_TYPE = 22;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_GROUP_CALLBACK_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_GROUP_CALLBACK_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_GROUP_CALLBACK_TYPE__PROPERTIES = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_GROUP_CALLBACK_TYPE__CLASS = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>User Group Callback Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USER_GROUP_CALLBACK_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType <em>Action Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1709,7 +1782,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getActionType()
      * @generated
      */
-	int ACTION_TYPE = 22;
+	int ACTION_TYPE = 23;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ExpressionType <em>Expression Type</em>}' enum.
@@ -1719,7 +1792,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getExpressionType()
      * @generated
      */
-    int EXPRESSION_TYPE = 23;
+    int EXPRESSION_TYPE = 24;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.LoggerType <em>Logger Type</em>}' enum.
@@ -1729,7 +1802,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getLoggerType()
      * @generated
      */
-    int LOGGER_TYPE = 24;
+    int LOGGER_TYPE = 25;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ScopeType <em>Scope Type</em>}' enum.
@@ -1739,7 +1812,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getScopeType()
      * @generated
      */
-    int SCOPE_TYPE = 25;
+    int SCOPE_TYPE = 26;
 
     /**
      * The meta object id for the '<em>Action Type Object</em>' data type.
@@ -1749,7 +1822,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getActionTypeObject()
      * @generated
      */
-	int ACTION_TYPE_OBJECT = 26;
+	int ACTION_TYPE_OBJECT = 27;
 
 
 	/**
@@ -1760,7 +1833,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getExpressionTypeObject()
      * @generated
      */
-    int EXPRESSION_TYPE_OBJECT = 27;
+    int EXPRESSION_TYPE_OBJECT = 28;
 
     /**
      * The meta object id for the '<em>Logger Type Object</em>' data type.
@@ -1770,7 +1843,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getLoggerTypeObject()
      * @generated
      */
-    int LOGGER_TYPE_OBJECT = 28;
+    int LOGGER_TYPE_OBJECT = 29;
 
     /**
      * The meta object id for the '<em>Scope Type Object</em>' data type.
@@ -1780,7 +1853,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getScopeTypeObject()
      * @generated
      */
-    int SCOPE_TYPE_OBJECT = 29;
+    int SCOPE_TYPE_OBJECT = 30;
 
 
     /**
@@ -1955,6 +2028,17 @@ public interface BPMPackage extends EPackage {
      * @generated
      */
     EReference getBPMImplementationType_Properties();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getUserGroupCallback <em>User Group Callback</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>User Group Callback</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getUserGroupCallback()
+     * @see #getBPMImplementationType()
+     * @generated
+     */
+    EReference getBPMImplementationType_UserGroupCallback();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getWorkItemHandlers <em>Work Item Handlers</em>}'.
@@ -2426,6 +2510,17 @@ public interface BPMPackage extends EPackage {
     EReference getDocumentRoot_WorkItemHandlers();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getUserGroupCallback <em>User Group Callback</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>User Group Callback</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getUserGroupCallback()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_UserGroupCallback();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType <em>Globals Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2818,6 +2913,38 @@ public interface BPMPackage extends EPackage {
     EAttribute getWorkItemHandlerType_Name();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType <em>User Group Callback Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>User Group Callback Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType
+     * @generated
+     */
+    EClass getUserGroupCallbackType();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType#getProperties <em>Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Properties</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType#getProperties()
+     * @see #getUserGroupCallbackType()
+     * @generated
+     */
+    EReference getUserGroupCallbackType_Properties();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType#getClass_ <em>Class</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Class</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType#getClass_()
+     * @see #getUserGroupCallbackType()
+     * @generated
+     */
+    EAttribute getUserGroupCallbackType_Class();
+
+    /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType <em>Action Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3060,6 +3187,14 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EReference BPM_IMPLEMENTATION_TYPE__PROPERTIES = eINSTANCE.getBPMImplementationType_Properties();
+
+        /**
+         * The meta object literal for the '<em><b>User Group Callback</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK = eINSTANCE.getBPMImplementationType_UserGroupCallback();
 
         /**
          * The meta object literal for the '<em><b>Work Item Handlers</b></em>' containment reference feature.
@@ -3414,6 +3549,14 @@ public interface BPMPackage extends EPackage {
         EReference DOCUMENT_ROOT__WORK_ITEM_HANDLERS = eINSTANCE.getDocumentRoot_WorkItemHandlers();
 
         /**
+         * The meta object literal for the '<em><b>User Group Callback</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__USER_GROUP_CALLBACK = eINSTANCE.getDocumentRoot_UserGroupCallback();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.GlobalsTypeImpl <em>Globals Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3738,6 +3881,32 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EAttribute WORK_ITEM_HANDLER_TYPE__NAME = eINSTANCE.getWorkItemHandlerType_Name();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.UserGroupCallbackTypeImpl <em>User Group Callback Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.UserGroupCallbackTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getUserGroupCallbackType()
+         * @generated
+         */
+        EClass USER_GROUP_CALLBACK_TYPE = eINSTANCE.getUserGroupCallbackType();
+
+        /**
+         * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference USER_GROUP_CALLBACK_TYPE__PROPERTIES = eINSTANCE.getUserGroupCallbackType_Properties();
+
+        /**
+         * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute USER_GROUP_CALLBACK_TYPE__CLASS = eINSTANCE.getUserGroupCallbackType_Class();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType <em>Action Type</em>}' enum.

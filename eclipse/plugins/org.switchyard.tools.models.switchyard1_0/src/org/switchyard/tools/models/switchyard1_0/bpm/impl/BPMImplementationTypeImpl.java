@@ -26,6 +26,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ListenersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
+import org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 
 /**
@@ -41,6 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getLoggers <em>Loggers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getManifest <em>Manifest</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getUserGroupCallback <em>User Group Callback</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#isPersistent <em>Persistent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessId <em>Process Id</em>}</li>
@@ -109,6 +111,16 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
      * @ordered
      */
     protected PropertiesType properties;
+
+    /**
+     * The cached value of the '{@link #getUserGroupCallback() <em>User Group Callback</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUserGroupCallback()
+     * @generated
+     * @ordered
+     */
+    protected UserGroupCallbackType userGroupCallback;
 
     /**
      * The cached value of the '{@link #getWorkItemHandlers() <em>Work Item Handlers</em>}' containment reference.
@@ -451,6 +463,49 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
      * <!-- end-user-doc -->
      * @generated
      */
+    public UserGroupCallbackType getUserGroupCallback() {
+        return userGroupCallback;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetUserGroupCallback(UserGroupCallbackType newUserGroupCallback, NotificationChain msgs) {
+        UserGroupCallbackType oldUserGroupCallback = userGroupCallback;
+        userGroupCallback = newUserGroupCallback;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK, oldUserGroupCallback, newUserGroupCallback);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUserGroupCallback(UserGroupCallbackType newUserGroupCallback) {
+        if (newUserGroupCallback != userGroupCallback) {
+            NotificationChain msgs = null;
+            if (userGroupCallback != null)
+                msgs = ((InternalEObject)userGroupCallback).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK, null, msgs);
+            if (newUserGroupCallback != null)
+                msgs = ((InternalEObject)newUserGroupCallback).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK, null, msgs);
+            msgs = basicSetUserGroupCallback(newUserGroupCallback, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK, newUserGroupCallback, newUserGroupCallback));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public WorkItemHandlersType getWorkItemHandlers() {
         return workItemHandlers;
     }
@@ -576,6 +631,8 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return basicSetManifest(null, msgs);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
                 return basicSetProperties(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK:
+                return basicSetUserGroupCallback(null, msgs);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
                 return basicSetWorkItemHandlers(null, msgs);
         }
@@ -602,6 +659,8 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return getManifest();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
                 return getProperties();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK:
+                return getUserGroupCallback();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
                 return getWorkItemHandlers();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
@@ -637,6 +696,9 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
                 setProperties((PropertiesType)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK:
+                setUserGroupCallback((UserGroupCallbackType)newValue);
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
                 setWorkItemHandlers((WorkItemHandlersType)newValue);
@@ -677,6 +739,9 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
                 setProperties((PropertiesType)null);
                 return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK:
+                setUserGroupCallback((UserGroupCallbackType)null);
+                return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
                 setWorkItemHandlers((WorkItemHandlersType)null);
                 return;
@@ -710,6 +775,8 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return manifest != null;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
                 return properties != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK:
+                return userGroupCallback != null;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
                 return workItemHandlers != null;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:

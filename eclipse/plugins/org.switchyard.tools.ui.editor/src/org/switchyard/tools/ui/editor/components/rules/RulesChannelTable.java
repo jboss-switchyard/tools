@@ -205,7 +205,7 @@ public class RulesChannelTable extends Composite implements ICellModifier {
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
                 new TextCellEditor(_propertyTreeTable.getTable()),
-                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.runtime.Channel", "Channel",
+                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.Channel", "Channel",
                         "Select channel implementation.") {
                     protected Resource getResource() {
                         return _targetObj == null ? null : _targetObj.eResource();

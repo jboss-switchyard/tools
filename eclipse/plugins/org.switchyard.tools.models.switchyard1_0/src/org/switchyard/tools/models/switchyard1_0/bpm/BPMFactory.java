@@ -224,6 +224,15 @@ public interface BPMFactory extends EFactory {
     WorkItemHandlerType createWorkItemHandlerType();
 
     /**
+     * Returns a new object of class '<em>User Group Callback Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>User Group Callback Type</em>'.
+     * @generated
+     */
+    UserGroupCallbackType createUserGroupCallbackType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

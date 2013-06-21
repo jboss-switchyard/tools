@@ -44,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
+import org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 
@@ -80,6 +81,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getWorkItemHandler <em>Work Item Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getUserGroupCallback <em>User Group Callback</em>}</li>
  * </ul>
  * </p>
  *
@@ -794,6 +796,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UserGroupCallbackType getUserGroupCallback() {
+        return (UserGroupCallbackType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__USER_GROUP_CALLBACK, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetUserGroupCallback(UserGroupCallbackType newUserGroupCallback, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__USER_GROUP_CALLBACK, newUserGroupCallback, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUserGroupCallback(UserGroupCallbackType newUserGroupCallback) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__USER_GROUP_CALLBACK, newUserGroupCallback);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -852,6 +881,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetWorkItemHandler(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 return basicSetWorkItemHandlers(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                return basicSetUserGroupCallback(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -919,6 +950,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getWorkItemHandler();
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 return getWorkItemHandlers();
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                return getUserGroupCallback();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1008,6 +1041,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 setWorkItemHandlers((WorkItemHandlersType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                setUserGroupCallback((UserGroupCallbackType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -1099,6 +1135,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 setWorkItemHandlers((WorkItemHandlersType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                setUserGroupCallback((UserGroupCallbackType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1163,6 +1202,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getWorkItemHandler() != null;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 return getWorkItemHandlers() != null;
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                return getUserGroupCallback() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -32,7 +32,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      */
 	public static BPMFactory init() {
         try {
-            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bpm:config:1.0"); 
+            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory(BPMPackage.eNS_URI);
             if (theBPMFactory != null) {
                 return theBPMFactory;
             }
@@ -83,6 +83,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.RESOURCE_TYPE: return createResourceType();
             case BPMPackage.WORK_ITEM_HANDLERS_TYPE: return createWorkItemHandlersType();
             case BPMPackage.WORK_ITEM_HANDLER_TYPE: return createWorkItemHandlerType();
+            case BPMPackage.USER_GROUP_CALLBACK_TYPE: return createUserGroupCallbackType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -364,6 +365,16 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
     public WorkItemHandlerType createWorkItemHandlerType() {
         WorkItemHandlerTypeImpl workItemHandlerType = new WorkItemHandlerTypeImpl();
         return workItemHandlerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UserGroupCallbackType createUserGroupCallbackType() {
+        UserGroupCallbackTypeImpl userGroupCallbackType = new UserGroupCallbackTypeImpl();
+        return userGroupCallbackType;
     }
 
     /**
