@@ -32,6 +32,8 @@ public class SwitchYardCDIExtension implements ICDIExtension, IInjectionPointVal
     public static final String SWITCHYARD_CONTEXT_TYPE = "org.switchyard.Context";
     /** The fully qualified type name for SwitchYard's exchange Message. */
     public static final String SWITCHYARD_MESSAGE_TYPE = "org.switchyard.Message";
+    /** The fully qualified type name for SwitchYard's BeanBag. */
+    public static final String SWITCHYARD_BEANBAG_TYPE = "org.switchyard.component.bean.BeanBag";
 
     /**
      * Create a new SwitchYardCDIExtension.
@@ -44,7 +46,8 @@ public class SwitchYardCDIExtension implements ICDIExtension, IInjectionPointVal
         final String typeName = typeOfInjectionPoint == null ? null : typeOfInjectionPoint.getFullyQualifiedName('.');
         return injection.isAnnotationPresent(SWITCHYARD_REFERENCE_ANNOTATION)
                 || injection.isAnnotationPresent(SWITCHYARD_PROPERTY_ANNOTATION)
-                || SWITCHYARD_CONTEXT_TYPE.equals(typeName) || SWITCHYARD_MESSAGE_TYPE.equals(typeName);
+                || SWITCHYARD_CONTEXT_TYPE.equals(typeName) || SWITCHYARD_MESSAGE_TYPE.equals(typeName)
+                || SWITCHYARD_BEANBAG_TYPE.equals(typeName);
     }
 
 }
