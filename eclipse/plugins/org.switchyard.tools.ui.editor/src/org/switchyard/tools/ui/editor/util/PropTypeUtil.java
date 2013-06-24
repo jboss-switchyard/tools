@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.util;
 
+import java.math.BigInteger;
+
 /**
  * @author bfitzpat
  * 
@@ -34,6 +36,8 @@ public final class PropTypeUtil {
                 return ((Integer)value).toString();
             } else if (value instanceof Long) {
                 return ((Long)value).toString();
+            } else if (value instanceof BigInteger) {
+                return ((BigInteger)value).toString();
             }
         }
         return null;
