@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.switchyard.tools.models.switchyard1_0.bpm.provider;
 
@@ -16,8 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,17 +27,17 @@ import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProv
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActionType1ItemProvider
+public class UserGroupCallbackTypeItemProvider
     extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
@@ -56,7 +51,7 @@ public class ActionType1ItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public ActionType1ItemProvider(AdapterFactory adapterFactory) {
+    public UserGroupCallbackTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -71,71 +66,25 @@ public class ActionType1ItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addEventIdPropertyDescriptor(object);
-            addOperationPropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
+            addClassPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Event Id feature.
+     * This adds a property descriptor for the Class feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addEventIdPropertyDescriptor(Object object) {
+    protected void addClassPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ActionType1_eventId_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_eventId_feature", "_UI_ActionType1_type"),
-                 BPMPackage.Literals.ACTION_TYPE1__EVENT_ID,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Operation feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addOperationPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ActionType1_operation_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_operation_feature", "_UI_ActionType1_type"),
-                 BPMPackage.Literals.ACTION_TYPE1__OPERATION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ActionType1_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_type_feature", "_UI_ActionType1_type"),
-                 BPMPackage.Literals.ACTION_TYPE1__TYPE,
+                 getString("_UI_UserGroupCallbackType_class_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_UserGroupCallbackType_class_feature", "_UI_UserGroupCallbackType_type"),
+                 BPMPackage.Literals.USER_GROUP_CALLBACK_TYPE__CLASS,
                  true,
                  false,
                  false,
@@ -156,9 +105,7 @@ public class ActionType1ItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BPMPackage.Literals.ACTION_TYPE1__GLOBALS);
-            childrenFeatures.add(BPMPackage.Literals.ACTION_TYPE1__INPUTS);
-            childrenFeatures.add(BPMPackage.Literals.ACTION_TYPE1__OUTPUTS);
+            childrenFeatures.add(BPMPackage.Literals.USER_GROUP_CALLBACK_TYPE__PROPERTIES);
         }
         return childrenFeatures;
     }
@@ -177,14 +124,14 @@ public class ActionType1ItemProvider
     }
 
     /**
-     * This returns ActionType1.gif.
+     * This returns UserGroupCallbackType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/ActionType1"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/UserGroupCallbackType"));
     }
 
     /**
@@ -195,10 +142,10 @@ public class ActionType1ItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ActionType1)object).getEventId();
+        String label = ((UserGroupCallbackType)object).getClass_();
         return label == null || label.length() == 0 ?
-            getString("_UI_ActionType1_type") :
-            getString("_UI_ActionType1_type") + " " + label;
+            getString("_UI_UserGroupCallbackType_type") :
+            getString("_UI_UserGroupCallbackType_type") + " " + label;
     }
 
     /**
@@ -212,15 +159,11 @@ public class ActionType1ItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(ActionType1.class)) {
-            case BPMPackage.ACTION_TYPE1__EVENT_ID:
-            case BPMPackage.ACTION_TYPE1__OPERATION:
-            case BPMPackage.ACTION_TYPE1__TYPE:
+        switch (notification.getFeatureID(UserGroupCallbackType.class)) {
+            case BPMPackage.USER_GROUP_CALLBACK_TYPE__CLASS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case BPMPackage.ACTION_TYPE1__GLOBALS:
-            case BPMPackage.ACTION_TYPE1__INPUTS:
-            case BPMPackage.ACTION_TYPE1__OUTPUTS:
+            case BPMPackage.USER_GROUP_CALLBACK_TYPE__PROPERTIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -240,18 +183,8 @@ public class ActionType1ItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.ACTION_TYPE1__GLOBALS,
-                 BPMFactory.eINSTANCE.createGlobalsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BPMPackage.Literals.ACTION_TYPE1__INPUTS,
-                 BPMFactory.eINSTANCE.createInputsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BPMPackage.Literals.ACTION_TYPE1__OUTPUTS,
-                 BPMFactory.eINSTANCE.createOutputsType()));
+                (BPMPackage.Literals.USER_GROUP_CALLBACK_TYPE__PROPERTIES,
+                 BPMFactory.eINSTANCE.createPropertiesType()));
     }
 
     /**

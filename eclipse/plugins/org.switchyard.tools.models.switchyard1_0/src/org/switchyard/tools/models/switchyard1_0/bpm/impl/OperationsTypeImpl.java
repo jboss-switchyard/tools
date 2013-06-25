@@ -1,6 +1,6 @@
 /**
  */
-package org.switchyard.tools.models.switchyard1_0.rules.impl;
+package org.switchyard.tools.models.switchyard1_0.bpm.impl;
 
 import java.util.Collection;
 
@@ -16,40 +16,40 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionsType;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.OperationsType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Actions Type</b></em>'.
+ * An implementation of the model object '<em><b>Operations Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionsTypeImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.OperationsTypeImpl#getOperation <em>Operation</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsType {
+public class OperationsTypeImpl extends CommonExtensionBaseImpl implements OperationsType {
     /**
-     * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
+     * The cached value of the '{@link #getOperation() <em>Operation</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAction()
+     * @see #getOperation()
      * @generated
      * @ordered
      */
-    protected EList<ActionType1> action;
+    protected EList<BPMOperationType> operation;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected ActionsTypeImpl() {
+    protected OperationsTypeImpl() {
         super();
     }
 
@@ -60,7 +60,7 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
      */
     @Override
     protected EClass eStaticClass() {
-        return RulesPackage.Literals.ACTIONS_TYPE;
+        return BPMPackage.Literals.OPERATIONS_TYPE;
     }
 
     /**
@@ -68,11 +68,11 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<ActionType1> getAction() {
-        if (action == null) {
-            action = new EObjectContainmentEList<ActionType1>(ActionType1.class, this, RulesPackage.ACTIONS_TYPE__ACTION);
+    public EList<BPMOperationType> getOperation() {
+        if (operation == null) {
+            operation = new EObjectContainmentEList<BPMOperationType>(BPMOperationType.class, this, BPMPackage.OPERATIONS_TYPE__OPERATION);
         }
-        return action;
+        return operation;
     }
 
     /**
@@ -83,8 +83,8 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case RulesPackage.ACTIONS_TYPE__ACTION:
-                return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
+            case BPMPackage.OPERATIONS_TYPE__OPERATION:
+                return ((InternalEList<?>)getOperation()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -97,8 +97,8 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case RulesPackage.ACTIONS_TYPE__ACTION:
-                return getAction();
+            case BPMPackage.OPERATIONS_TYPE__OPERATION:
+                return getOperation();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -112,9 +112,9 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case RulesPackage.ACTIONS_TYPE__ACTION:
-                getAction().clear();
-                getAction().addAll((Collection<? extends ActionType1>)newValue);
+            case BPMPackage.OPERATIONS_TYPE__OPERATION:
+                getOperation().clear();
+                getOperation().addAll((Collection<? extends BPMOperationType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -128,8 +128,8 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case RulesPackage.ACTIONS_TYPE__ACTION:
-                getAction().clear();
+            case BPMPackage.OPERATIONS_TYPE__OPERATION:
+                getOperation().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -143,10 +143,10 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case RulesPackage.ACTIONS_TYPE__ACTION:
-                return action != null && !action.isEmpty();
+            case BPMPackage.OPERATIONS_TYPE__OPERATION:
+                return operation != null && !operation.isEmpty();
         }
         return super.eIsSet(featureID);
     }
 
-} //ActionsTypeImpl
+} //OperationsTypeImpl

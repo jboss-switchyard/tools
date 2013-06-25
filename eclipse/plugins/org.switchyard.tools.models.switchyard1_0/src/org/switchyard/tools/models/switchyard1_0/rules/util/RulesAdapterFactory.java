@@ -74,12 +74,12 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
 	protected RulesSwitch<Adapter> modelSwitch =
 		new RulesSwitch<Adapter>() {
             @Override
-            public Adapter caseActionsType(ActionsType object) {
-                return createActionsTypeAdapter();
+            public Adapter caseOperationsType(OperationsType object) {
+                return createOperationsTypeAdapter();
             }
             @Override
-            public Adapter caseActionType1(ActionType1 object) {
-                return createActionType1Adapter();
+            public Adapter caseRulesOperationType(RulesOperationType object) {
+                return createRulesOperationTypeAdapter();
             }
             @Override
             public Adapter caseChannelsType(ChannelsType object) {
@@ -154,6 +154,10 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
                 return createRulesImplementationTypeAdapter();
             }
             @Override
+            public Adapter caseFaultsType(FaultsType object) {
+                return createFaultsTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -182,34 +186,34 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionsType <em>Actions Type</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.OperationsType <em>Operations Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.rules.ActionsType
+     * @see org.switchyard.tools.models.switchyard1_0.rules.OperationsType
      * @generated
      */
-    public Adapter createActionsTypeAdapter() {
+    public Adapter createOperationsTypeAdapter() {
         return null;
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1 <em>Action Type1</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType <em>Operation Type</em>}'.
      * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.rules.ActionType1
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType
      * @generated
      */
-	public Adapter createActionType1Adapter() {
+    public Adapter createRulesOperationTypeAdapter() {
         return null;
     }
 
-	/**
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.ChannelsType <em>Channels Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -462,6 +466,20 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.FaultsType <em>Faults Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.FaultsType
+     * @generated
+     */
+    public Adapter createFaultsTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;

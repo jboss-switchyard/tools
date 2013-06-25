@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getAction <em>Action</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getContainer <em>Container</em>}</li>
@@ -44,6 +44,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFault <em>Fault</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFaults <em>Faults</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,58 +108,58 @@ public interface DocumentRoot extends EObject {
 	EMap<String, String> getXSISchemaLocation();
 
 	/**
-     * Returns the value of the '<em><b>Action</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Action</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Action</em>' containment reference.
-     * @see #setAction(ActionType1)
-     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Action()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='action' namespace='##targetNamespace'"
-     * @generated
-     */
-	ActionType1 getAction();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getAction <em>Action</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Action</em>' containment reference.
-     * @see #getAction()
-     * @generated
-     */
-	void setAction(ActionType1 value);
-
-	/**
-     * Returns the value of the '<em><b>Actions</b></em>' containment reference.
+     * Returns the value of the '<em><b>Operation</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Actions</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Operation</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Actions</em>' containment reference.
-     * @see #setActions(ActionsType)
-     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Actions()
+     * @return the value of the '<em>Operation</em>' containment reference.
+     * @see #setOperation(RulesOperationType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Operation()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='actions' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='operation' namespace='##targetNamespace'"
      * @generated
      */
-    ActionsType getActions();
+    RulesOperationType getOperation();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getActions <em>Actions</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getOperation <em>Operation</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Actions</em>' containment reference.
-     * @see #getActions()
+     * @param value the new value of the '<em>Operation</em>' containment reference.
+     * @see #getOperation()
      * @generated
      */
-    void setActions(ActionsType value);
+    void setOperation(RulesOperationType value);
+
+    /**
+     * Returns the value of the '<em><b>Operations</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operations</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Operations</em>' containment reference.
+     * @see #setOperations(OperationsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Operations()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='operations' namespace='##targetNamespace'"
+     * @generated
+     */
+    OperationsType getOperations();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getOperations <em>Operations</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Operations</em>' containment reference.
+     * @see #getOperations()
+     * @generated
+     */
+    void setOperations(OperationsType value);
 
     /**
      * Returns the value of the '<em><b>Channel</b></em>' containment reference.
@@ -671,5 +673,59 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setResources(ResourcesType value);
+
+    /**
+     * Returns the value of the '<em><b>Fault</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Fault</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Fault</em>' containment reference.
+     * @see #setFault(MappingType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Fault()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='fault' namespace='##targetNamespace'"
+     * @generated
+     */
+    MappingType getFault();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFault <em>Fault</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Fault</em>' containment reference.
+     * @see #getFault()
+     * @generated
+     */
+    void setFault(MappingType value);
+
+    /**
+     * Returns the value of the '<em><b>Faults</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Faults</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Faults</em>' containment reference.
+     * @see #setFaults(FaultsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Faults()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='faults' namespace='##targetNamespace'"
+     * @generated
+     */
+    FaultsType getFaults();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFaults <em>Faults</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Faults</em>' containment reference.
+     * @see #getFaults()
+     * @generated
+     */
+    void setFaults(FaultsType value);
 
 } // DocumentRoot

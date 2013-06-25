@@ -1264,16 +1264,6 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 BPMFactory.eINSTANCE.createActionsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 BPMFactory.eINSTANCE.createActionType1()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  BPMFactory.eINSTANCE.createBPMImplementationType()));
 
         newChildDescriptors.add
@@ -1510,16 +1500,6 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 RulesFactory.eINSTANCE.createActionsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 RulesFactory.eINSTANCE.createActionType1()));
 
         newChildDescriptors.add
             (createChildParameter

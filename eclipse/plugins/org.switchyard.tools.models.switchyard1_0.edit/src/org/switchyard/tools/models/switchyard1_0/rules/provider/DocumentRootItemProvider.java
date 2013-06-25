@@ -83,8 +83,8 @@ public class DocumentRootItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__ACTION);
-            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__OPERATION);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__OPERATIONS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CHANNELS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CONTAINER);
@@ -104,6 +104,8 @@ public class DocumentRootItemProvider
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__FAULT);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__FAULTS);
         }
         return childrenFeatures;
     }
@@ -155,8 +157,8 @@ public class DocumentRootItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
-            case RulesPackage.DOCUMENT_ROOT__ACTION:
-            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
+            case RulesPackage.DOCUMENT_ROOT__OPERATION:
+            case RulesPackage.DOCUMENT_ROOT__OPERATIONS:
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
             case RulesPackage.DOCUMENT_ROOT__CHANNELS:
             case RulesPackage.DOCUMENT_ROOT__CONTAINER:
@@ -176,6 +178,8 @@ public class DocumentRootItemProvider
             case RulesPackage.DOCUMENT_ROOT__PROPERTY:
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
+            case RulesPackage.DOCUMENT_ROOT__FAULT:
+            case RulesPackage.DOCUMENT_ROOT__FAULTS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -195,13 +199,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.DOCUMENT_ROOT__ACTION,
-                 RulesFactory.eINSTANCE.createActionType1()));
+                (RulesPackage.Literals.DOCUMENT_ROOT__OPERATION,
+                 RulesFactory.eINSTANCE.createRulesOperationType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS,
-                 RulesFactory.eINSTANCE.createActionsType()));
+                (RulesPackage.Literals.DOCUMENT_ROOT__OPERATIONS,
+                 RulesFactory.eINSTANCE.createOperationsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -297,6 +301,16 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES,
                  RulesFactory.eINSTANCE.createResourcesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__FAULT,
+                 RulesFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__FAULTS,
+                 RulesFactory.eINSTANCE.createFaultsType()));
     }
 
     /**
@@ -313,7 +327,8 @@ public class DocumentRootItemProvider
         boolean qualify =
             childFeature == RulesPackage.Literals.DOCUMENT_ROOT__GLOBAL ||
             childFeature == RulesPackage.Literals.DOCUMENT_ROOT__INPUT ||
-            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__OUTPUT;
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__OUTPUT ||
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__FAULT;
 
         if (qualify) {
             return getString

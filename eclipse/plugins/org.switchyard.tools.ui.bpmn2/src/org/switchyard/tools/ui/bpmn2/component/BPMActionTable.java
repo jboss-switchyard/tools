@@ -40,10 +40,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OperationType;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -67,8 +67,8 @@ public class BPMActionTable extends Composite implements ICellModifier {
         public Object[] getElements(Object inputElement) {
             if (inputElement instanceof BPMImplementationType) {
                 final BPMImplementationType bpmImpl = (BPMImplementationType) inputElement;
-                if (bpmImpl.getActions() != null) {
-                    return bpmImpl.getActions().getAction().toArray();
+                if (bpmImpl.getOperations() != null) {
+                    return bpmImpl.getOperations().getOperation().toArray();
                 }
             }
             return new Object[0];
@@ -86,9 +86,9 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ActionType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
+            if (element instanceof BPMOperationType && property.equalsIgnoreCase(TYPE_COLUMN)) {
                 return true;
-            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(OPERATION_COLUMN)) {
+            } else if (element instanceof BPMOperationType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
                 return true;
             }
             return false;
@@ -105,14 +105,14 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof ActionType1 && columnIndex == 1) {
-                ActionType1 tp = (ActionType1) element;
+            if (element instanceof BPMOperationType && columnIndex == 1) {
+                BPMOperationType tp = (BPMOperationType) element;
                 return (String) tp.getType().getLiteral();
-            } else if (element instanceof ActionType1 && columnIndex == 0) {
-                ActionType1 tp = (ActionType1) element;
-                return tp.getOperation();
-            } else if (element instanceof ActionType1 && columnIndex == 2) {
-                ActionType1 tp = (ActionType1) element;
+            } else if (element instanceof BPMOperationType && columnIndex == 0) {
+                BPMOperationType tp = (BPMOperationType) element;
+                return tp.getName();
+            } else if (element instanceof BPMOperationType && columnIndex == 2) {
+                BPMOperationType tp = (BPMOperationType) element;
                 return tp.getEventId();
             }
             return null;
@@ -212,8 +212,8 @@ public class BPMActionTable extends Composite implements ICellModifier {
         _propertyTreeTable.setCellEditors(new CellEditor[] {
                 new TextCellEditor(_propertyTreeTable.getTable()),
                 new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {
-                        ActionType.STARTPROCESS.getLiteral(), ActionType.SIGNALEVENT.getLiteral(),
-                        ActionType.ABORTPROCESSINSTANCE.getLiteral() }),
+                        OperationType.STARTPROCESS.getLiteral(), OperationType.SIGNALEVENT.getLiteral(),
+                        OperationType.ABORTPROCESSINSTANCE.getLiteral() }),
                 new TextCellEditor(_propertyTreeTable.getTable()) });
 
         _mAddButton = new Button(this, SWT.NONE);
@@ -277,24 +277,24 @@ public class BPMActionTable extends Composite implements ICellModifier {
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                        newAction.setType(ActionType.STARTPROCESS);
-                        newAction.setOperation("NewAction");
-                        if (impl.getActions() == null) {
-                            impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                        BPMOperationType newAction = BPMFactory.eINSTANCE.createBPMOperationType();
+                        newAction.setType(OperationType.STARTPROCESS);
+                        newAction.setName("NewOperation");
+                        if (impl.getOperations() == null) {
+                            impl.setOperations(BPMFactory.eINSTANCE.createOperationsType());
                         }
-                        impl.getActions().getAction().add(newAction);
+                        impl.getOperations().getOperation().add(newAction);
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                newAction.setType(ActionType.STARTPROCESS);
-                newAction.setOperation("NewAction");
-                if (impl.getActions() == null) {
-                    impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                BPMOperationType newAction = BPMFactory.eINSTANCE.createBPMOperationType();
+                newAction.setType(OperationType.STARTPROCESS);
+                newAction.setName("NewOperation");
+                if (impl.getOperations() == null) {
+                    impl.setOperations(BPMFactory.eINSTANCE.createOperationsType());
                 }
-                impl.getActions().getAction().add(newAction);
+                impl.getOperations().getOperation().add(newAction);
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -307,23 +307,23 @@ public class BPMActionTable extends Composite implements ICellModifier {
     protected void removeFromList() {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final ActionType1 actionToRemove = getTableSelection();
+            final BPMOperationType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getActions().getAction().remove(actionToRemove);
-                        if (impl.getActions().getAction().isEmpty()) {
-                            impl.setActions(null);
+                        impl.getOperations().getOperation().remove(actionToRemove);
+                        if (impl.getOperations().getOperation().isEmpty()) {
+                            impl.setOperations(null);
                         }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getActions().getAction().remove(actionToRemove);
-                if (impl.getActions().getAction().isEmpty()) {
-                    impl.setActions(null);
+                impl.getOperations().getOperation().remove(actionToRemove);
+                if (impl.getOperations().getOperation().isEmpty()) {
+                    impl.setOperations(null);
                 }
                 getTableViewer().refresh(true);
             }
@@ -331,11 +331,11 @@ public class BPMActionTable extends Composite implements ICellModifier {
         }
     }
 
-    protected ActionType1 getTableSelection() {
+    protected BPMOperationType getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof ActionType1) {
-                return (ActionType1) ssel.getFirstElement();
+            if (ssel.getFirstElement() instanceof BPMOperationType) {
+                return (BPMOperationType) ssel.getFirstElement();
             }
         }
         return null;
@@ -428,17 +428,17 @@ public class BPMActionTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ActionType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
-            return new Integer(((ActionType1) element).getType().getValue());
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(OPERATION_COLUMN)) {
-            if (((ActionType1) element).getOperation() != null) {
-                return ((ActionType1) element).getOperation();
+        if (element instanceof BPMOperationType && property.equalsIgnoreCase(TYPE_COLUMN)) {
+            return new Integer(((BPMOperationType) element).getType().getValue());
+        } else if (element instanceof BPMOperationType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
+            if (((BPMOperationType) element).getName() != null) {
+                return ((BPMOperationType) element).getName();
             } else {
                 return "";
             }
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(EVENT_ID_COLUMN)) {
-            if (((ActionType1) element).getEventId() != null) {
-                return ((ActionType1) element).getEventId();
+        } else if (element instanceof BPMOperationType && property.equalsIgnoreCase(EVENT_ID_COLUMN)) {
+            if (((BPMOperationType) element).getEventId() != null) {
+                return ((BPMOperationType) element).getEventId();
             } else {
                 return "";
             }
@@ -464,15 +464,15 @@ public class BPMActionTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            ActionType atype = ActionType.get(((Integer) value).intValue());
+                            BPMOperationType parm = (BPMOperationType) ti.getData();
+                            OperationType atype = OperationType.get(((Integer) value).intValue());
                             parm.setType(atype);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    ActionType atype = ActionType.get(((Integer) value).intValue());
+                    BPMOperationType parm = (BPMOperationType) ti.getData();
+                    OperationType atype = OperationType.get(((Integer) value).intValue());
                     parm.setType(atype);
                     getTableViewer().refresh(true);
                 }
@@ -489,14 +489,14 @@ public class BPMActionTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            parm.setOperation(newValue);
+                            BPMOperationType parm = (BPMOperationType) ti.getData();
+                            parm.setName(newValue);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    parm.setOperation(newValue);
+                    BPMOperationType parm = (BPMOperationType) ti.getData();
+                    parm.setName(newValue);
                     getTableViewer().refresh(true);
                 }
             }
@@ -512,13 +512,13 @@ public class BPMActionTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
+                            BPMOperationType parm = (BPMOperationType) ti.getData();
                             parm.setEventId(newValue);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
+                    BPMOperationType parm = (BPMOperationType) ti.getData();
                     parm.setEventId(newValue);
                     getTableViewer().refresh(true);
                 }

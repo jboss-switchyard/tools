@@ -23,14 +23,14 @@ import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.bpm.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenerType;
@@ -39,6 +39,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
@@ -58,8 +59,8 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getAction <em>Action</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getContainer <em>Container</em>}</li>
@@ -82,6 +83,8 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getWorkItemHandler <em>Work Item Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getUserGroupCallback <em>User Group Callback</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFaults <em>Faults</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFault <em>Fault</em>}</li>
  * </ul>
  * </p>
  *
@@ -175,38 +178,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public ActionType1 getAction() {
-        return (ActionType1)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__ACTION, true);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetAction(ActionType1 newAction, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__ACTION, newAction, msgs);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setAction(ActionType1 newAction) {
-        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__ACTION, newAction);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public ActionsType getActions() {
-        return (ActionsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__ACTIONS, true);
+    public BPMOperationType getOperation() {
+        return (BPMOperationType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__OPERATION, true);
     }
 
     /**
@@ -214,8 +190,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetActions(ActionsType newActions, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__ACTIONS, newActions, msgs);
+    public NotificationChain basicSetOperation(BPMOperationType newOperation, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__OPERATION, newOperation, msgs);
     }
 
     /**
@@ -223,8 +199,35 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setActions(ActionsType newActions) {
-        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__ACTIONS, newActions);
+    public void setOperation(BPMOperationType newOperation) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__OPERATION, newOperation);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OperationsType getOperations() {
+        return (OperationsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__OPERATIONS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOperations(OperationsType newOperations, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__OPERATIONS, newOperations, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOperations(OperationsType newOperations) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__OPERATIONS, newOperations);
     }
 
     /**
@@ -823,6 +826,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FaultsType getFaults() {
+        return (FaultsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__FAULTS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetFaults(FaultsType newFaults, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__FAULTS, newFaults, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFaults(FaultsType newFaults) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__FAULTS, newFaults);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingType getFault() {
+        return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__FAULT, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetFault(MappingType newFault, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__FAULT, newFault, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFault(MappingType newFault) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__FAULT, newFault);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -835,10 +892,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-            case BPMPackage.DOCUMENT_ROOT__ACTION:
-                return basicSetAction(null, msgs);
-            case BPMPackage.DOCUMENT_ROOT__ACTIONS:
-                return basicSetActions(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                return basicSetOperation(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                return basicSetOperations(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 return basicSetChannel(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
@@ -883,6 +940,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetWorkItemHandlers(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
                 return basicSetUserGroupCallback(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                return basicSetFaults(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                return basicSetFault(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -904,10 +965,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
-            case BPMPackage.DOCUMENT_ROOT__ACTION:
-                return getAction();
-            case BPMPackage.DOCUMENT_ROOT__ACTIONS:
-                return getActions();
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                return getOperation();
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                return getOperations();
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel();
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
@@ -952,6 +1013,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getWorkItemHandlers();
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
                 return getUserGroupCallback();
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                return getFaults();
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                return getFault();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -973,11 +1038,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
                 return;
-            case BPMPackage.DOCUMENT_ROOT__ACTION:
-                setAction((ActionType1)newValue);
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                setOperation((BPMOperationType)newValue);
                 return;
-            case BPMPackage.DOCUMENT_ROOT__ACTIONS:
-                setActions((ActionsType)newValue);
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                setOperations((OperationsType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)newValue);
@@ -1045,6 +1110,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
                 setUserGroupCallback((UserGroupCallbackType)newValue);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                setFaults((FaultsType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                setFault((MappingType)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -1066,11 +1137,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
-            case BPMPackage.DOCUMENT_ROOT__ACTION:
-                setAction((ActionType1)null);
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                setOperation((BPMOperationType)null);
                 return;
-            case BPMPackage.DOCUMENT_ROOT__ACTIONS:
-                setActions((ActionsType)null);
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                setOperations((OperationsType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)null);
@@ -1138,6 +1209,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
                 setUserGroupCallback((UserGroupCallbackType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                setFaults((FaultsType)null);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                setFault((MappingType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1156,10 +1233,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-            case BPMPackage.DOCUMENT_ROOT__ACTION:
-                return getAction() != null;
-            case BPMPackage.DOCUMENT_ROOT__ACTIONS:
-                return getActions() != null;
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                return getOperation() != null;
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                return getOperations() != null;
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel() != null;
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
@@ -1204,6 +1281,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getWorkItemHandlers() != null;
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
                 return getUserGroupCallback() != null;
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                return getFaults() != null;
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                return getFault() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -51,11 +51,11 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.ui.editor.Activator;
 
@@ -76,6 +76,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
     private RulesActionTable _actionsTable;
     private RulesMappingsTable _inputsTable;
     private RulesMappingsTable _outputsTable;
+    private RulesMappingsTable _faultsTable;
     private RulesMappingsTable _globalsTable;
     private RulesPropertyTable _propertiesTable;
     private RulesLoggerTable _loggersTable;
@@ -188,7 +189,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         TabItem advanced = new TabItem(folder, SWT.NONE);
 
         resources.setText("Resources");
-        actions.setText("Actions");
+        actions.setText("Operations");
         advanced.setText("Advanced");
 
         createResourcesControls(folder, resources);
@@ -295,7 +296,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section actionsSection = factory.createSection(actionsComposite, Section.TITLE_BAR | Section.EXPANDED);
-        actionsSection.setText("Actions");
+        actionsSection.setText("Operations");
         actionsSection.setLayout(new GridLayout());
         actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -312,19 +313,39 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
                 } else {
                     selected = ((IStructuredSelection) event.getSelection()).getFirstElement();
                 }
-                _inputsTable.setTargetObject((ActionType1) selected);
-                _outputsTable.setTargetObject((ActionType1) selected);
-                _globalsTable.setTargetObject((ActionType1) selected);
+                _inputsTable.setTargetObject((RulesOperationType) selected);
+                _outputsTable.setTargetObject((RulesOperationType) selected);
+                _globalsTable.setTargetObject((RulesOperationType) selected);
+                _faultsTable.setTargetObject((RulesOperationType) selected);
                 
                 _inputsTable.setEnabled(selected != null);
                 _outputsTable.setEnabled(selected != null);
                 _globalsTable.setEnabled(selected != null);
+                _faultsTable.setEnabled(selected != null);
             }
         });
 
         Composite mappingsComposite = factory.createComposite(control);
         mappingsComposite.setLayout(new GridLayout());
         mappingsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
+        globalsSection.setText("Globals");
+        globalsSection.setLayout(new GridLayout());
+        globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        globalsSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                _page.resizeScrolledComposite();
+            }
+        });
+
+        _globalsTable = new RulesMappingsTable(globalsSection, SWT.NONE, "message.content", null,
+                RulesPackage.eINSTANCE.getRulesOperationType_Globals(), RulesPackage.eINSTANCE.getGlobalsType_Global(),
+                Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
+        _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_globalsTable);
+        globalsSection.setClient(_globalsTable);
 
         Section inputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
@@ -339,7 +360,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         });
 
         _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, "message.content", null,
-                RulesPackage.eINSTANCE.getActionType1_Inputs(), RulesPackage.eINSTANCE.getInputsType_Input(),
+                RulesPackage.eINSTANCE.getRulesOperationType_Inputs(), RulesPackage.eINSTANCE.getInputsType_Input(),
                 Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
@@ -358,33 +379,35 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
         });
 
         _outputsTable = new RulesMappingsTable(outputsSection, SWT.NONE, null, "message.content",
-                RulesPackage.eINSTANCE.getActionType1_Outputs(), RulesPackage.eINSTANCE.getOutputsType_Output(),
+                RulesPackage.eINSTANCE.getRulesOperationType_Outputs(), RulesPackage.eINSTANCE.getOutputsType_Output(),
                 Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_outputsTable);
         outputsSection.setClient(_outputsTable);
 
-        Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
-        globalsSection.setText("Globals");
-        globalsSection.setLayout(new GridLayout());
-        globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        globalsSection.addExpansionListener(new ExpansionAdapter() {
+        Section faultsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
+                | Section.EXPANDED);
+        faultsSection.setText("Faults");
+        faultsSection.setLayout(new GridLayout());
+        faultsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        faultsSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
                 _page.resizeScrolledComposite();
             }
         });
 
-        _globalsTable = new RulesMappingsTable(globalsSection, SWT.NONE, "message.content", null,
-                RulesPackage.eINSTANCE.getActionType1_Globals(), RulesPackage.eINSTANCE.getGlobalsType_Global(),
+        _faultsTable = new RulesMappingsTable(faultsSection, SWT.NONE, null, "message.content",
+                RulesPackage.eINSTANCE.getRulesOperationType_Faults(), RulesPackage.eINSTANCE.getFaultsType_Fault(),
                 Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
-        _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_globalsTable);
-        globalsSection.setClient(_globalsTable);
+        _faultsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_faultsTable);
+        faultsSection.setClient(_faultsTable);
 
         _inputsTable.setEnabled(false);
         _outputsTable.setEnabled(false);
         _globalsTable.setEnabled(false);
+        _faultsTable.setEnabled(false);
         
         item.setControl(control);
     }

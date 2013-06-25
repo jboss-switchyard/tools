@@ -44,7 +44,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
@@ -307,8 +307,8 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
      */
     @SuppressWarnings({"unchecked", "rawtypes" })
     protected void addPropertyToList() {
-        if (getTargetObject() instanceof ActionType1) {
-            final ActionType1 impl = (ActionType1) getTargetObject();
+        if (getTargetObject() instanceof RulesOperationType) {
+            final RulesOperationType impl = (RulesOperationType) getTargetObject();
             final MappingType newMapping = RulesFactory.eINSTANCE.createMappingType();
             newMapping.setFrom(_defaultFrom);
             newMapping.setTo(_defaultTo);
@@ -358,8 +358,8 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
      */
     @SuppressWarnings("rawtypes")
     protected void removeFromList() {
-        if (getTargetObject() instanceof ActionType1) {
-            final ActionType1 impl = (ActionType1) getTargetObject();
+        if (getTargetObject() instanceof RulesOperationType) {
+            final RulesOperationType impl = (RulesOperationType) getTargetObject();
             final MappingType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -514,8 +514,8 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
     public void modify(Object element, String property, final Object value) {
         if (element instanceof TableItem && property.equalsIgnoreCase(FROM_COLUMN)) {
             final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof ActionType1) {
-                final ActionType1 impl = (ActionType1) getTargetObject();
+            if (getTargetObject() instanceof RulesOperationType) {
+                final RulesOperationType impl = (RulesOperationType) getTargetObject();
                 final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -537,8 +537,8 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
             // validate();
         } else if (element instanceof TableItem && property.equalsIgnoreCase(TO_COLUMN)) {
             final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof ActionType1) {
-                final ActionType1 impl = (ActionType1) getTargetObject();
+            if (getTargetObject() instanceof RulesOperationType) {
+                final RulesOperationType impl = (RulesOperationType) getTargetObject();
                 final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();

@@ -1,6 +1,6 @@
 /**
  */
-package org.switchyard.tools.models.switchyard1_0.bpm.provider;
+package org.switchyard.tools.models.switchyard1_0.rules.provider;
 
 
 import java.util.Collection;
@@ -25,17 +25,17 @@ import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProv
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionsType;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.rules.FaultsType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ActionsType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.FaultsType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActionsTypeItemProvider
+public class FaultsTypeItemProvider
     extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class ActionsTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public ActionsTypeItemProvider(AdapterFactory adapterFactory) {
+    public FaultsTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -80,7 +80,7 @@ public class ActionsTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BPMPackage.Literals.ACTIONS_TYPE__ACTION);
+            childrenFeatures.add(RulesPackage.Literals.FAULTS_TYPE__FAULT);
         }
         return childrenFeatures;
     }
@@ -99,14 +99,14 @@ public class ActionsTypeItemProvider
     }
 
     /**
-     * This returns ActionsType.gif.
+     * This returns FaultsType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/ActionsType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/FaultsType"));
     }
 
     /**
@@ -117,7 +117,7 @@ public class ActionsTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_ActionsType_type");
+        return getString("_UI_FaultsType_type");
     }
 
     /**
@@ -131,8 +131,8 @@ public class ActionsTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(ActionsType.class)) {
-            case BPMPackage.ACTIONS_TYPE__ACTION:
+        switch (notification.getFeatureID(FaultsType.class)) {
+            case RulesPackage.FAULTS_TYPE__FAULT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -152,8 +152,8 @@ public class ActionsTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.ACTIONS_TYPE__ACTION,
-                 BPMFactory.eINSTANCE.createActionType1()));
+                (RulesPackage.Literals.FAULTS_TYPE__FAULT,
+                 RulesFactory.eINSTANCE.createMappingType()));
     }
 
     /**

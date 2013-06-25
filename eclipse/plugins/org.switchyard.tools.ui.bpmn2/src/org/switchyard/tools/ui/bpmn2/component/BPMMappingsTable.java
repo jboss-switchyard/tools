@@ -43,7 +43,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
@@ -282,8 +282,8 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
      */
     @SuppressWarnings({"unchecked", "rawtypes" })
     protected void addPropertyToList() {
-        if (getTargetObject() instanceof ActionType1) {
-            final ActionType1 impl = (ActionType1) getTargetObject();
+        if (getTargetObject() instanceof BPMOperationType) {
+            final BPMOperationType impl = (BPMOperationType) getTargetObject();
             final MappingType newMapping = BPMFactory.eINSTANCE.createMappingType();
             newMapping.setFrom(_defaultFrom);
             newMapping.setTo(_defaultTo);
@@ -333,8 +333,8 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
      */
     @SuppressWarnings("rawtypes")
     protected void removeFromList() {
-        if (getTargetObject() instanceof ActionType1) {
-            final ActionType1 impl = (ActionType1) getTargetObject();
+        if (getTargetObject() instanceof BPMOperationType) {
+            final BPMOperationType impl = (BPMOperationType) getTargetObject();
             final MappingType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -489,8 +489,8 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
     public void modify(Object element, String property, final Object value) {
         if (element instanceof TableItem && property.equalsIgnoreCase(FROM_COLUMN)) {
             final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof ActionType1) {
-                final ActionType1 impl = (ActionType1) getTargetObject();
+            if (getTargetObject() instanceof BPMOperationType) {
+                final BPMOperationType impl = (BPMOperationType) getTargetObject();
                 final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -513,8 +513,8 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
         } else if (element instanceof TableItem && property.equalsIgnoreCase(TO_COLUMN)) {
             final TableItem ti = (TableItem) element;
             final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
-            if (getTargetObject() instanceof ActionType1) {
-                final ActionType1 impl = (ActionType1) getTargetObject();
+            if (getTargetObject() instanceof BPMOperationType) {
+                final BPMOperationType impl = (BPMOperationType) getTargetObject();
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {

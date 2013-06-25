@@ -19,7 +19,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 
 /**
  * NewBPMActionConfigurationWizardPage
@@ -33,7 +33,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 public class NewBPMActionConfigurationWizardPage extends WizardPage {
 
     // operation name : action configuration
-    private Map<String, ActionType1> _actions = new LinkedHashMap<String, ActionType1>();
+    private Map<String, BPMOperationType> _actions = new LinkedHashMap<String, BPMOperationType>();
     private TableViewer _actionsTable;
 
     /**

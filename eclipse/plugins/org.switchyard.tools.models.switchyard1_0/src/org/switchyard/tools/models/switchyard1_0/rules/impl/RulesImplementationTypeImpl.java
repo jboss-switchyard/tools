@@ -20,6 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenersType;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
+import org.switchyard.tools.models.switchyard1_0.rules.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertiesType;
 
 
@@ -33,11 +34,11 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getListeners <em>Listeners</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getLoggers <em>Loggers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getManifest <em>Manifest</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
@@ -46,16 +47,6 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  */
 public class RulesImplementationTypeImpl extends ImplementationImpl implements RulesImplementationType {
 	/**
-     * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getActions()
-     * @generated
-     * @ordered
-     */
-    protected ActionsType actions;
-
-    /**
      * The cached value of the '{@link #getChannels() <em>Channels</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -96,6 +87,16 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
     protected ManifestType manifest;
 
     /**
+     * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOperations()
+     * @generated
+     * @ordered
+     */
+    protected OperationsType operations;
+
+    /**
      * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -125,49 +126,6 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
     }
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ActionsType getActions() {
-        return actions;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetActions(ActionsType newActions, NotificationChain msgs) {
-        ActionsType oldActions = actions;
-        actions = newActions;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS, oldActions, newActions);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setActions(ActionsType newActions) {
-        if (newActions != actions) {
-            NotificationChain msgs = null;
-            if (actions != null)
-                msgs = ((InternalEObject)actions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS, null, msgs);
-            if (newActions != null)
-                msgs = ((InternalEObject)newActions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS, null, msgs);
-            msgs = basicSetActions(newActions, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS, newActions, newActions));
-    }
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -344,6 +302,49 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
      * <!-- end-user-doc -->
      * @generated
      */
+    public OperationsType getOperations() {
+        return operations;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOperations(OperationsType newOperations, NotificationChain msgs) {
+        OperationsType oldOperations = operations;
+        operations = newOperations;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS, oldOperations, newOperations);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOperations(OperationsType newOperations) {
+        if (newOperations != operations) {
+            NotificationChain msgs = null;
+            if (operations != null)
+                msgs = ((InternalEObject)operations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS, null, msgs);
+            if (newOperations != null)
+                msgs = ((InternalEObject)newOperations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS, null, msgs);
+            msgs = basicSetOperations(newOperations, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS, newOperations, newOperations));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public PropertiesType getProperties() {
         return properties;
     }
@@ -390,8 +391,6 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS:
-                return basicSetActions(null, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNELS:
                 return basicSetChannels(null, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__LISTENERS:
@@ -400,6 +399,8 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return basicSetLoggers(null, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MANIFEST:
                 return basicSetManifest(null, msgs);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS:
+                return basicSetOperations(null, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__PROPERTIES:
                 return basicSetProperties(null, msgs);
         }
@@ -414,8 +415,6 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS:
-                return getActions();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNELS:
                 return getChannels();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__LISTENERS:
@@ -424,6 +423,8 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return getLoggers();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MANIFEST:
                 return getManifest();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS:
+                return getOperations();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__PROPERTIES:
                 return getProperties();
         }
@@ -438,9 +439,6 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS:
-                setActions((ActionsType)newValue);
-                return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNELS:
                 setChannels((ChannelsType)newValue);
                 return;
@@ -452,6 +450,9 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MANIFEST:
                 setManifest((ManifestType)newValue);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS:
+                setOperations((OperationsType)newValue);
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__PROPERTIES:
                 setProperties((PropertiesType)newValue);
@@ -468,9 +469,6 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
 	@Override
 	public void eUnset(int featureID) {
         switch (featureID) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS:
-                setActions((ActionsType)null);
-                return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNELS:
                 setChannels((ChannelsType)null);
                 return;
@@ -482,6 +480,9 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MANIFEST:
                 setManifest((ManifestType)null);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS:
+                setOperations((OperationsType)null);
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__PROPERTIES:
                 setProperties((PropertiesType)null);
@@ -498,8 +499,6 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
 	@Override
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS:
-                return actions != null;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNELS:
                 return channels != null;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__LISTENERS:
@@ -508,6 +507,8 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return loggers != null;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MANIFEST:
                 return manifest != null;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS:
+                return operations != null;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__PROPERTIES:
                 return properties != null;
         }

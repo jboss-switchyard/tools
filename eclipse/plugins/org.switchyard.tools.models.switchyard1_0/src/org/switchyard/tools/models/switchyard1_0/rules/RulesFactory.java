@@ -26,24 +26,24 @@ public interface RulesFactory extends EFactory {
 	RulesFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.rules.impl.RulesFactoryImpl.init();
 
 	/**
-     * Returns a new object of class '<em>Actions Type</em>'.
+     * Returns a new object of class '<em>Operations Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Actions Type</em>'.
+     * @return a new object of class '<em>Operations Type</em>'.
      * @generated
      */
-    ActionsType createActionsType();
+    OperationsType createOperationsType();
 
     /**
-     * Returns a new object of class '<em>Action Type1</em>'.
+     * Returns a new object of class '<em>Operation Type</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Action Type1</em>'.
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Operation Type</em>'.
      * @generated
      */
-	ActionType1 createActionType1();
+    RulesOperationType createRulesOperationType();
 
-	/**
+    /**
      * Returns a new object of class '<em>Channels Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -206,6 +206,15 @@ public interface RulesFactory extends EFactory {
 	RulesImplementationType createRulesImplementationType();
 
 	/**
+     * Returns a new object of class '<em>Faults Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Faults Type</em>'.
+     * @generated
+     */
+    FaultsType createFaultsType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

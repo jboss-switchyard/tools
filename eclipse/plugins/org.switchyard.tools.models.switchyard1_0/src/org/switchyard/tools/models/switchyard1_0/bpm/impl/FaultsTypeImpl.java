@@ -16,40 +16,40 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.FaultsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Actions Type</b></em>'.
+ * An implementation of the model object '<em><b>Faults Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ActionsTypeImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.FaultsTypeImpl#getFault <em>Fault</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsType {
+public class FaultsTypeImpl extends CommonExtensionBaseImpl implements FaultsType {
     /**
-     * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
+     * The cached value of the '{@link #getFault() <em>Fault</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAction()
+     * @see #getFault()
      * @generated
      * @ordered
      */
-    protected EList<ActionType1> action;
+    protected EList<MappingType> fault;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected ActionsTypeImpl() {
+    protected FaultsTypeImpl() {
         super();
     }
 
@@ -60,7 +60,7 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
      */
     @Override
     protected EClass eStaticClass() {
-        return BPMPackage.Literals.ACTIONS_TYPE;
+        return BPMPackage.Literals.FAULTS_TYPE;
     }
 
     /**
@@ -68,11 +68,11 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<ActionType1> getAction() {
-        if (action == null) {
-            action = new EObjectContainmentEList<ActionType1>(ActionType1.class, this, BPMPackage.ACTIONS_TYPE__ACTION);
+    public EList<MappingType> getFault() {
+        if (fault == null) {
+            fault = new EObjectContainmentEList<MappingType>(MappingType.class, this, BPMPackage.FAULTS_TYPE__FAULT);
         }
-        return action;
+        return fault;
     }
 
     /**
@@ -83,8 +83,8 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case BPMPackage.ACTIONS_TYPE__ACTION:
-                return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
+            case BPMPackage.FAULTS_TYPE__FAULT:
+                return ((InternalEList<?>)getFault()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -97,8 +97,8 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BPMPackage.ACTIONS_TYPE__ACTION:
-                return getAction();
+            case BPMPackage.FAULTS_TYPE__FAULT:
+                return getFault();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -112,9 +112,9 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BPMPackage.ACTIONS_TYPE__ACTION:
-                getAction().clear();
-                getAction().addAll((Collection<? extends ActionType1>)newValue);
+            case BPMPackage.FAULTS_TYPE__FAULT:
+                getFault().clear();
+                getFault().addAll((Collection<? extends MappingType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -128,8 +128,8 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BPMPackage.ACTIONS_TYPE__ACTION:
-                getAction().clear();
+            case BPMPackage.FAULTS_TYPE__FAULT:
+                getFault().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -143,10 +143,10 @@ public class ActionsTypeImpl extends CommonExtensionBaseImpl implements ActionsT
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BPMPackage.ACTIONS_TYPE__ACTION:
-                return action != null && !action.isEmpty();
+            case BPMPackage.FAULTS_TYPE__FAULT:
+                return fault != null && !fault.isEmpty();
         }
         return super.eIsSet(featureID);
     }
 
-} //ActionsTypeImpl
+} //FaultsTypeImpl

@@ -1,46 +1,46 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.switchyard.tools.models.switchyard1_0.bpm.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
 
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
+
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Action Type1</b></em>'.
+ * An implementation of the model object '<em><b>Operation Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ActionType1Impl#getGlobals <em>Globals</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ActionType1Impl#getInputs <em>Inputs</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ActionType1Impl#getOutputs <em>Outputs</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ActionType1Impl#getEventId <em>Event Id</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ActionType1Impl#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ActionType1Impl#getType <em>Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl#getGlobals <em>Globals</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl#getFaults <em>Faults</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl#getEventId <em>Event Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionType1 {
-	/**
+public class BPMOperationTypeImpl extends CommonExtensionBaseImpl implements BPMOperationType {
+    /**
      * The cached value of the '{@link #getGlobals() <em>Globals</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -49,6 +49,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @ordered
      */
     protected GlobalsType globals;
+
     /**
      * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -58,6 +59,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @ordered
      */
     protected InputsType inputs;
+
     /**
      * The cached value of the '{@link #getOutputs() <em>Outputs</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -67,6 +69,17 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @ordered
      */
     protected OutputsType outputs;
+
+    /**
+     * The cached value of the '{@link #getFaults() <em>Faults</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFaults()
+     * @generated
+     * @ordered
+     */
+    protected FaultsType faults;
+
     /**
      * The default value of the '{@link #getEventId() <em>Event Id</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -76,6 +89,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @ordered
      */
     protected static final String EVENT_ID_EDEFAULT = null;
+
     /**
      * The cached value of the '{@link #getEventId() <em>Event Id</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -85,24 +99,27 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @ordered
      */
     protected String eventId = EVENT_ID_EDEFAULT;
+
     /**
-     * The default value of the '{@link #getOperation() <em>Operation</em>}' attribute.
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOperation()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected static final String OPERATION_EDEFAULT = null;
+    protected static final String NAME_EDEFAULT = null;
+
     /**
-     * The cached value of the '{@link #getOperation() <em>Operation</em>}' attribute.
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOperation()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected String operation = OPERATION_EDEFAULT;
+    protected String name = NAME_EDEFAULT;
+
     /**
      * The default value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -111,7 +128,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @generated
      * @ordered
      */
-    protected static final ActionType TYPE_EDEFAULT = ActionType.STARTPROCESS;
+    protected static final OperationType TYPE_EDEFAULT = OperationType.STARTPROCESS;
+
     /**
      * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -120,7 +138,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @generated
      * @ordered
      */
-    protected ActionType type = TYPE_EDEFAULT;
+    protected OperationType type = TYPE_EDEFAULT;
+
     /**
      * This is true if the Type attribute has been set.
      * <!-- begin-user-doc -->
@@ -129,23 +148,24 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @ordered
      */
     protected boolean typeESet;
+
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected ActionType1Impl() {
+    protected BPMOperationTypeImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
-        return BPMPackage.Literals.ACTION_TYPE1;
+    @Override
+    protected EClass eStaticClass() {
+        return BPMPackage.Literals.BPM_OPERATION_TYPE;
     }
 
     /**
@@ -166,7 +186,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         GlobalsType oldGlobals = globals;
         globals = newGlobals;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__GLOBALS, oldGlobals, newGlobals);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__GLOBALS, oldGlobals, newGlobals);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -181,14 +201,14 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         if (newGlobals != globals) {
             NotificationChain msgs = null;
             if (globals != null)
-                msgs = ((InternalEObject)globals).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.ACTION_TYPE1__GLOBALS, null, msgs);
+                msgs = ((InternalEObject)globals).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__GLOBALS, null, msgs);
             if (newGlobals != null)
-                msgs = ((InternalEObject)newGlobals).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.ACTION_TYPE1__GLOBALS, null, msgs);
+                msgs = ((InternalEObject)newGlobals).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__GLOBALS, null, msgs);
             msgs = basicSetGlobals(newGlobals, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__GLOBALS, newGlobals, newGlobals));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__GLOBALS, newGlobals, newGlobals));
     }
 
     /**
@@ -209,7 +229,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         InputsType oldInputs = inputs;
         inputs = newInputs;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__INPUTS, oldInputs, newInputs);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__INPUTS, oldInputs, newInputs);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -224,14 +244,14 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         if (newInputs != inputs) {
             NotificationChain msgs = null;
             if (inputs != null)
-                msgs = ((InternalEObject)inputs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.ACTION_TYPE1__INPUTS, null, msgs);
+                msgs = ((InternalEObject)inputs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__INPUTS, null, msgs);
             if (newInputs != null)
-                msgs = ((InternalEObject)newInputs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.ACTION_TYPE1__INPUTS, null, msgs);
+                msgs = ((InternalEObject)newInputs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__INPUTS, null, msgs);
             msgs = basicSetInputs(newInputs, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__INPUTS, newInputs, newInputs));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__INPUTS, newInputs, newInputs));
     }
 
     /**
@@ -252,7 +272,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         OutputsType oldOutputs = outputs;
         outputs = newOutputs;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__OUTPUTS, oldOutputs, newOutputs);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__OUTPUTS, oldOutputs, newOutputs);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -267,14 +287,57 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         if (newOutputs != outputs) {
             NotificationChain msgs = null;
             if (outputs != null)
-                msgs = ((InternalEObject)outputs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.ACTION_TYPE1__OUTPUTS, null, msgs);
+                msgs = ((InternalEObject)outputs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__OUTPUTS, null, msgs);
             if (newOutputs != null)
-                msgs = ((InternalEObject)newOutputs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.ACTION_TYPE1__OUTPUTS, null, msgs);
+                msgs = ((InternalEObject)newOutputs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__OUTPUTS, null, msgs);
             msgs = basicSetOutputs(newOutputs, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__OUTPUTS, newOutputs, newOutputs));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__OUTPUTS, newOutputs, newOutputs));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FaultsType getFaults() {
+        return faults;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetFaults(FaultsType newFaults, NotificationChain msgs) {
+        FaultsType oldFaults = faults;
+        faults = newFaults;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__FAULTS, oldFaults, newFaults);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFaults(FaultsType newFaults) {
+        if (newFaults != faults) {
+            NotificationChain msgs = null;
+            if (faults != null)
+                msgs = ((InternalEObject)faults).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__FAULTS, null, msgs);
+            if (newFaults != null)
+                msgs = ((InternalEObject)newFaults).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_OPERATION_TYPE__FAULTS, null, msgs);
+            msgs = basicSetFaults(newFaults, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__FAULTS, newFaults, newFaults));
     }
 
     /**
@@ -295,7 +358,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         String oldEventId = eventId;
         eventId = newEventId;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__EVENT_ID, oldEventId, eventId));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__EVENT_ID, oldEventId, eventId));
     }
 
     /**
@@ -303,8 +366,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getOperation() {
-        return operation;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -312,11 +375,11 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOperation(String newOperation) {
-        String oldOperation = operation;
-        operation = newOperation;
+    public void setName(String newName) {
+        String oldName = name;
+        name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__OPERATION, oldOperation, operation));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__NAME, oldName, name));
     }
 
     /**
@@ -324,7 +387,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public ActionType getType() {
+    public OperationType getType() {
         return type;
     }
 
@@ -333,13 +396,13 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setType(ActionType newType) {
-        ActionType oldType = type;
+    public void setType(OperationType newType) {
+        OperationType oldType = type;
         type = newType == null ? TYPE_EDEFAULT : newType;
         boolean oldTypeESet = typeESet;
         typeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__TYPE, oldType, type, !oldTypeESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_OPERATION_TYPE__TYPE, oldType, type, !oldTypeESet));
     }
 
     /**
@@ -348,12 +411,12 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * @generated
      */
     public void unsetType() {
-        ActionType oldType = type;
+        OperationType oldType = type;
         boolean oldTypeESet = typeESet;
         type = TYPE_EDEFAULT;
         typeESet = false;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, BPMPackage.ACTION_TYPE1__TYPE, oldType, TYPE_EDEFAULT, oldTypeESet));
+            eNotify(new ENotificationImpl(this, Notification.UNSET, BPMPackage.BPM_OPERATION_TYPE__TYPE, oldType, TYPE_EDEFAULT, oldTypeESet));
     }
 
     /**
@@ -373,12 +436,14 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case BPMPackage.ACTION_TYPE1__GLOBALS:
+            case BPMPackage.BPM_OPERATION_TYPE__GLOBALS:
                 return basicSetGlobals(null, msgs);
-            case BPMPackage.ACTION_TYPE1__INPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__INPUTS:
                 return basicSetInputs(null, msgs);
-            case BPMPackage.ACTION_TYPE1__OUTPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__OUTPUTS:
                 return basicSetOutputs(null, msgs);
+            case BPMPackage.BPM_OPERATION_TYPE__FAULTS:
+                return basicSetFaults(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -391,17 +456,19 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BPMPackage.ACTION_TYPE1__GLOBALS:
+            case BPMPackage.BPM_OPERATION_TYPE__GLOBALS:
                 return getGlobals();
-            case BPMPackage.ACTION_TYPE1__INPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__INPUTS:
                 return getInputs();
-            case BPMPackage.ACTION_TYPE1__OUTPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__OUTPUTS:
                 return getOutputs();
-            case BPMPackage.ACTION_TYPE1__EVENT_ID:
+            case BPMPackage.BPM_OPERATION_TYPE__FAULTS:
+                return getFaults();
+            case BPMPackage.BPM_OPERATION_TYPE__EVENT_ID:
                 return getEventId();
-            case BPMPackage.ACTION_TYPE1__OPERATION:
-                return getOperation();
-            case BPMPackage.ACTION_TYPE1__TYPE:
+            case BPMPackage.BPM_OPERATION_TYPE__NAME:
+                return getName();
+            case BPMPackage.BPM_OPERATION_TYPE__TYPE:
                 return getType();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -415,23 +482,26 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BPMPackage.ACTION_TYPE1__GLOBALS:
+            case BPMPackage.BPM_OPERATION_TYPE__GLOBALS:
                 setGlobals((GlobalsType)newValue);
                 return;
-            case BPMPackage.ACTION_TYPE1__INPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__INPUTS:
                 setInputs((InputsType)newValue);
                 return;
-            case BPMPackage.ACTION_TYPE1__OUTPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__OUTPUTS:
                 setOutputs((OutputsType)newValue);
                 return;
-            case BPMPackage.ACTION_TYPE1__EVENT_ID:
+            case BPMPackage.BPM_OPERATION_TYPE__FAULTS:
+                setFaults((FaultsType)newValue);
+                return;
+            case BPMPackage.BPM_OPERATION_TYPE__EVENT_ID:
                 setEventId((String)newValue);
                 return;
-            case BPMPackage.ACTION_TYPE1__OPERATION:
-                setOperation((String)newValue);
+            case BPMPackage.BPM_OPERATION_TYPE__NAME:
+                setName((String)newValue);
                 return;
-            case BPMPackage.ACTION_TYPE1__TYPE:
-                setType((ActionType)newValue);
+            case BPMPackage.BPM_OPERATION_TYPE__TYPE:
+                setType((OperationType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -445,22 +515,25 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BPMPackage.ACTION_TYPE1__GLOBALS:
+            case BPMPackage.BPM_OPERATION_TYPE__GLOBALS:
                 setGlobals((GlobalsType)null);
                 return;
-            case BPMPackage.ACTION_TYPE1__INPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__INPUTS:
                 setInputs((InputsType)null);
                 return;
-            case BPMPackage.ACTION_TYPE1__OUTPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__OUTPUTS:
                 setOutputs((OutputsType)null);
                 return;
-            case BPMPackage.ACTION_TYPE1__EVENT_ID:
+            case BPMPackage.BPM_OPERATION_TYPE__FAULTS:
+                setFaults((FaultsType)null);
+                return;
+            case BPMPackage.BPM_OPERATION_TYPE__EVENT_ID:
                 setEventId(EVENT_ID_EDEFAULT);
                 return;
-            case BPMPackage.ACTION_TYPE1__OPERATION:
-                setOperation(OPERATION_EDEFAULT);
+            case BPMPackage.BPM_OPERATION_TYPE__NAME:
+                setName(NAME_EDEFAULT);
                 return;
-            case BPMPackage.ACTION_TYPE1__TYPE:
+            case BPMPackage.BPM_OPERATION_TYPE__TYPE:
                 unsetType();
                 return;
         }
@@ -475,17 +548,19 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BPMPackage.ACTION_TYPE1__GLOBALS:
+            case BPMPackage.BPM_OPERATION_TYPE__GLOBALS:
                 return globals != null;
-            case BPMPackage.ACTION_TYPE1__INPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__INPUTS:
                 return inputs != null;
-            case BPMPackage.ACTION_TYPE1__OUTPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__OUTPUTS:
                 return outputs != null;
-            case BPMPackage.ACTION_TYPE1__EVENT_ID:
+            case BPMPackage.BPM_OPERATION_TYPE__FAULTS:
+                return faults != null;
+            case BPMPackage.BPM_OPERATION_TYPE__EVENT_ID:
                 return EVENT_ID_EDEFAULT == null ? eventId != null : !EVENT_ID_EDEFAULT.equals(eventId);
-            case BPMPackage.ACTION_TYPE1__OPERATION:
-                return OPERATION_EDEFAULT == null ? operation != null : !OPERATION_EDEFAULT.equals(operation);
-            case BPMPackage.ACTION_TYPE1__TYPE:
+            case BPMPackage.BPM_OPERATION_TYPE__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case BPMPackage.BPM_OPERATION_TYPE__TYPE:
                 return isSetType();
         }
         return super.eIsSet(featureID);
@@ -503,12 +578,12 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (eventId: ");
         result.append(eventId);
-        result.append(", operation: ");
-        result.append(operation);
+        result.append(", name: ");
+        result.append(name);
         result.append(", type: ");
         if (typeESet) result.append(type); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }
 
-} //ActionType1Impl
+} //BPMOperationTypeImpl

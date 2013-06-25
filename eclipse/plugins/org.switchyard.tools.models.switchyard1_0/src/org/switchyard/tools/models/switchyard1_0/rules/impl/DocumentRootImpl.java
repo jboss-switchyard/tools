@@ -29,6 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.rules.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.InputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenerType;
@@ -37,12 +38,14 @@ import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
+import org.switchyard.tools.models.switchyard1_0.rules.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.rules.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 /**
@@ -55,8 +58,8 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getAction <em>Action</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getContainer <em>Container</em>}</li>
@@ -76,6 +79,8 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getFault <em>Fault</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getFaults <em>Faults</em>}</li>
  * </ul>
  * </p>
  *
@@ -169,38 +174,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public ActionType1 getAction() {
-        return (ActionType1)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, true);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetAction(ActionType1 newAction, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, newAction, msgs);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setAction(ActionType1 newAction) {
-        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, newAction);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public ActionsType getActions() {
-        return (ActionsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS, true);
+    public RulesOperationType getOperation() {
+        return (RulesOperationType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__OPERATION, true);
     }
 
     /**
@@ -208,8 +186,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetActions(ActionsType newActions, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS, newActions, msgs);
+    public NotificationChain basicSetOperation(RulesOperationType newOperation, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__OPERATION, newOperation, msgs);
     }
 
     /**
@@ -217,8 +195,35 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setActions(ActionsType newActions) {
-        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS, newActions);
+    public void setOperation(RulesOperationType newOperation) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__OPERATION, newOperation);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OperationsType getOperations() {
+        return (OperationsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__OPERATIONS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOperations(OperationsType newOperations, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__OPERATIONS, newOperations, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOperations(OperationsType newOperations) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__OPERATIONS, newOperations);
     }
 
     /**
@@ -736,6 +741,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingType getFault() {
+        return (MappingType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__FAULT, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetFault(MappingType newFault, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__FAULT, newFault, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFault(MappingType newFault) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__FAULT, newFault);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FaultsType getFaults() {
+        return (FaultsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__FAULTS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetFaults(FaultsType newFaults, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__FAULTS, newFaults, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFaults(FaultsType newFaults) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__FAULTS, newFaults);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -748,10 +807,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-            case RulesPackage.DOCUMENT_ROOT__ACTION:
-                return basicSetAction(null, msgs);
-            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
-                return basicSetActions(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__OPERATION:
+                return basicSetOperation(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__OPERATIONS:
+                return basicSetOperations(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return basicSetChannel(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__CHANNELS:
@@ -790,6 +849,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetResource(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 return basicSetResources(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__FAULT:
+                return basicSetFault(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__FAULTS:
+                return basicSetFaults(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -811,10 +874,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
-            case RulesPackage.DOCUMENT_ROOT__ACTION:
-                return getAction();
-            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
-                return getActions();
+            case RulesPackage.DOCUMENT_ROOT__OPERATION:
+                return getOperation();
+            case RulesPackage.DOCUMENT_ROOT__OPERATIONS:
+                return getOperations();
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel();
             case RulesPackage.DOCUMENT_ROOT__CHANNELS:
@@ -853,6 +916,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getResource();
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources();
+            case RulesPackage.DOCUMENT_ROOT__FAULT:
+                return getFault();
+            case RulesPackage.DOCUMENT_ROOT__FAULTS:
+                return getFaults();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -874,11 +941,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
                 return;
-            case RulesPackage.DOCUMENT_ROOT__ACTION:
-                setAction((ActionType1)newValue);
+            case RulesPackage.DOCUMENT_ROOT__OPERATION:
+                setOperation((RulesOperationType)newValue);
                 return;
-            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
-                setActions((ActionsType)newValue);
+            case RulesPackage.DOCUMENT_ROOT__OPERATIONS:
+                setOperations((OperationsType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)newValue);
@@ -937,6 +1004,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)newValue);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__FAULT:
+                setFault((MappingType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__FAULTS:
+                setFaults((FaultsType)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -958,11 +1031,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
-            case RulesPackage.DOCUMENT_ROOT__ACTION:
-                setAction((ActionType1)null);
+            case RulesPackage.DOCUMENT_ROOT__OPERATION:
+                setOperation((RulesOperationType)null);
                 return;
-            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
-                setActions((ActionsType)null);
+            case RulesPackage.DOCUMENT_ROOT__OPERATIONS:
+                setOperations((OperationsType)null);
                 return;
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)null);
@@ -1021,6 +1094,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)null);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__FAULT:
+                setFault((MappingType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__FAULTS:
+                setFaults((FaultsType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1039,10 +1118,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-            case RulesPackage.DOCUMENT_ROOT__ACTION:
-                return getAction() != null;
-            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
-                return getActions() != null;
+            case RulesPackage.DOCUMENT_ROOT__OPERATION:
+                return getOperation() != null;
+            case RulesPackage.DOCUMENT_ROOT__OPERATIONS:
+                return getOperations() != null;
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel() != null;
             case RulesPackage.DOCUMENT_ROOT__CHANNELS:
@@ -1081,6 +1160,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getResource() != null;
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources() != null;
+            case RulesPackage.DOCUMENT_ROOT__FAULT:
+                return getFault() != null;
+            case RulesPackage.DOCUMENT_ROOT__FAULTS:
+                return getFaults() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -1,36 +1,32 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.switchyard.tools.models.switchyard1_0.bpm;
+package org.switchyard.tools.models.switchyard1_0.rules;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Action Type1</b></em>'.
+ * A representation of the model object '<em><b>Operation Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getGlobals <em>Globals</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getInputs <em>Inputs</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getOutputs <em>Outputs</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getEventId <em>Event Id</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getType <em>Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getGlobals <em>Globals</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getFaults <em>Faults</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getEventId <em>Event Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getName <em>Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1()
- * @model extendedMetaData="name='ActionType' kind='elementOnly'"
+ * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType()
+ * @model extendedMetaData="name='RulesOperationType' kind='elementOnly'"
  * @generated
  */
-public interface ActionType1 extends CommonExtensionBase {
-
+public interface RulesOperationType extends CommonExtensionBase {
     /**
      * Returns the value of the '<em><b>Globals</b></em>' containment reference.
      * <!-- begin-user-doc -->
@@ -41,7 +37,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Globals</em>' containment reference.
      * @see #setGlobals(GlobalsType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Globals()
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType_Globals()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='globals' namespace='##targetNamespace'"
      * @generated
@@ -49,7 +45,7 @@ public interface ActionType1 extends CommonExtensionBase {
     GlobalsType getGlobals();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getGlobals <em>Globals</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getGlobals <em>Globals</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Globals</em>' containment reference.
@@ -68,7 +64,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Inputs</em>' containment reference.
      * @see #setInputs(InputsType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Inputs()
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType_Inputs()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='inputs' namespace='##targetNamespace'"
      * @generated
@@ -76,7 +72,7 @@ public interface ActionType1 extends CommonExtensionBase {
     InputsType getInputs();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getInputs <em>Inputs</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getInputs <em>Inputs</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Inputs</em>' containment reference.
@@ -95,7 +91,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Outputs</em>' containment reference.
      * @see #setOutputs(OutputsType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Outputs()
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType_Outputs()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='outputs' namespace='##targetNamespace'"
      * @generated
@@ -103,7 +99,7 @@ public interface ActionType1 extends CommonExtensionBase {
     OutputsType getOutputs();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getOutputs <em>Outputs</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getOutputs <em>Outputs</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Outputs</em>' containment reference.
@@ -111,6 +107,33 @@ public interface ActionType1 extends CommonExtensionBase {
      * @generated
      */
     void setOutputs(OutputsType value);
+
+    /**
+     * Returns the value of the '<em><b>Faults</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Faults</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Faults</em>' containment reference.
+     * @see #setFaults(FaultsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType_Faults()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='faults' namespace='##targetNamespace'"
+     * @generated
+     */
+    FaultsType getFaults();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getFaults <em>Faults</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Faults</em>' containment reference.
+     * @see #getFaults()
+     * @generated
+     */
+    void setFaults(FaultsType value);
 
     /**
      * Returns the value of the '<em><b>Event Id</b></em>' attribute.
@@ -122,7 +145,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Event Id</em>' attribute.
      * @see #setEventId(String)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_EventId()
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType_EventId()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='attribute' name='eventId'"
      * @generated
@@ -130,7 +153,7 @@ public interface ActionType1 extends CommonExtensionBase {
     String getEventId();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getEventId <em>Event Id</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getEventId <em>Event Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Event Id</em>' attribute.
@@ -140,35 +163,35 @@ public interface ActionType1 extends CommonExtensionBase {
     void setEventId(String value);
 
     /**
-     * Returns the value of the '<em><b>Operation</b></em>' attribute.
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Operation</em>' attribute isn't clear,
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Operation</em>' attribute.
-     * @see #setOperation(String)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Operation()
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="kind='attribute' name='operation'"
+     *        extendedMetaData="kind='attribute' name='name'"
      * @generated
      */
-    String getOperation();
+    String getName();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getOperation <em>Operation</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getName <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Operation</em>' attribute.
-     * @see #getOperation()
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
      * @generated
      */
-    void setOperation(String value);
+    void setName(String value);
 
     /**
      * Returns the value of the '<em><b>Type</b></em>' attribute.
-     * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType}.
+     * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.rules.OperationType}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -176,50 +199,51 @@ public interface ActionType1 extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' attribute.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.ActionType
+     * @see org.switchyard.tools.models.switchyard1_0.rules.OperationType
      * @see #isSetType()
      * @see #unsetType()
-     * @see #setType(ActionType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Type()
+     * @see #setType(OperationType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesOperationType_Type()
      * @model unsettable="true"
      *        extendedMetaData="kind='attribute' name='type'"
      * @generated
      */
-    ActionType getType();
+    OperationType getType();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getType <em>Type</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getType <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Type</em>' attribute.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.ActionType
+     * @see org.switchyard.tools.models.switchyard1_0.rules.OperationType
      * @see #isSetType()
      * @see #unsetType()
      * @see #getType()
      * @generated
      */
-    void setType(ActionType value);
+    void setType(OperationType value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getType <em>Type</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getType <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetType()
      * @see #getType()
-     * @see #setType(ActionType)
+     * @see #setType(OperationType)
      * @generated
      */
     void unsetType();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getType <em>Type</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType#getType <em>Type</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Type</em>' attribute is set.
      * @see #unsetType()
      * @see #getType()
-     * @see #setType(ActionType)
+     * @see #setType(OperationType)
      * @generated
      */
     boolean isSetType();
-} // ActionType1
+
+} // RulesOperationType

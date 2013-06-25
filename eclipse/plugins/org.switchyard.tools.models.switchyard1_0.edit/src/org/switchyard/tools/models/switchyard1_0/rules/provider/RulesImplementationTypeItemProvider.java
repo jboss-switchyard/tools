@@ -83,11 +83,11 @@ public class RulesImplementationTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__ACTIONS);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNELS);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__LISTENERS);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__LOGGERS);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__MANIFEST);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__OPERATIONS);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__PROPERTIES);
         }
         return childrenFeatures;
@@ -144,11 +144,11 @@ public class RulesImplementationTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(RulesImplementationType.class)) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNELS:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__LISTENERS:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__LOGGERS:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MANIFEST:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__OPERATIONS:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__PROPERTIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -169,8 +169,8 @@ public class RulesImplementationTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__ACTIONS,
-                 RulesFactory.eINSTANCE.createActionsType()));
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__OPERATIONS,
+                 RulesFactory.eINSTANCE.createOperationsType()));
 
         newChildDescriptors.add
             (createChildParameter

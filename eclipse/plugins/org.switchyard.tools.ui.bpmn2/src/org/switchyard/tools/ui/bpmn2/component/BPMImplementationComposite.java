@@ -72,7 +72,7 @@ import org.eclipse.ui.forms.events.ExpansionAdapter;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
@@ -104,6 +104,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
     private BPMMappingsTable _inputsTable;
     private BPMMappingsTable _outputsTable;
     private BPMMappingsTable _globalsTable;
+    private BPMMappingsTable _faultsTable;
     private BPMPropertyTable _propertiesTable;
     private BPMLoggerTable _loggersTable;
     private BPMTaskHandlerTable _handlersTable;
@@ -177,7 +178,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         TabItem advanced = new TabItem(folder, SWT.NONE);
 
         general.setText("General");
-        actions.setText("Actions");
+        actions.setText("Operations");
         advanced.setText("Advanced");
 
         createGeneralControls(folder, general);
@@ -373,7 +374,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section actionsSection = factory.createSection(actionsComposite, Section.TITLE_BAR | Section.EXPANDED);
-        actionsSection.setText("Actions");
+        actionsSection.setText("Operations");
         actionsSection.setLayout(new GridLayout());
         actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -390,13 +391,15 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 } else {
                     selected = ((IStructuredSelection) event.getSelection()).getFirstElement();
                 }
-                _inputsTable.setTargetObject((ActionType1) selected);
-                _outputsTable.setTargetObject((ActionType1) selected);
-                _globalsTable.setTargetObject((ActionType1) selected);
+                _inputsTable.setTargetObject((BPMOperationType) selected);
+                _outputsTable.setTargetObject((BPMOperationType) selected);
+                _globalsTable.setTargetObject((BPMOperationType) selected);
+                _faultsTable.setTargetObject((BPMOperationType) selected);
 
                 _inputsTable.setEnabled(selected != null);
                 _outputsTable.setEnabled(selected != null);
                 _globalsTable.setEnabled(selected != null);
+                _faultsTable.setEnabled(selected != null);
             }
         });
 
@@ -417,7 +420,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         _inputsTable = new BPMMappingsTable(inputsSection, SWT.NONE, "message.content", "Parameter",
-                BPMPackage.eINSTANCE.getActionType1_Inputs(), BPMPackage.eINSTANCE.getInputsType_Input());
+                BPMPackage.eINSTANCE.getBPMOperationType_Inputs(), BPMPackage.eINSTANCE.getInputsType_Input());
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
         inputsSection.setClient(_inputsTable);
@@ -435,10 +438,28 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         _outputsTable = new BPMMappingsTable(outputsSection, SWT.NONE, "Result", "message.content",
-                BPMPackage.eINSTANCE.getActionType1_Outputs(), BPMPackage.eINSTANCE.getOutputsType_Output());
+                BPMPackage.eINSTANCE.getBPMOperationType_Outputs(), BPMPackage.eINSTANCE.getOutputsType_Output());
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_outputsTable);
         outputsSection.setClient(_outputsTable);
+
+        Section faultsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
+                | Section.EXPANDED);
+        faultsSection.setText("Faults");
+        faultsSection.setLayout(new GridLayout());
+        faultsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        faultsSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                getContainer().layout();
+            }
+        });
+
+        _faultsTable = new BPMMappingsTable(faultsSection, SWT.NONE, "Fault", "message.content",
+                BPMPackage.eINSTANCE.getBPMOperationType_Faults(), BPMPackage.eINSTANCE.getFaultsType_Fault());
+        _faultsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_faultsTable);
+        faultsSection.setClient(_faultsTable);
 
         Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
         globalsSection.setText("Globals");
@@ -452,7 +473,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE,"message.content", "", 
-                BPMPackage.eINSTANCE.getActionType1_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global());
+                BPMPackage.eINSTANCE.getBPMOperationType_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global());
         _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_globalsTable);
         globalsSection.setClient(_globalsTable);
@@ -460,6 +481,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         _inputsTable.setEnabled(false);
         _outputsTable.setEnabled(false);
         _globalsTable.setEnabled(false);
+        _faultsTable.setEnabled(false);
 
         item.setControl(control);
     }

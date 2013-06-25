@@ -74,12 +74,12 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
 	protected BPMSwitch<Adapter> modelSwitch =
 		new BPMSwitch<Adapter>() {
             @Override
-            public Adapter caseActionsType(ActionsType object) {
-                return createActionsTypeAdapter();
+            public Adapter caseOperationsType(OperationsType object) {
+                return createOperationsTypeAdapter();
             }
             @Override
-            public Adapter caseActionType1(ActionType1 object) {
-                return createActionType1Adapter();
+            public Adapter caseBPMOperationType(BPMOperationType object) {
+                return createBPMOperationTypeAdapter();
             }
             @Override
             public Adapter caseBPMImplementationType(BPMImplementationType object) {
@@ -166,6 +166,10 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createUserGroupCallbackTypeAdapter();
             }
             @Override
+            public Adapter caseFaultsType(FaultsType object) {
+                return createFaultsTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -194,34 +198,34 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionsType <em>Actions Type</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.OperationsType <em>Operations Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.ActionsType
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.OperationsType
      * @generated
      */
-    public Adapter createActionsTypeAdapter() {
+    public Adapter createOperationsTypeAdapter() {
         return null;
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1 <em>Action Type1</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType <em>Operation Type</em>}'.
      * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.ActionType1
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType
      * @generated
      */
-	public Adapter createActionType1Adapter() {
+    public Adapter createBPMOperationTypeAdapter() {
         return null;
     }
 
-	/**
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType <em>Implementation Type</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -512,6 +516,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createUserGroupCallbackTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.FaultsType <em>Faults Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.FaultsType
+     * @generated
+     */
+    public Adapter createFaultsTypeAdapter() {
         return null;
     }
 

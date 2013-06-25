@@ -40,10 +40,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
+import org.switchyard.tools.models.switchyard1_0.rules.OperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -66,8 +66,8 @@ public class RulesActionTable extends Composite implements ICellModifier {
         public Object[] getElements(Object inputElement) {
             if (inputElement instanceof RulesImplementationType) {
                 final RulesImplementationType impl = (RulesImplementationType) inputElement;
-                if (impl.getActions() != null) {
-                    return impl.getActions().getAction().toArray();
+                if (impl.getOperations() != null) {
+                    return impl.getOperations().getOperation().toArray();
                 }
             }
             return new Object[0];
@@ -86,11 +86,11 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ActionType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
+            if (element instanceof RulesOperationType && property.equalsIgnoreCase(TYPE_COLUMN)) {
                 return true;
-            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(OPERATION_COLUMN)) {
+            } else if (element instanceof RulesOperationType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
                 return true;
-            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            } else if (element instanceof RulesOperationType && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
                 return true;
             }
             return false;
@@ -107,14 +107,14 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof ActionType1 && columnIndex == 1) {
-                ActionType1 tp = (ActionType1) element;
+            if (element instanceof RulesOperationType && columnIndex == 1) {
+                RulesOperationType tp = (RulesOperationType) element;
                 return (String) tp.getType().getLiteral();
-            } else if (element instanceof ActionType1 && columnIndex == 0) {
-                ActionType1 tp = (ActionType1) element;
-                return tp.getOperation();
-            } else if (element instanceof ActionType1 && columnIndex == 2) {
-                ActionType1 tp = (ActionType1) element;
+            } else if (element instanceof RulesOperationType && columnIndex == 0) {
+                RulesOperationType tp = (RulesOperationType) element;
+                return tp.getName();
+            } else if (element instanceof RulesOperationType && columnIndex == 2) {
+                RulesOperationType tp = (RulesOperationType) element;
                 return tp.getEventId();
             }
             return null;
@@ -214,9 +214,9 @@ public class RulesActionTable extends Composite implements ICellModifier {
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
                 new TextCellEditor(_propertyTreeTable.getTable()), 
-                new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {ActionType.EXECUTE.getLiteral(),
-                        ActionType.INSERT.getLiteral(), ActionType.FIREALLRULES.getLiteral(),
-                        ActionType.FIREUNTILHALT.getLiteral() }),
+                new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {OperationType.EXECUTE.getLiteral(),
+                        OperationType.INSERT.getLiteral(), OperationType.FIREALLRULES.getLiteral(),
+                        OperationType.FIREUNTILHALT.getLiteral() }),
                 new TextCellEditor(_propertyTreeTable.getTable()) });
 
         _mAddButton = new Button(this, SWT.NONE);
@@ -281,24 +281,24 @@ public class RulesActionTable extends Composite implements ICellModifier {
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        ActionType1 newAction = RulesFactory.eINSTANCE.createActionType1();
-                        newAction.setType(ActionType.EXECUTE);
-                        newAction.setOperation("NewAction");
-                        if (impl.getActions() == null) {
-                            impl.setActions(RulesFactory.eINSTANCE.createActionsType());
+                        RulesOperationType newAction = RulesFactory.eINSTANCE.createRulesOperationType();
+                        newAction.setType(OperationType.EXECUTE);
+                        newAction.setName("NewOperation");
+                        if (impl.getOperations() == null) {
+                            impl.setOperations(RulesFactory.eINSTANCE.createOperationsType());
                         }
-                        impl.getActions().getAction().add(newAction);
+                        impl.getOperations().getOperation().add(newAction);
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                ActionType1 newAction = RulesFactory.eINSTANCE.createActionType1();
-                newAction.setType(ActionType.EXECUTE);
-                newAction.setOperation("NewAction");
-                if (impl.getActions() == null) {
-                    impl.setActions(RulesFactory.eINSTANCE.createActionsType());
+                RulesOperationType newAction = RulesFactory.eINSTANCE.createRulesOperationType();
+                newAction.setType(OperationType.EXECUTE);
+                newAction.setName("NewOperation");
+                if (impl.getOperations() == null) {
+                    impl.setOperations(RulesFactory.eINSTANCE.createOperationsType());
                 }
-                impl.getActions().getAction().add(newAction);
+                impl.getOperations().getOperation().add(newAction);
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -311,23 +311,23 @@ public class RulesActionTable extends Composite implements ICellModifier {
     protected void removeFromList() {
         if (getTargetObject() instanceof RulesImplementationType) {
             final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
-            final ActionType1 actionToRemove = getTableSelection();
+            final RulesOperationType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getActions().getAction().remove(actionToRemove);
-                        if (impl.getActions().getAction().isEmpty()) {
-                            impl.setActions(null);
+                        impl.getOperations().getOperation().remove(actionToRemove);
+                        if (impl.getOperations().getOperation().isEmpty()) {
+                            impl.setOperations(null);
                         }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getActions().getAction().remove(actionToRemove);
-                if (impl.getActions().getAction().isEmpty()) {
-                    impl.setActions(null);
+                impl.getOperations().getOperation().remove(actionToRemove);
+                if (impl.getOperations().getOperation().isEmpty()) {
+                    impl.setOperations(null);
                 }
                 getTableViewer().refresh(true);
             }
@@ -335,11 +335,11 @@ public class RulesActionTable extends Composite implements ICellModifier {
         }
     }
 
-    protected ActionType1 getTableSelection() {
+    protected RulesOperationType getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof ActionType1) {
-                return (ActionType1) ssel.getFirstElement();
+            if (ssel.getFirstElement() instanceof RulesOperationType) {
+                return (RulesOperationType) ssel.getFirstElement();
             }
         }
         return null;
@@ -432,17 +432,17 @@ public class RulesActionTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ActionType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
-            return new Integer(((ActionType1) element).getType().getValue());
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(OPERATION_COLUMN)) {
-            if (((ActionType1) element).getOperation() != null) {
-                return ((ActionType1) element).getOperation();
+        if (element instanceof RulesOperationType && property.equalsIgnoreCase(TYPE_COLUMN)) {
+            return new Integer(((RulesOperationType) element).getType().getValue());
+        } else if (element instanceof RulesOperationType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
+            if (((RulesOperationType) element).getName() != null) {
+                return ((RulesOperationType) element).getName();
             } else {
                 return "";
             }
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
-            if (((ActionType1) element).getEventId() != null) {
-                return ((ActionType1) element).getEventId();
+        } else if (element instanceof RulesOperationType && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            if (((RulesOperationType) element).getEventId() != null) {
+                return ((RulesOperationType) element).getEventId();
             } else {
                 return "";
             }
@@ -468,15 +468,15 @@ public class RulesActionTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            ActionType atype = ActionType.get(((Integer) value).intValue());
+                            RulesOperationType parm = (RulesOperationType) ti.getData();
+                            OperationType atype = OperationType.get(((Integer) value).intValue());
                             parm.setType(atype);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    ActionType atype = ActionType.get(((Integer) value).intValue());
+                    RulesOperationType parm = (RulesOperationType) ti.getData();
+                    OperationType atype = OperationType.get(((Integer) value).intValue());
                     parm.setType(atype);
                     getTableViewer().refresh(true);
                 }
@@ -493,14 +493,14 @@ public class RulesActionTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            parm.setOperation(newValue);
+                            RulesOperationType parm = (RulesOperationType) ti.getData();
+                            parm.setName(newValue);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    parm.setOperation(newValue);
+                    RulesOperationType parm = (RulesOperationType) ti.getData();
+                    parm.setName(newValue);
                     getTableViewer().refresh(true);
                 }
             }
@@ -515,13 +515,13 @@ public class RulesActionTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
+                            RulesOperationType parm = (RulesOperationType) ti.getData();
                             parm.setEventId((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
+                    RulesOperationType parm = (RulesOperationType) ti.getData();
                     parm.setEventId((String) value);
                     getTableViewer().refresh(true);
                 }

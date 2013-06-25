@@ -1038,16 +1038,6 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 BPMFactory.eINSTANCE.createActionsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 BPMFactory.eINSTANCE.createActionType1()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  BPMFactory.eINSTANCE.createBPMImplementationType()));
 
         newChildDescriptors.add
@@ -1284,16 +1274,6 @@ public class PropertiesDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 RulesFactory.eINSTANCE.createActionsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 RulesFactory.eINSTANCE.createActionType1()));
 
         newChildDescriptors.add
             (createChildParameter

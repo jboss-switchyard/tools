@@ -67,6 +67,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.rules.ExpressionType;
+import org.switchyard.tools.models.switchyard1_0.rules.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.InputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenerType;
@@ -76,6 +77,8 @@ import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
+import org.switchyard.tools.models.switchyard1_0.rules.OperationType;
+import org.switchyard.tools.models.switchyard1_0.rules.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.rules.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertyType;
@@ -83,6 +86,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.ScopeType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
@@ -108,16 +112,16 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass actionsTypeEClass = null;
+    private EClass operationsTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass actionType1EClass = null;
+    private EClass rulesOperationTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -245,12 +249,19 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EEnum actionTypeEEnum = null;
+    private EClass faultsTypeEClass = null;
 
-	/**
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum operationTypeEEnum = null;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -273,12 +284,12 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EDataType actionTypeObjectEDataType = null;
+    private EDataType operationTypeObjectEDataType = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -450,8 +461,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getActionsType() {
-        return actionsTypeEClass;
+    public EClass getOperationsType() {
+        return operationsTypeEClass;
     }
 
     /**
@@ -459,26 +470,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getActionsType_Action() {
-        return (EReference)actionsTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getActionType1() {
-        return actionType1EClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getActionType1_Globals() {
-        return (EReference)actionType1EClass.getEStructuralFeatures().get(0);
+    public EReference getOperationsType_Operation() {
+        return (EReference)operationsTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -486,8 +479,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getActionType1_Inputs() {
-        return (EReference)actionType1EClass.getEStructuralFeatures().get(1);
+    public EClass getRulesOperationType() {
+        return rulesOperationTypeEClass;
     }
 
     /**
@@ -495,8 +488,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getActionType1_Outputs() {
-        return (EReference)actionType1EClass.getEStructuralFeatures().get(2);
+    public EReference getRulesOperationType_Globals() {
+        return (EReference)rulesOperationTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -504,8 +497,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActionType1_EventId() {
-        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(3);
+    public EReference getRulesOperationType_Inputs() {
+        return (EReference)rulesOperationTypeEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -513,8 +506,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActionType1_Operation() {
-        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(4);
+    public EReference getRulesOperationType_Outputs() {
+        return (EReference)rulesOperationTypeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -522,8 +515,35 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActionType1_Type() {
-        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(5);
+    public EReference getRulesOperationType_Faults() {
+        return (EReference)rulesOperationTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRulesOperationType_EventId() {
+        return (EAttribute)rulesOperationTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRulesOperationType_Name() {
+        return (EAttribute)rulesOperationTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRulesOperationType_Type() {
+        return (EAttribute)rulesOperationTypeEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -681,19 +701,19 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Action() {
+    public EReference getDocumentRoot_Operation() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Actions() {
+    public EReference getDocumentRoot_Operations() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
@@ -866,6 +886,24 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      */
     public EReference getDocumentRoot_Resources() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(23);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Fault() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(24);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Faults() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(25);
     }
 
     /**
@@ -1170,7 +1208,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRulesImplementationType_Actions() {
+    public EReference getRulesImplementationType_Channels() {
         return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -1179,7 +1217,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRulesImplementationType_Channels() {
+    public EReference getRulesImplementationType_Listeners() {
         return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(1);
     }
 
@@ -1188,7 +1226,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRulesImplementationType_Listeners() {
+    public EReference getRulesImplementationType_Loggers() {
         return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(2);
     }
 
@@ -1197,7 +1235,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRulesImplementationType_Loggers() {
+    public EReference getRulesImplementationType_Manifest() {
         return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(3);
     }
 
@@ -1206,7 +1244,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRulesImplementationType_Manifest() {
+    public EReference getRulesImplementationType_Operations() {
         return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(4);
     }
 
@@ -1221,14 +1259,32 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EEnum getActionType() {
-        return actionTypeEEnum;
+    public EClass getFaultsType() {
+        return faultsTypeEClass;
     }
 
-	/**
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFaultsType_Fault() {
+        return (EReference)faultsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getOperationType() {
+        return operationTypeEEnum;
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1257,14 +1313,14 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EDataType getActionTypeObject() {
-        return actionTypeObjectEDataType;
+    public EDataType getOperationTypeObject() {
+        return operationTypeObjectEDataType;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1319,16 +1375,17 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         isCreated = true;
 
         // Create classes and their features
-        actionsTypeEClass = createEClass(ACTIONS_TYPE);
-        createEReference(actionsTypeEClass, ACTIONS_TYPE__ACTION);
+        operationsTypeEClass = createEClass(OPERATIONS_TYPE);
+        createEReference(operationsTypeEClass, OPERATIONS_TYPE__OPERATION);
 
-        actionType1EClass = createEClass(ACTION_TYPE1);
-        createEReference(actionType1EClass, ACTION_TYPE1__GLOBALS);
-        createEReference(actionType1EClass, ACTION_TYPE1__INPUTS);
-        createEReference(actionType1EClass, ACTION_TYPE1__OUTPUTS);
-        createEAttribute(actionType1EClass, ACTION_TYPE1__EVENT_ID);
-        createEAttribute(actionType1EClass, ACTION_TYPE1__OPERATION);
-        createEAttribute(actionType1EClass, ACTION_TYPE1__TYPE);
+        rulesOperationTypeEClass = createEClass(RULES_OPERATION_TYPE);
+        createEReference(rulesOperationTypeEClass, RULES_OPERATION_TYPE__GLOBALS);
+        createEReference(rulesOperationTypeEClass, RULES_OPERATION_TYPE__INPUTS);
+        createEReference(rulesOperationTypeEClass, RULES_OPERATION_TYPE__OUTPUTS);
+        createEReference(rulesOperationTypeEClass, RULES_OPERATION_TYPE__FAULTS);
+        createEAttribute(rulesOperationTypeEClass, RULES_OPERATION_TYPE__EVENT_ID);
+        createEAttribute(rulesOperationTypeEClass, RULES_OPERATION_TYPE__NAME);
+        createEAttribute(rulesOperationTypeEClass, RULES_OPERATION_TYPE__TYPE);
 
         channelsTypeEClass = createEClass(CHANNELS_TYPE);
         createEReference(channelsTypeEClass, CHANNELS_TYPE__CHANNEL);
@@ -1350,8 +1407,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__ACTION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__ACTIONS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__OPERATION);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__OPERATIONS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CHANNEL);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CHANNELS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONTAINER);
@@ -1371,6 +1428,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__PROPERTY);
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCE);
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCES);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__FAULT);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__FAULTS);
 
         globalsTypeEClass = createEClass(GLOBALS_TYPE);
         createEReference(globalsTypeEClass, GLOBALS_TYPE__GLOBAL);
@@ -1418,21 +1477,24 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         createEAttribute(resourceTypeEClass, RESOURCE_TYPE__TYPE);
 
         rulesImplementationTypeEClass = createEClass(RULES_IMPLEMENTATION_TYPE);
-        createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__ACTIONS);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__CHANNELS);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__LISTENERS);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__LOGGERS);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__MANIFEST);
+        createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__OPERATIONS);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__PROPERTIES);
 
+        faultsTypeEClass = createEClass(FAULTS_TYPE);
+        createEReference(faultsTypeEClass, FAULTS_TYPE__FAULT);
+
         // Create enums
-        actionTypeEEnum = createEEnum(ACTION_TYPE);
+        operationTypeEEnum = createEEnum(OPERATION_TYPE);
         expressionTypeEEnum = createEEnum(EXPRESSION_TYPE);
         loggerTypeEEnum = createEEnum(LOGGER_TYPE);
         scopeTypeEEnum = createEEnum(SCOPE_TYPE);
 
         // Create data types
-        actionTypeObjectEDataType = createEDataType(ACTION_TYPE_OBJECT);
+        operationTypeObjectEDataType = createEDataType(OPERATION_TYPE_OBJECT);
         expressionTypeObjectEDataType = createEDataType(EXPRESSION_TYPE_OBJECT);
         loggerTypeObjectEDataType = createEDataType(LOGGER_TYPE_OBJECT);
         scopeTypeObjectEDataType = createEDataType(SCOPE_TYPE_OBJECT);
@@ -1471,8 +1533,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         // Set bounds for type parameters
 
         // Add supertypes to classes
-        actionsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        actionType1EClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        operationsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        rulesOperationTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         channelsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         channelTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         containerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
@@ -1490,18 +1552,20 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         resourcesTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         resourceTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         rulesImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
+        faultsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(actionsTypeEClass, ActionsType.class, "ActionsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getActionsType_Action(), this.getActionType1(), null, "action", null, 0, -1, ActionsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(operationsTypeEClass, OperationsType.class, "OperationsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getOperationsType_Operation(), this.getRulesOperationType(), null, "operation", null, 0, -1, OperationsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(actionType1EClass, ActionType1.class, "ActionType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getActionType1_Globals(), this.getGlobalsType(), null, "globals", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getActionType1_Inputs(), this.getInputsType(), null, "inputs", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getActionType1_Outputs(), this.getOutputsType(), null, "outputs", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_EventId(), theXMLTypePackage.getString(), "eventId", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_Operation(), theXMLTypePackage.getString(), "operation", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_Type(), this.getActionType(), "type", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(rulesOperationTypeEClass, RulesOperationType.class, "RulesOperationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getRulesOperationType_Globals(), this.getGlobalsType(), null, "globals", null, 0, 1, RulesOperationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRulesOperationType_Inputs(), this.getInputsType(), null, "inputs", null, 0, 1, RulesOperationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRulesOperationType_Outputs(), this.getOutputsType(), null, "outputs", null, 0, 1, RulesOperationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRulesOperationType_Faults(), this.getFaultsType(), null, "faults", null, 0, 1, RulesOperationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRulesOperationType_EventId(), theXMLTypePackage.getString(), "eventId", null, 0, 1, RulesOperationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRulesOperationType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, RulesOperationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRulesOperationType_Type(), this.getOperationType(), "type", null, 0, 1, RulesOperationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(channelsTypeEClass, ChannelsType.class, "ChannelsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getChannelsType_Channel(), this.getChannelType(), null, "channel", null, 0, -1, ChannelsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1523,8 +1587,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Action(), this.getActionType1(), null, "action", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Actions(), this.getActionsType(), null, "actions", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Operation(), this.getRulesOperationType(), null, "operation", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Operations(), this.getOperationsType(), null, "operations", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Channel(), this.getChannelType(), null, "channel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Channels(), this.getChannelsType(), null, "channels", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Container(), this.getContainerType(), null, "container", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -1544,6 +1608,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEReference(getDocumentRoot_Property(), this.getPropertyType(), null, "property", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Resource(), this.getResourceType(), null, "resource", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Resources(), this.getResourcesType(), null, "resources", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Fault(), this.getMappingType(), null, "fault", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Faults(), this.getFaultsType(), null, "faults", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(globalsTypeEClass, GlobalsType.class, "GlobalsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGlobalsType_Global(), this.getMappingType(), null, "global", null, 0, -1, GlobalsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1591,19 +1657,22 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEAttribute(getResourceType_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, ResourceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(rulesImplementationTypeEClass, RulesImplementationType.class, "RulesImplementationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getRulesImplementationType_Actions(), this.getActionsType(), null, "actions", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Channels(), this.getChannelsType(), null, "channels", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Listeners(), this.getListenersType(), null, "listeners", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Loggers(), this.getLoggersType(), null, "loggers", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Manifest(), this.getManifestType(), null, "manifest", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRulesImplementationType_Operations(), this.getOperationsType(), null, "operations", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(faultsTypeEClass, FaultsType.class, "FaultsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getFaultsType_Fault(), this.getMappingType(), null, "fault", null, 0, -1, FaultsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         // Initialize enums and add enum literals
-        initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
-        addEEnumLiteral(actionTypeEEnum, ActionType.EXECUTE);
-        addEEnumLiteral(actionTypeEEnum, ActionType.INSERT);
-        addEEnumLiteral(actionTypeEEnum, ActionType.FIREALLRULES);
-        addEEnumLiteral(actionTypeEEnum, ActionType.FIREUNTILHALT);
+        initEEnum(operationTypeEEnum, OperationType.class, "OperationType");
+        addEEnumLiteral(operationTypeEEnum, OperationType.EXECUTE);
+        addEEnumLiteral(operationTypeEEnum, OperationType.INSERT);
+        addEEnumLiteral(operationTypeEEnum, OperationType.FIREALLRULES);
+        addEEnumLiteral(operationTypeEEnum, OperationType.FIREUNTILHALT);
 
         initEEnum(expressionTypeEEnum, ExpressionType.class, "ExpressionType");
         addEEnumLiteral(expressionTypeEEnum, ExpressionType.MVEL);
@@ -1618,7 +1687,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         addEEnumLiteral(scopeTypeEEnum, ScopeType.EXCHANGE);
 
         // Initialize data types
-        initEDataType(actionTypeObjectEDataType, ActionType.class, "ActionTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(operationTypeObjectEDataType, OperationType.class, "OperationTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
         initEDataType(expressionTypeObjectEDataType, ExpressionType.class, "ExpressionTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
         initEDataType(loggerTypeObjectEDataType, LoggerType.class, "LoggerTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
         initEDataType(scopeTypeObjectEDataType, ScopeType.class, "ScopeTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
@@ -1640,35 +1709,35 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 	protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
-          (actionsTypeEClass, 
+          (operationsTypeEClass, 
            source, 
            new String[] {
-             "name", "ActionsType",
+             "name", "OperationsType",
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getActionsType_Action(), 
+          (getOperationsType_Operation(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "action",
+             "name", "operation",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (actionTypeEEnum, 
+          (operationTypeEEnum, 
            source, 
            new String[] {
-             "name", "actionType"
+             "name", "operationType"
            });		
         addAnnotation
-          (actionType1EClass, 
+          (rulesOperationTypeEClass, 
            source, 
            new String[] {
-             "name", "ActionType",
+             "name", "RulesOperationType",
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getActionType1_Globals(), 
+          (getRulesOperationType_Globals(), 
            source, 
            new String[] {
              "kind", "element",
@@ -1676,7 +1745,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getActionType1_Inputs(), 
+          (getRulesOperationType_Inputs(), 
            source, 
            new String[] {
              "kind", "element",
@@ -1684,7 +1753,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getActionType1_Outputs(), 
+          (getRulesOperationType_Outputs(), 
            source, 
            new String[] {
              "kind", "element",
@@ -1692,32 +1761,40 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getActionType1_EventId(), 
+          (getRulesOperationType_Faults(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "faults",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getRulesOperationType_EventId(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "eventId"
            });		
         addAnnotation
-          (getActionType1_Operation(), 
+          (getRulesOperationType_Name(), 
            source, 
            new String[] {
              "kind", "attribute",
-             "name", "operation"
+             "name", "name"
            });		
         addAnnotation
-          (getActionType1_Type(), 
+          (getRulesOperationType_Type(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "type"
            });		
         addAnnotation
-          (actionTypeObjectEDataType, 
+          (operationTypeObjectEDataType, 
            source, 
            new String[] {
-             "name", "actionType:Object",
-             "baseType", "actionType"
+             "name", "operationType:Object",
+             "baseType", "operationType"
            });		
         addAnnotation
           (channelsTypeEClass, 
@@ -1840,19 +1917,19 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "name", "xsi:schemaLocation"
            });		
         addAnnotation
-          (getDocumentRoot_Action(), 
+          (getDocumentRoot_Operation(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "action",
+             "name", "operation",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_Actions(), 
+          (getDocumentRoot_Operations(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "actions",
+             "name", "operations",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -2006,6 +2083,22 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
            new String[] {
              "kind", "element",
              "name", "resources",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Fault(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "fault",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Faults(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "faults",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -2275,14 +2368,6 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getRulesImplementationType_Actions(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "actions",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
           (getRulesImplementationType_Channels(), 
            source, 
            new String[] {
@@ -2315,6 +2400,14 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getRulesImplementationType_Operations(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operations",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (getRulesImplementationType_Properties(), 
            source, 
            new String[] {
@@ -2334,6 +2427,21 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
            new String[] {
              "name", "scopeType:Object",
              "baseType", "scopeType"
+           });		
+        addAnnotation
+          (faultsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "FaultsType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getFaultsType_Fault(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "fault",
+             "namespace", "##targetNamespace"
            });
     }
 

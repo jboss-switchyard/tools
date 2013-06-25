@@ -1250,16 +1250,6 @@ public class ExpressionNodeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 BPMFactory.eINSTANCE.createActionsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 BPMFactory.eINSTANCE.createActionType1()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  BPMFactory.eINSTANCE.createBPMImplementationType()));
 
         newChildDescriptors.add
@@ -1496,16 +1486,6 @@ public class ExpressionNodeItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 RulesFactory.eINSTANCE.createActionsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 RulesFactory.eINSTANCE.createActionType1()));
 
         newChildDescriptors.add
             (createChildParameter

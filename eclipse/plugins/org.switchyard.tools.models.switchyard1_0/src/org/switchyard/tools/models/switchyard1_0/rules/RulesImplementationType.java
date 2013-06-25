@@ -16,11 +16,11 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getActions <em>Actions</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getListeners <em>Listeners</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getLoggers <em>Loggers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getManifest <em>Manifest</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
@@ -31,33 +31,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  */
 public interface RulesImplementationType extends Implementation {
 	/**
-     * Returns the value of the '<em><b>Actions</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Actions</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Actions</em>' containment reference.
-     * @see #setActions(ActionsType)
-     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesImplementationType_Actions()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='actions' namespace='##targetNamespace'"
-     * @generated
-     */
-    ActionsType getActions();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getActions <em>Actions</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Actions</em>' containment reference.
-     * @see #getActions()
-     * @generated
-     */
-    void setActions(ActionsType value);
-
-    /**
      * Returns the value of the '<em><b>Channels</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -164,6 +137,33 @@ public interface RulesImplementationType extends Implementation {
      * @generated
      */
     void setManifest(ManifestType value);
+
+    /**
+     * Returns the value of the '<em><b>Operations</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operations</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Operations</em>' containment reference.
+     * @see #setOperations(OperationsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesImplementationType_Operations()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='operations' namespace='##targetNamespace'"
+     * @generated
+     */
+    OperationsType getOperations();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getOperations <em>Operations</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Operations</em>' containment reference.
+     * @see #getOperations()
+     * @generated
+     */
+    void setOperations(OperationsType value);
 
     /**
      * Returns the value of the '<em><b>Properties</b></em>' containment reference.

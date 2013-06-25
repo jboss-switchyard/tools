@@ -72,17 +72,17 @@ public class RulesSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case RulesPackage.ACTIONS_TYPE: {
-                ActionsType actionsType = (ActionsType)theEObject;
-                T result = caseActionsType(actionsType);
-                if (result == null) result = caseCommonExtensionBase(actionsType);
+            case RulesPackage.OPERATIONS_TYPE: {
+                OperationsType operationsType = (OperationsType)theEObject;
+                T result = caseOperationsType(operationsType);
+                if (result == null) result = caseCommonExtensionBase(operationsType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case RulesPackage.ACTION_TYPE1: {
-                ActionType1 actionType1 = (ActionType1)theEObject;
-                T result = caseActionType1(actionType1);
-                if (result == null) result = caseCommonExtensionBase(actionType1);
+            case RulesPackage.RULES_OPERATION_TYPE: {
+                RulesOperationType rulesOperationType = (RulesOperationType)theEObject;
+                T result = caseRulesOperationType(rulesOperationType);
+                if (result == null) result = caseCommonExtensionBase(rulesOperationType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -212,41 +212,48 @@ public class RulesSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case RulesPackage.FAULTS_TYPE: {
+                FaultsType faultsType = (FaultsType)theEObject;
+                T result = caseFaultsType(faultsType);
+                if (result == null) result = caseCommonExtensionBase(faultsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Actions Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Operations Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Actions Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Operations Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseActionsType(ActionsType object) {
+    public T caseOperationsType(OperationsType object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Action Type1</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Operation Type</em>'.
      * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Action Type1</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Operation Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseActionType1(ActionType1 object) {
+    public T caseRulesOperationType(RulesOperationType object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Channels Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -517,6 +524,21 @@ public class RulesSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Faults Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Faults Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseFaultsType(FaultsType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;

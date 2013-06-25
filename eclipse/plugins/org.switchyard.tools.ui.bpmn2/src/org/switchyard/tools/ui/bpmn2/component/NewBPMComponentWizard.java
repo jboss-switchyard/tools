@@ -24,16 +24,16 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
@@ -97,8 +97,8 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         _implementation = BPMFactory.eINSTANCE.createBPMImplementationType();
         _implementation.setProcessId(_processPage.getProcessId());
 
-        final ActionType1 startAction = BPMFactory.eINSTANCE.createActionType1();
-        startAction.setType(ActionType.STARTPROCESS);
+        final BPMOperationType startAction = BPMFactory.eINSTANCE.createBPMOperationType();
+        startAction.setType(OperationType.STARTPROCESS);
         if (_processPage.getMessageInName() == null) {
             startAction.setInputs(null);
         } else {
@@ -123,8 +123,8 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
             startAction.setOutputs(outputs);
         }
 
-        _implementation.setActions(BPMFactory.eINSTANCE.createActionsType());
-        _implementation.getActions().getAction().add(startAction);
+        _implementation.setOperations(BPMFactory.eINSTANCE.createOperationsType());
+        _implementation.getOperations().getOperation().add(startAction);
 
         _implementation.setPersistent(_processPage.isPersistent());
 

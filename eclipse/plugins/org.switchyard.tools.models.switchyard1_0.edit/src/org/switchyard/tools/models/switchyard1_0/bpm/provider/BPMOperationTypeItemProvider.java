@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.switchyard.tools.models.switchyard1_0.rules.provider;
+package org.switchyard.tools.models.switchyard1_0.bpm.provider;
 
 
 import java.util.Collection;
@@ -16,8 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,17 +27,17 @@ import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProv
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActionType1ItemProvider
+public class BPMOperationTypeItemProvider
     extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
@@ -56,7 +51,7 @@ public class ActionType1ItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public ActionType1ItemProvider(AdapterFactory adapterFactory) {
+    public BPMOperationTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -72,7 +67,7 @@ public class ActionType1ItemProvider
             super.getPropertyDescriptors(object);
 
             addEventIdPropertyDescriptor(object);
-            addOperationPropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
             addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
@@ -89,9 +84,9 @@ public class ActionType1ItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ActionType1_eventId_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_eventId_feature", "_UI_ActionType1_type"),
-                 RulesPackage.Literals.ACTION_TYPE1__EVENT_ID,
+                 getString("_UI_BPMOperationType_eventId_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BPMOperationType_eventId_feature", "_UI_BPMOperationType_type"),
+                 BPMPackage.Literals.BPM_OPERATION_TYPE__EVENT_ID,
                  true,
                  false,
                  false,
@@ -101,19 +96,19 @@ public class ActionType1ItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Operation feature.
+     * This adds a property descriptor for the Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addOperationPropertyDescriptor(Object object) {
+    protected void addNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ActionType1_operation_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_operation_feature", "_UI_ActionType1_type"),
-                 RulesPackage.Literals.ACTION_TYPE1__OPERATION,
+                 getString("_UI_BPMOperationType_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BPMOperationType_name_feature", "_UI_BPMOperationType_type"),
+                 BPMPackage.Literals.BPM_OPERATION_TYPE__NAME,
                  true,
                  false,
                  false,
@@ -133,9 +128,9 @@ public class ActionType1ItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ActionType1_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_type_feature", "_UI_ActionType1_type"),
-                 RulesPackage.Literals.ACTION_TYPE1__TYPE,
+                 getString("_UI_BPMOperationType_type_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BPMOperationType_type_feature", "_UI_BPMOperationType_type"),
+                 BPMPackage.Literals.BPM_OPERATION_TYPE__TYPE,
                  true,
                  false,
                  false,
@@ -156,9 +151,10 @@ public class ActionType1ItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(RulesPackage.Literals.ACTION_TYPE1__GLOBALS);
-            childrenFeatures.add(RulesPackage.Literals.ACTION_TYPE1__INPUTS);
-            childrenFeatures.add(RulesPackage.Literals.ACTION_TYPE1__OUTPUTS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_OPERATION_TYPE__GLOBALS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_OPERATION_TYPE__INPUTS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_OPERATION_TYPE__OUTPUTS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_OPERATION_TYPE__FAULTS);
         }
         return childrenFeatures;
     }
@@ -177,14 +173,14 @@ public class ActionType1ItemProvider
     }
 
     /**
-     * This returns ActionType1.gif.
+     * This returns BPMOperationType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/ActionType1"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/BPMOperationType"));
     }
 
     /**
@@ -195,10 +191,10 @@ public class ActionType1ItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ActionType1)object).getEventId();
+        String label = ((BPMOperationType)object).getName();
         return label == null || label.length() == 0 ?
-            getString("_UI_ActionType1_type") :
-            getString("_UI_ActionType1_type") + " " + label;
+            getString("_UI_BPMOperationType_type") :
+            getString("_UI_BPMOperationType_type") + " " + label;
     }
 
     /**
@@ -212,15 +208,16 @@ public class ActionType1ItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(ActionType1.class)) {
-            case RulesPackage.ACTION_TYPE1__EVENT_ID:
-            case RulesPackage.ACTION_TYPE1__OPERATION:
-            case RulesPackage.ACTION_TYPE1__TYPE:
+        switch (notification.getFeatureID(BPMOperationType.class)) {
+            case BPMPackage.BPM_OPERATION_TYPE__EVENT_ID:
+            case BPMPackage.BPM_OPERATION_TYPE__NAME:
+            case BPMPackage.BPM_OPERATION_TYPE__TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case RulesPackage.ACTION_TYPE1__GLOBALS:
-            case RulesPackage.ACTION_TYPE1__INPUTS:
-            case RulesPackage.ACTION_TYPE1__OUTPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__GLOBALS:
+            case BPMPackage.BPM_OPERATION_TYPE__INPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__OUTPUTS:
+            case BPMPackage.BPM_OPERATION_TYPE__FAULTS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -240,18 +237,23 @@ public class ActionType1ItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.ACTION_TYPE1__GLOBALS,
-                 RulesFactory.eINSTANCE.createGlobalsType()));
+                (BPMPackage.Literals.BPM_OPERATION_TYPE__GLOBALS,
+                 BPMFactory.eINSTANCE.createGlobalsType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.ACTION_TYPE1__INPUTS,
-                 RulesFactory.eINSTANCE.createInputsType()));
+                (BPMPackage.Literals.BPM_OPERATION_TYPE__INPUTS,
+                 BPMFactory.eINSTANCE.createInputsType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.ACTION_TYPE1__OUTPUTS,
-                 RulesFactory.eINSTANCE.createOutputsType()));
+                (BPMPackage.Literals.BPM_OPERATION_TYPE__OUTPUTS,
+                 BPMFactory.eINSTANCE.createOutputsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.BPM_OPERATION_TYPE__FAULTS,
+                 BPMFactory.eINSTANCE.createFaultsType()));
     }
 
     /**

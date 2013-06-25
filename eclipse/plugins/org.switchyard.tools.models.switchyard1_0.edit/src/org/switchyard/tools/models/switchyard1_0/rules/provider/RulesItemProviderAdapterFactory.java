@@ -76,49 +76,49 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ActionsType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.OperationsType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected ActionsTypeItemProvider actionsTypeItemProvider;
+    protected OperationsTypeItemProvider operationsTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ActionsType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.OperationsType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createActionsTypeAdapter() {
-        if (actionsTypeItemProvider == null) {
-            actionsTypeItemProvider = new ActionsTypeItemProvider(this);
+    public Adapter createOperationsTypeAdapter() {
+        if (operationsTypeItemProvider == null) {
+            operationsTypeItemProvider = new OperationsTypeItemProvider(this);
         }
 
-        return actionsTypeItemProvider;
+        return operationsTypeItemProvider;
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected ActionType1ItemProvider actionType1ItemProvider;
+    protected RulesOperationTypeItemProvider rulesOperationTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createActionType1Adapter() {
-        if (actionType1ItemProvider == null) {
-            actionType1ItemProvider = new ActionType1ItemProvider(this);
+    public Adapter createRulesOperationTypeAdapter() {
+        if (rulesOperationTypeItemProvider == null) {
+            rulesOperationTypeItemProvider = new RulesOperationTypeItemProvider(this);
         }
 
-        return actionType1ItemProvider;
+        return rulesOperationTypeItemProvider;
     }
 
     /**
@@ -536,6 +536,29 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.FaultsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FaultsTypeItemProvider faultsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.FaultsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createFaultsTypeAdapter() {
+        if (faultsTypeItemProvider == null) {
+            faultsTypeItemProvider = new FaultsTypeItemProvider(this);
+        }
+
+        return faultsTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -634,8 +657,8 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
      * @generated
      */
     public void dispose() {
-        if (actionsTypeItemProvider != null) actionsTypeItemProvider.dispose();
-        if (actionType1ItemProvider != null) actionType1ItemProvider.dispose();
+        if (operationsTypeItemProvider != null) operationsTypeItemProvider.dispose();
+        if (rulesOperationTypeItemProvider != null) rulesOperationTypeItemProvider.dispose();
         if (channelsTypeItemProvider != null) channelsTypeItemProvider.dispose();
         if (channelTypeItemProvider != null) channelTypeItemProvider.dispose();
         if (containerTypeItemProvider != null) containerTypeItemProvider.dispose();
@@ -654,6 +677,7 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
         if (resourcesTypeItemProvider != null) resourcesTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
         if (rulesImplementationTypeItemProvider != null) rulesImplementationTypeItemProvider.dispose();
+        if (faultsTypeItemProvider != null) faultsTypeItemProvider.dispose();
     }
 
 }

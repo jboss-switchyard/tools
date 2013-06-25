@@ -131,12 +131,13 @@ public class BPMImplementationTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__ACTIONS);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__CHANNELS);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__LISTENERS);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__LOGGERS);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__MANIFEST);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__OPERATIONS);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PROPERTIES);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS);
         }
         return childrenFeatures;
@@ -197,12 +198,13 @@ public class BPMImplementationTypeItemProvider
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__OPERATIONS:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -220,11 +222,6 @@ public class BPMImplementationTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__ACTIONS,
-                 BPMFactory.eINSTANCE.createActionsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -248,8 +245,18 @@ public class BPMImplementationTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__OPERATIONS,
+                 BPMFactory.eINSTANCE.createOperationsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PROPERTIES,
                  BPMFactory.eINSTANCE.createPropertiesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__USER_GROUP_CALLBACK,
+                 BPMFactory.eINSTANCE.createUserGroupCallbackType()));
 
         newChildDescriptors.add
             (createChildParameter
