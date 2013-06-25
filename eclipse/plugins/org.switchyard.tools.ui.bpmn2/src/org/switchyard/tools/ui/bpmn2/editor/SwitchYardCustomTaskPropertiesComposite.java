@@ -13,17 +13,16 @@ package org.switchyard.tools.ui.bpmn2.editor;
 import java.util.List;
 
 import org.eclipse.bpmn2.Assignment;
+import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.DataAssociation;
 import org.eclipse.bpmn2.DataInput;
 import org.eclipse.bpmn2.FormalExpression;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.InputSet;
+import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.Task;
 import org.eclipse.bpmn2.modeler.core.adapters.InsertionAdapter;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractBpmn2PropertySection;
-import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.BooleanObjectEditor;
-import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.IntObjectEditor;
-import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.NCNameObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.TextObjectEditor;
 import org.eclipse.bpmn2.modeler.core.runtime.ModelExtensionDescriptor;
@@ -31,16 +30,14 @@ import org.eclipse.bpmn2.modeler.core.runtime.ModelExtensionDescriptor.ModelExte
 import org.eclipse.bpmn2.modeler.core.runtime.ModelExtensionDescriptor.Property;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmCustomTaskDetailComposite;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * SwitchYardServiceTaskPropertiesComposite
@@ -92,7 +89,6 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                 InsertionAdapter.add(task, PACKAGE.getActivity_IoSpecification(), ioSpec);
             }
             for (Property property : props) {
-
                 // this will become the label for the Object Editor
                 String name = property.getFirstStringValue();
                 // the input parameter
@@ -162,49 +158,75 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                     InsertionAdapter.add(assignment, PACKAGE.getAssignment_From(), fromExpression);
                 }
 
-                if ("ServiceName".equals(name)) {
-                    Section inputSection = createSection(this, "Input");
-                    inputSection.setLayout(new FillLayout());
-                    inputSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
-                    InputOutputAssociationDetailComposite inputComposite = new InputOutputAssociationDetailComposite(
-                            inputSection);
-                    inputSection.setClient(inputComposite);
-                    inputComposite.setBusinessObject(parameter);
-                    inputSection.setText("Service Name Mapping Details");
-                } else if ("OperationName".equals(name)) {
-                    Section inputSection = createSection(this, "Input");
-                    inputSection.setLayout(new FillLayout());
-                    inputSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
-                    InputOutputAssociationDetailComposite inputComposite = new InputOutputAssociationDetailComposite(
-                            inputSection);
-                    inputSection.setClient(inputComposite);
-                    inputComposite.setBusinessObject(parameter);
-                    inputSection.setText("Operation Name Mapping Details");
+                // create the Object Editor for the "From" expression body:
+                // the data type is obtained from the DataInput <property>
+                // element from plugin.xml
+                EAttribute attribute = PACKAGE.getFormalExpression_Body();
+                ObjectEditor editor = null;
+                if ("FaultWorkItemAction".equals(name)) {
+                    editor = new FaultActionObjectEditor(this, fromExpression);
+                } else if ("FaultEventId".equals(name)) {
+                    editor = new FaultSignalIdObjectEditor(this, fromExpression);
                 } else {
-                    // create the Object Editor for the "From" expression body:
-                    // the data type is obtained from the DataInput <property>
-                    // element from plugin.xml
-                    EAttribute attribute = PACKAGE.getFormalExpression_Body();
-                    String dataType = property.type;
-                    ObjectEditor editor = null;
-                    if ("FaultWorkItemAction".equals(name)) {
-                        editor = new FaultActionObjectEditor(this, fromExpression);
-                    } else if ("FaultEventId".equals(name)) {
-                        editor = new FaultSignalIdObjectEditor(this, fromExpression);
-                    } else if ("EInt".equals(dataType)) {
-                        editor = new IntObjectEditor(this, fromExpression, attribute);
-                    } else if ("EBoolean".equals(dataType)) {
-                        editor = new BooleanObjectEditor(this, fromExpression, attribute);
-                    } else if ("ID".equals(dataType)) {
-                        editor = new NCNameObjectEditor(this, fromExpression, attribute);
-                    } else {
-                        editor = new TextObjectEditor(this, fromExpression, attribute);
-                        ((TextObjectEditor) editor).setMultiLine(false);
-                    }
-                    editor.createControl(getAttributesParent(), ModelUtil.toDisplayName(name));
+                    editor = createTextObjectEditor(association, fromExpression, attribute);
+                    ((TextObjectEditor) editor).setMultiLine(false);
                 }
+                editor.createControl(getAttributesParent(), ModelUtil.toDisplayName(name));
             }
         }
+    }
+
+    private ObjectEditor createTextObjectEditor(final DataAssociation association,
+            final FormalExpression fromExpression, final EAttribute attribute) {
+        return new TextObjectEditor(this, fromExpression, attribute) {
+            // special handling if the association is mapped from a variable
+            @Override
+            protected String getText() {
+                final List<ItemAwareElement> sources = association.getSourceRef();
+                if (sources == null || sources.isEmpty()) {
+                    return super.getText();
+                }
+                return ModelUtil.getDisplayName(sources.get(0));
+            }
+
+            @Override
+            protected boolean setValue(Object result) {
+                if (result != null && result.equals(getText())) {
+                    return false;
+                }
+                if (super.setValue(result)) {
+                    final List<ItemAwareElement> sources = association.getSourceRef();
+                    if (sources != null && sources.size() > 0) {
+                        TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
+                        domain.getCommandStack().execute(new RecordingCommand(domain) {
+                            @Override
+                            protected void doExecute() {
+                                sources.clear();
+                            }
+                        });
+                        updateText();
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            protected Control createControl(Composite composite, String label, int style) {
+                final Control control = super.createControl(composite, label, style);
+                updateText();
+                return control;
+            }
+
+            @Override
+            public void notifyChanged(Notification notification) {
+                super.notifyChanged(notification);
+                if (association == notification.getNotifier()
+                        && notification.getFeature() == Bpmn2Package.eINSTANCE.getDataAssociation_SourceRef()) {
+                    updateText();
+                }
+            }
+        };
     }
 
     private void migrateOldInputs(final DataInput di) {
