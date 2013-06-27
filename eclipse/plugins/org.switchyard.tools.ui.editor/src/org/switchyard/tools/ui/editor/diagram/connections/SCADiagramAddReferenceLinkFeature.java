@@ -75,9 +75,9 @@ public class SCADiagramAddReferenceLinkFeature extends AbstractAddFeature {
 
         IGaService gaService = Graphiti.getGaService();
         Polyline polyline = gaService.createPolyline(connection);
-        polyline.setLineWidth(2);
+        polyline.setLineWidth(3);
         polyline.setLineStyle(LineStyle.SOLID);
-        polyline.setForeground(manageColor(new ColorConstant(StyleUtil.COMPOSITE_PALETTE.getTextForeground())));
+        polyline.setForeground(manageColor(new ColorConstant(StyleUtil.LINE_COLOR)));
 
         // create link and wire it
         if (addedReference != null) {

@@ -37,10 +37,10 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         agca.setGradientType(IGradientType.VERTICAL);
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT,
                 getCompositeDefaultAreas());
-        agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED,
-                getPrimarySelectedAreas());
-        agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED,
-                getSecondarySelectedAreas());
+//        agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED,
+//                getPrimarySelectedAreas());
+//        agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED,
+//                getSecondarySelectedAreas());
         return agca;
     }
 
@@ -76,8 +76,8 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
 
-        addGradientColoredArea(gcas, StyleUtil.COMPONENT_PALETTE.getBackgroundDark(), 0,
-                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.COMPONENT_PALETTE.getBackgroundLight(), 0,
+        addGradientColoredArea(gcas, StyleUtil.COMPONENT_PALETTE.getBackgroundLight(), 0,
+                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.COMPONENT_PALETTE.getBackgroundDark(), 0,
                 LocationType.LOCATION_TYPE_ABSOLUTE_END);
         return gradientColoredAreas;
     }
@@ -129,8 +129,8 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
 
-        addGradientColoredArea(gcas, StyleUtil.SERVICE_PALETTE.getBackgroundDark(), 0,
-                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.SERVICE_PALETTE.getBackgroundLight(), 0,
+        addGradientColoredArea(gcas, StyleUtil.SERVICE_PALETTE.getBackgroundLight(), 0,
+                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.SERVICE_PALETTE.getBackgroundDark(), 0,
                 LocationType.LOCATION_TYPE_ABSOLUTE_END);
         return gradientColoredAreas;
     }
@@ -156,8 +156,8 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
 
-        addGradientColoredArea(gcas, StyleUtil.REFERENCE_PALETTE.getBackgroundDark(), 0,
-                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.REFERENCE_PALETTE.getBackgroundLight(), 0,
+        addGradientColoredArea(gcas, StyleUtil.REFERENCE_PALETTE.getBackgroundLight(), 0,
+                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.REFERENCE_PALETTE.getBackgroundDark(), 0,
                 LocationType.LOCATION_TYPE_ABSOLUTE_END);
         return gradientColoredAreas;
     }

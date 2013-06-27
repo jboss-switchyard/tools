@@ -38,14 +38,17 @@ public final class StyleUtil {
      * text, dark gradient or base color (from hardest to softest appearance).
      */
     /** The color palette for references. */
-    public static final FigurePalette REFERENCE_PALETTE = new FigurePalette("291F33", "CA99FF", "A64DFF", "F2E6FF");
+    public static final FigurePalette REFERENCE_PALETTE = new FigurePalette("291F33", "bf95ea", "a482c6", "bf95ea");
     /** The color palette for services. */
-    public static final FigurePalette SERVICE_PALETTE = new FigurePalette("053305", "8AE68A", "45E645", "CFE6CF");
+    public static final FigurePalette SERVICE_PALETTE = new FigurePalette("053305", "86ce86", "86ce86", "86c386");
     /** The color palette for components. */
-    public static final FigurePalette COMPONENT_PALETTE = new FigurePalette("1A1D33", "8C9CFF", "4D63FF", "CCD3FF");
+    public static final FigurePalette COMPONENT_PALETTE = new FigurePalette("1A1D33", "aab3fa", "aab3fa", "9ba0fc");
     /** The color palette for composites. */
-    public static final FigurePalette COMPOSITE_PALETTE = new FigurePalette("1F2933", "80C1FF", "4DA6FF", "B3DAFF");
+    public static final FigurePalette COMPOSITE_PALETTE = new FigurePalette("1F2933", "a5d2ff", "a5d2ff", "a5d2ff");
 
+    /** Color setting for connection lines. */
+    public static final String LINE_COLOR = "758695";
+    
     /**
      * Points for the small right arrow.
      */
