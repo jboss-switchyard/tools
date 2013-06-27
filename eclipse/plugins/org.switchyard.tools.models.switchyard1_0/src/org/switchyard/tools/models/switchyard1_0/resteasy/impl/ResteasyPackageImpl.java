@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
@@ -68,6 +69,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType;
@@ -134,6 +136,13 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
     private EClass restMessageComposerTypeEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass proxyTypeEClass = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -181,6 +190,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
 
         // Initialize simple dependencies
         ScaPackage.eINSTANCE.eClass();
+        XMLTypePackage.eINSTANCE.eClass();
 
         // Obtain or create and register interdependencies
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
@@ -319,6 +329,15 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getRESTBindingType_Proxy() {
+        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDocumentRoot() {
         return documentRootEClass;
     }
@@ -382,6 +401,15 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_Proxy() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getRESTContextMapperType() {
         return restContextMapperTypeEClass;
     }
@@ -393,6 +421,51 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      */
     public EClass getRESTMessageComposerType() {
         return restMessageComposerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getProxyType() {
+        return proxyTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getProxyType_Host() {
+        return (EAttribute)proxyTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getProxyType_Port() {
+        return (EAttribute)proxyTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getProxyType_User() {
+        return (EAttribute)proxyTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getProxyType_Password() {
+        return (EAttribute)proxyTypeEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -427,6 +500,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__INTERFACES);
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__ADDRESS);
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__CONTEXT_PATH);
+        createEReference(restBindingTypeEClass, REST_BINDING_TYPE__PROXY);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -435,10 +509,17 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_REST);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__PROXY);
 
         restContextMapperTypeEClass = createEClass(REST_CONTEXT_MAPPER_TYPE);
 
         restMessageComposerTypeEClass = createEClass(REST_MESSAGE_COMPOSER_TYPE);
+
+        proxyTypeEClass = createEClass(PROXY_TYPE);
+        createEAttribute(proxyTypeEClass, PROXY_TYPE__HOST);
+        createEAttribute(proxyTypeEClass, PROXY_TYPE__PORT);
+        createEAttribute(proxyTypeEClass, PROXY_TYPE__USER);
+        createEAttribute(proxyTypeEClass, PROXY_TYPE__PASSWORD);
     }
 
     /**
@@ -466,6 +547,8 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
 
         // Obtain other dependent packages
         SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
+        ScaPackage theScaPackage = (ScaPackage)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI);
+        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
 
@@ -475,12 +558,14 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         restBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
         restContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
         restMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
+        proxyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
         initEClass(restBindingTypeEClass, RESTBindingType.class, "RESTBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getRESTBindingType_Interfaces(), ecorePackage.getEString(), "interfaces", null, 1, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRESTBindingType_Address(), ecorePackage.getEString(), "address", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRESTBindingType_ContextPath(), ecorePackage.getEString(), "contextPath", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRESTBindingType_Proxy(), this.getProxyType(), null, "proxy", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -489,10 +574,17 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         initEReference(getDocumentRoot_BindingREST(), this.getRESTBindingType(), null, "bindingREST", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ContextMapper(), this.getRESTContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_MessageComposer(), this.getRESTMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Proxy(), this.getProxyType(), null, "proxy", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(restContextMapperTypeEClass, RESTContextMapperType.class, "RESTContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(restMessageComposerTypeEClass, RESTMessageComposerType.class, "RESTMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(proxyTypeEClass, ProxyType.class, "ProxyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getProxyType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_User(), theXMLTypePackage.getString(), "user", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -539,6 +631,14 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
            new String[] {
              "kind", "element",
              "name", "contextPath",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getRESTBindingType_Proxy(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "proxy",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -597,6 +697,14 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
              "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
            });		
         addAnnotation
+          (getDocumentRoot_Proxy(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "proxy",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (restContextMapperTypeEClass, 
            source, 
            new String[] {
@@ -610,6 +718,46 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
            new String[] {
              "name", "MessageComposerType",
              "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (proxyTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ProxyType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getProxyType_Host(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "host",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getProxyType_Port(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "port",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getProxyType_User(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "user",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getProxyType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
              "namespace", "##targetNamespace"
            });
     }

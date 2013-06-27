@@ -66,6 +66,7 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
             case HttpPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case HttpPackage.BASIC_AUTHENTICATION_TYPE: return createBasicAuthenticationType();
             case HttpPackage.NTLM_AUTHENTICATION_TYPE: return createNTLMAuthenticationType();
+            case HttpPackage.PROXY_TYPE: return createProxyType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -129,6 +130,16 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
     public NTLMAuthenticationType createNTLMAuthenticationType() {
         NTLMAuthenticationTypeImpl ntlmAuthenticationType = new NTLMAuthenticationTypeImpl();
         return ntlmAuthenticationType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProxyType createProxyType() {
+        ProxyTypeImpl proxyType = new ProxyTypeImpl();
+        return proxyType;
     }
 
     /**

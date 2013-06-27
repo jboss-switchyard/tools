@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType;
@@ -42,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl#getBindingREST <em>Binding REST</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -219,6 +221,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ProxyType getProxy() {
+        return (ProxyType)getMixed().get(ResteasyPackage.Literals.DOCUMENT_ROOT__PROXY, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProxy(ProxyType newProxy, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ResteasyPackage.Literals.DOCUMENT_ROOT__PROXY, newProxy, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProxy(ProxyType newProxy) {
+        ((FeatureMap.Internal)getMixed()).set(ResteasyPackage.Literals.DOCUMENT_ROOT__PROXY, newProxy);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -234,6 +263,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetContextMapper(null, msgs);
             case ResteasyPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 return basicSetMessageComposer(null, msgs);
+            case ResteasyPackage.DOCUMENT_ROOT__PROXY:
+                return basicSetProxy(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -261,6 +292,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getContextMapper();
             case ResteasyPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 return getMessageComposer();
+            case ResteasyPackage.DOCUMENT_ROOT__PROXY:
+                return getProxy();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -290,6 +323,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case ResteasyPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 setMessageComposer((RESTMessageComposerType)newValue);
+                return;
+            case ResteasyPackage.DOCUMENT_ROOT__PROXY:
+                setProxy((ProxyType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -321,6 +357,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case ResteasyPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 setMessageComposer((RESTMessageComposerType)null);
                 return;
+            case ResteasyPackage.DOCUMENT_ROOT__PROXY:
+                setProxy((ProxyType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -345,6 +384,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getContextMapper() != null;
             case ResteasyPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 return getMessageComposer() != null;
+            case ResteasyPackage.DOCUMENT_ROOT__PROXY:
+                return getProxy() != null;
         }
         return super.eIsSet(featureID);
     }

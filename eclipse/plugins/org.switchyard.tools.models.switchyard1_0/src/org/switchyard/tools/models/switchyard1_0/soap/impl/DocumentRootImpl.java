@@ -30,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
+import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
@@ -50,6 +51,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getInterceptor <em>Interceptor</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getMtom <em>Mtom</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getEndpointConfig <em>Endpoint Config</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,6 +107,16 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * @ordered
      */
     protected EndpointConfigType endpointConfig;
+
+    /**
+     * The cached value of the '{@link #getProxy() <em>Proxy</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProxy()
+     * @generated
+     * @ordered
+     */
+    protected ProxyType proxy;
 
     /**
      * <!-- begin-user-doc -->
@@ -350,6 +362,44 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ProxyType getProxy() {
+        if (proxy != null && proxy.eIsProxy()) {
+            InternalEObject oldProxy = (InternalEObject)proxy;
+            proxy = (ProxyType)eResolveProxy(oldProxy);
+            if (proxy != oldProxy) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SOAPPackage.DOCUMENT_ROOT__PROXY, oldProxy, proxy));
+            }
+        }
+        return proxy;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProxyType basicGetProxy() {
+        return proxy;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProxy(ProxyType newProxy) {
+        ProxyType oldProxy = proxy;
+        proxy = newProxy;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.DOCUMENT_ROOT__PROXY, oldProxy, proxy));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -402,6 +452,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
                 if (resolve) return getEndpointConfig();
                 return basicGetEndpointConfig();
+            case SOAPPackage.DOCUMENT_ROOT__PROXY:
+                if (resolve) return getProxy();
+                return basicGetProxy();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -440,6 +493,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
                 setEndpointConfig((EndpointConfigType)newValue);
+                return;
+            case SOAPPackage.DOCUMENT_ROOT__PROXY:
+                setProxy((ProxyType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -480,6 +536,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
                 setEndpointConfig((EndpointConfigType)null);
                 return;
+            case SOAPPackage.DOCUMENT_ROOT__PROXY:
+                setProxy((ProxyType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -510,6 +569,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return mtom != null;
             case SOAPPackage.DOCUMENT_ROOT__ENDPOINT_CONFIG:
                 return endpointConfig != null;
+            case SOAPPackage.DOCUMENT_ROOT__PROXY:
+                return proxy != null;
         }
         return super.eIsSet(featureID);
     }

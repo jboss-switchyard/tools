@@ -43,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
+import org.switchyard.tools.models.switchyard1_0.http.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
@@ -68,12 +69,17 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
     private Combo _authTypeCombo;
-    private Text _userText;
-    private Text _passwordText;
-    private Text _realmText;
-    private Text _hostText;
-    private Text _portText;
-    private Text _domainText;
+    private Text _authUserText;
+    private Text _authPasswordText;
+    private Text _authRealmText;
+    private Text _authHostText;
+    private Text _authPortText;
+    private Text _authDomainText;
+    private Text _proxyHostText;
+    private Text _proxyPortText;
+    private String _proxyPort;
+    private Text _proxyUserText;
+    private Text _proxyPasswordText;
 
     /**
      * @param parent composite parent
@@ -103,9 +109,26 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             TabItem two = new TabItem(_tabFolder, SWT.NONE);
             two.setText("Authentication");
             two.setControl(getAuthenticationControl(_tabFolder));
+
+            TabItem three = new TabItem(_tabFolder, SWT.NONE);
+            three.setText("Proxy Settings");
+            three.setControl(getProxyTabControl(_tabFolder));
         }
         
         addTabs(_tabFolder);
+    }
+
+    private Control getProxyTabControl(TabFolder tabFolder) {
+        Composite composite = new Composite(tabFolder, SWT.NONE);
+        GridLayout gl = new GridLayout(2, false);
+        composite.setLayout(gl);
+
+        _proxyHostText = createLabelAndText(composite, "Host");
+        _proxyPortText = createLabelAndText(composite, "Port");
+        _proxyUserText = createLabelAndText(composite, "User Name");
+        _proxyPasswordText = createLabelAndText(composite, "Password");
+        
+        return composite;
     }
 
     private Control getAuthenticationControl(TabFolder tabFolder) {
@@ -121,13 +144,13 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
 
             @Override
             public void widgetSelected(SelectionEvent e) {
-                _domainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
-                _userText.setText("");
-                _passwordText.setText("");
-                _realmText.setText("");
-                _hostText.setText("");
-                _portText.setText("");
-                _domainText.setText("");
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+                _authUserText.setText("");
+                _authPasswordText.setText("");
+                _authRealmText.setText("");
+                _authHostText.setText("");
+                _authPortText.setText("");
+                _authDomainText.setText("");
             }
 
             @Override
@@ -136,15 +159,15 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             }
         });
         
-        _userText = createLabelAndText(composite, "User");
-        _passwordText = createLabelAndText(composite, "Password");
-        _realmText = createLabelAndText(composite, "Realm");
-        _hostText = createLabelAndText(composite, "Host");
-        _portText = createLabelAndText(composite, "Port");
-        _domainText = createLabelAndText(composite, "Domain");
+        _authUserText = createLabelAndText(composite, "User");
+        _authPasswordText = createLabelAndText(composite, "Password");
+        _authRealmText = createLabelAndText(composite, "Realm");
+        _authHostText = createLabelAndText(composite, "Host");
+        _authPortText = createLabelAndText(composite, "Port");
+        _authDomainText = createLabelAndText(composite, "Domain");
         
         _authTypeCombo.select(0);
-        _domainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
         
         return composite;
     }
@@ -155,7 +178,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         composite.setLayout(gl);
 
         Group httpGroup = new Group(composite, SWT.NONE);
-        httpGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        httpGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         httpGroup.setLayout(new GridLayout(2, false));
         httpGroup.setText("HTTP Options");
         
@@ -226,14 +249,14 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_contentTypeText)) {
                 String contentType = _contentTypeText.getText().trim();
                 updateFeature(_binding, "contentType", contentType);
-            } else if (control.equals(_userText)) {
-                String user = _userText.getText().trim();
+            } else if (control.equals(_authUserText)) {
+                String user = _authUserText.getText().trim();
                 updateAuthFeature("user", user);
-            } else if (control.equals(_passwordText)) {
-                String password = _passwordText.getText().trim();
+            } else if (control.equals(_authPasswordText)) {
+                String password = _authPasswordText.getText().trim();
                 updateAuthFeature("password", password);
-            } else if (control.equals(_portText)) {
-                String port = _portText.getText().trim();
+            } else if (control.equals(_authPortText)) {
+                String port = _authPortText.getText().trim();
                 try {
                     Integer portInt = Integer.parseInt(port);
                     updateAuthFeature("port", portInt);
@@ -241,15 +264,33 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                     // ignore
                     nfe.fillInStackTrace();
                 }
-            } else if (control.equals(_realmText)) {
-                String realm = _realmText.getText().trim();
+            } else if (control.equals(_authRealmText)) {
+                String realm = _authRealmText.getText().trim();
                 updateAuthFeature("realm", realm);
-            } else if (control.equals(_hostText)) {
-                String host = _hostText.getText().trim();
+            } else if (control.equals(_authHostText)) {
+                String host = _authHostText.getText().trim();
                 updateAuthFeature("host", host);
-            } else if (control.equals(_domainText)) {
-                String domain = _domainText.getText().trim();
+            } else if (control.equals(_authDomainText)) {
+                String domain = _authDomainText.getText().trim();
                 updateAuthFeature("domain", domain);
+            } else if (control.equals(_proxyHostText)) {
+                updateProxyFeature("host", _proxyHostText.getText());
+            } else if (control.equals(_proxyPasswordText)) {
+                updateProxyFeature("password", _proxyPasswordText.getText());
+            } else if (control.equals(_proxyUserText)) {
+                updateProxyFeature("user", _proxyUserText.getText());
+            } else if (control.equals(_proxyPortText)) {
+                _proxyPort = _proxyPortText.getText();
+                if (_proxyPort.trim().isEmpty()) {
+                    updateProxyFeature("port", null);
+                } else {
+                    try {
+                        Integer portVal = Integer.parseInt(_proxyPort);
+                        updateProxyFeature("port", portVal);
+                    } catch (NumberFormatException nfe) {
+                        nfe.fillInStackTrace();
+                    }
+                }
             }
         }
         super.handleModify(control);
@@ -284,25 +325,26 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             if (urlString != null && urlString.trim().length() > 0) {
                 if (urlString.trim().length() < urlString.length()) {
                     setErrorMessage("No spaces allowed in address URL");
-//                } else {
-//                    try {
-//                        URI.create(urlString);
-//                    } catch (IllegalArgumentException e) {
-//                        setErrorMessage("Invalid address URL");
-//                        return false;
-//                    }
                 }
             }
         }
         String portText = null;
-        if (_portText != null && !_portText.isDisposed()) {
-            portText = _portText.getText();
+        if (_authPortText != null && !_authPortText.isDisposed()) {
+            portText = _authPortText.getText();
             if (!portText.trim().isEmpty()) {
                 try {
                     Integer.parseInt(portText);
                 } catch (NumberFormatException nfe) {
                     setErrorMessage("The authentication port must be a valid integer");
                 }
+            }
+        }
+
+        if (_proxyPort != null && _proxyPort.trim().length() > 0) {
+            try {
+                Integer.parseInt(_proxyPort);
+            } catch (NumberFormatException nfe) {
+                setErrorMessage("The proxy port must be a valid integer");
             }
         }
 
@@ -365,37 +407,49 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             
             if (this._binding.getBasic() != null) {
                 _authTypeCombo.select(0);
-                setTextValue(_userText, this._binding.getBasic().getUser());
-                setTextValue(_passwordText, this._binding.getBasic().getPassword());
-                setTextValue(_hostText, this._binding.getBasic().getHost());
-                setTextValue(_realmText, this._binding.getBasic().getRealm());
+                setTextValue(_authUserText, this._binding.getBasic().getUser());
+                setTextValue(_authPasswordText, this._binding.getBasic().getPassword());
+                setTextValue(_authHostText, this._binding.getBasic().getHost());
+                setTextValue(_authRealmText, this._binding.getBasic().getRealm());
                 if (this._binding.getBasic().getPort() != null) {
-                    setTextValue(_portText, this._binding.getBasic().getPort().toString());
+                    setTextValue(_authPortText, this._binding.getBasic().getPort().toString());
                 } else {
-                    setTextValue(_portText, "");
+                    setTextValue(_authPortText, "");
                 }
             } else if (this._binding.getNtlm() != null) {
                 _authTypeCombo.select(1);
-                setTextValue(_userText, this._binding.getNtlm().getUser());
-                setTextValue(_passwordText, this._binding.getNtlm().getPassword());
-                setTextValue(_hostText, this._binding.getNtlm().getHost());
-                setTextValue(_realmText, this._binding.getNtlm().getRealm());
-                setTextValue(_domainText, this._binding.getNtlm().getDomain());
+                setTextValue(_authUserText, this._binding.getNtlm().getUser());
+                setTextValue(_authPasswordText, this._binding.getNtlm().getPassword());
+                setTextValue(_authHostText, this._binding.getNtlm().getHost());
+                setTextValue(_authRealmText, this._binding.getNtlm().getRealm());
+                setTextValue(_authDomainText, this._binding.getNtlm().getDomain());
                 if (this._binding.getNtlm().getPort() != null) {
-                    setTextValue(_portText, this._binding.getNtlm().getPort().toString());
+                    setTextValue(_authPortText, this._binding.getNtlm().getPort().toString());
                 } else {
-                    setTextValue(_portText, "");
+                    setTextValue(_authPortText, "");
                 }
             } else {
-                _authTypeCombo.select(0);
-                setTextValue(_userText, null);
-                setTextValue(_passwordText, null);
-                setTextValue(_hostText, null);
-                setTextValue(_realmText, null);
-                setTextValue(_domainText, null);
-                setTextValue(_portText, null);
+                if (_authTypeCombo != null) {
+                    _authTypeCombo.select(0);
+                    setTextValue(_authUserText, null);
+                    setTextValue(_authPasswordText, null);
+                    setTextValue(_authHostText, null);
+                    setTextValue(_authRealmText, null);
+                    setTextValue(_authDomainText, null);
+                    setTextValue(_authPortText, null);
+                }
             }
-            _domainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+            if (_authDomainText != null) {
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+            }
+            if (_binding.getProxy() != null) {
+                setTextValue(_proxyHostText, _binding.getProxy().getHost());
+                if (_binding.getProxy().getPort() != null) {
+                    setTextValue(_proxyPortText, _binding.getProxy().getPort().toString());
+                }
+                setTextValue(_proxyUserText, _binding.getProxy().getUser());
+                setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
+            }
             setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -424,9 +478,30 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                 _contextPathText.setText(_binding.getContextPath());
            } else if (control.equals(_mAddressURLText)) {
                _mAddressURLText.setText(_binding.getAddress());
-//           } else if (control.equals(_operationSelectionCombo)) {
-//               String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
-//               setTextValue(_operationSelectionCombo, opName);
+           } else if (control.equals(_proxyHostText)) {
+               if (_binding.getProxy() != null) {
+                   setTextValue(_proxyHostText, _binding.getProxy().getHost());
+               } else {
+                   setTextValue(_proxyHostText, null);
+               }
+           } else if (control.equals(_proxyPasswordText)) {
+               if (_binding.getProxy() != null) {
+                   setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
+               } else {
+                   setTextValue(_proxyPasswordText, null);
+               }
+           } else if (control.equals(_proxyUserText)) {
+               if (_binding.getProxy() != null) {
+                   setTextValue(_proxyUserText, _binding.getProxy().getUser());
+               } else {
+                   setTextValue(_proxyUserText, null);
+               }
+           } else if (control.equals(_proxyPortText)) {
+               if (_binding.getProxy() != null) {
+                   setTextValue(_proxyPortText, _binding.getProxy().getPort().toString());
+               } else {
+                   setTextValue(_proxyPortText, null);
+               }
            }
         } else {
             super.handleUndo(control);
@@ -570,5 +645,39 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         ops.add(new AddNtlmAuthenticatiOp());
         ops.add(new BasicOperation("ntlm", featureId, value));
         wrapOperation(ops);
+    }
+
+    protected void updateProxyFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new AddProxyOp());
+        if (featureId != null) {
+            ops.add(new BasicOperation("proxy", featureId, value));
+        }
+        ops.add(new CleanupProxyOp());
+        wrapOperation(ops);
+    }
+    
+    class AddProxyOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getProxy() == null) {
+                ProxyType proxy = HttpFactory.eINSTANCE.createProxyType();
+                setFeatureValue(_binding, "proxy", proxy);
+            }
+        }
+    }
+
+    class CleanupProxyOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getProxy() != null) {
+                if (_binding.getProxy().getHost() == null 
+                        && _binding.getProxy().getPassword() == null 
+                        && _binding.getProxy().getPort() == null
+                        && _binding.getProxy().getUser() == null) {
+                    setFeatureValue(_binding, "proxy", null);
+                }
+            }
+        }
     }
 }

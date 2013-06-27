@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
@@ -207,13 +208,22 @@ public interface ResteasyPackage extends EPackage {
     int REST_BINDING_TYPE__CONTEXT_PATH = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
+     * The feature id for the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>REST Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -280,13 +290,22 @@ public interface ResteasyPackage extends EPackage {
     int DOCUMENT_ROOT__MESSAGE_COMPOSER = 5;
 
     /**
+     * The feature id for the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__PROXY = 6;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 6;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 7;
 
 
     /**
@@ -382,6 +401,79 @@ public interface ResteasyPackage extends EPackage {
     int REST_MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getProxyType()
+     * @generated
+     */
+    int PROXY_TYPE = 4;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__HOST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PORT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
+     * The number of structural features of the '<em>Proxy Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType <em>REST Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -423,6 +515,17 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      */
     EAttribute getRESTBindingType_ContextPath();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getProxy <em>Proxy</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Proxy</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getProxy()
+     * @see #getRESTBindingType()
+     * @generated
+     */
+    EReference getRESTBindingType_Proxy();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot <em>Document Root</em>}'.
@@ -501,6 +604,17 @@ public interface ResteasyPackage extends EPackage {
     EReference getDocumentRoot_MessageComposer();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getProxy <em>Proxy</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Proxy</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getProxy()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Proxy();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType <em>REST Context Mapper Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -519,6 +633,60 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      */
     EClass getRESTMessageComposerType();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType <em>Proxy Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Proxy Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType
+     * @generated
+     */
+    EClass getProxyType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getHost <em>Host</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Host</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getHost()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Host();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getPort <em>Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getPort()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Port();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getUser <em>User</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>User</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getUser()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_User();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType#getPassword()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Password();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -575,6 +743,14 @@ public interface ResteasyPackage extends EPackage {
          * @generated
          */
         EAttribute REST_BINDING_TYPE__CONTEXT_PATH = eINSTANCE.getRESTBindingType_ContextPath();
+
+        /**
+         * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REST_BINDING_TYPE__PROXY = eINSTANCE.getRESTBindingType_Proxy();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -635,6 +811,14 @@ public interface ResteasyPackage extends EPackage {
         EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
 
         /**
+         * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__PROXY = eINSTANCE.getDocumentRoot_Proxy();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl <em>REST Context Mapper Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -653,6 +837,48 @@ public interface ResteasyPackage extends EPackage {
          * @generated
          */
         EClass REST_MESSAGE_COMPOSER_TYPE = eINSTANCE.getRESTMessageComposerType();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getProxyType()
+         * @generated
+         */
+        EClass PROXY_TYPE = eINSTANCE.getProxyType();
+
+        /**
+         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__HOST = eINSTANCE.getProxyType_Host();
+
+        /**
+         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__PORT = eINSTANCE.getProxyType_Port();
+
+        /**
+         * The meta object literal for the '<em><b>User</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__USER = eINSTANCE.getProxyType_User();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__PASSWORD = eINSTANCE.getProxyType_Password();
 
     }
 

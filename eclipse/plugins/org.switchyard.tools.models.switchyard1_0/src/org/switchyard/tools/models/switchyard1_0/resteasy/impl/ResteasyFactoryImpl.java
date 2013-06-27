@@ -31,7 +31,7 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
      */
     public static ResteasyFactory init() {
         try {
-            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-resteasy:config:1.0"); 
+            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory(ResteasyPackage.eNS_URI);
             if (theResteasyFactory != null) {
                 return theResteasyFactory;
             }
@@ -64,6 +64,7 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
             case ResteasyPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case ResteasyPackage.REST_CONTEXT_MAPPER_TYPE: return createRESTContextMapperType();
             case ResteasyPackage.REST_MESSAGE_COMPOSER_TYPE: return createRESTMessageComposerType();
+            case ResteasyPackage.PROXY_TYPE: return createProxyType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -107,6 +108,16 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
     public RESTMessageComposerType createRESTMessageComposerType() {
         RESTMessageComposerTypeImpl restMessageComposerType = new RESTMessageComposerTypeImpl();
         return restMessageComposerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProxyType createProxyType() {
+        ProxyTypeImpl proxyType = new ProxyTypeImpl();
+        return proxyType;
     }
 
     /**

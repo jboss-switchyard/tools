@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
+import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
@@ -34,6 +35,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getOutInterceptors <em>Out Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getMtom <em>Mtom</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getEndpointConfig <em>Endpoint Config</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -179,6 +181,16 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * @ordered
      */
     protected EndpointConfigType endpointConfig;
+
+    /**
+     * The cached value of the '{@link #getProxy() <em>Proxy</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProxy()
+     * @generated
+     * @ordered
+     */
+    protected ProxyType proxy;
 
     /**
      * <!-- begin-user-doc -->
@@ -481,6 +493,49 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
+    public ProxyType getProxy() {
+        return proxy;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProxy(ProxyType newProxy, NotificationChain msgs) {
+        ProxyType oldProxy = proxy;
+        proxy = newProxy;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__PROXY, oldProxy, newProxy);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProxy(ProxyType newProxy) {
+        if (newProxy != proxy) {
+            NotificationChain msgs = null;
+            if (proxy != null)
+                msgs = ((InternalEObject)proxy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__PROXY, null, msgs);
+            if (newProxy != null)
+                msgs = ((InternalEObject)newProxy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__PROXY, null, msgs);
+            msgs = basicSetProxy(newProxy, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__PROXY, newProxy, newProxy));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -492,6 +547,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return basicSetMtom(null, msgs);
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 return basicSetEndpointConfig(null, msgs);
+            case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
+                return basicSetProxy(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -522,6 +579,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return getMtom();
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 return getEndpointConfig();
+            case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
+                return getProxy();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -560,6 +619,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 setEndpointConfig((EndpointConfigType)newValue);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
+                setProxy((ProxyType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -600,6 +662,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 setEndpointConfig((EndpointConfigType)null);
                 return;
+            case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
+                setProxy((ProxyType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -630,6 +695,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return mtom != null;
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 return endpointConfig != null;
+            case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
+                return proxy != null;
         }
         return super.eIsSet(featureID);
     }

@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.util.FeatureMap;
+import org.switchyard.tools.models.switchyard1_0.http.ProxyType;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getBindingREST <em>Binding REST</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getMessageComposer <em>Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -167,5 +169,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setMessageComposer(RESTMessageComposerType value);
+
+    /**
+     * Returns the value of the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Proxy</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Proxy</em>' containment reference.
+     * @see #setProxy(org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType)
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage#getDocumentRoot_Proxy()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='proxy' namespace='##targetNamespace'"
+     * @generated
+     */
+    org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType getProxy();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getProxy <em>Proxy</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Proxy</em>' containment reference.
+     * @see #getProxy()
+     * @generated
+     */
+    void setProxy(org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType value);
 
 } // DocumentRoot

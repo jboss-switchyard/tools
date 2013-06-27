@@ -359,23 +359,23 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         cnGD.horizontalSpan = 2;
         _configNameText.setLayoutData(cnGD);
 
-        Composite mtomComposite = new Composite(composite, SWT.NONE);
-        mtomComposite.setLayout(new GridLayout(3, false));
-        GridData mtomCompositeGD = new GridData();
-        mtomCompositeGD.horizontalSpan = 3;
-        mtomCompositeGD.horizontalIndent = -5;
-        mtomCompositeGD.verticalIndent = -5;
-        mtomComposite.setLayoutData(mtomCompositeGD);
-        
-        _enableMtomCheckbox = createCheckbox(mtomComposite, "MTom");
+        Group mtomGroup = new Group(composite, SWT.NONE);
+        mtomGroup.setText("MTom");
+        mtomGroup.setLayout(new GridLayout(2, false));
+        GridData epConfigGroupGD = new GridData(GridData.FILL_HORIZONTAL);
+        epConfigGroupGD.horizontalSpan = 3;
+        epConfigGroupGD.horizontalIndent = -5;
+        mtomGroup.setLayoutData(epConfigGroupGD);
+
+        _enableMtomCheckbox = createCheckbox(mtomGroup, "Enable");
         GridData enableMtomChxGD = new GridData();
+        enableMtomChxGD.horizontalSpan = 2;
         _enableMtomCheckbox.setLayoutData(enableMtomChxGD);
-
-        _disableMtomCheckbox = createCheckbox(mtomComposite, "Disable");
+        _disableMtomCheckbox = createCheckbox(mtomGroup, "Temporarily Disable");
         GridData disableMtomChxGD = new GridData();
+        disableMtomChxGD.horizontalIndent = 10;
         _disableMtomCheckbox.setLayoutData(disableMtomChxGD);
-
-        _enableXopExpandCheckbox = createCheckbox(mtomComposite, "xopExpand");
+        _enableXopExpandCheckbox = createCheckbox(mtomGroup, "xopExpand");
         GridData enableXopExpandChxGD = new GridData();
         _enableXopExpandCheckbox.setLayoutData(enableXopExpandChxGD);
 

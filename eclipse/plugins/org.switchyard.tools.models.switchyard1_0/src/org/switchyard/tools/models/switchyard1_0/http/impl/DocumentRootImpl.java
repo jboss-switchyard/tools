@@ -32,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
+import org.switchyard.tools.models.switchyard1_0.http.ProxyType;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getBasic <em>Basic</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getNtlm <em>Ntlm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -300,6 +302,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ProxyType getProxy() {
+        return (ProxyType)getMixed().get(HttpPackage.Literals.DOCUMENT_ROOT__PROXY, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProxy(ProxyType newProxy, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(HttpPackage.Literals.DOCUMENT_ROOT__PROXY, newProxy, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProxy(ProxyType newProxy) {
+        ((FeatureMap.Internal)getMixed()).set(HttpPackage.Literals.DOCUMENT_ROOT__PROXY, newProxy);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -317,6 +346,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetMessageComposer(null, msgs);
             case HttpPackage.DOCUMENT_ROOT__NTLM:
                 return basicSetNtlm(null, msgs);
+            case HttpPackage.DOCUMENT_ROOT__PROXY:
+                return basicSetProxy(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -349,6 +380,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicGetBasic();
             case HttpPackage.DOCUMENT_ROOT__NTLM:
                 return getNtlm();
+            case HttpPackage.DOCUMENT_ROOT__PROXY:
+                return getProxy();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -384,6 +417,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case HttpPackage.DOCUMENT_ROOT__NTLM:
                 setNtlm((NTLMAuthenticationType)newValue);
+                return;
+            case HttpPackage.DOCUMENT_ROOT__PROXY:
+                setProxy((ProxyType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -421,6 +457,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case HttpPackage.DOCUMENT_ROOT__NTLM:
                 setNtlm((NTLMAuthenticationType)null);
                 return;
+            case HttpPackage.DOCUMENT_ROOT__PROXY:
+                setProxy((ProxyType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -449,6 +488,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basic != null;
             case HttpPackage.DOCUMENT_ROOT__NTLM:
                 return getNtlm() != null;
+            case HttpPackage.DOCUMENT_ROOT__PROXY:
+                return getProxy() != null;
         }
         return super.eIsSet(featureID);
     }

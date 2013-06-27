@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getInterceptor <em>Interceptor</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom <em>Mtom</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getEndpointConfig <em>Endpoint Config</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -251,5 +252,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setEndpointConfig(EndpointConfigType value);
+
+    /**
+     * Returns the value of the '<em><b>Proxy</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Proxy</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Proxy</em>' reference.
+     * @see #setProxy(ProxyType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_Proxy()
+     * @model upper="-2"
+     *        extendedMetaData="kind='element' name='proxy' namespace='##targetNamespace'"
+     * @generated
+     */
+    ProxyType getProxy();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProxy <em>Proxy</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Proxy</em>' reference.
+     * @see #getProxy()
+     * @generated
+     */
+    void setProxy(ProxyType value);
 
 } // DocumentRoot

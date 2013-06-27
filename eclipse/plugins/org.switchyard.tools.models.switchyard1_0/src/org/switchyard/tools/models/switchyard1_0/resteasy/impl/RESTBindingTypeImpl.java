@@ -7,8 +7,11 @@
 package org.switchyard.tools.models.switchyard1_0.resteasy.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
@@ -23,6 +26,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getContextPath <em>Context Path</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +92,16 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
      * @ordered
      */
     protected String contextPath = CONTEXT_PATH_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getProxy() <em>Proxy</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProxy()
+     * @generated
+     * @ordered
+     */
+    protected ProxyType proxy;
 
     /**
      * <!-- begin-user-doc -->
@@ -176,6 +190,63 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
      * <!-- end-user-doc -->
      * @generated
      */
+    public ProxyType getProxy() {
+        return proxy;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProxy(ProxyType newProxy, NotificationChain msgs) {
+        ProxyType oldProxy = proxy;
+        proxy = newProxy;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__PROXY, oldProxy, newProxy);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProxy(ProxyType newProxy) {
+        if (newProxy != proxy) {
+            NotificationChain msgs = null;
+            if (proxy != null)
+                msgs = ((InternalEObject)proxy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__PROXY, null, msgs);
+            if (newProxy != null)
+                msgs = ((InternalEObject)newProxy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__PROXY, null, msgs);
+            msgs = basicSetProxy(newProxy, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__PROXY, newProxy, newProxy));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case ResteasyPackage.REST_BINDING_TYPE__PROXY:
+                return basicSetProxy(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -185,6 +256,8 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return getAddress();
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 return getContextPath();
+            case ResteasyPackage.REST_BINDING_TYPE__PROXY:
+                return getProxy();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -205,6 +278,9 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 setContextPath((String)newValue);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__PROXY:
+                setProxy((ProxyType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -227,6 +303,9 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 setContextPath(CONTEXT_PATH_EDEFAULT);
                 return;
+            case ResteasyPackage.REST_BINDING_TYPE__PROXY:
+                setProxy((ProxyType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -245,6 +324,8 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return ADDRESS_EDEFAULT == null ? address != null : !ADDRESS_EDEFAULT.equals(address);
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 return CONTEXT_PATH_EDEFAULT == null ? contextPath != null : !CONTEXT_PATH_EDEFAULT.equals(contextPath);
+            case ResteasyPackage.REST_BINDING_TYPE__PROXY:
+                return proxy != null;
         }
         return super.eIsSet(featureID);
     }

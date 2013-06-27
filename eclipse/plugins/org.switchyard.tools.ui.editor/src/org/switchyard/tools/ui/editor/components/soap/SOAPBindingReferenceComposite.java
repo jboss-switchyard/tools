@@ -39,6 +39,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
@@ -48,6 +49,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
+import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
@@ -88,6 +90,12 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
     private Button _enableMtomCheckbox = null;
     private Button _enableXopExpandCheckbox = null;
     private Button _disableMtomCheckbox =  null;
+    private Text _proxyHostText;
+    private Text _proxyPortText;
+    private String _proxyPort;
+    private Text _proxyUserText;
+    private Text _proxyPasswordText;
+    private Combo _proxyTypeCombo;
 
     /**
      * Constructor.
@@ -118,9 +126,30 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         one.setText("Producer");
         one.setControl(getSOAPTabControl(_tabFolder));
 
+        TabItem two = new TabItem(_tabFolder, SWT.NONE);
+        two.setText("Proxy Settings");
+        two.setControl(getProxyTabControl(_tabFolder));
+
         addTabs(_tabFolder);
     }
 
+    private Control getProxyTabControl(TabFolder tabFolder) {
+        Composite composite = new Composite(tabFolder, SWT.NONE);
+        GridLayout gl = new GridLayout(2, false);
+        composite.setLayout(gl);
+
+        _proxyTypeCombo = createLabelAndCombo(composite, "Type");
+        _proxyTypeCombo.add("HTTP");
+        _proxyTypeCombo.add("SOCKS");
+        _proxyTypeCombo.select(0);
+        _proxyHostText = createLabelAndText(composite, "Host");
+        _proxyPortText = createLabelAndText(composite, "Port");
+        _proxyUserText = createLabelAndText(composite, "User Name");
+        _proxyPasswordText = createLabelAndText(composite, "Password");
+        
+        return composite;
+    }
+    
     private Control getSOAPTabControl(TabFolder tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(3, false);
@@ -219,23 +248,25 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         epAddrGD.horizontalSpan = 2;
         _endpointAddressText.setLayoutData(epAddrGD);
         
-        Composite mtomComposite = new Composite(composite, SWT.NONE);
-        mtomComposite.setLayout(new GridLayout(3, false));
-        GridData mtomCompositeGD = new GridData();
-        mtomCompositeGD.horizontalSpan = 3;
-        mtomCompositeGD.horizontalIndent = -5;
-        mtomCompositeGD.verticalIndent = -5;
-        mtomComposite.setLayoutData(mtomCompositeGD);
-        
-        _enableMtomCheckbox = createCheckbox(mtomComposite, "MTom");
+        Group mtomGroup = new Group(composite, SWT.NONE);
+        mtomGroup.setText("MTom");
+        mtomGroup.setLayout(new GridLayout(2, false));
+        GridData epConfigGroupGD = new GridData(GridData.FILL_HORIZONTAL);
+        epConfigGroupGD.horizontalSpan = 3;
+        epConfigGroupGD.horizontalIndent = -5;
+        mtomGroup.setLayoutData(epConfigGroupGD);
+
+        _enableMtomCheckbox = createCheckbox(mtomGroup, "Enable");
         GridData enableMtomChxGD = new GridData();
+        enableMtomChxGD.horizontalSpan = 2;
         _enableMtomCheckbox.setLayoutData(enableMtomChxGD);
 
-        _disableMtomCheckbox = createCheckbox(mtomComposite, "Disable");
+        _disableMtomCheckbox = createCheckbox(mtomGroup, "Temporarily Disable");
         GridData disableMtomChxGD = new GridData();
+        disableMtomChxGD.horizontalIndent = 10;
         _disableMtomCheckbox.setLayoutData(disableMtomChxGD);
 
-        _enableXopExpandCheckbox = createCheckbox(mtomComposite, "xopExpand");
+        _enableXopExpandCheckbox = createCheckbox(mtomGroup, "xopExpand");
         GridData enableXopExpandChxGD = new GridData();
         _enableXopExpandCheckbox.setLayoutData(enableXopExpandChxGD);
 
@@ -276,9 +307,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_endpointAddressText)) {
                 final String endpointAddress = _endpointAddressText.getText();
                 updateFeature(_binding, "endpointAddress", endpointAddress);
-//            } else if (control.equals(_securityActionText)) {
-//                final String securityAction = _securityActionText.getText();
-//                updateFeature(_binding, "securityAction", securityAction);
             } else if (control.equals(_enableMtomCheckbox)) {
                 _disableMtomCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
                 _enableXopExpandCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
@@ -293,6 +321,22 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 updateMTomFeature("enabled", !_disableMtomCheckbox.getSelection());
             } else if (control.equals(_enableXopExpandCheckbox)) {
                 updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection());
+            } else if (control.equals(_proxyTypeCombo)) {
+                updateProxyFeature("type", _proxyTypeCombo.getText());
+            } else if (control.equals(_proxyHostText)) {
+                updateProxyFeature("host", _proxyHostText.getText());
+            } else if (control.equals(_proxyPasswordText)) {
+                updateProxyFeature("password", _proxyPasswordText.getText());
+            } else if (control.equals(_proxyUserText)) {
+                updateProxyFeature("user", _proxyUserText.getText());
+            } else if (control.equals(_proxyPortText)) {
+                _proxyPort = _proxyPortText.getText();
+                try {
+                    Integer portVal = Integer.parseInt(_proxyPort);
+                    updateProxyFeature("port", portVal);
+                } catch (NumberFormatException nfe) {
+                    nfe.fillInStackTrace();
+                }
             } else {
                 super.handleModify(control);
             }
@@ -332,8 +376,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 }
             } else if (control.equals(_endpointAddressText)) {
                 _endpointAddressText.setText(_binding.getEndpointAddress());
-//            } else if (control.equals(_securityActionText)) {
-//                _securityActionText.setText(_binding.getSecurityAction());
             } else if (control.equals(_enableMtomCheckbox)) {
                 _enableMtomCheckbox.setSelection(_binding.getMtom() != null);
                 if (_binding.getMtom() != null) {
@@ -357,6 +399,36 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 if (_binding.getMtom() != null) {
                     _enableXopExpandCheckbox.setSelection(!_binding.getMtom().isXopExpand());
                 }
+            } else if (control.equals(_proxyTypeCombo)) {
+                if (_binding.getProxy() != null) {
+                    setTextValue(_proxyTypeCombo, _binding.getProxy().getType());
+                } else {
+                    _proxyTypeCombo.setText("HTTP");
+                }
+            } else if (control.equals(_proxyHostText)) {
+                if (_binding.getProxy() != null) {
+                    setTextValue(_proxyHostText, _binding.getProxy().getHost());
+                } else {
+                    setTextValue(_proxyHostText, null);
+                }
+            } else if (control.equals(_proxyPasswordText)) {
+                if (_binding.getProxy() != null) {
+                    setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
+                } else {
+                    setTextValue(_proxyPasswordText, null);
+                }
+            } else if (control.equals(_proxyUserText)) {
+                if (_binding.getProxy() != null) {
+                    setTextValue(_proxyUserText, _binding.getProxy().getUser());
+                } else {
+                    setTextValue(_proxyUserText, null);
+                }
+            } else if (control.equals(_proxyPortText)) {
+                if (_binding.getProxy() != null) {
+                    setTextValue(_proxyPortText, _binding.getProxy().getPort().toString());
+                } else {
+                    setTextValue(_proxyPortText, null);
+                }
             } else {
                 super.handleUndo(control);
             }
@@ -372,37 +444,15 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
             setErrorMessage("No uri specified");
         } else if (uriString.trim().length() < uriString.length()) {
             setErrorMessage("No spaces allowed in uri");
-//        } else {
-//            try {
-//                URI.create(uriString);
-//            } catch (IllegalArgumentException e) {
-//                setErrorMessage("Invalid URI");
-//            }
         }
-
-//        if (getBinding() != null && _mWSDLSocketText != null) {
-//            String portString = _bindingSocket;
-//            if (portString != null && portString.trim().length() > 0) {
-//                int pos = portString.indexOf(':');
-//                if (pos == -1) {
-//                    setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-//                } else {
-//                    String left = portString.substring(0, pos).trim();
-//                    if (left.length() > 0
-//                            && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
-//                        setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-//                    }
-//                    String right = portString.substring(pos + 1, portString.length()).trim();
-//                    try {
-//                        Integer.parseInt(right);
-//                    } catch (NumberFormatException nfe) {
-//                        setErrorMessage("The port number right of the : must be a valid integer.");
-//                    }
-//                }
-////            } else {
-////                setErrorMessage("No socket specified");
-//            }
-//        }
+        
+        if (_proxyPort != null && _proxyPort.trim().length() > 0) {
+            try {
+                Integer.parseInt(_proxyPort);
+            } catch (NumberFormatException nfe) {
+                setErrorMessage("The proxy port must be a valid integer");
+            }
+        }
 
         super.validateTabs();
 
@@ -526,6 +576,15 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                     _disableMtomCheckbox.setEnabled(false);
                 }
             }
+            if (_binding.getProxy() != null) {
+                setTextValue(_proxyTypeCombo, _binding.getProxy().getType());
+                setTextValue(_proxyHostText, _binding.getProxy().getHost());
+                if (_binding.getProxy().getPort() != null) {
+                    setTextValue(_proxyPortText, _binding.getProxy().getPort().toString());
+                }
+                setTextValue(_proxyUserText, _binding.getProxy().getUser());
+                setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
+            }
             super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -617,7 +676,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         updateControlEditable(_unwrappedPayloadCheckbox);
         updateControlEditable(_soapHeadersTypeCombo);
         updateControlEditable(_endpointAddressText);
-//        updateControlEditable(_securityActionText);
     }
 
     class MessageComposerOp extends ModelOperation {
@@ -630,6 +688,31 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         }
     }
     
+    class AddProxyOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getProxy() == null) {
+                ProxyType proxy = SOAPFactory.eINSTANCE.createProxyType();
+                setFeatureValue(_binding, "proxy", proxy);
+                setFeatureValue(_binding.getProxy(), "type", "HTTP");
+            }
+        }
+    }
+
+    class CleanupProxyOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getProxy() != null) {
+                if (_binding.getProxy().getHost() == null 
+                        && _binding.getProxy().getPassword() == null 
+                        && _binding.getProxy().getPort() == null
+                        && _binding.getProxy().getUser() == null) {
+                    setFeatureValue(_binding, "proxy", null);
+                }
+            }
+        }
+    }
+
     class AddMTomOp extends ModelOperation {
         @Override
         public void run() throws Exception {
@@ -668,6 +751,16 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
     protected void removeMTomFeature() {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new RemoveMTomOp());
+        wrapOperation(ops);
+    }
+
+    protected void updateProxyFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new AddProxyOp());
+        if (featureId != null) {
+            ops.add(new BasicOperation("proxy", featureId, value));
+        }
+        ops.add(new CleanupProxyOp());
         wrapOperation(ops);
     }
 }

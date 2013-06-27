@@ -118,6 +118,10 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createEndpointConfigTypeAdapter();
             }
             @Override
+            public Adapter caseProxyType(ProxyType object) {
+                return createProxyTypeAdapter();
+            }
+            @Override
             public Adapter caseSwitchyard_ContextMapperType(org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType object) {
                 return createSwitchyard_ContextMapperTypeAdapter();
             }
@@ -294,6 +298,20 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createEndpointConfigTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType <em>Proxy Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ProxyType
+     * @generated
+     */
+    public Adapter createProxyTypeAdapter() {
         return null;
     }
 

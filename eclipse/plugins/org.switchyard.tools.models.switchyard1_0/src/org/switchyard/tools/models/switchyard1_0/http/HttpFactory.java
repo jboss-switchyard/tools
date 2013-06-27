@@ -80,6 +80,15 @@ public interface HttpFactory extends EFactory {
     NTLMAuthenticationType createNTLMAuthenticationType();
 
     /**
+     * Returns a new object of class '<em>Proxy Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Proxy Type</em>'.
+     * @generated
+     */
+    ProxyType createProxyType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

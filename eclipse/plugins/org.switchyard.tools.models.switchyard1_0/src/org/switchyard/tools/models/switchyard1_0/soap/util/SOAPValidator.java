@@ -121,6 +121,8 @@ public class SOAPValidator extends EObjectValidator {
                 return validatePropertiesType((PropertiesType)value, diagnostics, context);
             case SOAPPackage.ENDPOINT_CONFIG_TYPE:
                 return validateEndpointConfigType((EndpointConfigType)value, diagnostics, context);
+            case SOAPPackage.PROXY_TYPE:
+                return validateProxyType((ProxyType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return validateSoapHeadersType((SoapHeadersType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
@@ -220,6 +222,15 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateEndpointConfigType(EndpointConfigType endpointConfigType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(endpointConfigType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateProxyType(ProxyType proxyType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(proxyType, diagnostics, context);
     }
 
     /**

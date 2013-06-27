@@ -106,6 +106,13 @@ public class ResteasySwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case ResteasyPackage.PROXY_TYPE: {
+                ProxyType proxyType = (ProxyType)theEObject;
+                T result = caseProxyType(proxyType);
+                if (result == null) result = caseCommonExtensionBase(proxyType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -167,6 +174,21 @@ public class ResteasySwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseRESTMessageComposerType(RESTMessageComposerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Proxy Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Proxy Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseProxyType(ProxyType object) {
         return null;
     }
 

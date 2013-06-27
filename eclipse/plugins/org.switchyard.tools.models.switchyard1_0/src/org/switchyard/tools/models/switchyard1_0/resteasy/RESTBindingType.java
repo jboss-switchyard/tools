@@ -6,6 +6,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.resteasy;
 
+import org.switchyard.tools.models.switchyard1_0.http.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -19,6 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getContextPath <em>Context Path</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,5 +107,32 @@ public interface RESTBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setContextPath(String value);
+
+    /**
+     * Returns the value of the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Proxy</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Proxy</em>' containment reference.
+     * @see #setProxy(org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType)
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage#getRESTBindingType_Proxy()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='proxy' namespace='##targetNamespace'"
+     * @generated
+     */
+    org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType getProxy();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getProxy <em>Proxy</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Proxy</em>' containment reference.
+     * @see #getProxy()
+     * @generated
+     */
+    void setProxy(org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType value);
 
 } // RESTBindingType

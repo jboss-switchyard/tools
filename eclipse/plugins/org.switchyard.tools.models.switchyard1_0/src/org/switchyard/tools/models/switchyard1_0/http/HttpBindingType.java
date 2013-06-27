@@ -22,6 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getBasic <em>Basic</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getNtlm <em>Ntlm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -187,5 +188,32 @@ public interface HttpBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setNtlm(NTLMAuthenticationType value);
+
+    /**
+     * Returns the value of the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Proxy</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Proxy</em>' containment reference.
+     * @see #setProxy(ProxyType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getHttpBindingType_Proxy()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='proxy' namespace='##targetNamespace'"
+     * @generated
+     */
+    ProxyType getProxy();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getProxy <em>Proxy</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Proxy</em>' containment reference.
+     * @see #getProxy()
+     * @generated
+     */
+    void setProxy(ProxyType value);
 
 } // HttpBindingType

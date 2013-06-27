@@ -266,13 +266,22 @@ public interface SOAPPackage extends EPackage {
     int DOCUMENT_ROOT__ENDPOINT_CONFIG = 8;
 
     /**
+     * The feature id for the '<em><b>Proxy</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__PROXY = 9;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 9;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 10;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
@@ -474,13 +483,22 @@ public interface SOAPPackage extends EPackage {
     int SOAP_BINDING_TYPE__ENDPOINT_CONFIG = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
 
     /**
+     * The feature id for the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SOAP_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+
+    /**
      * The number of structural features of the '<em>Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 10;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl <em>Interceptor Type</em>}' class.
@@ -804,6 +822,88 @@ public interface SOAPPackage extends EPackage {
     int ENDPOINT_CONFIG_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getProxyType()
+     * @generated
+     */
+    int PROXY_TYPE = 10;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__HOST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PORT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
+
+    /**
+     * The number of structural features of the '<em>Proxy Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 5;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -811,7 +911,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersType()
      * @generated
      */
-    int SOAP_HEADERS_TYPE = 10;
+    int SOAP_HEADERS_TYPE = 11;
 
     /**
      * The meta object id for the '<em>Soap Headers Type Object</em>' data type.
@@ -821,7 +921,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersTypeObject()
      * @generated
      */
-    int SOAP_HEADERS_TYPE_OBJECT = 11;
+    int SOAP_HEADERS_TYPE_OBJECT = 12;
 
     /**
      * The meta object id for the '<em>Wsdl Port Type</em>' data type.
@@ -831,7 +931,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getWsdlPortType()
      * @generated
      */
-    int WSDL_PORT_TYPE = 12;
+    int WSDL_PORT_TYPE = 13;
 
 
     /**
@@ -986,6 +1086,17 @@ public interface SOAPPackage extends EPackage {
     EReference getDocumentRoot_EndpointConfig();
 
     /**
+     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProxy <em>Proxy</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Proxy</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProxy()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Proxy();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType <em>Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1093,6 +1204,17 @@ public interface SOAPPackage extends EPackage {
      * @generated
      */
     EReference getSOAPBindingType_EndpointConfig();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getProxy <em>Proxy</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Proxy</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getProxy()
+     * @see #getSOAPBindingType()
+     * @generated
+     */
+    EReference getSOAPBindingType_Proxy();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType <em>Interceptor Type</em>}'.
@@ -1276,6 +1398,71 @@ public interface SOAPPackage extends EPackage {
     EAttribute getEndpointConfigType_ConfigName();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType <em>Proxy Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Proxy Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ProxyType
+     * @generated
+     */
+    EClass getProxyType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getType()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Type();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getHost <em>Host</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Host</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getHost()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Host();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getPort <em>Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getPort()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Port();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getUser <em>User</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>User</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getUser()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_User();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getPassword()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Password();
+
+    /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1450,6 +1637,14 @@ public interface SOAPPackage extends EPackage {
         EReference DOCUMENT_ROOT__ENDPOINT_CONFIG = eINSTANCE.getDocumentRoot_EndpointConfig();
 
         /**
+         * The meta object literal for the '<em><b>Proxy</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__PROXY = eINSTANCE.getDocumentRoot_Proxy();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1530,6 +1725,14 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EReference SOAP_BINDING_TYPE__ENDPOINT_CONFIG = eINSTANCE.getSOAPBindingType_EndpointConfig();
+
+        /**
+         * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SOAP_BINDING_TYPE__PROXY = eINSTANCE.getSOAPBindingType_Proxy();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl <em>Interceptor Type</em>}' class.
@@ -1678,6 +1881,56 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EAttribute ENDPOINT_CONFIG_TYPE__CONFIG_NAME = eINSTANCE.getEndpointConfigType_ConfigName();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getProxyType()
+         * @generated
+         */
+        EClass PROXY_TYPE = eINSTANCE.getProxyType();
+
+        /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__TYPE = eINSTANCE.getProxyType_Type();
+
+        /**
+         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__HOST = eINSTANCE.getProxyType_Host();
+
+        /**
+         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__PORT = eINSTANCE.getProxyType_Port();
+
+        /**
+         * The meta object literal for the '<em><b>User</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__USER = eINSTANCE.getProxyType_User();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__PASSWORD = eINSTANCE.getProxyType_Password();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.

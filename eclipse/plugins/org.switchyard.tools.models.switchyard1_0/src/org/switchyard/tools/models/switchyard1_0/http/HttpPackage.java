@@ -235,13 +235,22 @@ public interface HttpPackage extends EPackage {
     int HTTP_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
+     * The feature id for the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int HTTP_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+
+    /**
      * The number of structural features of the '<em>Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
@@ -418,13 +427,22 @@ public interface HttpPackage extends EPackage {
     int DOCUMENT_ROOT__NTLM = 7;
 
     /**
+     * The feature id for the '<em><b>Proxy</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__PROXY = 8;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 8;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 9;
 
 
     /**
@@ -602,6 +620,80 @@ public interface HttpPackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.http.impl.ProxyTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl#getProxyType()
+     * @generated
+     */
+    int PROXY_TYPE = 6;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__HOST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PORT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
+     * The number of structural features of the '<em>Proxy Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
+
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType <em>Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -676,6 +768,17 @@ public interface HttpPackage extends EPackage {
      * @generated
      */
     EReference getHttpBindingType_Ntlm();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getProxy <em>Proxy</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Proxy</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getProxy()
+     * @see #getHttpBindingType()
+     * @generated
+     */
+    EReference getHttpBindingType_Proxy();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType <em>Context Mapper Type</em>}'.
@@ -796,6 +899,17 @@ public interface HttpPackage extends EPackage {
     EReference getDocumentRoot_Ntlm();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getProxy <em>Proxy</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Proxy</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getProxy()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Proxy();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType <em>Basic Authentication Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -882,6 +996,60 @@ public interface HttpPackage extends EPackage {
     EAttribute getNTLMAuthenticationType_Domain();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.ProxyType <em>Proxy Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Proxy Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.ProxyType
+     * @generated
+     */
+    EClass getProxyType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.ProxyType#getHost <em>Host</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Host</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.ProxyType#getHost()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Host();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.ProxyType#getPort <em>Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.ProxyType#getPort()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Port();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.ProxyType#getUser <em>User</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>User</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.ProxyType#getUser()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_User();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.ProxyType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.ProxyType#getPassword()
+     * @see #getProxyType()
+     * @generated
+     */
+    EAttribute getProxyType_Password();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -960,6 +1128,14 @@ public interface HttpPackage extends EPackage {
          * @generated
          */
         EReference HTTP_BINDING_TYPE__NTLM = eINSTANCE.getHttpBindingType_Ntlm();
+
+        /**
+         * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference HTTP_BINDING_TYPE__PROXY = eINSTANCE.getHttpBindingType_Proxy();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
@@ -1056,6 +1232,14 @@ public interface HttpPackage extends EPackage {
         EReference DOCUMENT_ROOT__NTLM = eINSTANCE.getDocumentRoot_Ntlm();
 
         /**
+         * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__PROXY = eINSTANCE.getDocumentRoot_Proxy();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1122,6 +1306,48 @@ public interface HttpPackage extends EPackage {
          * @generated
          */
         EAttribute NTLM_AUTHENTICATION_TYPE__DOMAIN = eINSTANCE.getNTLMAuthenticationType_Domain();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.http.impl.ProxyTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl#getProxyType()
+         * @generated
+         */
+        EClass PROXY_TYPE = eINSTANCE.getProxyType();
+
+        /**
+         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__HOST = eINSTANCE.getProxyType_Host();
+
+        /**
+         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__PORT = eINSTANCE.getProxyType_Port();
+
+        /**
+         * The meta object literal for the '<em><b>User</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__USER = eINSTANCE.getProxyType_User();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROXY_TYPE__PASSWORD = eINSTANCE.getProxyType_Password();
 
     }
 

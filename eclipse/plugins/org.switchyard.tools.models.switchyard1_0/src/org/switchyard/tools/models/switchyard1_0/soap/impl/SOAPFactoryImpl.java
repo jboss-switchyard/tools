@@ -74,6 +74,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
             case SOAPPackage.PROPERTY_TYPE: return createPropertyType();
             case SOAPPackage.PROPERTIES_TYPE: return createPropertiesType();
             case SOAPPackage.ENDPOINT_CONFIG_TYPE: return createEndpointConfigType();
+            case SOAPPackage.PROXY_TYPE: return createProxyType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -215,6 +216,16 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public EndpointConfigType createEndpointConfigType() {
         EndpointConfigTypeImpl endpointConfigType = new EndpointConfigTypeImpl();
         return endpointConfigType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProxyType createProxyType() {
+        ProxyTypeImpl proxyType = new ProxyTypeImpl();
+        return proxyType;
     }
 
     /**
