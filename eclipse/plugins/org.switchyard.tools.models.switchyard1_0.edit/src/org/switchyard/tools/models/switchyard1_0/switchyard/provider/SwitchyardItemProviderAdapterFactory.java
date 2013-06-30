@@ -37,6 +37,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.util.ScaSwitch;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
@@ -402,6 +403,29 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ThrottlingTypeItemProvider throttlingTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createThrottlingTypeAdapter() {
+        if (throttlingTypeItemProvider == null) {
+            throttlingTypeItemProvider = new ThrottlingTypeItemProvider(this);
+        }
+
+        return throttlingTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -719,19 +743,20 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
         if (esbInterfaceItemProvider != null) esbInterfaceItemProvider.dispose();
         if (handlersTypeItemProvider != null) handlersTypeItemProvider.dispose();
         if (handlerTypeItemProvider != null) handlerTypeItemProvider.dispose();
+        if (javaOperationSelectorTypeItemProvider != null) javaOperationSelectorTypeItemProvider.dispose();
         if (messageComposerTypeItemProvider != null) messageComposerTypeItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (regexOperationSelectorTypeItemProvider != null) regexOperationSelectorTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
+        if (securitiesTypeItemProvider != null) securitiesTypeItemProvider.dispose();
+        if (securityTypeItemProvider != null) securityTypeItemProvider.dispose();
+        if (staticOperationSelectorTypeItemProvider != null) staticOperationSelectorTypeItemProvider.dispose();
         if (switchYardTypeItemProvider != null) switchYardTypeItemProvider.dispose();
+        if (throttlingTypeItemProvider != null) throttlingTypeItemProvider.dispose();
         if (transformsTypeItemProvider != null) transformsTypeItemProvider.dispose();
         if (validatesTypeItemProvider != null) validatesTypeItemProvider.dispose();
-        if (javaOperationSelectorTypeItemProvider != null) javaOperationSelectorTypeItemProvider.dispose();
-        if (regexOperationSelectorTypeItemProvider != null) regexOperationSelectorTypeItemProvider.dispose();
-        if (staticOperationSelectorTypeItemProvider != null) staticOperationSelectorTypeItemProvider.dispose();
         if (xPathOperationSelectorTypeItemProvider != null) xPathOperationSelectorTypeItemProvider.dispose();
-        if (securityTypeItemProvider != null) securityTypeItemProvider.dispose();
-        if (securitiesTypeItemProvider != null) securitiesTypeItemProvider.dispose();
     }
 
     /**

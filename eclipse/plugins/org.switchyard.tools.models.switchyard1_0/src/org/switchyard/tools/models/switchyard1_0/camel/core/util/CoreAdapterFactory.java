@@ -85,16 +85,16 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
                 return createCamelDirectBindingTypeAdapter();
             }
             @Override
-            public Adapter caseCamelTimerBindingType(CamelTimerBindingType object) {
-                return createCamelTimerBindingTypeAdapter();
+            public Adapter caseCamelMockBindingType(CamelMockBindingType object) {
+                return createCamelMockBindingTypeAdapter();
             }
             @Override
             public Adapter caseCamelSedaBindingType(CamelSedaBindingType object) {
                 return createCamelSedaBindingTypeAdapter();
             }
             @Override
-            public Adapter caseCamelMockBindingType(CamelMockBindingType object) {
-                return createCamelMockBindingTypeAdapter();
+            public Adapter caseCamelTimerBindingType(CamelTimerBindingType object) {
+                return createCamelTimerBindingTypeAdapter();
             }
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {

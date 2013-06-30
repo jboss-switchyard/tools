@@ -32,7 +32,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
      */
 	public static RulesFactory init() {
         try {
-            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory(RulesPackage.eNS_URI);
+            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-rules:config:1.0"); 
             if (theRulesFactory != null) {
                 return theRulesFactory;
             }

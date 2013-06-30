@@ -359,6 +359,15 @@ public interface ScaFactory extends EFactory {
 	ExportType createExportType();
 
 	/**
+     * Returns a new object of class '<em>Extensions Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Extensions Type</em>'.
+     * @generated
+     */
+    ExtensionsType createExtensionsType();
+
+    /**
      * Returns a new object of class '<em>Implementation Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

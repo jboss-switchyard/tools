@@ -143,6 +143,15 @@ public interface SwitchyardFactory extends EFactory {
 	SwitchYardType createSwitchYardType();
 
 	/**
+     * Returns a new object of class '<em>Throttling Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Throttling Type</em>'.
+     * @generated
+     */
+    ThrottlingType createThrottlingType();
+
+    /**
      * Returns a new object of class '<em>Transforms Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

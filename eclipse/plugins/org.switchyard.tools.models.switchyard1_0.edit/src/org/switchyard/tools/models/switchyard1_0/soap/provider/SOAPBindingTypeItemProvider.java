@@ -202,10 +202,13 @@ public class SOAPBindingTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__CONTEXT_MAPPER);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__MESSAGE_COMPOSER);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__PROXY);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__MTOM);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__IN_INTERCEPTORS);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__OUT_INTERCEPTORS);
-            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__MTOM);
-            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG);
         }
         return childrenFeatures;
     }
@@ -267,10 +270,13 @@ public class SOAPBindingTypeItemProvider
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
+            case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
+            case SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER:
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
+            case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
+            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
             case SOAPPackage.SOAP_BINDING_TYPE__IN_INTERCEPTORS:
             case SOAPPackage.SOAP_BINDING_TYPE__OUT_INTERCEPTORS:
-            case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
-            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -290,13 +296,23 @@ public class SOAPBindingTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (SOAPPackage.Literals.SOAP_BINDING_TYPE__IN_INTERCEPTORS,
-                 SOAPFactory.eINSTANCE.createInterceptorsType()));
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__CONTEXT_MAPPER,
+                 SOAPFactory.eINSTANCE.createContextMapperType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (SOAPPackage.Literals.SOAP_BINDING_TYPE__OUT_INTERCEPTORS,
-                 SOAPFactory.eINSTANCE.createInterceptorsType()));
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__MESSAGE_COMPOSER,
+                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG,
+                 SOAPFactory.eINSTANCE.createEndpointConfigType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__PROXY,
+                 SOAPFactory.eINSTANCE.createProxyType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -305,8 +321,13 @@ public class SOAPBindingTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG,
-                 SOAPFactory.eINSTANCE.createEndpointConfigType()));
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__IN_INTERCEPTORS,
+                 SOAPFactory.eINSTANCE.createInterceptorsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__OUT_INTERCEPTORS,
+                 SOAPFactory.eINSTANCE.createInterceptorsType()));
     }
 
     /**

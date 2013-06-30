@@ -8,6 +8,12 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * A representation of the model object '<em><b>XPath Operation Selector Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * 
+ *                 XPath Operation Selector Configuration.
+ *             
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -16,7 +22,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getXPathOperationSelectorType()
- * @model extendedMetaData="name='XPathOperationSelectorType' kind='elementOnly'"
+ * @model extendedMetaData="name='XPathOperationSelectorType' kind='empty'"
  * @generated
  */
 public interface XPathOperationSelectorType extends SwitchYardOperationSelectorType {
@@ -28,10 +34,15 @@ public interface XPathOperationSelectorType extends SwitchYardOperationSelectorT
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * 
+     *                             XPath expression.
+     *                         
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Expression</em>' attribute.
      * @see #setExpression(String)
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getXPathOperationSelectorType_Expression()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='attribute' name='expression'"
      * @generated
      */

@@ -78,10 +78,6 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-
-import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
@@ -216,7 +212,6 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
-        HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
         RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
@@ -247,7 +242,6 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
-        theHornetQPackage.createPackageContents();
         theRulesPackage.createPackageContents();
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
@@ -274,7 +268,6 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
-        theHornetQPackage.initializePackageContents();
         theRulesPackage.initializePackageContents();
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
@@ -320,7 +313,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelContextMapper() {
+    public EReference getBaseCamelBinding_ContextMapper() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
     }
 
@@ -329,7 +322,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelMessageComposer() {
+    public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
     }
 
@@ -608,7 +601,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_BindingNettyUDP() {
+    public EReference getDocumentRoot_BindingTcp() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
@@ -617,7 +610,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_BindingNettyTCP() {
+    public EReference getDocumentRoot_BindingUdp() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
@@ -650,8 +643,8 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
 
         camelNettyBindingTypeEClass = createEClass(CAMEL_NETTY_BINDING_TYPE);
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__HOST);
@@ -686,8 +679,8 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_UDP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_TCP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_TCP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_UDP);
     }
 
     /**
@@ -729,8 +722,8 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelNettyBindingTypeEClass, CamelNettyBindingType.class, "CamelNettyBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelNettyBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -765,8 +758,8 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingNettyUDP(), this.getCamelNettyUdpBindingType(), null, "bindingNettyUDP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingNettyTCP(), this.getCamelNettyTcpBindingType(), null, "bindingNettyTCP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingTcp(), this.getCamelNettyTcpBindingType(), null, "bindingTcp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingUdp(), this.getCamelNettyUdpBindingType(), null, "bindingUdp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -783,7 +776,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
           (baseCamelBindingEClass, 
            source, 
@@ -792,7 +785,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelContextMapper(), 
+          (getBaseCamelBinding_ContextMapper(), 
            source, 
            new String[] {
              "kind", "element",
@@ -800,7 +793,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelMessageComposer(), 
+          (getBaseCamelBinding_MessageComposer(), 
            source, 
            new String[] {
              "kind", "element",
@@ -1041,20 +1034,20 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
              "name", "xsi:schemaLocation"
            });		
         addAnnotation
-          (getDocumentRoot_BindingNettyUDP(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.udp",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingNettyTCP(), 
+          (getDocumentRoot_BindingTcp(), 
            source, 
            new String[] {
              "kind", "element",
              "name", "binding.tcp",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_BindingUdp(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.udp",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });

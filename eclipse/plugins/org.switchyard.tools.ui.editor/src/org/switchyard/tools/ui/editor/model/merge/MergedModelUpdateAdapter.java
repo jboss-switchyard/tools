@@ -18,6 +18,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -195,8 +196,31 @@ public class MergedModelUpdateAdapter extends EContentAdapter implements Adapter
                             final EObject generatedContent = it.next();
                             final EObject sourceContent = _factory.getSource(generatedContent);
                             if (sourceContent != generatedContent) {
-                                ((Collection<?>) ((EObject) existingGenerated).eGet(sourceContent.eContainingFeature()))
-                                        .remove(generatedContent);
+                                Object container = ((EObject) existingGenerated).eGet(generatedContent.eContainingFeature());
+                                if (container instanceof FeatureMap) {
+                                    /* we should only get here for "any" features */
+                                    if (ExtendedMetaData.INSTANCE.getFeatureKind(generatedContent.eContainingFeature()) == ExtendedMetaData.ELEMENT_WILDCARD_FEATURE) {
+                                        EClass docRoot = ExtendedMetaData.INSTANCE.getDocumentRoot(generatedContent
+                                                .eClass().getEPackage());
+                                        for (EStructuralFeature testFeature : ExtendedMetaData.INSTANCE
+                                                .getElements(docRoot)) {
+                                            if (testFeature.getEType() == generatedContent.eClass()) {
+                                                Object data = ((FeatureMap) container).get(testFeature, false);
+                                                if (data == generatedContent) {
+                                                    ((FeatureMap) container).unset(testFeature);
+                                                } else if (data instanceof Collection<?>) {
+                                                    ((Collection<?>) data).remove(generatedContent);
+                                                    if (((Collection<?>) data).isEmpty()) {
+                                                        ((FeatureMap) container).unset(testFeature);
+                                                    }
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    ((Collection<?>)container).remove(generatedContent);
+                                }
                                 _factory.removeMatchFromSource(sourceContent);
                             }
                         }

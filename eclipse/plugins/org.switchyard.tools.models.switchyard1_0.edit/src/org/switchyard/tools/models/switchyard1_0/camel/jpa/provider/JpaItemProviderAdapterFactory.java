@@ -95,6 +95,29 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected CamelJpaBindingTypeItemProvider camelJpaBindingTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createCamelJpaBindingTypeAdapter() {
+        if (camelJpaBindingTypeItemProvider == null) {
+            camelJpaBindingTypeItemProvider = new CamelJpaBindingTypeItemProvider(this);
+        }
+
+        return camelJpaBindingTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -161,29 +184,6 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
         }
 
         return jpaConsumerTypeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected CamelJPABindingTypeItemProvider camelJPABindingTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createCamelJPABindingTypeAdapter() {
-        if (camelJPABindingTypeItemProvider == null) {
-            camelJPABindingTypeItemProvider = new CamelJPABindingTypeItemProvider(this);
-        }
-
-        return camelJPABindingTypeItemProvider;
     }
 
     /**
@@ -286,7 +286,7 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
      */
     public void dispose() {
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
-        if (camelJPABindingTypeItemProvider != null) camelJPABindingTypeItemProvider.dispose();
+        if (camelJpaBindingTypeItemProvider != null) camelJpaBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (jpaConsumerTypeItemProvider != null) jpaConsumerTypeItemProvider.dispose();
         if (jpaProducerTypeItemProvider != null) jpaProducerTypeItemProvider.dispose();

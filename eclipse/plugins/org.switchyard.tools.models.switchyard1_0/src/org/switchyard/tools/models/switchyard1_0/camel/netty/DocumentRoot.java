@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyUDP <em>Binding Netty UDP</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingTcp <em>Binding Tcp</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingUdp <em>Binding Udp</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,57 +83,57 @@ public interface DocumentRoot extends EObject {
     EMap<String, String> getXSISchemaLocation();
 
     /**
-     * Returns the value of the '<em><b>Binding Netty UDP</b></em>' containment reference.
+     * Returns the value of the '<em><b>Binding Tcp</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Binding Netty UDP</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Binding Tcp</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Netty UDP</em>' containment reference.
-     * @see #setBindingNettyUDP(CamelNettyUdpBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getDocumentRoot_BindingNettyUDP()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.udp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-    CamelNettyUdpBindingType getBindingNettyUDP();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyUDP <em>Binding Netty UDP</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Netty UDP</em>' containment reference.
-     * @see #getBindingNettyUDP()
-     * @generated
-     */
-    void setBindingNettyUDP(CamelNettyUdpBindingType value);
-
-    /**
-     * Returns the value of the '<em><b>Binding Netty TCP</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Binding Netty TCP</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Netty TCP</em>' containment reference.
-     * @see #setBindingNettyTCP(CamelNettyTcpBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getDocumentRoot_BindingNettyTCP()
+     * @return the value of the '<em>Binding Tcp</em>' containment reference.
+     * @see #setBindingTcp(CamelNettyTcpBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getDocumentRoot_BindingTcp()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.tcp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated
      */
-    CamelNettyTcpBindingType getBindingNettyTCP();
+    CamelNettyTcpBindingType getBindingTcp();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyTCP <em>Binding Netty TCP</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingTcp <em>Binding Tcp</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Netty TCP</em>' containment reference.
-     * @see #getBindingNettyTCP()
+     * @param value the new value of the '<em>Binding Tcp</em>' containment reference.
+     * @see #getBindingTcp()
      * @generated
      */
-    void setBindingNettyTCP(CamelNettyTcpBindingType value);
+    void setBindingTcp(CamelNettyTcpBindingType value);
+
+    /**
+     * Returns the value of the '<em><b>Binding Udp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Udp</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Udp</em>' containment reference.
+     * @see #setBindingUdp(CamelNettyUdpBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getDocumentRoot_BindingUdp()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.udp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelNettyUdpBindingType getBindingUdp();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingUdp <em>Binding Udp</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Udp</em>' containment reference.
+     * @see #getBindingUdp()
+     * @generated
+     */
+    void setBindingUdp(CamelNettyUdpBindingType value);
 
 } // DocumentRoot

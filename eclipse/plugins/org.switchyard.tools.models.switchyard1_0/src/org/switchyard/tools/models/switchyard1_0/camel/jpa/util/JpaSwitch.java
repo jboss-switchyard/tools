@@ -81,12 +81,12 @@ public class JpaSwitch<T> extends Switch<T> {
                 return result;
             }
             case JpaPackage.CAMEL_JPA_BINDING_TYPE: {
-                CamelJPABindingType camelJPABindingType = (CamelJPABindingType)theEObject;
-                T result = caseCamelJPABindingType(camelJPABindingType);
-                if (result == null) result = caseBaseCamelBinding(camelJPABindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelJPABindingType);
-                if (result == null) result = caseBinding(camelJPABindingType);
-                if (result == null) result = caseCommonExtensionBase(camelJPABindingType);
+                CamelJpaBindingType camelJpaBindingType = (CamelJpaBindingType)theEObject;
+                T result = caseCamelJpaBindingType(camelJpaBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelJpaBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelJpaBindingType);
+                if (result == null) result = caseBinding(camelJpaBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelJpaBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -158,21 +158,6 @@ public class JpaSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Camel JPA Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Camel JPA Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelJPABindingType(CamelJPABindingType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -229,6 +214,21 @@ public class JpaSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBaseCamelBinding(BaseCamelBinding object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Jpa Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Jpa Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelJpaBindingType(CamelJpaBindingType object) {
         return null;
     }
 

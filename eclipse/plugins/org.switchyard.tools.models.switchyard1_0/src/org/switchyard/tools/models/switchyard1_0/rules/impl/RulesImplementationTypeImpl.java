@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationImpl;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenersType;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggersType;

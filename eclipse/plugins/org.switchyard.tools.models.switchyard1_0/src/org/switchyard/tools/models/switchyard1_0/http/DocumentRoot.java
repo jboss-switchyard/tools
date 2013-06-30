@@ -23,12 +23,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBindingHTTP <em>Binding HTTP</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getContextMapper <em>Context Mapper</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMessageComposer <em>Message Composer</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBasic <em>Basic</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getNtlm <em>Ntlm</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getProxy <em>Proxy</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBindingHttp <em>Binding Http</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,165 +86,30 @@ public interface DocumentRoot extends EObject {
     EMap<String, String> getXSISchemaLocation();
 
     /**
-     * Returns the value of the '<em><b>Binding HTTP</b></em>' containment reference.
+     * Returns the value of the '<em><b>Binding Http</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Binding HTTP</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Binding Http</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding HTTP</em>' containment reference.
-     * @see #setBindingHTTP(HttpBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_BindingHTTP()
+     * @return the value of the '<em>Binding Http</em>' containment reference.
+     * @see #setBindingHttp(HTTPBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_BindingHttp()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.http' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated
      */
-    HttpBindingType getBindingHTTP();
+    HTTPBindingType getBindingHttp();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBindingHTTP <em>Binding HTTP</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBindingHttp <em>Binding Http</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding HTTP</em>' containment reference.
-     * @see #getBindingHTTP()
+     * @param value the new value of the '<em>Binding Http</em>' containment reference.
+     * @see #getBindingHttp()
      * @generated
      */
-    void setBindingHTTP(HttpBindingType value);
-
-    /**
-     * Returns the value of the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Context Mapper</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Context Mapper</em>' containment reference.
-     * @see #setContextMapper(HttpContextMapperType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_ContextMapper()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#contextMapper'"
-     * @generated
-     */
-    HttpContextMapperType getContextMapper();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getContextMapper <em>Context Mapper</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Context Mapper</em>' containment reference.
-     * @see #getContextMapper()
-     * @generated
-     */
-    void setContextMapper(HttpContextMapperType value);
-
-    /**
-     * Returns the value of the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Message Composer</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Message Composer</em>' containment reference.
-     * @see #setMessageComposer(HttpMessageComposerType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_MessageComposer()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#messageComposer'"
-     * @generated
-     */
-    HttpMessageComposerType getMessageComposer();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMessageComposer <em>Message Composer</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Message Composer</em>' containment reference.
-     * @see #getMessageComposer()
-     * @generated
-     */
-    void setMessageComposer(HttpMessageComposerType value);
-
-    /**
-     * Returns the value of the '<em><b>Basic</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Basic</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Basic</em>' reference.
-     * @see #setBasic(BasicAuthenticationType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_Basic()
-     * @model upper="-2"
-     *        extendedMetaData="kind='element' name='basic' namespace='##targetNamespace'"
-     * @generated
-     */
-    BasicAuthenticationType getBasic();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBasic <em>Basic</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Basic</em>' reference.
-     * @see #getBasic()
-     * @generated
-     */
-    void setBasic(BasicAuthenticationType value);
-
-    /**
-     * Returns the value of the '<em><b>Ntlm</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Ntlm</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Ntlm</em>' containment reference.
-     * @see #setNtlm(NTLMAuthenticationType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_Ntlm()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='ntlm' namespace='##targetNamespace'"
-     * @generated
-     */
-    NTLMAuthenticationType getNtlm();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getNtlm <em>Ntlm</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Ntlm</em>' containment reference.
-     * @see #getNtlm()
-     * @generated
-     */
-    void setNtlm(NTLMAuthenticationType value);
-
-    /**
-     * Returns the value of the '<em><b>Proxy</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Proxy</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Proxy</em>' containment reference.
-     * @see #setProxy(ProxyType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_Proxy()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='proxy' namespace='##targetNamespace'"
-     * @generated
-     */
-    ProxyType getProxy();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getProxy <em>Proxy</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Proxy</em>' containment reference.
-     * @see #getProxy()
-     * @generated
-     */
-    void setProxy(ProxyType value);
+    void setBindingHttp(HTTPBindingType value);
 
 } // DocumentRoot

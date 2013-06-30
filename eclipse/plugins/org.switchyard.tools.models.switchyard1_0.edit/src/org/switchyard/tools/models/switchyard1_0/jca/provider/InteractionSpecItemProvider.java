@@ -17,54 +17,20 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CoreFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
-import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
-import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
-import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
-import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.InteractionSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
-
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.InteractionSpec} object.
@@ -101,31 +67,8 @@ public class InteractionSpecItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_InteractionSpec_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_InteractionSpec_type_feature", "_UI_InteractionSpec_type"),
-                 JcaPackage.Literals.INTERACTION_SPEC__TYPE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -141,8 +84,6 @@ public class InteractionSpecItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(JcaPackage.Literals.INTERACTION_SPEC__PROPERTY);
-            childrenFeatures.add(JcaPackage.Literals.INTERACTION_SPEC__ANY);
-            childrenFeatures.add(JcaPackage.Literals.INTERACTION_SPEC__ANY_ATTRIBUTE);
         }
         return childrenFeatures;
     }
@@ -179,10 +120,7 @@ public class InteractionSpecItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((InteractionSpec)object).getType();
-        return label == null || label.length() == 0 ?
-            getString("_UI_InteractionSpec_type") :
-            getString("_UI_InteractionSpec_type") + " " + label;
+        return getString("_UI_InteractionSpec_type");
     }
 
     /**
@@ -197,12 +135,7 @@ public class InteractionSpecItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(InteractionSpec.class)) {
-            case JcaPackage.INTERACTION_SPEC__TYPE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case JcaPackage.INTERACTION_SPEC__PROPERTY:
-            case JcaPackage.INTERACTION_SPEC__ANY:
-            case JcaPackage.INTERACTION_SPEC__ANY_ATTRIBUTE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -224,217 +157,6 @@ public class InteractionSpecItemProvider
             (createChildParameter
                 (JcaPackage.Literals.INTERACTION_SPEC__PROPERTY,
                  JcaFactory.eINSTANCE.createProperty()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL,
-                     CamelFactory.eINSTANCE.createCamelImplementationType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (ResteasyPackage.Literals.DOCUMENT_ROOT__BINDING_REST,
-                     ResteasyFactory.eINSTANCE.createRESTBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (ResteasyPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                     ResteasyFactory.eINSTANCE.createRESTContextMapperType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (ResteasyPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                     ResteasyFactory.eINSTANCE.createRESTMessageComposerType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP,
-                     HttpFactory.eINSTANCE.createHttpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                     HttpFactory.eINSTANCE.createHttpContextMapperType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                     HttpFactory.eINSTANCE.createHttpMessageComposerType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
-                     CoreFactory.eINSTANCE.createCamelBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT,
-                     CoreFactory.eINSTANCE.createCamelDirectBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_MOCK,
-                     CoreFactory.eINSTANCE.createCamelMockBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_SEDA,
-                     CoreFactory.eINSTANCE.createCamelSedaBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
-                     CoreFactory.eINSTANCE.createCamelTimerBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (AmqpPackage.Literals.DOCUMENT_ROOT__BINDING_AMQP,
-                     AmqpFactory.eINSTANCE.createCamelAmqpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (AtomPackage.Literals.DOCUMENT_ROOT__BINDING_ATOM,
-                     AtomFactory.eINSTANCE.createCamelAtomBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (FilePackage.Literals.DOCUMENT_ROOT__BINDING_FILE,
-                     FileFactory.eINSTANCE.createCamelFileBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTP,
-                     FtpFactory.eINSTANCE.createCamelFtpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTP,
-                     FtpFactory.eINSTANCE.createCamelFtpsBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS,
-                     FtpFactory.eINSTANCE.createCamelFtpsBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (FtpPackage.Literals.DOCUMENT_ROOT__BINDING_SFTP,
-                     FtpFactory.eINSTANCE.createCamelSftpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (JmsPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                     JmsFactory.eINSTANCE.createCamelJmsBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA,
-                     JpaFactory.eINSTANCE.createCamelJPABindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (MailPackage.Literals.DOCUMENT_ROOT__BINDING_MAIL,
-                     MailFactory.eINSTANCE.createCamelMailBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP,
-                     NettyFactory.eINSTANCE.createCamelNettyUdpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP,
-                     NettyFactory.eINSTANCE.createCamelNettyTcpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (QuartzPackage.Literals.DOCUMENT_ROOT__BINDING_QUARTZ,
-                     QuartzFactory.eINSTANCE.createCamelQuartzBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INTERACTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (SqlPackage.Literals.DOCUMENT_ROOT__BINDING_SQL,
-                     SqlFactory.eINSTANCE.createCamelSqlBindingType())));
-    }
-
-    /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        Object childFeature = feature;
-        Object childObject = child;
-
-        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
-            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
-            childFeature = entry.getEStructuralFeature();
-            childObject = entry.getValue();
-        }
-
-        boolean qualify =
-            childFeature == FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTP ||
-            childFeature == FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS;
-
-        if (qualify) {
-            return getString
-                ("_UI_CreateChild_text2",
-                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-        }
-        return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**

@@ -82,56 +82,56 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createContextMapperTypeAdapter();
             }
             @Override
-            public Adapter caseSOAPMessageComposerType(SOAPMessageComposerType object) {
-                return createSOAPMessageComposerTypeAdapter();
-            }
-            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
-            }
-            @Override
-            public Adapter caseSOAPBindingType(SOAPBindingType object) {
-                return createSOAPBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseInterceptorType(InterceptorType object) {
-                return createInterceptorTypeAdapter();
-            }
-            @Override
-            public Adapter caseInterceptorsType(InterceptorsType object) {
-                return createInterceptorsTypeAdapter();
-            }
-            @Override
-            public Adapter caseMtomType(MtomType object) {
-                return createMtomTypeAdapter();
-            }
-            @Override
-            public Adapter casePropertyType(PropertyType object) {
-                return createPropertyTypeAdapter();
-            }
-            @Override
-            public Adapter casePropertiesType(PropertiesType object) {
-                return createPropertiesTypeAdapter();
             }
             @Override
             public Adapter caseEndpointConfigType(EndpointConfigType object) {
                 return createEndpointConfigTypeAdapter();
             }
             @Override
-            public Adapter caseProxyType(ProxyType object) {
-                return createProxyTypeAdapter();
+            public Adapter caseInterceptorsType(InterceptorsType object) {
+                return createInterceptorsTypeAdapter();
             }
             @Override
-            public Adapter caseSwitchyard_ContextMapperType(org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType object) {
-                return createSwitchyard_ContextMapperTypeAdapter();
+            public Adapter caseInterceptorType(InterceptorType object) {
+                return createInterceptorTypeAdapter();
             }
             @Override
             public Adapter caseMessageComposerType(MessageComposerType object) {
                 return createMessageComposerTypeAdapter();
             }
             @Override
+            public Adapter caseMtomType(MtomType object) {
+                return createMtomTypeAdapter();
+            }
+            @Override
+            public Adapter casePropertiesType(PropertiesType object) {
+                return createPropertiesTypeAdapter();
+            }
+            @Override
+            public Adapter casePropertyType(PropertyType object) {
+                return createPropertyTypeAdapter();
+            }
+            @Override
+            public Adapter caseProxyType(ProxyType object) {
+                return createProxyTypeAdapter();
+            }
+            @Override
+            public Adapter caseSOAPBindingType(SOAPBindingType object) {
+                return createSOAPBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseSwitchyard_ContextMapperType(org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType object) {
+                return createSwitchyard_ContextMapperTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
+            }
+            @Override
+            public Adapter caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
+                return createSwitchyard_MessageComposerTypeAdapter();
             }
             @Override
             public Adapter caseBinding(Binding object) {
@@ -172,20 +172,6 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createContextMapperTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType <em>Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType
-     * @generated
-     */
-    public Adapter createSOAPMessageComposerTypeAdapter() {
         return null;
     }
 
@@ -330,13 +316,13 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType <em>Message Composer Type</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType <em>Message Composer Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType
+     * @see org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType
      * @generated
      */
     public Adapter createMessageComposerTypeAdapter() {
@@ -354,6 +340,20 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCommonExtensionBaseAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType <em>Message Composer Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType
+     * @generated
+     */
+    public Adapter createSwitchyard_MessageComposerTypeAdapter() {
         return null;
     }
 

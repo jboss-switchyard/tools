@@ -15,14 +15,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.eclipse.emf.ecore.util.BasicFeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.switchyard.tools.models.switchyard1_0.jca.Connection;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
-import org.switchyard.tools.models.switchyard1_0.jca.ResAuth;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 
 /**
@@ -34,8 +29,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getResourceAdapter <em>Resource Adapter</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getConnection <em>Connection</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,26 +54,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
      * @ordered
      */
     protected Connection connection;
-
-    /**
-     * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAny()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap any;
-
-    /**
-     * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAnyAttribute()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap anyAttribute;
 
     /**
      * <!-- begin-user-doc -->
@@ -192,30 +165,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
      * <!-- end-user-doc -->
      * @generated
      */
-    public FeatureMap getAny() {
-        if (any == null) {
-            any = new BasicFeatureMap(this, JcaPackage.JCA_OUTBOUND_CONNECTION__ANY);
-        }
-        return any;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public FeatureMap getAnyAttribute() {
-        if (anyAttribute == null) {
-            anyAttribute = new BasicFeatureMap(this, JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE);
-        }
-        return anyAttribute;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -223,10 +172,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
                 return basicSetResourceAdapter(null, msgs);
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 return basicSetConnection(null, msgs);
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
-                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
-                return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -243,12 +188,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
                 return getResourceAdapter();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 return getConnection();
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
-                if (coreType) return getAny();
-                return ((FeatureMap.Internal)getAny()).getWrapper();
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
-                if (coreType) return getAnyAttribute();
-                return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -266,12 +205,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
                 return;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 setConnection((Connection)newValue);
-                return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
-                ((FeatureMap.Internal)getAny()).set(newValue);
-                return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
-                ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -291,12 +224,6 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 setConnection((Connection)null);
                 return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
-                getAny().clear();
-                return;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
-                getAnyAttribute().clear();
-                return;
         }
         super.eUnset(featureID);
     }
@@ -313,30 +240,8 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
                 return resourceAdapter != null;
             case JcaPackage.JCA_OUTBOUND_CONNECTION__CONNECTION:
                 return connection != null;
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY:
-                return any != null && !any.isEmpty();
-            case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
-                return anyAttribute != null && !anyAttribute.isEmpty();
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (any: ");
-        result.append(any);
-        result.append(", anyAttribute: ");
-        result.append(anyAttribute);
-        result.append(')');
-        return result.toString();
     }
 
 } //JCAOutboundConnectionImpl

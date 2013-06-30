@@ -8,8 +8,6 @@ package org.switchyard.tools.models.switchyard1_0.jca;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.ecore.util.FeatureMap;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>JCA Inbound Interaction</b></em>'.
@@ -22,8 +20,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getEndpoint <em>Endpoint</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getBatchCommit <em>Batch Commit</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -166,39 +162,5 @@ public interface JCAInboundInteraction extends EObject {
      * @generated
      */
     void setBatchCommit(BatchCommit value);
-
-    /**
-     * Returns the value of the '<em><b>Any</b></em>' attribute list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Any</em>' attribute list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Any</em>' attribute list.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAInboundInteraction_Any()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='elementWildcard' wildcards='##other' name=':4' processing='lax'"
-     * @generated
-     */
-    FeatureMap getAny();
-
-    /**
-     * Returns the value of the '<em><b>Any Attribute</b></em>' attribute list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Any Attribute</em>' attribute list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Any Attribute</em>' attribute list.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAInboundInteraction_AnyAttribute()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':5' processing='lax'"
-     * @generated
-     */
-    FeatureMap getAnyAttribute();
 
 } // JCAInboundInteraction

@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getValidates <em>Validates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getHandlers <em>Handlers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurities <em>Securities</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *

@@ -18,8 +18,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.*;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -79,24 +77,16 @@ public class ResteasyAdapterFactory extends AdapterFactoryImpl {
     protected ResteasySwitch<Adapter> modelSwitch =
         new ResteasySwitch<Adapter>() {
             @Override
-            public Adapter caseRESTBindingType(RESTBindingType object) {
-                return createRESTBindingTypeAdapter();
-            }
-            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
             }
             @Override
-            public Adapter caseRESTContextMapperType(RESTContextMapperType object) {
-                return createRESTContextMapperTypeAdapter();
-            }
-            @Override
-            public Adapter caseRESTMessageComposerType(RESTMessageComposerType object) {
-                return createRESTMessageComposerTypeAdapter();
-            }
-            @Override
             public Adapter caseProxyType(ProxyType object) {
                 return createProxyTypeAdapter();
+            }
+            @Override
+            public Adapter caseRESTBindingType(RESTBindingType object) {
+                return createRESTBindingTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -109,14 +99,6 @@ public class ResteasyAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseContextMapperType(ContextMapperType object) {
-                return createContextMapperTypeAdapter();
-            }
-            @Override
-            public Adapter caseMessageComposerType(MessageComposerType object) {
-                return createMessageComposerTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -167,34 +149,6 @@ public class ResteasyAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType <em>REST Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType
-     * @generated
-     */
-    public Adapter createRESTContextMapperTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType <em>REST Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType
-     * @generated
-     */
-    public Adapter createRESTMessageComposerTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType <em>Proxy Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -205,34 +159,6 @@ public class ResteasyAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createProxyTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType <em>Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType
-     * @generated
-     */
-    public Adapter createContextMapperTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType <em>Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType
-     * @generated
-     */
-    public Adapter createMessageComposerTypeAdapter() {
         return null;
     }
 

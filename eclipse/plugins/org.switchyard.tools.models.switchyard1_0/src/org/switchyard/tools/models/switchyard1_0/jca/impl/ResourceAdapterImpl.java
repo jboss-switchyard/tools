@@ -19,9 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.eclipse.emf.ecore.util.BasicFeatureMap;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
@@ -36,9 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getProperty <em>Property</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getAny <em>Any</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,16 +50,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
      * @ordered
      */
     protected EList<Property> property;
-
-    /**
-     * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAny()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap any;
 
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -84,16 +70,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
      * @ordered
      */
     protected String name = NAME_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAnyAttribute()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap anyAttribute;
 
     /**
      * <!-- begin-user-doc -->
@@ -131,18 +107,6 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
      * <!-- end-user-doc -->
      * @generated
      */
-    public FeatureMap getAny() {
-        if (any == null) {
-            any = new BasicFeatureMap(this, JcaPackage.RESOURCE_ADAPTER__ANY);
-        }
-        return any;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public String getName() {
         return name;
     }
@@ -164,27 +128,11 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
      * <!-- end-user-doc -->
      * @generated
      */
-    public FeatureMap getAnyAttribute() {
-        if (anyAttribute == null) {
-            anyAttribute = new BasicFeatureMap(this, JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE);
-        }
-        return anyAttribute;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case JcaPackage.RESOURCE_ADAPTER__PROPERTY:
                 return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-            case JcaPackage.RESOURCE_ADAPTER__ANY:
-                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-            case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
-                return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -199,14 +147,8 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
         switch (featureID) {
             case JcaPackage.RESOURCE_ADAPTER__PROPERTY:
                 return getProperty();
-            case JcaPackage.RESOURCE_ADAPTER__ANY:
-                if (coreType) return getAny();
-                return ((FeatureMap.Internal)getAny()).getWrapper();
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 return getName();
-            case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
-                if (coreType) return getAnyAttribute();
-                return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -224,14 +166,8 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
                 getProperty().clear();
                 getProperty().addAll((Collection<? extends Property>)newValue);
                 return;
-            case JcaPackage.RESOURCE_ADAPTER__ANY:
-                ((FeatureMap.Internal)getAny()).set(newValue);
-                return;
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 setName((String)newValue);
-                return;
-            case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
-                ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -248,14 +184,8 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
             case JcaPackage.RESOURCE_ADAPTER__PROPERTY:
                 getProperty().clear();
                 return;
-            case JcaPackage.RESOURCE_ADAPTER__ANY:
-                getAny().clear();
-                return;
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 setName(NAME_EDEFAULT);
-                return;
-            case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
-                getAnyAttribute().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -271,12 +201,8 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
         switch (featureID) {
             case JcaPackage.RESOURCE_ADAPTER__PROPERTY:
                 return property != null && !property.isEmpty();
-            case JcaPackage.RESOURCE_ADAPTER__ANY:
-                return any != null && !any.isEmpty();
             case JcaPackage.RESOURCE_ADAPTER__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case JcaPackage.RESOURCE_ADAPTER__ANY_ATTRIBUTE:
-                return anyAttribute != null && !anyAttribute.isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -291,12 +217,8 @@ public class ResourceAdapterImpl extends EObjectImpl implements ResourceAdapter 
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (any: ");
-        result.append(any);
-        result.append(", name: ");
+        result.append(" (name: ");
         result.append(name);
-        result.append(", anyAttribute: ");
-        result.append(anyAttribute);
         result.append(')');
         return result.toString();
     }

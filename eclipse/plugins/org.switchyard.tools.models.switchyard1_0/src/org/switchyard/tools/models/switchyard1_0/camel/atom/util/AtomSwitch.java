@@ -71,6 +71,12 @@ public class AtomSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE: {
+                AtomScheduledPollConsumerType atomScheduledPollConsumerType = (AtomScheduledPollConsumerType)theEObject;
+                T result = caseAtomScheduledPollConsumerType(atomScheduledPollConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case AtomPackage.BASE_CAMEL_BINDING: {
                 BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
                 T result = caseBaseCamelBinding(baseCamelBinding);
@@ -87,12 +93,6 @@ public class AtomSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelAtomBindingType);
                 if (result == null) result = caseBinding(camelAtomBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelAtomBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE: {
-                AtomScheduledPollConsumerType atomScheduledPollConsumerType = (AtomScheduledPollConsumerType)theEObject;
-                T result = caseAtomScheduledPollConsumerType(atomScheduledPollConsumerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

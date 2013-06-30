@@ -79,8 +79,8 @@ public class DocumentRootItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP);
-            childrenFeatures.add(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP);
+            childrenFeatures.add(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_TCP);
+            childrenFeatures.add(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_UDP);
         }
         return childrenFeatures;
     }
@@ -132,8 +132,8 @@ public class DocumentRootItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
+            case NettyPackage.DOCUMENT_ROOT__BINDING_TCP:
+            case NettyPackage.DOCUMENT_ROOT__BINDING_UDP:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -153,13 +153,13 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP,
-                 NettyFactory.eINSTANCE.createCamelNettyUdpBindingType()));
+                (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_TCP,
+                 NettyFactory.eINSTANCE.createCamelNettyTcpBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP,
-                 NettyFactory.eINSTANCE.createCamelNettyTcpBindingType()));
+                (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_UDP,
+                 NettyFactory.eINSTANCE.createCamelNettyUdpBindingType()));
     }
 
     /**

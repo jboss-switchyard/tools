@@ -11,8 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,7 +24,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType} object.
@@ -309,37 +306,6 @@ public class CamelFileBindingTypeItemProvider
             (createChildParameter
                 (FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__PRODUCE,
                  FileFactory.eINSTANCE.createFileProducerType()));
-    }
-
-    /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        Object childFeature = feature;
-        Object childObject = child;
-
-        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
-            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
-            childFeature = entry.getEStructuralFeature();
-            childObject = entry.getValue();
-        }
-
-        boolean qualify =
-            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER ||
-            childFeature == FilePackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER ||
-            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER ||
-            childFeature == FilePackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER;
-
-        if (qualify) {
-            return getString
-                ("_UI_CreateChild_text2",
-                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-        }
-        return super.getCreateChildText(owner, feature, child, selection);
     }
 
 }

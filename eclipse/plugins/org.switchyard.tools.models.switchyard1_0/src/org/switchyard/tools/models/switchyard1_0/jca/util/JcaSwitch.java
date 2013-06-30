@@ -16,8 +16,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.jca.*;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -83,6 +81,12 @@ public class JcaSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case JcaPackage.BATCH_COMMIT: {
+                BatchCommit batchCommit = (BatchCommit)theEObject;
+                T result = caseBatchCommit(batchCommit);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case JcaPackage.CONNECTION: {
                 Connection connection = (Connection)theEObject;
                 T result = caseConnection(connection);
@@ -95,15 +99,15 @@ public class JcaSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case JcaPackage.ENDPOINT: {
-                Endpoint endpoint = (Endpoint)theEObject;
-                T result = caseEndpoint(endpoint);
+            case JcaPackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case JcaPackage.INBOUND_OPERATION: {
-                InboundOperation inboundOperation = (InboundOperation)theEObject;
-                T result = caseInboundOperation(inboundOperation);
+            case JcaPackage.ENDPOINT: {
+                Endpoint endpoint = (Endpoint)theEObject;
+                T result = caseEndpoint(endpoint);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -146,12 +150,6 @@ public class JcaSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case JcaPackage.OPERATION: {
-                Operation operation = (Operation)theEObject;
-                T result = caseOperation(operation);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case JcaPackage.PROCESSOR: {
                 Processor processor = (Processor)theEObject;
                 T result = caseProcessor(processor);
@@ -167,32 +165,6 @@ public class JcaSwitch<T> extends Switch<T> {
             case JcaPackage.RESOURCE_ADAPTER: {
                 ResourceAdapter resourceAdapter = (ResourceAdapter)theEObject;
                 T result = caseResourceAdapter(resourceAdapter);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case JcaPackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case JcaPackage.JCA_CONTEXT_MAPPER_TYPE: {
-                JCAContextMapperType jcaContextMapperType = (JCAContextMapperType)theEObject;
-                T result = caseJCAContextMapperType(jcaContextMapperType);
-                if (result == null) result = caseContextMapperType(jcaContextMapperType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case JcaPackage.JCA_MESSAGE_COMPOSER_TYPE: {
-                JCAMessageComposerType jcaMessageComposerType = (JCAMessageComposerType)theEObject;
-                T result = caseJCAMessageComposerType(jcaMessageComposerType);
-                if (result == null) result = caseMessageComposerType(jcaMessageComposerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case JcaPackage.BATCH_COMMIT: {
-                BatchCommit batchCommit = (BatchCommit)theEObject;
-                T result = caseBatchCommit(batchCommit);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -261,36 +233,6 @@ public class JcaSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>JCA Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>JCA Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseJCAContextMapperType(JCAContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>JCA Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>JCA Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseJCAMessageComposerType(JCAMessageComposerType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Batch Commit</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -302,51 +244,6 @@ public class JcaSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBatchCommit(BatchCommit object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseContextMapperType(ContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseMessageComposerType(MessageComposerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Inbound Operation</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Inbound Operation</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseInboundOperation(InboundOperation object) {
         return null;
     }
 
@@ -437,21 +334,6 @@ public class JcaSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseJCAOutboundInteraction(JCAOutboundInteraction object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseOperation(Operation object) {
         return null;
     }
 

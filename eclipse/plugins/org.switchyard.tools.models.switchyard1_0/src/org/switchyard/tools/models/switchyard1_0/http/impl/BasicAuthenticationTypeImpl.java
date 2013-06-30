@@ -2,6 +2,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.http.impl;
 
+import java.math.BigInteger;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -119,7 +120,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * @generated
      * @ordered
      */
-    protected static final Integer PORT_EDEFAULT = null;
+    protected static final BigInteger PORT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -129,7 +130,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * @generated
      * @ordered
      */
-    protected Integer port = PORT_EDEFAULT;
+    protected BigInteger port = PORT_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -239,7 +240,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getPort() {
+    public BigInteger getPort() {
         return port;
     }
 
@@ -248,8 +249,8 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(Integer newPort) {
-        Integer oldPort = port;
+    public void setPort(BigInteger newPort) {
+        BigInteger oldPort = port;
         port = newPort;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT, oldPort, port));
@@ -298,7 +299,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
                 setHost((String)newValue);
                 return;
             case HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT:
-                setPort((Integer)newValue);
+                setPort((BigInteger)newValue);
                 return;
         }
         super.eSet(featureID, newValue);

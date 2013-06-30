@@ -7,7 +7,6 @@
 package org.switchyard.tools.models.switchyard1_0.jca.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -62,68 +61,22 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case JcaPackage.ACTIVATION_SPEC: return createActivationSpec();
+            case JcaPackage.BATCH_COMMIT: return createBatchCommit();
             case JcaPackage.CONNECTION: return createConnection();
             case JcaPackage.CONNECTION_SPEC: return createConnectionSpec();
+            case JcaPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case JcaPackage.ENDPOINT: return createEndpoint();
-            case JcaPackage.INBOUND_OPERATION: return createInboundOperation();
             case JcaPackage.INTERACTION_SPEC: return createInteractionSpec();
             case JcaPackage.JCA_BINDING: return createJCABinding();
             case JcaPackage.JCA_INBOUND_CONNECTION: return createJCAInboundConnection();
             case JcaPackage.JCA_INBOUND_INTERACTION: return createJCAInboundInteraction();
             case JcaPackage.JCA_OUTBOUND_CONNECTION: return createJCAOutboundConnection();
             case JcaPackage.JCA_OUTBOUND_INTERACTION: return createJCAOutboundInteraction();
-            case JcaPackage.OPERATION: return createOperation();
             case JcaPackage.PROCESSOR: return createProcessor();
             case JcaPackage.PROPERTY: return createProperty();
             case JcaPackage.RESOURCE_ADAPTER: return createResourceAdapter();
-            case JcaPackage.DOCUMENT_ROOT: return createDocumentRoot();
-            case JcaPackage.JCA_CONTEXT_MAPPER_TYPE: return createJCAContextMapperType();
-            case JcaPackage.JCA_MESSAGE_COMPOSER_TYPE: return createJCAMessageComposerType();
-            case JcaPackage.BATCH_COMMIT: return createBatchCommit();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object createFromString(EDataType eDataType, String initialValue) {
-        switch (eDataType.getClassifierID()) {
-            case JcaPackage.JCA_CREATE_RESOURCE:
-                return createJCACreateResourceFromString(eDataType, initialValue);
-            case JcaPackage.RES_AUTH:
-                return createResAuthFromString(eDataType, initialValue);
-            case JcaPackage.JCA_CREATE_RESOURCE_OBJECT:
-                return createJCACreateResourceObjectFromString(eDataType, initialValue);
-            case JcaPackage.RES_AUTH_OBJECT:
-                return createResAuthObjectFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String convertToString(EDataType eDataType, Object instanceValue) {
-        switch (eDataType.getClassifierID()) {
-            case JcaPackage.JCA_CREATE_RESOURCE:
-                return convertJCACreateResourceToString(eDataType, instanceValue);
-            case JcaPackage.RES_AUTH:
-                return convertResAuthToString(eDataType, instanceValue);
-            case JcaPackage.JCA_CREATE_RESOURCE_OBJECT:
-                return convertJCACreateResourceObjectToString(eDataType, instanceValue);
-            case JcaPackage.RES_AUTH_OBJECT:
-                return convertResAuthObjectToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
     }
 
@@ -172,39 +125,9 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public JCAContextMapperType createJCAContextMapperType() {
-        JCAContextMapperTypeImpl jcaContextMapperType = new JCAContextMapperTypeImpl();
-        return jcaContextMapperType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public JCAMessageComposerType createJCAMessageComposerType() {
-        JCAMessageComposerTypeImpl jcaMessageComposerType = new JCAMessageComposerTypeImpl();
-        return jcaMessageComposerType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public BatchCommit createBatchCommit() {
         BatchCommitImpl batchCommit = new BatchCommitImpl();
         return batchCommit;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public InboundOperation createInboundOperation() {
-        InboundOperationImpl inboundOperation = new InboundOperationImpl();
-        return inboundOperation;
     }
 
     /**
@@ -272,16 +195,6 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Operation createOperation() {
-        OperationImpl operation = new OperationImpl();
-        return operation;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public Property createProperty() {
         PropertyImpl property = new PropertyImpl();
         return property;
@@ -315,82 +228,6 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
     public Endpoint createEndpoint() {
         EndpointImpl endpoint = new EndpointImpl();
         return endpoint;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public JCACreateResource createJCACreateResourceFromString(EDataType eDataType, String initialValue) {
-        JCACreateResource result = JCACreateResource.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertJCACreateResourceToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ResAuth createResAuthFromString(EDataType eDataType, String initialValue) {
-        ResAuth result = ResAuth.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertResAuthToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public JCACreateResource createJCACreateResourceObjectFromString(EDataType eDataType, String initialValue) {
-        return createJCACreateResourceFromString(JcaPackage.Literals.JCA_CREATE_RESOURCE, initialValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertJCACreateResourceObjectToString(EDataType eDataType, Object instanceValue) {
-        return convertJCACreateResourceToString(JcaPackage.Literals.JCA_CREATE_RESOURCE, instanceValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ResAuth createResAuthObjectFromString(EDataType eDataType, String initialValue) {
-        return createResAuthFromString(JcaPackage.Literals.RES_AUTH, initialValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertResAuthObjectToString(EDataType eDataType, Object instanceValue) {
-        return convertResAuthToString(JcaPackage.Literals.RES_AUTH, instanceValue);
     }
 
     /**

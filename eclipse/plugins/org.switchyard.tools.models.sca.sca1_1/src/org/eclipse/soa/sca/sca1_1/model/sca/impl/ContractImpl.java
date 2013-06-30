@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Callback;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
@@ -43,6 +44,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ContractImpl#getBindingGroup <em>Binding Group</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ContractImpl#getBinding <em>Binding</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ContractImpl#getCallback <em>Callback</em>}</li>
+ *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ContractImpl#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ContractImpl#getAny <em>Any</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ContractImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ContractImpl#getPolicySets <em>Policy Sets</em>}</li>
@@ -84,6 +86,16 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
 	protected Callback callback;
 
 	/**
+     * The cached value of the '{@link #getExtensions() <em>Extensions</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getExtensions()
+     * @generated
+     * @ordered
+     */
+    protected ExtensionsType extensions;
+
+    /**
      * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -277,6 +289,49 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ExtensionsType getExtensions() {
+        return extensions;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetExtensions(ExtensionsType newExtensions, NotificationChain msgs) {
+        ExtensionsType oldExtensions = extensions;
+        extensions = newExtensions;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ScaPackage.CONTRACT__EXTENSIONS, oldExtensions, newExtensions);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExtensions(ExtensionsType newExtensions) {
+        if (newExtensions != extensions) {
+            NotificationChain msgs = null;
+            if (extensions != null)
+                msgs = ((InternalEObject)extensions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ScaPackage.CONTRACT__EXTENSIONS, null, msgs);
+            if (newExtensions != null)
+                msgs = ((InternalEObject)newExtensions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ScaPackage.CONTRACT__EXTENSIONS, null, msgs);
+            msgs = basicSetExtensions(newExtensions, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CONTRACT__EXTENSIONS, newExtensions, newExtensions));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -368,6 +423,8 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
                 return ((InternalEList<?>)getBinding()).basicRemove(otherEnd, msgs);
             case ScaPackage.CONTRACT__CALLBACK:
                 return basicSetCallback(null, msgs);
+            case ScaPackage.CONTRACT__EXTENSIONS:
+                return basicSetExtensions(null, msgs);
             case ScaPackage.CONTRACT__ANY:
                 return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
         }
@@ -394,6 +451,8 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
                 return getBinding();
             case ScaPackage.CONTRACT__CALLBACK:
                 return getCallback();
+            case ScaPackage.CONTRACT__EXTENSIONS:
+                return getExtensions();
             case ScaPackage.CONTRACT__ANY:
                 if (coreType) return getAny();
                 return ((FeatureMap.Internal)getAny()).getWrapper();
@@ -431,6 +490,9 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
                 return;
             case ScaPackage.CONTRACT__CALLBACK:
                 setCallback((Callback)newValue);
+                return;
+            case ScaPackage.CONTRACT__EXTENSIONS:
+                setExtensions((ExtensionsType)newValue);
                 return;
             case ScaPackage.CONTRACT__ANY:
                 ((FeatureMap.Internal)getAny()).set(newValue);
@@ -471,6 +533,9 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
             case ScaPackage.CONTRACT__CALLBACK:
                 setCallback((Callback)null);
                 return;
+            case ScaPackage.CONTRACT__EXTENSIONS:
+                setExtensions((ExtensionsType)null);
+                return;
             case ScaPackage.CONTRACT__ANY:
                 getAny().clear();
                 return;
@@ -505,6 +570,8 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
                 return !getBinding().isEmpty();
             case ScaPackage.CONTRACT__CALLBACK:
                 return callback != null;
+            case ScaPackage.CONTRACT__EXTENSIONS:
+                return extensions != null;
             case ScaPackage.CONTRACT__ANY:
                 return any != null && !any.isEmpty();
             case ScaPackage.CONTRACT__NAME:

@@ -19,7 +19,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
@@ -35,8 +34,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getValidates <em>Validates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getHandlers <em>Handlers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getSecurities <em>Securities</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +83,16 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
 	protected HandlersType handlers;
 
 	/**
+     * The cached value of the '{@link #getSecurities() <em>Securities</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSecurities()
+     * @generated
+     * @ordered
+     */
+    protected SecuritiesType securities;
+
+    /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,7 +102,7 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
      */
 	protected static final String NAME_EDEFAULT = null;
 
-	/**
+    /**
      * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,16 +111,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
      * @ordered
      */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-     * The cached value of the '{@link #getSecurities() <em>Securities</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSecurities()
-     * @generated
-     * @ordered
-     */
-    protected SecuritiesType securities;
 
     /**
      * <!-- begin-user-doc -->
@@ -406,10 +405,10 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return getProperties();
             case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
                 return getHandlers();
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                return getName();
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 return getSecurities();
+            case SwitchyardPackage.DOMAIN_TYPE__NAME:
+                return getName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -434,11 +433,11 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
             case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
                 setHandlers((HandlersType)newValue);
                 return;
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                setName((String)newValue);
-                return;
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 setSecurities((SecuritiesType)newValue);
+                return;
+            case SwitchyardPackage.DOMAIN_TYPE__NAME:
+                setName((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -464,11 +463,11 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
             case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
                 setHandlers((HandlersType)null);
                 return;
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                setName(NAME_EDEFAULT);
-                return;
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 setSecurities((SecuritiesType)null);
+                return;
+            case SwitchyardPackage.DOMAIN_TYPE__NAME:
+                setName(NAME_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -490,10 +489,10 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return properties != null;
             case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
                 return handlers != null;
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 return securities != null;
+            case SwitchyardPackage.DOMAIN_TYPE__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
         }
         return super.eIsSet(featureID);
     }

@@ -36,8 +36,6 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
@@ -340,16 +338,6 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         return _advancedPropsFilterList;
     }
 
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return ResteasyFactory.eINSTANCE.createRESTContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return ResteasyFactory.eINSTANCE.createRESTMessageComposerType();
-    }
-    
     protected void updateProxyFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new AddProxyOp());

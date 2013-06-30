@@ -63,26 +63,26 @@ public class PropertyTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addPropNamePropertyDescriptor(object);
-            addPropValuePropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
+            addValuePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Prop Name feature.
+     * This adds a property descriptor for the Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addPropNamePropertyDescriptor(Object object) {
+    protected void addNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_PropertyType_propName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyType_propName_feature", "_UI_PropertyType_type"),
-                 SOAPPackage.Literals.PROPERTY_TYPE__PROP_NAME,
+                 getString("_UI_PropertyType_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyType_name_feature", "_UI_PropertyType_type"),
+                 SOAPPackage.Literals.PROPERTY_TYPE__NAME,
                  true,
                  false,
                  false,
@@ -92,19 +92,19 @@ public class PropertyTypeItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Prop Value feature.
+     * This adds a property descriptor for the Value feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addPropValuePropertyDescriptor(Object object) {
+    protected void addValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_PropertyType_propValue_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyType_propValue_feature", "_UI_PropertyType_type"),
-                 SOAPPackage.Literals.PROPERTY_TYPE__PROP_VALUE,
+                 getString("_UI_PropertyType_value_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyType_value_feature", "_UI_PropertyType_type"),
+                 SOAPPackage.Literals.PROPERTY_TYPE__VALUE,
                  true,
                  false,
                  false,
@@ -132,7 +132,7 @@ public class PropertyTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((PropertyType)object).getPropName();
+        String label = ((PropertyType)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_PropertyType_type") :
             getString("_UI_PropertyType_type") + " " + label;
@@ -150,8 +150,8 @@ public class PropertyTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(PropertyType.class)) {
-            case SOAPPackage.PROPERTY_TYPE__PROP_NAME:
-            case SOAPPackage.PROPERTY_TYPE__PROP_VALUE:
+            case SOAPPackage.PROPERTY_TYPE__NAME:
+            case SOAPPackage.PROPERTY_TYPE__VALUE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

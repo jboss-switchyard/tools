@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -68,54 +67,8 @@ public class DocumentRootItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addMtomPropertyDescriptor(object);
-            addEndpointConfigPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Mtom feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addMtomPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentRoot_mtom_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentRoot_mtom_feature", "_UI_DocumentRoot_type"),
-                 SOAPPackage.Literals.DOCUMENT_ROOT__MTOM,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Endpoint Config feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addEndpointConfigPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentRoot_endpointConfig_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentRoot_endpointConfig_feature", "_UI_DocumentRoot_type"),
-                 SOAPPackage.Literals.DOCUMENT_ROOT__ENDPOINT_CONFIG,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
     }
 
     /**
@@ -131,9 +84,9 @@ public class DocumentRootItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__BINDING_SOAP);
-            childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP);
-            childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP);
             childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__INTERCEPTOR);
+            childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__PROPERTIES);
+            childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__PROPERTY);
         }
         return childrenFeatures;
     }
@@ -186,9 +139,9 @@ public class DocumentRootItemProvider
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case SOAPPackage.DOCUMENT_ROOT__BINDING_SOAP:
-            case SOAPPackage.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP:
-            case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
             case SOAPPackage.DOCUMENT_ROOT__INTERCEPTOR:
+            case SOAPPackage.DOCUMENT_ROOT__PROPERTIES:
+            case SOAPPackage.DOCUMENT_ROOT__PROPERTY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -213,18 +166,18 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (SOAPPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP,
-                 SOAPFactory.eINSTANCE.createContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SOAPPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP,
-                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
                 (SOAPPackage.Literals.DOCUMENT_ROOT__INTERCEPTOR,
                  SOAPFactory.eINSTANCE.createInterceptorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.DOCUMENT_ROOT__PROPERTIES,
+                 SOAPFactory.eINSTANCE.createPropertiesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.DOCUMENT_ROOT__PROPERTY,
+                 SOAPFactory.eINSTANCE.createPropertyType()));
     }
 
     /**

@@ -262,9 +262,9 @@ public class AtomItemProviderAdapterFactory extends AtomAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (atomScheduledPollConsumerTypeItemProvider != null) atomScheduledPollConsumerTypeItemProvider.dispose();
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelAtomBindingTypeItemProvider != null) camelAtomBindingTypeItemProvider.dispose();
-        if (atomScheduledPollConsumerTypeItemProvider != null) atomScheduledPollConsumerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }
 

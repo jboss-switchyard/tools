@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
@@ -33,6 +32,8 @@ import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardBindingTypeItemProvider;
 
 /**
@@ -92,7 +93,7 @@ public class JCABindingItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
                  null,
                  null));
     }
@@ -109,10 +110,12 @@ public class JCABindingItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
+            childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__CONTEXT_MAPPER);
+            childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__MESSAGE_COMPOSER);
             childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__OUTBOUND_CONNECTION);
             childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__INBOUND_CONNECTION);
-            childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__INBOUND_INTERACTION);
             childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__OUTBOUND_INTERACTION);
+            childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__INBOUND_INTERACTION);
             childrenFeatures.add(JcaPackage.Literals.JCA_BINDING__PROPERTY);
         }
         return childrenFeatures;
@@ -171,10 +174,12 @@ public class JCABindingItemProvider
             case JcaPackage.JCA_BINDING__EXTENSIONS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
+            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
+            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
-            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
             case JcaPackage.JCA_BINDING__OUTBOUND_INTERACTION:
+            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
             case JcaPackage.JCA_BINDING__PROPERTY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -195,6 +200,26 @@ public class JCABindingItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (JcaPackage.Literals.JCA_BINDING__CONTEXT_MAPPER,
+                 SwitchyardFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.JCA_BINDING__CONTEXT_MAPPER,
+                 SOAPFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.JCA_BINDING__MESSAGE_COMPOSER,
+                 SwitchyardFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.JCA_BINDING__MESSAGE_COMPOSER,
+                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (JcaPackage.Literals.JCA_BINDING__OUTBOUND_CONNECTION,
                  JcaFactory.eINSTANCE.createJCAOutboundConnection()));
 
@@ -205,13 +230,13 @@ public class JCABindingItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (JcaPackage.Literals.JCA_BINDING__INBOUND_INTERACTION,
-                 JcaFactory.eINSTANCE.createJCAInboundInteraction()));
+                (JcaPackage.Literals.JCA_BINDING__OUTBOUND_INTERACTION,
+                 JcaFactory.eINSTANCE.createJCAOutboundInteraction()));
 
         newChildDescriptors.add
             (createChildParameter
-                (JcaPackage.Literals.JCA_BINDING__OUTBOUND_INTERACTION,
-                 JcaFactory.eINSTANCE.createJCAOutboundInteraction()));
+                (JcaPackage.Literals.JCA_BINDING__INBOUND_INTERACTION,
+                 JcaFactory.eINSTANCE.createJCAInboundInteraction()));
 
         newChildDescriptors.add
             (createChildParameter

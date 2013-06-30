@@ -18,8 +18,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.http.*;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -79,24 +77,16 @@ public class HttpAdapterFactory extends AdapterFactoryImpl {
     protected HttpSwitch<Adapter> modelSwitch =
         new HttpSwitch<Adapter>() {
             @Override
-            public Adapter caseHttpBindingType(HttpBindingType object) {
-                return createHttpBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseHttpContextMapperType(HttpContextMapperType object) {
-                return createHttpContextMapperTypeAdapter();
-            }
-            @Override
-            public Adapter caseHttpMessageComposerType(HttpMessageComposerType object) {
-                return createHttpMessageComposerTypeAdapter();
+            public Adapter caseBasicAuthenticationType(BasicAuthenticationType object) {
+                return createBasicAuthenticationTypeAdapter();
             }
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
             }
             @Override
-            public Adapter caseBasicAuthenticationType(BasicAuthenticationType object) {
-                return createBasicAuthenticationTypeAdapter();
+            public Adapter caseHTTPBindingType(HTTPBindingType object) {
+                return createHTTPBindingTypeAdapter();
             }
             @Override
             public Adapter caseNTLMAuthenticationType(NTLMAuthenticationType object) {
@@ -119,14 +109,6 @@ public class HttpAdapterFactory extends AdapterFactoryImpl {
                 return createSwitchYardBindingTypeAdapter();
             }
             @Override
-            public Adapter caseContextMapperType(ContextMapperType object) {
-                return createContextMapperTypeAdapter();
-            }
-            @Override
-            public Adapter caseMessageComposerType(MessageComposerType object) {
-                return createMessageComposerTypeAdapter();
-            }
-            @Override
             public Adapter defaultCase(EObject object) {
                 return createEObjectAdapter();
             }
@@ -147,48 +129,6 @@ public class HttpAdapterFactory extends AdapterFactoryImpl {
 
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType <em>Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpBindingType
-     * @generated
-     */
-    public Adapter createHttpBindingTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType <em>Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType
-     * @generated
-     */
-    public Adapter createHttpContextMapperTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType <em>Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType
-     * @generated
-     */
-    public Adapter createHttpMessageComposerTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -199,6 +139,20 @@ public class HttpAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createDocumentRootAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType <em>HTTP Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType
+     * @generated
+     */
+    public Adapter createHTTPBindingTypeAdapter() {
         return null;
     }
 
@@ -283,34 +237,6 @@ public class HttpAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSwitchYardBindingTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType <em>Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType
-     * @generated
-     */
-    public Adapter createContextMapperTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType <em>Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType
-     * @generated
-     */
-    public Adapter createMessageComposerTypeAdapter() {
         return null;
     }
 

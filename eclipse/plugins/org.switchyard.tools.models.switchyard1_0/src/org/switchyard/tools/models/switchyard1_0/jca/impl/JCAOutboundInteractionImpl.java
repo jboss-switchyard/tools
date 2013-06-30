@@ -15,15 +15,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.eclipse.emf.ecore.util.BasicFeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.InteractionSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
-import org.switchyard.tools.models.switchyard1_0.jca.Operation;
 import org.switchyard.tools.models.switchyard1_0.jca.Processor;
 
 /**
@@ -36,8 +31,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.Processor;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getConnectionSpec <em>Connection Spec</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getInteractionSpec <em>Interaction Spec</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getProcessor <em>Processor</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,26 +66,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
      * @ordered
      */
     protected Processor processor;
-
-    /**
-     * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAny()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap any;
-
-    /**
-     * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAnyAttribute()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap anyAttribute;
 
     /**
      * <!-- begin-user-doc -->
@@ -247,30 +220,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
      * <!-- end-user-doc -->
      * @generated
      */
-    public FeatureMap getAny() {
-        if (any == null) {
-            any = new BasicFeatureMap(this, JcaPackage.JCA_OUTBOUND_INTERACTION__ANY);
-        }
-        return any;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public FeatureMap getAnyAttribute() {
-        if (anyAttribute == null) {
-            anyAttribute = new BasicFeatureMap(this, JcaPackage.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE);
-        }
-        return anyAttribute;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -280,10 +229,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return basicSetInteractionSpec(null, msgs);
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 return basicSetProcessor(null, msgs);
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
-                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE:
-                return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -302,12 +247,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return getInteractionSpec();
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 return getProcessor();
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
-                if (coreType) return getAny();
-                return ((FeatureMap.Internal)getAny()).getWrapper();
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE:
-                if (coreType) return getAnyAttribute();
-                return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -328,12 +267,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 setProcessor((Processor)newValue);
-                return;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
-                ((FeatureMap.Internal)getAny()).set(newValue);
-                return;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE:
-                ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -356,12 +289,6 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 setProcessor((Processor)null);
                 return;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
-                getAny().clear();
-                return;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE:
-                getAnyAttribute().clear();
-                return;
         }
         super.eUnset(featureID);
     }
@@ -380,30 +307,8 @@ public class JCAOutboundInteractionImpl extends EObjectImpl implements JCAOutbou
                 return interactionSpec != null;
             case JcaPackage.JCA_OUTBOUND_INTERACTION__PROCESSOR:
                 return processor != null;
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY:
-                return any != null && !any.isEmpty();
-            case JcaPackage.JCA_OUTBOUND_INTERACTION__ANY_ATTRIBUTE:
-                return anyAttribute != null && !anyAttribute.isEmpty();
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (any: ");
-        result.append(any);
-        result.append(", anyAttribute: ");
-        result.append(anyAttribute);
-        result.append(')');
-        return result.toString();
     }
 
 } //JCAOutboundInteractionImpl

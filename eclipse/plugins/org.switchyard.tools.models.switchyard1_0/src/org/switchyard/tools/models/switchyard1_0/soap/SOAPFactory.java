@@ -35,15 +35,6 @@ public interface SOAPFactory extends EFactory {
     ContextMapperType createContextMapperType();
 
     /**
-     * Returns a new object of class '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Message Composer Type</em>'.
-     * @generated
-     */
-    SOAPMessageComposerType createSOAPMessageComposerType();
-
-    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -69,6 +60,15 @@ public interface SOAPFactory extends EFactory {
      * @generated
      */
     InterceptorType createInterceptorType();
+
+    /**
+     * Returns a new object of class '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Message Composer Type</em>'.
+     * @generated
+     */
+    MessageComposerType createMessageComposerType();
 
     /**
      * Returns a new object of class '<em>Interceptors Type</em>'.

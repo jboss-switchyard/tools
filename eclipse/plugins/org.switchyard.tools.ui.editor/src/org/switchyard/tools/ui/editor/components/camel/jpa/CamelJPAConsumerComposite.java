@@ -45,7 +45,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
@@ -62,7 +62,7 @@ import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
-    private CamelJPABindingType _binding = null;
+    private CamelJpaBindingType _binding = null;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
     private Text _entityClassNameText;
@@ -85,8 +85,8 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
 
     @Override
     public void setBinding(Binding impl) {
-        if (impl instanceof CamelJPABindingType) {
-            this._binding = (CamelJPABindingType) impl;
+        if (impl instanceof CamelJpaBindingType) {
+            this._binding = (CamelJpaBindingType) impl;
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
                 _deleteCheckbox.setSelection(this._binding.getConsume().isConsumeDelete());

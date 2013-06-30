@@ -52,8 +52,6 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojureFactory;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojureImplementationType;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 import org.switchyard.tools.models.switchyard1_0.clojure.DocumentRoot;
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
@@ -149,7 +147,6 @@ public class ClojurePackageImpl extends EPackageImpl implements ClojurePackage {
         BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
-        HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
         RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
@@ -180,7 +177,6 @@ public class ClojurePackageImpl extends EPackageImpl implements ClojurePackage {
         theBPELPackage.createPackageContents();
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
-        theHornetQPackage.createPackageContents();
         theRulesPackage.createPackageContents();
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
@@ -207,7 +203,6 @@ public class ClojurePackageImpl extends EPackageImpl implements ClojurePackage {
         theBPELPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
-        theHornetQPackage.initializePackageContents();
         theRulesPackage.initializePackageContents();
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();

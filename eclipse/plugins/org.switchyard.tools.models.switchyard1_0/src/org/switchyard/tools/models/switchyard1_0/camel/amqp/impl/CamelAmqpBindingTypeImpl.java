@@ -309,7 +309,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int PRIORITY_EDEFAULT = 4;
+    protected static final Object PRIORITY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "4");
     /**
      * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -318,7 +318,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int priority = PRIORITY_EDEFAULT;
+    protected Object priority = PRIORITY_EDEFAULT;
     /**
      * This is true if the Priority attribute has been set.
      * <!-- begin-user-doc -->
@@ -397,7 +397,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int REQUEST_TIMEOUT_EDEFAULT = 20000;
+    protected static final Object REQUEST_TIMEOUT_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "20000");
     /**
      * The cached value of the '{@link #getRequestTimeout() <em>Request Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -406,7 +406,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
+    protected Object requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
     /**
      * This is true if the Request Timeout attribute has been set.
      * <!-- begin-user-doc -->
@@ -441,7 +441,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int TIME_TO_LIVE_EDEFAULT = 0;
+    protected static final Object TIME_TO_LIVE_EDEFAULT = null;
     /**
      * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -450,15 +450,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int timeToLive = TIME_TO_LIVE_EDEFAULT;
-    /**
-     * This is true if the Time To Live attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean timeToLiveESet;
+    protected Object timeToLive = TIME_TO_LIVE_EDEFAULT;
     /**
      * The default value of the '{@link #isTransacted() <em>Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -905,7 +897,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPriority() {
+    public Object getPriority() {
         return priority;
     }
 
@@ -914,8 +906,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPriority(int newPriority) {
-        int oldPriority = priority;
+    public void setPriority(Object newPriority) {
+        Object oldPriority = priority;
         priority = newPriority;
         boolean oldPriorityESet = priorityESet;
         priorityESet = true;
@@ -929,7 +921,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetPriority() {
-        int oldPriority = priority;
+        Object oldPriority = priority;
         boolean oldPriorityESet = priorityESet;
         priority = PRIORITY_EDEFAULT;
         priorityESet = false;
@@ -1039,7 +1031,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getRequestTimeout() {
+    public Object getRequestTimeout() {
         return requestTimeout;
     }
 
@@ -1048,8 +1040,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRequestTimeout(int newRequestTimeout) {
-        int oldRequestTimeout = requestTimeout;
+    public void setRequestTimeout(Object newRequestTimeout) {
+        Object oldRequestTimeout = requestTimeout;
         requestTimeout = newRequestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeoutESet = true;
@@ -1063,7 +1055,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetRequestTimeout() {
-        int oldRequestTimeout = requestTimeout;
+        Object oldRequestTimeout = requestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
         requestTimeoutESet = false;
@@ -1106,7 +1098,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getTimeToLive() {
+    public Object getTimeToLive() {
         return timeToLive;
     }
 
@@ -1115,36 +1107,11 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTimeToLive(int newTimeToLive) {
-        int oldTimeToLive = timeToLive;
+    public void setTimeToLive(Object newTimeToLive) {
+        Object oldTimeToLive = timeToLive;
         timeToLive = newTimeToLive;
-        boolean oldTimeToLiveESet = timeToLiveESet;
-        timeToLiveESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE, oldTimeToLive, timeToLive, !oldTimeToLiveESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetTimeToLive() {
-        int oldTimeToLive = timeToLive;
-        boolean oldTimeToLiveESet = timeToLiveESet;
-        timeToLive = TIME_TO_LIVE_EDEFAULT;
-        timeToLiveESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE, oldTimeToLive, TIME_TO_LIVE_EDEFAULT, oldTimeToLiveESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetTimeToLive() {
-        return timeToLiveESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE, oldTimeToLive, timeToLive));
     }
 
     /**
@@ -1313,7 +1280,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setDeliveryPersistent((Boolean)newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__PRIORITY:
-                setPriority((Integer)newValue);
+                setPriority(newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
                 setExplicitQosEnabled((Boolean)newValue);
@@ -1325,13 +1292,13 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setReplyToType((String)newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__REQUEST_TIMEOUT:
-                setRequestTimeout((Integer)newValue);
+                setRequestTimeout(newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__SELECTOR:
                 setSelector((String)newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE:
-                setTimeToLive((Integer)newValue);
+                setTimeToLive(newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTED:
                 setTransacted((Boolean)newValue);
@@ -1406,7 +1373,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setSelector(SELECTOR_EDEFAULT);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE:
-                unsetTimeToLive();
+                setTimeToLive(TIME_TO_LIVE_EDEFAULT);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTED:
                 unsetTransacted();
@@ -1463,7 +1430,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__SELECTOR:
                 return SELECTOR_EDEFAULT == null ? selector != null : !SELECTOR_EDEFAULT.equals(selector);
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE:
-                return isSetTimeToLive();
+                return TIME_TO_LIVE_EDEFAULT == null ? timeToLive != null : !TIME_TO_LIVE_EDEFAULT.equals(timeToLive);
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTED:
                 return isSetTransacted();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTION_MANAGER:
@@ -1519,7 +1486,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         result.append(", selector: ");
         result.append(selector);
         result.append(", timeToLive: ");
-        if (timeToLiveESet) result.append(timeToLive); else result.append("<unset>");
+        result.append(timeToLive);
         result.append(", transacted: ");
         if (transactedESet) result.append(transacted); else result.append("<unset>");
         result.append(", transactionManager: ");

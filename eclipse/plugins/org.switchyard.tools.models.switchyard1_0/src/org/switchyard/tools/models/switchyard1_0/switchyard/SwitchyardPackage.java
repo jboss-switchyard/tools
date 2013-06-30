@@ -25,6 +25,164 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *     <h1>About the XML namespace</h1>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema document describes the XML namespace, in a form
+ *       suitable for import by other schema documents.
+ *      </p>
+ *      <p>
+ *       See <a href="http://www.w3.org/XML/1998/namespace.html">
+ *       http://www.w3.org/XML/1998/namespace.html</a> and
+ *       <a href="http://www.w3.org/TR/REC-xml">
+ *       http://www.w3.org/TR/REC-xml</a> for information 
+ *       about this namespace.
+ *      </p>
+ *      <p>
+ *       Note that local names in this namespace are intended to be
+ *       defined only by the World Wide Web Consortium or its subgroups.
+ *       The names currently defined in this namespace are listed below.
+ *       They should not be used with conflicting semantics by any Working
+ *       Group, specification, or document instance.
+ *      </p>
+ *      <p>   
+ *       See further below in this document for more information about <a href="#usage">how to refer to this schema document from your own
+ *       XSD schema documents</a> and about <a href="#nsversioning">the
+ *       namespace-versioning policy governing this schema document</a>.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *    
+ *     <h3>Father (in any context at all)</h3> 
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       denotes Jon Bosak, the chair of 
+ *       the original XML Working Group.  This name is reserved by 
+ *       the following decision of the W3C XML Plenary and 
+ *       XML Coordination groups:
+ *      </p>
+ *      <blockquote>
+ *        <p>
+ * 	In appreciation for his vision, leadership and
+ * 	dedication the W3C XML Plenary on this 10th day of
+ * 	February, 2000, reserves for Jon Bosak in perpetuity
+ * 	the XML name "xml:Father".
+ *        </p>
+ *      </blockquote>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="usage" xml:id="usage" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="usage">About this schema document</a>
+ *     </h2>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema defines attributes and an attribute group suitable
+ *       for use by schemas wishing to allow <code>xml:base</code>,
+ *       <code>xml:lang</code>, <code>xml:space</code> or
+ *       <code>xml:id</code> attributes on elements they define.
+ *      </p>
+ *      <p>
+ *       To enable this, such a schema must import this schema for
+ *       the XML namespace, e.g. as follows:
+ *      </p>
+ *      <pre>
+ *           &lt;schema . . .&gt;
+ *            . . .
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2001/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       or
+ *      </p>
+ *      <pre>
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2009/01/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       Subsequently, qualified reference to any of the attributes or the
+ *       group defined below will have the desired effect, e.g.
+ *      </p>
+ *      <pre>
+ *           &lt;type . . .&gt;
+ *            . . .
+ *            &lt;attributeGroup ref="xml:specialAttrs"/&gt;
+ *      </pre>
+ *      <p>
+ *       will define a type which will schema-validate an instance element
+ *       with any of those attributes.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="nsversioning" xml:id="nsversioning" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="nsversioning">Versioning policy for this schema document</a>
+ *     </h2>
+ *     <div class="bodytext">
+ *      <p>
+ *       In keeping with the XML Schema WG's standard versioning
+ *       policy, this schema document will persist at
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       At the date of issue it can also be found at
+ *       <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       The schema document at that URI may however change in the future,
+ *       in order to remain compatible with the latest version of XML
+ *       Schema itself, or with the XML namespace itself.  In other words,
+ *       if the XML Schema or XML namespaces change, the version of this
+ *       document at <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd 
+ *       </a> 
+ *       will change accordingly; the version at 
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd 
+ *       </a> 
+ *       will not change.
+ *      </p>
+ *      <p>
+ *       Previous dated (and unchanging) versions of this schema 
+ *       document are at:
+ *      </p>
+ *      <ul>
+ *       <li>
+ *           <a href="http://www.w3.org/2009/01/xml.xsd">
+ * 	http://www.w3.org/2009/01/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2007/08/xml.xsd">
+ * 	http://www.w3.org/2007/08/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2004/10/xml.xsd">
+ * 	http://www.w3.org/2004/10/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2001/03/xml.xsd">
+ * 	http://www.w3.org/2001/03/xml.xsd</a>
+ *         </li>
+ *      </ul>
+ *     </div>
+ *    </div>
+ *   
+ * <!-- end-model-doc -->
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory
  * @model kind="package"
  * @generated
@@ -292,166 +450,148 @@ public interface SwitchyardPackage extends EPackage {
 	int DOCUMENT_ROOT__INTERFACE_ESB = 9;
 
 	/**
-     * The feature id for the '<em><b>Properties</b></em>' containment reference.
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTIES = 10;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR = 10;
 
-	/**
-     * The feature id for the '<em><b>Property</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__PROPERTY = 11;
-
-	/**
-     * The feature id for the '<em><b>Resource</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__RESOURCE = 12;
-
-	/**
-     * The feature id for the '<em><b>Switchyard</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__SWITCHYARD = 13;
-
-	/**
-     * The feature id for the '<em><b>Transform</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__TRANSFORM = 14;
-
-	/**
-     * The feature id for the '<em><b>Transforms</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__TRANSFORMS = 15;
-
-	/**
-     * The feature id for the '<em><b>Validate</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__VALIDATE = 16;
-
-	/**
-     * The feature id for the '<em><b>Validates</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__VALIDATES = 17;
-
-	/**
+    /**
      * The feature id for the '<em><b>Operation Selector Switchyard</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD = 18;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD = 11;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * The feature id for the '<em><b>Operation Selector Java</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__CONTEXT_MAPPER = 19;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_JAVA = 12;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * The feature id for the '<em><b>Operation Selector Regex</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__MESSAGE_COMPOSER = 20;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_REGEX = 13;
 
     /**
-     * The feature id for the '<em><b>Java Operation Selector Switchyard</b></em>' containment reference.
+     * The feature id for the '<em><b>Operation Selector Xpath</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_XPATH = 14;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD = 21;
+	int DOCUMENT_ROOT__PROPERTIES = 15;
 
-				/**
-     * The feature id for the '<em><b>Regex Operation Selector Switchyard</b></em>' containment reference.
+    /**
+     * The feature id for the '<em><b>Property</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD = 22;
+	int DOCUMENT_ROOT__PROPERTY = 16;
 
-				/**
-     * The feature id for the '<em><b>Xpath Operation Selector Switchyard</b></em>' containment reference.
+    /**
+     * The feature id for the '<em><b>Resource</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD = 23;
+	int DOCUMENT_ROOT__RESOURCE = 17;
 
-				/**
-     * The feature id for the '<em><b>Static Operation Selector Switchyard</b></em>' containment reference.
+    /**
+     * The feature id for the '<em><b>Securities</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD = 24;
+    int DOCUMENT_ROOT__SECURITIES = 18;
 
-				/**
+                /**
      * The feature id for the '<em><b>Security</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__SECURITY = 25;
+    int DOCUMENT_ROOT__SECURITY = 19;
 
                 /**
-     * The feature id for the '<em><b>Target</b></em>' attribute.
+     * The feature id for the '<em><b>Switchyard</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int DOCUMENT_ROOT__SWITCHYARD = 20;
+
+                /**
+     * The feature id for the '<em><b>Throttling</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__TARGET = 26;
+    int DOCUMENT_ROOT__THROTTLING = 21;
 
                 /**
-     * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
+     * The feature id for the '<em><b>Transform</b></em>' containment reference.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+                 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__TARGET_NAMESPACE = 27;
+                int DOCUMENT_ROOT__TRANSFORM = 22;
+
+                /**
+     * The feature id for the '<em><b>Transforms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int DOCUMENT_ROOT__TRANSFORMS = 23;
+
+                /**
+     * The feature id for the '<em><b>Validate</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int DOCUMENT_ROOT__VALIDATE = 24;
+
+                /**
+     * The feature id for the '<em><b>Validates</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int DOCUMENT_ROOT__VALIDATES = 25;
 
                 /**
      * The feature id for the '<em><b>Clustered</b></em>' attribute.
@@ -460,7 +600,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__CLUSTERED = 28;
+    int DOCUMENT_ROOT__CLUSTERED = 26;
 
                 /**
      * The feature id for the '<em><b>Load Balance</b></em>' attribute.
@@ -469,7 +609,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__LOAD_BALANCE = 29;
+    int DOCUMENT_ROOT__LOAD_BALANCE = 27;
 
                 /**
      * The feature id for the '<em><b>Security Attr</b></em>' attribute.
@@ -478,16 +618,25 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__SECURITY_ATTR = 30;
+    int DOCUMENT_ROOT__SECURITY_ATTR = 28;
 
                 /**
-     * The feature id for the '<em><b>Securities</b></em>' containment reference.
+     * The feature id for the '<em><b>Target</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__SECURITIES = 31;
+    int DOCUMENT_ROOT__TARGET = 29;
+
+                /**
+     * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__TARGET_NAMESPACE = 30;
 
                 /**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -496,7 +645,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 32;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 31;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -545,22 +694,22 @@ public interface SwitchyardPackage extends EPackage {
 	int DOMAIN_TYPE__HANDLERS = 3;
 
 	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOMAIN_TYPE__NAME = 4;
-
-	/**
      * The feature id for the '<em><b>Securities</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOMAIN_TYPE__SECURITIES = 5;
+    int DOMAIN_TYPE__SECURITIES = 4;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int DOMAIN_TYPE__NAME = 5;
 
     /**
      * The number of structural features of the '<em>Domain Type</em>' class.
@@ -627,13 +776,22 @@ public interface SwitchyardPackage extends EPackage {
 	int ESB_INTERFACE__REQUIRES = ScaPackage.INTERFACE__REQUIRES;
 
 	/**
+     * The feature id for the '<em><b>Fault Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ESB_INTERFACE__FAULT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Input Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ESB_INTERFACE__INPUT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 0;
+    int ESB_INTERFACE__INPUT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Output Type</b></em>' attribute.
@@ -642,16 +800,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ESB_INTERFACE__OUTPUT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Fault Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ESB_INTERFACE__FAULT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 2;
+    int ESB_INTERFACE__OUTPUT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Esb Interface</em>' class.
@@ -735,25 +884,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getMessageComposerType()
      * @generated
      */
-	int MESSAGE_COMPOSER_TYPE = 8;
-
-	/**
-     * The feature id for the '<em><b>Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int MESSAGE_COMPOSER_TYPE__CLASS = 0;
-
-	/**
-     * The number of structural features of the '<em>Message Composer Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = 1;
+	int MESSAGE_COMPOSER_TYPE = 9;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.PropertiesTypeImpl <em>Properties Type</em>}' class.
@@ -763,25 +894,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertiesType()
      * @generated
      */
-	int PROPERTIES_TYPE = 9;
-
-	/**
-     * The feature id for the '<em><b>Property</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PROPERTIES_TYPE__PROPERTY = 0;
-
-	/**
-     * The number of structural features of the '<em>Properties Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PROPERTIES_TYPE_FEATURE_COUNT = 1;
+	int PROPERTIES_TYPE = 10;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.PropertyTypeImpl <em>Property Type</em>}' class.
@@ -791,34 +904,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyType()
      * @generated
      */
-	int PROPERTY_TYPE = 10;
-
-	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PROPERTY_TYPE__NAME = 0;
-
-	/**
-     * The feature id for the '<em><b>Value</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PROPERTY_TYPE__VALUE = 1;
-
-	/**
-     * The number of structural features of the '<em>Property Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PROPERTY_TYPE_FEATURE_COUNT = 2;
+	int PROPERTY_TYPE = 11;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ResourceTypeImpl <em>Resource Type</em>}' class.
@@ -828,34 +914,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getResourceType()
      * @generated
      */
-	int RESOURCE_TYPE = 11;
-
-	/**
-     * The feature id for the '<em><b>Location</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int RESOURCE_TYPE__LOCATION = 0;
-
-	/**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int RESOURCE_TYPE__TYPE = 1;
-
-	/**
-     * The number of structural features of the '<em>Resource Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int RESOURCE_TYPE_FEATURE_COUNT = 2;
+	int RESOURCE_TYPE = 13;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl <em>Switch Yard Binding Type</em>}' class.
@@ -865,124 +924,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardBindingType()
      * @generated
      */
-	int SWITCH_YARD_BINDING_TYPE = 12;
-
-	/**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__DOCUMENTATION = ScaPackage.BINDING__DOCUMENTATION;
-
-	/**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__ANY_ATTRIBUTE = ScaPackage.BINDING__ANY_ATTRIBUTE;
-
-	/**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT_GROUP = ScaPackage.BINDING__WIRE_FORMAT_GROUP;
-
-	/**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT = ScaPackage.BINDING__WIRE_FORMAT;
-
-	/**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR_GROUP = ScaPackage.BINDING__OPERATION_SELECTOR_GROUP;
-
-	/**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR = ScaPackage.BINDING__OPERATION_SELECTOR;
-
-	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__NAME = ScaPackage.BINDING__NAME;
-
-	/**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__POLICY_SETS = ScaPackage.BINDING__POLICY_SETS;
-
-	/**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__REQUIRES = ScaPackage.BINDING__REQUIRES;
-
-	/**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__URI = ScaPackage.BINDING__URI;
-
-	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER = ScaPackage.BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER = ScaPackage.BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Switch Yard Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT = ScaPackage.BINDING_FEATURE_COUNT + 2;
+	int SWITCH_YARD_BINDING_TYPE = 17;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl <em>Switch Yard Type</em>}' class.
@@ -992,7 +934,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardType()
      * @generated
      */
-	int SWITCH_YARD_TYPE = 14;
+	int SWITCH_YARD_TYPE = 19;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformsTypeImpl <em>Transforms Type</em>}' class.
@@ -1002,7 +944,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getTransformsType()
      * @generated
      */
-	int TRANSFORMS_TYPE = 15;
+	int TRANSFORMS_TYPE = 21;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl <em>Transform Type</em>}' class.
@@ -1012,7 +954,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getTransformType()
      * @generated
      */
-	int TRANSFORM_TYPE = 16;
+	int TRANSFORM_TYPE = 22;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidatesTypeImpl <em>Validates Type</em>}' class.
@@ -1022,7 +964,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getValidatesType()
      * @generated
      */
-	int VALIDATES_TYPE = 17;
+	int VALIDATES_TYPE = 23;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidateTypeImpl <em>Validate Type</em>}' class.
@@ -1032,7 +974,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getValidateType()
      * @generated
      */
-	int VALIDATE_TYPE = 18;
+	int VALIDATE_TYPE = 24;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.
@@ -1042,7 +984,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardOperationSelectorType()
      * @generated
      */
-    int SWITCH_YARD_OPERATION_SELECTOR_TYPE = 13;
+    int SWITCH_YARD_OPERATION_SELECTOR_TYPE = 18;
 
     /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -1072,176 +1014,14 @@ public interface SwitchyardPackage extends EPackage {
     int SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = ScaPackage.OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ThrottlingTypeImpl <em>Throttling Type</em>}' class.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.ThrottlingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getThrottlingType()
      * @generated
-     * @ordered
      */
-	int SWITCH_YARD_TYPE__NAME = 0;
-
-    /**
-     * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__TARGET_NAMESPACE = 1;
-
-    /**
-     * The feature id for the '<em><b>Composite</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__COMPOSITE = 2;
-
-    /**
-     * The feature id for the '<em><b>Transforms</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__TRANSFORMS = 3;
-
-    /**
-     * The feature id for the '<em><b>Validates</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__VALIDATES = 4;
-
-    /**
-     * The feature id for the '<em><b>Domain</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__DOMAIN = 5;
-
-    /**
-     * The feature id for the '<em><b>Artifacts</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__ARTIFACTS = 6;
-
-    /**
-     * The number of structural features of the '<em>Switch Yard Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE_FEATURE_COUNT = 7;
-
-    /**
-     * The feature id for the '<em><b>Transform Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORMS_TYPE__TRANSFORM_GROUP = 0;
-
-    /**
-     * The feature id for the '<em><b>Transform</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORMS_TYPE__TRANSFORM = 1;
-
-    /**
-     * The number of structural features of the '<em>Transforms Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORMS_TYPE_FEATURE_COUNT = 2;
-
-    /**
-     * The feature id for the '<em><b>From</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORM_TYPE__FROM = 0;
-
-    /**
-     * The feature id for the '<em><b>To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORM_TYPE__TO = 1;
-
-    /**
-     * The number of structural features of the '<em>Transform Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORM_TYPE_FEATURE_COUNT = 2;
-
-    /**
-     * The feature id for the '<em><b>Validate Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATES_TYPE__VALIDATE_GROUP = 0;
-
-    /**
-     * The feature id for the '<em><b>Validate</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATES_TYPE__VALIDATE = 1;
-
-    /**
-     * The number of structural features of the '<em>Validates Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATES_TYPE_FEATURE_COUNT = 2;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATE_TYPE__NAME = 0;
-
-    /**
-     * The number of structural features of the '<em>Validate Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATE_TYPE_FEATURE_COUNT = 1;
-
+    int THROTTLING_TYPE = 20;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.JavaOperationSelectorTypeImpl <em>Java Operation Selector Type</em>}' class.
@@ -1251,7 +1031,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getJavaOperationSelectorType()
      * @generated
      */
-	int JAVA_OPERATION_SELECTOR_TYPE = 19;
+	int JAVA_OPERATION_SELECTOR_TYPE = 8;
 
 				/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -1289,6 +1069,69 @@ public interface SwitchyardPackage extends EPackage {
      */
 	int JAVA_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
 
+                /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int MESSAGE_COMPOSER_TYPE__CLASS = 0;
+
+                /**
+     * The number of structural features of the '<em>Message Composer Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = 1;
+
+                /**
+     * The feature id for the '<em><b>Property</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int PROPERTIES_TYPE__PROPERTY = 0;
+
+                /**
+     * The number of structural features of the '<em>Properties Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int PROPERTIES_TYPE_FEATURE_COUNT = 1;
+
+                /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int PROPERTY_TYPE__NAME = 0;
+
+                /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int PROPERTY_TYPE__VALUE = 1;
+
+                /**
+     * The number of structural features of the '<em>Property Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int PROPERTY_TYPE_FEATURE_COUNT = 2;
+
 				/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.RegexOperationSelectorTypeImpl <em>Regex Operation Selector Type</em>}' class.
      * <!-- begin-user-doc -->
@@ -1297,7 +1140,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getRegexOperationSelectorType()
      * @generated
      */
-	int REGEX_OPERATION_SELECTOR_TYPE = 20;
+	int REGEX_OPERATION_SELECTOR_TYPE = 12;
 
 				/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -1335,6 +1178,33 @@ public interface SwitchyardPackage extends EPackage {
      */
 	int REGEX_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
 
+                /**
+     * The feature id for the '<em><b>Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int RESOURCE_TYPE__LOCATION = 0;
+
+                /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int RESOURCE_TYPE__TYPE = 1;
+
+                /**
+     * The number of structural features of the '<em>Resource Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int RESOURCE_TYPE_FEATURE_COUNT = 2;
+
 				/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.StaticOperationSelectorTypeImpl <em>Static Operation Selector Type</em>}' class.
      * <!-- begin-user-doc -->
@@ -1343,43 +1213,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getStaticOperationSelectorType()
      * @generated
      */
-	int STATIC_OPERATION_SELECTOR_TYPE = 21;
-
-				/**
-     * The feature id for the '<em><b>Any</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int STATIC_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
-
-				/**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int STATIC_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
-
-				/**
-     * The feature id for the '<em><b>Operation Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int STATIC_OPERATION_SELECTOR_TYPE__OPERATION_NAME = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
-
-				/**
-     * The number of structural features of the '<em>Static Operation Selector Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int STATIC_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
+	int STATIC_OPERATION_SELECTOR_TYPE = 16;
 
 				/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.XPathOperationSelectorTypeImpl <em>XPath Operation Selector Type</em>}' class.
@@ -1389,44 +1223,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getXPathOperationSelectorType()
      * @generated
      */
-	int XPATH_OPERATION_SELECTOR_TYPE = 22;
-
-				/**
-     * The feature id for the '<em><b>Any</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int XPATH_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
-
-				/**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int XPATH_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
-
-				/**
-     * The feature id for the '<em><b>Expression</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
-
-				/**
-     * The number of structural features of the '<em>XPath Operation Selector Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int XPATH_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
-
+	int XPATH_OPERATION_SELECTOR_TYPE = 25;
 
 				/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl <em>Security Type</em>}' class.
@@ -1436,25 +1233,35 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecurityType()
      * @generated
      */
-    int SECURITY_TYPE = 23;
+    int SECURITY_TYPE = 15;
 
                 /**
-     * The feature id for the '<em><b>Callback Handler</b></em>' attribute.
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl <em>Securities Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecuritiesType()
+     * @generated
+     */
+    int SECURITIES_TYPE = 14;
+
+                /**
+     * The feature id for the '<em><b>Security</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SECURITY_TYPE__CALLBACK_HANDLER = 0;
+    int SECURITIES_TYPE__SECURITY = 0;
 
                 /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The number of structural features of the '<em>Securities Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SECURITY_TYPE__NAME = 1;
+    int SECURITIES_TYPE_FEATURE_COUNT = 1;
 
                 /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -1463,7 +1270,25 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SECURITY_TYPE__PROPERTIES = 2;
+    int SECURITY_TYPE__PROPERTIES = 0;
+
+                /**
+     * The feature id for the '<em><b>Callback Handler</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__CALLBACK_HANDLER = 1;
+
+                /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__NAME = 2;
 
                 /**
      * The feature id for the '<em><b>Roles Allowed</b></em>' attribute.
@@ -1501,34 +1326,374 @@ public interface SwitchyardPackage extends EPackage {
      */
     int SECURITY_TYPE_FEATURE_COUNT = 6;
 
-
                 /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl <em>Securities Type</em>}' class.
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecuritiesType()
+	 * <!-- end-user-doc -->
      * @generated
+     * @ordered
      */
-    int SECURITIES_TYPE = 24;
+	int STATIC_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
 
                 /**
-     * The feature id for the '<em><b>Security</b></em>' containment reference list.
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
+
+                /**
+     * The feature id for the '<em><b>Operation Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE__OPERATION_NAME = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+                /**
+     * The number of structural features of the '<em>Static Operation Selector Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
+
+                /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__DOCUMENTATION = ScaPackage.BINDING__DOCUMENTATION;
+
+                /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__ANY_ATTRIBUTE = ScaPackage.BINDING__ANY_ATTRIBUTE;
+
+                /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT_GROUP = ScaPackage.BINDING__WIRE_FORMAT_GROUP;
+
+                /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT = ScaPackage.BINDING__WIRE_FORMAT;
+
+                /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR_GROUP = ScaPackage.BINDING__OPERATION_SELECTOR_GROUP;
+
+                /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR = ScaPackage.BINDING__OPERATION_SELECTOR;
+
+                /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__NAME = ScaPackage.BINDING__NAME;
+
+                /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__POLICY_SETS = ScaPackage.BINDING__POLICY_SETS;
+
+                /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__REQUIRES = ScaPackage.BINDING__REQUIRES;
+
+                /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE__URI = ScaPackage.BINDING__URI;
+
+                /**
+     * The number of structural features of the '<em>Switch Yard Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT = ScaPackage.BINDING_FEATURE_COUNT + 0;
+
+                /**
+     * The feature id for the '<em><b>Composite</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE__COMPOSITE = 0;
+
+                /**
+     * The feature id for the '<em><b>Transforms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE__TRANSFORMS = 1;
+
+                /**
+     * The feature id for the '<em><b>Validates</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE__VALIDATES = 2;
+
+                /**
+     * The feature id for the '<em><b>Domain</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE__DOMAIN = 3;
+
+                /**
+     * The feature id for the '<em><b>Artifacts</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE__ARTIFACTS = 4;
+
+                /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE__NAME = 5;
+
+                /**
+     * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE__TARGET_NAMESPACE = 6;
+
+                /**
+     * The number of structural features of the '<em>Switch Yard Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int SWITCH_YARD_TYPE_FEATURE_COUNT = 7;
+
+                /**
+     * The feature id for the '<em><b>Max Requests</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SECURITIES_TYPE__SECURITY = 0;
+    int THROTTLING_TYPE__MAX_REQUESTS = 0;
 
                 /**
-     * The number of structural features of the '<em>Securities Type</em>' class.
+     * The feature id for the '<em><b>Time Period</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SECURITIES_TYPE_FEATURE_COUNT = 1;
+    int THROTTLING_TYPE__TIME_PERIOD = 1;
+
+                /**
+     * The number of structural features of the '<em>Throttling Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int THROTTLING_TYPE_FEATURE_COUNT = 2;
+
+                /**
+     * The feature id for the '<em><b>Transform Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int TRANSFORMS_TYPE__TRANSFORM_GROUP = 0;
+
+                /**
+     * The feature id for the '<em><b>Transform</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int TRANSFORMS_TYPE__TRANSFORM = 1;
+
+                /**
+     * The number of structural features of the '<em>Transforms Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int TRANSFORMS_TYPE_FEATURE_COUNT = 2;
+
+                /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int TRANSFORM_TYPE__FROM = 0;
+
+                /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int TRANSFORM_TYPE__TO = 1;
+
+                /**
+     * The number of structural features of the '<em>Transform Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int TRANSFORM_TYPE_FEATURE_COUNT = 2;
+
+                /**
+     * The feature id for the '<em><b>Validate Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int VALIDATES_TYPE__VALIDATE_GROUP = 0;
+
+                /**
+     * The feature id for the '<em><b>Validate</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int VALIDATES_TYPE__VALIDATE = 1;
+
+                /**
+     * The number of structural features of the '<em>Validates Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int VALIDATES_TYPE_FEATURE_COUNT = 2;
+
+                /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int VALIDATE_TYPE__NAME = 0;
+
+                /**
+     * The number of structural features of the '<em>Validate Type</em>' class.
+     * <!-- begin-user-doc -->
+                 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+                int VALIDATE_TYPE_FEATURE_COUNT = 1;
+
+                /**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
+
+                /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
+
+                /**
+     * The feature id for the '<em><b>Expression</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+                /**
+     * The number of structural features of the '<em>XPath Operation Selector Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
 
                 /**
      * The meta object id for the '<em>Prop Boolean</em>' data type.
@@ -1538,7 +1703,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropBoolean()
      * @generated
      */
-    int PROP_BOOLEAN = 25;
+    int PROP_BOOLEAN = 26;
 
                 /**
      * The meta object id for the '<em>Property Value</em>' data type.
@@ -1548,7 +1713,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyValue()
      * @generated
      */
-    int PROPERTY_VALUE = 26;
+    int PROPERTY_VALUE = 27;
 
                 /**
      * The meta object id for the '<em>Prop Integer</em>' data type.
@@ -1558,7 +1723,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropInteger()
      * @generated
      */
-    int PROP_INTEGER = 27;
+    int PROP_INTEGER = 28;
 
                 /**
      * The meta object id for the '<em>Prop Long</em>' data type.
@@ -1568,7 +1733,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropLong()
      * @generated
      */
-    int PROP_LONG = 28;
+    int PROP_LONG = 29;
 
 
                 /**
@@ -1810,6 +1975,17 @@ public interface SwitchyardPackage extends EPackage {
 	EReference getDocumentRoot_InterfaceEsb();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelector <em>Operation Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Operation Selector</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelector()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_OperationSelector();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getProperties <em>Properties</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1854,6 +2030,17 @@ public interface SwitchyardPackage extends EPackage {
 	EReference getDocumentRoot_Switchyard();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getThrottling <em>Throttling</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Throttling</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getThrottling()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Throttling();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTransform <em>Transform</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1909,72 +2096,39 @@ public interface SwitchyardPackage extends EPackage {
     EReference getDocumentRoot_OperationSelectorSwitchyard();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getContextMapper <em>Context Mapper</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorJava <em>Operation Selector Java</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getContextMapper()
+     * @return the meta object for the containment reference '<em>Operation Selector Java</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorJava()
      * @see #getDocumentRoot()
      * @generated
      */
-    EReference getDocumentRoot_ContextMapper();
+    EReference getDocumentRoot_OperationSelectorJava();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getMessageComposer <em>Message Composer</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorRegex <em>Operation Selector Regex</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getMessageComposer()
+     * @return the meta object for the containment reference '<em>Operation Selector Regex</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorRegex()
      * @see #getDocumentRoot()
      * @generated
      */
-    EReference getDocumentRoot_MessageComposer();
+    EReference getDocumentRoot_OperationSelectorRegex();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getJavaOperationSelectorSwitchyard <em>Java Operation Selector Switchyard</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorXpath <em>Operation Selector Xpath</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Java Operation Selector Switchyard</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getJavaOperationSelectorSwitchyard()
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Operation Selector Xpath</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorXpath()
      * @see #getDocumentRoot()
      * @generated
      */
-	EReference getDocumentRoot_JavaOperationSelectorSwitchyard();
+    EReference getDocumentRoot_OperationSelectorXpath();
 
-				/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getRegexOperationSelectorSwitchyard <em>Regex Operation Selector Switchyard</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Regex Operation Selector Switchyard</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getRegexOperationSelectorSwitchyard()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_RegexOperationSelectorSwitchyard();
-
-				/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getXpathOperationSelectorSwitchyard <em>Xpath Operation Selector Switchyard</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Xpath Operation Selector Switchyard</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getXpathOperationSelectorSwitchyard()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_XpathOperationSelectorSwitchyard();
-
-				/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getStaticOperationSelectorSwitchyard <em>Static Operation Selector Switchyard</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Static Operation Selector Switchyard</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getStaticOperationSelectorSwitchyard()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_StaticOperationSelectorSwitchyard();
-
-				/**
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurity <em>Security</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2340,28 +2494,6 @@ public interface SwitchyardPackage extends EPackage {
 	EClass getSwitchYardBindingType();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getContextMapper()
-     * @see #getSwitchYardBindingType()
-     * @generated
-     */
-    EReference getSwitchYardBindingType_ContextMapper();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getMessageComposer()
-     * @see #getSwitchYardBindingType()
-     * @generated
-     */
-    EReference getSwitchYardBindingType_MessageComposer();
-
-    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType <em>Switch Yard Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2394,6 +2526,38 @@ public interface SwitchyardPackage extends EPackage {
 	EAttribute getSwitchYardType_TargetNamespace();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType <em>Throttling Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Throttling Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType
+     * @generated
+     */
+    EClass getThrottlingType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType#getMaxRequests <em>Max Requests</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Max Requests</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType#getMaxRequests()
+     * @see #getThrottlingType()
+     * @generated
+     */
+    EAttribute getThrottlingType_MaxRequests();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType#getTimePeriod <em>Time Period</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Time Period</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType#getTimePeriod()
+     * @see #getThrottlingType()
+     * @generated
+     */
+    EAttribute getThrottlingType_TimePeriod();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType#getComposite <em>Composite</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3011,6 +3175,14 @@ public interface SwitchyardPackage extends EPackage {
 		EReference DOCUMENT_ROOT__INTERFACE_ESB = eINSTANCE.getDocumentRoot_InterfaceEsb();
 
 		/**
+         * The meta object literal for the '<em><b>Operation Selector</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__OPERATION_SELECTOR = eINSTANCE.getDocumentRoot_OperationSelector();
+
+        /**
          * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3043,6 +3215,14 @@ public interface SwitchyardPackage extends EPackage {
 		EReference DOCUMENT_ROOT__SWITCHYARD = eINSTANCE.getDocumentRoot_Switchyard();
 
 		/**
+         * The meta object literal for the '<em><b>Throttling</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__THROTTLING = eINSTANCE.getDocumentRoot_Throttling();
+
+        /**
          * The meta object literal for the '<em><b>Transform</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3083,54 +3263,30 @@ public interface SwitchyardPackage extends EPackage {
         EReference DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_OperationSelectorSwitchyard();
 
         /**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Operation Selector Java</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference DOCUMENT_ROOT__CONTEXT_MAPPER = eINSTANCE.getDocumentRoot_ContextMapper();
+        EReference DOCUMENT_ROOT__OPERATION_SELECTOR_JAVA = eINSTANCE.getDocumentRoot_OperationSelectorJava();
 
         /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Operation Selector Regex</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
+        EReference DOCUMENT_ROOT__OPERATION_SELECTOR_REGEX = eINSTANCE.getDocumentRoot_OperationSelectorRegex();
 
         /**
-         * The meta object literal for the '<em><b>Java Operation Selector Switchyard</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Operation Selector Xpath</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_JavaOperationSelectorSwitchyard();
+        EReference DOCUMENT_ROOT__OPERATION_SELECTOR_XPATH = eINSTANCE.getDocumentRoot_OperationSelectorXpath();
 
-								/**
-         * The meta object literal for the '<em><b>Regex Operation Selector Switchyard</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_RegexOperationSelectorSwitchyard();
-
-								/**
-         * The meta object literal for the '<em><b>Xpath Operation Selector Switchyard</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_XpathOperationSelectorSwitchyard();
-
-								/**
-         * The meta object literal for the '<em><b>Static Operation Selector Switchyard</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_StaticOperationSelectorSwitchyard();
-
-								/**
+        /**
          * The meta object literal for the '<em><b>Security</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3421,22 +3577,6 @@ public interface SwitchyardPackage extends EPackage {
 		EClass SWITCH_YARD_BINDING_TYPE = eINSTANCE.getSwitchYardBindingType();
 
 		/**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getSwitchYardBindingType_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getSwitchYardBindingType_MessageComposer();
-
-        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl <em>Switch Yard Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3463,6 +3603,32 @@ public interface SwitchyardPackage extends EPackage {
 		EAttribute SWITCH_YARD_TYPE__TARGET_NAMESPACE = eINSTANCE.getSwitchYardType_TargetNamespace();
 
 		/**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ThrottlingTypeImpl <em>Throttling Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.ThrottlingTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getThrottlingType()
+         * @generated
+         */
+        EClass THROTTLING_TYPE = eINSTANCE.getThrottlingType();
+
+        /**
+         * The meta object literal for the '<em><b>Max Requests</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute THROTTLING_TYPE__MAX_REQUESTS = eINSTANCE.getThrottlingType_MaxRequests();
+
+        /**
+         * The meta object literal for the '<em><b>Time Period</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute THROTTLING_TYPE__TIME_PERIOD = eINSTANCE.getThrottlingType_TimePeriod();
+
+        /**
          * The meta object literal for the '<em><b>Composite</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

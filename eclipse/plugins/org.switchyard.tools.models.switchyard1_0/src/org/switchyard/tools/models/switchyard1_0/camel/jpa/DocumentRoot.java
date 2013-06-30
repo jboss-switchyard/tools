@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot#getBindingJPA <em>Binding JPA</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot#getBindingJpa <em>Binding Jpa</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,30 +82,30 @@ public interface DocumentRoot extends EObject {
     EMap<String, String> getXSISchemaLocation();
 
     /**
-     * Returns the value of the '<em><b>Binding JPA</b></em>' containment reference.
+     * Returns the value of the '<em><b>Binding Jpa</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Binding JPA</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Binding Jpa</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding JPA</em>' containment reference.
-     * @see #setBindingJPA(CamelJPABindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getDocumentRoot_BindingJPA()
+     * @return the value of the '<em>Binding Jpa</em>' containment reference.
+     * @see #setBindingJpa(CamelJpaBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getDocumentRoot_BindingJpa()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.jpa' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated
      */
-    CamelJPABindingType getBindingJPA();
+    CamelJpaBindingType getBindingJpa();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot#getBindingJPA <em>Binding JPA</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot#getBindingJpa <em>Binding Jpa</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding JPA</em>' containment reference.
-     * @see #getBindingJPA()
+     * @param value the new value of the '<em>Binding Jpa</em>' containment reference.
+     * @see #getBindingJpa()
      * @generated
      */
-    void setBindingJPA(CamelJPABindingType value);
+    void setBindingJpa(CamelJpaBindingType value);
 
 } // DocumentRoot

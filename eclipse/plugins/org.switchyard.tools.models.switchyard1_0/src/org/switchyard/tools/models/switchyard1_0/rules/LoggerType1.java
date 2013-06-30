@@ -2,8 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.rules;
 
-import java.math.BigInteger;
-
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 /**

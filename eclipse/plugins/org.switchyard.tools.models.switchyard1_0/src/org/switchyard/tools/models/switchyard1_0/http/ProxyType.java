@@ -2,6 +2,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.http;
 
+import java.math.BigInteger;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 /**
@@ -20,7 +21,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getProxyType()
- * @model extendedMetaData="name='ProxyType' kind='empty' namespace='##targetNamespace'"
+ * @model extendedMetaData="name='ProxyType' kind='elementOnly'"
  * @generated
  */
 public interface ProxyType extends CommonExtensionBase {
@@ -32,6 +33,9 @@ public interface ProxyType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Proxy Host.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Host</em>' attribute.
      * @see #setHost(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getProxyType_Host()
@@ -59,14 +63,17 @@ public interface ProxyType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Proxy Port.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Port</em>' attribute.
-     * @see #setPort(Integer)
+     * @see #setPort(BigInteger)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getProxyType_Port()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getPort();
+    BigInteger getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.ProxyType#getPort <em>Port</em>}' attribute.
@@ -76,7 +83,7 @@ public interface ProxyType extends CommonExtensionBase {
      * @see #getPort()
      * @generated
      */
-    void setPort(Integer value);
+    void setPort(BigInteger value);
 
     /**
      * Returns the value of the '<em><b>User</b></em>' attribute.
@@ -86,10 +93,13 @@ public interface ProxyType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Proxy user name.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>User</em>' attribute.
      * @see #setUser(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getProxyType_User()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='user' namespace='##targetNamespace'"
      * @generated
      */
@@ -113,10 +123,13 @@ public interface ProxyType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Proxy password.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Password</em>' attribute.
      * @see #setPassword(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getProxyType_Password()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='password' namespace='##targetNamespace'"
      * @generated
      */

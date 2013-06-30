@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 
@@ -33,7 +33,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.DocumentRootImpl#getBindingJPA <em>Binding JPA</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.DocumentRootImpl#getBindingJpa <em>Binding Jpa</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,8 +130,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public CamelJPABindingType getBindingJPA() {
-        return (CamelJPABindingType)getMixed().get(JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, true);
+    public CamelJpaBindingType getBindingJpa() {
+        return (CamelJpaBindingType)getMixed().get(JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, true);
     }
 
     /**
@@ -139,8 +139,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetBindingJPA(CamelJPABindingType newBindingJPA, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, newBindingJPA, msgs);
+    public NotificationChain basicSetBindingJpa(CamelJpaBindingType newBindingJpa, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, newBindingJpa, msgs);
     }
 
     /**
@@ -148,8 +148,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBindingJPA(CamelJPABindingType newBindingJPA) {
-        ((FeatureMap.Internal)getMixed()).set(JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, newBindingJPA);
+    public void setBindingJpa(CamelJpaBindingType newBindingJpa) {
+        ((FeatureMap.Internal)getMixed()).set(JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, newBindingJpa);
     }
 
     /**
@@ -167,7 +167,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case JpaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
             case JpaPackage.DOCUMENT_ROOT__BINDING_JPA:
-                return basicSetBindingJPA(null, msgs);
+                return basicSetBindingJpa(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -190,7 +190,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
             case JpaPackage.DOCUMENT_ROOT__BINDING_JPA:
-                return getBindingJPA();
+                return getBindingJpa();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -213,7 +213,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
                 return;
             case JpaPackage.DOCUMENT_ROOT__BINDING_JPA:
-                setBindingJPA((CamelJPABindingType)newValue);
+                setBindingJpa((CamelJpaBindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -237,7 +237,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 getXSISchemaLocation().clear();
                 return;
             case JpaPackage.DOCUMENT_ROOT__BINDING_JPA:
-                setBindingJPA((CamelJPABindingType)null);
+                setBindingJpa((CamelJpaBindingType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -258,7 +258,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case JpaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case JpaPackage.DOCUMENT_ROOT__BINDING_JPA:
-                return getBindingJPA() != null;
+                return getBindingJpa() != null;
         }
         return super.eIsSet(featureID);
     }

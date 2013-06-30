@@ -152,7 +152,7 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA,
-                 JpaFactory.eINSTANCE.createCamelJPABindingType()));
+                 JpaFactory.eINSTANCE.createCamelJpaBindingType()));
     }
 
     /**

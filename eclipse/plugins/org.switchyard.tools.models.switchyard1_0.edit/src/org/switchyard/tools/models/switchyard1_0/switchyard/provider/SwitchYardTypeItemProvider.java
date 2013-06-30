@@ -68,9 +68,9 @@ public class SwitchYardTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addCompositePropertyDescriptor(object);
             addNamePropertyDescriptor(object);
             addTargetNamespacePropertyDescriptor(object);
-            addCompositePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -211,9 +211,9 @@ public class SwitchYardTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(SwitchYardType.class)) {
+            case SwitchyardPackage.SWITCH_YARD_TYPE__COMPOSITE:
             case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
             case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
-            case SwitchyardPackage.SWITCH_YARD_TYPE__COMPOSITE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case SwitchyardPackage.SWITCH_YARD_TYPE__TRANSFORMS:

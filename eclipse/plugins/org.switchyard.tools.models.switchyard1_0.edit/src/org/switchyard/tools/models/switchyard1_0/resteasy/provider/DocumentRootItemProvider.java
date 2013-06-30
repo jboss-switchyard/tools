@@ -84,8 +84,6 @@ public class DocumentRootItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(ResteasyPackage.Literals.DOCUMENT_ROOT__BINDING_REST);
-            childrenFeatures.add(ResteasyPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER);
-            childrenFeatures.add(ResteasyPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER);
         }
         return childrenFeatures;
     }
@@ -138,8 +136,6 @@ public class DocumentRootItemProvider
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case ResteasyPackage.DOCUMENT_ROOT__BINDING_REST:
-            case ResteasyPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-            case ResteasyPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -161,16 +157,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (ResteasyPackage.Literals.DOCUMENT_ROOT__BINDING_REST,
                  ResteasyFactory.eINSTANCE.createRESTBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ResteasyPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 ResteasyFactory.eINSTANCE.createRESTContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ResteasyPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 ResteasyFactory.eINSTANCE.createRESTMessageComposerType()));
     }
 
     /**

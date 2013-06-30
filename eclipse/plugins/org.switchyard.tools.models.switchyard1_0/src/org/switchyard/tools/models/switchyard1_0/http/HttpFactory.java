@@ -26,33 +26,6 @@ public interface HttpFactory extends EFactory {
     HttpFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.http.impl.HttpFactoryImpl.init();
 
     /**
-     * Returns a new object of class '<em>Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Binding Type</em>'.
-     * @generated
-     */
-    HttpBindingType createHttpBindingType();
-
-    /**
-     * Returns a new object of class '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Context Mapper Type</em>'.
-     * @generated
-     */
-    HttpContextMapperType createHttpContextMapperType();
-
-    /**
-     * Returns a new object of class '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Message Composer Type</em>'.
-     * @generated
-     */
-    HttpMessageComposerType createHttpMessageComposerType();
-
-    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -60,6 +33,15 @@ public interface HttpFactory extends EFactory {
      * @generated
      */
     DocumentRoot createDocumentRoot();
+
+    /**
+     * Returns a new object of class '<em>HTTP Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>HTTP Binding Type</em>'.
+     * @generated
+     */
+    HTTPBindingType createHTTPBindingType();
 
     /**
      * Returns a new object of class '<em>Basic Authentication Type</em>'.

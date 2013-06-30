@@ -77,8 +77,8 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
                 return createBaseCamelBindingAdapter();
             }
             @Override
-            public Adapter caseCamelJPABindingType(CamelJPABindingType object) {
-                return createCamelJPABindingTypeAdapter();
+            public Adapter caseCamelJpaBindingType(CamelJpaBindingType object) {
+                return createCamelJpaBindingTypeAdapter();
             }
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
@@ -167,20 +167,6 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType <em>Camel JPA Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType
-     * @generated
-     */
-    public Adapter createCamelJPABindingTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -233,6 +219,20 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createBaseCamelBindingAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType <em>Camel Jpa Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType
+     * @generated
+     */
+    public Adapter createCamelJpaBindingTypeAdapter() {
         return null;
     }
 

@@ -76,72 +76,95 @@ public class HttpItemProviderAdapterFactory extends HttpAdapterFactory implement
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected HttpBindingTypeItemProvider httpBindingTypeItemProvider;
+    protected BasicAuthenticationTypeItemProvider basicAuthenticationTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createHttpBindingTypeAdapter() {
+    public Adapter createBasicAuthenticationTypeAdapter() {
+        if (basicAuthenticationTypeItemProvider == null) {
+            basicAuthenticationTypeItemProvider = new BasicAuthenticationTypeItemProvider(this);
+        }
+
+        return basicAuthenticationTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected HTTPBindingTypeItemProvider httpBindingTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createHTTPBindingTypeAdapter() {
         if (httpBindingTypeItemProvider == null) {
-            httpBindingTypeItemProvider = new HttpBindingTypeItemProvider(this);
+            httpBindingTypeItemProvider = new HTTPBindingTypeItemProvider(this);
         }
 
         return httpBindingTypeItemProvider;
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected HttpContextMapperTypeItemProvider httpContextMapperTypeItemProvider;
+    protected NTLMAuthenticationTypeItemProvider ntlmAuthenticationTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createHttpContextMapperTypeAdapter() {
-        if (httpContextMapperTypeItemProvider == null) {
-            httpContextMapperTypeItemProvider = new HttpContextMapperTypeItemProvider(this);
+    public Adapter createNTLMAuthenticationTypeAdapter() {
+        if (ntlmAuthenticationTypeItemProvider == null) {
+            ntlmAuthenticationTypeItemProvider = new NTLMAuthenticationTypeItemProvider(this);
         }
 
-        return httpContextMapperTypeItemProvider;
+        return ntlmAuthenticationTypeItemProvider;
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.ProxyType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected HttpMessageComposerTypeItemProvider httpMessageComposerTypeItemProvider;
+    protected ProxyTypeItemProvider proxyTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.ProxyType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createHttpMessageComposerTypeAdapter() {
-        if (httpMessageComposerTypeItemProvider == null) {
-            httpMessageComposerTypeItemProvider = new HttpMessageComposerTypeItemProvider(this);
+    public Adapter createProxyTypeAdapter() {
+        if (proxyTypeItemProvider == null) {
+            proxyTypeItemProvider = new ProxyTypeItemProvider(this);
         }
 
-        return httpMessageComposerTypeItemProvider;
+        return proxyTypeItemProvider;
     }
 
     /**
@@ -266,10 +289,11 @@ public class HttpItemProviderAdapterFactory extends HttpAdapterFactory implement
      * @generated
      */
     public void dispose() {
-        if (httpBindingTypeItemProvider != null) httpBindingTypeItemProvider.dispose();
-        if (httpContextMapperTypeItemProvider != null) httpContextMapperTypeItemProvider.dispose();
-        if (httpMessageComposerTypeItemProvider != null) httpMessageComposerTypeItemProvider.dispose();
+        if (basicAuthenticationTypeItemProvider != null) basicAuthenticationTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (httpBindingTypeItemProvider != null) httpBindingTypeItemProvider.dispose();
+        if (ntlmAuthenticationTypeItemProvider != null) ntlmAuthenticationTypeItemProvider.dispose();
+        if (proxyTypeItemProvider != null) proxyTypeItemProvider.dispose();
     }
 
 }

@@ -12,8 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -27,13 +25,8 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditP
 import org.switchyard.tools.models.switchyard1_0.camel.sql.BaseCamelBinding;
 
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
-import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
-import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardBindingTypeItemProvider;
 
 /**
@@ -87,8 +80,8 @@ public class BaseCamelBindingItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
-            childrenFeatures.add(SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
+            childrenFeatures.add(SqlPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER);
+            childrenFeatures.add(SqlPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
         }
         return childrenFeatures;
     }
@@ -132,8 +125,8 @@ public class BaseCamelBindingItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(BaseCamelBinding.class)) {
-            case SqlPackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER:
-            case SqlPackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER:
+            case SqlPackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
+            case SqlPackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -153,94 +146,23 @@ public class BaseCamelBindingItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                (SqlPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER,
                  SwitchyardFactory.eINSTANCE.createContextMapperType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
-                 HornetQFactory.eINSTANCE.createHornetQContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                (SqlPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER,
                  SOAPFactory.eINSTANCE.createContextMapperType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
-                 JcaFactory.eINSTANCE.createJCAContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
-                 ResteasyFactory.eINSTANCE.createRESTContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
-                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
+                (SqlPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
                  SwitchyardFactory.eINSTANCE.createMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
-                 HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
-                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
-                 JcaFactory.eINSTANCE.createJCAMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
-                 ResteasyFactory.eINSTANCE.createRESTMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
-                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
-    }
-
-    /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        Object childFeature = feature;
-        Object childObject = child;
-
-        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
-            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
-            childFeature = entry.getEStructuralFeature();
-            childObject = entry.getValue();
-        }
-
-        boolean qualify =
-            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER ||
-            childFeature == SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER ||
-            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER ||
-            childFeature == SqlPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER;
-
-        if (qualify) {
-            return getString
-                ("_UI_CreateChild_text2",
-                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-        }
-        return super.getCreateChildText(owner, feature, child, selection);
+                (SqlPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                 SOAPFactory.eINSTANCE.createMessageComposerType()));
     }
 
     /**

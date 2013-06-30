@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
-import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit;
+import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnitType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
@@ -177,7 +177,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final TimeUnit TIME_UNIT_EDEFAULT = TimeUnit.MILLISECONDS;
+    protected static final TimeUnitType TIME_UNIT_EDEFAULT = TimeUnitType.MILLISECONDS;
 
     /**
      * The cached value of the '{@link #getTimeUnit() <em>Time Unit</em>}' attribute.
@@ -187,7 +187,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected TimeUnit timeUnit = TIME_UNIT_EDEFAULT;
+    protected TimeUnitType timeUnit = TIME_UNIT_EDEFAULT;
 
     /**
      * This is true if the Time Unit attribute has been set.
@@ -947,7 +947,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public TimeUnit getTimeUnit() {
+    public TimeUnitType getTimeUnit() {
         return timeUnit;
     }
 
@@ -956,8 +956,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTimeUnit(TimeUnit newTimeUnit) {
-        TimeUnit oldTimeUnit = timeUnit;
+    public void setTimeUnit(TimeUnitType newTimeUnit) {
+        TimeUnitType oldTimeUnit = timeUnit;
         timeUnit = newTimeUnit == null ? TIME_UNIT_EDEFAULT : newTimeUnit;
         boolean oldTimeUnitESet = timeUnitESet;
         timeUnitESet = true;
@@ -971,7 +971,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetTimeUnit() {
-        TimeUnit oldTimeUnit = timeUnit;
+        TimeUnitType oldTimeUnit = timeUnit;
         boolean oldTimeUnitESet = timeUnitESet;
         timeUnit = TIME_UNIT_EDEFAULT;
         timeUnitESet = false;
@@ -1785,7 +1785,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
                 setSendEmptyMessageWhenIdle((Boolean)newValue);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
-                setTimeUnit((TimeUnit)newValue);
+                setTimeUnit((TimeUnitType)newValue);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 setMaxMessagesPerPoll(newValue);

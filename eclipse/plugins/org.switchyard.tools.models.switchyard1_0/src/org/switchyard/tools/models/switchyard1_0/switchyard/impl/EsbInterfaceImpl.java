@@ -22,9 +22,9 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl#getFaultType <em>Fault Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl#getInputType <em>Input Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl#getOutputType <em>Output Type</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl#getFaultType <em>Fault Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,6 +32,24 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  */
 public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
 	/**
+     * The default value of the '{@link #getFaultType() <em>Fault Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFaultType()
+     * @generated
+     * @ordered
+     */
+    protected static final String FAULT_TYPE_EDEFAULT = null;
+    /**
+     * The cached value of the '{@link #getFaultType() <em>Fault Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFaultType()
+     * @generated
+     * @ordered
+     */
+    protected String faultType = FAULT_TYPE_EDEFAULT;
+    /**
      * The default value of the '{@link #getInputType() <em>Input Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -67,24 +85,6 @@ public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
      * @ordered
      */
     protected String outputType = OUTPUT_TYPE_EDEFAULT;
-    /**
-     * The default value of the '{@link #getFaultType() <em>Fault Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getFaultType()
-     * @generated
-     * @ordered
-     */
-    protected static final String FAULT_TYPE_EDEFAULT = null;
-    /**
-     * The cached value of the '{@link #getFaultType() <em>Fault Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getFaultType()
-     * @generated
-     * @ordered
-     */
-    protected String faultType = FAULT_TYPE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -176,12 +176,12 @@ public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
+                return getFaultType();
             case SwitchyardPackage.ESB_INTERFACE__INPUT_TYPE:
                 return getInputType();
             case SwitchyardPackage.ESB_INTERFACE__OUTPUT_TYPE:
                 return getOutputType();
-            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
-                return getFaultType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -194,14 +194,14 @@ public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
+                setFaultType((String)newValue);
+                return;
             case SwitchyardPackage.ESB_INTERFACE__INPUT_TYPE:
                 setInputType((String)newValue);
                 return;
             case SwitchyardPackage.ESB_INTERFACE__OUTPUT_TYPE:
                 setOutputType((String)newValue);
-                return;
-            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
-                setFaultType((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -215,14 +215,14 @@ public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
+                setFaultType(FAULT_TYPE_EDEFAULT);
+                return;
             case SwitchyardPackage.ESB_INTERFACE__INPUT_TYPE:
                 setInputType(INPUT_TYPE_EDEFAULT);
                 return;
             case SwitchyardPackage.ESB_INTERFACE__OUTPUT_TYPE:
                 setOutputType(OUTPUT_TYPE_EDEFAULT);
-                return;
-            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
-                setFaultType(FAULT_TYPE_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -236,12 +236,12 @@ public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
+                return FAULT_TYPE_EDEFAULT == null ? faultType != null : !FAULT_TYPE_EDEFAULT.equals(faultType);
             case SwitchyardPackage.ESB_INTERFACE__INPUT_TYPE:
                 return INPUT_TYPE_EDEFAULT == null ? inputType != null : !INPUT_TYPE_EDEFAULT.equals(inputType);
             case SwitchyardPackage.ESB_INTERFACE__OUTPUT_TYPE:
                 return OUTPUT_TYPE_EDEFAULT == null ? outputType != null : !OUTPUT_TYPE_EDEFAULT.equals(outputType);
-            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
-                return FAULT_TYPE_EDEFAULT == null ? faultType != null : !FAULT_TYPE_EDEFAULT.equals(faultType);
         }
         return super.eIsSet(featureID);
     }
@@ -256,12 +256,12 @@ public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (inputType: ");
+        result.append(" (faultType: ");
+        result.append(faultType);
+        result.append(", inputType: ");
         result.append(inputType);
         result.append(", outputType: ");
         result.append(outputType);
-        result.append(", faultType: ");
-        result.append(faultType);
         result.append(')');
         return result.toString();
     }

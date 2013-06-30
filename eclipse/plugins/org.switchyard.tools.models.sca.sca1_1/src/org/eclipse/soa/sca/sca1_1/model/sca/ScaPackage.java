@@ -410,7 +410,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getImplementation()
      * @generated
      */
-	int IMPLEMENTATION = 40;
+	int IMPLEMENTATION = 41;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1048,7 +1048,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getImport()
      * @generated
      */
-	int IMPORT = 42;
+	int IMPORT = 43;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1158,7 +1158,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getInterface()
      * @generated
      */
-	int INTERFACE = 50;
+	int INTERFACE = 51;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1551,13 +1551,22 @@ public interface ScaPackage extends EPackage {
 	int CONTRACT__CALLBACK = COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONTRACT__EXTENSIONS = COMMON_EXTENSION_BASE_FEATURE_COUNT + 5;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CONTRACT__ANY = COMMON_EXTENSION_BASE_FEATURE_COUNT + 5;
+	int CONTRACT__ANY = COMMON_EXTENSION_BASE_FEATURE_COUNT + 6;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1566,7 +1575,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CONTRACT__NAME = COMMON_EXTENSION_BASE_FEATURE_COUNT + 6;
+	int CONTRACT__NAME = COMMON_EXTENSION_BASE_FEATURE_COUNT + 7;
 
 	/**
      * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
@@ -1575,7 +1584,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CONTRACT__POLICY_SETS = COMMON_EXTENSION_BASE_FEATURE_COUNT + 7;
+	int CONTRACT__POLICY_SETS = COMMON_EXTENSION_BASE_FEATURE_COUNT + 8;
 
 	/**
      * The feature id for the '<em><b>Requires</b></em>' attribute.
@@ -1584,7 +1593,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CONTRACT__REQUIRES = COMMON_EXTENSION_BASE_FEATURE_COUNT + 8;
+	int CONTRACT__REQUIRES = COMMON_EXTENSION_BASE_FEATURE_COUNT + 9;
 
 	/**
      * The number of structural features of the '<em>Contract</em>' class.
@@ -1593,7 +1602,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CONTRACT_FEATURE_COUNT = COMMON_EXTENSION_BASE_FEATURE_COUNT + 9;
+	int CONTRACT_FEATURE_COUNT = COMMON_EXTENSION_BASE_FEATURE_COUNT + 10;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ComponentReferenceImpl <em>Component Reference</em>}' class.
@@ -1669,6 +1678,15 @@ public interface ScaPackage extends EPackage {
 	int COMPONENT_REFERENCE__CALLBACK = CONTRACT__CALLBACK;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPONENT_REFERENCE__EXTENSIONS = CONTRACT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1841,6 +1859,15 @@ public interface ScaPackage extends EPackage {
 	int COMPONENT_SERVICE__CALLBACK = CONTRACT__CALLBACK;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPONENT_SERVICE__EXTENSIONS = CONTRACT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2059,6 +2086,15 @@ public interface ScaPackage extends EPackage {
 	int COMPONENT_TYPE_REFERENCE__CALLBACK = COMPONENT_REFERENCE__CALLBACK;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPONENT_TYPE_REFERENCE__EXTENSIONS = COMPONENT_REFERENCE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2465,7 +2501,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getSCAPropertyBase()
      * @generated
      */
-	int SCA_PROPERTY_BASE = 82;
+	int SCA_PROPERTY_BASE = 83;
 
 	/**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -2529,7 +2565,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getProperty()
      * @generated
      */
-	int PROPERTY = 75;
+	int PROPERTY = 76;
 
 	/**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -2831,6 +2867,15 @@ public interface ScaPackage extends EPackage {
 	int CONSTRAINING_REFERENCE__CALLBACK = COMPONENT_REFERENCE__CALLBACK;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONSTRAINING_REFERENCE__EXTENSIONS = COMPONENT_REFERENCE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3003,6 +3048,15 @@ public interface ScaPackage extends EPackage {
 	int CONSTRAINING_SERVICE__CALLBACK = COMPONENT_SERVICE__CALLBACK;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONSTRAINING_SERVICE__EXTENSIONS = COMPONENT_SERVICE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4076,13 +4130,22 @@ public interface ScaPackage extends EPackage {
 	int DOCUMENT_ROOT__EXPORT_JAVA = 21;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__EXTENSIONS = 22;
+
+    /**
      * The feature id for the '<em><b>Implementation</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION = 22;
+	int DOCUMENT_ROOT__IMPLEMENTATION = 23;
 
 	/**
      * The feature id for the '<em><b>Implementation Bpel</b></em>' containment reference.
@@ -4091,7 +4154,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_BPEL = 23;
+	int DOCUMENT_ROOT__IMPLEMENTATION_BPEL = 24;
 
 	/**
      * The feature id for the '<em><b>Implementation C</b></em>' containment reference.
@@ -4100,7 +4163,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_C = 24;
+	int DOCUMENT_ROOT__IMPLEMENTATION_C = 25;
 
 	/**
      * The feature id for the '<em><b>Implementation Composite</b></em>' containment reference.
@@ -4109,7 +4172,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE = 25;
+	int DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE = 26;
 
 	/**
      * The feature id for the '<em><b>Implementation Cpp</b></em>' containment reference.
@@ -4118,7 +4181,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_CPP = 26;
+	int DOCUMENT_ROOT__IMPLEMENTATION_CPP = 27;
 
 	/**
      * The feature id for the '<em><b>Implementation Ejb</b></em>' containment reference.
@@ -4127,7 +4190,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_EJB = 27;
+	int DOCUMENT_ROOT__IMPLEMENTATION_EJB = 28;
 
 	/**
      * The feature id for the '<em><b>Implementation Java</b></em>' containment reference.
@@ -4136,7 +4199,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_JAVA = 28;
+	int DOCUMENT_ROOT__IMPLEMENTATION_JAVA = 29;
 
 	/**
      * The feature id for the '<em><b>Implementation Jee</b></em>' containment reference.
@@ -4145,7 +4208,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_JEE = 29;
+	int DOCUMENT_ROOT__IMPLEMENTATION_JEE = 30;
 
 	/**
      * The feature id for the '<em><b>Implementation Spring</b></em>' containment reference.
@@ -4154,7 +4217,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_SPRING = 30;
+	int DOCUMENT_ROOT__IMPLEMENTATION_SPRING = 31;
 
 	/**
      * The feature id for the '<em><b>Implementation Web</b></em>' containment reference.
@@ -4163,7 +4226,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_WEB = 31;
+	int DOCUMENT_ROOT__IMPLEMENTATION_WEB = 32;
 
 	/**
      * The feature id for the '<em><b>Implementation Type</b></em>' containment reference.
@@ -4172,7 +4235,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_TYPE = 32;
+	int DOCUMENT_ROOT__IMPLEMENTATION_TYPE = 33;
 
 	/**
      * The feature id for the '<em><b>Import</b></em>' containment reference.
@@ -4181,7 +4244,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPORT = 33;
+	int DOCUMENT_ROOT__IMPORT = 34;
 
 	/**
      * The feature id for the '<em><b>Import Base</b></em>' containment reference.
@@ -4190,7 +4253,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPORT_BASE = 34;
+	int DOCUMENT_ROOT__IMPORT_BASE = 35;
 
 	/**
      * The feature id for the '<em><b>Import C</b></em>' containment reference.
@@ -4199,7 +4262,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPORT_C = 35;
+	int DOCUMENT_ROOT__IMPORT_C = 36;
 
 	/**
      * The feature id for the '<em><b>Import Cpp</b></em>' containment reference.
@@ -4208,7 +4271,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPORT_CPP = 36;
+	int DOCUMENT_ROOT__IMPORT_CPP = 37;
 
 	/**
      * The feature id for the '<em><b>Import Java</b></em>' containment reference.
@@ -4217,7 +4280,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPORT_JAVA = 37;
+	int DOCUMENT_ROOT__IMPORT_JAVA = 38;
 
 	/**
      * The feature id for the '<em><b>Include</b></em>' containment reference.
@@ -4226,7 +4289,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INCLUDE = 38;
+	int DOCUMENT_ROOT__INCLUDE = 39;
 
 	/**
      * The feature id for the '<em><b>Intent</b></em>' containment reference.
@@ -4235,7 +4298,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTENT = 39;
+	int DOCUMENT_ROOT__INTENT = 40;
 
 	/**
      * The feature id for the '<em><b>Interface</b></em>' containment reference.
@@ -4244,7 +4307,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTERFACE = 40;
+	int DOCUMENT_ROOT__INTERFACE = 41;
 
 	/**
      * The feature id for the '<em><b>Interface C</b></em>' containment reference.
@@ -4253,7 +4316,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTERFACE_C = 41;
+	int DOCUMENT_ROOT__INTERFACE_C = 42;
 
 	/**
      * The feature id for the '<em><b>Interface Cpp</b></em>' containment reference.
@@ -4262,7 +4325,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTERFACE_CPP = 42;
+	int DOCUMENT_ROOT__INTERFACE_CPP = 43;
 
 	/**
      * The feature id for the '<em><b>Interface Java</b></em>' containment reference.
@@ -4271,7 +4334,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTERFACE_JAVA = 43;
+	int DOCUMENT_ROOT__INTERFACE_JAVA = 44;
 
 	/**
      * The feature id for the '<em><b>Interface Wsdl</b></em>' containment reference.
@@ -4280,7 +4343,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTERFACE_WSDL = 44;
+	int DOCUMENT_ROOT__INTERFACE_WSDL = 45;
 
 	/**
      * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
@@ -4289,7 +4352,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__OPERATION_SELECTOR = 45;
+	int DOCUMENT_ROOT__OPERATION_SELECTOR = 46;
 
 	/**
      * The feature id for the '<em><b>Operation Selector Jms Default</b></em>' containment reference.
@@ -4298,7 +4361,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT = 46;
+	int DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT = 47;
 
 	/**
      * The feature id for the '<em><b>Policy Set</b></em>' containment reference.
@@ -4307,7 +4370,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__POLICY_SET = 47;
+	int DOCUMENT_ROOT__POLICY_SET = 48;
 
 	/**
      * The feature id for the '<em><b>Policy Set Attachment</b></em>' containment reference.
@@ -4316,7 +4379,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__POLICY_SET_ATTACHMENT = 48;
+	int DOCUMENT_ROOT__POLICY_SET_ATTACHMENT = 49;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -4325,7 +4388,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__VALUE = 49;
+	int DOCUMENT_ROOT__VALUE = 50;
 
 	/**
      * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
@@ -4334,7 +4397,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__WIRE_FORMAT = 50;
+	int DOCUMENT_ROOT__WIRE_FORMAT = 51;
 
 	/**
      * The feature id for the '<em><b>Wire Format Jms Default</b></em>' containment reference.
@@ -4343,7 +4406,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT = 51;
+	int DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT = 52;
 
 	/**
      * The feature id for the '<em><b>WS Callback</b></em>' containment reference.
@@ -4352,7 +4415,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__WS_CALLBACK = 52;
+	int DOCUMENT_ROOT__WS_CALLBACK = 53;
 
 	/**
      * The feature id for the '<em><b>Callback1</b></em>' attribute.
@@ -4361,7 +4424,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__CALLBACK1 = 53;
+	int DOCUMENT_ROOT__CALLBACK1 = 54;
 
 	/**
      * The feature id for the '<em><b>Requires</b></em>' attribute.
@@ -4370,7 +4433,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REQUIRES = 54;
+	int DOCUMENT_ROOT__REQUIRES = 55;
 
 	/**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -4379,7 +4442,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 55;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 56;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.EJBImplementationImpl <em>EJB Implementation</em>}' class.
@@ -4664,6 +4727,34 @@ public interface ScaPackage extends EPackage {
 	int EXPORT_TYPE_FEATURE_COUNT = EXPORT_FEATURE_COUNT + 1;
 
 	/**
+     * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ExtensionsTypeImpl <em>Extensions Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ExtensionsTypeImpl
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getExtensionsType()
+     * @generated
+     */
+    int EXTENSIONS_TYPE = 40;
+
+    /**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTENSIONS_TYPE__ANY = 0;
+
+    /**
+     * The number of structural features of the '<em>Extensions Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTENSIONS_TYPE_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationTypeImpl <em>Implementation Type</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4671,7 +4762,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getImplementationType()
      * @generated
      */
-	int IMPLEMENTATION_TYPE = 41;
+	int IMPLEMENTATION_TYPE = 42;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -4744,7 +4835,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getImportType()
      * @generated
      */
-	int IMPORT_TYPE = 43;
+	int IMPORT_TYPE = 44;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -4808,7 +4899,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getInboundOperation()
      * @generated
      */
-	int INBOUND_OPERATION = 44;
+	int INBOUND_OPERATION = 45;
 
 	/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -4863,7 +4954,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getInclude()
      * @generated
      */
-	int INCLUDE = 45;
+	int INCLUDE = 46;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -4909,7 +5000,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getIntent()
      * @generated
      */
-	int INTENT = 46;
+	int INTENT = 47;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -5018,7 +5109,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getIntentMap()
      * @generated
      */
-	int INTENT_MAP = 47;
+	int INTENT_MAP = 48;
 
 	/**
      * The feature id for the '<em><b>Group</b></em>' attribute list.
@@ -5082,7 +5173,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getIntentQualifier()
      * @generated
      */
-	int INTENT_QUALIFIER = 48;
+	int INTENT_QUALIFIER = 49;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -5128,7 +5219,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getInteractionSpec()
      * @generated
      */
-	int INTERACTION_SPEC = 49;
+	int INTERACTION_SPEC = 50;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -5183,7 +5274,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJavaExportType()
      * @generated
      */
-	int JAVA_EXPORT_TYPE = 51;
+	int JAVA_EXPORT_TYPE = 52;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -5238,7 +5329,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJavaImplementation()
      * @generated
      */
-	int JAVA_IMPLEMENTATION = 52;
+	int JAVA_IMPLEMENTATION = 53;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -5320,7 +5411,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJavaImportType()
      * @generated
      */
-	int JAVA_IMPORT_TYPE = 53;
+	int JAVA_IMPORT_TYPE = 54;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -5384,7 +5475,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJavaInterface()
      * @generated
      */
-	int JAVA_INTERFACE = 54;
+	int JAVA_INTERFACE = 55;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -5484,7 +5575,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJCABinding()
      * @generated
      */
-	int JCA_BINDING = 55;
+	int JCA_BINDING = 56;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -5674,7 +5765,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJCAInboundConnection()
      * @generated
      */
-	int JCA_INBOUND_CONNECTION = 56;
+	int JCA_INBOUND_CONNECTION = 57;
 
 	/**
      * The feature id for the '<em><b>Resource Adapter</b></em>' containment reference.
@@ -5729,7 +5820,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJCAInboundInteraction()
      * @generated
      */
-	int JCA_INBOUND_INTERACTION = 57;
+	int JCA_INBOUND_INTERACTION = 58;
 
 	/**
      * The feature id for the '<em><b>Listener</b></em>' attribute.
@@ -5784,7 +5875,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJCAOutboundConnection()
      * @generated
      */
-	int JCA_OUTBOUND_CONNECTION = 58;
+	int JCA_OUTBOUND_CONNECTION = 59;
 
 	/**
      * The feature id for the '<em><b>Resource Adapter</b></em>' containment reference.
@@ -5857,7 +5948,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJCAOutboundInteraction()
      * @generated
      */
-	int JCA_OUTBOUND_INTERACTION = 59;
+	int JCA_OUTBOUND_INTERACTION = 60;
 
 	/**
      * The feature id for the '<em><b>Connection Spec</b></em>' containment reference.
@@ -5921,7 +6012,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJEEImplementation()
      * @generated
      */
-	int JEE_IMPLEMENTATION = 60;
+	int JEE_IMPLEMENTATION = 61;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -6003,7 +6094,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSActivationSpec()
      * @generated
      */
-	int JMS_ACTIVATION_SPEC = 61;
+	int JMS_ACTIVATION_SPEC = 62;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -6049,7 +6140,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSBinding()
      * @generated
      */
-	int JMS_BINDING = 62;
+	int JMS_BINDING = 63;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -6293,7 +6384,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSConnectionFactory()
      * @generated
      */
-	int JMS_CONNECTION_FACTORY = 63;
+	int JMS_CONNECTION_FACTORY = 64;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -6339,7 +6430,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSDestination()
      * @generated
      */
-	int JMS_DESTINATION = 64;
+	int JMS_DESTINATION = 65;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -6394,7 +6485,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSHeaders()
      * @generated
      */
-	int JMS_HEADERS = 65;
+	int JMS_HEADERS = 66;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -6458,7 +6549,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSMessageSelection()
      * @generated
      */
-	int JMS_MESSAGE_SELECTION = 66;
+	int JMS_MESSAGE_SELECTION = 67;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -6495,7 +6586,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSOperationProperties()
      * @generated
      */
-	int JMS_OPERATION_PROPERTIES = 67;
+	int JMS_OPERATION_PROPERTIES = 68;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -6550,7 +6641,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSResourceAdapter()
      * @generated
      */
-	int JMS_RESOURCE_ADAPTER = 68;
+	int JMS_RESOURCE_ADAPTER = 69;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -6587,7 +6678,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSResponse()
      * @generated
      */
-	int JMS_RESPONSE = 69;
+	int JMS_RESPONSE = 70;
 
 	/**
      * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
@@ -6651,7 +6742,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getOperation()
      * @generated
      */
-	int OPERATION = 70;
+	int OPERATION = 71;
 
 	/**
      * The feature id for the '<em><b>Interaction Spec</b></em>' containment reference.
@@ -6706,7 +6797,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getOperationSelectorType()
      * @generated
      */
-	int OPERATION_SELECTOR_TYPE = 71;
+	int OPERATION_SELECTOR_TYPE = 72;
 
 	/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -6743,7 +6834,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getPolicySet()
      * @generated
      */
-	int POLICY_SET = 72;
+	int POLICY_SET = 73;
 
 	/**
      * The feature id for the '<em><b>Group</b></em>' attribute list.
@@ -6843,7 +6934,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getPolicySetAttachment()
      * @generated
      */
-	int POLICY_SET_ATTACHMENT = 73;
+	int POLICY_SET_ATTACHMENT = 74;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6880,7 +6971,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getPolicySetReference()
      * @generated
      */
-	int POLICY_SET_REFERENCE = 74;
+	int POLICY_SET_REFERENCE = 75;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6917,7 +7008,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getPropertyValue()
      * @generated
      */
-	int PROPERTY_VALUE = 76;
+	int PROPERTY_VALUE = 77;
 
 	/**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -7044,7 +7135,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getQualifier()
      * @generated
      */
-	int QUALIFIER = 77;
+	int QUALIFIER = 78;
 
 	/**
      * The feature id for the '<em><b>Group</b></em>' attribute list.
@@ -7099,7 +7190,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getReference()
      * @generated
      */
-	int REFERENCE = 78;
+	int REFERENCE = 79;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -7165,6 +7256,15 @@ public interface ScaPackage extends EPackage {
 	int REFERENCE__CALLBACK = CONTRACT__CALLBACK;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE__EXTENSIONS = CONTRACT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7262,7 +7362,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getResourceAdapter()
      * @generated
      */
-	int RESOURCE_ADAPTER = 79;
+	int RESOURCE_ADAPTER = 80;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -7326,7 +7426,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getSCABinding()
      * @generated
      */
-	int SCA_BINDING = 80;
+	int SCA_BINDING = 81;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -7435,7 +7535,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getSCAImplementation()
      * @generated
      */
-	int SCA_IMPLEMENTATION = 81;
+	int SCA_IMPLEMENTATION = 82;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -7508,7 +7608,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getService()
      * @generated
      */
-	int SERVICE = 83;
+	int SERVICE = 84;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -7574,6 +7674,15 @@ public interface ScaPackage extends EPackage {
 	int SERVICE__CALLBACK = CONTRACT__CALLBACK;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SERVICE__EXTENSIONS = CONTRACT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7635,7 +7744,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getSpringImplementation()
      * @generated
      */
-	int SPRING_IMPLEMENTATION = 84;
+	int SPRING_IMPLEMENTATION = 85;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -7708,7 +7817,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getTDefinitions()
      * @generated
      */
-	int TDEFINITIONS = 85;
+	int TDEFINITIONS = 86;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -7826,7 +7935,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getValueType()
      * @generated
      */
-	int VALUE_TYPE = 86;
+	int VALUE_TYPE = 87;
 
 	/**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -7872,7 +7981,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getWebImplementation()
      * @generated
      */
-	int WEB_IMPLEMENTATION = 87;
+	int WEB_IMPLEMENTATION = 88;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -7954,7 +8063,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getWebServiceBinding()
      * @generated
      */
-	int WEB_SERVICE_BINDING = 88;
+	int WEB_SERVICE_BINDING = 89;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -8099,7 +8208,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getWire()
      * @generated
      */
-	int WIRE = 89;
+	int WIRE = 90;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -8190,7 +8299,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getWireFormatType()
      * @generated
      */
-	int WIRE_FORMAT_TYPE = 90;
+	int WIRE_FORMAT_TYPE = 91;
 
 	/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -8227,7 +8336,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getWSCallbackType()
      * @generated
      */
-	int WS_CALLBACK_TYPE = 91;
+	int WS_CALLBACK_TYPE = 92;
 
 	/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -8264,7 +8373,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getWSDLPortType()
      * @generated
      */
-	int WSDL_PORT_TYPE = 92;
+	int WSDL_PORT_TYPE = 93;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -8364,7 +8473,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getExtendableType()
      * @generated
      */
-    int EXTENDABLE_TYPE = 93;
+    int EXTENDABLE_TYPE = 94;
 
     /**
      * The number of structural features of the '<em>Extendable Type</em>' class.
@@ -8383,7 +8492,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getCImplementationScope()
      * @generated
      */
-	int CIMPLEMENTATION_SCOPE = 94;
+	int CIMPLEMENTATION_SCOPE = 95;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementationScope <em>CPP Implementation Scope</em>}' enum.
@@ -8393,7 +8502,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getCPPImplementationScope()
      * @generated
      */
-	int CPP_IMPLEMENTATION_SCOPE = 95;
+	int CPP_IMPLEMENTATION_SCOPE = 96;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CreateResource <em>Create Resource</em>}' enum.
@@ -8403,7 +8512,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getCreateResource()
      * @generated
      */
-	int CREATE_RESOURCE = 96;
+	int CREATE_RESOURCE = 97;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.DeliveryModeType <em>Delivery Mode Type</em>}' enum.
@@ -8413,7 +8522,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getDeliveryModeType()
      * @generated
      */
-	int DELIVERY_MODE_TYPE = 97;
+	int DELIVERY_MODE_TYPE = 98;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.InteractionOrImplementation <em>Interaction Or Implementation</em>}' enum.
@@ -8423,7 +8532,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getInteractionOrImplementation()
      * @generated
      */
-	int INTERACTION_OR_IMPLEMENTATION = 98;
+	int INTERACTION_OR_IMPLEMENTATION = 99;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.JCACreateResource <em>JCA Create Resource</em>}' enum.
@@ -8433,7 +8542,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJCACreateResource()
      * @generated
      */
-	int JCA_CREATE_RESOURCE = 99;
+	int JCA_CREATE_RESOURCE = 100;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.JMSCreateResource <em>JMS Create Resource</em>}' enum.
@@ -8443,7 +8552,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSCreateResource()
      * @generated
      */
-	int JMS_CREATE_RESOURCE = 100;
+	int JMS_CREATE_RESOURCE = 101;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Multiplicity <em>Multiplicity</em>}' enum.
@@ -8453,7 +8562,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getMultiplicity()
      * @generated
      */
-	int MULTIPLICITY = 101;
+	int MULTIPLICITY = 102;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.OverrideOptions <em>Override Options</em>}' enum.
@@ -8463,7 +8572,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getOverrideOptions()
      * @generated
      */
-	int OVERRIDE_OPTIONS = 102;
+	int OVERRIDE_OPTIONS = 103;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.PriorityType <em>Priority Type</em>}' enum.
@@ -8473,7 +8582,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getPriorityType()
      * @generated
      */
-	int PRIORITY_TYPE = 103;
+	int PRIORITY_TYPE = 104;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.ResAuth <em>Res Auth</em>}' enum.
@@ -8483,7 +8592,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getResAuth()
      * @generated
      */
-	int RES_AUTH = 104;
+	int RES_AUTH = 105;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.TypeType <em>Type Type</em>}' enum.
@@ -8493,7 +8602,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getTypeType()
      * @generated
      */
-	int TYPE_TYPE = 105;
+	int TYPE_TYPE = 106;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.VersionValue <em>Version Value</em>}' enum.
@@ -8503,7 +8612,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getVersionValue()
      * @generated
      */
-	int VERSION_VALUE = 106;
+	int VERSION_VALUE = 107;
 
 	/**
      * The meta object id for the '<em>CImplementation Scope Object</em>' data type.
@@ -8513,7 +8622,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getCImplementationScopeObject()
      * @generated
      */
-	int CIMPLEMENTATION_SCOPE_OBJECT = 107;
+	int CIMPLEMENTATION_SCOPE_OBJECT = 108;
 
 	/**
      * The meta object id for the '<em>CPP Implementation Scope Object</em>' data type.
@@ -8523,7 +8632,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getCPPImplementationScopeObject()
      * @generated
      */
-	int CPP_IMPLEMENTATION_SCOPE_OBJECT = 108;
+	int CPP_IMPLEMENTATION_SCOPE_OBJECT = 109;
 
 	/**
      * The meta object id for the '<em>Create Resource Object</em>' data type.
@@ -8533,7 +8642,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getCreateResourceObject()
      * @generated
      */
-	int CREATE_RESOURCE_OBJECT = 109;
+	int CREATE_RESOURCE_OBJECT = 110;
 
 	/**
      * The meta object id for the '<em>Delivery Mode Type Object</em>' data type.
@@ -8543,7 +8652,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getDeliveryModeTypeObject()
      * @generated
      */
-	int DELIVERY_MODE_TYPE_OBJECT = 110;
+	int DELIVERY_MODE_TYPE_OBJECT = 111;
 
 	/**
      * The meta object id for the '<em>Interaction Or Implementation Object</em>' data type.
@@ -8553,7 +8662,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getInteractionOrImplementationObject()
      * @generated
      */
-	int INTERACTION_OR_IMPLEMENTATION_OBJECT = 111;
+	int INTERACTION_OR_IMPLEMENTATION_OBJECT = 112;
 
 	/**
      * The meta object id for the '<em>JCA Create Resource Object</em>' data type.
@@ -8563,7 +8672,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJCACreateResourceObject()
      * @generated
      */
-	int JCA_CREATE_RESOURCE_OBJECT = 112;
+	int JCA_CREATE_RESOURCE_OBJECT = 113;
 
 	/**
      * The meta object id for the '<em>JMS Create Resource Object</em>' data type.
@@ -8573,7 +8682,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getJMSCreateResourceObject()
      * @generated
      */
-	int JMS_CREATE_RESOURCE_OBJECT = 113;
+	int JMS_CREATE_RESOURCE_OBJECT = 114;
 
 	/**
      * The meta object id for the '<em>List Of Any UR Is</em>' data type.
@@ -8583,7 +8692,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getListOfAnyURIs()
      * @generated
      */
-	int LIST_OF_ANY_UR_IS = 114;
+	int LIST_OF_ANY_UR_IS = 115;
 
 	/**
      * The meta object id for the '<em>List Of NC Names</em>' data type.
@@ -8593,7 +8702,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getListOfNCNames()
      * @generated
      */
-	int LIST_OF_NC_NAMES = 115;
+	int LIST_OF_NC_NAMES = 116;
 
 	/**
      * The meta object id for the '<em>List Of QNames</em>' data type.
@@ -8603,7 +8712,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getListOfQNames()
      * @generated
      */
-	int LIST_OF_QNAMES = 116;
+	int LIST_OF_QNAMES = 117;
 
 	/**
      * The meta object id for the '<em>Multiplicity Object</em>' data type.
@@ -8613,7 +8722,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getMultiplicityObject()
      * @generated
      */
-	int MULTIPLICITY_OBJECT = 117;
+	int MULTIPLICITY_OBJECT = 118;
 
 	/**
      * The meta object id for the '<em>Override Options Object</em>' data type.
@@ -8623,7 +8732,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getOverrideOptionsObject()
      * @generated
      */
-	int OVERRIDE_OPTIONS_OBJECT = 118;
+	int OVERRIDE_OPTIONS_OBJECT = 119;
 
 	/**
      * The meta object id for the '<em>Priority Type Object</em>' data type.
@@ -8633,7 +8742,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getPriorityTypeObject()
      * @generated
      */
-	int PRIORITY_TYPE_OBJECT = 119;
+	int PRIORITY_TYPE_OBJECT = 120;
 
 	/**
      * The meta object id for the '<em>Res Auth Object</em>' data type.
@@ -8643,7 +8752,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getResAuthObject()
      * @generated
      */
-	int RES_AUTH_OBJECT = 120;
+	int RES_AUTH_OBJECT = 121;
 
 	/**
      * The meta object id for the '<em>Type Type Object</em>' data type.
@@ -8653,7 +8762,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getTypeTypeObject()
      * @generated
      */
-	int TYPE_TYPE_OBJECT = 121;
+	int TYPE_TYPE_OBJECT = 122;
 
 	/**
      * The meta object id for the '<em>Version Value Object</em>' data type.
@@ -8663,7 +8772,7 @@ public interface ScaPackage extends EPackage {
      * @see org.eclipse.soa.sca.sca1_1.model.sca.impl.ScaPackageImpl#getVersionValueObject()
      * @generated
      */
-	int VERSION_VALUE_OBJECT = 122;
+	int VERSION_VALUE_OBJECT = 123;
 
 
 	/**
@@ -10324,6 +10433,17 @@ public interface ScaPackage extends EPackage {
 	EReference getContract_Callback();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getExtensions <em>Extensions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Extensions</em>'.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.Contract#getExtensions()
+     * @see #getContract()
+     * @generated
+     */
+    EReference getContract_Extensions();
+
+    /**
      * Returns the meta object for the attribute list '{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getAny <em>Any</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11161,6 +11281,17 @@ public interface ScaPackage extends EPackage {
 	EReference getDocumentRoot_ExportJava();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getExtensions <em>Extensions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Extensions</em>'.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getExtensions()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Extensions();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getImplementation <em>Implementation</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11663,6 +11794,27 @@ public interface ScaPackage extends EPackage {
 	EAttribute getExportType_Namespace();
 
 	/**
+     * Returns the meta object for class '{@link org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType <em>Extensions Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Extensions Type</em>'.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType
+     * @generated
+     */
+    EClass getExtensionsType();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType#getAny <em>Any</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Any</em>'.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType#getAny()
+     * @see #getExtensionsType()
+     * @generated
+     */
+    EAttribute getExtensionsType_Any();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation <em>Implementation</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

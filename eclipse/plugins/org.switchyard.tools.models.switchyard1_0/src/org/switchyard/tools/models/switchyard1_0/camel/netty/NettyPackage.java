@@ -19,6 +19,164 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *     <h1>About the XML namespace</h1>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema document describes the XML namespace, in a form
+ *       suitable for import by other schema documents.
+ *      </p>
+ *      <p>
+ *       See <a href="http://www.w3.org/XML/1998/namespace.html">
+ *       http://www.w3.org/XML/1998/namespace.html</a> and
+ *       <a href="http://www.w3.org/TR/REC-xml">
+ *       http://www.w3.org/TR/REC-xml</a> for information 
+ *       about this namespace.
+ *      </p>
+ *      <p>
+ *       Note that local names in this namespace are intended to be
+ *       defined only by the World Wide Web Consortium or its subgroups.
+ *       The names currently defined in this namespace are listed below.
+ *       They should not be used with conflicting semantics by any Working
+ *       Group, specification, or document instance.
+ *      </p>
+ *      <p>   
+ *       See further below in this document for more information about <a href="#usage">how to refer to this schema document from your own
+ *       XSD schema documents</a> and about <a href="#nsversioning">the
+ *       namespace-versioning policy governing this schema document</a>.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *    
+ *     <h3>Father (in any context at all)</h3> 
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       denotes Jon Bosak, the chair of 
+ *       the original XML Working Group.  This name is reserved by 
+ *       the following decision of the W3C XML Plenary and 
+ *       XML Coordination groups:
+ *      </p>
+ *      <blockquote>
+ *        <p>
+ * 	In appreciation for his vision, leadership and
+ * 	dedication the W3C XML Plenary on this 10th day of
+ * 	February, 2000, reserves for Jon Bosak in perpetuity
+ * 	the XML name "xml:Father".
+ *        </p>
+ *      </blockquote>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="usage" xml:id="usage" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="usage">About this schema document</a>
+ *     </h2>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema defines attributes and an attribute group suitable
+ *       for use by schemas wishing to allow <code>xml:base</code>,
+ *       <code>xml:lang</code>, <code>xml:space</code> or
+ *       <code>xml:id</code> attributes on elements they define.
+ *      </p>
+ *      <p>
+ *       To enable this, such a schema must import this schema for
+ *       the XML namespace, e.g. as follows:
+ *      </p>
+ *      <pre>
+ *           &lt;schema . . .&gt;
+ *            . . .
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2001/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       or
+ *      </p>
+ *      <pre>
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2009/01/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       Subsequently, qualified reference to any of the attributes or the
+ *       group defined below will have the desired effect, e.g.
+ *      </p>
+ *      <pre>
+ *           &lt;type . . .&gt;
+ *            . . .
+ *            &lt;attributeGroup ref="xml:specialAttrs"/&gt;
+ *      </pre>
+ *      <p>
+ *       will define a type which will schema-validate an instance element
+ *       with any of those attributes.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="nsversioning" xml:id="nsversioning" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="nsversioning">Versioning policy for this schema document</a>
+ *     </h2>
+ *     <div class="bodytext">
+ *      <p>
+ *       In keeping with the XML Schema WG's standard versioning
+ *       policy, this schema document will persist at
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       At the date of issue it can also be found at
+ *       <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       The schema document at that URI may however change in the future,
+ *       in order to remain compatible with the latest version of XML
+ *       Schema itself, or with the XML namespace itself.  In other words,
+ *       if the XML Schema or XML namespaces change, the version of this
+ *       document at <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd 
+ *       </a> 
+ *       will change accordingly; the version at 
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd 
+ *       </a> 
+ *       will not change.
+ *      </p>
+ *      <p>
+ *       Previous dated (and unchanging) versions of this schema 
+ *       document are at:
+ *      </p>
+ *      <ul>
+ *       <li>
+ *           <a href="http://www.w3.org/2009/01/xml.xsd">
+ * 	http://www.w3.org/2009/01/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2007/08/xml.xsd">
+ * 	http://www.w3.org/2007/08/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2004/10/xml.xsd">
+ * 	http://www.w3.org/2004/10/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2001/03/xml.xsd">
+ * 	http://www.w3.org/2001/03/xml.xsd</a>
+ *         </li>
+ *      </ul>
+ *     </div>
+ *    </div>
+ *   
+ * <!-- end-model-doc -->
  * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyFactory
  * @model kind="package"
  * @generated
@@ -163,7 +321,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
+    int BASE_CAMEL_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
@@ -172,25 +330,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Camel Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Camel Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+    int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Base Camel Binding</em>' class.
@@ -318,24 +458,6 @@ public interface NettyPackage extends EPackage {
      * @ordered
      */
     int CAMEL_NETTY_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Camel Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__CAMEL_CONTEXT_MAPPER = BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Camel Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__CAMEL_MESSAGE_COMPOSER = BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER;
 
     /**
      * The feature id for the '<em><b>Host</b></em>' attribute.
@@ -634,24 +756,6 @@ public interface NettyPackage extends EPackage {
      * @ordered
      */
     int CAMEL_NETTY_TCP_BINDING_TYPE__MESSAGE_COMPOSER = CAMEL_NETTY_BINDING_TYPE__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Camel Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__CAMEL_CONTEXT_MAPPER = CAMEL_NETTY_BINDING_TYPE__CAMEL_CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Camel Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__CAMEL_MESSAGE_COMPOSER = CAMEL_NETTY_BINDING_TYPE__CAMEL_MESSAGE_COMPOSER;
 
     /**
      * The feature id for the '<em><b>Host</b></em>' attribute.
@@ -979,24 +1083,6 @@ public interface NettyPackage extends EPackage {
     int CAMEL_NETTY_UDP_BINDING_TYPE__MESSAGE_COMPOSER = CAMEL_NETTY_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
-     * The feature id for the '<em><b>Camel Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__CAMEL_CONTEXT_MAPPER = CAMEL_NETTY_BINDING_TYPE__CAMEL_CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Camel Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__CAMEL_MESSAGE_COMPOSER = CAMEL_NETTY_BINDING_TYPE__CAMEL_MESSAGE_COMPOSER;
-
-    /**
      * The feature id for the '<em><b>Host</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1223,22 +1309,22 @@ public interface NettyPackage extends EPackage {
     int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
 
     /**
-     * The feature id for the '<em><b>Binding Netty UDP</b></em>' containment reference.
+     * The feature id for the '<em><b>Binding Tcp</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__BINDING_NETTY_UDP = 3;
+    int DOCUMENT_ROOT__BINDING_TCP = 3;
 
     /**
-     * The feature id for the '<em><b>Binding Netty TCP</b></em>' containment reference.
+     * The feature id for the '<em><b>Binding Udp</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__BINDING_NETTY_TCP = 4;
+    int DOCUMENT_ROOT__BINDING_UDP = 4;
 
     /**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -1261,26 +1347,26 @@ public interface NettyPackage extends EPackage {
     EClass getBaseCamelBinding();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getCamelContextMapper <em>Camel Context Mapper</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getContextMapper <em>Context Mapper</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Camel Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getCamelContextMapper()
+     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getContextMapper()
      * @see #getBaseCamelBinding()
      * @generated
      */
-    EReference getBaseCamelBinding_CamelContextMapper();
+    EReference getBaseCamelBinding_ContextMapper();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getCamelMessageComposer <em>Camel Message Composer</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getMessageComposer <em>Message Composer</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Camel Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getCamelMessageComposer()
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding#getMessageComposer()
      * @see #getBaseCamelBinding()
      * @generated
      */
-    EReference getBaseCamelBinding_CamelMessageComposer();
+    EReference getBaseCamelBinding_MessageComposer();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType <em>Camel Netty Tcp Binding Type</em>}'.
@@ -1609,26 +1695,26 @@ public interface NettyPackage extends EPackage {
     EReference getDocumentRoot_XSISchemaLocation();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyUDP <em>Binding Netty UDP</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingTcp <em>Binding Tcp</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Netty UDP</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyUDP()
+     * @return the meta object for the containment reference '<em>Binding Tcp</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingTcp()
      * @see #getDocumentRoot()
      * @generated
      */
-    EReference getDocumentRoot_BindingNettyUDP();
+    EReference getDocumentRoot_BindingTcp();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyTCP <em>Binding Netty TCP</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingUdp <em>Binding Udp</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Netty TCP</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingNettyTCP()
+     * @return the meta object for the containment reference '<em>Binding Udp</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.DocumentRoot#getBindingUdp()
      * @see #getDocumentRoot()
      * @generated
      */
-    EReference getDocumentRoot_BindingNettyTCP();
+    EReference getDocumentRoot_BindingUdp();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -1663,20 +1749,20 @@ public interface NettyPackage extends EPackage {
         EClass BASE_CAMEL_BINDING = eINSTANCE.getBaseCamelBinding();
 
         /**
-         * The meta object literal for the '<em><b>Camel Context Mapper</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER = eINSTANCE.getBaseCamelBinding_CamelContextMapper();
+        EReference BASE_CAMEL_BINDING__CONTEXT_MAPPER = eINSTANCE.getBaseCamelBinding_ContextMapper();
 
         /**
-         * The meta object literal for the '<em><b>Camel Message Composer</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER = eINSTANCE.getBaseCamelBinding_CamelMessageComposer();
+        EReference BASE_CAMEL_BINDING__MESSAGE_COMPOSER = eINSTANCE.getBaseCamelBinding_MessageComposer();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl <em>Camel Netty Tcp Binding Type</em>}' class.
@@ -1927,20 +2013,20 @@ public interface NettyPackage extends EPackage {
         EReference DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = eINSTANCE.getDocumentRoot_XSISchemaLocation();
 
         /**
-         * The meta object literal for the '<em><b>Binding Netty UDP</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Binding Tcp</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference DOCUMENT_ROOT__BINDING_NETTY_UDP = eINSTANCE.getDocumentRoot_BindingNettyUDP();
+        EReference DOCUMENT_ROOT__BINDING_TCP = eINSTANCE.getDocumentRoot_BindingTcp();
 
         /**
-         * The meta object literal for the '<em><b>Binding Netty TCP</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Binding Udp</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference DOCUMENT_ROOT__BINDING_NETTY_TCP = eINSTANCE.getDocumentRoot_BindingNettyTCP();
+        EReference DOCUMENT_ROOT__BINDING_UDP = eINSTANCE.getDocumentRoot_BindingUdp();
 
     }
 

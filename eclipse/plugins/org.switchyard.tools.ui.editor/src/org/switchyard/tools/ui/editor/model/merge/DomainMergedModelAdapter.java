@@ -10,8 +10,8 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.model.merge;
 
-import org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;

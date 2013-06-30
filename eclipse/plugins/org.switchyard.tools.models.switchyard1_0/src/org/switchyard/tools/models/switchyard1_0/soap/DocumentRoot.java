@@ -24,12 +24,9 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getBindingSoap <em>Binding Soap</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getContextMapperSoap <em>Context Mapper Soap</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMessageComposerSoap <em>Message Composer Soap</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getInterceptor <em>Interceptor</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom <em>Mtom</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getEndpointConfig <em>Endpoint Config</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProxy <em>Proxy</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProperty <em>Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -119,60 +116,6 @@ public interface DocumentRoot extends EObject {
     void setBindingSoap(SOAPBindingType value);
 
     /**
-     * Returns the value of the '<em><b>Context Mapper Soap</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Context Mapper Soap</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Context Mapper Soap</em>' containment reference.
-     * @see #setContextMapperSoap(ContextMapperType)
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_ContextMapperSoap()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#contextMapper'"
-     * @generated
-     */
-    ContextMapperType getContextMapperSoap();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getContextMapperSoap <em>Context Mapper Soap</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Context Mapper Soap</em>' containment reference.
-     * @see #getContextMapperSoap()
-     * @generated
-     */
-    void setContextMapperSoap(ContextMapperType value);
-
-    /**
-     * Returns the value of the '<em><b>Message Composer Soap</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Message Composer Soap</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Message Composer Soap</em>' containment reference.
-     * @see #setMessageComposerSoap(SOAPMessageComposerType)
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_MessageComposerSoap()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#messageComposer'"
-     * @generated
-     */
-    SOAPMessageComposerType getMessageComposerSoap();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMessageComposerSoap <em>Message Composer Soap</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Message Composer Soap</em>' containment reference.
-     * @see #getMessageComposerSoap()
-     * @generated
-     */
-    void setMessageComposerSoap(SOAPMessageComposerType value);
-
-    /**
      * Returns the value of the '<em><b>Interceptor</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -200,84 +143,57 @@ public interface DocumentRoot extends EObject {
     void setInterceptor(InterceptorType value);
 
     /**
-     * Returns the value of the '<em><b>Mtom</b></em>' reference.
+     * Returns the value of the '<em><b>Properties</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Mtom</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Mtom</em>' reference.
-     * @see #setMtom(MtomType)
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_Mtom()
-     * @model upper="-2"
-     *        extendedMetaData="kind='element' name='mtom' namespace='##targetNamespace'"
+     * @return the value of the '<em>Properties</em>' containment reference.
+     * @see #setProperties(PropertiesType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_Properties()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='properties' namespace='##targetNamespace'"
      * @generated
      */
-    MtomType getMtom();
+    PropertiesType getProperties();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMtom <em>Mtom</em>}' reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProperties <em>Properties</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Mtom</em>' reference.
-     * @see #getMtom()
+     * @param value the new value of the '<em>Properties</em>' containment reference.
+     * @see #getProperties()
      * @generated
      */
-    void setMtom(MtomType value);
+    void setProperties(PropertiesType value);
 
     /**
-     * Returns the value of the '<em><b>Endpoint Config</b></em>' reference.
+     * Returns the value of the '<em><b>Property</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Endpoint Config</em>' reference isn't clear,
+     * If the meaning of the '<em>Property</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Endpoint Config</em>' reference.
-     * @see #setEndpointConfig(EndpointConfigType)
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_EndpointConfig()
-     * @model upper="-2"
-     *        extendedMetaData="kind='element' name='endpointConfig' namespace='##targetNamespace'"
+     * @return the value of the '<em>Property</em>' containment reference.
+     * @see #setProperty(PropertyType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_Property()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='property' namespace='##targetNamespace'"
      * @generated
      */
-    EndpointConfigType getEndpointConfig();
+    PropertyType getProperty();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getEndpointConfig <em>Endpoint Config</em>}' reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProperty <em>Property</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Endpoint Config</em>' reference.
-     * @see #getEndpointConfig()
+     * @param value the new value of the '<em>Property</em>' containment reference.
+     * @see #getProperty()
      * @generated
      */
-    void setEndpointConfig(EndpointConfigType value);
-
-    /**
-     * Returns the value of the '<em><b>Proxy</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Proxy</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Proxy</em>' reference.
-     * @see #setProxy(ProxyType)
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_Proxy()
-     * @model upper="-2"
-     *        extendedMetaData="kind='element' name='proxy' namespace='##targetNamespace'"
-     * @generated
-     */
-    ProxyType getProxy();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getProxy <em>Proxy</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Proxy</em>' reference.
-     * @see #getProxy()
-     * @generated
-     */
-    void setProxy(ProxyType value);
+    void setProperty(PropertyType value);
 
 } // DocumentRoot

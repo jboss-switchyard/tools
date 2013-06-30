@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingCamel <em>Binding Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingDirect <em>Binding Direct</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingMock <em>Binding Mock</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingSeda <em>Binding Seda</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingTimer <em>Binding Timer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingUri <em>Binding Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,33 +84,6 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     EMap<String, String> getXSISchemaLocation();
-
-    /**
-     * Returns the value of the '<em><b>Binding Camel</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Binding Camel</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Camel</em>' containment reference.
-     * @see #setBindingCamel(CamelBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingCamel()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.uri' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-    CamelBindingType getBindingCamel();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingCamel <em>Binding Camel</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Camel</em>' containment reference.
-     * @see #getBindingCamel()
-     * @generated
-     */
-    void setBindingCamel(CamelBindingType value);
 
     /**
      * Returns the value of the '<em><b>Binding Direct</b></em>' containment reference.
@@ -219,5 +192,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setBindingTimer(CamelTimerBindingType value);
+
+    /**
+     * Returns the value of the '<em><b>Binding Uri</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Uri</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Uri</em>' containment reference.
+     * @see #setBindingUri(CamelBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingUri()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.uri' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelBindingType getBindingUri();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingUri <em>Binding Uri</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Uri</em>' containment reference.
+     * @see #getBindingUri()
+     * @generated
+     */
+    void setBindingUri(CamelBindingType value);
 
 } // DocumentRoot

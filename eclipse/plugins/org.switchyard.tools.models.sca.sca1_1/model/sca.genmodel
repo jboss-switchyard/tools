@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.switchyard.tools.models.sca.sca1_1/src"
-    modelPluginID="org.switchyard.tools.models.sca.sca1_1" modelName="Sca" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.switchyard.tools.models.sca.core/model/addressing.genmodel#//addressing platform:/plugin/org.switchyard.tools.models.sca.core/model/instance.genmodel#//instance platform:/plugin/org.eclipse.emf.ecore/model/XMLNamespace.genmodel#//namespace">
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.switchyard.tools.models.sca.sca1_1/src" modelPluginID="org.switchyard.tools.models.sca.sca1_1"
+    modelName="Sca" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.switchyard.tools.models.sca.core/model/addressing.genmodel#//addressing platform:/plugin/org.switchyard.tools.models.sca.core/model/instance.genmodel#//instance platform:/plugin/org.eclipse.emf.ecore/model/XMLNamespace.genmodel#//namespace">
   <foreignModel>sca.ecore</foreignModel>
   <genPackages prefix="Sca" basePackage="org.eclipse.soa.sca.sca1_1.model" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" extensibleProviderFactory="true"
@@ -264,6 +263,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute sca.ecore#//Contract/bindingGroup"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sca.ecore#//Contract/binding"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//Contract/callback"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//Contract/extensions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute sca.ecore#//Contract/any"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//Contract/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//Contract/policySets"/>
@@ -351,6 +351,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//DocumentRoot/exportC"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//DocumentRoot/exportCpp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//DocumentRoot/exportJava"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//DocumentRoot/extensions"/>
       <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference sca.ecore#//DocumentRoot/implementation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//DocumentRoot/implementationBpel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sca.ecore#//DocumentRoot/implementationC"/>
@@ -401,6 +402,9 @@
     </genClasses>
     <genClasses ecoreClass="sca.ecore#//ExportType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//ExportType/namespace"/>
+    </genClasses>
+    <genClasses ecoreClass="sca.ecore#//ExtensionsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute sca.ecore#//ExtensionsType/any"/>
     </genClasses>
     <genClasses image="false" ecoreClass="sca.ecore#//Implementation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//Implementation/policySets"/>
@@ -629,7 +633,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//PropertyValue/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//PropertyValue/source"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//PropertyValue/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//PropertyValue/value"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute sca.ecore#//PropertyValue/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="sca.ecore#//Qualifier">
@@ -662,6 +665,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//SCAPropertyBase/any"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//SCAPropertyBase/policySets"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//SCAPropertyBase/requires"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//SCAPropertyBase/value"/>
     </genClasses>
     <genClasses ecoreClass="sca.ecore#//Service">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sca.ecore#//Service/promote"/>
@@ -718,6 +722,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//WSDLPortType/callbackInterface"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sca.ecore#//WSDLPortType/interface"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute sca.ecore#//WSDLPortType/anyAttribute1"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sca.ecore#//ExtendableType">
+      <genOperations ecoreOperation="sca.ecore#//ExtendableType/getDocumentFeature"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

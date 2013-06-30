@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,8 +29,11 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardBindingTypeItemProvider;
 
 /**
@@ -68,8 +72,8 @@ public class RESTBindingTypeItemProvider
             super.getPropertyDescriptors(object);
 
             addInterfacesPropertyDescriptor(object);
-            addAddressPropertyDescriptor(object);
             addContextPathPropertyDescriptor(object);
+            addAddressPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -116,6 +120,38 @@ public class RESTBindingTypeItemProvider
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
+    }
+
+    /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__CONTEXT_MAPPER);
+            childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__MESSAGE_COMPOSER);
+            childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__PROXY);
+        }
+        return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
     }
 
     /**
@@ -178,9 +214,14 @@ public class RESTBindingTypeItemProvider
 
         switch (notification.getFeatureID(RESTBindingType.class)) {
             case ResteasyPackage.REST_BINDING_TYPE__INTERFACES:
-            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
+            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:
+            case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
+            case ResteasyPackage.REST_BINDING_TYPE__PROXY:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -196,6 +237,31 @@ public class RESTBindingTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__CONTEXT_MAPPER,
+                 SwitchyardFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__CONTEXT_MAPPER,
+                 SOAPFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__MESSAGE_COMPOSER,
+                 SwitchyardFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__MESSAGE_COMPOSER,
+                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__PROXY,
+                 ResteasyFactory.eINSTANCE.createProxyType()));
     }
 
     /**

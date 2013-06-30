@@ -130,10 +130,10 @@ public abstract class InterceptorPropertyTable extends Composite implements ICel
         @Override
         public String getColumnText(Object element, int columnIndex) {
             if (element instanceof PropertyType && columnIndex == 0) {
-                return ((PropertyType) element).getPropName();
+                return ((PropertyType) element).getName();
             } else if (element instanceof PropertyType && columnIndex == 1) {
                 PropertyType tp = (PropertyType) element;
-                return (String) tp.getPropValue();
+                return (String) tp.getValue();
             }
             return null;
         }
@@ -409,7 +409,7 @@ public abstract class InterceptorPropertyTable extends Composite implements ICel
      */
     public Object getValue(Object element, String property) {
         if (element instanceof PropertyType && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return ((PropertyType) element).getPropValue();
+            return ((PropertyType) element).getValue();
         }
         return null;
     }

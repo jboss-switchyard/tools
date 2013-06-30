@@ -232,6 +232,10 @@ public class ScaAdapterFactory extends AdapterFactoryImpl {
                 return createExportTypeAdapter();
             }
             @Override
+            public Adapter caseExtensionsType(ExtensionsType object) {
+                return createExtensionsTypeAdapter();
+            }
+            @Override
             public Adapter caseImplementation(Implementation object) {
                 return createImplementationAdapter();
             }
@@ -1028,6 +1032,20 @@ public class ScaAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType <em>Extensions Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType
+     * @generated
+     */
+    public Adapter createExtensionsTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation <em>Implementation</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

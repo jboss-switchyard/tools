@@ -44,24 +44,6 @@ public interface ResteasyFactory extends EFactory {
     DocumentRoot createDocumentRoot();
 
     /**
-     * Returns a new object of class '<em>REST Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>REST Context Mapper Type</em>'.
-     * @generated
-     */
-    RESTContextMapperType createRESTContextMapperType();
-
-    /**
-     * Returns a new object of class '<em>REST Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>REST Message Composer Type</em>'.
-     * @generated
-     */
-    RESTMessageComposerType createRESTMessageComposerType();
-
-    /**
      * Returns a new object of class '<em>Proxy Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

@@ -34,8 +34,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.DocumentRootImpl#getBindingNettyUDP <em>Binding Netty UDP</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.DocumentRootImpl#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.DocumentRootImpl#getBindingTcp <em>Binding Tcp</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.DocumentRootImpl#getBindingUdp <em>Binding Udp</em>}</li>
  * </ul>
  * </p>
  *
@@ -132,8 +132,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public CamelNettyUdpBindingType getBindingNettyUDP() {
-        return (CamelNettyUdpBindingType)getMixed().get(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP, true);
+    public CamelNettyTcpBindingType getBindingTcp() {
+        return (CamelNettyTcpBindingType)getMixed().get(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_TCP, true);
     }
 
     /**
@@ -141,8 +141,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetBindingNettyUDP(CamelNettyUdpBindingType newBindingNettyUDP, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP, newBindingNettyUDP, msgs);
+    public NotificationChain basicSetBindingTcp(CamelNettyTcpBindingType newBindingTcp, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_TCP, newBindingTcp, msgs);
     }
 
     /**
@@ -150,8 +150,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBindingNettyUDP(CamelNettyUdpBindingType newBindingNettyUDP) {
-        ((FeatureMap.Internal)getMixed()).set(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP, newBindingNettyUDP);
+    public void setBindingTcp(CamelNettyTcpBindingType newBindingTcp) {
+        ((FeatureMap.Internal)getMixed()).set(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_TCP, newBindingTcp);
     }
 
     /**
@@ -159,8 +159,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public CamelNettyTcpBindingType getBindingNettyTCP() {
-        return (CamelNettyTcpBindingType)getMixed().get(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP, true);
+    public CamelNettyUdpBindingType getBindingUdp() {
+        return (CamelNettyUdpBindingType)getMixed().get(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_UDP, true);
     }
 
     /**
@@ -168,8 +168,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetBindingNettyTCP(CamelNettyTcpBindingType newBindingNettyTCP, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP, newBindingNettyTCP, msgs);
+    public NotificationChain basicSetBindingUdp(CamelNettyUdpBindingType newBindingUdp, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_UDP, newBindingUdp, msgs);
     }
 
     /**
@@ -177,8 +177,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBindingNettyTCP(CamelNettyTcpBindingType newBindingNettyTCP) {
-        ((FeatureMap.Internal)getMixed()).set(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP, newBindingNettyTCP);
+    public void setBindingUdp(CamelNettyUdpBindingType newBindingUdp) {
+        ((FeatureMap.Internal)getMixed()).set(NettyPackage.Literals.DOCUMENT_ROOT__BINDING_UDP, newBindingUdp);
     }
 
     /**
@@ -195,10 +195,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case NettyPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
-                return basicSetBindingNettyUDP(null, msgs);
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
-                return basicSetBindingNettyTCP(null, msgs);
+            case NettyPackage.DOCUMENT_ROOT__BINDING_TCP:
+                return basicSetBindingTcp(null, msgs);
+            case NettyPackage.DOCUMENT_ROOT__BINDING_UDP:
+                return basicSetBindingUdp(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -220,10 +220,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case NettyPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
-                return getBindingNettyUDP();
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
-                return getBindingNettyTCP();
+            case NettyPackage.DOCUMENT_ROOT__BINDING_TCP:
+                return getBindingTcp();
+            case NettyPackage.DOCUMENT_ROOT__BINDING_UDP:
+                return getBindingUdp();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -245,11 +245,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case NettyPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
                 return;
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
-                setBindingNettyUDP((CamelNettyUdpBindingType)newValue);
+            case NettyPackage.DOCUMENT_ROOT__BINDING_TCP:
+                setBindingTcp((CamelNettyTcpBindingType)newValue);
                 return;
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
-                setBindingNettyTCP((CamelNettyTcpBindingType)newValue);
+            case NettyPackage.DOCUMENT_ROOT__BINDING_UDP:
+                setBindingUdp((CamelNettyUdpBindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -272,11 +272,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case NettyPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
-                setBindingNettyUDP((CamelNettyUdpBindingType)null);
+            case NettyPackage.DOCUMENT_ROOT__BINDING_TCP:
+                setBindingTcp((CamelNettyTcpBindingType)null);
                 return;
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
-                setBindingNettyTCP((CamelNettyTcpBindingType)null);
+            case NettyPackage.DOCUMENT_ROOT__BINDING_UDP:
+                setBindingUdp((CamelNettyUdpBindingType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -296,10 +296,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case NettyPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
-                return getBindingNettyUDP() != null;
-            case NettyPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
-                return getBindingNettyTCP() != null;
+            case NettyPackage.DOCUMENT_ROOT__BINDING_TCP:
+                return getBindingTcp() != null;
+            case NettyPackage.DOCUMENT_ROOT__BINDING_UDP:
+                return getBindingUdp() != null;
         }
         return super.eIsSet(featureID);
     }

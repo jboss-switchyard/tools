@@ -31,7 +31,7 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
      */
     public static ResteasyFactory init() {
         try {
-            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory(ResteasyPackage.eNS_URI);
+            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-resteasy:config:1.0"); 
             if (theResteasyFactory != null) {
                 return theResteasyFactory;
             }
@@ -60,11 +60,9 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case ResteasyPackage.REST_BINDING_TYPE: return createRESTBindingType();
             case ResteasyPackage.DOCUMENT_ROOT: return createDocumentRoot();
-            case ResteasyPackage.REST_CONTEXT_MAPPER_TYPE: return createRESTContextMapperType();
-            case ResteasyPackage.REST_MESSAGE_COMPOSER_TYPE: return createRESTMessageComposerType();
             case ResteasyPackage.PROXY_TYPE: return createProxyType();
+            case ResteasyPackage.REST_BINDING_TYPE: return createRESTBindingType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -88,26 +86,6 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public RESTContextMapperType createRESTContextMapperType() {
-        RESTContextMapperTypeImpl restContextMapperType = new RESTContextMapperTypeImpl();
-        return restContextMapperType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public RESTMessageComposerType createRESTMessageComposerType() {
-        RESTMessageComposerTypeImpl restMessageComposerType = new RESTMessageComposerTypeImpl();
-        return restMessageComposerType;
     }
 
     /**

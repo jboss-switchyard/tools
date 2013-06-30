@@ -516,13 +516,13 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Priority</em>' attribute.
      * @see #isSetPriority()
      * @see #unsetPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage#getCamelAmqpBindingType_Priority()
-     * @model default="4" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="4" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='priority' namespace='##targetNamespace'"
      * @generated
      */
-    int getPriority();
+    Object getPriority();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getPriority <em>Priority</em>}' attribute.
@@ -534,7 +534,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @see #getPriority()
      * @generated
      */
-    void setPriority(int value);
+    void setPriority(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getPriority <em>Priority</em>}' attribute.
@@ -542,7 +542,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPriority()
      * @see #getPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Object)
      * @generated
      */
     void unsetPriority();
@@ -554,7 +554,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Priority</em>' attribute is set.
      * @see #unsetPriority()
      * @see #getPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Object)
      * @generated
      */
     boolean isSetPriority();
@@ -680,13 +680,13 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Request Timeout</em>' attribute.
      * @see #isSetRequestTimeout()
      * @see #unsetRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage#getCamelAmqpBindingType_RequestTimeout()
-     * @model default="20000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="20000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='requestTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getRequestTimeout();
+    Object getRequestTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getRequestTimeout <em>Request Timeout</em>}' attribute.
@@ -698,7 +698,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @see #getRequestTimeout()
      * @generated
      */
-    void setRequestTimeout(int value);
+    void setRequestTimeout(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getRequestTimeout <em>Request Timeout</em>}' attribute.
@@ -706,7 +706,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetRequestTimeout()
      * @see #getRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Object)
      * @generated
      */
     void unsetRequestTimeout();
@@ -718,7 +718,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Request Timeout</em>' attribute is set.
      * @see #unsetRequestTimeout()
      * @see #getRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Object)
      * @generated
      */
     boolean isSetRequestTimeout();
@@ -759,50 +759,23 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Time To Live</em>' attribute.
-     * @see #isSetTimeToLive()
-     * @see #unsetTimeToLive()
-     * @see #setTimeToLive(int)
+     * @see #setTimeToLive(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage#getCamelAmqpBindingType_TimeToLive()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='timeToLive' namespace='##targetNamespace'"
      * @generated
      */
-    int getTimeToLive();
+    Object getTimeToLive();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getTimeToLive <em>Time To Live</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Time To Live</em>' attribute.
-     * @see #isSetTimeToLive()
-     * @see #unsetTimeToLive()
      * @see #getTimeToLive()
      * @generated
      */
-    void setTimeToLive(int value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getTimeToLive <em>Time To Live</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetTimeToLive()
-     * @see #getTimeToLive()
-     * @see #setTimeToLive(int)
-     * @generated
-     */
-    void unsetTimeToLive();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getTimeToLive <em>Time To Live</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Time To Live</em>' attribute is set.
-     * @see #unsetTimeToLive()
-     * @see #getTimeToLive()
-     * @see #setTimeToLive(int)
-     * @generated
-     */
-    boolean isSetTimeToLive();
+    void setTimeToLive(Object value);
 
     /**
      * Returns the value of the '<em><b>Transacted</b></em>' attribute.

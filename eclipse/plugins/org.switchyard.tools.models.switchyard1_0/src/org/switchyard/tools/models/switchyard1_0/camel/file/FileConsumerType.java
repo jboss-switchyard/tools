@@ -272,7 +272,7 @@ public interface FileConsumerType extends EObject {
     /**
      * Returns the value of the '<em><b>Time Unit</b></em>' attribute.
      * The default value is <code>"MILLISECONDS"</code>.
-     * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit}.
+     * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnitType}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Time Unit</em>' attribute isn't clear,
@@ -280,29 +280,29 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Time Unit</em>' attribute.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnitType
      * @see #isSetTimeUnit()
      * @see #unsetTimeUnit()
-     * @see #setTimeUnit(TimeUnit)
+     * @see #setTimeUnit(TimeUnitType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_TimeUnit()
      * @model default="MILLISECONDS" unsettable="true"
      *        extendedMetaData="kind='element' name='timeUnit' namespace='##targetNamespace'"
      * @generated
      */
-    TimeUnit getTimeUnit();
+    TimeUnitType getTimeUnit();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getTimeUnit <em>Time Unit</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Time Unit</em>' attribute.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnitType
      * @see #isSetTimeUnit()
      * @see #unsetTimeUnit()
      * @see #getTimeUnit()
      * @generated
      */
-    void setTimeUnit(TimeUnit value);
+    void setTimeUnit(TimeUnitType value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getTimeUnit <em>Time Unit</em>}' attribute.
@@ -310,7 +310,7 @@ public interface FileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetTimeUnit()
      * @see #getTimeUnit()
-     * @see #setTimeUnit(TimeUnit)
+     * @see #setTimeUnit(TimeUnitType)
      * @generated
      */
     void unsetTimeUnit();
@@ -322,7 +322,7 @@ public interface FileConsumerType extends EObject {
      * @return whether the value of the '<em>Time Unit</em>' attribute is set.
      * @see #unsetTimeUnit()
      * @see #getTimeUnit()
-     * @see #setTimeUnit(TimeUnit)
+     * @see #setTimeUnit(TimeUnitType)
      * @generated
      */
     boolean isSetTimeUnit();

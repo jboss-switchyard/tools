@@ -15,7 +15,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
-import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
 import org.switchyard.tools.models.switchyard1_0.switchyard.*;
 
 /**
@@ -125,6 +124,14 @@ public class SwitchyardSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: {
+                JavaOperationSelectorType javaOperationSelectorType = (JavaOperationSelectorType)theEObject;
+                T result = caseJavaOperationSelectorType(javaOperationSelectorType);
+                if (result == null) result = caseSwitchYardOperationSelectorType(javaOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(javaOperationSelectorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SwitchyardPackage.MESSAGE_COMPOSER_TYPE: {
                 MessageComposerType messageComposerType = (MessageComposerType)theEObject;
                 T result = caseMessageComposerType(messageComposerType);
@@ -143,9 +150,37 @@ public class SwitchyardSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: {
+                RegexOperationSelectorType regexOperationSelectorType = (RegexOperationSelectorType)theEObject;
+                T result = caseRegexOperationSelectorType(regexOperationSelectorType);
+                if (result == null) result = caseSwitchYardOperationSelectorType(regexOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(regexOperationSelectorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SwitchyardPackage.RESOURCE_TYPE: {
                 ResourceType resourceType = (ResourceType)theEObject;
                 T result = caseResourceType(resourceType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.SECURITIES_TYPE: {
+                SecuritiesType securitiesType = (SecuritiesType)theEObject;
+                T result = caseSecuritiesType(securitiesType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.SECURITY_TYPE: {
+                SecurityType securityType = (SecurityType)theEObject;
+                T result = caseSecurityType(securityType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: {
+                StaticOperationSelectorType staticOperationSelectorType = (StaticOperationSelectorType)theEObject;
+                T result = caseStaticOperationSelectorType(staticOperationSelectorType);
+                if (result == null) result = caseSwitchYardOperationSelectorType(staticOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(staticOperationSelectorType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -167,6 +202,12 @@ public class SwitchyardSwitch<T> extends Switch<T> {
             case SwitchyardPackage.SWITCH_YARD_TYPE: {
                 SwitchYardType switchYardType = (SwitchYardType)theEObject;
                 T result = caseSwitchYardType(switchYardType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.THROTTLING_TYPE: {
+                ThrottlingType throttlingType = (ThrottlingType)theEObject;
+                T result = caseThrottlingType(throttlingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -194,47 +235,11 @@ public class SwitchyardSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: {
-                JavaOperationSelectorType javaOperationSelectorType = (JavaOperationSelectorType)theEObject;
-                T result = caseJavaOperationSelectorType(javaOperationSelectorType);
-                if (result == null) result = caseSwitchYardOperationSelectorType(javaOperationSelectorType);
-                if (result == null) result = caseOperationSelectorType(javaOperationSelectorType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: {
-                RegexOperationSelectorType regexOperationSelectorType = (RegexOperationSelectorType)theEObject;
-                T result = caseRegexOperationSelectorType(regexOperationSelectorType);
-                if (result == null) result = caseSwitchYardOperationSelectorType(regexOperationSelectorType);
-                if (result == null) result = caseOperationSelectorType(regexOperationSelectorType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: {
-                StaticOperationSelectorType staticOperationSelectorType = (StaticOperationSelectorType)theEObject;
-                T result = caseStaticOperationSelectorType(staticOperationSelectorType);
-                if (result == null) result = caseSwitchYardOperationSelectorType(staticOperationSelectorType);
-                if (result == null) result = caseOperationSelectorType(staticOperationSelectorType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE: {
                 XPathOperationSelectorType xPathOperationSelectorType = (XPathOperationSelectorType)theEObject;
                 T result = caseXPathOperationSelectorType(xPathOperationSelectorType);
                 if (result == null) result = caseSwitchYardOperationSelectorType(xPathOperationSelectorType);
                 if (result == null) result = caseOperationSelectorType(xPathOperationSelectorType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SwitchyardPackage.SECURITY_TYPE: {
-                SecurityType securityType = (SecurityType)theEObject;
-                T result = caseSecurityType(securityType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SwitchyardPackage.SECURITIES_TYPE: {
-                SecuritiesType securitiesType = (SecuritiesType)theEObject;
-                T result = caseSecuritiesType(securitiesType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -453,6 +458,21 @@ public class SwitchyardSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Throttling Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Throttling Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseThrottlingType(ThrottlingType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Transforms Type</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;

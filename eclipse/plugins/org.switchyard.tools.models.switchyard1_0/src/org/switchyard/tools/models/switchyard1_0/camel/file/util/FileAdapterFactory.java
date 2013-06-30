@@ -81,16 +81,16 @@ public class FileAdapterFactory extends AdapterFactoryImpl {
                 return createCamelFileBindingTypeAdapter();
             }
             @Override
+            public Adapter caseDocumentRoot(DocumentRoot object) {
+                return createDocumentRootAdapter();
+            }
+            @Override
             public Adapter caseFileConsumerType(FileConsumerType object) {
                 return createFileConsumerTypeAdapter();
             }
             @Override
             public Adapter caseFileProducerType(FileProducerType object) {
                 return createFileProducerTypeAdapter();
-            }
-            @Override
-            public Adapter caseDocumentRoot(DocumentRoot object) {
-                return createDocumentRootAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {

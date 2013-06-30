@@ -18,8 +18,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.jca.*;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -83,6 +81,10 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
                 return createActivationSpecAdapter();
             }
             @Override
+            public Adapter caseBatchCommit(BatchCommit object) {
+                return createBatchCommitAdapter();
+            }
+            @Override
             public Adapter caseConnection(Connection object) {
                 return createConnectionAdapter();
             }
@@ -91,12 +93,12 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
                 return createConnectionSpecAdapter();
             }
             @Override
-            public Adapter caseEndpoint(Endpoint object) {
-                return createEndpointAdapter();
+            public Adapter caseDocumentRoot(DocumentRoot object) {
+                return createDocumentRootAdapter();
             }
             @Override
-            public Adapter caseInboundOperation(InboundOperation object) {
-                return createInboundOperationAdapter();
+            public Adapter caseEndpoint(Endpoint object) {
+                return createEndpointAdapter();
             }
             @Override
             public Adapter caseInteractionSpec(InteractionSpec object) {
@@ -123,10 +125,6 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
                 return createJCAOutboundInteractionAdapter();
             }
             @Override
-            public Adapter caseOperation(Operation object) {
-                return createOperationAdapter();
-            }
-            @Override
             public Adapter caseProcessor(Processor object) {
                 return createProcessorAdapter();
             }
@@ -139,22 +137,6 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
                 return createResourceAdapterAdapter();
             }
             @Override
-            public Adapter caseDocumentRoot(DocumentRoot object) {
-                return createDocumentRootAdapter();
-            }
-            @Override
-            public Adapter caseJCAContextMapperType(JCAContextMapperType object) {
-                return createJCAContextMapperTypeAdapter();
-            }
-            @Override
-            public Adapter caseJCAMessageComposerType(JCAMessageComposerType object) {
-                return createJCAMessageComposerTypeAdapter();
-            }
-            @Override
-            public Adapter caseBatchCommit(BatchCommit object) {
-                return createBatchCommitAdapter();
-            }
-            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -165,14 +147,6 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseContextMapperType(ContextMapperType object) {
-                return createContextMapperTypeAdapter();
-            }
-            @Override
-            public Adapter caseMessageComposerType(MessageComposerType object) {
-                return createMessageComposerTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -251,34 +225,6 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType <em>JCA Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType
-     * @generated
-     */
-    public Adapter createJCAContextMapperTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType <em>JCA Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType
-     * @generated
-     */
-    public Adapter createJCAMessageComposerTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit <em>Batch Commit</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -289,48 +235,6 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createBatchCommitAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType <em>Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType
-     * @generated
-     */
-    public Adapter createContextMapperTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType <em>Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType
-     * @generated
-     */
-    public Adapter createMessageComposerTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation <em>Inbound Operation</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.InboundOperation
-     * @generated
-     */
-    public Adapter createInboundOperationAdapter() {
         return null;
     }
 
@@ -415,20 +319,6 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createJCAOutboundInteractionAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.jca.Operation <em>Operation</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.Operation
-     * @generated
-     */
-    public Adapter createOperationAdapter() {
         return null;
     }
 

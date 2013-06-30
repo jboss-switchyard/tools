@@ -59,9 +59,9 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
             case CorePackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case CorePackage.CAMEL_BINDING_TYPE: return createCamelBindingType();
             case CorePackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
-            case CorePackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
-            case CorePackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
             case CorePackage.CAMEL_MOCK_BINDING_TYPE: return createCamelMockBindingType();
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
             case CorePackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");

@@ -70,7 +70,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
-import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
@@ -389,9 +388,6 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 if (binding instanceof SOAPBindingType) {
                     SOAPBindingType soapBinding = (SOAPBindingType) binding;
                     text = text + "\n" + soapBinding.getWsdl();
-                } else if (binding instanceof BindingType) {
-                    BindingType hornetQBinding = (BindingType) binding;
-                    text = text + "\n" + hornetQBinding.getUri();
                 }
                 imageRenderingDecorator.setMessage(text);
                 decorators.add(imageRenderingDecorator);

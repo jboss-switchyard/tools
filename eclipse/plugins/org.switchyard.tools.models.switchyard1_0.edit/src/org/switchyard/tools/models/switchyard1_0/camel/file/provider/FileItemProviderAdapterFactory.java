@@ -287,9 +287,9 @@ public class FileItemProviderAdapterFactory extends FileAdapterFactory implement
     public void dispose() {
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelFileBindingTypeItemProvider != null) camelFileBindingTypeItemProvider.dispose();
+        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (fileConsumerTypeItemProvider != null) fileConsumerTypeItemProvider.dispose();
         if (fileProducerTypeItemProvider != null) fileProducerTypeItemProvider.dispose();
-        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }
 
 }

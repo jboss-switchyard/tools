@@ -169,11 +169,6 @@ public class RulesImplementationTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__OPERATIONS,
-                 RulesFactory.eINSTANCE.createOperationsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
                 (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNELS,
                  RulesFactory.eINSTANCE.createChannelsType()));
 
@@ -191,6 +186,11 @@ public class RulesImplementationTypeItemProvider
             (createChildParameter
                 (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__MANIFEST,
                  RulesFactory.eINSTANCE.createManifestType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__OPERATIONS,
+                 RulesFactory.eINSTANCE.createOperationsType()));
 
         newChildDescriptors.add
             (createChildParameter

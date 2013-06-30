@@ -119,20 +119,32 @@ public class SwitchyardValidator extends EObjectValidator {
                 return validateHandlersType((HandlersType)value, diagnostics, context);
             case SwitchyardPackage.HANDLER_TYPE:
                 return validateHandlerType((HandlerType)value, diagnostics, context);
+            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE:
+                return validateJavaOperationSelectorType((JavaOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.MESSAGE_COMPOSER_TYPE:
                 return validateMessageComposerType((MessageComposerType)value, diagnostics, context);
             case SwitchyardPackage.PROPERTIES_TYPE:
                 return validatePropertiesType((PropertiesType)value, diagnostics, context);
             case SwitchyardPackage.PROPERTY_TYPE:
                 return validatePropertyType((PropertyType)value, diagnostics, context);
+            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE:
+                return validateRegexOperationSelectorType((RegexOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.RESOURCE_TYPE:
                 return validateResourceType((ResourceType)value, diagnostics, context);
+            case SwitchyardPackage.SECURITIES_TYPE:
+                return validateSecuritiesType((SecuritiesType)value, diagnostics, context);
+            case SwitchyardPackage.SECURITY_TYPE:
+                return validateSecurityType((SecurityType)value, diagnostics, context);
+            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE:
+                return validateStaticOperationSelectorType((StaticOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE:
                 return validateSwitchYardBindingType((SwitchYardBindingType)value, diagnostics, context);
             case SwitchyardPackage.SWITCH_YARD_OPERATION_SELECTOR_TYPE:
                 return validateSwitchYardOperationSelectorType((SwitchYardOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.SWITCH_YARD_TYPE:
                 return validateSwitchYardType((SwitchYardType)value, diagnostics, context);
+            case SwitchyardPackage.THROTTLING_TYPE:
+                return validateThrottlingType((ThrottlingType)value, diagnostics, context);
             case SwitchyardPackage.TRANSFORMS_TYPE:
                 return validateTransformsType((TransformsType)value, diagnostics, context);
             case SwitchyardPackage.TRANSFORM_TYPE:
@@ -141,18 +153,8 @@ public class SwitchyardValidator extends EObjectValidator {
                 return validateValidatesType((ValidatesType)value, diagnostics, context);
             case SwitchyardPackage.VALIDATE_TYPE:
                 return validateValidateType((ValidateType)value, diagnostics, context);
-            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE:
-                return validateJavaOperationSelectorType((JavaOperationSelectorType)value, diagnostics, context);
-            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE:
-                return validateRegexOperationSelectorType((RegexOperationSelectorType)value, diagnostics, context);
-            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE:
-                return validateStaticOperationSelectorType((StaticOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE:
                 return validateXPathOperationSelectorType((XPathOperationSelectorType)value, diagnostics, context);
-            case SwitchyardPackage.SECURITY_TYPE:
-                return validateSecurityType((SecurityType)value, diagnostics, context);
-            case SwitchyardPackage.SECURITIES_TYPE:
-                return validateSecuritiesType((SecuritiesType)value, diagnostics, context);
             case SwitchyardPackage.PROP_BOOLEAN:
                 return validatePropBoolean(value, diagnostics, context);
             case SwitchyardPackage.PROPERTY_VALUE:
@@ -299,6 +301,15 @@ public class SwitchyardValidator extends EObjectValidator {
      */
     public boolean validateSwitchYardType(SwitchYardType switchYardType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(switchYardType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateThrottlingType(ThrottlingType throttlingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(throttlingType, diagnostics, context);
     }
 
     /**

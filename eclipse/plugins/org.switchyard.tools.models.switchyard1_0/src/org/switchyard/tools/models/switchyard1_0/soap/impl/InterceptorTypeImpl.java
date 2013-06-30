@@ -23,14 +23,24 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorTypeImpl#getClass_ <em>Class</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class InterceptorTypeImpl extends CommonExtensionBaseImpl implements InterceptorType {
+    /**
+     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProperties()
+     * @generated
+     * @ordered
+     */
+    protected PropertiesType properties;
+
     /**
      * The default value of the '{@link #getClass_() <em>Class</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -50,16 +60,6 @@ public class InterceptorTypeImpl extends CommonExtensionBaseImpl implements Inte
      * @ordered
      */
     protected String class_ = CLASS_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProperties()
-     * @generated
-     * @ordered
-     */
-    protected PropertiesType properties;
 
     /**
      * <!-- begin-user-doc -->
@@ -166,10 +166,10 @@ public class InterceptorTypeImpl extends CommonExtensionBaseImpl implements Inte
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
-                return getClass_();
             case SOAPPackage.INTERCEPTOR_TYPE__PROPERTIES:
                 return getProperties();
+            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
+                return getClass_();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -182,11 +182,11 @@ public class InterceptorTypeImpl extends CommonExtensionBaseImpl implements Inte
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
-                setClass((String)newValue);
-                return;
             case SOAPPackage.INTERCEPTOR_TYPE__PROPERTIES:
                 setProperties((PropertiesType)newValue);
+                return;
+            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
+                setClass((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -200,11 +200,11 @@ public class InterceptorTypeImpl extends CommonExtensionBaseImpl implements Inte
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
-                setClass(CLASS_EDEFAULT);
-                return;
             case SOAPPackage.INTERCEPTOR_TYPE__PROPERTIES:
                 setProperties((PropertiesType)null);
+                return;
+            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
+                setClass(CLASS_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -218,10 +218,10 @@ public class InterceptorTypeImpl extends CommonExtensionBaseImpl implements Inte
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
-                return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
             case SOAPPackage.INTERCEPTOR_TYPE__PROPERTIES:
                 return properties != null;
+            case SOAPPackage.INTERCEPTOR_TYPE__CLASS:
+                return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
         }
         return super.eIsSet(featureID);
     }

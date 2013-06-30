@@ -20,7 +20,7 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
@@ -47,7 +47,7 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public boolean supports(Class<? extends Binding> type) {
-        return CamelJPABindingType.class.isAssignableFrom(type);
+        return CamelJpaBindingType.class.isAssignableFrom(type);
     }
 
     @Override

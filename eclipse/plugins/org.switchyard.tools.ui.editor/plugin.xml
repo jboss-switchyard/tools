@@ -115,6 +115,12 @@
               id="switchyard.component.property.tab"
               label="Component Properties">
         </propertyTab>
+        <propertyTab
+              afterTab="switchyard.interaction.policy.tab"
+              category="SwitchyardSCA"
+              id="switchyard.throttling.tab"
+              label="Throttling">
+        </propertyTab>
 <!--       <propertyTab
             afterTab="switchyard.advanced.tab"
             category="SwitchyardSCA"
@@ -208,6 +214,12 @@
                filter="org.switchyard.tools.ui.editor.property.component.ComponentPropertiesPropertyFilter"
                id="switchyard.component.property.tab.details"
                tab="switchyard.component.property.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.ThrottlingPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.ThrottlingPropertyFilter"
+               id="switchyard.throttling.tab.details"
+               tab="switchyard.throttling.tab">
          </propertySection>
 <!--        <propertySection
                class="org.switchyard.tools.ui.editor.property.SwitchyardAdvancedPropertySection"
@@ -583,6 +595,21 @@
                <instanceof
                      value="org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType">
                </instanceof>
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            class="org.switchyard.tools.ui.editor.property.ThrottlingPropertyPage"
+            id="org.switchyard.tools.ui.contract.extensions.throttling.propertyPage"
+            name="Throttling">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
+               <or>
+                  <instanceof
+                        value="org.eclipse.soa.sca.sca1_1.model.sca.Service">
+                  </instanceof>
+               </or>
             </adapt>
          </enabledWhen>
       </page>

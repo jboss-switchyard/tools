@@ -90,12 +90,6 @@ public class MailSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case MailPackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE: {
                 CamelMailConsumerType camelMailConsumerType = (CamelMailConsumerType)theEObject;
                 T result = caseCamelMailConsumerType(camelMailConsumerType);
@@ -105,6 +99,12 @@ public class MailSwitch<T> extends Switch<T> {
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE: {
                 CamelMailProducerType camelMailProducerType = (CamelMailProducerType)theEObject;
                 T result = caseCamelMailProducerType(camelMailProducerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case MailPackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

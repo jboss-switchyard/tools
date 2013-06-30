@@ -12,13 +12,13 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType#getClass_ <em>Class</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getInterceptorType()
- * @model extendedMetaData="name='InterceptorType' kind='empty' namespace='##targetNamespace'"
+ * @model extendedMetaData="name='InterceptorType' kind='elementOnly'"
  * @generated
  */
 public interface InterceptorType extends CommonExtensionBase {

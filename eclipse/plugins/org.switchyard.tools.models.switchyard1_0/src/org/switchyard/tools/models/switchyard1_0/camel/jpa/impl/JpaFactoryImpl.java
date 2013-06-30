@@ -58,7 +58,7 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case JpaPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
-            case JpaPackage.CAMEL_JPA_BINDING_TYPE: return createCamelJPABindingType();
+            case JpaPackage.CAMEL_JPA_BINDING_TYPE: return createCamelJpaBindingType();
             case JpaPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case JpaPackage.JPA_CONSUMER_TYPE: return createJpaConsumerType();
             case JpaPackage.JPA_PRODUCER_TYPE: return createJpaProducerType();
@@ -109,6 +109,16 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
     public BaseCamelBinding createBaseCamelBinding() {
         BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
         return baseCamelBinding;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelJpaBindingType createCamelJpaBindingType() {
+        CamelJpaBindingTypeImpl camelJpaBindingType = new CamelJpaBindingTypeImpl();
+        return camelJpaBindingType;
     }
 
     /**
@@ -177,16 +187,6 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
     public JpaConsumerType createJpaConsumerType() {
         JpaConsumerTypeImpl jpaConsumerType = new JpaConsumerTypeImpl();
         return jpaConsumerType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public CamelJPABindingType createCamelJPABindingType() {
-        CamelJPABindingTypeImpl camelJPABindingType = new CamelJPABindingTypeImpl();
-        return camelJPABindingType;
     }
 
     /**

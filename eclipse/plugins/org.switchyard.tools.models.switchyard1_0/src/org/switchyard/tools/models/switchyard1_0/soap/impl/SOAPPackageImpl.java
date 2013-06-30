@@ -62,10 +62,6 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-
-import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
@@ -85,13 +81,13 @@ import org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType;
+import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.soap.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
 
@@ -132,13 +128,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass soapMessageComposerTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     private EClass documentRootEClass = null;
 
     /**
@@ -154,6 +143,13 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     private EClass interceptorTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass messageComposerTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -274,7 +270,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
-        HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
         RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
         ValidatePackageImpl theValidatePackage = (ValidatePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) instanceof ValidatePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) : ValidatePackage.eINSTANCE);
@@ -305,7 +300,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
-        theHornetQPackage.createPackageContents();
         theRulesPackage.createPackageContents();
         theTransformPackage.createPackageContents();
         theValidatePackage.createPackageContents();
@@ -332,7 +326,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
-        theHornetQPackage.initializePackageContents();
         theRulesPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
         theValidatePackage.initializePackageContents();
@@ -396,24 +389,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getSOAPMessageComposerType() {
-        return soapMessageComposerTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getSOAPMessageComposerType_Unwrapped() {
-        return (EAttribute)soapMessageComposerTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getDocumentRoot() {
         return documentRootEClass;
     }
@@ -459,7 +434,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_ContextMapperSoap() {
+    public EReference getDocumentRoot_Interceptor() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
@@ -468,7 +443,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_MessageComposerSoap() {
+    public EReference getDocumentRoot_Properties() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
     }
 
@@ -477,35 +452,8 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Interceptor() {
+    public EReference getDocumentRoot_Property() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_Mtom() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_EndpointConfig() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_Proxy() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
     }
 
     /**
@@ -522,25 +470,25 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getSOAPBindingType_ContextMapper() {
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSOAPBindingType_MessageComposer() {
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getSOAPBindingType_Wsdl() {
-        return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getSOAPBindingType_WsdlPort() {
-        return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getSOAPBindingType_SocketAddr() {
         return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
@@ -549,7 +497,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSOAPBindingType_ContextPath() {
+    public EAttribute getSOAPBindingType_WsdlPort() {
         return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
@@ -558,7 +506,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSOAPBindingType_EndpointAddress() {
+    public EAttribute getSOAPBindingType_SocketAddr() {
         return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
@@ -567,8 +515,26 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getSOAPBindingType_ContextPath() {
+        return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSOAPBindingType_EndpointAddress() {
+        return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getSOAPBindingType_InInterceptors() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(5);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(10);
     }
 
     /**
@@ -577,7 +543,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getSOAPBindingType_OutInterceptors() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(6);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(11);
     }
 
     /**
@@ -586,7 +552,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getSOAPBindingType_Mtom() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(7);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(9);
     }
 
     /**
@@ -595,7 +561,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getSOAPBindingType_EndpointConfig() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(8);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -604,7 +570,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getSOAPBindingType_Proxy() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(9);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(8);
     }
 
     /**
@@ -622,7 +588,25 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EAttribute getInterceptorType_Class() {
-        return (EAttribute)interceptorTypeEClass.getEStructuralFeatures().get(0);
+        return (EAttribute)interceptorTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMessageComposerType() {
+        return messageComposerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMessageComposerType_Unwrapped() {
+        return (EAttribute)messageComposerTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -631,7 +615,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getInterceptorType_Properties() {
-        return (EReference)interceptorTypeEClass.getEStructuralFeatures().get(1);
+        return (EReference)interceptorTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -702,7 +686,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getPropertyType_PropName() {
+    public EAttribute getPropertyType_Name() {
         return (EAttribute)propertyTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -711,7 +695,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getPropertyType_PropValue() {
+    public EAttribute getPropertyType_Value() {
         return (EAttribute)propertyTypeEClass.getEStructuralFeatures().get(1);
     }
 
@@ -872,55 +856,40 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         contextMapperTypeEClass = createEClass(CONTEXT_MAPPER_TYPE);
         createEAttribute(contextMapperTypeEClass, CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE);
 
-        soapMessageComposerTypeEClass = createEClass(SOAP_MESSAGE_COMPOSER_TYPE);
-        createEAttribute(soapMessageComposerTypeEClass, SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED);
-
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SOAP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__INTERCEPTOR);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__MTOM);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__ENDPOINT_CONFIG);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__PROXY);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__PROPERTIES);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__PROPERTY);
 
-        soapBindingTypeEClass = createEClass(SOAP_BINDING_TYPE);
-        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__WSDL);
-        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__WSDL_PORT);
-        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__SOCKET_ADDR);
-        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__CONTEXT_PATH);
-        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__ENDPOINT_ADDRESS);
-        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__IN_INTERCEPTORS);
-        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__OUT_INTERCEPTORS);
-        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__MTOM);
-        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__ENDPOINT_CONFIG);
-        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__PROXY);
-
-        interceptorTypeEClass = createEClass(INTERCEPTOR_TYPE);
-        createEAttribute(interceptorTypeEClass, INTERCEPTOR_TYPE__CLASS);
-        createEReference(interceptorTypeEClass, INTERCEPTOR_TYPE__PROPERTIES);
+        endpointConfigTypeEClass = createEClass(ENDPOINT_CONFIG_TYPE);
+        createEAttribute(endpointConfigTypeEClass, ENDPOINT_CONFIG_TYPE__CONFIG_FILE);
+        createEAttribute(endpointConfigTypeEClass, ENDPOINT_CONFIG_TYPE__CONFIG_NAME);
 
         interceptorsTypeEClass = createEClass(INTERCEPTORS_TYPE);
         createEReference(interceptorsTypeEClass, INTERCEPTORS_TYPE__INTERCEPTOR);
+
+        interceptorTypeEClass = createEClass(INTERCEPTOR_TYPE);
+        createEReference(interceptorTypeEClass, INTERCEPTOR_TYPE__PROPERTIES);
+        createEAttribute(interceptorTypeEClass, INTERCEPTOR_TYPE__CLASS);
+
+        messageComposerTypeEClass = createEClass(MESSAGE_COMPOSER_TYPE);
+        createEAttribute(messageComposerTypeEClass, MESSAGE_COMPOSER_TYPE__UNWRAPPED);
 
         mtomTypeEClass = createEClass(MTOM_TYPE);
         createEAttribute(mtomTypeEClass, MTOM_TYPE__ENABLED);
         createEAttribute(mtomTypeEClass, MTOM_TYPE__THRESHOLD);
         createEAttribute(mtomTypeEClass, MTOM_TYPE__XOP_EXPAND);
 
-        propertyTypeEClass = createEClass(PROPERTY_TYPE);
-        createEAttribute(propertyTypeEClass, PROPERTY_TYPE__PROP_NAME);
-        createEAttribute(propertyTypeEClass, PROPERTY_TYPE__PROP_VALUE);
-
         propertiesTypeEClass = createEClass(PROPERTIES_TYPE);
         createEReference(propertiesTypeEClass, PROPERTIES_TYPE__PROPERTY);
 
-        endpointConfigTypeEClass = createEClass(ENDPOINT_CONFIG_TYPE);
-        createEAttribute(endpointConfigTypeEClass, ENDPOINT_CONFIG_TYPE__CONFIG_FILE);
-        createEAttribute(endpointConfigTypeEClass, ENDPOINT_CONFIG_TYPE__CONFIG_NAME);
+        propertyTypeEClass = createEClass(PROPERTY_TYPE);
+        createEAttribute(propertyTypeEClass, PROPERTY_TYPE__NAME);
+        createEAttribute(propertyTypeEClass, PROPERTY_TYPE__VALUE);
 
         proxyTypeEClass = createEClass(PROXY_TYPE);
         createEAttribute(proxyTypeEClass, PROXY_TYPE__TYPE);
@@ -928,6 +897,20 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         createEAttribute(proxyTypeEClass, PROXY_TYPE__PORT);
         createEAttribute(proxyTypeEClass, PROXY_TYPE__USER);
         createEAttribute(proxyTypeEClass, PROXY_TYPE__PASSWORD);
+
+        soapBindingTypeEClass = createEClass(SOAP_BINDING_TYPE);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__CONTEXT_MAPPER);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__MESSAGE_COMPOSER);
+        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__WSDL);
+        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__WSDL_PORT);
+        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__SOCKET_ADDR);
+        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__CONTEXT_PATH);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__ENDPOINT_CONFIG);
+        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__ENDPOINT_ADDRESS);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__PROXY);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__MTOM);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__IN_INTERCEPTORS);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__OUT_INTERCEPTORS);
 
         // Create enums
         soapHeadersTypeEEnum = createEEnum(SOAP_HEADERS_TYPE);
@@ -962,8 +945,8 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
         // Obtain other dependent packages
         SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
-        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
         ScaPackage theScaPackage = (ScaPackage)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI);
+        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
 
@@ -971,76 +954,75 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
         // Add supertypes to classes
         contextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
-        soapMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
-        soapBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
-        interceptorTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        interceptorsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        mtomTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        propertyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        propertiesTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         endpointConfigTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        interceptorsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        interceptorTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        messageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
+        mtomTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        propertiesTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        propertyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         proxyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        soapBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(contextMapperTypeEClass, ContextMapperType.class, "ContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getContextMapperType_SoapHeadersType(), this.getSoapHeadersType(), "soapHeadersType", "VALUE", 0, 1, ContextMapperType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(soapMessageComposerTypeEClass, SOAPMessageComposerType.class, "SOAPMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSOAPMessageComposerType_Unwrapped(), theXMLTypePackage.getBoolean(), "unwrapped", null, 0, 1, SOAPMessageComposerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getContextMapperType_SoapHeadersType(), this.getSoapHeadersType(), "soapHeadersType", "VALUE", 0, 1, ContextMapperType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingSoap(), this.getSOAPBindingType(), null, "bindingSoap", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_ContextMapperSoap(), this.getContextMapperType(), null, "contextMapperSoap", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_MessageComposerSoap(), this.getSOAPMessageComposerType(), null, "messageComposerSoap", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Interceptor(), this.getInterceptorType(), null, "interceptor", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Mtom(), this.getMtomType(), null, "mtom", null, 0, -2, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_EndpointConfig(), this.getEndpointConfigType(), null, "endpointConfig", null, 0, -2, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Proxy(), this.getProxyType(), null, "proxy", null, 0, -2, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(soapBindingTypeEClass, SOAPBindingType.class, "SOAPBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSOAPBindingType_Wsdl(), theXMLTypePackage.getString(), "wsdl", null, 1, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSOAPBindingType_WsdlPort(), this.getWsdlPortType(), "wsdlPort", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSOAPBindingType_SocketAddr(), theXMLTypePackage.getString(), "socketAddr", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSOAPBindingType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSOAPBindingType_EndpointAddress(), theXMLTypePackage.getString(), "endpointAddress", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSOAPBindingType_InInterceptors(), this.getInterceptorsType(), null, "inInterceptors", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSOAPBindingType_OutInterceptors(), this.getInterceptorsType(), null, "outInterceptors", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSOAPBindingType_Mtom(), this.getMtomType(), null, "mtom", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSOAPBindingType_EndpointConfig(), this.getEndpointConfigType(), null, "endpointConfig", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSOAPBindingType_Proxy(), this.getProxyType(), null, "proxy", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(interceptorTypeEClass, InterceptorType.class, "InterceptorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getInterceptorType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, InterceptorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getInterceptorType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, InterceptorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(interceptorsTypeEClass, InterceptorsType.class, "InterceptorsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInterceptorsType_Interceptor(), this.getInterceptorType(), null, "interceptor", null, 0, -1, InterceptorsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(mtomTypeEClass, MtomType.class, "MtomType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getMtomType_Enabled(), theXMLTypePackage.getBoolean(), "enabled", "true", 0, 1, MtomType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getMtomType_Threshold(), theXMLTypePackage.getIntObject(), "threshold", null, 0, 1, MtomType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getMtomType_XopExpand(), theXMLTypePackage.getBoolean(), "xopExpand", null, 0, 1, MtomType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(propertyTypeEClass, PropertyType.class, "PropertyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getPropertyType_PropName(), theXMLTypePackage.getString(), "propName", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getPropertyType_PropValue(), theXMLTypePackage.getString(), "propValue", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(propertiesTypeEClass, PropertiesType.class, "PropertiesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getPropertiesType_Property(), this.getPropertyType(), null, "property", null, 0, -1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Properties(), this.getPropertiesType(), null, "properties", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Property(), this.getPropertyType(), null, "property", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(endpointConfigTypeEClass, EndpointConfigType.class, "EndpointConfigType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getEndpointConfigType_ConfigFile(), theXMLTypePackage.getString(), "configFile", null, 0, 1, EndpointConfigType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEndpointConfigType_ConfigName(), theXMLTypePackage.getString(), "configName", null, 0, 1, EndpointConfigType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(interceptorsTypeEClass, InterceptorsType.class, "InterceptorsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getInterceptorsType_Interceptor(), this.getInterceptorType(), null, "interceptor", null, 0, -1, InterceptorsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(interceptorTypeEClass, InterceptorType.class, "InterceptorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getInterceptorType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, InterceptorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getInterceptorType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, InterceptorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(messageComposerTypeEClass, MessageComposerType.class, "MessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getMessageComposerType_Unwrapped(), theXMLTypePackage.getBoolean(), "unwrapped", null, 0, 1, MessageComposerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mtomTypeEClass, MtomType.class, "MtomType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getMtomType_Enabled(), theXMLTypePackage.getBoolean(), "enabled", "true", 0, 1, MtomType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMtomType_Threshold(), theXMLTypePackage.getInteger(), "threshold", null, 0, 1, MtomType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMtomType_XopExpand(), theXMLTypePackage.getBoolean(), "xopExpand", null, 0, 1, MtomType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(propertiesTypeEClass, PropertiesType.class, "PropertiesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getPropertiesType_Property(), this.getPropertyType(), null, "property", null, 0, -1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(propertyTypeEClass, PropertyType.class, "PropertyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPropertyType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPropertyType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(proxyTypeEClass, ProxyType.class, "ProxyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProxyType_Type(), theXMLTypePackage.getString(), "type", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProxyType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProxyType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProxyType_User(), theXMLTypePackage.getString(), "user", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProxyType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_Port(), theXMLTypePackage.getInteger(), "port", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_User(), theXMLTypePackage.getString(), "user", null, 1, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_Password(), theXMLTypePackage.getString(), "password", null, 1, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(soapBindingTypeEClass, SOAPBindingType.class, "SOAPBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getSOAPBindingType_ContextMapper(), this.getContextMapperType(), null, "contextMapper", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_MessageComposer(), this.getMessageComposerType(), null, "messageComposer", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSOAPBindingType_Wsdl(), theXMLTypePackage.getString(), "wsdl", null, 1, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSOAPBindingType_WsdlPort(), this.getWsdlPortType(), "wsdlPort", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSOAPBindingType_SocketAddr(), theXMLTypePackage.getString(), "socketAddr", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSOAPBindingType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_EndpointConfig(), this.getEndpointConfigType(), null, "endpointConfig", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSOAPBindingType_EndpointAddress(), theXMLTypePackage.getString(), "endpointAddress", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_Proxy(), this.getProxyType(), null, "proxy", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_Mtom(), this.getMtomType(), null, "mtom", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_InInterceptors(), this.getInterceptorsType(), null, "inInterceptors", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_OutInterceptors(), this.getInterceptorsType(), null, "outInterceptors", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(soapHeadersTypeEEnum, SoapHeadersType.class, "SoapHeadersType");
@@ -1068,14 +1050,13 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
           (contextMapperTypeEClass, 
            source, 
            new String[] {
              "name", "ContextMapperType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
+             "kind", "empty"
            });		
         addAnnotation
           (getContextMapperType_SoapHeadersType(), 
@@ -1083,21 +1064,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
            new String[] {
              "kind", "attribute",
              "name", "soapHeadersType"
-           });		
-        addAnnotation
-          (soapMessageComposerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "MessageComposerType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getSOAPMessageComposerType_Unwrapped(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "unwrapped"
            });		
         addAnnotation
           (documentRootEClass, 
@@ -1137,24 +1103,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
-          (getDocumentRoot_ContextMapperSoap(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#contextMapper"
-           });		
-        addAnnotation
-          (getDocumentRoot_MessageComposerSoap(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
-           });		
-        addAnnotation
           (getDocumentRoot_Interceptor(), 
            source, 
            new String[] {
@@ -1163,27 +1111,202 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_Mtom(), 
+          (getDocumentRoot_Properties(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "mtom",
+             "name", "properties",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_EndpointConfig(), 
+          (getDocumentRoot_Property(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "endpointConfig",
+             "name", "property",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_Proxy(), 
+          (endpointConfigTypeEClass, 
+           source, 
+           new String[] {
+             "name", "EndpointConfigType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getEndpointConfigType_ConfigFile(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "configFile"
+           });		
+        addAnnotation
+          (getEndpointConfigType_ConfigName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "configName"
+           });		
+        addAnnotation
+          (interceptorsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "InterceptorsType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getInterceptorsType_Interceptor(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "proxy",
+             "name", "interceptor",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (interceptorTypeEClass, 
+           source, 
+           new String[] {
+             "name", "InterceptorType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getInterceptorType_Properties(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "properties",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getInterceptorType_Class(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "class"
+           });		
+        addAnnotation
+          (messageComposerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MessageComposerType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getMessageComposerType_Unwrapped(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "unwrapped"
+           });		
+        addAnnotation
+          (mtomTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MtomType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getMtomType_Enabled(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "enabled"
+           });		
+        addAnnotation
+          (getMtomType_Threshold(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "threshold"
+           });		
+        addAnnotation
+          (getMtomType_XopExpand(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "xopExpand"
+           });		
+        addAnnotation
+          (propertiesTypeEClass, 
+           source, 
+           new String[] {
+             "name", "PropertiesType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getPropertiesType_Property(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "property",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (propertyTypeEClass, 
+           source, 
+           new String[] {
+             "name", "PropertyType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getPropertyType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getPropertyType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
+           });		
+        addAnnotation
+          (proxyTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ProxyType",
+             "kind", "elementOnly"
+           });			
+        addAnnotation
+          (getProxyType_Type(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "type",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getProxyType_Host(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "host",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getProxyType_Port(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "port",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getProxyType_User(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "user",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getProxyType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -1192,6 +1315,22 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
            new String[] {
              "name", "SOAPBindingType",
              "kind", "elementOnly"
+           });			
+        addAnnotation
+          (getSOAPBindingType_ContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getSOAPBindingType_MessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace"
            });			
         addAnnotation
           (getSOAPBindingType_Wsdl(), 
@@ -1226,29 +1365,29 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "namespace", "##targetNamespace"
            });			
         addAnnotation
+          (getSOAPBindingType_EndpointConfig(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "endpointConfig",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
           (getSOAPBindingType_EndpointAddress(), 
            source, 
            new String[] {
              "kind", "element",
              "name", "endpointAddress",
              "namespace", "##targetNamespace"
-           });		
+           });			
         addAnnotation
-          (getSOAPBindingType_InInterceptors(), 
+          (getSOAPBindingType_Proxy(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "inInterceptors",
+             "name", "proxy",
              "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getSOAPBindingType_OutInterceptors(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "outInterceptors",
-             "namespace", "##targetNamespace"
-           });		
+           });			
         addAnnotation
           (getSOAPBindingType_Mtom(), 
            source, 
@@ -1256,21 +1395,21 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "mtom",
              "namespace", "##targetNamespace"
-           });		
+           });			
         addAnnotation
-          (getSOAPBindingType_EndpointConfig(), 
+          (getSOAPBindingType_InInterceptors(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "endpointConfig",
+             "name", "inInterceptors",
              "namespace", "##targetNamespace"
-           });		
+           });			
         addAnnotation
-          (getSOAPBindingType_Proxy(), 
+          (getSOAPBindingType_OutInterceptors(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "proxy",
+             "name", "outInterceptors",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -1293,180 +1432,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "name", "wsdlPortType",
              "baseType", "http://www.eclipse.org/emf/2003/XMLType#string",
              "pattern", "\\{.+\\}.+:[^:]+|.+:[^:]+|[^:]+"
-           });		
-        addAnnotation
-          (interceptorTypeEClass, 
-           source, 
-           new String[] {
-             "name", "InterceptorType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getInterceptorType_Class(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "class"
-           });		
-        addAnnotation
-          (getInterceptorType_Properties(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "properties",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (interceptorsTypeEClass, 
-           source, 
-           new String[] {
-             "name", "InterceptorsType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getInterceptorsType_Interceptor(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "interceptor",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (mtomTypeEClass, 
-           source, 
-           new String[] {
-             "name", "MtomType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getMtomType_Enabled(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "enabled"
-           });		
-        addAnnotation
-          (getMtomType_Threshold(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "threshold"
-           });		
-        addAnnotation
-          (getMtomType_XopExpand(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "xopExpand"
-           });		
-        addAnnotation
-          (propertyTypeEClass, 
-           source, 
-           new String[] {
-             "name", "PropertyType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getPropertyType_PropName(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "name"
-           });		
-        addAnnotation
-          (getPropertyType_PropValue(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "value"
-           });		
-        addAnnotation
-          (propertiesTypeEClass, 
-           source, 
-           new String[] {
-             "name", "PropertiesType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getPropertiesType_Property(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "property",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (endpointConfigTypeEClass, 
-           source, 
-           new String[] {
-             "name", "EndpointConfigType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getEndpointConfigType_ConfigFile(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "configFile"
-           });		
-        addAnnotation
-          (getEndpointConfigType_ConfigName(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "configName"
-           });		
-        addAnnotation
-          (proxyTypeEClass, 
-           source, 
-           new String[] {
-             "name", "ProxyType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getProxyType_Type(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "type",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getProxyType_Host(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "host",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getProxyType_Port(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "port",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getProxyType_User(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "user",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getProxyType_Password(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "password",
-             "namespace", "##targetNamespace"
            });
     }
 

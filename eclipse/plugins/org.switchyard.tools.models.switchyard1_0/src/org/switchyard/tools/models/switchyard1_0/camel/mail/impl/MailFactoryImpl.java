@@ -59,9 +59,9 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
         switch (eClass.getClassifierID()) {
             case MailPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case MailPackage.CAMEL_MAIL_BINDING_TYPE: return createCamelMailBindingType();
-            case MailPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE: return createCamelMailConsumerType();
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE: return createCamelMailProducerType();
+            case MailPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }

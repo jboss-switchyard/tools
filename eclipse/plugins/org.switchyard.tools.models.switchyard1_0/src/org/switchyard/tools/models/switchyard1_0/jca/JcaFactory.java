@@ -62,24 +62,6 @@ public interface JcaFactory extends EFactory {
     DocumentRoot createDocumentRoot();
 
     /**
-     * Returns a new object of class '<em>JCA Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>JCA Context Mapper Type</em>'.
-     * @generated
-     */
-    JCAContextMapperType createJCAContextMapperType();
-
-    /**
-     * Returns a new object of class '<em>JCA Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>JCA Message Composer Type</em>'.
-     * @generated
-     */
-    JCAMessageComposerType createJCAMessageComposerType();
-
-    /**
      * Returns a new object of class '<em>Batch Commit</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -87,15 +69,6 @@ public interface JcaFactory extends EFactory {
      * @generated
      */
     BatchCommit createBatchCommit();
-
-    /**
-     * Returns a new object of class '<em>Inbound Operation</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Inbound Operation</em>'.
-     * @generated
-     */
-    InboundOperation createInboundOperation();
 
     /**
      * Returns a new object of class '<em>Interaction Spec</em>'.
@@ -150,15 +123,6 @@ public interface JcaFactory extends EFactory {
      * @generated
      */
     JCAOutboundInteraction createJCAOutboundInteraction();
-
-    /**
-     * Returns a new object of class '<em>Operation</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Operation</em>'.
-     * @generated
-     */
-    Operation createOperation();
 
     /**
      * Returns a new object of class '<em>Property</em>'.

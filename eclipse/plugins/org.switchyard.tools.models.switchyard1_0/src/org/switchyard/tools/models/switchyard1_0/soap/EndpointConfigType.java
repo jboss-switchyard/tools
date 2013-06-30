@@ -18,7 +18,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getEndpointConfigType()
- * @model extendedMetaData="name='EndpointConfigType' kind='empty' namespace='##targetNamespace'"
+ * @model extendedMetaData="name='EndpointConfigType' kind='elementOnly'"
  * @generated
  */
 public interface EndpointConfigType extends CommonExtensionBase {

@@ -16,8 +16,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.http.*;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -77,26 +75,10 @@ public class HttpSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case HttpPackage.HTTP_BINDING_TYPE: {
-                HttpBindingType httpBindingType = (HttpBindingType)theEObject;
-                T result = caseHttpBindingType(httpBindingType);
-                if (result == null) result = caseSwitchYardBindingType(httpBindingType);
-                if (result == null) result = caseBinding(httpBindingType);
-                if (result == null) result = caseCommonExtensionBase(httpBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case HttpPackage.HTTP_CONTEXT_MAPPER_TYPE: {
-                HttpContextMapperType httpContextMapperType = (HttpContextMapperType)theEObject;
-                T result = caseHttpContextMapperType(httpContextMapperType);
-                if (result == null) result = caseContextMapperType(httpContextMapperType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case HttpPackage.HTTP_MESSAGE_COMPOSER_TYPE: {
-                HttpMessageComposerType httpMessageComposerType = (HttpMessageComposerType)theEObject;
-                T result = caseHttpMessageComposerType(httpMessageComposerType);
-                if (result == null) result = caseMessageComposerType(httpMessageComposerType);
+            case HttpPackage.BASIC_AUTHENTICATION_TYPE: {
+                BasicAuthenticationType basicAuthenticationType = (BasicAuthenticationType)theEObject;
+                T result = caseBasicAuthenticationType(basicAuthenticationType);
+                if (result == null) result = caseCommonExtensionBase(basicAuthenticationType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -106,10 +88,12 @@ public class HttpSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE: {
-                BasicAuthenticationType basicAuthenticationType = (BasicAuthenticationType)theEObject;
-                T result = caseBasicAuthenticationType(basicAuthenticationType);
-                if (result == null) result = caseCommonExtensionBase(basicAuthenticationType);
+            case HttpPackage.HTTP_BINDING_TYPE: {
+                HTTPBindingType httpBindingType = (HTTPBindingType)theEObject;
+                T result = caseHTTPBindingType(httpBindingType);
+                if (result == null) result = caseSwitchYardBindingType(httpBindingType);
+                if (result == null) result = caseBinding(httpBindingType);
+                if (result == null) result = caseCommonExtensionBase(httpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -133,51 +117,6 @@ public class HttpSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseHttpBindingType(HttpBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseHttpContextMapperType(HttpContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseHttpMessageComposerType(HttpMessageComposerType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -189,6 +128,21 @@ public class HttpSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseDocumentRoot(DocumentRoot object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>HTTP Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>HTTP Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseHTTPBindingType(HTTPBindingType object) {
         return null;
     }
 
@@ -279,36 +233,6 @@ public class HttpSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseSwitchYardBindingType(SwitchYardBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseContextMapperType(ContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseMessageComposerType(MessageComposerType object) {
         return null;
     }
 

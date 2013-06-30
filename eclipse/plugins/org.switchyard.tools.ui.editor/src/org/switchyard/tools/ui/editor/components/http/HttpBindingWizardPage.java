@@ -20,7 +20,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 
 /**
@@ -29,7 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
  */
 public class HttpBindingWizardPage extends WizardPage {
 
-    private HttpBindingType _binding = HttpFactory.eINSTANCE.createHttpBindingType();
+    private HTTPBindingType _binding = HttpFactory.eINSTANCE.createHTTPBindingType();
     private HttpBindingComposite _httpComposite = null;
     private Contract _targetContainer;
 

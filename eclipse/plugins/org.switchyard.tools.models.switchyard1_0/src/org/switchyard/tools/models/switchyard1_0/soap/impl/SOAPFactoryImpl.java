@@ -35,7 +35,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
      */
     public static SOAPFactory init() {
         try {
-            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory(SOAPPackage.eNS_URI);
+            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-soap:config:1.0"); 
             if (theSOAPFactory != null) {
                 return theSOAPFactory;
             }
@@ -65,16 +65,16 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
-            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE: return createSOAPMessageComposerType();
             case SOAPPackage.DOCUMENT_ROOT: return createDocumentRoot();
-            case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
-            case SOAPPackage.INTERCEPTOR_TYPE: return createInterceptorType();
-            case SOAPPackage.INTERCEPTORS_TYPE: return createInterceptorsType();
-            case SOAPPackage.MTOM_TYPE: return createMtomType();
-            case SOAPPackage.PROPERTY_TYPE: return createPropertyType();
-            case SOAPPackage.PROPERTIES_TYPE: return createPropertiesType();
             case SOAPPackage.ENDPOINT_CONFIG_TYPE: return createEndpointConfigType();
+            case SOAPPackage.INTERCEPTORS_TYPE: return createInterceptorsType();
+            case SOAPPackage.INTERCEPTOR_TYPE: return createInterceptorType();
+            case SOAPPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
+            case SOAPPackage.MTOM_TYPE: return createMtomType();
+            case SOAPPackage.PROPERTIES_TYPE: return createPropertiesType();
+            case SOAPPackage.PROPERTY_TYPE: return createPropertyType();
             case SOAPPackage.PROXY_TYPE: return createProxyType();
+            case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -133,16 +133,6 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public SOAPMessageComposerType createSOAPMessageComposerType() {
-        SOAPMessageComposerTypeImpl soapMessageComposerType = new SOAPMessageComposerTypeImpl();
-        return soapMessageComposerType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
@@ -166,6 +156,16 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public InterceptorType createInterceptorType() {
         InterceptorTypeImpl interceptorType = new InterceptorTypeImpl();
         return interceptorType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MessageComposerType createMessageComposerType() {
+        MessageComposerTypeImpl messageComposerType = new MessageComposerTypeImpl();
+        return messageComposerType;
     }
 
     /**

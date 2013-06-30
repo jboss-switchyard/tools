@@ -20,8 +20,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl#getCamelContextMapper <em>Camel Context Mapper</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl#getCamelMessageComposer <em>Camel Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,24 +29,23 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  */
 public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements BaseCamelBinding {
     /**
-     * The cached value of the '{@link #getCamelContextMapper() <em>Camel Context Mapper</em>}' containment reference.
+     * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCamelContextMapper()
+     * @see #getContextMapper()
      * @generated
      * @ordered
      */
-    protected ContextMapperType camelContextMapper;
+    protected ContextMapperType contextMapper;
     /**
-     * The cached value of the '{@link #getCamelMessageComposer() <em>Camel Message Composer</em>}' containment reference.
+     * The cached value of the '{@link #getMessageComposer() <em>Message Composer</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCamelMessageComposer()
+     * @see #getMessageComposer()
      * @generated
      * @ordered
      */
-    protected MessageComposerType camelMessageComposer;
-
+    protected MessageComposerType messageComposer;
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -71,85 +70,8 @@ public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements B
      * <!-- end-user-doc -->
      * @generated
      */
-    public ContextMapperType getCamelContextMapper() {
-        return camelContextMapper;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetCamelContextMapper(ContextMapperType newCamelContextMapper, NotificationChain msgs) {
-        ContextMapperType oldCamelContextMapper = camelContextMapper;
-        camelContextMapper = newCamelContextMapper;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER, oldCamelContextMapper, newCamelContextMapper);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setCamelContextMapper(ContextMapperType newCamelContextMapper) {
-        if (newCamelContextMapper != camelContextMapper) {
-            NotificationChain msgs = null;
-            if (camelContextMapper != null)
-                msgs = ((InternalEObject)camelContextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER, null, msgs);
-            if (newCamelContextMapper != null)
-                msgs = ((InternalEObject)newCamelContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER, null, msgs);
-            msgs = basicSetCamelContextMapper(newCamelContextMapper, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER, newCamelContextMapper, newCamelContextMapper));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public MessageComposerType getCamelMessageComposer() {
-        return camelMessageComposer;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetCamelMessageComposer(MessageComposerType newCamelMessageComposer, NotificationChain msgs) {
-        MessageComposerType oldCamelMessageComposer = camelMessageComposer;
-        camelMessageComposer = newCamelMessageComposer;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER, oldCamelMessageComposer, newCamelMessageComposer);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setCamelMessageComposer(MessageComposerType newCamelMessageComposer) {
-        if (newCamelMessageComposer != camelMessageComposer) {
-            NotificationChain msgs = null;
-            if (camelMessageComposer != null)
-                msgs = ((InternalEObject)camelMessageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER, null, msgs);
-            if (newCamelMessageComposer != null)
-                msgs = ((InternalEObject)newCamelMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER, null, msgs);
-            msgs = basicSetCamelMessageComposer(newCamelMessageComposer, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER, newCamelMessageComposer, newCamelMessageComposer));
+    public ContextMapperType getContextMapper() {
+        return contextMapper;
     }
 
     /**
@@ -160,10 +82,10 @@ public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements B
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER:
-                return basicSetCamelContextMapper(null, msgs);
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER:
-                return basicSetCamelMessageComposer(null, msgs);
+            case CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -176,10 +98,10 @@ public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements B
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER:
-                return getCamelContextMapper();
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER:
-                return getCamelMessageComposer();
+            case CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
+                return getContextMapper();
+            case CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
+                return getMessageComposer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -192,11 +114,11 @@ public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements B
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER:
-                setCamelContextMapper((ContextMapperType)newValue);
+            case CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)newValue);
                 return;
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER:
-                setCamelMessageComposer((MessageComposerType)newValue);
+            case CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -210,11 +132,11 @@ public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements B
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER:
-                setCamelContextMapper((ContextMapperType)null);
+            case CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)null);
                 return;
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER:
-                setCamelMessageComposer((MessageComposerType)null);
+            case CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -228,32 +150,89 @@ public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements B
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER:
-                return camelContextMapper != null;
-            case CorePackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER:
-                return camelMessageComposer != null;
+            case CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
+                return contextMapper != null;
+            case CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
+                return messageComposer != null;
         }
         return super.eIsSet(featureID);
     }
 
-    @Override
-    public ContextMapperType getContextMapper() {
-        return getCamelContextMapper();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
+        ContextMapperType oldContextMapper = contextMapper;
+        contextMapper = newContextMapper;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER, oldContextMapper, newContextMapper);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-    @Override
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public void setContextMapper(ContextMapperType newContextMapper) {
-        setCamelContextMapper(newContextMapper);
+        if (newContextMapper != contextMapper) {
+            NotificationChain msgs = null;
+            if (contextMapper != null)
+                msgs = ((InternalEObject)contextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER, null, msgs);
+            if (newContextMapper != null)
+                msgs = ((InternalEObject)newContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER, null, msgs);
+            msgs = basicSetContextMapper(newContextMapper, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER, newContextMapper, newContextMapper));
     }
 
-    @Override
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public MessageComposerType getMessageComposer() {
-        return getCamelMessageComposer();
+        return messageComposer;
     }
 
-    @Override
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
+        MessageComposerType oldMessageComposer = messageComposer;
+        messageComposer = newMessageComposer;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER, oldMessageComposer, newMessageComposer);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public void setMessageComposer(MessageComposerType newMessageComposer) {
-        setCamelMessageComposer(newMessageComposer);
+        if (newMessageComposer != messageComposer) {
+            NotificationChain msgs = null;
+            if (messageComposer != null)
+                msgs = ((InternalEObject)messageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER, null, msgs);
+            if (newMessageComposer != null)
+                msgs = ((InternalEObject)newMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER, null, msgs);
+            msgs = basicSetMessageComposer(newMessageComposer, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER, newMessageComposer, newMessageComposer));
     }
 
 } //BaseCamelBindingImpl

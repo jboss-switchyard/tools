@@ -8,6 +8,12 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * A representation of the model object '<em><b>Static Operation Selector Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * 
+ *                 Static Operation Selector Configuration.
+ *             
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -16,7 +22,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getStaticOperationSelectorType()
- * @model extendedMetaData="name='StaticOperationSelectorType' kind='elementOnly'"
+ * @model extendedMetaData="name='StaticOperationSelectorType' kind='empty'"
  * @generated
  */
 public interface StaticOperationSelectorType extends SwitchYardOperationSelectorType {
@@ -28,10 +34,15 @@ public interface StaticOperationSelectorType extends SwitchYardOperationSelector
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * 
+     *                             Operation name.
+     *                         
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Operation Name</em>' attribute.
      * @see #setOperationName(String)
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getStaticOperationSelectorType_OperationName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='attribute' name='operationName'"
      * @generated
      */

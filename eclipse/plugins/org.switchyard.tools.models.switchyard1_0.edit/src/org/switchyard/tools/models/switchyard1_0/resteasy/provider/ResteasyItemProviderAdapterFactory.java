@@ -122,49 +122,26 @@ public class ResteasyItemProviderAdapterFactory extends ResteasyAdapterFactory i
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected RESTContextMapperTypeItemProvider restContextMapperTypeItemProvider;
+    protected ProxyTypeItemProvider proxyTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createRESTContextMapperTypeAdapter() {
-        if (restContextMapperTypeItemProvider == null) {
-            restContextMapperTypeItemProvider = new RESTContextMapperTypeItemProvider(this);
+    public Adapter createProxyTypeAdapter() {
+        if (proxyTypeItemProvider == null) {
+            proxyTypeItemProvider = new ProxyTypeItemProvider(this);
         }
 
-        return restContextMapperTypeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected RESTMessageComposerTypeItemProvider restMessageComposerTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createRESTMessageComposerTypeAdapter() {
-        if (restMessageComposerTypeItemProvider == null) {
-            restMessageComposerTypeItemProvider = new RESTMessageComposerTypeItemProvider(this);
-        }
-
-        return restMessageComposerTypeItemProvider;
+        return proxyTypeItemProvider;
     }
 
     /**
@@ -266,10 +243,9 @@ public class ResteasyItemProviderAdapterFactory extends ResteasyAdapterFactory i
      * @generated
      */
     public void dispose() {
-        if (restBindingTypeItemProvider != null) restBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-        if (restContextMapperTypeItemProvider != null) restContextMapperTypeItemProvider.dispose();
-        if (restMessageComposerTypeItemProvider != null) restMessageComposerTypeItemProvider.dispose();
+        if (proxyTypeItemProvider != null) proxyTypeItemProvider.dispose();
+        if (restBindingTypeItemProvider != null) restBindingTypeItemProvider.dispose();
     }
 
 }

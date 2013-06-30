@@ -8,8 +8,6 @@ package org.switchyard.tools.models.switchyard1_0.jca;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.ecore.util.FeatureMap;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>JCA Inbound Connection</b></em>'.
@@ -20,8 +18,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection#getResourceAdapter <em>Resource Adapter</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection#getActivationSpec <em>Activation Spec</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,39 +79,5 @@ public interface JCAInboundConnection extends EObject {
      * @generated
      */
     void setActivationSpec(ActivationSpec value);
-
-    /**
-     * Returns the value of the '<em><b>Any</b></em>' attribute list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Any</em>' attribute list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Any</em>' attribute list.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAInboundConnection_Any()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='elementWildcard' wildcards='##other' name=':2' processing='lax'"
-     * @generated
-     */
-    FeatureMap getAny();
-
-    /**
-     * Returns the value of the '<em><b>Any Attribute</b></em>' attribute list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Any Attribute</em>' attribute list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Any Attribute</em>' attribute list.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAInboundConnection_AnyAttribute()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':3' processing='lax'"
-     * @generated
-     */
-    FeatureMap getAnyAttribute();
 
 } // JCAInboundConnection

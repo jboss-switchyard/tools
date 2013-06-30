@@ -25,6 +25,164 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *     <h1>About the XML namespace</h1>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema document describes the XML namespace, in a form
+ *       suitable for import by other schema documents.
+ *      </p>
+ *      <p>
+ *       See <a href="http://www.w3.org/XML/1998/namespace.html">
+ *       http://www.w3.org/XML/1998/namespace.html</a> and
+ *       <a href="http://www.w3.org/TR/REC-xml">
+ *       http://www.w3.org/TR/REC-xml</a> for information 
+ *       about this namespace.
+ *      </p>
+ *      <p>
+ *       Note that local names in this namespace are intended to be
+ *       defined only by the World Wide Web Consortium or its subgroups.
+ *       The names currently defined in this namespace are listed below.
+ *       They should not be used with conflicting semantics by any Working
+ *       Group, specification, or document instance.
+ *      </p>
+ *      <p>   
+ *       See further below in this document for more information about <a href="#usage">how to refer to this schema document from your own
+ *       XSD schema documents</a> and about <a href="#nsversioning">the
+ *       namespace-versioning policy governing this schema document</a>.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *    
+ *     <h3>Father (in any context at all)</h3> 
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       denotes Jon Bosak, the chair of 
+ *       the original XML Working Group.  This name is reserved by 
+ *       the following decision of the W3C XML Plenary and 
+ *       XML Coordination groups:
+ *      </p>
+ *      <blockquote>
+ *        <p>
+ * 	In appreciation for his vision, leadership and
+ * 	dedication the W3C XML Plenary on this 10th day of
+ * 	February, 2000, reserves for Jon Bosak in perpetuity
+ * 	the XML name "xml:Father".
+ *        </p>
+ *      </blockquote>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="usage" xml:id="usage" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="usage">About this schema document</a>
+ *     </h2>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema defines attributes and an attribute group suitable
+ *       for use by schemas wishing to allow <code>xml:base</code>,
+ *       <code>xml:lang</code>, <code>xml:space</code> or
+ *       <code>xml:id</code> attributes on elements they define.
+ *      </p>
+ *      <p>
+ *       To enable this, such a schema must import this schema for
+ *       the XML namespace, e.g. as follows:
+ *      </p>
+ *      <pre>
+ *           &lt;schema . . .&gt;
+ *            . . .
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2001/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       or
+ *      </p>
+ *      <pre>
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2009/01/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       Subsequently, qualified reference to any of the attributes or the
+ *       group defined below will have the desired effect, e.g.
+ *      </p>
+ *      <pre>
+ *           &lt;type . . .&gt;
+ *            . . .
+ *            &lt;attributeGroup ref="xml:specialAttrs"/&gt;
+ *      </pre>
+ *      <p>
+ *       will define a type which will schema-validate an instance element
+ *       with any of those attributes.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="nsversioning" xml:id="nsversioning" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="nsversioning">Versioning policy for this schema document</a>
+ *     </h2>
+ *     <div class="bodytext">
+ *      <p>
+ *       In keeping with the XML Schema WG's standard versioning
+ *       policy, this schema document will persist at
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       At the date of issue it can also be found at
+ *       <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       The schema document at that URI may however change in the future,
+ *       in order to remain compatible with the latest version of XML
+ *       Schema itself, or with the XML namespace itself.  In other words,
+ *       if the XML Schema or XML namespaces change, the version of this
+ *       document at <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd 
+ *       </a> 
+ *       will change accordingly; the version at 
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd 
+ *       </a> 
+ *       will not change.
+ *      </p>
+ *      <p>
+ *       Previous dated (and unchanging) versions of this schema 
+ *       document are at:
+ *      </p>
+ *      <ul>
+ *       <li>
+ *           <a href="http://www.w3.org/2009/01/xml.xsd">
+ * 	http://www.w3.org/2009/01/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2007/08/xml.xsd">
+ * 	http://www.w3.org/2007/08/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2004/10/xml.xsd">
+ * 	http://www.w3.org/2004/10/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2001/03/xml.xsd">
+ * 	http://www.w3.org/2001/03/xml.xsd</a>
+ *         </li>
+ *      </ul>
+ *     </div>
+ *    </div>
+ *   
+ * <!-- end-model-doc -->
  * @see org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory
  * @model kind="package"
  * @generated
@@ -70,7 +228,136 @@ public interface ResteasyPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTBindingType()
      * @generated
      */
-    int REST_BINDING_TYPE = 0;
+    int REST_BINDING_TYPE = 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl <em>Document Root</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getDocumentRoot()
+     * @generated
+     */
+    int DOCUMENT_ROOT = 0;
+
+    /**
+     * The feature id for the '<em><b>Mixed</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__MIXED = 0;
+
+    /**
+     * The feature id for the '<em><b>XMLNS Prefix Map</b></em>' map.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__XMLNS_PREFIX_MAP = 1;
+
+    /**
+     * The feature id for the '<em><b>XSI Schema Location</b></em>' map.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
+
+    /**
+     * The feature id for the '<em><b>Binding Rest</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__BINDING_REST = 3;
+
+    /**
+     * The number of structural features of the '<em>Document Root</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getProxyType()
+     * @generated
+     */
+    int PROXY_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__HOST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PORT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
+     * The number of structural features of the '<em>Proxy Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROXY_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -169,7 +456,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
+    int REST_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
@@ -178,7 +465,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
+    int REST_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Interfaces</b></em>' attribute.
@@ -187,16 +474,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__INTERFACES = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Address</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_BINDING_TYPE__ADDRESS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+    int REST_BINDING_TYPE__INTERFACES = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Context Path</b></em>' attribute.
@@ -205,7 +483,16 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__CONTEXT_PATH = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int REST_BINDING_TYPE__CONTEXT_PATH = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Address</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_BINDING_TYPE__ADDRESS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Proxy</b></em>' containment reference.
@@ -214,7 +501,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+    int REST_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>REST Binding Type</em>' class.
@@ -223,255 +510,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl <em>Document Root</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getDocumentRoot()
-     * @generated
-     */
-    int DOCUMENT_ROOT = 1;
-
-    /**
-     * The feature id for the '<em><b>Mixed</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__MIXED = 0;
-
-    /**
-     * The feature id for the '<em><b>XMLNS Prefix Map</b></em>' map.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__XMLNS_PREFIX_MAP = 1;
-
-    /**
-     * The feature id for the '<em><b>XSI Schema Location</b></em>' map.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
-
-    /**
-     * The feature id for the '<em><b>Binding REST</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_REST = 3;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__CONTEXT_MAPPER = 4;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__MESSAGE_COMPOSER = 5;
-
-    /**
-     * The feature id for the '<em><b>Proxy</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__PROXY = 6;
-
-    /**
-     * The number of structural features of the '<em>Document Root</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 7;
-
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl <em>REST Context Mapper Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTContextMapperType()
-     * @generated
-     */
-    int REST_CONTEXT_MAPPER_TYPE = 2;
-
-    /**
-     * The feature id for the '<em><b>Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_CONTEXT_MAPPER_TYPE__CLASS = SwitchyardPackage.CONTEXT_MAPPER_TYPE__CLASS;
-
-    /**
-     * The feature id for the '<em><b>Exclude Namespaces</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES;
-
-    /**
-     * The feature id for the '<em><b>Excludes</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_CONTEXT_MAPPER_TYPE__EXCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDES;
-
-    /**
-     * The feature id for the '<em><b>Include Namespaces</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES;
-
-    /**
-     * The feature id for the '<em><b>Includes</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_CONTEXT_MAPPER_TYPE__INCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDES;
-
-    /**
-     * The number of structural features of the '<em>REST Context Mapper Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_CONTEXT_MAPPER_TYPE_FEATURE_COUNT = SwitchyardPackage.CONTEXT_MAPPER_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl <em>REST Message Composer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTMessageComposerType()
-     * @generated
-     */
-    int REST_MESSAGE_COMPOSER_TYPE = 3;
-
-    /**
-     * The feature id for the '<em><b>Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_MESSAGE_COMPOSER_TYPE__CLASS = SwitchyardPackage.MESSAGE_COMPOSER_TYPE__CLASS;
-
-    /**
-     * The number of structural features of the '<em>REST Message Composer Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REST_MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getProxyType()
-     * @generated
-     */
-    int PROXY_TYPE = 4;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROXY_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROXY_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROXY_TYPE__HOST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROXY_TYPE__PORT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>User</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROXY_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Password</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROXY_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Proxy Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROXY_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
+    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType <em>REST Binding Type</em>}'.
@@ -482,6 +521,28 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      */
     EClass getRESTBindingType();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getContextMapper <em>Context Mapper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getContextMapper()
+     * @see #getRESTBindingType()
+     * @generated
+     */
+    EReference getRESTBindingType_ContextMapper();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getMessageComposer <em>Message Composer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getMessageComposer()
+     * @see #getRESTBindingType()
+     * @generated
+     */
+    EReference getRESTBindingType_MessageComposer();
 
     /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getInterfaces <em>Interfaces</em>}'.
@@ -571,68 +632,15 @@ public interface ResteasyPackage extends EPackage {
     EReference getDocumentRoot_XSISchemaLocation();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getBindingREST <em>Binding REST</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getBindingRest <em>Binding Rest</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding REST</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getBindingREST()
+     * @return the meta object for the containment reference '<em>Binding Rest</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getBindingRest()
      * @see #getDocumentRoot()
      * @generated
      */
-    EReference getDocumentRoot_BindingREST();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getContextMapper()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_ContextMapper();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getMessageComposer()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_MessageComposer();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getProxy <em>Proxy</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Proxy</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getProxy()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_Proxy();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType <em>REST Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>REST Context Mapper Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType
-     * @generated
-     */
-    EClass getRESTContextMapperType();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType <em>REST Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>REST Message Composer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType
-     * @generated
-     */
-    EClass getRESTMessageComposerType();
+    EReference getDocumentRoot_BindingRest();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType <em>Proxy Type</em>}'.
@@ -721,6 +729,22 @@ public interface ResteasyPackage extends EPackage {
         EClass REST_BINDING_TYPE = eINSTANCE.getRESTBindingType();
 
         /**
+         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REST_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getRESTBindingType_ContextMapper();
+
+        /**
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REST_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getRESTBindingType_MessageComposer();
+
+        /**
          * The meta object literal for the '<em><b>Interfaces</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -787,56 +811,12 @@ public interface ResteasyPackage extends EPackage {
         EReference DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = eINSTANCE.getDocumentRoot_XSISchemaLocation();
 
         /**
-         * The meta object literal for the '<em><b>Binding REST</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Binding Rest</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference DOCUMENT_ROOT__BINDING_REST = eINSTANCE.getDocumentRoot_BindingREST();
-
-        /**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__CONTEXT_MAPPER = eINSTANCE.getDocumentRoot_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
-
-        /**
-         * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__PROXY = eINSTANCE.getDocumentRoot_Proxy();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl <em>REST Context Mapper Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTContextMapperType()
-         * @generated
-         */
-        EClass REST_CONTEXT_MAPPER_TYPE = eINSTANCE.getRESTContextMapperType();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl <em>REST Message Composer Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTMessageComposerType()
-         * @generated
-         */
-        EClass REST_MESSAGE_COMPOSER_TYPE = eINSTANCE.getRESTMessageComposerType();
+        EReference DOCUMENT_ROOT__BINDING_REST = eINSTANCE.getDocumentRoot_BindingRest();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.ProxyTypeImpl <em>Proxy Type</em>}' class.

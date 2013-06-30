@@ -22,9 +22,9 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getDataSourceRef <em>Data Source Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#isBatch <em>Batch</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getPlaceholder <em>Placeholder</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getTimerName <em>Timer Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getPeriod <em>Period</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getPeriod <em>Period</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getTimerName <em>Timer Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -121,24 +121,24 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected String placeholder = PLACEHOLDER_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getTimerName() <em>Timer Name</em>}' attribute.
+     * The default value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTimerName()
+     * @see #getInitialDelay()
      * @generated
      * @ordered
      */
-    protected static final String TIMER_NAME_EDEFAULT = null;
+    protected static final Object INITIAL_DELAY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getTimerName() <em>Timer Name</em>}' attribute.
+     * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTimerName()
+     * @see #getInitialDelay()
      * @generated
      * @ordered
      */
-    protected String timerName = TIMER_NAME_EDEFAULT;
+    protected Object initialDelay = INITIAL_DELAY_EDEFAULT;
 
     /**
      * The default value of the '{@link #getPeriod() <em>Period</em>}' attribute.
@@ -161,24 +161,24 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected String period = PERIOD_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
+     * The default value of the '{@link #getTimerName() <em>Timer Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getInitialDelay()
+     * @see #getTimerName()
      * @generated
      * @ordered
      */
-    protected static final Object INITIAL_DELAY_EDEFAULT = null;
+    protected static final String TIMER_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
+     * The cached value of the '{@link #getTimerName() <em>Timer Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getInitialDelay()
+     * @see #getTimerName()
      * @generated
      * @ordered
      */
-    protected Object initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected String timerName = TIMER_NAME_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -387,12 +387,12 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
                 return isBatch();
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
                 return getPlaceholder();
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
-                return getTimerName();
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
-                return getPeriod();
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
                 return getInitialDelay();
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
+                return getPeriod();
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
+                return getTimerName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -417,14 +417,14 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
                 setPlaceholder((String)newValue);
                 return;
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
-                setTimerName((String)newValue);
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
+                setInitialDelay(newValue);
                 return;
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
                 setPeriod((String)newValue);
                 return;
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
-                setInitialDelay(newValue);
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
+                setTimerName((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -450,14 +450,14 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
                 setPlaceholder(PLACEHOLDER_EDEFAULT);
                 return;
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
-                setTimerName(TIMER_NAME_EDEFAULT);
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
+                setInitialDelay(INITIAL_DELAY_EDEFAULT);
                 return;
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
                 setPeriod(PERIOD_EDEFAULT);
                 return;
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
-                setInitialDelay(INITIAL_DELAY_EDEFAULT);
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
+                setTimerName(TIMER_NAME_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -479,12 +479,12 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
                 return isSetBatch();
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
                 return PLACEHOLDER_EDEFAULT == null ? placeholder != null : !PLACEHOLDER_EDEFAULT.equals(placeholder);
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
-                return TIMER_NAME_EDEFAULT == null ? timerName != null : !TIMER_NAME_EDEFAULT.equals(timerName);
-            case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
-                return PERIOD_EDEFAULT == null ? period != null : !PERIOD_EDEFAULT.equals(period);
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
                 return INITIAL_DELAY_EDEFAULT == null ? initialDelay != null : !INITIAL_DELAY_EDEFAULT.equals(initialDelay);
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
+                return PERIOD_EDEFAULT == null ? period != null : !PERIOD_EDEFAULT.equals(period);
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
+                return TIMER_NAME_EDEFAULT == null ? timerName != null : !TIMER_NAME_EDEFAULT.equals(timerName);
         }
         return super.eIsSet(featureID);
     }
@@ -507,12 +507,12 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
         if (batchESet) result.append(batch); else result.append("<unset>");
         result.append(", placeholder: ");
         result.append(placeholder);
-        result.append(", timerName: ");
-        result.append(timerName);
-        result.append(", period: ");
-        result.append(period);
         result.append(", initialDelay: ");
         result.append(initialDelay);
+        result.append(", period: ");
+        result.append(period);
+        result.append(", timerName: ");
+        result.append(timerName);
         result.append(')');
         return result.toString();
     }

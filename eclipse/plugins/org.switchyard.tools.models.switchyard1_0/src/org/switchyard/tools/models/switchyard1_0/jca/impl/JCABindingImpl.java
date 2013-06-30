@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction;
@@ -29,6 +30,8 @@ import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
@@ -38,10 +41,12 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getOutboundConnection <em>Outbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInboundConnection <em>Inbound Connection</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInboundInteraction <em>Inbound Interaction</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getOutboundInteraction <em>Outbound Interaction</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInboundInteraction <em>Inbound Interaction</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getExtensions <em>Extensions</em>}</li>
  * </ul>
@@ -50,6 +55,26 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * @generated
  */
 public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABinding {
+    /**
+     * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getContextMapper()
+     * @generated
+     * @ordered
+     */
+    protected ContextMapperType contextMapper;
+
+    /**
+     * The cached value of the '{@link #getMessageComposer() <em>Message Composer</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageComposer()
+     * @generated
+     * @ordered
+     */
+    protected MessageComposerType messageComposer;
+
     /**
      * The cached value of the '{@link #getOutboundConnection() <em>Outbound Connection</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -71,16 +96,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     protected JCAInboundConnection inboundConnection;
 
     /**
-     * The cached value of the '{@link #getInboundInteraction() <em>Inbound Interaction</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getInboundInteraction()
-     * @generated
-     * @ordered
-     */
-    protected JCAInboundInteraction inboundInteraction;
-
-    /**
      * The cached value of the '{@link #getOutboundInteraction() <em>Outbound Interaction</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -89,6 +104,16 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
      * @ordered
      */
     protected JCAOutboundInteraction outboundInteraction;
+
+    /**
+     * The cached value of the '{@link #getInboundInteraction() <em>Inbound Interaction</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInboundInteraction()
+     * @generated
+     * @ordered
+     */
+    protected JCAInboundInteraction inboundInteraction;
 
     /**
      * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
@@ -101,24 +126,14 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     protected EList<Property> property;
 
     /**
-     * The default value of the '{@link #getExtensions() <em>Extensions</em>}' attribute.
+     * The cached value of the '{@link #getExtensions() <em>Extensions</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getExtensions()
      * @generated
      * @ordered
      */
-    protected static final Object EXTENSIONS_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getExtensions() <em>Extensions</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getExtensions()
-     * @generated
-     * @ordered
-     */
-    protected Object extensions = EXTENSIONS_EDEFAULT;
+    protected ExtensionsType extensions;
 
     /**
      * <!-- begin-user-doc -->
@@ -137,6 +152,92 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     protected EClass eStaticClass() {
         return JcaPackage.Literals.JCA_BINDING;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ContextMapperType getContextMapper() {
+        return contextMapper;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
+        ContextMapperType oldContextMapper = contextMapper;
+        contextMapper = newContextMapper;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__CONTEXT_MAPPER, oldContextMapper, newContextMapper);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapper(ContextMapperType newContextMapper) {
+        if (newContextMapper != contextMapper) {
+            NotificationChain msgs = null;
+            if (contextMapper != null)
+                msgs = ((InternalEObject)contextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_BINDING__CONTEXT_MAPPER, null, msgs);
+            if (newContextMapper != null)
+                msgs = ((InternalEObject)newContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_BINDING__CONTEXT_MAPPER, null, msgs);
+            msgs = basicSetContextMapper(newContextMapper, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__CONTEXT_MAPPER, newContextMapper, newContextMapper));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MessageComposerType getMessageComposer() {
+        return messageComposer;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
+        MessageComposerType oldMessageComposer = messageComposer;
+        messageComposer = newMessageComposer;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__MESSAGE_COMPOSER, oldMessageComposer, newMessageComposer);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposer(MessageComposerType newMessageComposer) {
+        if (newMessageComposer != messageComposer) {
+            NotificationChain msgs = null;
+            if (messageComposer != null)
+                msgs = ((InternalEObject)messageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_BINDING__MESSAGE_COMPOSER, null, msgs);
+            if (newMessageComposer != null)
+                msgs = ((InternalEObject)newMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_BINDING__MESSAGE_COMPOSER, null, msgs);
+            msgs = basicSetMessageComposer(newMessageComposer, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__MESSAGE_COMPOSER, newMessageComposer, newMessageComposer));
     }
 
     /**
@@ -328,7 +429,7 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object getExtensions() {
+    public ExtensionsType getExtensions() {
         return extensions;
     }
 
@@ -337,11 +438,33 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setExtensions(Object newExtensions) {
-        Object oldExtensions = extensions;
+    public NotificationChain basicSetExtensions(ExtensionsType newExtensions, NotificationChain msgs) {
+        ExtensionsType oldExtensions = extensions;
         extensions = newExtensions;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__EXTENSIONS, oldExtensions, extensions));
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__EXTENSIONS, oldExtensions, newExtensions);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExtensions(ExtensionsType newExtensions) {
+        if (newExtensions != extensions) {
+            NotificationChain msgs = null;
+            if (extensions != null)
+                msgs = ((InternalEObject)extensions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_BINDING__EXTENSIONS, null, msgs);
+            if (newExtensions != null)
+                msgs = ((InternalEObject)newExtensions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_BINDING__EXTENSIONS, null, msgs);
+            msgs = basicSetExtensions(newExtensions, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__EXTENSIONS, newExtensions, newExtensions));
     }
 
     /**
@@ -352,16 +475,22 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 return basicSetOutboundConnection(null, msgs);
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
                 return basicSetInboundConnection(null, msgs);
-            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
-                return basicSetInboundInteraction(null, msgs);
             case JcaPackage.JCA_BINDING__OUTBOUND_INTERACTION:
                 return basicSetOutboundInteraction(null, msgs);
+            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
+                return basicSetInboundInteraction(null, msgs);
             case JcaPackage.JCA_BINDING__PROPERTY:
                 return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
+            case JcaPackage.JCA_BINDING__EXTENSIONS:
+                return basicSetExtensions(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -374,14 +503,18 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
+                return getContextMapper();
+            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
+                return getMessageComposer();
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 return getOutboundConnection();
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
                 return getInboundConnection();
-            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
-                return getInboundInteraction();
             case JcaPackage.JCA_BINDING__OUTBOUND_INTERACTION:
                 return getOutboundInteraction();
+            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
+                return getInboundInteraction();
             case JcaPackage.JCA_BINDING__PROPERTY:
                 return getProperty();
             case JcaPackage.JCA_BINDING__EXTENSIONS:
@@ -399,24 +532,30 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)newValue);
+                return;
+            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)newValue);
+                return;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 setOutboundConnection((JCAOutboundConnection)newValue);
                 return;
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
                 setInboundConnection((JCAInboundConnection)newValue);
                 return;
-            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
-                setInboundInteraction((JCAInboundInteraction)newValue);
-                return;
             case JcaPackage.JCA_BINDING__OUTBOUND_INTERACTION:
                 setOutboundInteraction((JCAOutboundInteraction)newValue);
+                return;
+            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
+                setInboundInteraction((JCAInboundInteraction)newValue);
                 return;
             case JcaPackage.JCA_BINDING__PROPERTY:
                 getProperty().clear();
                 getProperty().addAll((Collection<? extends Property>)newValue);
                 return;
             case JcaPackage.JCA_BINDING__EXTENSIONS:
-                setExtensions(newValue);
+                setExtensions((ExtensionsType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -430,23 +569,29 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)null);
+                return;
+            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)null);
+                return;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 setOutboundConnection((JCAOutboundConnection)null);
                 return;
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
                 setInboundConnection((JCAInboundConnection)null);
                 return;
-            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
-                setInboundInteraction((JCAInboundInteraction)null);
-                return;
             case JcaPackage.JCA_BINDING__OUTBOUND_INTERACTION:
                 setOutboundInteraction((JCAOutboundInteraction)null);
+                return;
+            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
+                setInboundInteraction((JCAInboundInteraction)null);
                 return;
             case JcaPackage.JCA_BINDING__PROPERTY:
                 getProperty().clear();
                 return;
             case JcaPackage.JCA_BINDING__EXTENSIONS:
-                setExtensions(EXTENSIONS_EDEFAULT);
+                setExtensions((ExtensionsType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -460,36 +605,24 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
+                return contextMapper != null;
+            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
+                return messageComposer != null;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 return outboundConnection != null;
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
                 return inboundConnection != null;
-            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
-                return inboundInteraction != null;
             case JcaPackage.JCA_BINDING__OUTBOUND_INTERACTION:
                 return outboundInteraction != null;
+            case JcaPackage.JCA_BINDING__INBOUND_INTERACTION:
+                return inboundInteraction != null;
             case JcaPackage.JCA_BINDING__PROPERTY:
                 return property != null && !property.isEmpty();
             case JcaPackage.JCA_BINDING__EXTENSIONS:
-                return EXTENSIONS_EDEFAULT == null ? extensions != null : !EXTENSIONS_EDEFAULT.equals(extensions);
+                return extensions != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (extensions: ");
-        result.append(extensions);
-        result.append(')');
-        return result.toString();
     }
 
 } //JCABindingImpl

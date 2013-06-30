@@ -33,14 +33,13 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
-import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
-import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
@@ -97,8 +96,6 @@ public final class LabelAdapter {
         String bindingLabel = null;
         if (binding instanceof SOAPBindingType) {
             bindingLabel =  "SOAP";
-        } else if (binding instanceof BindingType) {
-            bindingLabel =  "HornetQ";
         } else if (binding instanceof CamelBindingType) {
             bindingLabel =  "Camel";
         } else if (binding instanceof CamelFileBindingType) {
@@ -131,11 +128,11 @@ public final class LabelAdapter {
             bindingLabel =  "JCA";
         } else if (binding instanceof RESTBindingType) {
             bindingLabel =  "REST";
-        } else if (binding instanceof HttpBindingType) {
+        } else if (binding instanceof HTTPBindingType) {
             bindingLabel =  "HTTP";
         } else if (binding instanceof CamelMailBindingType) {
             bindingLabel =  "Mail";
-        } else if (binding instanceof CamelJPABindingType) {
+        } else if (binding instanceof CamelJpaBindingType) {
             bindingLabel =  "JPA";
         } else if (binding instanceof SCABinding) {
             bindingLabel =  "SCA";
@@ -191,8 +188,6 @@ public final class LabelAdapter {
                 new ImageDecorator(ImageProvider.IMG_16_CHAIN);
         if (binding instanceof SOAPBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_SOAP);
-        } else if (binding instanceof BindingType) {
-            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_HORNETQ);
         } else if (binding instanceof CamelFileBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FILE);
         } else if (binding instanceof CamelQuartzBindingType) {
@@ -215,7 +210,7 @@ public final class LabelAdapter {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_JCA);
         } else if (binding instanceof RESTBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_RESTEASY);
-        } else if (binding instanceof HttpBindingType) {
+        } else if (binding instanceof HTTPBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_HTTP);
         } else if (binding instanceof CamelBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL);
@@ -223,7 +218,7 @@ public final class LabelAdapter {
 //            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_REMOTE);
         } else if (binding instanceof CamelMailBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_MAIL);
-        } else if (binding instanceof CamelJPABindingType) {
+        } else if (binding instanceof CamelJpaBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_JPA);
         }
         return imageRenderingDecorator;

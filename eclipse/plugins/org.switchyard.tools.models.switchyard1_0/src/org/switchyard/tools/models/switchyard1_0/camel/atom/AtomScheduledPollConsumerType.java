@@ -38,13 +38,13 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * @return the value of the '<em>Initial Delay</em>' attribute.
      * @see #isSetInitialDelay()
      * @see #unsetInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getAtomScheduledPollConsumerType_InitialDelay()
-     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
      */
-    int getInitialDelay();
+    Object getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -56,7 +56,7 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(int value);
+    void setInitialDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -64,7 +64,7 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetInitialDelay()
      * @see #getInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @generated
      */
     void unsetInitialDelay();
@@ -76,7 +76,7 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * @return whether the value of the '<em>Initial Delay</em>' attribute is set.
      * @see #unsetInitialDelay()
      * @see #getInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @generated
      */
     boolean isSetInitialDelay();
@@ -93,13 +93,13 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * @return the value of the '<em>Delay</em>' attribute.
      * @see #isSetDelay()
      * @see #unsetDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getAtomScheduledPollConsumerType_Delay()
-     * @model default="60000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="60000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    int getDelay();
+    Object getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getDelay <em>Delay</em>}' attribute.
@@ -111,7 +111,7 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * @see #getDelay()
      * @generated
      */
-    void setDelay(int value);
+    void setDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getDelay <em>Delay</em>}' attribute.
@@ -119,7 +119,7 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetDelay()
      * @see #getDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @generated
      */
     void unsetDelay();
@@ -131,7 +131,7 @@ public interface AtomScheduledPollConsumerType extends EObject {
      * @return whether the value of the '<em>Delay</em>' attribute is set.
      * @see #unsetDelay()
      * @see #getDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @generated
      */
     boolean isSetDelay();

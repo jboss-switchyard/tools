@@ -103,26 +103,26 @@ public class SOAPValidator extends EObjectValidator {
         switch (classifierID) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE:
                 return validateContextMapperType((ContextMapperType)value, diagnostics, context);
-            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE:
-                return validateSOAPMessageComposerType((SOAPMessageComposerType)value, diagnostics, context);
             case SOAPPackage.DOCUMENT_ROOT:
                 return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
-            case SOAPPackage.SOAP_BINDING_TYPE:
-                return validateSOAPBindingType((SOAPBindingType)value, diagnostics, context);
-            case SOAPPackage.INTERCEPTOR_TYPE:
-                return validateInterceptorType((InterceptorType)value, diagnostics, context);
-            case SOAPPackage.INTERCEPTORS_TYPE:
-                return validateInterceptorsType((InterceptorsType)value, diagnostics, context);
-            case SOAPPackage.MTOM_TYPE:
-                return validateMtomType((MtomType)value, diagnostics, context);
-            case SOAPPackage.PROPERTY_TYPE:
-                return validatePropertyType((PropertyType)value, diagnostics, context);
-            case SOAPPackage.PROPERTIES_TYPE:
-                return validatePropertiesType((PropertiesType)value, diagnostics, context);
             case SOAPPackage.ENDPOINT_CONFIG_TYPE:
                 return validateEndpointConfigType((EndpointConfigType)value, diagnostics, context);
+            case SOAPPackage.INTERCEPTORS_TYPE:
+                return validateInterceptorsType((InterceptorsType)value, diagnostics, context);
+            case SOAPPackage.INTERCEPTOR_TYPE:
+                return validateInterceptorType((InterceptorType)value, diagnostics, context);
+            case SOAPPackage.MESSAGE_COMPOSER_TYPE:
+                return validateMessageComposerType((MessageComposerType)value, diagnostics, context);
+            case SOAPPackage.MTOM_TYPE:
+                return validateMtomType((MtomType)value, diagnostics, context);
+            case SOAPPackage.PROPERTIES_TYPE:
+                return validatePropertiesType((PropertiesType)value, diagnostics, context);
+            case SOAPPackage.PROPERTY_TYPE:
+                return validatePropertyType((PropertyType)value, diagnostics, context);
             case SOAPPackage.PROXY_TYPE:
                 return validateProxyType((ProxyType)value, diagnostics, context);
+            case SOAPPackage.SOAP_BINDING_TYPE:
+                return validateSOAPBindingType((SOAPBindingType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return validateSoapHeadersType((SoapHeadersType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
@@ -141,15 +141,6 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateContextMapperType(ContextMapperType contextMapperType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(contextMapperType, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean validateSOAPMessageComposerType(SOAPMessageComposerType soapMessageComposerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(soapMessageComposerType, diagnostics, context);
     }
 
     /**
@@ -177,6 +168,15 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateInterceptorType(InterceptorType interceptorType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(interceptorType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateMessageComposerType(MessageComposerType messageComposerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(messageComposerType, diagnostics, context);
     }
 
     /**

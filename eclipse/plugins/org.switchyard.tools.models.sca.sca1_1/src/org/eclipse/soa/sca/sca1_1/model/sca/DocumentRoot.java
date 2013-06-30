@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getExportC <em>Export C</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getExportCpp <em>Export Cpp</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getExportJava <em>Export Java</em>}</li>
+ *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getImplementationBpel <em>Implementation Bpel</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getImplementationC <em>Implementation C</em>}</li>
@@ -630,6 +631,33 @@ public interface DocumentRoot extends EObject {
 	void setExportJava(JavaExportType value);
 
 	/**
+     * Returns the value of the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Extensions</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Extensions</em>' containment reference.
+     * @see #setExtensions(ExtensionsType)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getDocumentRoot_Extensions()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='extensions' namespace='##targetNamespace'"
+     * @generated
+     */
+    ExtensionsType getExtensions();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot#getExtensions <em>Extensions</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Extensions</em>' containment reference.
+     * @see #getExtensions()
+     * @generated
+     */
+    void setExtensions(ExtensionsType value);
+
+    /**
      * Returns the value of the '<em><b>Implementation</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>

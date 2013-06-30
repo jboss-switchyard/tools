@@ -51,6 +51,15 @@ public class ContextMapperTypeImpl extends org.switchyard.tools.models.switchyar
     protected SoapHeadersType soapHeadersType = SOAP_HEADERS_TYPE_EDEFAULT;
 
     /**
+     * This is true if the Soap Headers Type attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean soapHeadersTypeESet;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -86,8 +95,33 @@ public class ContextMapperTypeImpl extends org.switchyard.tools.models.switchyar
     public void setSoapHeadersType(SoapHeadersType newSoapHeadersType) {
         SoapHeadersType oldSoapHeadersType = soapHeadersType;
         soapHeadersType = newSoapHeadersType == null ? SOAP_HEADERS_TYPE_EDEFAULT : newSoapHeadersType;
+        boolean oldSoapHeadersTypeESet = soapHeadersTypeESet;
+        soapHeadersTypeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE, oldSoapHeadersType, soapHeadersType));
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE, oldSoapHeadersType, soapHeadersType, !oldSoapHeadersTypeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSoapHeadersType() {
+        SoapHeadersType oldSoapHeadersType = soapHeadersType;
+        boolean oldSoapHeadersTypeESet = soapHeadersTypeESet;
+        soapHeadersType = SOAP_HEADERS_TYPE_EDEFAULT;
+        soapHeadersTypeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SOAPPackage.CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE, oldSoapHeadersType, SOAP_HEADERS_TYPE_EDEFAULT, oldSoapHeadersTypeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSoapHeadersType() {
+        return soapHeadersTypeESet;
     }
 
     /**
@@ -128,7 +162,7 @@ public class ContextMapperTypeImpl extends org.switchyard.tools.models.switchyar
     public void eUnset(int featureID) {
         switch (featureID) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE:
-                setSoapHeadersType(SOAP_HEADERS_TYPE_EDEFAULT);
+                unsetSoapHeadersType();
                 return;
         }
         super.eUnset(featureID);
@@ -143,7 +177,7 @@ public class ContextMapperTypeImpl extends org.switchyard.tools.models.switchyar
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE:
-                return soapHeadersType != SOAP_HEADERS_TYPE_EDEFAULT;
+                return isSetSoapHeadersType();
         }
         return super.eIsSet(featureID);
     }
@@ -159,7 +193,7 @@ public class ContextMapperTypeImpl extends org.switchyard.tools.models.switchyar
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (soapHeadersType: ");
-        result.append(soapHeadersType);
+        if (soapHeadersTypeESet) result.append(soapHeadersType); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }

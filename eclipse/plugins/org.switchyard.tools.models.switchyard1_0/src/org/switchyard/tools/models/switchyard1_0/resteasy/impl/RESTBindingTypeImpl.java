@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
@@ -23,9 +25,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getInterfaces <em>Interfaces</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getContextPath <em>Context Path</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
@@ -33,6 +37,26 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * @generated
  */
 public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RESTBindingType {
+    /**
+     * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getContextMapper()
+     * @generated
+     * @ordered
+     */
+    protected ContextMapperType contextMapper;
+
+    /**
+     * The cached value of the '{@link #getMessageComposer() <em>Message Composer</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageComposer()
+     * @generated
+     * @ordered
+     */
+    protected MessageComposerType messageComposer;
+
     /**
      * The default value of the '{@link #getInterfaces() <em>Interfaces</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -54,26 +78,6 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
     protected String interfaces = INTERFACES_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getAddress() <em>Address</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAddress()
-     * @generated
-     * @ordered
-     */
-    protected static final String ADDRESS_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getAddress() <em>Address</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAddress()
-     * @generated
-     * @ordered
-     */
-    protected String address = ADDRESS_EDEFAULT;
-
-    /**
      * The default value of the '{@link #getContextPath() <em>Context Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -92,6 +96,26 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
      * @ordered
      */
     protected String contextPath = CONTEXT_PATH_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getAddress() <em>Address</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAddress()
+     * @generated
+     * @ordered
+     */
+    protected static final String ADDRESS_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getAddress() <em>Address</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAddress()
+     * @generated
+     * @ordered
+     */
+    protected String address = ADDRESS_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getProxy() <em>Proxy</em>}' containment reference.
@@ -120,6 +144,92 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
     @Override
     protected EClass eStaticClass() {
         return ResteasyPackage.Literals.REST_BINDING_TYPE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ContextMapperType getContextMapper() {
+        return contextMapper;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
+        ContextMapperType oldContextMapper = contextMapper;
+        contextMapper = newContextMapper;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER, oldContextMapper, newContextMapper);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapper(ContextMapperType newContextMapper) {
+        if (newContextMapper != contextMapper) {
+            NotificationChain msgs = null;
+            if (contextMapper != null)
+                msgs = ((InternalEObject)contextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
+            if (newContextMapper != null)
+                msgs = ((InternalEObject)newContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
+            msgs = basicSetContextMapper(newContextMapper, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER, newContextMapper, newContextMapper));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MessageComposerType getMessageComposer() {
+        return messageComposer;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
+        MessageComposerType oldMessageComposer = messageComposer;
+        messageComposer = newMessageComposer;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER, oldMessageComposer, newMessageComposer);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposer(MessageComposerType newMessageComposer) {
+        if (newMessageComposer != messageComposer) {
+            NotificationChain msgs = null;
+            if (messageComposer != null)
+                msgs = ((InternalEObject)messageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
+            if (newMessageComposer != null)
+                msgs = ((InternalEObject)newMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
+            msgs = basicSetMessageComposer(newMessageComposer, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER, newMessageComposer, newMessageComposer));
     }
 
     /**
@@ -169,6 +279,15 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
      * <!-- end-user-doc -->
      * @generated
      */
+    public ProxyType getProxy() {
+        return proxy;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getContextPath() {
         return contextPath;
     }
@@ -183,15 +302,6 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
         contextPath = newContextPath;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH, oldContextPath, contextPath));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ProxyType getProxy() {
-        return proxy;
     }
 
     /**
@@ -236,6 +346,10 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 return basicSetProxy(null, msgs);
         }
@@ -250,12 +364,16 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:
+                return getContextMapper();
+            case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
+                return getMessageComposer();
             case ResteasyPackage.REST_BINDING_TYPE__INTERFACES:
                 return getInterfaces();
-            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
-                return getAddress();
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 return getContextPath();
+            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
+                return getAddress();
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 return getProxy();
         }
@@ -270,14 +388,20 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)newValue);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)newValue);
+                return;
             case ResteasyPackage.REST_BINDING_TYPE__INTERFACES:
                 setInterfaces((String)newValue);
                 return;
-            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
-                setAddress((String)newValue);
-                return;
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 setContextPath((String)newValue);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
+                setAddress((String)newValue);
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 setProxy((ProxyType)newValue);
@@ -294,14 +418,20 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)null);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)null);
+                return;
             case ResteasyPackage.REST_BINDING_TYPE__INTERFACES:
                 setInterfaces(INTERFACES_EDEFAULT);
                 return;
-            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
-                setAddress(ADDRESS_EDEFAULT);
-                return;
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 setContextPath(CONTEXT_PATH_EDEFAULT);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
+                setAddress(ADDRESS_EDEFAULT);
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 setProxy((ProxyType)null);
@@ -318,12 +448,16 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:
+                return contextMapper != null;
+            case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
+                return messageComposer != null;
             case ResteasyPackage.REST_BINDING_TYPE__INTERFACES:
                 return INTERFACES_EDEFAULT == null ? interfaces != null : !INTERFACES_EDEFAULT.equals(interfaces);
-            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
-                return ADDRESS_EDEFAULT == null ? address != null : !ADDRESS_EDEFAULT.equals(address);
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
                 return CONTEXT_PATH_EDEFAULT == null ? contextPath != null : !CONTEXT_PATH_EDEFAULT.equals(contextPath);
+            case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
+                return ADDRESS_EDEFAULT == null ? address != null : !ADDRESS_EDEFAULT.equals(address);
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 return proxy != null;
         }
@@ -342,10 +476,10 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (interfaces: ");
         result.append(interfaces);
-        result.append(", address: ");
-        result.append(address);
         result.append(", contextPath: ");
         result.append(contextPath);
+        result.append(", address: ");
+        result.append(address);
         result.append(')');
         return result.toString();
     }

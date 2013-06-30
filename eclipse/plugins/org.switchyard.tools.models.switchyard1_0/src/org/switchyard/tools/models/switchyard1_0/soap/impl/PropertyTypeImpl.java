@@ -20,8 +20,8 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl#getPropName <em>Prop Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl#getPropValue <em>Prop Value</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.PropertyTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,44 +29,44 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  */
 public class PropertyTypeImpl extends CommonExtensionBaseImpl implements PropertyType {
     /**
-     * The default value of the '{@link #getPropName() <em>Prop Name</em>}' attribute.
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPropName()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected static final String PROP_NAME_EDEFAULT = null;
+    protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getPropName() <em>Prop Name</em>}' attribute.
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPropName()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected String propName = PROP_NAME_EDEFAULT;
+    protected String name = NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getPropValue() <em>Prop Value</em>}' attribute.
+     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPropValue()
+     * @see #getValue()
      * @generated
      * @ordered
      */
-    protected static final String PROP_VALUE_EDEFAULT = null;
+    protected static final String VALUE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getPropValue() <em>Prop Value</em>}' attribute.
+     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPropValue()
+     * @see #getValue()
      * @generated
      * @ordered
      */
-    protected String propValue = PROP_VALUE_EDEFAULT;
+    protected String value = VALUE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -92,8 +92,8 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getPropName() {
-        return propName;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -101,11 +101,11 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPropName(String newPropName) {
-        String oldPropName = propName;
-        propName = newPropName;
+    public void setName(String newName) {
+        String oldName = name;
+        name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.PROPERTY_TYPE__PROP_NAME, oldPropName, propName));
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.PROPERTY_TYPE__NAME, oldName, name));
     }
 
     /**
@@ -113,8 +113,8 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getPropValue() {
-        return propValue;
+    public String getValue() {
+        return value;
     }
 
     /**
@@ -122,11 +122,11 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPropValue(String newPropValue) {
-        String oldPropValue = propValue;
-        propValue = newPropValue;
+    public void setValue(String newValue) {
+        String oldValue = value;
+        value = newValue;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.PROPERTY_TYPE__PROP_VALUE, oldPropValue, propValue));
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.PROPERTY_TYPE__VALUE, oldValue, value));
     }
 
     /**
@@ -137,10 +137,10 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SOAPPackage.PROPERTY_TYPE__PROP_NAME:
-                return getPropName();
-            case SOAPPackage.PROPERTY_TYPE__PROP_VALUE:
-                return getPropValue();
+            case SOAPPackage.PROPERTY_TYPE__NAME:
+                return getName();
+            case SOAPPackage.PROPERTY_TYPE__VALUE:
+                return getValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -153,11 +153,11 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SOAPPackage.PROPERTY_TYPE__PROP_NAME:
-                setPropName((String)newValue);
+            case SOAPPackage.PROPERTY_TYPE__NAME:
+                setName((String)newValue);
                 return;
-            case SOAPPackage.PROPERTY_TYPE__PROP_VALUE:
-                setPropValue((String)newValue);
+            case SOAPPackage.PROPERTY_TYPE__VALUE:
+                setValue((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -171,11 +171,11 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SOAPPackage.PROPERTY_TYPE__PROP_NAME:
-                setPropName(PROP_NAME_EDEFAULT);
+            case SOAPPackage.PROPERTY_TYPE__NAME:
+                setName(NAME_EDEFAULT);
                 return;
-            case SOAPPackage.PROPERTY_TYPE__PROP_VALUE:
-                setPropValue(PROP_VALUE_EDEFAULT);
+            case SOAPPackage.PROPERTY_TYPE__VALUE:
+                setValue(VALUE_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -189,10 +189,10 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SOAPPackage.PROPERTY_TYPE__PROP_NAME:
-                return PROP_NAME_EDEFAULT == null ? propName != null : !PROP_NAME_EDEFAULT.equals(propName);
-            case SOAPPackage.PROPERTY_TYPE__PROP_VALUE:
-                return PROP_VALUE_EDEFAULT == null ? propValue != null : !PROP_VALUE_EDEFAULT.equals(propValue);
+            case SOAPPackage.PROPERTY_TYPE__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case SOAPPackage.PROPERTY_TYPE__VALUE:
+                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
         }
         return super.eIsSet(featureID);
     }
@@ -207,10 +207,10 @@ public class PropertyTypeImpl extends CommonExtensionBaseImpl implements Propert
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (propName: ");
-        result.append(propName);
-        result.append(", propValue: ");
-        result.append(propValue);
+        result.append(" (name: ");
+        result.append(name);
+        result.append(", value: ");
+        result.append(value);
         result.append(')');
         return result.toString();
     }

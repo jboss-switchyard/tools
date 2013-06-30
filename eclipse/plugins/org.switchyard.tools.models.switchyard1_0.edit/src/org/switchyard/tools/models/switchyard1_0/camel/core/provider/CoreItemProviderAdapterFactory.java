@@ -334,9 +334,9 @@ public class CoreItemProviderAdapterFactory extends CoreAdapterFactory implement
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelBindingTypeItemProvider != null) camelBindingTypeItemProvider.dispose();
         if (camelDirectBindingTypeItemProvider != null) camelDirectBindingTypeItemProvider.dispose();
-        if (camelTimerBindingTypeItemProvider != null) camelTimerBindingTypeItemProvider.dispose();
-        if (camelSedaBindingTypeItemProvider != null) camelSedaBindingTypeItemProvider.dispose();
         if (camelMockBindingTypeItemProvider != null) camelMockBindingTypeItemProvider.dispose();
+        if (camelSedaBindingTypeItemProvider != null) camelSedaBindingTypeItemProvider.dispose();
+        if (camelTimerBindingTypeItemProvider != null) camelTimerBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }
 

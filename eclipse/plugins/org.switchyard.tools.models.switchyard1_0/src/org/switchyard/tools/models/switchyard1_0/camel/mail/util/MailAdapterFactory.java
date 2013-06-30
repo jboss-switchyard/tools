@@ -81,16 +81,16 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
                 return createCamelMailBindingTypeAdapter();
             }
             @Override
-            public Adapter caseDocumentRoot(DocumentRoot object) {
-                return createDocumentRootAdapter();
-            }
-            @Override
             public Adapter caseCamelMailConsumerType(CamelMailConsumerType object) {
                 return createCamelMailConsumerTypeAdapter();
             }
             @Override
             public Adapter caseCamelMailProducerType(CamelMailProducerType object) {
                 return createCamelMailProducerTypeAdapter();
+            }
+            @Override
+            public Adapter caseDocumentRoot(DocumentRoot object) {
+                return createDocumentRootAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {

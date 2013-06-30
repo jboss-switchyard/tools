@@ -168,52 +168,6 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected JCAContextMapperTypeItemProvider jcaContextMapperTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createJCAContextMapperTypeAdapter() {
-        if (jcaContextMapperTypeItemProvider == null) {
-            jcaContextMapperTypeItemProvider = new JCAContextMapperTypeItemProvider(this);
-        }
-
-        return jcaContextMapperTypeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected JCAMessageComposerTypeItemProvider jcaMessageComposerTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createJCAMessageComposerTypeAdapter() {
-        if (jcaMessageComposerTypeItemProvider == null) {
-            jcaMessageComposerTypeItemProvider = new JCAMessageComposerTypeItemProvider(this);
-        }
-
-        return jcaMessageComposerTypeItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -234,29 +188,6 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
         }
 
         return batchCommitItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected InboundOperationItemProvider inboundOperationItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createInboundOperationAdapter() {
-        if (inboundOperationItemProvider == null) {
-            inboundOperationItemProvider = new InboundOperationItemProvider(this);
-        }
-
-        return inboundOperationItemProvider;
     }
 
     /**
@@ -395,29 +326,6 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
         }
 
         return jcaOutboundInteractionItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.Operation} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected OperationItemProvider operationItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.Operation}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createOperationAdapter() {
-        if (operationItemProvider == null) {
-            operationItemProvider = new OperationItemProvider(this);
-        }
-
-        return operationItemProvider;
     }
 
     /**
@@ -612,24 +520,20 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
      */
     public void dispose() {
         if (activationSpecItemProvider != null) activationSpecItemProvider.dispose();
+        if (batchCommitItemProvider != null) batchCommitItemProvider.dispose();
         if (connectionItemProvider != null) connectionItemProvider.dispose();
         if (connectionSpecItemProvider != null) connectionSpecItemProvider.dispose();
+        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (endpointItemProvider != null) endpointItemProvider.dispose();
-        if (inboundOperationItemProvider != null) inboundOperationItemProvider.dispose();
         if (interactionSpecItemProvider != null) interactionSpecItemProvider.dispose();
         if (jcaBindingItemProvider != null) jcaBindingItemProvider.dispose();
         if (jcaInboundConnectionItemProvider != null) jcaInboundConnectionItemProvider.dispose();
         if (jcaInboundInteractionItemProvider != null) jcaInboundInteractionItemProvider.dispose();
         if (jcaOutboundConnectionItemProvider != null) jcaOutboundConnectionItemProvider.dispose();
         if (jcaOutboundInteractionItemProvider != null) jcaOutboundInteractionItemProvider.dispose();
-        if (operationItemProvider != null) operationItemProvider.dispose();
         if (processorItemProvider != null) processorItemProvider.dispose();
         if (propertyItemProvider != null) propertyItemProvider.dispose();
         if (resourceAdapterItemProvider != null) resourceAdapterItemProvider.dispose();
-        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-        if (jcaContextMapperTypeItemProvider != null) jcaContextMapperTypeItemProvider.dispose();
-        if (jcaMessageComposerTypeItemProvider != null) jcaMessageComposerTypeItemProvider.dispose();
-        if (batchCommitItemProvider != null) batchCommitItemProvider.dispose();
     }
 
 }

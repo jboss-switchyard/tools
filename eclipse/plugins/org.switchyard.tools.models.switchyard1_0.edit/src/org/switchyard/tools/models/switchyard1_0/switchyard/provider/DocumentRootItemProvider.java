@@ -29,11 +29,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
-import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
-import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
@@ -75,11 +70,11 @@ public class DocumentRootItemProvider
 
             addBindingSwitchyardPropertyDescriptor(object);
             addResourcePropertyDescriptor(object);
-            addTargetPropertyDescriptor(object);
-            addTargetNamespacePropertyDescriptor(object);
             addClusteredPropertyDescriptor(object);
             addLoadBalancePropertyDescriptor(object);
             addSecurityAttrPropertyDescriptor(object);
+            addTargetPropertyDescriptor(object);
+            addTargetNamespacePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -256,22 +251,21 @@ public class DocumentRootItemProvider
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_JAVA);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_REGEX);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_XPATH);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTY);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__THROTTLING);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORM);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATE);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES);
         }
         return childrenFeatures;
     }
@@ -328,11 +322,11 @@ public class DocumentRootItemProvider
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
-            case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
-            case SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE:
             case SwitchyardPackage.DOCUMENT_ROOT__CLUSTERED:
             case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY_ATTR:
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
@@ -341,22 +335,21 @@ public class DocumentRootItemProvider
             case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
             case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JAVA:
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_REGEX:
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_XPATH:
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
             case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
+            case SwitchyardPackage.DOCUMENT_ROOT__THROTTLING:
             case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORM:
             case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
-            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
-            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-            case SwitchyardPackage.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD:
-            case SwitchyardPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD:
-            case SwitchyardPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD:
-            case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
-            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
-            case SwitchyardPackage.DOCUMENT_ROOT__SECURITIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -406,6 +399,26 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR,
+                 SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_JAVA,
+                 SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_REGEX,
+                 SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_XPATH,
+                 SwitchyardFactory.eINSTANCE.createXPathOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES,
                  SwitchyardFactory.eINSTANCE.createPropertiesType()));
 
@@ -416,8 +429,23 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES,
+                 SwitchyardFactory.eINSTANCE.createSecuritiesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY,
+                 SwitchyardFactory.eINSTANCE.createSecurityType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD,
                  SwitchyardFactory.eINSTANCE.createSwitchYardType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__THROTTLING,
+                 SwitchyardFactory.eINSTANCE.createThrottlingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -428,96 +456,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES,
                  SwitchyardFactory.eINSTANCE.createValidatesType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 SwitchyardFactory.eINSTANCE.createContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 HornetQFactory.eINSTANCE.createHornetQContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 SOAPFactory.eINSTANCE.createContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 JcaFactory.eINSTANCE.createJCAContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 ResteasyFactory.eINSTANCE.createRESTContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 SwitchyardFactory.eINSTANCE.createMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 JcaFactory.eINSTANCE.createJCAMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 ResteasyFactory.eINSTANCE.createRESTMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD,
-                 SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD,
-                 SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD,
-                 SwitchyardFactory.eINSTANCE.createXPathOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD,
-                 SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY,
-                 SwitchyardFactory.eINSTANCE.createSecurityType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITIES,
-                 SwitchyardFactory.eINSTANCE.createSecuritiesType()));
     }
 
     /**

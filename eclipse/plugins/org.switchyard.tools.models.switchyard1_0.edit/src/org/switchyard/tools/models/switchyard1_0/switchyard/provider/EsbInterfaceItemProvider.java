@@ -63,9 +63,9 @@ public class EsbInterfaceItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addFaultTypePropertyDescriptor(object);
             addInputTypePropertyDescriptor(object);
             addOutputTypePropertyDescriptor(object);
-            addFaultTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -174,9 +174,9 @@ public class EsbInterfaceItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(EsbInterface.class)) {
+            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
             case SwitchyardPackage.ESB_INTERFACE__INPUT_TYPE:
             case SwitchyardPackage.ESB_INTERFACE__OUTPUT_TYPE:
-            case SwitchyardPackage.ESB_INTERFACE__FAULT_TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

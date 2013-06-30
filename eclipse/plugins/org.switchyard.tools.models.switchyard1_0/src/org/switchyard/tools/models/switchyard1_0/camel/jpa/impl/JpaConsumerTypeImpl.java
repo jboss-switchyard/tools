@@ -20,8 +20,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -138,7 +136,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      * @ordered
      */
-    protected static final Object MAXIMUM_RESULTS_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "-1");
+    protected static final int MAXIMUM_RESULTS_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getMaximumResults() <em>Maximum Results</em>}' attribute.
@@ -148,7 +146,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      * @ordered
      */
-    protected Object maximumResults = MAXIMUM_RESULTS_EDEFAULT;
+    protected int maximumResults = MAXIMUM_RESULTS_EDEFAULT;
 
     /**
      * This is true if the Maximum Results attribute has been set.
@@ -552,7 +550,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object getMaximumResults() {
+    public int getMaximumResults() {
         return maximumResults;
     }
 
@@ -561,8 +559,8 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaximumResults(Object newMaximumResults) {
-        Object oldMaximumResults = maximumResults;
+    public void setMaximumResults(int newMaximumResults) {
+        int oldMaximumResults = maximumResults;
         maximumResults = newMaximumResults;
         boolean oldMaximumResultsESet = maximumResultsESet;
         maximumResultsESet = true;
@@ -576,7 +574,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      */
     public void unsetMaximumResults() {
-        Object oldMaximumResults = maximumResults;
+        int oldMaximumResults = maximumResults;
         boolean oldMaximumResultsESet = maximumResultsESet;
         maximumResults = MAXIMUM_RESULTS_EDEFAULT;
         maximumResultsESet = false;
@@ -831,7 +829,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
                 setConsumeLockEntity((Boolean)newValue);
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__MAXIMUM_RESULTS:
-                setMaximumResults(newValue);
+                setMaximumResults((Integer)newValue);
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUMER_QUERY:
                 setConsumerQuery((String)newValue);

@@ -91,6 +91,12 @@ public class FileSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case FilePackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case FilePackage.FILE_CONSUMER_TYPE: {
                 FileConsumerType fileConsumerType = (FileConsumerType)theEObject;
                 T result = caseFileConsumerType(fileConsumerType);
@@ -100,12 +106,6 @@ public class FileSwitch<T> extends Switch<T> {
             case FilePackage.FILE_PRODUCER_TYPE: {
                 FileProducerType fileProducerType = (FileProducerType)theEObject;
                 T result = caseFileProducerType(fileProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case FilePackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

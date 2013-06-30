@@ -83,60 +83,9 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE: {
-                SOAPMessageComposerType soapMessageComposerType = (SOAPMessageComposerType)theEObject;
-                T result = caseSOAPMessageComposerType(soapMessageComposerType);
-                if (result == null) result = caseMessageComposerType(soapMessageComposerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case SOAPPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SOAPPackage.SOAP_BINDING_TYPE: {
-                SOAPBindingType soapBindingType = (SOAPBindingType)theEObject;
-                T result = caseSOAPBindingType(soapBindingType);
-                if (result == null) result = caseSwitchYardBindingType(soapBindingType);
-                if (result == null) result = caseBinding(soapBindingType);
-                if (result == null) result = caseCommonExtensionBase(soapBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SOAPPackage.INTERCEPTOR_TYPE: {
-                InterceptorType interceptorType = (InterceptorType)theEObject;
-                T result = caseInterceptorType(interceptorType);
-                if (result == null) result = caseCommonExtensionBase(interceptorType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SOAPPackage.INTERCEPTORS_TYPE: {
-                InterceptorsType interceptorsType = (InterceptorsType)theEObject;
-                T result = caseInterceptorsType(interceptorsType);
-                if (result == null) result = caseCommonExtensionBase(interceptorsType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SOAPPackage.MTOM_TYPE: {
-                MtomType mtomType = (MtomType)theEObject;
-                T result = caseMtomType(mtomType);
-                if (result == null) result = caseCommonExtensionBase(mtomType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SOAPPackage.PROPERTY_TYPE: {
-                PropertyType propertyType = (PropertyType)theEObject;
-                T result = casePropertyType(propertyType);
-                if (result == null) result = caseCommonExtensionBase(propertyType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SOAPPackage.PROPERTIES_TYPE: {
-                PropertiesType propertiesType = (PropertiesType)theEObject;
-                T result = casePropertiesType(propertiesType);
-                if (result == null) result = caseCommonExtensionBase(propertiesType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -147,10 +96,61 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SOAPPackage.INTERCEPTORS_TYPE: {
+                InterceptorsType interceptorsType = (InterceptorsType)theEObject;
+                T result = caseInterceptorsType(interceptorsType);
+                if (result == null) result = caseCommonExtensionBase(interceptorsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.INTERCEPTOR_TYPE: {
+                InterceptorType interceptorType = (InterceptorType)theEObject;
+                T result = caseInterceptorType(interceptorType);
+                if (result == null) result = caseCommonExtensionBase(interceptorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.MESSAGE_COMPOSER_TYPE: {
+                MessageComposerType messageComposerType = (MessageComposerType)theEObject;
+                T result = caseMessageComposerType(messageComposerType);
+                if (result == null) result = caseSwitchyard_MessageComposerType(messageComposerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.MTOM_TYPE: {
+                MtomType mtomType = (MtomType)theEObject;
+                T result = caseMtomType(mtomType);
+                if (result == null) result = caseCommonExtensionBase(mtomType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.PROPERTIES_TYPE: {
+                PropertiesType propertiesType = (PropertiesType)theEObject;
+                T result = casePropertiesType(propertiesType);
+                if (result == null) result = caseCommonExtensionBase(propertiesType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.PROPERTY_TYPE: {
+                PropertyType propertyType = (PropertyType)theEObject;
+                T result = casePropertyType(propertyType);
+                if (result == null) result = caseCommonExtensionBase(propertyType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SOAPPackage.PROXY_TYPE: {
                 ProxyType proxyType = (ProxyType)theEObject;
                 T result = caseProxyType(proxyType);
                 if (result == null) result = caseCommonExtensionBase(proxyType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.SOAP_BINDING_TYPE: {
+                SOAPBindingType soapBindingType = (SOAPBindingType)theEObject;
+                T result = caseSOAPBindingType(soapBindingType);
+                if (result == null) result = caseSwitchYardBindingType(soapBindingType);
+                if (result == null) result = caseBinding(soapBindingType);
+                if (result == null) result = caseCommonExtensionBase(soapBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -170,21 +170,6 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseContextMapperType(ContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseSOAPMessageComposerType(SOAPMessageComposerType object) {
         return null;
     }
 
@@ -365,6 +350,21 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCommonExtensionBase(CommonExtensionBase object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
         return null;
     }
 

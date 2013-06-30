@@ -16,8 +16,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.*;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -77,32 +75,9 @@ public class ResteasySwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case ResteasyPackage.REST_BINDING_TYPE: {
-                RESTBindingType restBindingType = (RESTBindingType)theEObject;
-                T result = caseRESTBindingType(restBindingType);
-                if (result == null) result = caseSwitchYardBindingType(restBindingType);
-                if (result == null) result = caseBinding(restBindingType);
-                if (result == null) result = caseCommonExtensionBase(restBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case ResteasyPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case ResteasyPackage.REST_CONTEXT_MAPPER_TYPE: {
-                RESTContextMapperType restContextMapperType = (RESTContextMapperType)theEObject;
-                T result = caseRESTContextMapperType(restContextMapperType);
-                if (result == null) result = caseContextMapperType(restContextMapperType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case ResteasyPackage.REST_MESSAGE_COMPOSER_TYPE: {
-                RESTMessageComposerType restMessageComposerType = (RESTMessageComposerType)theEObject;
-                T result = caseRESTMessageComposerType(restMessageComposerType);
-                if (result == null) result = caseMessageComposerType(restMessageComposerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -110,6 +85,15 @@ public class ResteasySwitch<T> extends Switch<T> {
                 ProxyType proxyType = (ProxyType)theEObject;
                 T result = caseProxyType(proxyType);
                 if (result == null) result = caseCommonExtensionBase(proxyType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ResteasyPackage.REST_BINDING_TYPE: {
+                RESTBindingType restBindingType = (RESTBindingType)theEObject;
+                T result = caseRESTBindingType(restBindingType);
+                if (result == null) result = caseSwitchYardBindingType(restBindingType);
+                if (result == null) result = caseBinding(restBindingType);
+                if (result == null) result = caseCommonExtensionBase(restBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -148,36 +132,6 @@ public class ResteasySwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>REST Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>REST Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseRESTContextMapperType(RESTContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>REST Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>REST Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseRESTMessageComposerType(RESTMessageComposerType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Proxy Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -189,36 +143,6 @@ public class ResteasySwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseProxyType(ProxyType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseContextMapperType(ContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseMessageComposerType(MessageComposerType object) {
         return null;
     }
 

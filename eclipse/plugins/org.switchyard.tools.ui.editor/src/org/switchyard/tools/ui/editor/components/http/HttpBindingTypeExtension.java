@@ -19,7 +19,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
@@ -46,7 +46,7 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public boolean supports(Class<? extends Binding> type) {
-        return HttpBindingType.class.isAssignableFrom(type);
+        return HTTPBindingType.class.isAssignableFrom(type);
     }
 
     @Override

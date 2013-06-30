@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getBindingGroup <em>Binding Group</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getBinding <em>Binding</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getCallback <em>Callback</em>}</li>
+ *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getAny <em>Any</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getPolicySets <em>Policy Sets</em>}</li>
@@ -145,6 +146,33 @@ public interface Contract extends CommonExtensionBase {
 	void setCallback(Callback value);
 
 	/**
+     * Returns the value of the '<em><b>Extensions</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Extensions</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Extensions</em>' containment reference.
+     * @see #setExtensions(ExtensionsType)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getContract_Extensions()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='extensions' namespace='##targetNamespace'"
+     * @generated
+     */
+    ExtensionsType getExtensions();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getExtensions <em>Extensions</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Extensions</em>' containment reference.
+     * @see #getExtensions()
+     * @generated
+     */
+    void setExtensions(ExtensionsType value);
+
+    /**
      * Returns the value of the '<em><b>Any</b></em>' attribute list.
      * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
      * <!-- begin-user-doc -->

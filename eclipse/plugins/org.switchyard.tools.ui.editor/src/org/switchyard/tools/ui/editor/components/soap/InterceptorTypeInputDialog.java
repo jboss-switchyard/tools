@@ -241,8 +241,8 @@ public class InterceptorTypeInputDialog extends TitleAreaDialog {
                 _interceptor.setProperties(SOAPFactory.eINSTANCE.createPropertiesType());
             }
             PropertyType property = SOAPFactory.eINSTANCE.createPropertyType();
-            property.setPropName(name);
-            property.setPropValue(value);
+            property.setName(name);
+            property.setValue(value);
             _interceptor.getProperties().getProperty().add(property);
         }
     }

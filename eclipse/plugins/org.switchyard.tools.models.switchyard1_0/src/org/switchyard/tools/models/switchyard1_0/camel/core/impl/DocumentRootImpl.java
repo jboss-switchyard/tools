@@ -32,11 +32,11 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getBindingCamel <em>Binding Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getBindingDirect <em>Binding Direct</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getBindingMock <em>Binding Mock</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getBindingSeda <em>Binding Seda</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getBindingTimer <em>Binding Timer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.DocumentRootImpl#getBindingUri <em>Binding Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,33 +126,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, CorePackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         }
         return xSISchemaLocation;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public CamelBindingType getBindingCamel() {
-        return (CamelBindingType)getMixed().get(CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetBindingCamel(CamelBindingType newBindingCamel, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL, newBindingCamel, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setBindingCamel(CamelBindingType newBindingCamel) {
-        ((FeatureMap.Internal)getMixed()).set(CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL, newBindingCamel);
     }
 
     /**
@@ -268,6 +241,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public CamelBindingType getBindingUri() {
+        return (CamelBindingType)getMixed().get(CorePackage.Literals.DOCUMENT_ROOT__BINDING_URI, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingUri(CamelBindingType newBindingUri, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CorePackage.Literals.DOCUMENT_ROOT__BINDING_URI, newBindingUri, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingUri(CamelBindingType newBindingUri) {
+        ((FeatureMap.Internal)getMixed()).set(CorePackage.Literals.DOCUMENT_ROOT__BINDING_URI, newBindingUri);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -277,8 +277,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case CorePackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-            case CorePackage.DOCUMENT_ROOT__BINDING_CAMEL:
-                return basicSetBindingCamel(null, msgs);
             case CorePackage.DOCUMENT_ROOT__BINDING_DIRECT:
                 return basicSetBindingDirect(null, msgs);
             case CorePackage.DOCUMENT_ROOT__BINDING_MOCK:
@@ -287,6 +285,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingSeda(null, msgs);
             case CorePackage.DOCUMENT_ROOT__BINDING_TIMER:
                 return basicSetBindingTimer(null, msgs);
+            case CorePackage.DOCUMENT_ROOT__BINDING_URI:
+                return basicSetBindingUri(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -308,8 +308,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CorePackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
-            case CorePackage.DOCUMENT_ROOT__BINDING_CAMEL:
-                return getBindingCamel();
             case CorePackage.DOCUMENT_ROOT__BINDING_DIRECT:
                 return getBindingDirect();
             case CorePackage.DOCUMENT_ROOT__BINDING_MOCK:
@@ -318,6 +316,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingSeda();
             case CorePackage.DOCUMENT_ROOT__BINDING_TIMER:
                 return getBindingTimer();
+            case CorePackage.DOCUMENT_ROOT__BINDING_URI:
+                return getBindingUri();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -339,9 +339,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CorePackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
                 return;
-            case CorePackage.DOCUMENT_ROOT__BINDING_CAMEL:
-                setBindingCamel((CamelBindingType)newValue);
-                return;
             case CorePackage.DOCUMENT_ROOT__BINDING_DIRECT:
                 setBindingDirect((CamelDirectBindingType)newValue);
                 return;
@@ -353,6 +350,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CorePackage.DOCUMENT_ROOT__BINDING_TIMER:
                 setBindingTimer((CamelTimerBindingType)newValue);
+                return;
+            case CorePackage.DOCUMENT_ROOT__BINDING_URI:
+                setBindingUri((CamelBindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -375,9 +375,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CorePackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
-            case CorePackage.DOCUMENT_ROOT__BINDING_CAMEL:
-                setBindingCamel((CamelBindingType)null);
-                return;
             case CorePackage.DOCUMENT_ROOT__BINDING_DIRECT:
                 setBindingDirect((CamelDirectBindingType)null);
                 return;
@@ -389,6 +386,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CorePackage.DOCUMENT_ROOT__BINDING_TIMER:
                 setBindingTimer((CamelTimerBindingType)null);
+                return;
+            case CorePackage.DOCUMENT_ROOT__BINDING_URI:
+                setBindingUri((CamelBindingType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -408,8 +408,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case CorePackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-            case CorePackage.DOCUMENT_ROOT__BINDING_CAMEL:
-                return getBindingCamel() != null;
             case CorePackage.DOCUMENT_ROOT__BINDING_DIRECT:
                 return getBindingDirect() != null;
             case CorePackage.DOCUMENT_ROOT__BINDING_MOCK:
@@ -418,6 +416,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingSeda() != null;
             case CorePackage.DOCUMENT_ROOT__BINDING_TIMER:
                 return getBindingTimer() != null;
+            case CorePackage.DOCUMENT_ROOT__BINDING_URI:
+                return getBindingUri() != null;
         }
         return super.eIsSet(featureID);
     }

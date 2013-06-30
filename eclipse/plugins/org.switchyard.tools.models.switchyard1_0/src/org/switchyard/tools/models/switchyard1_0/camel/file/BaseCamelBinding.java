@@ -14,8 +14,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getCamelContextMapper <em>Camel Context Mapper</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getCamelMessageComposer <em>Camel Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,56 +26,56 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
 public interface BaseCamelBinding extends SwitchYardBindingType {
 
     /**
-     * Returns the value of the '<em><b>Camel Context Mapper</b></em>' containment reference.
+     * Returns the value of the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Camel Context Mapper</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Context Mapper</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Camel Context Mapper</em>' containment reference.
-     * @see #setCamelContextMapper(ContextMapperType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getBaseCamelBinding_CamelContextMapper()
+     * @return the value of the '<em>Context Mapper</em>' containment reference.
+     * @see #setContextMapper(ContextMapperType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getBaseCamelBinding_ContextMapper()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace'"
      * @generated
      */
-    ContextMapperType getCamelContextMapper();
+    ContextMapperType getContextMapper();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getCamelContextMapper <em>Camel Context Mapper</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getContextMapper <em>Context Mapper</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Camel Context Mapper</em>' containment reference.
-     * @see #getCamelContextMapper()
+     * @param value the new value of the '<em>Context Mapper</em>' containment reference.
+     * @see #getContextMapper()
      * @generated
      */
-    void setCamelContextMapper(ContextMapperType value);
+    void setContextMapper(ContextMapperType value);
 
     /**
-     * Returns the value of the '<em><b>Camel Message Composer</b></em>' containment reference.
+     * Returns the value of the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Camel Message Composer</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Message Composer</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Camel Message Composer</em>' containment reference.
-     * @see #setCamelMessageComposer(MessageComposerType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getBaseCamelBinding_CamelMessageComposer()
+     * @return the value of the '<em>Message Composer</em>' containment reference.
+     * @see #setMessageComposer(MessageComposerType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getBaseCamelBinding_MessageComposer()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
      * @generated
      */
-    MessageComposerType getCamelMessageComposer();
+    MessageComposerType getMessageComposer();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getCamelMessageComposer <em>Camel Message Composer</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding#getMessageComposer <em>Message Composer</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Camel Message Composer</em>' containment reference.
-     * @see #getCamelMessageComposer()
+     * @param value the new value of the '<em>Message Composer</em>' containment reference.
+     * @see #getMessageComposer()
      * @generated
      */
-    void setCamelMessageComposer(MessageComposerType value);
+    void setMessageComposer(MessageComposerType value);
 } // BaseCamelBinding

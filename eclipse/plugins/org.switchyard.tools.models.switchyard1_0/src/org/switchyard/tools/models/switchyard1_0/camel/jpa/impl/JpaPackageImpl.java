@@ -53,7 +53,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
@@ -80,10 +80,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
-
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-
-import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
@@ -140,6 +136,13 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass camelJpaBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass documentRootEClass = null;
 
     /**
@@ -169,13 +172,6 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * @generated
      */
     private EClass jpaConsumerTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelJPABindingTypeEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -233,7 +229,6 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
-        HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
         RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
@@ -264,7 +259,6 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
-        theHornetQPackage.createPackageContents();
         theRulesPackage.createPackageContents();
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
@@ -291,7 +285,6 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
-        theHornetQPackage.initializePackageContents();
         theRulesPackage.initializePackageContents();
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
@@ -337,7 +330,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelContextMapper() {
+    public EReference getBaseCamelBinding_ContextMapper() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
     }
 
@@ -346,8 +339,62 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelMessageComposer() {
+    public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelJpaBindingType() {
+        return camelJpaBindingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelJpaBindingType_EntityClassName() {
+        return (EAttribute)camelJpaBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelJpaBindingType_PersistenceUnit() {
+        return (EAttribute)camelJpaBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelJpaBindingType_TransactionManager() {
+        return (EAttribute)camelJpaBindingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCamelJpaBindingType_Consume() {
+        return (EReference)camelJpaBindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCamelJpaBindingType_Produce() {
+        return (EReference)camelJpaBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -391,7 +438,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_BindingJPA() {
+    public EReference getDocumentRoot_BindingJpa() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
@@ -598,60 +645,6 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCamelJPABindingType() {
-        return camelJPABindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJPABindingType_EntityClassName() {
-        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJPABindingType_PersistenceUnit() {
-        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJPABindingType_TransactionManager() {
-        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelJPABindingType_Consume() {
-        return (EReference)camelJPABindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelJPABindingType_Produce() {
-        return (EReference)camelJPABindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public JpaFactory getJpaFactory() {
         return (JpaFactory)getEFactoryInstance();
     }
@@ -676,15 +669,15 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
 
-        camelJPABindingTypeEClass = createEClass(CAMEL_JPA_BINDING_TYPE);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER);
-        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__CONSUME);
-        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PRODUCE);
+        camelJpaBindingTypeEClass = createEClass(CAMEL_JPA_BINDING_TYPE);
+        createEAttribute(camelJpaBindingTypeEClass, CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME);
+        createEAttribute(camelJpaBindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT);
+        createEAttribute(camelJpaBindingTypeEClass, CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER);
+        createEReference(camelJpaBindingTypeEClass, CAMEL_JPA_BINDING_TYPE__CONSUME);
+        createEReference(camelJpaBindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PRODUCE);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -754,25 +747,25 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
 
         // Add supertypes to classes
         baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
-        camelJPABindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        camelJpaBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(camelJPABindingTypeEClass, CamelJPABindingType.class, "CamelJPABindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelJPABindingType_EntityClassName(), theXMLTypePackage.getString(), "entityClassName", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJPABindingType_PersistenceUnit(), theXMLTypePackage.getString(), "persistenceUnit", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJPABindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelJPABindingType_Consume(), this.getJpaConsumerType(), null, "consume", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelJPABindingType_Produce(), this.getJpaProducerType(), null, "produce", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(camelJpaBindingTypeEClass, CamelJpaBindingType.class, "CamelJpaBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelJpaBindingType_EntityClassName(), theXMLTypePackage.getString(), "entityClassName", null, 1, 1, CamelJpaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelJpaBindingType_PersistenceUnit(), theXMLTypePackage.getString(), "persistenceUnit", null, 1, 1, CamelJpaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelJpaBindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJpaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelJpaBindingType_Consume(), this.getJpaConsumerType(), null, "consume", null, 0, 1, CamelJpaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelJpaBindingType_Produce(), this.getJpaProducerType(), null, "produce", null, 0, 1, CamelJpaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingJPA(), this.getCamelJPABindingType(), null, "bindingJPA", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingJpa(), this.getCamelJpaBindingType(), null, "bindingJpa", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(jpaConsumerTypeEClass, JpaConsumerType.class, "JpaConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJpaConsumerType_ScheduledPollConsumerType(), ecorePackage.getEFeatureMapEntry(), "scheduledPollConsumerType", null, 0, -1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -785,7 +778,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         initEAttribute(getJpaConsumerType_MaxMessagesPerPoll(), theSwitchyardPackage.getPropInteger(), "maxMessagesPerPoll", "0", 0, -1, JpaConsumerType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumeDelete(), theXMLTypePackage.getBoolean(), "consumeDelete", "true", 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumeLockEntity(), theXMLTypePackage.getBoolean(), "consumeLockEntity", "true", 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_MaximumResults(), theSwitchyardPackage.getPropInteger(), "maximumResults", "-1", 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_MaximumResults(), theXMLTypePackage.getInt(), "maximumResults", "-1", 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumerQuery(), theXMLTypePackage.getString(), "consumerQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumerNamedQuery(), theXMLTypePackage.getString(), "consumerNamedQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumerNativeQuery(), theXMLTypePackage.getString(), "consumerNativeQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -824,7 +817,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
           (baseCamelBindingEClass, 
            source, 
@@ -833,7 +826,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelContextMapper(), 
+          (getBaseCamelBinding_ContextMapper(), 
            source, 
            new String[] {
              "kind", "element",
@@ -841,7 +834,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelMessageComposer(), 
+          (getBaseCamelBinding_MessageComposer(), 
            source, 
            new String[] {
              "kind", "element",
@@ -849,14 +842,14 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (camelJPABindingTypeEClass, 
+          (camelJpaBindingTypeEClass, 
            source, 
            new String[] {
-             "name", "CamelJPABindingType",
+             "name", "CamelJpaBindingType",
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getCamelJPABindingType_EntityClassName(), 
+          (getCamelJpaBindingType_EntityClassName(), 
            source, 
            new String[] {
              "kind", "element",
@@ -864,7 +857,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelJPABindingType_PersistenceUnit(), 
+          (getCamelJpaBindingType_PersistenceUnit(), 
            source, 
            new String[] {
              "kind", "element",
@@ -872,7 +865,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelJPABindingType_TransactionManager(), 
+          (getCamelJpaBindingType_TransactionManager(), 
            source, 
            new String[] {
              "kind", "element",
@@ -880,7 +873,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelJPABindingType_Consume(), 
+          (getCamelJpaBindingType_Consume(), 
            source, 
            new String[] {
              "kind", "element",
@@ -888,7 +881,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelJPABindingType_Produce(), 
+          (getCamelJpaBindingType_Produce(), 
            source, 
            new String[] {
              "kind", "element",
@@ -924,7 +917,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "name", "xsi:schemaLocation"
            });		
         addAnnotation
-          (getDocumentRoot_BindingJPA(), 
+          (getDocumentRoot_BindingJpa(), 
            source, 
            new String[] {
              "kind", "element",

@@ -60,10 +60,10 @@
   </genPackages>
   <genPackages prefix="BPM" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" fileExtensions="" ecorePackage="component.bpm.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//ActionType">
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ActionType/STARTPROCESS"/>
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ActionType/SIGNALEVENT"/>
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ActionType/ABORTPROCESSINSTANCE"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//OperationType">
+      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/STARTPROCESS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/SIGNALEVENT"/>
+      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/ABORTPROCESSINSTANCE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//ExpressionType">
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ExpressionType/MVEL"/>
@@ -77,28 +77,30 @@
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ScopeType/MESSAGE"/>
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ScopeType/EXCHANGE"/>
     </genEnums>
-    <genDataTypes ecoreDataType="component.bpm.ecore#//ActionTypeObject"/>
+    <genDataTypes ecoreDataType="component.bpm.ecore#//OperationTypeObject"/>
     <genDataTypes ecoreDataType="component.bpm.ecore#//ExpressionTypeObject"/>
     <genDataTypes ecoreDataType="component.bpm.ecore#//LoggerTypeObject"/>
     <genDataTypes ecoreDataType="component.bpm.ecore#//ScopeTypeObject"/>
-    <genClasses ecoreClass="component.bpm.ecore#//ActionsType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ActionsType/action"/>
+    <genClasses ecoreClass="component.bpm.ecore#//OperationsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//OperationsType/operation"/>
     </genClasses>
-    <genClasses ecoreClass="component.bpm.ecore#//ActionType1">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ActionType1/globals"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ActionType1/inputs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ActionType1/outputs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ActionType1/eventId"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ActionType1/operation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ActionType1/type"/>
+    <genClasses ecoreClass="component.bpm.ecore#//BPMOperationType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/globals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/outputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/faults"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/eventId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/type"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//BPMImplementationType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/actions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/listeners"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/loggers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/manifest"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/userGroupCallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/workItemHandlers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMImplementationType/persistent"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMImplementationType/processId"/>
@@ -123,8 +125,8 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/action"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/channel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/container"/>
@@ -146,6 +148,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resources"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/workItemHandler"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/workItemHandlers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/userGroupCallback"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/faults"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/fault"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//GlobalsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//GlobalsType/global"/>
@@ -199,6 +204,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//WorkItemHandlerType/class"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//WorkItemHandlerType/name"/>
     </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//UserGroupCallbackType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//UserGroupCallbackType/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//UserGroupCallbackType/class"/>
+    </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//FaultsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//FaultsType/fault"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Switchyard" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -232,41 +244,40 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/handler"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/handlers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/interfaceEsb"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelector"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelectorSwitchyard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelectorJava"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelectorRegex"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelectorXpath"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/property"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/resource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/securities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/security"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/switchyard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/throttling"/>
       <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/transform"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/transforms"/>
       <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/validate"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/validates"/>
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelectorSwitchyard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/contextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/messageComposer"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/javaOperationSelectorSwitchyard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/regexOperationSelectorSwitchyard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/xpathOperationSelectorSwitchyard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/staticOperationSelectorSwitchyard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/security"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/target"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/targetNamespace"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/clustered"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/loadBalance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/securityAttr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/securities"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/targetNamespace"/>
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//DomainType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/transforms"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/validates"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/handlers"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DomainType/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/securities"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DomainType/name"/>
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//EsbInterface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//EsbInterface/faultType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//EsbInterface/inputType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//EsbInterface/outputType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//EsbInterface/faultType"/>
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//HandlersType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//HandlersType/handler"/>
@@ -274,6 +285,9 @@
     <genClasses ecoreClass="config.switchyard.ecore#//HandlerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//HandlerType/class"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//HandlerType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="config.switchyard.ecore#//JavaOperationSelectorType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//JavaOperationSelectorType/class"/>
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//MessageComposerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//MessageComposerType/class"/>
@@ -285,23 +299,41 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//PropertyType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//PropertyType/value"/>
     </genClasses>
+    <genClasses ecoreClass="config.switchyard.ecore#//RegexOperationSelectorType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//RegexOperationSelectorType/expression"/>
+    </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//ResourceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//ResourceType/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//ResourceType/type"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="config.switchyard.ecore#//SwitchYardBindingType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SwitchYardBindingType/contextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SwitchYardBindingType/messageComposer"/>
+    <genClasses ecoreClass="config.switchyard.ecore#//SecuritiesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SecuritiesType/security"/>
     </genClasses>
+    <genClasses ecoreClass="config.switchyard.ecore#//SecurityType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SecurityType/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/callbackHandler"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/rolesAllowed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/runAs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/securityDomain"/>
+    </genClasses>
+    <genClasses ecoreClass="config.switchyard.ecore#//StaticOperationSelectorType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//StaticOperationSelectorType/operationName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="config.switchyard.ecore#//SwitchYardBindingType"/>
     <genClasses image="false" ecoreClass="config.switchyard.ecore#//SwitchYardOperationSelectorType"/>
     <genClasses ecoreClass="config.switchyard.ecore#//SwitchYardType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SwitchYardType/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SwitchYardType/targetNamespace"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//SwitchYardType/composite"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SwitchYardType/transforms"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SwitchYardType/validates"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SwitchYardType/domain"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SwitchYardType/artifacts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SwitchYardType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SwitchYardType/targetNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="config.switchyard.ecore#//ThrottlingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//ThrottlingType/maxRequests"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//ThrottlingType/timePeriod"/>
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//TransformsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//TransformsType/transformGroup"/>
@@ -318,28 +350,8 @@
     <genClasses image="false" ecoreClass="config.switchyard.ecore#//ValidateType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//ValidateType/name"/>
     </genClasses>
-    <genClasses ecoreClass="config.switchyard.ecore#//JavaOperationSelectorType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//JavaOperationSelectorType/class"/>
-    </genClasses>
-    <genClasses ecoreClass="config.switchyard.ecore#//RegexOperationSelectorType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//RegexOperationSelectorType/expression"/>
-    </genClasses>
-    <genClasses ecoreClass="config.switchyard.ecore#//StaticOperationSelectorType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//StaticOperationSelectorType/operationName"/>
-    </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//XPathOperationSelectorType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//XPathOperationSelectorType/expression"/>
-    </genClasses>
-    <genClasses ecoreClass="config.switchyard.ecore#//SecurityType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/callbackHandler"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SecurityType/properties"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/rolesAllowed"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/runAs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/securityDomain"/>
-    </genClasses>
-    <genClasses ecoreClass="config.switchyard.ecore#//SecuritiesType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SecuritiesType/security"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Clojure" basePackage="org.switchyard.tools.models.switchyard1_0"
@@ -354,86 +366,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.clojure.ecore#//DocumentRoot/implementationClojure"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="HornetQ" basePackage="org.switchyard.tools.models.switchyard1_0"
-      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.hornetq.ecore#/">
-    <genClasses ecoreClass="component.hornetq.ecore#//BindingType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//BindingType/config"/>
-    </genClasses>
-    <genClasses ecoreClass="component.hornetq.ecore#//ConfigType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/ackBatchSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/autoGroup"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/blockOnAcknowledge"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/blockOnDurableSend"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/blockOnNonDurableSend"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/cacheLargeMessagesOnConsumer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/callTimeout"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/clientFailureCheckPeriod"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/compressLargeMessages"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/connectionLoadBalancingPolicyClassName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/connectionTTL"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/confirmationWindowSize"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//ConfigType/connector"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/consumerMaxRate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/consumerWindowSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/disableFinalizeCheck"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//ConfigType/discoveryGroup"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/failoverOnInitialConnection"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/groupID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/initialMessagePacketSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/initialReconnectAttempts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/maxRetryInterval"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/minLargeMessageSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/preAcknowledge"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/producerMaxRate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/producerWindowSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/queue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/reconnectAttempts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/retryInterval"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/retryIntervalMultiplier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/scheduledThreadPoolMaxSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/threadPoolMaxSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/useGlobalPools"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/useHA"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConfigType/xaSession"/>
-    </genClasses>
-    <genClasses ecoreClass="component.hornetq.ecore#//ConnectorType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConnectorType/factoryClass"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//ConnectorType/properties"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//ConnectorType/name"/>
-    </genClasses>
-    <genClasses ecoreClass="component.hornetq.ecore#//DiscoveryGroupType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//DiscoveryGroupType/localBindAddress"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//DiscoveryGroupType/groupAddress"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//DiscoveryGroupType/groupPort"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//DiscoveryGroupType/refreshTimeout"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//DiscoveryGroupType/initialWaitTimeout"/>
-    </genClasses>
-    <genClasses ecoreClass="component.hornetq.ecore#//DocumentRoot">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//DocumentRoot/mixed"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.hornetq.ecore#//DocumentRoot/xMLNSPrefixMap"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.hornetq.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//DocumentRoot/bindingHornetq"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//DocumentRoot/config"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//DocumentRoot/contextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//DocumentRoot/messageComposer"/>
-    </genClasses>
-    <genClasses ecoreClass="component.hornetq.ecore#//PropertiesType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//PropertiesType/property"/>
-    </genClasses>
-    <genClasses ecoreClass="component.hornetq.ecore#//PropertyType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//PropertyType/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//PropertyType/value"/>
-    </genClasses>
-    <genClasses ecoreClass="component.hornetq.ecore#//HornetQContextMapperType"/>
-    <genClasses ecoreClass="component.hornetq.ecore#//HornetQMessageComposerType"/>
-  </genPackages>
   <genPackages prefix="Rules" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" fileExtensions="" ecorePackage="component.rules.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.rules.ecore#//ActionType">
-      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ActionType/EXECUTE"/>
-      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ActionType/INSERT"/>
-      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ActionType/FIREALLRULES"/>
-      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ActionType/FIREUNTILHALT"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.rules.ecore#//OperationType">
+      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//OperationType/EXECUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//OperationType/INSERT"/>
+      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//OperationType/FIREALLRULES"/>
+      <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//OperationType/FIREUNTILHALT"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.rules.ecore#//ExpressionType">
       <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ExpressionType/MVEL"/>
@@ -447,20 +386,21 @@
       <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ScopeType/MESSAGE"/>
       <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ScopeType/EXCHANGE"/>
     </genEnums>
-    <genDataTypes ecoreDataType="component.rules.ecore#//ActionTypeObject"/>
+    <genDataTypes ecoreDataType="component.rules.ecore#//OperationTypeObject"/>
     <genDataTypes ecoreDataType="component.rules.ecore#//ExpressionTypeObject"/>
     <genDataTypes ecoreDataType="component.rules.ecore#//LoggerTypeObject"/>
     <genDataTypes ecoreDataType="component.rules.ecore#//ScopeTypeObject"/>
-    <genClasses ecoreClass="component.rules.ecore#//ActionsType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ActionsType/action"/>
+    <genClasses ecoreClass="component.rules.ecore#//OperationsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//OperationsType/operation"/>
     </genClasses>
-    <genClasses ecoreClass="component.rules.ecore#//ActionType1">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ActionType1/globals"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ActionType1/inputs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ActionType1/outputs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ActionType1/eventId"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ActionType1/operation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ActionType1/type"/>
+    <genClasses ecoreClass="component.rules.ecore#//RulesOperationType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesOperationType/globals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesOperationType/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesOperationType/outputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesOperationType/faults"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RulesOperationType/eventId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RulesOperationType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RulesOperationType/type"/>
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//ChannelsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ChannelsType/channel"/>
@@ -482,8 +422,8 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/action"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/channel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/container"/>
@@ -503,6 +443,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/resource"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/resources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/fault"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/faults"/>
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//GlobalsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//GlobalsType/global"/>
@@ -550,12 +492,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ResourceType/type"/>
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//RulesImplementationType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/actions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/listeners"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/loggers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/manifest"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="component.rules.ecore#//FaultsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//FaultsType/fault"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="SOAP" basePackage="org.switchyard.tools.models.switchyard1_0"
@@ -571,33 +516,61 @@
     <genClasses ecoreClass="component.soap.ecore#//ContextMapperType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//ContextMapperType/soapHeadersType"/>
     </genClasses>
-    <genClasses ecoreClass="component.soap.ecore#//SOAPMessageComposerType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPMessageComposerType/unwrapped"/>
-    </genClasses>
     <genClasses ecoreClass="component.soap.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/bindingSoap"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/contextMapperSoap"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/messageComposerSoap"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/interceptor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//DocumentRoot/property"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//EndpointConfigType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//EndpointConfigType/configFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//EndpointConfigType/configName"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//InterceptorsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//InterceptorsType/interceptor"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//InterceptorType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//InterceptorType/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//InterceptorType/class"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//MessageComposerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//MessageComposerType/unwrapped"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//MtomType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//MtomType/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//MtomType/threshold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//MtomType/xopExpand"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//PropertiesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//PropertiesType/property"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//PropertyType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//PropertyType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//PropertyType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//ProxyType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//ProxyType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//ProxyType/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//ProxyType/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//ProxyType/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//ProxyType/password"/>
     </genClasses>
     <genClasses ecoreClass="component.soap.ecore#//SOAPBindingType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/messageComposer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/wsdl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/wsdlPort"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/socketAddr"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/contextPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/endpointConfig"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/endpointAddress"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/securityAction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/proxy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/mtom"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/inInterceptors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/outInterceptors"/>
-    </genClasses>
-    <genClasses ecoreClass="component.soap.ecore#//InterceptorType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//InterceptorType/class"/>
-    </genClasses>
-    <genClasses ecoreClass="component.soap.ecore#//InterceptorsType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//InterceptorsType/interceptor"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Transform" basePackage="org.switchyard.tools.models.switchyard1_0"
@@ -2455,97 +2428,65 @@
   </genPackages>
   <genPackages prefix="Jca" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" fileExtensions="" ecorePackage="component.jca.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.jca.ecore#//JCACreateResource">
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/always"/>
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/never"/>
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/ifNotExist"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.jca.ecore#//ResAuth">
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//ResAuth/container"/>
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//ResAuth/application"/>
-    </genEnums>
-    <genDataTypes ecoreDataType="component.jca.ecore#//JCACreateResourceObject"/>
-    <genDataTypes ecoreDataType="component.jca.ecore#//ResAuthObject"/>
     <genClasses ecoreClass="component.jca.ecore#//ActivationSpec">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ActivationSpec/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//BatchCommit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//BatchCommit/batchSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//BatchCommit/batchTimeout"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//Connection">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Connection/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/any"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/jndiName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//ConnectionSpec">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ConnectionSpec/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/bindingJca"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//Endpoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Endpoint/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Endpoint/any"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Endpoint/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Endpoint/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//InboundOperation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/selectedOperation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//InteractionSpec">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//InteractionSpec/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//JCABinding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/messageComposer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/outboundConnection"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/inboundConnection"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/inboundInteraction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/outboundInteraction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/inboundInteraction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/property"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCABinding/extensions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/extensions"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//JCAInboundConnection">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundConnection/resourceAdapter"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundConnection/activationSpec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundConnection/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundConnection/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//JCAInboundInteraction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/listener"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundInteraction/endpoint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/transacted"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundInteraction/batchCommit"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//JCAOutboundConnection">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundConnection/resourceAdapter"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundConnection/connection"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//JCAOutboundInteraction">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/connectionSpec"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/interactionSpec"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/processor"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundInteraction/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundInteraction/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//Operation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Operation/interactionSpec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//Processor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Processor/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Processor/any"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Processor/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Processor/anyAttribute"/>
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//Property">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Property/name"/>
@@ -2553,67 +2494,73 @@
     </genClasses>
     <genClasses ecoreClass="component.jca.ecore#//ResourceAdapter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ResourceAdapter/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/any"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//DocumentRoot">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//DocumentRoot/mixed"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xMLNSPrefixMap"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/bindingJca"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/contextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/messageComposer"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//JCAContextMapperType"/>
-    <genClasses ecoreClass="component.jca.ecore#//JCAMessageComposerType"/>
-    <genClasses ecoreClass="component.jca.ecore#//BatchCommit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//BatchCommit/batchSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//BatchCommit/batchTimeout"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Resteasy" basePackage="org.switchyard.tools.models.switchyard1_0"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.resteasy.ecore#/">
-    <genClasses ecoreClass="component.resteasy.ecore#//RESTBindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/interfaces"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/address"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/contextPath"/>
-    </genClasses>
     <genClasses ecoreClass="component.resteasy.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/bindingREST"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/contextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/bindingRest"/>
     </genClasses>
-    <genClasses ecoreClass="component.resteasy.ecore#//RESTContextMapperType"/>
-    <genClasses ecoreClass="component.resteasy.ecore#//RESTMessageComposerType"/>
+    <genClasses ecoreClass="component.resteasy.ecore#//ProxyType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//ProxyType/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//ProxyType/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//ProxyType/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//ProxyType/password"/>
+    </genClasses>
+    <genClasses ecoreClass="component.resteasy.ecore#//RESTBindingType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/messageComposer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/interfaces"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/contextPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/proxy"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Http" basePackage="org.switchyard.tools.models.switchyard1_0"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.http.ecore#/">
-    <genClasses ecoreClass="component.http.ecore#//HttpBindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HttpBindingType/contextPath"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HttpBindingType/address"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HttpBindingType/method"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HttpBindingType/contentType"/>
+    <genClasses ecoreClass="component.http.ecore#//BasicAuthenticationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//BasicAuthenticationType/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//BasicAuthenticationType/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//BasicAuthenticationType/realm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//BasicAuthenticationType/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//BasicAuthenticationType/port"/>
     </genClasses>
-    <genClasses ecoreClass="component.http.ecore#//HttpContextMapperType"/>
-    <genClasses ecoreClass="component.http.ecore#//HttpMessageComposerType"/>
     <genClasses ecoreClass="component.http.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.http.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.http.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//DocumentRoot/bindingHTTP"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//DocumentRoot/contextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//DocumentRoot/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//DocumentRoot/bindingHttp"/>
+    </genClasses>
+    <genClasses ecoreClass="component.http.ecore#//HTTPBindingType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/messageComposer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/contextPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/method"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/contentType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/basic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/ntlm"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/proxy"/>
+    </genClasses>
+    <genClasses ecoreClass="component.http.ecore#//NTLMAuthenticationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//NTLMAuthenticationType/domain"/>
+    </genClasses>
+    <genClasses ecoreClass="component.http.ecore#//ProxyType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//ProxyType/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//ProxyType/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//ProxyType/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//ProxyType/password"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Core" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.core.ecore#/">
     <genClasses image="false" ecoreClass="component.camel.core.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.core.ecore#//CamelBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelBindingType/configURI"/>
@@ -2621,14 +2568,9 @@
     <genClasses ecoreClass="component.camel.core.ecore#//CamelDirectBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelDirectBindingType/camelBindingName"/>
     </genClasses>
-    <genClasses ecoreClass="component.camel.core.ecore#//CamelTimerBindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/camelBindingName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/time"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/pattern"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/period"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/delay"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/fixedRate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/daemon"/>
+    <genClasses ecoreClass="component.camel.core.ecore#//CamelMockBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelMockBindingType/camelBindingName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelMockBindingType/reportGroup"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.core.ecore#//CamelSedaBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelSedaBindingType/camelBindingName"/>
@@ -2639,26 +2581,31 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelSedaBindingType/multipleConsumers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelSedaBindingType/limitConcurrentConsumers"/>
     </genClasses>
-    <genClasses ecoreClass="component.camel.core.ecore#//CamelMockBindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelMockBindingType/camelBindingName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelMockBindingType/reportGroup"/>
+    <genClasses ecoreClass="component.camel.core.ecore#//CamelTimerBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/camelBindingName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/pattern"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/period"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/delay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/fixedRate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelTimerBindingType/daemon"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.core.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingCamel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingDirect"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingMock"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingSeda"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingTimer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingUri"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Amqp" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.amqp.ecore#/">
     <genClasses image="false" ecoreClass="component.camel.amqp.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.amqp.ecore#//CamelAmqpBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//CamelAmqpBindingType/queue"/>
@@ -2702,9 +2649,16 @@
       <genEnumLiterals ecoreEnumLiteral="component.camel.atom.ecore#//TimeUnitType/DAYS"/>
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.atom.ecore#//TimeUnitTypeObject"/>
+    <genClasses ecoreClass="component.camel.atom.ecore#//AtomScheduledPollConsumerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/initialDelay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/delay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/useFixedDelay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/sendEmptyMessageWhenIdle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/timeUnit"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.atom.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.atom.ecore#//CamelAtomBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//CamelAtomBindingType/feedURI"/>
@@ -2716,13 +2670,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//CamelAtomBindingType/sortEntries"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//CamelAtomBindingType/consume"/>
     </genClasses>
-    <genClasses ecoreClass="component.camel.atom.ecore#//AtomScheduledPollConsumerType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/initialDelay"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/delay"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/useFixedDelay"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/sendEmptyMessageWhenIdle"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/timeUnit"/>
-    </genClasses>
     <genClasses ecoreClass="component.camel.atom.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.atom.ecore#//DocumentRoot/xMLNSPrefixMap"/>
@@ -2732,19 +2679,19 @@
   </genPackages>
   <genPackages prefix="File" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.file.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.camel.file.ecore#//TimeUnit">
-      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnit/NANOSECONDS"/>
-      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnit/MICROSECONDS"/>
-      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnit/MILLISECONDS"/>
-      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnit/SECONDS"/>
-      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnit/MINUTES"/>
-      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnit/HOURS"/>
-      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnit/DAYS"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.camel.file.ecore#//TimeUnitType">
+      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/NANOSECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/MICROSECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/MILLISECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/SECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/MINUTES"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/HOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/DAYS"/>
     </genEnums>
-    <genDataTypes ecoreDataType="component.camel.file.ecore#//TimeUnitObject"/>
+    <genDataTypes ecoreDataType="component.camel.file.ecore#//TimeUnitTypeObject"/>
     <genClasses image="false" ecoreClass="component.camel.file.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.file.ecore#//CamelFileBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//CamelFileBindingType/directory"/>
@@ -2755,6 +2702,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//CamelFileBindingType/charset"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//CamelFileBindingType/consume"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//CamelFileBindingType/produce"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.file.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.file.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.file.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//DocumentRoot/bindingFile"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.file.ecore#//FileConsumerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//FileConsumerType/initialDelay"/>
@@ -2794,12 +2747,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//FileProducerType/eagerDeleteTargetFile"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//FileProducerType/doneFileName"/>
     </genClasses>
-    <genClasses ecoreClass="component.camel.file.ecore#//DocumentRoot">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//DocumentRoot/mixed"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.file.ecore#//DocumentRoot/xMLNSPrefixMap"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.file.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//DocumentRoot/bindingFile"/>
-    </genClasses>
   </genPackages>
   <genPackages prefix="Ftp" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.ftp.ecore#/">
@@ -2814,8 +2761,8 @@
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.ftp.ecore#//TimeUnitTypeObject"/>
     <genClasses image="false" ecoreClass="component.camel.ftp.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.ftp.ecore#//CamelFtpBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/directory"/>
@@ -2925,8 +2872,8 @@
   <genPackages prefix="Jms" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.jms.ecore#/">
     <genClasses image="false" ecoreClass="component.camel.jms.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.jms.ecore#//CamelJmsBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//CamelJmsBindingType/queue"/>
@@ -2971,21 +2918,21 @@
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.jpa.ecore#//TimeUnitTypeObject"/>
     <genClasses image="false" ecoreClass="component.camel.jpa.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
-    <genClasses ecoreClass="component.camel.jpa.ecore#//CamelJPABindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//CamelJPABindingType/entityClassName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//CamelJPABindingType/persistenceUnit"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//CamelJPABindingType/transactionManager"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//CamelJPABindingType/consume"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//CamelJPABindingType/produce"/>
+    <genClasses ecoreClass="component.camel.jpa.ecore#//CamelJpaBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//CamelJpaBindingType/entityClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//CamelJpaBindingType/persistenceUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//CamelJpaBindingType/transactionManager"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//CamelJpaBindingType/consume"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//CamelJpaBindingType/produce"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.jpa.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//DocumentRoot/bindingJPA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//DocumentRoot/bindingJpa"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.jpa.ecore#//JpaConsumerType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//JpaConsumerType/scheduledPollConsumerType"/>
@@ -3028,8 +2975,8 @@
     <genDataTypes ecoreDataType="component.camel.mail.ecore#//MailConsumerAccountTypeObject"/>
     <genDataTypes ecoreDataType="component.camel.mail.ecore#//TimeUnitTypeObject"/>
     <genClasses image="false" ecoreClass="component.camel.mail.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.mail.ecore#//CamelMailBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//CamelMailBindingType/host"/>
@@ -3040,12 +2987,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//CamelMailBindingType/consume"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//CamelMailBindingType/produce"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//CamelMailBindingType/secure"/>
-    </genClasses>
-    <genClasses ecoreClass="component.camel.mail.ecore#//DocumentRoot">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//DocumentRoot/mixed"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/xMLNSPrefixMap"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/bindingMail"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.mail.ecore#//CamelMailConsumerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//CamelMailConsumerType/initialDelay"/>
@@ -3070,12 +3011,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//CamelMailProducerType/bCC"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//CamelMailProducerType/replyTo"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.mail.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/bindingMail"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Netty" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.netty.ecore#/">
     <genClasses image="false" ecoreClass="component.camel.netty.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses image="false" ecoreClass="component.camel.netty.ecore#//CamelNettyBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/host"/>
@@ -3110,15 +3057,15 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/bindingNettyUDP"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/bindingNettyTCP"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/bindingTcp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/bindingUdp"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Quartz" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.quartz.ecore#/">
     <genClasses image="false" ecoreClass="component.camel.quartz.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.quartz.ecore#//CamelQuartzBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/camelBindingName"/>
@@ -3137,17 +3084,17 @@
   <genPackages prefix="Sql" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.sql.ecore#/">
     <genClasses image="false" ecoreClass="component.camel.sql.ecore#//BaseCamelBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//BaseCamelBinding/camelContextMapper"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//BaseCamelBinding/camelMessageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//BaseCamelBinding/messageComposer"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.sql.ecore#//CamelSqlBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/query"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/dataSourceRef"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/batch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/placeholder"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/timerName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/period"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/initialDelay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/period"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/timerName"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.sql.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//DocumentRoot/mixed"/>

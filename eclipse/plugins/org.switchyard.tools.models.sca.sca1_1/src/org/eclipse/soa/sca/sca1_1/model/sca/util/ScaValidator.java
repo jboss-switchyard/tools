@@ -186,6 +186,8 @@ public class ScaValidator extends EObjectValidator {
                 return validateExport((Export)value, diagnostics, context);
             case ScaPackage.EXPORT_TYPE:
                 return validateExportType((ExportType)value, diagnostics, context);
+            case ScaPackage.EXTENSIONS_TYPE:
+                return validateExtensionsType((ExtensionsType)value, diagnostics, context);
             case ScaPackage.IMPLEMENTATION:
                 return validateImplementation((Implementation)value, diagnostics, context);
             case ScaPackage.IMPLEMENTATION_TYPE:
@@ -718,6 +720,15 @@ public class ScaValidator extends EObjectValidator {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateExtensionsType(ExtensionsType extensionsType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(extensionsType, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

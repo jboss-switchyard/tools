@@ -48,13 +48,12 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
@@ -274,7 +273,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
     }
 
     protected MessageComposerType createMessageComposer() {
-        SOAPMessageComposerType messageComposer = SOAPFactory.eINSTANCE.createSOAPMessageComposerType();
+        MessageComposerType messageComposer = SOAPFactory.eINSTANCE.createMessageComposerType();
         return messageComposer;
     }
 
@@ -363,8 +362,8 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                     _portNameText.setText(portName);
                 }
             } else if (control.equals(_unwrappedPayloadCheckbox)) {
-                if (_binding.getMessageComposer() instanceof SOAPMessageComposerType) {
-                    SOAPMessageComposerType mct = (SOAPMessageComposerType) _binding.getMessageComposer();
+                if (_binding.getMessageComposer() instanceof MessageComposerType) {
+                    MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
                     _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
                 }
             } else if (control.equals(_soapHeadersTypeCombo)) {
@@ -540,8 +539,8 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
             }
             if (_unwrappedPayloadCheckbox != null && !_unwrappedPayloadCheckbox.isDisposed()) {
                 if (_binding.getMessageComposer() != null
-                        && _binding.getMessageComposer() instanceof SOAPMessageComposerType) {
-                    SOAPMessageComposerType mct = (SOAPMessageComposerType) _binding.getMessageComposer();
+                        && _binding.getMessageComposer() instanceof MessageComposerType) {
+                    MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
                     _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
                 } else {
                     _unwrappedPayloadCheckbox.setSelection(false);
@@ -682,7 +681,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getMessageComposer() == null) {
-                SOAPMessageComposerType messageComposer = (SOAPMessageComposerType) createMessageComposer();
+                MessageComposerType messageComposer = (MessageComposerType) createMessageComposer();
                 setFeatureValue(_binding, "messageComposer", messageComposer);
             }
         }

@@ -31,59 +31,19 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getTargetNamespace <em>Target Namespace</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getComposite <em>Composite</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getTransforms <em>Transforms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getValidates <em>Validates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getDomain <em>Domain</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getArtifacts <em>Artifacts</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getTargetNamespace <em>Target Namespace</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
-	/**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-     * The default value of the '{@link #getTargetNamespace() <em>Target Namespace</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getTargetNamespace()
-     * @generated
-     * @ordered
-     */
-	protected static final String TARGET_NAMESPACE_EDEFAULT = null;
-
-	/**
-     * The cached value of the '{@link #getTargetNamespace() <em>Target Namespace</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getTargetNamespace()
-     * @generated
-     * @ordered
-     */
-	protected String targetNamespace = TARGET_NAMESPACE_EDEFAULT;
-
 	/**
      * The cached value of the '{@link #getComposite() <em>Composite</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -133,6 +93,46 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
      * @ordered
      */
 	protected ArtifactsType artifacts;
+
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+	protected static final String NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+	protected String name = NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTargetNamespace() <em>Target Namespace</em>}' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see #getTargetNamespace()
+     * @generated
+     * @ordered
+     */
+	protected static final String TARGET_NAMESPACE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTargetNamespace() <em>Target Namespace</em>}' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see #getTargetNamespace()
+     * @generated
+     * @ordered
+     */
+	protected String targetNamespace = TARGET_NAMESPACE_EDEFAULT;
 
 	/**
      * <!-- begin-user-doc -->
@@ -440,10 +440,6 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
-                return getName();
-            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
-                return getTargetNamespace();
             case SwitchyardPackage.SWITCH_YARD_TYPE__COMPOSITE:
                 return getComposite();
             case SwitchyardPackage.SWITCH_YARD_TYPE__TRANSFORMS:
@@ -454,6 +450,10 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
                 return getDomain();
             case SwitchyardPackage.SWITCH_YARD_TYPE__ARTIFACTS:
                 return getArtifacts();
+            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
+                return getName();
+            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
+                return getTargetNamespace();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -466,12 +466,6 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
-                setName((String)newValue);
-                return;
-            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
-                setTargetNamespace((String)newValue);
-                return;
             case SwitchyardPackage.SWITCH_YARD_TYPE__COMPOSITE:
                 setComposite((Composite)newValue);
                 return;
@@ -487,6 +481,12 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
             case SwitchyardPackage.SWITCH_YARD_TYPE__ARTIFACTS:
                 setArtifacts((ArtifactsType)newValue);
                 return;
+            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
+                setName((String)newValue);
+                return;
+            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
+                setTargetNamespace((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -499,12 +499,6 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
 	@Override
 	public void eUnset(int featureID) {
         switch (featureID) {
-            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
-                setTargetNamespace(TARGET_NAMESPACE_EDEFAULT);
-                return;
             case SwitchyardPackage.SWITCH_YARD_TYPE__COMPOSITE:
                 setComposite((Composite)null);
                 return;
@@ -520,6 +514,12 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
             case SwitchyardPackage.SWITCH_YARD_TYPE__ARTIFACTS:
                 setArtifacts((ArtifactsType)null);
                 return;
+            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
+                setTargetNamespace(TARGET_NAMESPACE_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -532,10 +532,6 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
 	@Override
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
-                return TARGET_NAMESPACE_EDEFAULT == null ? targetNamespace != null : !TARGET_NAMESPACE_EDEFAULT.equals(targetNamespace);
             case SwitchyardPackage.SWITCH_YARD_TYPE__COMPOSITE:
                 return composite != null;
             case SwitchyardPackage.SWITCH_YARD_TYPE__TRANSFORMS:
@@ -546,6 +542,10 @@ public class SwitchYardTypeImpl extends EObjectImpl implements SwitchYardType {
                 return domain != null;
             case SwitchyardPackage.SWITCH_YARD_TYPE__ARTIFACTS:
                 return artifacts != null;
+            case SwitchyardPackage.SWITCH_YARD_TYPE__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case SwitchyardPackage.SWITCH_YARD_TYPE__TARGET_NAMESPACE:
+                return TARGET_NAMESPACE_EDEFAULT == null ? targetNamespace != null : !TARGET_NAMESPACE_EDEFAULT.equals(targetNamespace);
         }
         return super.eIsSet(featureID);
     }

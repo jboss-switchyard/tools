@@ -31,6 +31,15 @@ public interface JpaFactory extends EFactory {
     BaseCamelBinding createBaseCamelBinding();
 
     /**
+     * Returns a new object of class '<em>Camel Jpa Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Camel Jpa Binding Type</em>'.
+     * @generated
+     */
+    CamelJpaBindingType createCamelJpaBindingType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -56,15 +65,6 @@ public interface JpaFactory extends EFactory {
      * @generated
      */
     JpaConsumerType createJpaConsumerType();
-
-    /**
-     * Returns a new object of class '<em>Camel JPA Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Camel JPA Binding Type</em>'.
-     * @generated
-     */
-    CamelJPABindingType createCamelJPABindingType();
 
     /**
      * Returns the package supported by this factory.

@@ -106,6 +106,7 @@ public class ScaFactoryImpl extends EFactoryImpl implements ScaFactory {
             case ScaPackage.EJB_IMPLEMENTATION: return createEJBImplementation();
             case ScaPackage.EJB_SESSION_BEAN_BINDING: return createEJBSessionBeanBinding();
             case ScaPackage.EXPORT_TYPE: return createExportType();
+            case ScaPackage.EXTENSIONS_TYPE: return createExtensionsType();
             case ScaPackage.IMPLEMENTATION_TYPE: return createImplementationType();
             case ScaPackage.IMPORT_TYPE: return createImportType();
             case ScaPackage.INBOUND_OPERATION: return createInboundOperation();
@@ -672,6 +673,16 @@ public class ScaFactoryImpl extends EFactoryImpl implements ScaFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ExtensionsType createExtensionsType() {
+        ExtensionsTypeImpl extensionsType = new ExtensionsTypeImpl();
+        return extensionsType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

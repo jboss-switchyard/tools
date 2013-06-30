@@ -20,7 +20,7 @@ package org.switchyard.tools.models.switchyard1_0.soap;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getContextMapperType()
- * @model extendedMetaData="name='ContextMapperType' kind='empty' namespace='##targetNamespace'"
+ * @model extendedMetaData="name='ContextMapperType' kind='empty'"
  * @generated
  */
 public interface ContextMapperType extends org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType {
@@ -36,9 +36,11 @@ public interface ContextMapperType extends org.switchyard.tools.models.switchyar
      * <!-- end-user-doc -->
      * @return the value of the '<em>Soap Headers Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType
+     * @see #isSetSoapHeadersType()
+     * @see #unsetSoapHeadersType()
      * @see #setSoapHeadersType(SoapHeadersType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getContextMapperType_SoapHeadersType()
-     * @model default="VALUE"
+     * @model default="VALUE" unsettable="true"
      *        extendedMetaData="kind='attribute' name='soapHeadersType'"
      * @generated
      */
@@ -50,9 +52,34 @@ public interface ContextMapperType extends org.switchyard.tools.models.switchyar
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Soap Headers Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType
+     * @see #isSetSoapHeadersType()
+     * @see #unsetSoapHeadersType()
      * @see #getSoapHeadersType()
      * @generated
      */
     void setSoapHeadersType(SoapHeadersType value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType#getSoapHeadersType <em>Soap Headers Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetSoapHeadersType()
+     * @see #getSoapHeadersType()
+     * @see #setSoapHeadersType(SoapHeadersType)
+     * @generated
+     */
+    void unsetSoapHeadersType();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType#getSoapHeadersType <em>Soap Headers Type</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Soap Headers Type</em>' attribute is set.
+     * @see #unsetSoapHeadersType()
+     * @see #getSoapHeadersType()
+     * @see #setSoapHeadersType(SoapHeadersType)
+     * @generated
+     */
+    boolean isSetSoapHeadersType();
 
 } // ContextMapperType

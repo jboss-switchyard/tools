@@ -147,43 +147,8 @@ public class SwitchYardOperationSelectorTypeItemProvider
             (createChildParameter
                 (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
                  FeatureMapUtil.createEntry
-                    (ResteasyPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                     ResteasyFactory.eINSTANCE.createRESTContextMapperType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
-                    (ResteasyPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                     ResteasyFactory.eINSTANCE.createRESTMessageComposerType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP,
-                     HttpFactory.eINSTANCE.createHttpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
-                    (HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                     HttpFactory.eINSTANCE.createHttpContextMapperType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
-                    (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                     HttpFactory.eINSTANCE.createHttpMessageComposerType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
-                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
-                     CoreFactory.eINSTANCE.createCamelBindingType())));
+                     HttpFactory.eINSTANCE.createHTTPBindingType())));
 
         newChildDescriptors.add
             (createChildParameter
@@ -212,6 +177,13 @@ public class SwitchYardOperationSelectorTypeItemProvider
                  FeatureMapUtil.createEntry
                     (CorePackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
                      CoreFactory.eINSTANCE.createCamelTimerBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_URI,
+                     CoreFactory.eINSTANCE.createCamelBindingType())));
 
         newChildDescriptors.add
             (createChildParameter
@@ -274,7 +246,7 @@ public class SwitchYardOperationSelectorTypeItemProvider
                 (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.DOCUMENT_ROOT__BINDING_JPA,
-                     JpaFactory.eINSTANCE.createCamelJPABindingType())));
+                     JpaFactory.eINSTANCE.createCamelJpaBindingType())));
 
         newChildDescriptors.add
             (createChildParameter
@@ -287,15 +259,15 @@ public class SwitchYardOperationSelectorTypeItemProvider
             (createChildParameter
                 (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
                  FeatureMapUtil.createEntry
-                    (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP,
-                     NettyFactory.eINSTANCE.createCamelNettyUdpBindingType())));
+                    (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_TCP,
+                     NettyFactory.eINSTANCE.createCamelNettyTcpBindingType())));
 
         newChildDescriptors.add
             (createChildParameter
                 (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
                  FeatureMapUtil.createEntry
-                    (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP,
-                     NettyFactory.eINSTANCE.createCamelNettyTcpBindingType())));
+                    (NettyPackage.Literals.DOCUMENT_ROOT__BINDING_UDP,
+                     NettyFactory.eINSTANCE.createCamelNettyUdpBindingType())));
 
         newChildDescriptors.add
             (createChildParameter

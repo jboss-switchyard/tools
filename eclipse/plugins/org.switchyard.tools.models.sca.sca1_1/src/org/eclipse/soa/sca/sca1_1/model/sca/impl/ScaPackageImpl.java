@@ -326,6 +326,13 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass extensionsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -2436,19 +2443,19 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getContract_Any() {
-        return (EAttribute)getContract().getEStructuralFeatures().get(5);
+    public EReference getContract_Extensions() {
+        return (EReference)getContract().getEStructuralFeatures().get(5);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getContract_Name() {
+	public EAttribute getContract_Any() {
         return (EAttribute)getContract().getEStructuralFeatures().get(6);
     }
 
@@ -2457,7 +2464,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getContract_PolicySets() {
+	public EAttribute getContract_Name() {
         return (EAttribute)getContract().getEStructuralFeatures().get(7);
     }
 
@@ -2466,8 +2473,17 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getContract_Requires() {
+	public EAttribute getContract_PolicySets() {
         return (EAttribute)getContract().getEStructuralFeatures().get(8);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getContract_Requires() {
+        return (EAttribute)getContract().getEStructuralFeatures().get(9);
     }
 
 	/**
@@ -3159,19 +3175,19 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Implementation() {
+    public EReference getDocumentRoot_Extensions() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(22);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationBpel() {
+	public EReference getDocumentRoot_Implementation() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(23);
     }
 
@@ -3180,7 +3196,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationC() {
+	public EReference getDocumentRoot_ImplementationBpel() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(24);
     }
 
@@ -3189,7 +3205,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationComposite() {
+	public EReference getDocumentRoot_ImplementationC() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(25);
     }
 
@@ -3198,7 +3214,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationCpp() {
+	public EReference getDocumentRoot_ImplementationComposite() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(26);
     }
 
@@ -3207,7 +3223,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationEjb() {
+	public EReference getDocumentRoot_ImplementationCpp() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(27);
     }
 
@@ -3216,7 +3232,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationJava() {
+	public EReference getDocumentRoot_ImplementationEjb() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(28);
     }
 
@@ -3225,7 +3241,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationJee() {
+	public EReference getDocumentRoot_ImplementationJava() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(29);
     }
 
@@ -3234,7 +3250,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationSpring() {
+	public EReference getDocumentRoot_ImplementationJee() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(30);
     }
 
@@ -3243,7 +3259,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationWeb() {
+	public EReference getDocumentRoot_ImplementationSpring() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(31);
     }
 
@@ -3252,7 +3268,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImplementationType() {
+	public EReference getDocumentRoot_ImplementationWeb() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(32);
     }
 
@@ -3261,7 +3277,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Import() {
+	public EReference getDocumentRoot_ImplementationType() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(33);
     }
 
@@ -3270,7 +3286,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImportBase() {
+	public EReference getDocumentRoot_Import() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(34);
     }
 
@@ -3279,7 +3295,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImportC() {
+	public EReference getDocumentRoot_ImportBase() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(35);
     }
 
@@ -3288,7 +3304,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImportCpp() {
+	public EReference getDocumentRoot_ImportC() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(36);
     }
 
@@ -3297,7 +3313,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ImportJava() {
+	public EReference getDocumentRoot_ImportCpp() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(37);
     }
 
@@ -3306,7 +3322,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Include() {
+	public EReference getDocumentRoot_ImportJava() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(38);
     }
 
@@ -3315,7 +3331,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Intent() {
+	public EReference getDocumentRoot_Include() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(39);
     }
 
@@ -3324,7 +3340,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Interface() {
+	public EReference getDocumentRoot_Intent() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(40);
     }
 
@@ -3333,7 +3349,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_InterfaceC() {
+	public EReference getDocumentRoot_Interface() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(41);
     }
 
@@ -3342,7 +3358,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_InterfaceCpp() {
+	public EReference getDocumentRoot_InterfaceC() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(42);
     }
 
@@ -3351,7 +3367,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_InterfaceJava() {
+	public EReference getDocumentRoot_InterfaceCpp() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(43);
     }
 
@@ -3360,7 +3376,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_InterfaceWsdl() {
+	public EReference getDocumentRoot_InterfaceJava() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(44);
     }
 
@@ -3369,7 +3385,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_OperationSelector() {
+	public EReference getDocumentRoot_InterfaceWsdl() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(45);
     }
 
@@ -3378,7 +3394,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_OperationSelectorJmsDefault() {
+	public EReference getDocumentRoot_OperationSelector() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(46);
     }
 
@@ -3387,7 +3403,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_PolicySet() {
+	public EReference getDocumentRoot_OperationSelectorJmsDefault() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(47);
     }
 
@@ -3396,7 +3412,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_PolicySetAttachment() {
+	public EReference getDocumentRoot_PolicySet() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(48);
     }
 
@@ -3405,7 +3421,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Value() {
+	public EReference getDocumentRoot_PolicySetAttachment() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(49);
     }
 
@@ -3414,7 +3430,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_WireFormat() {
+	public EReference getDocumentRoot_Value() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(50);
     }
 
@@ -3423,7 +3439,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_WireFormatJmsDefault() {
+	public EReference getDocumentRoot_WireFormat() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(51);
     }
 
@@ -3432,7 +3448,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_WSCallback() {
+	public EReference getDocumentRoot_WireFormatJmsDefault() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(52);
     }
 
@@ -3441,8 +3457,17 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
+	public EReference getDocumentRoot_WSCallback() {
+        return (EReference)getDocumentRoot().getEStructuralFeatures().get(53);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
 	public EAttribute getDocumentRoot_Callback1() {
-        return (EAttribute)getDocumentRoot().getEStructuralFeatures().get(53);
+        return (EAttribute)getDocumentRoot().getEStructuralFeatures().get(54);
     }
 
 	/**
@@ -3451,7 +3476,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      * @generated
      */
 	public EAttribute getDocumentRoot_Requires() {
-        return (EAttribute)getDocumentRoot().getEStructuralFeatures().get(54);
+        return (EAttribute)getDocumentRoot().getEStructuralFeatures().get(55);
     }
 
 	/**
@@ -3585,12 +3610,33 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getExtensionsType() {
+        if (extensionsTypeEClass == null) {
+            extensionsTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(48);
+        }
+        return extensionsTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getExtensionsType_Any() {
+        return (EAttribute)getExtensionsType().getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EClass getImplementation() {
         if (implementationEClass == null) {
-            implementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(48);
+            implementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(49);
         }
         return implementationEClass;
     }
@@ -3620,7 +3666,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getImplementationType() {
         if (implementationTypeEClass == null) {
-            implementationTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(49);
+            implementationTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(50);
         }
         return implementationTypeEClass;
     }
@@ -3668,7 +3714,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getImport() {
         if (importEClass == null) {
-            importEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(50);
+            importEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(51);
         }
         return importEClass;
     }
@@ -3689,7 +3735,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getImportType() {
         if (importTypeEClass == null) {
-            importTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(51);
+            importTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(52);
         }
         return importTypeEClass;
     }
@@ -3719,7 +3765,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getInboundOperation() {
         if (inboundOperationEClass == null) {
-            inboundOperationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(52);
+            inboundOperationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(53);
         }
         return inboundOperationEClass;
     }
@@ -3767,7 +3813,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getInclude() {
         if (includeEClass == null) {
-            includeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(53);
+            includeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(54);
         }
         return includeEClass;
     }
@@ -3788,7 +3834,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getIntent() {
         if (intentEClass == null) {
-            intentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(54);
+            intentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(55);
         }
         return intentEClass;
     }
@@ -3890,7 +3936,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getIntentMap() {
         if (intentMapEClass == null) {
-            intentMapEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(55);
+            intentMapEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(56);
         }
         return intentMapEClass;
     }
@@ -3947,7 +3993,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getIntentQualifier() {
         if (intentQualifierEClass == null) {
-            intentQualifierEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(56);
+            intentQualifierEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(57);
         }
         return intentQualifierEClass;
     }
@@ -3986,7 +4032,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getInteractionSpec() {
         if (interactionSpecEClass == null) {
-            interactionSpecEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(59);
+            interactionSpecEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(60);
         }
         return interactionSpecEClass;
     }
@@ -4034,7 +4080,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getInterface() {
         if (interfaceEClass == null) {
-            interfaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(60);
+            interfaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(61);
         }
         return interfaceEClass;
     }
@@ -4073,7 +4119,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJavaExportType() {
         if (javaExportTypeEClass == null) {
-            javaExportTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(61);
+            javaExportTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(62);
         }
         return javaExportTypeEClass;
     }
@@ -4094,7 +4140,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJavaImplementation() {
         if (javaImplementationEClass == null) {
-            javaImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(62);
+            javaImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(63);
         }
         return javaImplementationEClass;
     }
@@ -4133,7 +4179,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJavaImportType() {
         if (javaImportTypeEClass == null) {
-            javaImportTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(63);
+            javaImportTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(64);
         }
         return javaImportTypeEClass;
     }
@@ -4163,7 +4209,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJavaInterface() {
         if (javaInterfaceEClass == null) {
-            javaInterfaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(64);
+            javaInterfaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(65);
         }
         return javaInterfaceEClass;
     }
@@ -4211,7 +4257,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJCABinding() {
         if (jcaBindingEClass == null) {
-            jcaBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(65);
+            jcaBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(66);
         }
         return jcaBindingEClass;
     }
@@ -4304,7 +4350,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJCAInboundConnection() {
         if (jcaInboundConnectionEClass == null) {
-            jcaInboundConnectionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(68);
+            jcaInboundConnectionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(69);
         }
         return jcaInboundConnectionEClass;
     }
@@ -4352,7 +4398,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJCAInboundInteraction() {
         if (jcaInboundInteractionEClass == null) {
-            jcaInboundInteractionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(69);
+            jcaInboundInteractionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(70);
         }
         return jcaInboundInteractionEClass;
     }
@@ -4400,7 +4446,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJCAOutboundConnection() {
         if (jcaOutboundConnectionEClass == null) {
-            jcaOutboundConnectionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(70);
+            jcaOutboundConnectionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(71);
         }
         return jcaOutboundConnectionEClass;
     }
@@ -4466,7 +4512,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJCAOutboundInteraction() {
         if (jcaOutboundInteractionEClass == null) {
-            jcaOutboundInteractionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(71);
+            jcaOutboundInteractionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(72);
         }
         return jcaOutboundInteractionEClass;
     }
@@ -4523,7 +4569,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJEEImplementation() {
         if (jeeImplementationEClass == null) {
-            jeeImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(72);
+            jeeImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(73);
         }
         return jeeImplementationEClass;
     }
@@ -4562,7 +4608,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSActivationSpec() {
         if (jmsActivationSpecEClass == null) {
-            jmsActivationSpecEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(73);
+            jmsActivationSpecEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(74);
         }
         return jmsActivationSpecEClass;
     }
@@ -4601,7 +4647,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSBinding() {
         if (jmsBindingEClass == null) {
-            jmsBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(74);
+            jmsBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(75);
         }
         return jmsBindingEClass;
     }
@@ -4748,7 +4794,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSConnectionFactory() {
         if (jmsConnectionFactoryEClass == null) {
-            jmsConnectionFactoryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(75);
+            jmsConnectionFactoryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(76);
         }
         return jmsConnectionFactoryEClass;
     }
@@ -4787,7 +4833,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSDestination() {
         if (jmsDestinationEClass == null) {
-            jmsDestinationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(78);
+            jmsDestinationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(79);
         }
         return jmsDestinationEClass;
     }
@@ -4835,7 +4881,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSHeaders() {
         if (jmsHeadersEClass == null) {
-            jmsHeadersEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(79);
+            jmsHeadersEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(80);
         }
         return jmsHeadersEClass;
     }
@@ -4892,7 +4938,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSMessageSelection() {
         if (jmsMessageSelectionEClass == null) {
-            jmsMessageSelectionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(80);
+            jmsMessageSelectionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(81);
         }
         return jmsMessageSelectionEClass;
     }
@@ -4922,7 +4968,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSOperationProperties() {
         if (jmsOperationPropertiesEClass == null) {
-            jmsOperationPropertiesEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(81);
+            jmsOperationPropertiesEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(82);
         }
         return jmsOperationPropertiesEClass;
     }
@@ -4970,7 +5016,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSResourceAdapter() {
         if (jmsResourceAdapterEClass == null) {
-            jmsResourceAdapterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(82);
+            jmsResourceAdapterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(83);
         }
         return jmsResourceAdapterEClass;
     }
@@ -5000,7 +5046,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getJMSResponse() {
         if (jmsResponseEClass == null) {
-            jmsResponseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(83);
+            jmsResponseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(84);
         }
         return jmsResponseEClass;
     }
@@ -5057,7 +5103,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getOperation() {
         if (operationEClass == null) {
-            operationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(89);
+            operationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(90);
         }
         return operationEClass;
     }
@@ -5105,7 +5151,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getOperationSelectorType() {
         if (operationSelectorTypeEClass == null) {
-            operationSelectorTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(90);
+            operationSelectorTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(91);
         }
         return operationSelectorTypeEClass;
     }
@@ -5135,7 +5181,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getPolicySet() {
         if (policySetEClass == null) {
-            policySetEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(93);
+            policySetEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(94);
         }
         return policySetEClass;
     }
@@ -5228,7 +5274,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getPolicySetAttachment() {
         if (policySetAttachmentEClass == null) {
-            policySetAttachmentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(94);
+            policySetAttachmentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(95);
         }
         return policySetAttachmentEClass;
     }
@@ -5258,7 +5304,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getPolicySetReference() {
         if (policySetReferenceEClass == null) {
-            policySetReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(95);
+            policySetReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(96);
         }
         return policySetReferenceEClass;
     }
@@ -5288,7 +5334,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getProperty() {
         if (propertyEClass == null) {
-            propertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(98);
+            propertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(99);
         }
         return propertyEClass;
     }
@@ -5354,7 +5400,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getPropertyValue() {
         if (propertyValueEClass == null) {
-            propertyValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(99);
+            propertyValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(100);
         }
         return propertyValueEClass;
     }
@@ -5429,7 +5475,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getQualifier() {
         if (qualifierEClass == null) {
-            qualifierEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(100);
+            qualifierEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(101);
         }
         return qualifierEClass;
     }
@@ -5477,7 +5523,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getReference() {
         if (referenceEClass == null) {
-            referenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(101);
+            referenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(102);
         }
         return referenceEClass;
     }
@@ -5534,7 +5580,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getResourceAdapter() {
         if (resourceAdapterEClass == null) {
-            resourceAdapterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(104);
+            resourceAdapterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(105);
         }
         return resourceAdapterEClass;
     }
@@ -5591,7 +5637,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getSCABinding() {
         if (scaBindingEClass == null) {
-            scaBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(105);
+            scaBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(106);
         }
         return scaBindingEClass;
     }
@@ -5603,7 +5649,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getSCAImplementation() {
         if (scaImplementationEClass == null) {
-            scaImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(106);
+            scaImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(107);
         }
         return scaImplementationEClass;
     }
@@ -5633,7 +5679,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getSCAPropertyBase() {
         if (scaPropertyBaseEClass == null) {
-            scaPropertyBaseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(107);
+            scaPropertyBaseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(108);
         }
         return scaPropertyBaseEClass;
     }
@@ -5690,7 +5736,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getService() {
         if (serviceEClass == null) {
-            serviceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(108);
+            serviceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(109);
         }
         return serviceEClass;
     }
@@ -5711,7 +5757,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getSpringImplementation() {
         if (springImplementationEClass == null) {
-            springImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(109);
+            springImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(110);
         }
         return springImplementationEClass;
     }
@@ -5741,7 +5787,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getTDefinitions() {
         if (tDefinitionsEClass == null) {
-            tDefinitionsEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(110);
+            tDefinitionsEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(111);
         }
         return tDefinitionsEClass;
     }
@@ -5834,7 +5880,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getValueType() {
         if (valueTypeEClass == null) {
-            valueTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(113);
+            valueTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(114);
         }
         return valueTypeEClass;
     }
@@ -5873,7 +5919,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getWebImplementation() {
         if (webImplementationEClass == null) {
-            webImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(116);
+            webImplementationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(117);
         }
         return webImplementationEClass;
     }
@@ -5912,7 +5958,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getWebServiceBinding() {
         if (webServiceBindingEClass == null) {
-            webServiceBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(117);
+            webServiceBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(118);
         }
         return webServiceBindingEClass;
     }
@@ -5960,7 +6006,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getWire() {
         if (wireEClass == null) {
-            wireEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(118);
+            wireEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(119);
         }
         return wireEClass;
     }
@@ -6026,7 +6072,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getWireFormatType() {
         if (wireFormatTypeEClass == null) {
-            wireFormatTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(119);
+            wireFormatTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(120);
         }
         return wireFormatTypeEClass;
     }
@@ -6056,7 +6102,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getWSCallbackType() {
         if (wsCallbackTypeEClass == null) {
-            wsCallbackTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(120);
+            wsCallbackTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(121);
         }
         return wsCallbackTypeEClass;
     }
@@ -6086,7 +6132,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EClass getWSDLPortType() {
         if (wsdlPortTypeEClass == null) {
-            wsdlPortTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(121);
+            wsdlPortTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(122);
         }
         return wsdlPortTypeEClass;
     }
@@ -6134,7 +6180,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
     public EClass getExtendableType() {
         if (extendableTypeEClass == null) {
-            extendableTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(122);
+            extendableTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(123);
         }
         return extendableTypeEClass;
     }
@@ -6194,7 +6240,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getInteractionOrImplementation() {
         if (interactionOrImplementationEEnum == null) {
-            interactionOrImplementationEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(57);
+            interactionOrImplementationEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(58);
         }
         return interactionOrImplementationEEnum;
     }
@@ -6206,7 +6252,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getJCACreateResource() {
         if (jcaCreateResourceEEnum == null) {
-            jcaCreateResourceEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(66);
+            jcaCreateResourceEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(67);
         }
         return jcaCreateResourceEEnum;
     }
@@ -6218,7 +6264,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getJMSCreateResource() {
         if (jmsCreateResourceEEnum == null) {
-            jmsCreateResourceEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(76);
+            jmsCreateResourceEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(77);
         }
         return jmsCreateResourceEEnum;
     }
@@ -6230,7 +6276,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getMultiplicity() {
         if (multiplicityEEnum == null) {
-            multiplicityEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(87);
+            multiplicityEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(88);
         }
         return multiplicityEEnum;
     }
@@ -6242,7 +6288,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getOverrideOptions() {
         if (overrideOptionsEEnum == null) {
-            overrideOptionsEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(91);
+            overrideOptionsEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(92);
         }
         return overrideOptionsEEnum;
     }
@@ -6254,7 +6300,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getPriorityType() {
         if (priorityTypeEEnum == null) {
-            priorityTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(96);
+            priorityTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(97);
         }
         return priorityTypeEEnum;
     }
@@ -6266,7 +6312,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getResAuth() {
         if (resAuthEEnum == null) {
-            resAuthEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(102);
+            resAuthEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(103);
         }
         return resAuthEEnum;
     }
@@ -6278,7 +6324,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getTypeType() {
         if (typeTypeEEnum == null) {
-            typeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(111);
+            typeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(112);
         }
         return typeTypeEEnum;
     }
@@ -6290,7 +6336,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EEnum getVersionValue() {
         if (versionValueEEnum == null) {
-            versionValueEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(114);
+            versionValueEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(115);
         }
         return versionValueEEnum;
     }
@@ -6350,7 +6396,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getInteractionOrImplementationObject() {
         if (interactionOrImplementationObjectEDataType == null) {
-            interactionOrImplementationObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(58);
+            interactionOrImplementationObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(59);
         }
         return interactionOrImplementationObjectEDataType;
     }
@@ -6362,7 +6408,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getJCACreateResourceObject() {
         if (jcaCreateResourceObjectEDataType == null) {
-            jcaCreateResourceObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(67);
+            jcaCreateResourceObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(68);
         }
         return jcaCreateResourceObjectEDataType;
     }
@@ -6374,7 +6420,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getJMSCreateResourceObject() {
         if (jmsCreateResourceObjectEDataType == null) {
-            jmsCreateResourceObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(77);
+            jmsCreateResourceObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(78);
         }
         return jmsCreateResourceObjectEDataType;
     }
@@ -6386,7 +6432,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getListOfAnyURIs() {
         if (listOfAnyURIsEDataType == null) {
-            listOfAnyURIsEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(84);
+            listOfAnyURIsEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(85);
         }
         return listOfAnyURIsEDataType;
     }
@@ -6398,7 +6444,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getListOfNCNames() {
         if (listOfNCNamesEDataType == null) {
-            listOfNCNamesEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(85);
+            listOfNCNamesEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(86);
         }
         return listOfNCNamesEDataType;
     }
@@ -6410,7 +6456,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getListOfQNames() {
         if (listOfQNamesEDataType == null) {
-            listOfQNamesEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(86);
+            listOfQNamesEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(87);
         }
         return listOfQNamesEDataType;
     }
@@ -6422,7 +6468,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getMultiplicityObject() {
         if (multiplicityObjectEDataType == null) {
-            multiplicityObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(88);
+            multiplicityObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(89);
         }
         return multiplicityObjectEDataType;
     }
@@ -6434,7 +6480,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getOverrideOptionsObject() {
         if (overrideOptionsObjectEDataType == null) {
-            overrideOptionsObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(92);
+            overrideOptionsObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(93);
         }
         return overrideOptionsObjectEDataType;
     }
@@ -6446,7 +6492,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getPriorityTypeObject() {
         if (priorityTypeObjectEDataType == null) {
-            priorityTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(97);
+            priorityTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(98);
         }
         return priorityTypeObjectEDataType;
     }
@@ -6458,7 +6504,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getResAuthObject() {
         if (resAuthObjectEDataType == null) {
-            resAuthObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(103);
+            resAuthObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(104);
         }
         return resAuthObjectEDataType;
     }
@@ -6470,7 +6516,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getTypeTypeObject() {
         if (typeTypeObjectEDataType == null) {
-            typeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(112);
+            typeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(113);
         }
         return typeTypeObjectEDataType;
     }
@@ -6482,7 +6528,7 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
      */
 	public EDataType getVersionValueObject() {
         if (versionValueObjectEDataType == null) {
-            versionValueObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(115);
+            versionValueObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(116);
         }
         return versionValueObjectEDataType;
     }

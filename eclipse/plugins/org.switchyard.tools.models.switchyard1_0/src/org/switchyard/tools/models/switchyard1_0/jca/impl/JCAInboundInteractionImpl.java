@@ -15,10 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.eclipse.emf.ecore.util.BasicFeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.switchyard.tools.models.switchyard1_0.jca.BatchCommit;
 import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction;
@@ -35,8 +31,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getEndpoint <em>Endpoint</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#isTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getBatchCommit <em>Batch Commit</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,26 +105,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
      * @ordered
      */
     protected BatchCommit batchCommit;
-
-    /**
-     * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAny()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap any;
-
-    /**
-     * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAnyAttribute()
-     * @generated
-     * @ordered
-     */
-    protected FeatureMap anyAttribute;
 
     /**
      * <!-- begin-user-doc -->
@@ -309,30 +283,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
      * <!-- end-user-doc -->
      * @generated
      */
-    public FeatureMap getAny() {
-        if (any == null) {
-            any = new BasicFeatureMap(this, JcaPackage.JCA_INBOUND_INTERACTION__ANY);
-        }
-        return any;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public FeatureMap getAnyAttribute() {
-        if (anyAttribute == null) {
-            anyAttribute = new BasicFeatureMap(this, JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE);
-        }
-        return anyAttribute;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -340,10 +290,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 return basicSetEndpoint(null, msgs);
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 return basicSetBatchCommit(null, msgs);
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
-                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-                return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -364,12 +310,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 return isTransacted();
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 return getBatchCommit();
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
-                if (coreType) return getAny();
-                return ((FeatureMap.Internal)getAny()).getWrapper();
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-                if (coreType) return getAnyAttribute();
-                return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -393,12 +333,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 setBatchCommit((BatchCommit)newValue);
-                return;
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
-                ((FeatureMap.Internal)getAny()).set(newValue);
-                return;
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-                ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -424,12 +358,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 setBatchCommit((BatchCommit)null);
                 return;
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
-                getAny().clear();
-                return;
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-                getAnyAttribute().clear();
-                return;
         }
         super.eUnset(featureID);
     }
@@ -450,10 +378,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 return isSetTransacted();
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 return batchCommit != null;
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
-                return any != null && !any.isEmpty();
-            case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-                return anyAttribute != null && !anyAttribute.isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -472,10 +396,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
         result.append(listener);
         result.append(", transacted: ");
         if (transactedESet) result.append(transacted); else result.append("<unset>");
-        result.append(", any: ");
-        result.append(any);
-        result.append(", anyAttribute: ");
-        result.append(anyAttribute);
         result.append(')');
         return result.toString();
     }

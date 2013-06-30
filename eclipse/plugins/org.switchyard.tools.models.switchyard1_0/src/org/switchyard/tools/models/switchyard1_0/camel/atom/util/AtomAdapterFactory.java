@@ -73,16 +73,16 @@ public class AtomAdapterFactory extends AdapterFactoryImpl {
     protected AtomSwitch<Adapter> modelSwitch =
         new AtomSwitch<Adapter>() {
             @Override
+            public Adapter caseAtomScheduledPollConsumerType(AtomScheduledPollConsumerType object) {
+                return createAtomScheduledPollConsumerTypeAdapter();
+            }
+            @Override
             public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
                 return createBaseCamelBindingAdapter();
             }
             @Override
             public Adapter caseCamelAtomBindingType(CamelAtomBindingType object) {
                 return createCamelAtomBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseAtomScheduledPollConsumerType(AtomScheduledPollConsumerType object) {
-                return createAtomScheduledPollConsumerTypeAdapter();
             }
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {

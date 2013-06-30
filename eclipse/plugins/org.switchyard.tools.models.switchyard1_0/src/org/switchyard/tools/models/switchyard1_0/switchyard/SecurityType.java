@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getCallbackHandler <em>Callback Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getName <em>Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRolesAllowed <em>Roles Allowed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRunAs <em>Run As</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getSecurityDomain <em>Security Domain</em>}</li>

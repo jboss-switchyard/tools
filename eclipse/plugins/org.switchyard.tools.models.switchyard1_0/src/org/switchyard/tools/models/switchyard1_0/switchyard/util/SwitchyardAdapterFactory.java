@@ -17,7 +17,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
-import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
 import org.switchyard.tools.models.switchyard1_0.switchyard.*;
 
 /**
@@ -109,6 +108,10 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createHandlerTypeAdapter();
             }
             @Override
+            public Adapter caseJavaOperationSelectorType(JavaOperationSelectorType object) {
+                return createJavaOperationSelectorTypeAdapter();
+            }
+            @Override
             public Adapter caseMessageComposerType(MessageComposerType object) {
                 return createMessageComposerTypeAdapter();
             }
@@ -121,8 +124,24 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createPropertyTypeAdapter();
             }
             @Override
+            public Adapter caseRegexOperationSelectorType(RegexOperationSelectorType object) {
+                return createRegexOperationSelectorTypeAdapter();
+            }
+            @Override
             public Adapter caseResourceType(ResourceType object) {
                 return createResourceTypeAdapter();
+            }
+            @Override
+            public Adapter caseSecuritiesType(SecuritiesType object) {
+                return createSecuritiesTypeAdapter();
+            }
+            @Override
+            public Adapter caseSecurityType(SecurityType object) {
+                return createSecurityTypeAdapter();
+            }
+            @Override
+            public Adapter caseStaticOperationSelectorType(StaticOperationSelectorType object) {
+                return createStaticOperationSelectorTypeAdapter();
             }
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
@@ -135,6 +154,10 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardType(SwitchYardType object) {
                 return createSwitchYardTypeAdapter();
+            }
+            @Override
+            public Adapter caseThrottlingType(ThrottlingType object) {
+                return createThrottlingTypeAdapter();
             }
             @Override
             public Adapter caseTransformsType(TransformsType object) {
@@ -153,28 +176,8 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createValidateTypeAdapter();
             }
             @Override
-            public Adapter caseJavaOperationSelectorType(JavaOperationSelectorType object) {
-                return createJavaOperationSelectorTypeAdapter();
-            }
-            @Override
-            public Adapter caseRegexOperationSelectorType(RegexOperationSelectorType object) {
-                return createRegexOperationSelectorTypeAdapter();
-            }
-            @Override
-            public Adapter caseStaticOperationSelectorType(StaticOperationSelectorType object) {
-                return createStaticOperationSelectorTypeAdapter();
-            }
-            @Override
             public Adapter caseXPathOperationSelectorType(XPathOperationSelectorType object) {
                 return createXPathOperationSelectorTypeAdapter();
-            }
-            @Override
-            public Adapter caseSecurityType(SecurityType object) {
-                return createSecurityTypeAdapter();
-            }
-            @Override
-            public Adapter caseSecuritiesType(SecuritiesType object) {
-                return createSecuritiesTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -185,12 +188,12 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createInterfaceAdapter();
             }
             @Override
-            public Adapter caseBinding(Binding object) {
-                return createBindingAdapter();
-            }
-            @Override
             public Adapter caseOperationSelectorType(OperationSelectorType object) {
                 return createOperationSelectorTypeAdapter();
+            }
+            @Override
+            public Adapter caseBinding(Binding object) {
+                return createBindingAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -409,6 +412,20 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType <em>Throttling Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType
+     * @generated
+     */
+    public Adapter createThrottlingTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType <em>Transforms Type</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

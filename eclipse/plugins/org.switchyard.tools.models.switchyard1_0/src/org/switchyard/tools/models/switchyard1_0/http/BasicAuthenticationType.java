@@ -2,6 +2,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.http;
 
+import java.math.BigInteger;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 /**
@@ -21,7 +22,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getBasicAuthenticationType()
- * @model extendedMetaData="name='BasicAuthenticationType' kind='empty' namespace='##targetNamespace'"
+ * @model extendedMetaData="name='BasicAuthenticationType' kind='elementOnly'"
  * @generated
  */
 public interface BasicAuthenticationType extends CommonExtensionBase {
@@ -33,10 +34,14 @@ public interface BasicAuthenticationType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * User name.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>User</em>' attribute.
      * @see #setUser(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getBasicAuthenticationType_User()
-     * @model extendedMetaData="kind='element' name='user' namespace='##targetNamespace'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='element' name='user' namespace='##targetNamespace'"
      * @generated
      */
     String getUser();
@@ -59,10 +64,14 @@ public interface BasicAuthenticationType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Password.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Password</em>' attribute.
      * @see #setPassword(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getBasicAuthenticationType_Password()
-     * @model extendedMetaData="kind='element' name='password' namespace='##targetNamespace'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='element' name='password' namespace='##targetNamespace'"
      * @generated
      */
     String getPassword();
@@ -85,10 +94,14 @@ public interface BasicAuthenticationType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Authentication Realm.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Realm</em>' attribute.
      * @see #setRealm(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getBasicAuthenticationType_Realm()
-     * @model extendedMetaData="kind='element' name='realm' namespace='##targetNamespace'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='realm' namespace='##targetNamespace'"
      * @generated
      */
     String getRealm();
@@ -111,10 +124,14 @@ public interface BasicAuthenticationType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Authentication Host.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Host</em>' attribute.
      * @see #setHost(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getBasicAuthenticationType_Host()
-     * @model extendedMetaData="kind='element' name='host' namespace='##targetNamespace'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='host' namespace='##targetNamespace'"
      * @generated
      */
     String getHost();
@@ -137,14 +154,17 @@ public interface BasicAuthenticationType extends CommonExtensionBase {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Authentication Port.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Port</em>' attribute.
-     * @see #setPort(Integer)
+     * @see #setPort(BigInteger)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getBasicAuthenticationType_Port()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getPort();
+    BigInteger getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType#getPort <em>Port</em>}' attribute.
@@ -154,6 +174,6 @@ public interface BasicAuthenticationType extends CommonExtensionBase {
      * @see #getPort()
      * @generated
      */
-    void setPort(Integer value);
+    void setPort(BigInteger value);
 
 } // BasicAuthenticationType

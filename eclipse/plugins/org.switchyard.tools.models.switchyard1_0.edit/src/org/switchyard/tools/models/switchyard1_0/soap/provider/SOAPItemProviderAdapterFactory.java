@@ -99,29 +99,6 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected SOAPMessageComposerTypeItemProvider soapMessageComposerTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createSOAPMessageComposerTypeAdapter() {
-        if (soapMessageComposerTypeItemProvider == null) {
-            soapMessageComposerTypeItemProvider = new SOAPMessageComposerTypeItemProvider(this);
-        }
-
-        return soapMessageComposerTypeItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -191,6 +168,29 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MessageComposerTypeItemProvider messageComposerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createMessageComposerTypeAdapter() {
+        if (messageComposerTypeItemProvider == null) {
+            messageComposerTypeItemProvider = new MessageComposerTypeItemProvider(this);
+        }
+
+        return messageComposerTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -257,6 +257,29 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
         }
 
         return propertyTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ProxyTypeItemProvider proxyTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createProxyTypeAdapter() {
+        if (proxyTypeItemProvider == null) {
+            proxyTypeItemProvider = new ProxyTypeItemProvider(this);
+        }
+
+        return proxyTypeItemProvider;
     }
 
     /**
@@ -405,15 +428,16 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
      */
     public void dispose() {
         if (contextMapperTypeItemProvider != null) contextMapperTypeItemProvider.dispose();
-        if (soapMessageComposerTypeItemProvider != null) soapMessageComposerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-        if (soapBindingTypeItemProvider != null) soapBindingTypeItemProvider.dispose();
-        if (interceptorTypeItemProvider != null) interceptorTypeItemProvider.dispose();
-        if (interceptorsTypeItemProvider != null) interceptorsTypeItemProvider.dispose();
-        if (mtomTypeItemProvider != null) mtomTypeItemProvider.dispose();
-        if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
-        if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (endpointConfigTypeItemProvider != null) endpointConfigTypeItemProvider.dispose();
+        if (interceptorsTypeItemProvider != null) interceptorsTypeItemProvider.dispose();
+        if (interceptorTypeItemProvider != null) interceptorTypeItemProvider.dispose();
+        if (messageComposerTypeItemProvider != null) messageComposerTypeItemProvider.dispose();
+        if (mtomTypeItemProvider != null) mtomTypeItemProvider.dispose();
+        if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
+        if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (proxyTypeItemProvider != null) proxyTypeItemProvider.dispose();
+        if (soapBindingTypeItemProvider != null) soapBindingTypeItemProvider.dispose();
     }
 
 }

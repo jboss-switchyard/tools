@@ -16,7 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.http;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getNTLMAuthenticationType()
- * @model extendedMetaData="name='NTLMAuthenticationType' kind='empty' namespace='##targetNamespace'"
+ * @model extendedMetaData="name='NTLMAuthenticationType' kind='elementOnly'"
  * @generated
  */
 public interface NTLMAuthenticationType extends BasicAuthenticationType {
@@ -28,10 +28,14 @@ public interface NTLMAuthenticationType extends BasicAuthenticationType {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The NTLM Domain.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Domain</em>' attribute.
      * @see #setDomain(String)
      * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getNTLMAuthenticationType_Domain()
-     * @model extendedMetaData="kind='element' name='domain' namespace='##targetNamespace'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='element' name='domain' namespace='##targetNamespace'"
      * @generated
      */
     String getDomain();

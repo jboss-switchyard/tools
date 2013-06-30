@@ -46,7 +46,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
 
-import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit;
+import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnitType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
@@ -65,10 +65,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
-
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-
-import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
@@ -146,21 +142,21 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EEnum timeUnitTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType timeUnitTypeObjectEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass documentRootEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EEnum timeUnitEEnum = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EDataType timeUnitObjectEDataType = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -218,7 +214,6 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
-        HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
         RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
@@ -249,7 +244,6 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
-        theHornetQPackage.createPackageContents();
         theRulesPackage.createPackageContents();
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
@@ -276,7 +270,6 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
-        theHornetQPackage.initializePackageContents();
         theRulesPackage.initializePackageContents();
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
@@ -322,7 +315,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelContextMapper() {
+    public EReference getBaseCamelBinding_ContextMapper() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
     }
 
@@ -331,7 +324,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelMessageComposer() {
+    public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
     }
 
@@ -745,6 +738,24 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getTimeUnitType() {
+        return timeUnitTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getTimeUnitTypeObject() {
+        return timeUnitTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDocumentRoot() {
         return documentRootEClass;
     }
@@ -790,24 +801,6 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EEnum getTimeUnit() {
-        return timeUnitEEnum;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EDataType getTimeUnitObject() {
-        return timeUnitObjectEDataType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public FileFactory getFileFactory() {
         return (FileFactory)getEFactoryInstance();
     }
@@ -832,8 +825,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
 
         camelFileBindingTypeEClass = createEClass(CAMEL_FILE_BINDING_TYPE);
         createEAttribute(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__DIRECTORY);
@@ -844,6 +837,12 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         createEAttribute(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__CHARSET);
         createEReference(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__CONSUME);
         createEReference(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__PRODUCE);
+
+        documentRootEClass = createEClass(DOCUMENT_ROOT);
+        createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FILE);
 
         fileConsumerTypeEClass = createEClass(FILE_CONSUMER_TYPE);
         createEAttribute(fileConsumerTypeEClass, FILE_CONSUMER_TYPE__INITIAL_DELAY);
@@ -883,17 +882,11 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         createEAttribute(fileProducerTypeEClass, FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE);
         createEAttribute(fileProducerTypeEClass, FILE_PRODUCER_TYPE__DONE_FILE_NAME);
 
-        documentRootEClass = createEClass(DOCUMENT_ROOT);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FILE);
-
         // Create enums
-        timeUnitEEnum = createEEnum(TIME_UNIT);
+        timeUnitTypeEEnum = createEEnum(TIME_UNIT_TYPE);
 
         // Create data types
-        timeUnitObjectEDataType = createEDataType(TIME_UNIT_OBJECT);
+        timeUnitTypeObjectEDataType = createEDataType(TIME_UNIT_TYPE_OBJECT);
     }
 
     /**
@@ -933,8 +926,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelFileBindingTypeEClass, CamelFileBindingType.class, "CamelFileBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelFileBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 1, 1, CamelFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -946,12 +939,18 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         initEReference(getCamelFileBindingType_Consume(), this.getFileConsumerType(), null, "consume", null, 0, 1, CamelFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getCamelFileBindingType_Produce(), this.getFileProducerType(), null, "produce", null, 0, 1, CamelFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingFile(), this.getCamelFileBindingType(), null, "bindingFile", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
         initEClass(fileConsumerTypeEClass, FileConsumerType.class, "FileConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getFileConsumerType_InitialDelay(), theSwitchyardPackage.getPropInteger(), "initialDelay", "1000", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileConsumerType_Delay(), theSwitchyardPackage.getPropInteger(), "delay", "500", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileConsumerType_UseFixedDelay(), theXMLTypePackage.getBoolean(), "useFixedDelay", "true", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileConsumerType_SendEmptyMessageWhenIdle(), theXMLTypePackage.getBoolean(), "sendEmptyMessageWhenIdle", "false", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getFileConsumerType_TimeUnit(), this.getTimeUnit(), "timeUnit", "MILLISECONDS", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getFileConsumerType_TimeUnit(), this.getTimeUnitType(), "timeUnit", "MILLISECONDS", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileConsumerType_MaxMessagesPerPoll(), theSwitchyardPackage.getPropInteger(), "maxMessagesPerPoll", null, 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileConsumerType_Delete(), theXMLTypePackage.getBoolean(), "delete", "false", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileConsumerType_Recursive(), theXMLTypePackage.getBoolean(), "recursive", "false", 0, 1, FileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -984,24 +983,18 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         initEAttribute(getFileProducerType_EagerDeleteTargetFile(), theXMLTypePackage.getBoolean(), "eagerDeleteTargetFile", "true", 0, 1, FileProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileProducerType_DoneFileName(), theXMLTypePackage.getString(), "doneFileName", null, 0, 1, FileProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingFile(), this.getCamelFileBindingType(), null, "bindingFile", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
         // Initialize enums and add enum literals
-        initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
-        addEEnumLiteral(timeUnitEEnum, TimeUnit.NANOSECONDS);
-        addEEnumLiteral(timeUnitEEnum, TimeUnit.MICROSECONDS);
-        addEEnumLiteral(timeUnitEEnum, TimeUnit.MILLISECONDS);
-        addEEnumLiteral(timeUnitEEnum, TimeUnit.SECONDS);
-        addEEnumLiteral(timeUnitEEnum, TimeUnit.MINUTES);
-        addEEnumLiteral(timeUnitEEnum, TimeUnit.HOURS);
-        addEEnumLiteral(timeUnitEEnum, TimeUnit.DAYS);
+        initEEnum(timeUnitTypeEEnum, TimeUnitType.class, "TimeUnitType");
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.NANOSECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MICROSECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MILLISECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.SECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MINUTES);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.HOURS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.DAYS);
 
         // Initialize data types
-        initEDataType(timeUnitObjectEDataType, TimeUnit.class, "TimeUnitObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(timeUnitTypeObjectEDataType, TimeUnitType.class, "TimeUnitTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -1018,7 +1011,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
           (baseCamelBindingEClass, 
            source, 
@@ -1027,7 +1020,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelContextMapper(), 
+          (getBaseCamelBinding_ContextMapper(), 
            source, 
            new String[] {
              "kind", "element",
@@ -1035,7 +1028,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelMessageComposer(), 
+          (getBaseCamelBinding_MessageComposer(), 
            source, 
            new String[] {
              "kind", "element",
@@ -1112,6 +1105,43 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
              "kind", "element",
              "name", "produce",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (documentRootEClass, 
+           source, 
+           new String[] {
+             "name", "",
+             "kind", "mixed"
+           });		
+        addAnnotation
+          (getDocumentRoot_Mixed(), 
+           source, 
+           new String[] {
+             "kind", "elementWildcard",
+             "name", ":mixed"
+           });		
+        addAnnotation
+          (getDocumentRoot_XMLNSPrefixMap(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "xmlns:prefix"
+           });		
+        addAnnotation
+          (getDocumentRoot_XSISchemaLocation(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "xsi:schemaLocation"
+           });		
+        addAnnotation
+          (getDocumentRoot_BindingFile(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.file",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
           (fileConsumerTypeEClass, 
@@ -1400,54 +1430,17 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (documentRootEClass, 
+          (timeUnitTypeEEnum, 
            source, 
            new String[] {
-             "name", "",
-             "kind", "mixed"
+             "name", "timeUnit_._type"
            });		
         addAnnotation
-          (getDocumentRoot_Mixed(), 
+          (timeUnitTypeObjectEDataType, 
            source, 
            new String[] {
-             "kind", "elementWildcard",
-             "name", ":mixed"
-           });		
-        addAnnotation
-          (getDocumentRoot_XMLNSPrefixMap(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "xmlns:prefix"
-           });		
-        addAnnotation
-          (getDocumentRoot_XSISchemaLocation(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "xsi:schemaLocation"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingFile(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.file",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (timeUnitEEnum, 
-           source, 
-           new String[] {
-             "name", "TimeUnit"
-           });		
-        addAnnotation
-          (timeUnitObjectEDataType, 
-           source, 
-           new String[] {
-             "name", "TimeUnit:Object",
-             "baseType", "TimeUnit"
+             "name", "timeUnit_._type:Object",
+             "baseType", "timeUnit_._type"
            });
     }
 

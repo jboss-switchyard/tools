@@ -1133,6 +1133,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" eType="#//ExtensionsType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="extensions"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="any" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1555,7 +1563,7 @@
         <details key="processing" value="lax"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lang" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/XMLNamespace.ecore#//LangType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lang" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/XMLNamespace.ecore#//LangType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xD;&#xA;    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;>&#xD;&#xA;     &#xD;&#xA;      &lt;h3>lang (as an attribute name)&lt;/h3>&#xD;&#xA;      &lt;p>&#xD;&#xA;       denotes an attribute whose value&#xD;&#xA;       is a language code for the natural language of the content of&#xD;&#xA;       any element; its value is inherited.  This name is reserved&#xD;&#xA;       by virtue of its definition in the XML specification.&lt;/p>&#xD;&#xA;     &#xD;&#xA;    &lt;/div>&#xD;&#xA;    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;>&#xD;&#xA;     &lt;h4>Notes&lt;/h4>&#xD;&#xA;     &lt;p>&#xD;&#xA;      Attempting to install the relevant ISO 2- and 3-letter&#xD;&#xA;      codes as the enumerated possible values is probably never&#xD;&#xA;      going to be a realistic possibility.  &#xD;&#xA;     &lt;/p>&#xD;&#xA;     &lt;p>&#xD;&#xA;      See BCP 47 at &lt;a href=&quot;http://www.rfc-editor.org/rfc/bcp/bcp47.txt&quot;>&#xD;&#xA;       http://www.rfc-editor.org/rfc/bcp/bcp47.txt&lt;/a>&#xD;&#xA;      and the IANA language subtag registry at&#xD;&#xA;      &lt;a href=&quot;http://www.iana.org/assignments/language-subtag-registry&quot;>&#xD;&#xA;       http://www.iana.org/assignments/language-subtag-registry&lt;/a>&#xD;&#xA;      for further information.&#xD;&#xA;     &lt;/p>&#xD;&#xA;     &lt;p>&#xD;&#xA;      The union allows for the 'un-declaration' of xml:lang with&#xD;&#xA;      the empty string.&#xD;&#xA;     &lt;/p>&#xD;&#xA;    &lt;/div>&#xD;&#xA;   "/>
       </eAnnotations>
@@ -1772,6 +1780,15 @@
         <details key="name" value="export.java"/>
         <details key="namespace" value="##targetNamespace"/>
         <details key="affiliation" value="exportBase"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-2"
+        eType="#//ExtensionsType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="extensions"/>
+        <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" upperBound="-2"
@@ -2177,6 +2194,21 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="namespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionsType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="extensions_._type"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="any" unique="false" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="elementWildcard"/>
+        <details key="wildcards" value="##other"/>
+        <details key="name" value=":0"/>
+        <details key="processing" value="lax"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -4101,7 +4133,7 @@
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endpointReference" upperBound="-1"
-        eType="ecore:EClass ../../org.switchyard.tools.models.sca.core/model/addressing.ecore#//EndpointReferenceType"
+        eType="ecore:EClass platform:/plugin/org.switchyard.tools.models.sca.core/model/addressing.ecore#//EndpointReferenceType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -4124,7 +4156,7 @@
         <details key="name" value="wsdlElement"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wsdlLocation" eType="ecore:EDataType ../../org.switchyard.tools.models.sca.core/model/instance.ecore#//WsdlLocationType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wsdlLocation" eType="ecore:EDataType platform:/plugin/org.switchyard.tools.models.sca.core/model/instance.ecore#//WsdlLocationType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xD;&#xA;      This attribute can be used to provide some hints on where&#xD;&#xA;      additional WSDL information for a given namespace can be&#xD;&#xA;      found in order to help with QName resolution&#xD;&#xA;      "/>
       </eAnnotations>

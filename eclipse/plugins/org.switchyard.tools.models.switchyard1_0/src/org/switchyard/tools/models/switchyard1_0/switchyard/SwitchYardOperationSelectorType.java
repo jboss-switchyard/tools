@@ -16,7 +16,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSwitchYardOperationSelectorType()
  * @model abstract="true"
- *        extendedMetaData="name='SwitchYardOperationSelectorType' kind='elementOnly'"
+ *        extendedMetaData="name='SwitchYardOperationSelectorType' kind='empty'"
  * @generated
  */
 public interface SwitchYardOperationSelectorType extends OperationSelectorType {

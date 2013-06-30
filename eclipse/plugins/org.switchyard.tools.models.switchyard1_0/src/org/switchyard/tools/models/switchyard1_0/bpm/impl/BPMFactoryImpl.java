@@ -6,7 +6,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.bpm.impl;
 
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -33,7 +32,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      */
 	public static BPMFactory init() {
         try {
-            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory(BPMPackage.eNS_URI);
+            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bpm:config:1.0"); 
             if (theBPMFactory != null) {
                 return theBPMFactory;
             }

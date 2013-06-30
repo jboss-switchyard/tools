@@ -11,6 +11,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType;
 
 import org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +40,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected static final int INITIAL_DELAY_EDEFAULT = 1000;
+    protected static final Object INITIAL_DELAY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1000");
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -47,7 +49,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected int initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected Object initialDelay = INITIAL_DELAY_EDEFAULT;
     /**
      * This is true if the Initial Delay attribute has been set.
      * <!-- begin-user-doc -->
@@ -64,7 +66,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected static final int DELAY_EDEFAULT = 60000;
+    protected static final Object DELAY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "60000");
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -73,7 +75,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected int delay = DELAY_EDEFAULT;
+    protected Object delay = DELAY_EDEFAULT;
     /**
      * This is true if the Delay attribute has been set.
      * <!-- begin-user-doc -->
@@ -185,7 +187,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getInitialDelay() {
+    public Object getInitialDelay() {
         return initialDelay;
     }
 
@@ -194,8 +196,8 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(int newInitialDelay) {
-        int oldInitialDelay = initialDelay;
+    public void setInitialDelay(Object newInitialDelay) {
+        Object oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
         boolean oldInitialDelayESet = initialDelayESet;
         initialDelayESet = true;
@@ -209,7 +211,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      */
     public void unsetInitialDelay() {
-        int oldInitialDelay = initialDelay;
+        Object oldInitialDelay = initialDelay;
         boolean oldInitialDelayESet = initialDelayESet;
         initialDelay = INITIAL_DELAY_EDEFAULT;
         initialDelayESet = false;
@@ -231,7 +233,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getDelay() {
+    public Object getDelay() {
         return delay;
     }
 
@@ -240,8 +242,8 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(int newDelay) {
-        int oldDelay = delay;
+    public void setDelay(Object newDelay) {
+        Object oldDelay = delay;
         delay = newDelay;
         boolean oldDelayESet = delayESet;
         delayESet = true;
@@ -255,7 +257,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      */
     public void unsetDelay() {
-        int oldDelay = delay;
+        Object oldDelay = delay;
         boolean oldDelayESet = delayESet;
         delay = DELAY_EDEFAULT;
         delayESet = false;
@@ -441,10 +443,10 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay((Integer)newValue);
+                setInitialDelay(newValue);
                 return;
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY:
-                setDelay((Integer)newValue);
+                setDelay(newValue);
                 return;
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY:
                 setUseFixedDelay((Boolean)newValue);

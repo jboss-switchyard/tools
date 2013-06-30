@@ -8,6 +8,9 @@ package org.switchyard.tools.models.switchyard1_0.jca;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -18,10 +21,12 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getOutboundConnection <em>Outbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInboundConnection <em>Inbound Connection</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInboundInteraction <em>Inbound Interaction</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getOutboundInteraction <em>Outbound Interaction</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getInboundInteraction <em>Inbound Interaction</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getExtensions <em>Extensions</em>}</li>
  * </ul>
@@ -32,6 +37,60 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @generated
  */
 public interface JCABinding extends SwitchYardBindingType {
+    /**
+     * Returns the value of the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Context Mapper</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Context Mapper</em>' containment reference.
+     * @see #setContextMapper(ContextMapperType)
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCABinding_ContextMapper()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace'"
+     * @generated
+     */
+    ContextMapperType getContextMapper();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getContextMapper <em>Context Mapper</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Context Mapper</em>' containment reference.
+     * @see #getContextMapper()
+     * @generated
+     */
+    void setContextMapper(ContextMapperType value);
+
+    /**
+     * Returns the value of the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Message Composer</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Message Composer</em>' containment reference.
+     * @see #setMessageComposer(MessageComposerType)
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCABinding_MessageComposer()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
+     * @generated
+     */
+    MessageComposerType getMessageComposer();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getMessageComposer <em>Message Composer</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Message Composer</em>' containment reference.
+     * @see #getMessageComposer()
+     * @generated
+     */
+    void setMessageComposer(MessageComposerType value);
+
     /**
      * Returns the value of the '<em><b>Outbound Connection</b></em>' containment reference.
      * <!-- begin-user-doc -->
@@ -158,30 +217,30 @@ public interface JCABinding extends SwitchYardBindingType {
     EList<Property> getProperty();
 
     /**
-     * Returns the value of the '<em><b>Extensions</b></em>' attribute.
+     * Returns the value of the '<em><b>Extensions</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Extensions</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Extensions</em>' attribute.
-     * @see #setExtensions(Object)
+     * @return the value of the '<em>Extensions</em>' containment reference.
+     * @see #setExtensions(ExtensionsType)
      * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCABinding_Extensions()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnySimpleType"
+     * @model containment="true"
      *        extendedMetaData="kind='element' name='extensions' namespace='http://docs.oasis-open.org/ns/opencsa/sca/200912'"
      * @generated
      */
-    Object getExtensions();
+    ExtensionsType getExtensions();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getExtensions <em>Extensions</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getExtensions <em>Extensions</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Extensions</em>' attribute.
+     * @param value the new value of the '<em>Extensions</em>' containment reference.
      * @see #getExtensions()
      * @generated
      */
-    void setExtensions(Object value);
+    void setExtensions(ExtensionsType value);
 
 } // JCABinding

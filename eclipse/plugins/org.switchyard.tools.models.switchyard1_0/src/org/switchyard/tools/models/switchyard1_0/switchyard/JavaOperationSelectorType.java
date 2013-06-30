@@ -8,6 +8,12 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * A representation of the model object '<em><b>Java Operation Selector Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * 
+ *                 Java Operation Selector Configuration.
+ *             
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -16,7 +22,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getJavaOperationSelectorType()
- * @model extendedMetaData="name='JavaOperationSelectorType' kind='elementOnly'"
+ * @model extendedMetaData="name='JavaOperationSelectorType' kind='empty'"
  * @generated
  */
 public interface JavaOperationSelectorType extends SwitchYardOperationSelectorType {
@@ -28,10 +34,15 @@ public interface JavaOperationSelectorType extends SwitchYardOperationSelectorTy
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * 
+     *                             operation selector implementation class name.
+     *                         
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Class</em>' attribute.
      * @see #setClass(String)
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getJavaOperationSelectorType_Class()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='attribute' name='class'"
      * @generated
      */

@@ -14,9 +14,9 @@ package org.switchyard.tools.models.switchyard1_0.camel.sql;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getDataSourceRef <em>Data Source Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#isBatch <em>Batch</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPlaceholder <em>Placeholder</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getTimerName <em>Timer Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPeriod <em>Period</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getInitialDelay <em>Initial Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPeriod <em>Period</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getTimerName <em>Timer Name</em>}</li>
  * </ul>
  * </p>
  *

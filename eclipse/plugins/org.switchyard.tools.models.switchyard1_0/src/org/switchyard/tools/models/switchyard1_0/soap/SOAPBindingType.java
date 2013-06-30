@@ -16,16 +16,18 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getWsdl <em>Wsdl</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getWsdlPort <em>Wsdl Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSocketAddr <em>Socket Addr</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextPath <em>Context Path</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointConfig <em>Endpoint Config</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointAddress <em>Endpoint Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getProxy <em>Proxy</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getOutInterceptors <em>Out Interceptors</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointConfig <em>Endpoint Config</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,13 +37,63 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  */
 public interface SOAPBindingType extends SwitchYardBindingType {
     /**
+     * Returns the value of the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Specify the ContextMapper to be used.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Context Mapper</em>' containment reference.
+     * @see #setContextMapper(ContextMapperType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_ContextMapper()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace'"
+     * @generated
+     */
+    ContextMapperType getContextMapper();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextMapper <em>Context Mapper</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Context Mapper</em>' containment reference.
+     * @see #getContextMapper()
+     * @generated
+     */
+    void setContextMapper(ContextMapperType value);
+
+    /**
+     * Returns the value of the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Specify the MessageComposer to be used.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Message Composer</em>' containment reference.
+     * @see #setMessageComposer(MessageComposerType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_MessageComposer()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
+     * @generated
+     */
+    MessageComposerType getMessageComposer();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Message Composer</em>' containment reference.
+     * @see #getMessageComposer()
+     * @generated
+     */
+    void setMessageComposer(MessageComposerType value);
+
+    /**
      * Returns the value of the '<em><b>Wsdl</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * 
-     *                                 A WSDL file name that can be found in classpath else can be a file://, http:// or https:// URL location.
-     *                             
+     * A WSDL file name that can be found in classpath else can be a file://, http:// or https:// URL location.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Wsdl</em>' attribute.
      * @see #setWsdl(String)
@@ -67,9 +119,7 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * 
-     *                                 Specify the WSDL port to be used. The string can be in the form {namespaceURI}serviceName:portName", with the "{namespaceURI}" and "serviceName:" part being optional.
-     *                             
+     * Specify the WSDL port to be used. The string can be in the form {namespaceURI}serviceName:portName", with the "{namespaceURI}" and "serviceName:" part being optional.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Wsdl Port</em>' attribute.
      * @see #setWsdlPort(String)
@@ -95,9 +145,7 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * 
-     *                                 Specify the IP Socket Address to be used. The string can be in the form "hostName/ipAddress:portNumber", with the "hostName/ipAddress:" or ":portNumber" part being optional.
-     *                             
+     * Specify the IP Socket Address to be used. The string can be in the form "hostName/ipAddress:portNumber", with the "hostName/ipAddress:" or ":portNumber" part being optional. Applicable only for service bindings.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Socket Addr</em>' attribute.
      * @see #setSocketAddr(String)
@@ -123,9 +171,7 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * 
-     *                                 The context path used in the HTTP URL
-     *                             
+     * The context path used in the HTTP URL where the endpoint will be hosted. Applicable only for service bindings.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Context Path</em>' attribute.
      * @see #setContextPath(String)
@@ -151,9 +197,7 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * 
-     *                                 The context path used in the HTTP URL
-     *                             
+     * The endpoint address override. Applicable only for reference bindings.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Endpoint Address</em>' attribute.
      * @see #setEndpointAddress(String)
@@ -182,6 +226,9 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The Apache CXF @InInterceptors to add
+     * <!-- end-model-doc -->
      * @return the value of the '<em>In Interceptors</em>' containment reference.
      * @see #setInInterceptors(InterceptorsType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_InInterceptors()
@@ -209,6 +256,9 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The Apache CXF @OutInterceptors to add
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Out Interceptors</em>' containment reference.
      * @see #setOutInterceptors(InterceptorsType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_OutInterceptors()
@@ -236,6 +286,9 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Mtom feature override. By default this feature is enabled. Use this to disable or change threshold value.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Mtom</em>' containment reference.
      * @see #setMtom(MtomType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_Mtom()
@@ -263,6 +316,9 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The JBossWS @EndpointConfig to add
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Endpoint Config</em>' containment reference.
      * @see #setEndpointConfig(EndpointConfigType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_EndpointConfig()
@@ -290,6 +346,9 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Http proxy settings.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Proxy</em>' containment reference.
      * @see #setProxy(ProxyType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_Proxy()

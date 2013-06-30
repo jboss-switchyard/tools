@@ -100,13 +100,13 @@ public class CoreSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CorePackage.CAMEL_TIMER_BINDING_TYPE: {
-                CamelTimerBindingType camelTimerBindingType = (CamelTimerBindingType)theEObject;
-                T result = caseCamelTimerBindingType(camelTimerBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelTimerBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelTimerBindingType);
-                if (result == null) result = caseBinding(camelTimerBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelTimerBindingType);
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE: {
+                CamelMockBindingType camelMockBindingType = (CamelMockBindingType)theEObject;
+                T result = caseCamelMockBindingType(camelMockBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelMockBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelMockBindingType);
+                if (result == null) result = caseBinding(camelMockBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelMockBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -120,13 +120,13 @@ public class CoreSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CorePackage.CAMEL_MOCK_BINDING_TYPE: {
-                CamelMockBindingType camelMockBindingType = (CamelMockBindingType)theEObject;
-                T result = caseCamelMockBindingType(camelMockBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelMockBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelMockBindingType);
-                if (result == null) result = caseBinding(camelMockBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelMockBindingType);
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE: {
+                CamelTimerBindingType camelTimerBindingType = (CamelTimerBindingType)theEObject;
+                T result = caseCamelTimerBindingType(camelTimerBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelTimerBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelTimerBindingType);
+                if (result == null) result = caseBinding(camelTimerBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelTimerBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

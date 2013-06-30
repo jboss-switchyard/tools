@@ -111,7 +111,6 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
@@ -967,6 +966,11 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         }
         
         @Override
+        protected boolean isDirty() {
+            return getPersistencyBehavior().isDirty();
+        }
+
+        @Override
         protected void initDefaultBehaviors() {
             // this needs to be exposed to our create method in SwitchyardSCAEditor
             super.initDefaultBehaviors();
@@ -1055,7 +1059,6 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         resourceSet.getPackageRegistry().put("urn:switchyard-config:validate:1.0", ValidatePackage.eINSTANCE);
         resourceSet.getPackageRegistry().put("urn:switchyard-component-soap:config:1.0", SOAPPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put("urn:switchyard-component-rules:config:1.0", RulesPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-hornetq:config:1.0", HornetQPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put("urn:switchyard-component-clojure:config:1.0", ClojurePackage.eINSTANCE);
         resourceSet.getPackageRegistry().put("urn:switchyard-component-camel:config:1.0", CamelPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put("urn:switchyard-component-bpm:config:1.0", BPMPackage.eINSTANCE);

@@ -11,10 +11,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
-import org.switchyard.tools.models.switchyard1_0.rules.ExpressionType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
-import org.switchyard.tools.models.switchyard1_0.rules.ScopeType;
 
 /**
  * <!-- begin-user-doc -->

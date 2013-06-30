@@ -38,14 +38,10 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType;
-import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
-import org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
-import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.http.ProxyType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
@@ -64,7 +60,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     private Combo _methodCombo;
     private Text _contentTypeText;
     private Text _contextPathText = null;
-    private HttpBindingType _binding = null;
+    private HTTPBindingType _binding = null;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
@@ -370,9 +366,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
      * @param switchYardBindingType binding
      */
     public void setBinding(Binding switchYardBindingType) {
-        if (switchYardBindingType instanceof HttpBindingType) {
+        if (switchYardBindingType instanceof HTTPBindingType) {
             setTargetObject(switchYardBindingType.eContainer());
-            this._binding = (HttpBindingType) switchYardBindingType;
+            this._binding = (HTTPBindingType) switchYardBindingType;
             setInUpdate(true);
             
             setTextValue(_mAddressURLText, _binding.getAddress());
@@ -514,22 +510,11 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         return _advancedPropsFilterList;
     }
 
-    protected MessageComposerType createMessageComposer() {
-        HttpMessageComposerType messageComposer = HttpFactory.eINSTANCE.createHttpMessageComposerType();
-        return messageComposer;
-    }
-
-    protected ContextMapperType createContextMapper() {
-        HttpContextMapperType contextMapper = HttpFactory.eINSTANCE.createHttpContextMapperType();
-        return contextMapper;
-    }
-
     class MessageComposerOp extends ModelOperation {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getMessageComposer() == null) {
-                HttpMessageComposerType messageComposer = (HttpMessageComposerType) createMessageComposer();
-                setFeatureValue(_binding, "messageComposer", messageComposer);
+                setFeatureValue(_binding, "messageComposer", createMessageComposer());
             }
         }
     }
@@ -538,8 +523,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getContextMapper() == null) {
-                HttpContextMapperType contextMapper = (HttpContextMapperType) createContextMapper();
-                setFeatureValue(_binding, "contextMapper", contextMapper);
+                setFeatureValue(_binding, "contextMapper", createContextMapper());
             }
         }
     }
@@ -563,18 +547,18 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
      */
     public void setTabsBinding(Binding switchYardBindingType) {
         super.setTabsBinding(switchYardBindingType);
-        if (_binding != null && _binding instanceof HttpBindingType) {
-            HttpBindingType binding = (HttpBindingType) _binding;
-            if (binding.getContextMapper() instanceof HttpContextMapperType
-                    && ((HttpContextMapperType) binding.getContextMapper()).getClass_() != null) {
-                setTextValue(getMapperClassText(), ((HttpContextMapperType) binding.getContextMapper()).getClass_());
+        if (_binding != null && _binding instanceof HTTPBindingType) {
+            HTTPBindingType binding = (HTTPBindingType) _binding;
+            if (binding.getContextMapper() != null
+                    && binding.getContextMapper().getClass_() != null) {
+                setTextValue(getMapperClassText(), binding.getContextMapper().getClass_());
             } else {
                 setTextValue(getMapperClassText(), "");
             }
-            if (binding.getMessageComposer() instanceof HttpMessageComposerType
-                    && ((HttpMessageComposerType) binding.getMessageComposer()).getClass_() != null) {
+            if (binding.getMessageComposer() != null
+                    && binding.getMessageComposer().getClass_() != null) {
                 setTextValue(getComposerClassText(),
-                        ((HttpMessageComposerType) binding.getMessageComposer()).getClass_());
+                        binding.getMessageComposer().getClass_());
             } else {
                 setTextValue(getComposerClassText(), "");
             }

@@ -82,10 +82,6 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-
-import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
@@ -248,7 +244,6 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
-        HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
         RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
@@ -279,7 +274,6 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
-        theHornetQPackage.createPackageContents();
         theRulesPackage.createPackageContents();
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
@@ -306,7 +300,6 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
-        theHornetQPackage.initializePackageContents();
         theRulesPackage.initializePackageContents();
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
@@ -352,7 +345,7 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelContextMapper() {
+    public EReference getBaseCamelBinding_ContextMapper() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
     }
 
@@ -361,7 +354,7 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_CamelMessageComposer() {
+    public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
     }
 
@@ -745,8 +738,8 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
 
         camelMailBindingTypeEClass = createEClass(CAMEL_MAIL_BINDING_TYPE);
         createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__HOST);
@@ -757,12 +750,6 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__CONSUME);
         createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PRODUCE);
         createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__SECURE);
-
-        documentRootEClass = createEClass(DOCUMENT_ROOT);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MAIL);
 
         camelMailConsumerTypeEClass = createEClass(CAMEL_MAIL_CONSUMER_TYPE);
         createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY);
@@ -786,6 +773,12 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__CC);
         createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__BCC);
         createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__REPLY_TO);
+
+        documentRootEClass = createEClass(DOCUMENT_ROOT);
+        createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MAIL);
 
         // Create enums
         mailConsumerAccountTypeEEnum = createEEnum(MAIL_CONSUMER_ACCOUNT_TYPE);
@@ -833,8 +826,8 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelMailBindingTypeEClass, CamelMailBindingType.class, "CamelMailBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelMailBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -845,12 +838,6 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         initEReference(getCamelMailBindingType_Consume(), this.getCamelMailConsumerType(), null, "consume", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getCamelMailBindingType_Produce(), this.getCamelMailProducerType(), null, "produce", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMailBindingType_Secure(), theXMLTypePackage.getBoolean(), "secure", "false", 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingMail(), this.getCamelMailBindingType(), null, "bindingMail", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(camelMailConsumerTypeEClass, CamelMailConsumerType.class, "CamelMailConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelMailConsumerType_InitialDelay(), theSwitchyardPackage.getPropInteger(), "initialDelay", "1000", 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -874,6 +861,12 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         initEAttribute(getCamelMailProducerType_CC(), theXMLTypePackage.getString(), "cC", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMailProducerType_BCC(), theXMLTypePackage.getString(), "bCC", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMailProducerType_ReplyTo(), theXMLTypePackage.getString(), "replyTo", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingMail(), this.getCamelMailBindingType(), null, "bindingMail", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(mailConsumerAccountTypeEEnum, MailConsumerAccountType.class, "MailConsumerAccountType");
@@ -908,7 +901,7 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
           (baseCamelBindingEClass, 
            source, 
@@ -917,7 +910,7 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelContextMapper(), 
+          (getBaseCamelBinding_ContextMapper(), 
            source, 
            new String[] {
              "kind", "element",
@@ -925,7 +918,7 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBaseCamelBinding_CamelMessageComposer(), 
+          (getBaseCamelBinding_MessageComposer(), 
            source, 
            new String[] {
              "kind", "element",
@@ -1001,43 +994,6 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
            new String[] {
              "kind", "attribute",
              "name", "secure"
-           });		
-        addAnnotation
-          (documentRootEClass, 
-           source, 
-           new String[] {
-             "name", "",
-             "kind", "mixed"
-           });		
-        addAnnotation
-          (getDocumentRoot_Mixed(), 
-           source, 
-           new String[] {
-             "kind", "elementWildcard",
-             "name", ":mixed"
-           });		
-        addAnnotation
-          (getDocumentRoot_XMLNSPrefixMap(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "xmlns:prefix"
-           });		
-        addAnnotation
-          (getDocumentRoot_XSISchemaLocation(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "xsi:schemaLocation"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingMail(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.mail",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
           (camelMailConsumerTypeEClass, 
@@ -1203,6 +1159,43 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
              "kind", "element",
              "name", "replyTo",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (documentRootEClass, 
+           source, 
+           new String[] {
+             "name", "",
+             "kind", "mixed"
+           });		
+        addAnnotation
+          (getDocumentRoot_Mixed(), 
+           source, 
+           new String[] {
+             "kind", "elementWildcard",
+             "name", ":mixed"
+           });		
+        addAnnotation
+          (getDocumentRoot_XMLNSPrefixMap(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "xmlns:prefix"
+           });		
+        addAnnotation
+          (getDocumentRoot_XSISchemaLocation(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "xsi:schemaLocation"
+           });		
+        addAnnotation
+          (getDocumentRoot_BindingMail(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.mail",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
           (mailConsumerAccountTypeEEnum, 

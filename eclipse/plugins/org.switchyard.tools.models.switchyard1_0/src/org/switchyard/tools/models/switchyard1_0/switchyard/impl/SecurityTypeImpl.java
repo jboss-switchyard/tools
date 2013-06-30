@@ -22,9 +22,9 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getCallbackHandler <em>Callback Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getRolesAllowed <em>Roles Allowed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getRunAs <em>Run As</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getSecurityDomain <em>Security Domain</em>}</li>
@@ -34,6 +34,16 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * @generated
  */
 public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
+    /**
+     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProperties()
+     * @generated
+     * @ordered
+     */
+    protected PropertiesType properties;
+
     /**
      * The default value of the '{@link #getCallbackHandler() <em>Callback Handler</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -73,16 +83,6 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
      * @ordered
      */
     protected String name = NAME_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProperties()
-     * @generated
-     * @ordered
-     */
-    protected PropertiesType properties;
 
     /**
      * The default value of the '{@link #getRolesAllowed() <em>Roles Allowed</em>}' attribute.
@@ -333,12 +333,12 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+                return getProperties();
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 return getCallbackHandler();
             case SwitchyardPackage.SECURITY_TYPE__NAME:
                 return getName();
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                return getProperties();
             case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
                 return getRolesAllowed();
             case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
@@ -357,14 +357,14 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+                setProperties((PropertiesType)newValue);
+                return;
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 setCallbackHandler((String)newValue);
                 return;
             case SwitchyardPackage.SECURITY_TYPE__NAME:
                 setName((String)newValue);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                setProperties((PropertiesType)newValue);
                 return;
             case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
                 setRolesAllowed((String)newValue);
@@ -387,14 +387,14 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+                setProperties((PropertiesType)null);
+                return;
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 setCallbackHandler(CALLBACK_HANDLER_EDEFAULT);
                 return;
             case SwitchyardPackage.SECURITY_TYPE__NAME:
                 setName(NAME_EDEFAULT);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                setProperties((PropertiesType)null);
                 return;
             case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
                 setRolesAllowed(ROLES_ALLOWED_EDEFAULT);
@@ -417,12 +417,12 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+                return properties != null;
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
                 return CALLBACK_HANDLER_EDEFAULT == null ? callbackHandler != null : !CALLBACK_HANDLER_EDEFAULT.equals(callbackHandler);
             case SwitchyardPackage.SECURITY_TYPE__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                return properties != null;
             case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
                 return ROLES_ALLOWED_EDEFAULT == null ? rolesAllowed != null : !ROLES_ALLOWED_EDEFAULT.equals(rolesAllowed);
             case SwitchyardPackage.SECURITY_TYPE__RUN_AS:

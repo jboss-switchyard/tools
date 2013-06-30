@@ -80,11 +80,11 @@ public class DocumentRootItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL);
             childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT);
             childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_MOCK);
             childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_SEDA);
             childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_TIMER);
+            childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_URI);
         }
         return childrenFeatures;
     }
@@ -136,11 +136,11 @@ public class DocumentRootItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
-            case CorePackage.DOCUMENT_ROOT__BINDING_CAMEL:
             case CorePackage.DOCUMENT_ROOT__BINDING_DIRECT:
             case CorePackage.DOCUMENT_ROOT__BINDING_MOCK:
             case CorePackage.DOCUMENT_ROOT__BINDING_SEDA:
             case CorePackage.DOCUMENT_ROOT__BINDING_TIMER:
+            case CorePackage.DOCUMENT_ROOT__BINDING_URI:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -157,11 +157,6 @@ public class DocumentRootItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
-                 CoreFactory.eINSTANCE.createCamelBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -182,6 +177,11 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (CorePackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
                  CoreFactory.eINSTANCE.createCamelTimerBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (CorePackage.Literals.DOCUMENT_ROOT__BINDING_URI,
+                 CoreFactory.eINSTANCE.createCamelBindingType()));
     }
 
     /**

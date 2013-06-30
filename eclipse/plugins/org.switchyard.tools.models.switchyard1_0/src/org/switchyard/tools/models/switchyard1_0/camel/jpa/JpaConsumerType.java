@@ -413,13 +413,13 @@ public interface JpaConsumerType extends EObject {
      * @return the value of the '<em>Maximum Results</em>' attribute.
      * @see #isSetMaximumResults()
      * @see #unsetMaximumResults()
-     * @see #setMaximumResults(Object)
+     * @see #setMaximumResults(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_MaximumResults()
-     * @model default="-1" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
+     * @model default="-1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='maximumResults' namespace='##targetNamespace'"
      * @generated
      */
-    Object getMaximumResults();
+    int getMaximumResults();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaximumResults <em>Maximum Results</em>}' attribute.
@@ -431,7 +431,7 @@ public interface JpaConsumerType extends EObject {
      * @see #getMaximumResults()
      * @generated
      */
-    void setMaximumResults(Object value);
+    void setMaximumResults(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaximumResults <em>Maximum Results</em>}' attribute.
@@ -439,7 +439,7 @@ public interface JpaConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetMaximumResults()
      * @see #getMaximumResults()
-     * @see #setMaximumResults(Object)
+     * @see #setMaximumResults(int)
      * @generated
      */
     void unsetMaximumResults();
@@ -451,7 +451,7 @@ public interface JpaConsumerType extends EObject {
      * @return whether the value of the '<em>Maximum Results</em>' attribute is set.
      * @see #unsetMaximumResults()
      * @see #getMaximumResults()
-     * @see #setMaximumResults(Object)
+     * @see #setMaximumResults(int)
      * @generated
      */
     boolean isSetMaximumResults();

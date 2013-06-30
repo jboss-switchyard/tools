@@ -31,7 +31,7 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
      */
     public static HttpFactory init() {
         try {
-            HttpFactory theHttpFactory = (HttpFactory)EPackage.Registry.INSTANCE.getEFactory(HttpPackage.eNS_URI);
+            HttpFactory theHttpFactory = (HttpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-http:config:1.0"); 
             if (theHttpFactory != null) {
                 return theHttpFactory;
             }
@@ -60,11 +60,9 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case HttpPackage.HTTP_BINDING_TYPE: return createHttpBindingType();
-            case HttpPackage.HTTP_CONTEXT_MAPPER_TYPE: return createHttpContextMapperType();
-            case HttpPackage.HTTP_MESSAGE_COMPOSER_TYPE: return createHttpMessageComposerType();
-            case HttpPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case HttpPackage.BASIC_AUTHENTICATION_TYPE: return createBasicAuthenticationType();
+            case HttpPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case HttpPackage.HTTP_BINDING_TYPE: return createHTTPBindingType();
             case HttpPackage.NTLM_AUTHENTICATION_TYPE: return createNTLMAuthenticationType();
             case HttpPackage.PROXY_TYPE: return createProxyType();
             default:
@@ -77,39 +75,19 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public HttpBindingType createHttpBindingType() {
-        HttpBindingTypeImpl httpBindingType = new HttpBindingTypeImpl();
-        return httpBindingType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public HttpContextMapperType createHttpContextMapperType() {
-        HttpContextMapperTypeImpl httpContextMapperType = new HttpContextMapperTypeImpl();
-        return httpContextMapperType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public HttpMessageComposerType createHttpMessageComposerType() {
-        HttpMessageComposerTypeImpl httpMessageComposerType = new HttpMessageComposerTypeImpl();
-        return httpMessageComposerType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public HTTPBindingType createHTTPBindingType() {
+        HTTPBindingTypeImpl httpBindingType = new HTTPBindingTypeImpl();
+        return httpBindingType;
     }
 
     /**

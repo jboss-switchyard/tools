@@ -72,19 +72,20 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
             case SwitchyardPackage.ESB_INTERFACE: return createEsbInterface();
             case SwitchyardPackage.HANDLERS_TYPE: return createHandlersType();
             case SwitchyardPackage.HANDLER_TYPE: return createHandlerType();
+            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: return createJavaOperationSelectorType();
             case SwitchyardPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
             case SwitchyardPackage.PROPERTIES_TYPE: return createPropertiesType();
             case SwitchyardPackage.PROPERTY_TYPE: return createPropertyType();
+            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: return createRegexOperationSelectorType();
             case SwitchyardPackage.RESOURCE_TYPE: return createResourceType();
+            case SwitchyardPackage.SECURITIES_TYPE: return createSecuritiesType();
+            case SwitchyardPackage.SECURITY_TYPE: return createSecurityType();
+            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: return createStaticOperationSelectorType();
             case SwitchyardPackage.SWITCH_YARD_TYPE: return createSwitchYardType();
+            case SwitchyardPackage.THROTTLING_TYPE: return createThrottlingType();
             case SwitchyardPackage.TRANSFORMS_TYPE: return createTransformsType();
             case SwitchyardPackage.VALIDATES_TYPE: return createValidatesType();
-            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: return createJavaOperationSelectorType();
-            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: return createRegexOperationSelectorType();
-            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: return createStaticOperationSelectorType();
             case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE: return createXPathOperationSelectorType();
-            case SwitchyardPackage.SECURITY_TYPE: return createSecurityType();
-            case SwitchyardPackage.SECURITIES_TYPE: return createSecuritiesType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -263,6 +264,16 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ThrottlingType createThrottlingType() {
+        ThrottlingTypeImpl throttlingType = new ThrottlingTypeImpl();
+        return throttlingType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

@@ -59,9 +59,9 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
         switch (eClass.getClassifierID()) {
             case FilePackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case FilePackage.CAMEL_FILE_BINDING_TYPE: return createCamelFileBindingType();
+            case FilePackage.DOCUMENT_ROOT: return createDocumentRoot();
             case FilePackage.FILE_CONSUMER_TYPE: return createFileConsumerType();
             case FilePackage.FILE_PRODUCER_TYPE: return createFileProducerType();
-            case FilePackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -75,10 +75,10 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
-            case FilePackage.TIME_UNIT:
-                return createTimeUnitFromString(eDataType, initialValue);
-            case FilePackage.TIME_UNIT_OBJECT:
-                return createTimeUnitObjectFromString(eDataType, initialValue);
+            case FilePackage.TIME_UNIT_TYPE:
+                return createTimeUnitTypeFromString(eDataType, initialValue);
+            case FilePackage.TIME_UNIT_TYPE_OBJECT:
+                return createTimeUnitTypeObjectFromString(eDataType, initialValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -92,10 +92,10 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
-            case FilePackage.TIME_UNIT:
-                return convertTimeUnitToString(eDataType, instanceValue);
-            case FilePackage.TIME_UNIT_OBJECT:
-                return convertTimeUnitObjectToString(eDataType, instanceValue);
+            case FilePackage.TIME_UNIT_TYPE:
+                return convertTimeUnitTypeToString(eDataType, instanceValue);
+            case FilePackage.TIME_UNIT_TYPE_OBJECT:
+                return convertTimeUnitTypeObjectToString(eDataType, instanceValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -146,18 +146,8 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public DocumentRoot createDocumentRoot() {
-        DocumentRootImpl documentRoot = new DocumentRootImpl();
-        return documentRoot;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TimeUnit createTimeUnitFromString(EDataType eDataType, String initialValue) {
-        TimeUnit result = TimeUnit.get(initialValue);
+    public TimeUnitType createTimeUnitTypeFromString(EDataType eDataType, String initialValue) {
+        TimeUnitType result = TimeUnitType.get(initialValue);
         if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
@@ -167,7 +157,7 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertTimeUnitToString(EDataType eDataType, Object instanceValue) {
+    public String convertTimeUnitTypeToString(EDataType eDataType, Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
     }
 
@@ -176,8 +166,8 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public TimeUnit createTimeUnitObjectFromString(EDataType eDataType, String initialValue) {
-        return createTimeUnitFromString(FilePackage.Literals.TIME_UNIT, initialValue);
+    public TimeUnitType createTimeUnitTypeObjectFromString(EDataType eDataType, String initialValue) {
+        return createTimeUnitTypeFromString(FilePackage.Literals.TIME_UNIT_TYPE, initialValue);
     }
 
     /**
@@ -185,8 +175,18 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertTimeUnitObjectToString(EDataType eDataType, Object instanceValue) {
-        return convertTimeUnitToString(FilePackage.Literals.TIME_UNIT, instanceValue);
+    public String convertTimeUnitTypeObjectToString(EDataType eDataType, Object instanceValue) {
+        return convertTimeUnitTypeToString(FilePackage.Literals.TIME_UNIT_TYPE, instanceValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DocumentRoot createDocumentRoot() {
+        DocumentRootImpl documentRoot = new DocumentRootImpl();
+        return documentRoot;
     }
 
     /**

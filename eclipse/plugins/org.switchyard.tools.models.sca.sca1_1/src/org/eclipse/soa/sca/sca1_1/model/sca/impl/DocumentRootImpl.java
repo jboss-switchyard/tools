@@ -51,6 +51,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.EJBImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.EJBSessionBeanBinding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Export;
 import org.eclipse.soa.sca.sca1_1.model.sca.ExportType;
+import org.eclipse.soa.sca.sca1_1.model.sca.ExtensionsType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.ImplementationType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Import;
@@ -109,6 +110,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.WireFormatType;
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.DocumentRootImpl#getExportC <em>Export C</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.DocumentRootImpl#getExportCpp <em>Export Cpp</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.DocumentRootImpl#getExportJava <em>Export Java</em>}</li>
+ *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.DocumentRootImpl#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.DocumentRootImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.DocumentRootImpl#getImplementationBpel <em>Implementation Bpel</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.DocumentRootImpl#getImplementationC <em>Implementation C</em>}</li>
@@ -769,6 +771,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ExtensionsType getExtensions() {
+        return (ExtensionsType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Extensions(), true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetExtensions(ExtensionsType newExtensions, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Extensions(), newExtensions, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExtensions(ExtensionsType newExtensions) {
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Extensions(), newExtensions);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1654,6 +1683,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetExportCpp(null, msgs);
             case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
                 return basicSetExportJava(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__EXTENSIONS:
+                return basicSetExtensions(null, msgs);
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
                 return basicSetImplementation(null, msgs);
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
@@ -1775,6 +1806,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getExportCpp();
             case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
                 return getExportJava();
+            case ScaPackage.DOCUMENT_ROOT__EXTENSIONS:
+                return getExtensions();
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
                 return getImplementation();
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
@@ -1913,6 +1946,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
                 setExportJava((JavaExportType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXTENSIONS:
+                setExtensions((ExtensionsType)newValue);
                 return;
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
                 setImplementationBpel((BPELImplementation)newValue);
@@ -2070,6 +2106,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
                 setExportJava((JavaExportType)null);
                 return;
+            case ScaPackage.DOCUMENT_ROOT__EXTENSIONS:
+                setExtensions((ExtensionsType)null);
+                return;
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
                 setImplementationBpel((BPELImplementation)null);
                 return;
@@ -2210,6 +2249,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getExportCpp() != null;
             case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
                 return getExportJava() != null;
+            case ScaPackage.DOCUMENT_ROOT__EXTENSIONS:
+                return getExtensions() != null;
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
                 return getImplementation() != null;
             case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
