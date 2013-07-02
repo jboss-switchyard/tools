@@ -81,5 +81,11 @@
         <sca:interface.wsdl interface="BaseService.wsdl#wsdl.porttype(BaseServicePortType)"/>
       </sca:reference>
     </sca:component>
+    <sca:service name="ExtendedService" promote="Component2/ExtendedService">
+      <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
+    </sca:service>
+    <sca:reference name="ExtendedService" multiplicity="0..1">
+      <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
+    </sca:reference>
   </sca:composite>
 </switchyard>

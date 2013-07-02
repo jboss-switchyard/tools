@@ -41,7 +41,7 @@
               <goal>unpack</goal>
             </goals>
             <configuration>
-              <includes>META-INF/switchyard.xml</includes>
+              <includes>META-INF/switchyard.xml,WEB-INF/switchyard.xml</includes>
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
@@ -119,6 +119,7 @@
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
                   <version>${version.switchyard.runtime}</version>
+                  <type>war</type>
                   <outputDirectory>test-data/quickstart-configs/demos/helpdesk</outputDirectory>
                 </artifactItem>
 <!--                 <artifactItem> -->

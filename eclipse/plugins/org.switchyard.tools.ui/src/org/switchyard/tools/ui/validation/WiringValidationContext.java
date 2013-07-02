@@ -146,9 +146,6 @@ final class WiringValidationContext {
             if (service.getName() == null) {
                 continue;
             }
-            Set<Contract> contracts = new LinkedHashSet<Contract>();
-            contracts.add(service);
-            _names.put(service.getName(), contracts);
         }
         for (Reference reference : composite.getReference()) {
             addWires(reference);

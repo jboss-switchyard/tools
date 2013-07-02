@@ -58,7 +58,7 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
      * @throws Exception exception
      */
     public void testDemosHelpdeskQuickstart() throws Exception {
-        runModelTest("demos/helpdesk");
+        runModelTest("demos/helpdesk", true);
     }
 
     // /**
@@ -336,7 +336,11 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     private void runModelTest(String projectName) throws Exception {
-        loadModelFile("test-data/quickstart-configs/" + projectName + "/META-INF/switchyard.xml");
+        runModelTest(projectName, false);
+    }
+
+    private void runModelTest(String projectName, boolean isWeb) throws Exception {
+        loadModelFile("test-data/quickstart-configs/" + projectName + (isWeb ? "/WEB-INF/switchyard.xml" : "/META-INF/switchyard.xml"));
 
         waitForJobs();
     }

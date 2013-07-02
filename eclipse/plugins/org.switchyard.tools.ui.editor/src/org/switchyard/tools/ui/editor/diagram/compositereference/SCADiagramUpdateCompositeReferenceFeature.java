@@ -32,9 +32,13 @@ import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.switchyard.tools.ui.editor.model.merge.CompositeMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.ContractMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 
 /**
@@ -91,8 +95,22 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         }
 
         // check the wiring
+        final Set<ComponentReference> promotedReferences = new LinkedHashSet<ComponentReference>(reference.getPromote());
+        if (reference.getName() != null && reference.getName().length() > 0) {
+            final ContractMergedModelAdapter mergeAdapter = MergedModelUtil.getAdapter(reference,
+                    ContractMergedModelAdapter.class);
+            final CompositeMergedModelAdapter composite = MergedModelUtil.getAdapter(mergeAdapter.getSwitchYard()
+                    .getComposite(), CompositeMergedModelAdapter.class);
+            for (Component component : composite.getComponents()) {
+                for (ComponentReference componentReference : component.getReference()) {
+                    if (reference.getName().equals(componentReference.getName())) {
+                        promotedReferences.add(componentReference);
+                    }
+                }
+            }
+        }
         final Set<Contract> existingConnections = getExistingConnections(cs);
-        for (ComponentReference promotedReference : reference.getPromote()) {
+        for (ComponentReference promotedReference : promotedReferences) {
             if (promotedReference != null && !existingConnections.remove(promotedReference)) {
                 return Reason.createTrueReason("Update connections.");
             }
@@ -139,9 +157,23 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         }
 
         // update the wires
+        final Set<ComponentReference> promotedReferences = new LinkedHashSet<ComponentReference>(reference.getPromote());
+        if (reference.getName() != null && reference.getName().length() > 0) {
+            final ContractMergedModelAdapter mergeAdapter = MergedModelUtil.getAdapter(reference,
+                    ContractMergedModelAdapter.class);
+            final CompositeMergedModelAdapter composite = MergedModelUtil.getAdapter(mergeAdapter.getSwitchYard()
+                    .getComposite(), CompositeMergedModelAdapter.class);
+            for (Component component : composite.getComponents()) {
+                for (ComponentReference componentReference : component.getReference()) {
+                    if (reference.getName().equals(componentReference.getName())) {
+                        promotedReferences.add(componentReference);
+                    }
+                }
+            }
+        }
         final Set<Contract> existingConnections = getExistingConnections(cs);
         final Anchor anchor = cs.getAnchors().get(0);
-        for (ComponentReference promotedReference : reference.getPromote()) {
+        for (ComponentReference promotedReference : promotedReferences) {
             if (promotedReference != null && !existingConnections.remove(promotedReference)) {
                 for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
                         promotedReference)) {

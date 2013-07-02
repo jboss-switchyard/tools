@@ -82,7 +82,8 @@ public class UpdateComponentReferenceFeature extends AbstractUpdateFeature {
                 .getComposite(), CompositeMergedModelAdapter.class);
 
         for (Reference compositeReference : composite.getReferences()) {
-            if (compositeReference.getPromote().contains(reference)) {
+            if (compositeReference.getPromote().contains(reference)
+                    || (reference.getName() != null && reference.getName().equals(compositeReference.getName()))) {
                 if (!existingConnections.remove(compositeReference)) {
                     return Reason.createTrueReason("Update connections.");
                 }
@@ -135,7 +136,8 @@ public class UpdateComponentReferenceFeature extends AbstractUpdateFeature {
                 .getComposite(), CompositeMergedModelAdapter.class);
 
         for (Reference compositeReference : composite.getReferences()) {
-            if (compositeReference.getPromote().contains(reference)) {
+            if (compositeReference.getPromote().contains(reference)
+                    || (reference.getName() != null && reference.getName().equals(compositeReference.getName()))) {
                 if (!existingConnections.remove(compositeReference)) {
                     for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
                             compositeReference)) {

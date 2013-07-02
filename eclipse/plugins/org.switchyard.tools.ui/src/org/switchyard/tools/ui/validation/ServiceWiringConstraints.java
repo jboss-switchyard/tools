@@ -291,7 +291,7 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
 
     private IStatus validateUniqueName(IValidationContext ctx, Contract contract) {
         final String name = contract.getName();
-        if (!(contract instanceof Service || contract instanceof Reference || contract instanceof ComponentService)
+        if (!(contract instanceof Reference || contract instanceof ComponentService)
                 || name == null) {
             // only need to verify types that provide services
             return null;
@@ -303,10 +303,8 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
         final Set<Contract> contracts = names.get(name);
         boolean dupd = false;
         for (Contract other : contracts) {
-            if (other == contract || (other instanceof Service && ((Service) other).getPromote() == contract)
-                    || (contract instanceof Service && ((Service) contract).getPromote() == other)) {
-                // not a duplicate if it's us or if it's the service promoting
-                // this component service.
+            if (other == contract || other instanceof Service) {
+                // not a duplicate if it's us or if it's a service.
                 continue;
             }
             dupd = true;

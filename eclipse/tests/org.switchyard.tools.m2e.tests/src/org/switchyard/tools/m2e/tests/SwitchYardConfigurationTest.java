@@ -39,7 +39,7 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
      * @throws Exception if a failure occurs.
      */
     public void testBeanServiceQuickstart() throws Exception {
-        runProjectTest("bean-service");
+        runProjectTest("bean-service", false);
     }
 
     /**
@@ -48,10 +48,10 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
      * @throws Exception if a failure occurs.
      */
     public void testHelpDeskDemo() throws Exception {
-        runProjectTest("helpdesk");
+        runProjectTest("helpdesk", true);
     }
 
-    private void runProjectTest(String projectName) throws Exception {
+    private void runProjectTest(String projectName, boolean isWeb) throws Exception {
         ResolverConfiguration configuration = new ResolverConfiguration();
         IProject project = importProject("test-data/projects/" + projectName + "/pom.xml", configuration);
         waitForJobs();
@@ -79,7 +79,7 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
             sourceReader = new InputStreamReader(project.getFile("target/classes/META-INF/switchyard.xml")
                     .getContents());
             testReader = new InputStreamReader(SwitchYardConfigurationTest.class.getClassLoader().getResourceAsStream(
-                    "test-data/validation/" + projectName + "/META-INF/switchyard.xml"));
+                    "test-data/validation/" + projectName + (isWeb ? "/WEB-INF/switchyard.xml" : "/META-INF/switchyard.xml")));
             Diff diff = XMLUnit.compareXML(sourceReader, testReader);
             diff.overrideElementQualifier(new ElementNameAndAttributeQualifier());
             assertTrue(diff.toString(), diff.similar());
