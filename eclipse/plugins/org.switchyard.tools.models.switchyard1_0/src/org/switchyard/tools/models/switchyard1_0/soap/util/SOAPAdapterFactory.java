@@ -98,7 +98,7 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createInterceptorTypeAdapter();
             }
             @Override
-            public Adapter caseMessageComposerType(MessageComposerType object) {
+            public Adapter caseMessageComposerType(org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType object) {
                 return createMessageComposerTypeAdapter();
             }
             @Override
@@ -122,6 +122,14 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createSOAPBindingTypeAdapter();
             }
             @Override
+            public Adapter caseBasicAuthenticationType(BasicAuthenticationType object) {
+                return createBasicAuthenticationTypeAdapter();
+            }
+            @Override
+            public Adapter caseNTLMAuthenticationType(NTLMAuthenticationType object) {
+                return createNTLMAuthenticationTypeAdapter();
+            }
+            @Override
             public Adapter caseSwitchyard_ContextMapperType(org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType object) {
                 return createSwitchyard_ContextMapperTypeAdapter();
             }
@@ -130,7 +138,7 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createCommonExtensionBaseAdapter();
             }
             @Override
-            public Adapter caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
+            public Adapter caseSwitchyard_MessageComposerType(MessageComposerType object) {
                 return createSwitchyard_MessageComposerTypeAdapter();
             }
             @Override
@@ -200,6 +208,34 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSOAPBindingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType <em>Basic Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType
+     * @generated
+     */
+    public Adapter createBasicAuthenticationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType <em>NTLM Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType
+     * @generated
+     */
+    public Adapter createNTLMAuthenticationTypeAdapter() {
         return null;
     }
 

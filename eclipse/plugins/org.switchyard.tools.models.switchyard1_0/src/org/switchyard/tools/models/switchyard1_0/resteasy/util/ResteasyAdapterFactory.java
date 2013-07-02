@@ -89,6 +89,14 @@ public class ResteasyAdapterFactory extends AdapterFactoryImpl {
                 return createRESTBindingTypeAdapter();
             }
             @Override
+            public Adapter caseBasicAuthenticationType(BasicAuthenticationType object) {
+                return createBasicAuthenticationTypeAdapter();
+            }
+            @Override
+            public Adapter caseNTLMAuthenticationType(NTLMAuthenticationType object) {
+                return createNTLMAuthenticationTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -131,6 +139,34 @@ public class ResteasyAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createRESTBindingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType <em>Basic Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType
+     * @generated
+     */
+    public Adapter createBasicAuthenticationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType <em>NTLM Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType
+     * @generated
+     */
+    public Adapter createNTLMAuthenticationTypeAdapter() {
         return null;
     }
 

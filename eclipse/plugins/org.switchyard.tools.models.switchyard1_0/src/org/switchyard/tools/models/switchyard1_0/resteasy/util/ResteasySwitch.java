@@ -97,6 +97,21 @@ public class ResteasySwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE: {
+                BasicAuthenticationType basicAuthenticationType = (BasicAuthenticationType)theEObject;
+                T result = caseBasicAuthenticationType(basicAuthenticationType);
+                if (result == null) result = caseCommonExtensionBase(basicAuthenticationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ResteasyPackage.NTLM_AUTHENTICATION_TYPE: {
+                NTLMAuthenticationType ntlmAuthenticationType = (NTLMAuthenticationType)theEObject;
+                T result = caseNTLMAuthenticationType(ntlmAuthenticationType);
+                if (result == null) result = caseBasicAuthenticationType(ntlmAuthenticationType);
+                if (result == null) result = caseCommonExtensionBase(ntlmAuthenticationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -113,6 +128,36 @@ public class ResteasySwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseRESTBindingType(RESTBindingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Basic Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Basic Authentication Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseBasicAuthenticationType(BasicAuthenticationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>NTLM Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>NTLM Authentication Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseNTLMAuthenticationType(NTLMAuthenticationType object) {
         return null;
     }
 

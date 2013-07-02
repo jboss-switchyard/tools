@@ -64,7 +64,9 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
@@ -107,6 +109,20 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * @generated
      */
     private EClass restBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass basicAuthenticationTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass ntlmAuthenticationTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -315,6 +331,24 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getRESTBindingType_Basic() {
+        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRESTBindingType_Ntlm() {
+        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getRESTBindingType_ContextPath() {
         return (EAttribute)restBindingTypeEClass.getEStructuralFeatures().get(3);
     }
@@ -325,7 +359,79 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * @generated
      */
     public EReference getRESTBindingType_Proxy() {
-        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(5);
+        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBasicAuthenticationType() {
+        return basicAuthenticationTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_User() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Password() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Realm() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Host() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Port() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getNTLMAuthenticationType() {
+        return ntlmAuthenticationTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getNTLMAuthenticationType_Domain() {
+        return (EAttribute)ntlmAuthenticationTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -464,7 +570,19 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__INTERFACES);
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__CONTEXT_PATH);
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__ADDRESS);
+        createEReference(restBindingTypeEClass, REST_BINDING_TYPE__BASIC);
+        createEReference(restBindingTypeEClass, REST_BINDING_TYPE__NTLM);
         createEReference(restBindingTypeEClass, REST_BINDING_TYPE__PROXY);
+
+        basicAuthenticationTypeEClass = createEClass(BASIC_AUTHENTICATION_TYPE);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__USER);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__PASSWORD);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__REALM);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__HOST);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__PORT);
+
+        ntlmAuthenticationTypeEClass = createEClass(NTLM_AUTHENTICATION_TYPE);
+        createEAttribute(ntlmAuthenticationTypeEClass, NTLM_AUTHENTICATION_TYPE__DOMAIN);
     }
 
     /**
@@ -502,6 +620,8 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         // Add supertypes to classes
         proxyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         restBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        basicAuthenticationTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        ntlmAuthenticationTypeEClass.getESuperTypes().add(this.getBasicAuthenticationType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -522,7 +642,19 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         initEAttribute(getRESTBindingType_Interfaces(), theXMLTypePackage.getString(), "interfaces", null, 1, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRESTBindingType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRESTBindingType_Address(), theXMLTypePackage.getString(), "address", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRESTBindingType_Basic(), this.getBasicAuthenticationType(), null, "basic", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRESTBindingType_Ntlm(), this.getNTLMAuthenticationType(), null, "ntlm", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRESTBindingType_Proxy(), this.getProxyType(), null, "proxy", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(basicAuthenticationTypeEClass, BasicAuthenticationType.class, "BasicAuthenticationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getBasicAuthenticationType_User(), theXMLTypePackage.getString(), "user", null, 1, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Password(), theXMLTypePackage.getString(), "password", null, 1, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Realm(), theXMLTypePackage.getString(), "realm", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(ntlmAuthenticationTypeEClass, NTLMAuthenticationType.class, "NTLMAuthenticationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getNTLMAuthenticationType_Domain(), theXMLTypePackage.getString(), "domain", null, 1, 1, NTLMAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -662,6 +794,22 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
              "kind", "element",
              "name", "address",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getRESTBindingType_Basic(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "basic",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getRESTBindingType_Ntlm(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "ntlm",
+             "namespace", "##targetNamespace"
            });			
         addAnnotation
           (getRESTBindingType_Proxy(), 
@@ -669,6 +817,68 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
            new String[] {
              "kind", "element",
              "name", "proxy",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (basicAuthenticationTypeEClass, 
+           source, 
+           new String[] {
+             "name", "BasicAuthenticationType",
+             "kind", "elementOnly"
+           });			
+        addAnnotation
+          (getBasicAuthenticationType_User(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "user",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getBasicAuthenticationType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getBasicAuthenticationType_Realm(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "realm",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getBasicAuthenticationType_Host(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "host",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getBasicAuthenticationType_Port(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "port",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (ntlmAuthenticationTypeEClass, 
+           source, 
+           new String[] {
+             "name", "NTLMAuthenticationType",
+             "kind", "elementOnly"
+           });			
+        addAnnotation
+          (getNTLMAuthenticationType_Domain(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "domain",
              "namespace", "##targetNamespace"
            });
     }

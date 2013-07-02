@@ -23,9 +23,12 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -33,6 +36,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
@@ -58,6 +63,13 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
     private String _proxyPort;
     private Text _proxyUserText;
     private Text _proxyPasswordText;
+    private Combo _authTypeCombo;
+    private Text _authUserText;
+    private Text _authPasswordText;
+    private Text _authRealmText;
+    private Text _authHostText;
+    private Text _authPortText;
+    private Text _authDomainText;
 
     /**
      * @param parent composite parent
@@ -79,11 +91,57 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
 
         if (getTargetObject() instanceof Reference) {
             TabItem two = new TabItem(_tabFolder, SWT.NONE);
-            two.setText("Proxy Settings");
-            two.setControl(getProxyTabControl(_tabFolder));
+            two.setText("Authentication");
+            two.setControl(getAuthenticationControl(_tabFolder));
+
+            TabItem three = new TabItem(_tabFolder, SWT.NONE);
+            three.setText("Proxy Settings");
+            three.setControl(getProxyTabControl(_tabFolder));
         }
 
         addTabs(_tabFolder);
+    }
+
+    private Control getAuthenticationControl(TabFolder tabFolder) {
+        Composite composite = new Composite(tabFolder, SWT.NONE);
+        GridLayout gl = new GridLayout(2, false);
+        composite.setLayout(gl);
+        
+        _authTypeCombo = createLabelAndCombo(composite, "Authentication Type", true);
+        _authTypeCombo.add("Basic");
+        _authTypeCombo.add("NTLM");
+        _authTypeCombo.setText("Basic");
+        _authTypeCombo.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+                _authUserText.setText("");
+                _authPasswordText.setText("");
+                _authRealmText.setText("");
+                _authHostText.setText("");
+                _authPortText.setText("");
+                _authDomainText.setText("");
+                removeAuthFeatures();
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        
+        _authUserText = createLabelAndText(composite, "User");
+        _authPasswordText = createLabelAndText(composite, "Password");
+        _authRealmText = createLabelAndText(composite, "Realm");
+        _authHostText = createLabelAndText(composite, "Host");
+        _authPortText = createLabelAndText(composite, "Port");
+        _authDomainText = createLabelAndText(composite, "Domain");
+        
+        _authTypeCombo.select(0);
+        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+        
+        return composite;
     }
 
     private Control getProxyTabControl(TabFolder tabFolder) {
@@ -175,6 +233,30 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
                         nfe.fillInStackTrace();
                     }
                 }
+            } else if (control.equals(_authUserText)) {
+                String user = _authUserText.getText().trim();
+                updateAuthFeature("user", user);
+            } else if (control.equals(_authPasswordText)) {
+                String password = _authPasswordText.getText().trim();
+                updateAuthFeature("password", password);
+            } else if (control.equals(_authPortText)) {
+                String port = _authPortText.getText().trim();
+                try {
+                    Integer portInt = Integer.parseInt(port);
+                    updateAuthFeature("port", portInt);
+                } catch (NumberFormatException nfe) {
+                    // ignore
+                    nfe.fillInStackTrace();
+                }
+            } else if (control.equals(_authRealmText)) {
+                String realm = _authRealmText.getText().trim();
+                updateAuthFeature("realm", realm);
+            } else if (control.equals(_authHostText)) {
+                String host = _authHostText.getText().trim();
+                updateAuthFeature("host", host);
+            } else if (control.equals(_authDomainText)) {
+                String domain = _authDomainText.getText().trim();
+                updateAuthFeature("domain", domain);
             }
         }
         super.handleModify(control);
@@ -199,6 +281,18 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         String delimited = _interfacesList.getSelection();
         if (delimited.trim().length() == 0) {
             setErrorMessage("At least one Java interface or abstract/empty class with REST annotations must be specified.");
+        }
+
+        String portText = null;
+        if (_authPortText != null && !_authPortText.isDisposed()) {
+            portText = _authPortText.getText();
+            if (!portText.trim().isEmpty()) {
+                try {
+                    Integer.parseInt(portText);
+                } catch (NumberFormatException nfe) {
+                    setErrorMessage("The authentication port must be a valid integer");
+                }
+            }
         }
 
         if (_proxyPort != null && _proxyPort.trim().length() > 0) {
@@ -270,6 +364,43 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
                 }
                 setTextValue(_proxyUserText, _binding.getProxy().getUser());
                 setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
+            }
+            if (this._binding.getBasic() != null) {
+                _authTypeCombo.select(0);
+                setTextValue(_authUserText, this._binding.getBasic().getUser());
+                setTextValue(_authPasswordText, this._binding.getBasic().getPassword());
+                setTextValue(_authHostText, this._binding.getBasic().getHost());
+                setTextValue(_authRealmText, this._binding.getBasic().getRealm());
+                if (this._binding.getBasic().getPort() != null) {
+                    setTextValue(_authPortText, this._binding.getBasic().getPort().toString());
+                } else {
+                    setTextValue(_authPortText, "");
+                }
+            } else if (this._binding.getNtlm() != null) {
+                _authTypeCombo.select(1);
+                setTextValue(_authUserText, this._binding.getNtlm().getUser());
+                setTextValue(_authPasswordText, this._binding.getNtlm().getPassword());
+                setTextValue(_authHostText, this._binding.getNtlm().getHost());
+                setTextValue(_authRealmText, this._binding.getNtlm().getRealm());
+                setTextValue(_authDomainText, this._binding.getNtlm().getDomain());
+                if (this._binding.getNtlm().getPort() != null) {
+                    setTextValue(_authPortText, this._binding.getNtlm().getPort().toString());
+                } else {
+                    setTextValue(_authPortText, "");
+                }
+            } else {
+                if (_authTypeCombo != null) {
+                    _authTypeCombo.select(0);
+                    setTextValue(_authUserText, null);
+                    setTextValue(_authPasswordText, null);
+                    setTextValue(_authHostText, null);
+                    setTextValue(_authRealmText, null);
+                    setTextValue(_authDomainText, null);
+                    setTextValue(_authPortText, null);
+                }
+            }
+            if (_authDomainText != null) {
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
             }
             super.setTabsBinding(_binding);
             setInUpdate(false);
@@ -372,4 +503,73 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         }
     }
 
+    class RemoveBasicAuthenticationOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getBasic() != null) {
+                setFeatureValue(_binding, "basic", null);
+            }
+        }
+    }
+    
+    class RemoveNtlmAuthenticationOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getNtlm() != null) {
+                setFeatureValue(_binding, "ntlm", null);
+            }
+        }
+    }
+
+    class AddBasicAuthenticatiOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getBasic() == null) {
+                BasicAuthenticationType basicAuth = ResteasyFactory.eINSTANCE.createBasicAuthenticationType();
+                _binding.setBasic(basicAuth);
+            }
+        }
+    }
+    
+    class AddNtlmAuthenticatiOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getNtlm() == null) {
+                NTLMAuthenticationType ntlmAuth = ResteasyFactory.eINSTANCE.createNTLMAuthenticationType();
+                _binding.setNtlm(ntlmAuth);
+            }
+        }
+    }
+
+    protected void updateBasicAuthFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveNtlmAuthenticationOp());
+        ops.add(new AddBasicAuthenticatiOp());
+        ops.add(new BasicOperation("basic", featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void updateNtlmAuthFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveBasicAuthenticationOp());
+        ops.add(new AddNtlmAuthenticatiOp());
+        ops.add(new BasicOperation("ntlm", featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void removeAuthFeatures() {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveBasicAuthenticationOp());
+        ops.add(new RemoveNtlmAuthenticationOp());
+        wrapOperation(ops);
+    }
+
+    private void updateAuthFeature(String featureId, Object value) {
+        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic");
+        if (basicAuth) {
+            updateBasicAuthFeature(featureId, value);
+        } else {
+            updateNtlmAuthFeature(featureId, value);
+        }
+    }
 }

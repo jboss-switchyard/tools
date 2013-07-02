@@ -495,13 +495,31 @@ public interface ResteasyPackage extends EPackage {
     int REST_BINDING_TYPE__ADDRESS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
+     * The feature id for the '<em><b>Basic</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_BINDING_TYPE__BASIC = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+
+    /**
      * The feature id for the '<em><b>Proxy</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+    int REST_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
     /**
      * The number of structural features of the '<em>REST Binding Type</em>' class.
@@ -510,7 +528,180 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getBasicAuthenticationType()
+     * @generated
+     */
+    int BASIC_AUTHENTICATION_TYPE = 3;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Realm</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__REALM = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__HOST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__PORT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
+
+    /**
+     * The number of structural features of the '<em>Basic Authentication Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 5;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.NTLMAuthenticationTypeImpl <em>NTLM Authentication Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.NTLMAuthenticationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getNTLMAuthenticationType()
+     * @generated
+     */
+    int NTLM_AUTHENTICATION_TYPE = 4;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__DOCUMENTATION = BASIC_AUTHENTICATION_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__ANY_ATTRIBUTE = BASIC_AUTHENTICATION_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__USER = BASIC_AUTHENTICATION_TYPE__USER;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__PASSWORD = BASIC_AUTHENTICATION_TYPE__PASSWORD;
+
+    /**
+     * The feature id for the '<em><b>Realm</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__REALM = BASIC_AUTHENTICATION_TYPE__REALM;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__HOST = BASIC_AUTHENTICATION_TYPE__HOST;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__PORT = BASIC_AUTHENTICATION_TYPE__PORT;
+
+    /**
+     * The feature id for the '<em><b>Domain</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__DOMAIN = BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>NTLM Authentication Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE_FEATURE_COUNT = BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT + 1;
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType <em>REST Binding Type</em>}'.
@@ -567,6 +758,28 @@ public interface ResteasyPackage extends EPackage {
     EAttribute getRESTBindingType_Address();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getBasic <em>Basic</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Basic</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getBasic()
+     * @see #getRESTBindingType()
+     * @generated
+     */
+    EReference getRESTBindingType_Basic();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getNtlm <em>Ntlm</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Ntlm</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getNtlm()
+     * @see #getRESTBindingType()
+     * @generated
+     */
+    EReference getRESTBindingType_Ntlm();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getContextPath <em>Context Path</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -587,6 +800,92 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      */
     EReference getRESTBindingType_Proxy();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType <em>Basic Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Basic Authentication Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType
+     * @generated
+     */
+    EClass getBasicAuthenticationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getUser <em>User</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>User</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getUser()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_User();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getPassword()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Password();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getRealm <em>Realm</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Realm</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getRealm()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Realm();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getHost <em>Host</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Host</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getHost()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Host();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getPort <em>Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType#getPort()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Port();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType <em>NTLM Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>NTLM Authentication Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType
+     * @generated
+     */
+    EClass getNTLMAuthenticationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType#getDomain <em>Domain</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Domain</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType#getDomain()
+     * @see #getNTLMAuthenticationType()
+     * @generated
+     */
+    EAttribute getNTLMAuthenticationType_Domain();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot <em>Document Root</em>}'.
@@ -761,6 +1060,22 @@ public interface ResteasyPackage extends EPackage {
         EAttribute REST_BINDING_TYPE__ADDRESS = eINSTANCE.getRESTBindingType_Address();
 
         /**
+         * The meta object literal for the '<em><b>Basic</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REST_BINDING_TYPE__BASIC = eINSTANCE.getRESTBindingType_Basic();
+
+        /**
+         * The meta object literal for the '<em><b>Ntlm</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REST_BINDING_TYPE__NTLM = eINSTANCE.getRESTBindingType_Ntlm();
+
+        /**
          * The meta object literal for the '<em><b>Context Path</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -775,6 +1090,74 @@ public interface ResteasyPackage extends EPackage {
          * @generated
          */
         EReference REST_BINDING_TYPE__PROXY = eINSTANCE.getRESTBindingType_Proxy();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getBasicAuthenticationType()
+         * @generated
+         */
+        EClass BASIC_AUTHENTICATION_TYPE = eINSTANCE.getBasicAuthenticationType();
+
+        /**
+         * The meta object literal for the '<em><b>User</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__USER = eINSTANCE.getBasicAuthenticationType_User();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__PASSWORD = eINSTANCE.getBasicAuthenticationType_Password();
+
+        /**
+         * The meta object literal for the '<em><b>Realm</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__REALM = eINSTANCE.getBasicAuthenticationType_Realm();
+
+        /**
+         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__HOST = eINSTANCE.getBasicAuthenticationType_Host();
+
+        /**
+         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__PORT = eINSTANCE.getBasicAuthenticationType_Port();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.NTLMAuthenticationTypeImpl <em>NTLM Authentication Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.NTLMAuthenticationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getNTLMAuthenticationType()
+         * @generated
+         */
+        EClass NTLM_AUTHENTICATION_TYPE = eINSTANCE.getNTLMAuthenticationType();
+
+        /**
+         * The meta object literal for the '<em><b>Domain</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute NTLM_AUTHENTICATION_TYPE__DOMAIN = eINSTANCE.getNTLMAuthenticationType_Domain();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.DocumentRootImpl <em>Document Root</em>}' class.

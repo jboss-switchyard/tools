@@ -23,6 +23,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getAddress <em>Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getBasic <em>Basic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getNtlm <em>Ntlm</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
@@ -143,6 +145,60 @@ public interface RESTBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setAddress(String value);
+
+    /**
+     * Returns the value of the '<em><b>Basic</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Basic</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Basic</em>' containment reference.
+     * @see #setBasic(BasicAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage#getRESTBindingType_Basic()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='basic' namespace='##targetNamespace'"
+     * @generated
+     */
+    BasicAuthenticationType getBasic();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getBasic <em>Basic</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Basic</em>' containment reference.
+     * @see #getBasic()
+     * @generated
+     */
+    void setBasic(BasicAuthenticationType value);
+
+    /**
+     * Returns the value of the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ntlm</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ntlm</em>' containment reference.
+     * @see #setNtlm(NTLMAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage#getRESTBindingType_Ntlm()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='ntlm' namespace='##targetNamespace'"
+     * @generated
+     */
+    NTLMAuthenticationType getNtlm();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getNtlm <em>Ntlm</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ntlm</em>' containment reference.
+     * @see #getNtlm()
+     * @generated
+     */
+    void setNtlm(NTLMAuthenticationType value);
 
     /**
      * Returns the value of the '<em><b>Context Path</b></em>' attribute.

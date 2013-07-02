@@ -24,6 +24,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointConfig <em>Endpoint Config</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointAddress <em>Endpoint Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getBasic <em>Basic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getNtlm <em>Ntlm</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getProxy <em>Proxy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}</li>
@@ -217,6 +219,60 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setEndpointAddress(String value);
+
+    /**
+     * Returns the value of the '<em><b>Basic</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Basic</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Basic</em>' containment reference.
+     * @see #setBasic(BasicAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_Basic()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='basic' namespace='##targetNamespace'"
+     * @generated
+     */
+    BasicAuthenticationType getBasic();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getBasic <em>Basic</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Basic</em>' containment reference.
+     * @see #getBasic()
+     * @generated
+     */
+    void setBasic(BasicAuthenticationType value);
+
+    /**
+     * Returns the value of the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ntlm</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ntlm</em>' containment reference.
+     * @see #setNtlm(NTLMAuthenticationType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_Ntlm()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='ntlm' namespace='##targetNamespace'"
+     * @generated
+     */
+    NTLMAuthenticationType getNtlm();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getNtlm <em>Ntlm</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ntlm</em>' containment reference.
+     * @see #getNtlm()
+     * @generated
+     */
+    void setNtlm(NTLMAuthenticationType value);
 
     /**
      * Returns the value of the '<em><b>In Interceptors</b></em>' containment reference.

@@ -1,8 +1,9 @@
 /**
  */
-package org.switchyard.tools.models.switchyard1_0.http.impl;
+package org.switchyard.tools.models.switchyard1_0.resteasy.impl;
 
 import java.math.BigInteger;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -11,8 +12,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 
-import org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType;
-import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
+import org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,11 +22,11 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl#getUser <em>User</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl#getPassword <em>Password</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl#getRealm <em>Realm</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl#getHost <em>Host</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.BasicAuthenticationTypeImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl#getUser <em>User</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl#getPassword <em>Password</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl#getRealm <em>Realm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl#getHost <em>Host</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl#getPort <em>Port</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,7 +149,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      */
     @Override
     protected EClass eStaticClass() {
-        return HttpPackage.Literals.BASIC_AUTHENTICATION_TYPE;
+        return ResteasyPackage.Literals.BASIC_AUTHENTICATION_TYPE;
     }
 
     /**
@@ -169,7 +170,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
         String oldUser = user;
         user = newUser;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.BASIC_AUTHENTICATION_TYPE__USER, oldUser, user));
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.BASIC_AUTHENTICATION_TYPE__USER, oldUser, user));
     }
 
     /**
@@ -190,7 +191,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
         String oldPassword = password;
         password = newPassword;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD, oldPassword, password));
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD, oldPassword, password));
     }
 
     /**
@@ -211,7 +212,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
         String oldRealm = realm;
         realm = newRealm;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.BASIC_AUTHENTICATION_TYPE__REALM, oldRealm, realm));
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.BASIC_AUTHENTICATION_TYPE__REALM, oldRealm, realm));
     }
 
     /**
@@ -232,7 +233,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
         String oldHost = host;
         host = newHost;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.BASIC_AUTHENTICATION_TYPE__HOST, oldHost, host));
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.BASIC_AUTHENTICATION_TYPE__HOST, oldHost, host));
     }
 
     /**
@@ -253,7 +254,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
         Integer oldPort = port;
         port = newPort;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT, oldPort, port));
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PORT, oldPort, port));
     }
 
     /**
@@ -264,15 +265,15 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__USER:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__USER:
                 return getUser();
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
                 return getPassword();
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__REALM:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__REALM:
                 return getRealm();
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__HOST:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__HOST:
                 return getHost();
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PORT:
                 return getPort();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -286,19 +287,19 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__USER:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__USER:
                 setUser((String)newValue);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
                 setPassword((String)newValue);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__REALM:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__REALM:
                 setRealm((String)newValue);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__HOST:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__HOST:
                 setHost((String)newValue);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PORT:
                 setPort((Integer)newValue);
                 return;
         }
@@ -313,19 +314,19 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__USER:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__USER:
                 setUser(USER_EDEFAULT);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
                 setPassword(PASSWORD_EDEFAULT);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__REALM:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__REALM:
                 setRealm(REALM_EDEFAULT);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__HOST:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__HOST:
                 setHost(HOST_EDEFAULT);
                 return;
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PORT:
                 setPort(PORT_EDEFAULT);
                 return;
         }
@@ -340,15 +341,15 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__USER:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__USER:
                 return USER_EDEFAULT == null ? user != null : !USER_EDEFAULT.equals(user);
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
                 return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__REALM:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__REALM:
                 return REALM_EDEFAULT == null ? realm != null : !REALM_EDEFAULT.equals(realm);
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__HOST:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__HOST:
                 return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
-            case HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT:
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE__PORT:
                 return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
         }
         return super.eIsSet(featureID);

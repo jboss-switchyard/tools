@@ -147,6 +147,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                 _authHostText.setText("");
                 _authPortText.setText("");
                 _authDomainText.setText("");
+                removeAuthFeatures();
             }
 
             @Override
@@ -663,5 +664,12 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                 }
             }
         }
+    }
+
+    protected void removeAuthFeatures() {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new RemoveBasicAuthenticationOp());
+        ops.add(new RemoveNtlmAuthenticationOp());
+        wrapOperation(ops);
     }
 }

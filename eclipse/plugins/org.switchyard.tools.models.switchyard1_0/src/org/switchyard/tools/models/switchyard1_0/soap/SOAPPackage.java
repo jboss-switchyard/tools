@@ -990,13 +990,31 @@ public interface SOAPPackage extends EPackage {
     int SOAP_BINDING_TYPE__ENDPOINT_ADDRESS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
     /**
+     * The feature id for the '<em><b>Basic</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SOAP_BINDING_TYPE__BASIC = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+
+    /**
+     * The feature id for the '<em><b>Ntlm</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SOAP_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+
+    /**
      * The feature id for the '<em><b>Proxy</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+    int SOAP_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 10;
 
     /**
      * The feature id for the '<em><b>Mtom</b></em>' containment reference.
@@ -1005,7 +1023,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__MTOM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+    int SOAP_BINDING_TYPE__MTOM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 11;
 
     /**
      * The feature id for the '<em><b>In Interceptors</b></em>' containment reference.
@@ -1014,7 +1032,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__IN_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 10;
+    int SOAP_BINDING_TYPE__IN_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 12;
 
     /**
      * The feature id for the '<em><b>Out Interceptors</b></em>' containment reference.
@@ -1023,7 +1041,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__OUT_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 11;
+    int SOAP_BINDING_TYPE__OUT_INTERCEPTORS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 13;
 
     /**
      * The number of structural features of the '<em>Binding Type</em>' class.
@@ -1032,7 +1050,126 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 12;
+    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 14;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.BasicAuthenticationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getBasicAuthenticationType()
+     * @generated
+     */
+    int BASIC_AUTHENTICATION_TYPE = 11;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__USER = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Basic Authentication Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.NTLMAuthenticationTypeImpl <em>NTLM Authentication Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.NTLMAuthenticationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getNTLMAuthenticationType()
+     * @generated
+     */
+    int NTLM_AUTHENTICATION_TYPE = 12;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__DOCUMENTATION = BASIC_AUTHENTICATION_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__ANY_ATTRIBUTE = BASIC_AUTHENTICATION_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>User</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__USER = BASIC_AUTHENTICATION_TYPE__USER;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__PASSWORD = BASIC_AUTHENTICATION_TYPE__PASSWORD;
+
+    /**
+     * The feature id for the '<em><b>Domain</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE__DOMAIN = BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>NTLM Authentication Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NTLM_AUTHENTICATION_TYPE_FEATURE_COUNT = BASIC_AUTHENTICATION_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.
@@ -1042,7 +1179,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersType()
      * @generated
      */
-    int SOAP_HEADERS_TYPE = 11;
+    int SOAP_HEADERS_TYPE = 13;
 
     /**
      * The meta object id for the '<em>Soap Headers Type Object</em>' data type.
@@ -1052,7 +1189,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSoapHeadersTypeObject()
      * @generated
      */
-    int SOAP_HEADERS_TYPE_OBJECT = 12;
+    int SOAP_HEADERS_TYPE_OBJECT = 14;
 
     /**
      * The meta object id for the '<em>Wsdl Port Type</em>' data type.
@@ -1062,7 +1199,7 @@ public interface SOAPPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getWsdlPortType()
      * @generated
      */
-    int WSDL_PORT_TYPE = 13;
+    int WSDL_PORT_TYPE = 15;
 
 
     /**
@@ -1261,6 +1398,28 @@ public interface SOAPPackage extends EPackage {
     EAttribute getSOAPBindingType_EndpointAddress();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getBasic <em>Basic</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Basic</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getBasic()
+     * @see #getSOAPBindingType()
+     * @generated
+     */
+    EReference getSOAPBindingType_Basic();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getNtlm <em>Ntlm</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Ntlm</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getNtlm()
+     * @see #getSOAPBindingType()
+     * @generated
+     */
+    EReference getSOAPBindingType_Ntlm();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getInInterceptors <em>In Interceptors</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1281,6 +1440,59 @@ public interface SOAPPackage extends EPackage {
      * @generated
      */
     EReference getSOAPBindingType_OutInterceptors();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType <em>Basic Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Basic Authentication Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType
+     * @generated
+     */
+    EClass getBasicAuthenticationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType#getUser <em>User</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>User</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType#getUser()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_User();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType#getPassword()
+     * @see #getBasicAuthenticationType()
+     * @generated
+     */
+    EAttribute getBasicAuthenticationType_Password();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType <em>NTLM Authentication Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>NTLM Authentication Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType
+     * @generated
+     */
+    EClass getNTLMAuthenticationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType#getDomain <em>Domain</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Domain</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType#getDomain()
+     * @see #getNTLMAuthenticationType()
+     * @generated
+     */
+    EAttribute getNTLMAuthenticationType_Domain();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMtom <em>Mtom</em>}'.
@@ -1789,6 +2001,22 @@ public interface SOAPPackage extends EPackage {
         EAttribute SOAP_BINDING_TYPE__ENDPOINT_ADDRESS = eINSTANCE.getSOAPBindingType_EndpointAddress();
 
         /**
+         * The meta object literal for the '<em><b>Basic</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SOAP_BINDING_TYPE__BASIC = eINSTANCE.getSOAPBindingType_Basic();
+
+        /**
+         * The meta object literal for the '<em><b>Ntlm</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SOAP_BINDING_TYPE__NTLM = eINSTANCE.getSOAPBindingType_Ntlm();
+
+        /**
          * The meta object literal for the '<em><b>In Interceptors</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1803,6 +2031,50 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EReference SOAP_BINDING_TYPE__OUT_INTERCEPTORS = eINSTANCE.getSOAPBindingType_OutInterceptors();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.BasicAuthenticationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getBasicAuthenticationType()
+         * @generated
+         */
+        EClass BASIC_AUTHENTICATION_TYPE = eINSTANCE.getBasicAuthenticationType();
+
+        /**
+         * The meta object literal for the '<em><b>User</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__USER = eINSTANCE.getBasicAuthenticationType_User();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BASIC_AUTHENTICATION_TYPE__PASSWORD = eINSTANCE.getBasicAuthenticationType_Password();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.NTLMAuthenticationTypeImpl <em>NTLM Authentication Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.NTLMAuthenticationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getNTLMAuthenticationType()
+         * @generated
+         */
+        EClass NTLM_AUTHENTICATION_TYPE = eINSTANCE.getNTLMAuthenticationType();
+
+        /**
+         * The meta object literal for the '<em><b>Domain</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute NTLM_AUTHENTICATION_TYPE__DOMAIN = eINSTANCE.getNTLMAuthenticationType_Domain();
 
         /**
          * The meta object literal for the '<em><b>Mtom</b></em>' containment reference feature.

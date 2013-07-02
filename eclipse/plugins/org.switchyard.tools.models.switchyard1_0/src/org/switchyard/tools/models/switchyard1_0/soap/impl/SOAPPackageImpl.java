@@ -76,6 +76,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 import org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
@@ -83,6 +84,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType;
 import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
+import org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.soap.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
@@ -136,6 +138,20 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     private EClass soapBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass basicAuthenticationTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass ntlmAuthenticationTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -533,8 +549,26 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getSOAPBindingType_Basic() {
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSOAPBindingType_Ntlm() {
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getSOAPBindingType_InInterceptors() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(10);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(12);
     }
 
     /**
@@ -543,7 +577,52 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getSOAPBindingType_OutInterceptors() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(11);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(13);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBasicAuthenticationType() {
+        return basicAuthenticationTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_User() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBasicAuthenticationType_Password() {
+        return (EAttribute)basicAuthenticationTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getNTLMAuthenticationType() {
+        return ntlmAuthenticationTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getNTLMAuthenticationType_Domain() {
+        return (EAttribute)ntlmAuthenticationTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -552,7 +631,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getSOAPBindingType_Mtom() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(9);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(11);
     }
 
     /**
@@ -570,7 +649,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     public EReference getSOAPBindingType_Proxy() {
-        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(8);
+        return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(10);
     }
 
     /**
@@ -907,10 +986,19 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__CONTEXT_PATH);
         createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__ENDPOINT_CONFIG);
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__ENDPOINT_ADDRESS);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__BASIC);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__NTLM);
         createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__PROXY);
         createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__MTOM);
         createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__IN_INTERCEPTORS);
         createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__OUT_INTERCEPTORS);
+
+        basicAuthenticationTypeEClass = createEClass(BASIC_AUTHENTICATION_TYPE);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__USER);
+        createEAttribute(basicAuthenticationTypeEClass, BASIC_AUTHENTICATION_TYPE__PASSWORD);
+
+        ntlmAuthenticationTypeEClass = createEClass(NTLM_AUTHENTICATION_TYPE);
+        createEAttribute(ntlmAuthenticationTypeEClass, NTLM_AUTHENTICATION_TYPE__DOMAIN);
 
         // Create enums
         soapHeadersTypeEEnum = createEEnum(SOAP_HEADERS_TYPE);
@@ -963,6 +1051,8 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         propertyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         proxyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         soapBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        basicAuthenticationTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        ntlmAuthenticationTypeEClass.getESuperTypes().add(this.getBasicAuthenticationType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(contextMapperTypeEClass, ContextMapperType.class, "ContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1019,10 +1109,19 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         initEAttribute(getSOAPBindingType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSOAPBindingType_EndpointConfig(), this.getEndpointConfigType(), null, "endpointConfig", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_EndpointAddress(), theXMLTypePackage.getString(), "endpointAddress", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_Basic(), this.getBasicAuthenticationType(), null, "basic", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_Ntlm(), this.getNTLMAuthenticationType(), null, "ntlm", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSOAPBindingType_Proxy(), this.getProxyType(), null, "proxy", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSOAPBindingType_Mtom(), this.getMtomType(), null, "mtom", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSOAPBindingType_InInterceptors(), this.getInterceptorsType(), null, "inInterceptors", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSOAPBindingType_OutInterceptors(), this.getInterceptorsType(), null, "outInterceptors", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(basicAuthenticationTypeEClass, BasicAuthenticationType.class, "BasicAuthenticationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getBasicAuthenticationType_User(), theXMLTypePackage.getString(), "user", null, 1, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Password(), theXMLTypePackage.getString(), "password", null, 1, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(ntlmAuthenticationTypeEClass, NTLMAuthenticationType.class, "NTLMAuthenticationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getNTLMAuthenticationType_Domain(), theXMLTypePackage.getString(), "domain", null, 1, 1, NTLMAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(soapHeadersTypeEEnum, SoapHeadersType.class, "SoapHeadersType");
@@ -1379,6 +1478,22 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "endpointAddress",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getSOAPBindingType_Basic(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "basic",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getSOAPBindingType_Ntlm(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "ntlm",
+             "namespace", "##targetNamespace"
            });			
         addAnnotation
           (getSOAPBindingType_Proxy(), 
@@ -1432,6 +1547,44 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "name", "wsdlPortType",
              "baseType", "http://www.eclipse.org/emf/2003/XMLType#string",
              "pattern", "\\{.+\\}.+:[^:]+|.+:[^:]+|[^:]+"
+           });		
+        addAnnotation
+          (basicAuthenticationTypeEClass, 
+           source, 
+           new String[] {
+             "name", "BasicAuthenticationType",
+             "kind", "elementOnly"
+           });			
+        addAnnotation
+          (getBasicAuthenticationType_User(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "user",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getBasicAuthenticationType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (ntlmAuthenticationTypeEClass, 
+           source, 
+           new String[] {
+             "name", "NTLMAuthenticationType",
+             "kind", "elementOnly"
+           });			
+        addAnnotation
+          (getNTLMAuthenticationType_Domain(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "domain",
+             "namespace", "##targetNamespace"
            });
     }
 

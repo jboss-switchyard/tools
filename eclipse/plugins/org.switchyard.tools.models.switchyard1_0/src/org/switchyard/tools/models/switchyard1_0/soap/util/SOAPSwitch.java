@@ -111,7 +111,7 @@ public class SOAPSwitch<T> extends Switch<T> {
                 return result;
             }
             case SOAPPackage.MESSAGE_COMPOSER_TYPE: {
-                MessageComposerType messageComposerType = (MessageComposerType)theEObject;
+                org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType messageComposerType = (org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType)theEObject;
                 T result = caseMessageComposerType(messageComposerType);
                 if (result == null) result = caseSwitchyard_MessageComposerType(messageComposerType);
                 if (result == null) result = defaultCase(theEObject);
@@ -151,6 +151,21 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(soapBindingType);
                 if (result == null) result = caseBinding(soapBindingType);
                 if (result == null) result = caseCommonExtensionBase(soapBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.BASIC_AUTHENTICATION_TYPE: {
+                BasicAuthenticationType basicAuthenticationType = (BasicAuthenticationType)theEObject;
+                T result = caseBasicAuthenticationType(basicAuthenticationType);
+                if (result == null) result = caseCommonExtensionBase(basicAuthenticationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SOAPPackage.NTLM_AUTHENTICATION_TYPE: {
+                NTLMAuthenticationType ntlmAuthenticationType = (NTLMAuthenticationType)theEObject;
+                T result = caseNTLMAuthenticationType(ntlmAuthenticationType);
+                if (result == null) result = caseBasicAuthenticationType(ntlmAuthenticationType);
+                if (result == null) result = caseCommonExtensionBase(ntlmAuthenticationType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -204,6 +219,36 @@ public class SOAPSwitch<T> extends Switch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Basic Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Basic Authentication Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseBasicAuthenticationType(BasicAuthenticationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>NTLM Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>NTLM Authentication Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseNTLMAuthenticationType(NTLMAuthenticationType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Interceptor Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -215,6 +260,21 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseInterceptorType(InterceptorType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMessageComposerType(org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType object) {
         return null;
     }
 
@@ -324,21 +384,6 @@ public class SOAPSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseMessageComposerType(MessageComposerType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -364,7 +409,7 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
+    public T caseSwitchyard_MessageComposerType(MessageComposerType object) {
         return null;
     }
 

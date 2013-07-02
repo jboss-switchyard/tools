@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
@@ -30,6 +32,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getAddress <em>Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getBasic <em>Basic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getNtlm <em>Ntlm</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getProxy <em>Proxy</em>}</li>
  * </ul>
  * </p>
@@ -116,6 +120,26 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
      * @ordered
      */
     protected String address = ADDRESS_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getBasic() <em>Basic</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getBasic()
+     * @generated
+     * @ordered
+     */
+    protected BasicAuthenticationType basic;
+
+    /**
+     * The cached value of the '{@link #getNtlm() <em>Ntlm</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getNtlm()
+     * @generated
+     * @ordered
+     */
+    protected NTLMAuthenticationType ntlm;
 
     /**
      * The cached value of the '{@link #getProxy() <em>Proxy</em>}' containment reference.
@@ -279,6 +303,92 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
      * <!-- end-user-doc -->
      * @generated
      */
+    public BasicAuthenticationType getBasic() {
+        return basic;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBasic(BasicAuthenticationType newBasic, NotificationChain msgs) {
+        BasicAuthenticationType oldBasic = basic;
+        basic = newBasic;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__BASIC, oldBasic, newBasic);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBasic(BasicAuthenticationType newBasic) {
+        if (newBasic != basic) {
+            NotificationChain msgs = null;
+            if (basic != null)
+                msgs = ((InternalEObject)basic).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__BASIC, null, msgs);
+            if (newBasic != null)
+                msgs = ((InternalEObject)newBasic).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__BASIC, null, msgs);
+            msgs = basicSetBasic(newBasic, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__BASIC, newBasic, newBasic));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NTLMAuthenticationType getNtlm() {
+        return ntlm;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetNtlm(NTLMAuthenticationType newNtlm, NotificationChain msgs) {
+        NTLMAuthenticationType oldNtlm = ntlm;
+        ntlm = newNtlm;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__NTLM, oldNtlm, newNtlm);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setNtlm(NTLMAuthenticationType newNtlm) {
+        if (newNtlm != ntlm) {
+            NotificationChain msgs = null;
+            if (ntlm != null)
+                msgs = ((InternalEObject)ntlm).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__NTLM, null, msgs);
+            if (newNtlm != null)
+                msgs = ((InternalEObject)newNtlm).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ResteasyPackage.REST_BINDING_TYPE__NTLM, null, msgs);
+            msgs = basicSetNtlm(newNtlm, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__NTLM, newNtlm, newNtlm));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ProxyType getProxy() {
         return proxy;
     }
@@ -350,6 +460,10 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return basicSetContextMapper(null, msgs);
             case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
                 return basicSetMessageComposer(null, msgs);
+            case ResteasyPackage.REST_BINDING_TYPE__BASIC:
+                return basicSetBasic(null, msgs);
+            case ResteasyPackage.REST_BINDING_TYPE__NTLM:
+                return basicSetNtlm(null, msgs);
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 return basicSetProxy(null, msgs);
         }
@@ -374,6 +488,10 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return getContextPath();
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 return getAddress();
+            case ResteasyPackage.REST_BINDING_TYPE__BASIC:
+                return getBasic();
+            case ResteasyPackage.REST_BINDING_TYPE__NTLM:
+                return getNtlm();
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 return getProxy();
         }
@@ -402,6 +520,12 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 setAddress((String)newValue);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__BASIC:
+                setBasic((BasicAuthenticationType)newValue);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__NTLM:
+                setNtlm((NTLMAuthenticationType)newValue);
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 setProxy((ProxyType)newValue);
@@ -433,6 +557,12 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 setAddress(ADDRESS_EDEFAULT);
                 return;
+            case ResteasyPackage.REST_BINDING_TYPE__BASIC:
+                setBasic((BasicAuthenticationType)null);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__NTLM:
+                setNtlm((NTLMAuthenticationType)null);
+                return;
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 setProxy((ProxyType)null);
                 return;
@@ -458,6 +588,10 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return CONTEXT_PATH_EDEFAULT == null ? contextPath != null : !CONTEXT_PATH_EDEFAULT.equals(contextPath);
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 return ADDRESS_EDEFAULT == null ? address != null : !ADDRESS_EDEFAULT.equals(address);
+            case ResteasyPackage.REST_BINDING_TYPE__BASIC:
+                return basic != null;
+            case ResteasyPackage.REST_BINDING_TYPE__NTLM:
+                return ntlm != null;
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 return proxy != null;
         }

@@ -35,6 +35,24 @@ public interface ResteasyFactory extends EFactory {
     RESTBindingType createRESTBindingType();
 
     /**
+     * Returns a new object of class '<em>Basic Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Basic Authentication Type</em>'.
+     * @generated
+     */
+    BasicAuthenticationType createBasicAuthenticationType();
+
+    /**
+     * Returns a new object of class '<em>NTLM Authentication Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>NTLM Authentication Type</em>'.
+     * @generated
+     */
+    NTLMAuthenticationType createNTLMAuthenticationType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

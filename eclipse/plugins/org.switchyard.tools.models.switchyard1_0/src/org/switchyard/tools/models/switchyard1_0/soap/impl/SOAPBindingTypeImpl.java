@@ -11,11 +11,13 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType;
 import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
+import org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
@@ -36,6 +38,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getEndpointConfig <em>Endpoint Config</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getEndpointAddress <em>Endpoint Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getBasic <em>Basic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getNtlm <em>Ntlm</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getProxy <em>Proxy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getMtom <em>Mtom</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getInInterceptors <em>In Interceptors</em>}</li>
@@ -175,6 +179,26 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * @ordered
      */
     protected String endpointAddress = ENDPOINT_ADDRESS_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getBasic() <em>Basic</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getBasic()
+     * @generated
+     * @ordered
+     */
+    protected BasicAuthenticationType basic;
+
+    /**
+     * The cached value of the '{@link #getNtlm() <em>Ntlm</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getNtlm()
+     * @generated
+     * @ordered
+     */
+    protected NTLMAuthenticationType ntlm;
 
     /**
      * The cached value of the '{@link #getProxy() <em>Proxy</em>}' containment reference.
@@ -431,6 +455,92 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
+    public BasicAuthenticationType getBasic() {
+        return basic;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBasic(BasicAuthenticationType newBasic, NotificationChain msgs) {
+        BasicAuthenticationType oldBasic = basic;
+        basic = newBasic;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__BASIC, oldBasic, newBasic);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBasic(BasicAuthenticationType newBasic) {
+        if (newBasic != basic) {
+            NotificationChain msgs = null;
+            if (basic != null)
+                msgs = ((InternalEObject)basic).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__BASIC, null, msgs);
+            if (newBasic != null)
+                msgs = ((InternalEObject)newBasic).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__BASIC, null, msgs);
+            msgs = basicSetBasic(newBasic, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__BASIC, newBasic, newBasic));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NTLMAuthenticationType getNtlm() {
+        return ntlm;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetNtlm(NTLMAuthenticationType newNtlm, NotificationChain msgs) {
+        NTLMAuthenticationType oldNtlm = ntlm;
+        ntlm = newNtlm;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__NTLM, oldNtlm, newNtlm);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setNtlm(NTLMAuthenticationType newNtlm) {
+        if (newNtlm != ntlm) {
+            NotificationChain msgs = null;
+            if (ntlm != null)
+                msgs = ((InternalEObject)ntlm).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__NTLM, null, msgs);
+            if (newNtlm != null)
+                msgs = ((InternalEObject)newNtlm).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__NTLM, null, msgs);
+            msgs = basicSetNtlm(newNtlm, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__NTLM, newNtlm, newNtlm));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public InterceptorsType getInInterceptors() {
         return inInterceptors;
     }
@@ -655,6 +765,10 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return basicSetMessageComposer(null, msgs);
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
                 return basicSetEndpointConfig(null, msgs);
+            case SOAPPackage.SOAP_BINDING_TYPE__BASIC:
+                return basicSetBasic(null, msgs);
+            case SOAPPackage.SOAP_BINDING_TYPE__NTLM:
+                return basicSetNtlm(null, msgs);
             case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
                 return basicSetProxy(null, msgs);
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
@@ -691,6 +805,10 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return getEndpointConfig();
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 return getEndpointAddress();
+            case SOAPPackage.SOAP_BINDING_TYPE__BASIC:
+                return getBasic();
+            case SOAPPackage.SOAP_BINDING_TYPE__NTLM:
+                return getNtlm();
             case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
                 return getProxy();
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
@@ -734,6 +852,12 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 setEndpointAddress((String)newValue);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__BASIC:
+                setBasic((BasicAuthenticationType)newValue);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__NTLM:
+                setNtlm((NTLMAuthenticationType)newValue);
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
                 setProxy((ProxyType)newValue);
@@ -783,6 +907,12 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 setEndpointAddress(ENDPOINT_ADDRESS_EDEFAULT);
                 return;
+            case SOAPPackage.SOAP_BINDING_TYPE__BASIC:
+                setBasic((BasicAuthenticationType)null);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__NTLM:
+                setNtlm((NTLMAuthenticationType)null);
+                return;
             case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
                 setProxy((ProxyType)null);
                 return;
@@ -823,6 +953,10 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return endpointConfig != null;
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 return ENDPOINT_ADDRESS_EDEFAULT == null ? endpointAddress != null : !ENDPOINT_ADDRESS_EDEFAULT.equals(endpointAddress);
+            case SOAPPackage.SOAP_BINDING_TYPE__BASIC:
+                return basic != null;
+            case SOAPPackage.SOAP_BINDING_TYPE__NTLM:
+                return ntlm != null;
             case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
                 return proxy != null;
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:

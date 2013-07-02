@@ -123,6 +123,10 @@ public class SOAPValidator extends EObjectValidator {
                 return validateProxyType((ProxyType)value, diagnostics, context);
             case SOAPPackage.SOAP_BINDING_TYPE:
                 return validateSOAPBindingType((SOAPBindingType)value, diagnostics, context);
+            case SOAPPackage.BASIC_AUTHENTICATION_TYPE:
+                return validateBasicAuthenticationType((BasicAuthenticationType)value, diagnostics, context);
+            case SOAPPackage.NTLM_AUTHENTICATION_TYPE:
+                return validateNTLMAuthenticationType((NTLMAuthenticationType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return validateSoapHeadersType((SoapHeadersType)value, diagnostics, context);
             case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
@@ -159,6 +163,24 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateSOAPBindingType(SOAPBindingType soapBindingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(soapBindingType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateBasicAuthenticationType(BasicAuthenticationType basicAuthenticationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(basicAuthenticationType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateNTLMAuthenticationType(NTLMAuthenticationType ntlmAuthenticationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(ntlmAuthenticationType, diagnostics, context);
     }
 
     /**

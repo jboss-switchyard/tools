@@ -35,7 +35,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
      */
     public static SOAPFactory init() {
         try {
-            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-soap:config:1.0"); 
+            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory(SOAPPackage.eNS_URI);
             if (theSOAPFactory != null) {
                 return theSOAPFactory;
             }
@@ -75,6 +75,8 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
             case SOAPPackage.PROPERTY_TYPE: return createPropertyType();
             case SOAPPackage.PROXY_TYPE: return createProxyType();
             case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
+            case SOAPPackage.BASIC_AUTHENTICATION_TYPE: return createBasicAuthenticationType();
+            case SOAPPackage.NTLM_AUTHENTICATION_TYPE: return createNTLMAuthenticationType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -146,6 +148,26 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public SOAPBindingType createSOAPBindingType() {
         SOAPBindingTypeImpl soapBindingType = new SOAPBindingTypeImpl();
         return soapBindingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BasicAuthenticationType createBasicAuthenticationType() {
+        BasicAuthenticationTypeImpl basicAuthenticationType = new BasicAuthenticationTypeImpl();
+        return basicAuthenticationType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NTLMAuthenticationType createNTLMAuthenticationType() {
+        NTLMAuthenticationTypeImpl ntlmAuthenticationType = new NTLMAuthenticationTypeImpl();
+        return ntlmAuthenticationType;
     }
 
     /**

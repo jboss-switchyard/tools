@@ -31,7 +31,7 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
      */
     public static ResteasyFactory init() {
         try {
-            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-resteasy:config:1.0"); 
+            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory(ResteasyPackage.eNS_URI);
             if (theResteasyFactory != null) {
                 return theResteasyFactory;
             }
@@ -63,6 +63,8 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
             case ResteasyPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case ResteasyPackage.PROXY_TYPE: return createProxyType();
             case ResteasyPackage.REST_BINDING_TYPE: return createRESTBindingType();
+            case ResteasyPackage.BASIC_AUTHENTICATION_TYPE: return createBasicAuthenticationType();
+            case ResteasyPackage.NTLM_AUTHENTICATION_TYPE: return createNTLMAuthenticationType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -76,6 +78,26 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
     public RESTBindingType createRESTBindingType() {
         RESTBindingTypeImpl restBindingType = new RESTBindingTypeImpl();
         return restBindingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BasicAuthenticationType createBasicAuthenticationType() {
+        BasicAuthenticationTypeImpl basicAuthenticationType = new BasicAuthenticationTypeImpl();
+        return basicAuthenticationType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NTLMAuthenticationType createNTLMAuthenticationType() {
+        NTLMAuthenticationTypeImpl ntlmAuthenticationType = new NTLMAuthenticationTypeImpl();
+        return ntlmAuthenticationType;
     }
 
     /**
