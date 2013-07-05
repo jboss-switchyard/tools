@@ -654,8 +654,9 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 SCADiagramCustomPromoteServiceFeature promote = new SCADiagramCustomPromoteServiceFeature(getFeatureProvider());
                 ContextButtonEntry button = new ContextButtonEntry(promote, customContext);
                 data.getDomainSpecificContextButtons().add(button);
-                data.getPadLocation().setHeight(40);
+                data.getPadLocation().setHeight(30);
                 data.getPadLocation().setWidth(data.getPadLocation().getWidth() + 10);
+                data.getPadLocation().setX(data.getPadLocation().getX() - 10);
                 
                 CreateServiceTestCustomFeature test = new CreateServiceTestCustomFeature(getFeatureProvider());
                 ContextButtonEntry testButton = new ContextButtonEntry(test, customContext);
@@ -665,9 +666,9 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 SCADiagramCustomPromoteReferenceFeature promote = new SCADiagramCustomPromoteReferenceFeature(getFeatureProvider());
                 ContextButtonEntry button = new ContextButtonEntry(promote, customContext);
                 data.getDomainSpecificContextButtons().add(button);
-                data.getPadLocation().setHeight(40);
+                data.getPadLocation().setHeight(30);
                 data.getPadLocation().setWidth(data.getPadLocation().getWidth() + 10);
-
+                data.getPadLocation().setX(data.getPadLocation().getX() - 10);
             } else if (bo instanceof Component) {
                 SCADiagramCreateComponentServiceFeature addComponentService = new SCADiagramCreateComponentServiceFeature(getFeatureProvider());
                 addCreateFeatureAsButtonToPad(addComponentService, createContext, data);
@@ -684,6 +685,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateComponentFeatures()) {
                     addCreateFeatureAsContextButtonToPad(cf, createContext, addComponentButton);
                 }
+                data.getPadLocation().setWidth(data.getPadLocation().getWidth() - 15);
             }
             if (bo instanceof Contract) {
                 ChangeInterfaceCustomFeature intfChangeFeature = new ChangeInterfaceCustomFeature(getFeatureProvider());
@@ -716,8 +718,8 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 
                 ContextButtonEntry linkbutton = new ContextButtonEntry(null, context);
                 CompositeCreateConnectionFeature linkFeature = new CompositeCreateConnectionFeature(getFeatureProvider(), 
-                        "Promote",
-                        "Promote a composite service/reference", 
+                        "Wire",
+                        "Wire a composite service/reference", 
                         new SCADiagramCreateReferenceLinkFeature(getFeatureProvider()),
                         new SCADiagramCreateComponentServiceLinkFeature(getFeatureProvider()));
                 linkbutton.setText(linkFeature.getCreateName());
