@@ -15,6 +15,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -35,6 +36,9 @@ public class Activator extends AbstractUIPlugin {
 
     // The shared instance
     private static Activator plugin;
+
+    // prevent these from polluting the Eclipse classpath
+    private static final Pattern BLACKLIST = Pattern.compile("(xercesImpl|xml-apis|xml-resolver|jaxb-impl|jaxb-xjc|xmlschema-core)");
 
     /**
      * The constructor.
@@ -91,7 +95,10 @@ public class Activator extends AbstractUIPlugin {
                 urls.add(new File(otherProject.getLocation() + "/"
                         + otherJavaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL());
             } else if (classpathEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
-                urls.add(new File(classpathEntry.getPath().toOSString()).toURI().toURL());
+                IPath path = classpathEntry.getPath();
+                if (!BLACKLIST.matcher(path.lastSegment()).find()) {
+                    urls.add(new File(path.toOSString()).toURI().toURL());
+                }
             }
         }
         return new URLClassLoader(urls.toArray(new URL[urls.size()]), Activator.class.getClassLoader());

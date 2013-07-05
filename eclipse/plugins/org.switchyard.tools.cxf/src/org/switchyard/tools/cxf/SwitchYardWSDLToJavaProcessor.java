@@ -23,6 +23,7 @@ import org.apache.cxf.service.model.InterfaceInfo;
 import org.apache.cxf.service.model.OperationInfo;
 import org.apache.cxf.service.model.ServiceInfo;
 import org.apache.cxf.tools.common.model.JavaInterface;
+import org.apache.cxf.tools.common.model.JavaMethod;
 import org.apache.cxf.tools.common.model.JavaModel;
 import org.apache.cxf.tools.wsdlto.frontend.jaxws.processor.WSDLToJavaProcessor;
 import org.apache.cxf.tools.wsdlto.frontend.jaxws.processor.internal.OperationProcessor;
@@ -66,18 +67,27 @@ public class SwitchYardWSDLToJavaProcessor extends WSDLToJavaProcessor {
         JavaInterface intf = PortTypeProcessor.getInterface(context, serviceInfo, interfaceInfo);
         intf.setJavaModel(javaModel);
 
-        JavaInterface dummyInterface = new JavaInterface();
         Collection<OperationInfo> operations = interfaceInfo.getOperations();
         for (OperationInfo operation : operations) {
+            JavaInterface dummyInterface = new JavaInterface();
             if (seenOperations.put(operation.getName(), Boolean.TRUE) != null) {
                 LOG.log(Level.WARNING, "SKIP_OVERLOADED_OPERATION", operation.getName());
                 continue;
             }
             OperationProcessor operationProcessor = new OperationProcessor(context);
             operationProcessor.process(dummyInterface, operation);
+            
+            // patch up the method name (need to preserve case)
+            String trueMethodName = operation.getName().getLocalPart();
+            int trueMethodNameLength = trueMethodName.length();
+            for (JavaMethod method : dummyInterface.getMethods()) {
+                // need to loop in the event the method is asynchronous
+                method.setName(trueMethodName + method.getName().substring(trueMethodNameLength));
+                method.setInterface(intf);
+                intf.addMethod(method);
+            }
         }
 
-        intf.getMethods().addAll(dummyInterface.getMethods());
         javaModel.addInterface(intf.getName(), intf);
 
         context.setJavaModel(javaModel);
