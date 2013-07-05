@@ -241,8 +241,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/artifacts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/bindingSwitchyard"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/domain"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/handler"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/handlers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/interfaceEsb"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelector"/>
       <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/operationSelectorSwitchyard"/>
@@ -270,7 +268,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/transforms"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/validates"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/properties"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/handlers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DomainType/securities"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DomainType/name"/>
     </genClasses>
@@ -278,13 +275,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//EsbInterface/faultType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//EsbInterface/inputType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//EsbInterface/outputType"/>
-    </genClasses>
-    <genClasses ecoreClass="config.switchyard.ecore#//HandlersType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//HandlersType/handler"/>
-    </genClasses>
-    <genClasses ecoreClass="config.switchyard.ecore#//HandlerType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//HandlerType/class"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//HandlerType/name"/>
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//JavaOperationSelectorType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//JavaOperationSelectorType/class"/>
@@ -567,10 +557,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/contextPath"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/endpointConfig"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/endpointAddress"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/basic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/ntlm"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/proxy"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/mtom"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/inInterceptors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/outInterceptors"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//BasicAuthenticationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//BasicAuthenticationType/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//BasicAuthenticationType/password"/>
+    </genClasses>
+    <genClasses ecoreClass="component.soap.ecore#//NTLMAuthenticationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//NTLMAuthenticationType/domain"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Transform" basePackage="org.switchyard.tools.models.switchyard1_0"
@@ -2517,7 +2516,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/interfaces"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/contextPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/basic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/ntlm"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/proxy"/>
+    </genClasses>
+    <genClasses ecoreClass="component.resteasy.ecore#//BasicAuthenticationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//BasicAuthenticationType/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//BasicAuthenticationType/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//BasicAuthenticationType/realm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//BasicAuthenticationType/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//BasicAuthenticationType/port"/>
+    </genClasses>
+    <genClasses ecoreClass="component.resteasy.ecore#//NTLMAuthenticationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//NTLMAuthenticationType/domain"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Http" basePackage="org.switchyard.tools.models.switchyard1_0"

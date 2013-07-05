@@ -115,10 +115,6 @@ public class SwitchyardValidator extends EObjectValidator {
                 return validateDomainType((DomainType)value, diagnostics, context);
             case SwitchyardPackage.ESB_INTERFACE:
                 return validateEsbInterface((EsbInterface)value, diagnostics, context);
-            case SwitchyardPackage.HANDLERS_TYPE:
-                return validateHandlersType((HandlersType)value, diagnostics, context);
-            case SwitchyardPackage.HANDLER_TYPE:
-                return validateHandlerType((HandlerType)value, diagnostics, context);
             case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE:
                 return validateJavaOperationSelectorType((JavaOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.MESSAGE_COMPOSER_TYPE:
@@ -220,24 +216,6 @@ public class SwitchyardValidator extends EObjectValidator {
      */
     public boolean validateEsbInterface(EsbInterface esbInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(esbInterface, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean validateHandlersType(HandlersType handlersType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(handlersType, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean validateHandlerType(HandlerType handlerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(handlerType, diagnostics, context);
     }
 
     /**

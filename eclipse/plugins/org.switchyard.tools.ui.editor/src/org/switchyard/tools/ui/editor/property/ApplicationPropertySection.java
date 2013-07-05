@@ -13,7 +13,6 @@
 package org.switchyard.tools.ui.editor.property;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -41,8 +40,8 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -53,6 +52,7 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 public class ApplicationPropertySection extends GFPropertySection implements ITabbedPropertyConstants,
         ResourceSetListener {
 
+    private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled";
     private Button _messageTraceCheckbox;
     private Object _businessObject;
     private boolean _inUpdate = false;
@@ -163,23 +163,21 @@ public class ApplicationPropertySection extends GFPropertySection implements ITa
         }
     }
 
-    private boolean testForMessageTraceHandler(DocumentRoot root) {
+    private void removeMessageTraceHandler(final DocumentRoot root) {
         if (root.getSwitchyard() != null) {
             DomainType domain = root.getSwitchyard().getDomain();
             if (domain != null) {
-                HandlersType handlers = domain.getHandlers();
-                if (handlers != null) {
-                    EList<HandlerType> handlersList = handlers.getHandler();
-                    for (HandlerType handler : handlersList) {
-                        if (handler.getName().equalsIgnoreCase("MessageTrace")
-                                && handler.getClass_().equalsIgnoreCase("org.switchyard.handlers.MessageTrace")) {
-                            return true;
+                PropertiesType properties = domain.getProperties();
+                if (properties != null) {
+                    for (PropertyType property : properties.getProperty()) {
+                        if (MESSAGE_TRACE_KEY.equals(property.getName())) {
+                            property.setValue(Boolean.toString(false));
+                            return;
                         }
                     }
                 }
             }
         }
-        return false;
     }
 
     private void addMessageTraceHandler(final DocumentRoot root) {
@@ -187,42 +185,41 @@ public class ApplicationPropertySection extends GFPropertySection implements ITa
             DomainType domain = root.getSwitchyard().getDomain();
             if (domain == null) {
                 domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                root.getSwitchyard().setDomain(domain);
+                root.setDomain(domain);
             }
-            HandlersType handlers = domain.getHandlers();
-            if (handlers == null) {
-                handlers = SwitchyardFactory.eINSTANCE.createHandlersType();
-                domain.setHandlers(handlers);
+            PropertiesType properties = domain.getProperties();
+            if (properties == null) {
+                properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
+                domain.setProperties(properties);
             }
-            if (handlers != null) {
-                EList<HandlerType> handlersList = handlers.getHandler();
-                HandlerType messageTraceHandler = SwitchyardFactory.eINSTANCE.createHandlerType();
-                messageTraceHandler.setClass("org.switchyard.handlers.MessageTrace");
-                messageTraceHandler.setName("MessageTrace");
-                handlersList.add(messageTraceHandler);
+            for (PropertyType property : properties.getProperty()) {
+                if (MESSAGE_TRACE_KEY.equals(property.getName())) {
+                    property.setValue(Boolean.toString(true));
+                    return;
+                }
             }
+            PropertyType messageTraceProperty = SwitchyardFactory.eINSTANCE.createPropertyType();
+            messageTraceProperty.setName(MESSAGE_TRACE_KEY);
+            messageTraceProperty.setValue(Boolean.toString(true));
+            properties.getProperty().add(messageTraceProperty);
         }
     }
 
-    private void removeMessageTraceHandler(final DocumentRoot root) {
+    private boolean testForMessageTraceHandler(final DocumentRoot root) {
         if (root.getSwitchyard() != null) {
             DomainType domain = root.getSwitchyard().getDomain();
             if (domain != null) {
-                HandlersType handlers = domain.getHandlers();
-                if (handlers != null) {
-                    EList<HandlerType> handlersList = handlers.getHandler();
-                    HandlerType handlerToRemove = null;
-                    for (HandlerType handler : handlersList) {
-                        if (handler.getName().equalsIgnoreCase("MessageTrace")
-                                && handler.getClass_().equalsIgnoreCase("org.switchyard.handlers.MessageTrace")) {
-                            handlerToRemove = handler;
-                            break;
+                PropertiesType properties = domain.getProperties();
+                if (properties != null) {
+                    for (PropertyType property : properties.getProperty()) {
+                        if (MESSAGE_TRACE_KEY.equals(property.getName())) {
+                            return Boolean.valueOf(property.getValue());
                         }
                     }
-                    handlersList.remove(handlerToRemove);
                 }
             }
         }
+        return false;
     }
 
     @Override

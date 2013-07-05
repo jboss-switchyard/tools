@@ -423,31 +423,13 @@ public interface SwitchyardPackage extends EPackage {
 	int DOCUMENT_ROOT__DOMAIN = 6;
 
 	/**
-     * The feature id for the '<em><b>Handler</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__HANDLER = 7;
-
-	/**
-     * The feature id for the '<em><b>Handlers</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__HANDLERS = 8;
-
-	/**
      * The feature id for the '<em><b>Interface Esb</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTERFACE_ESB = 9;
+	int DOCUMENT_ROOT__INTERFACE_ESB = 7;
 
 	/**
      * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
@@ -456,7 +438,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATION_SELECTOR = 10;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR = 8;
 
     /**
      * The feature id for the '<em><b>Operation Selector Switchyard</b></em>' containment reference.
@@ -465,7 +447,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD = 11;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD = 9;
 
     /**
      * The feature id for the '<em><b>Operation Selector Java</b></em>' containment reference.
@@ -474,7 +456,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATION_SELECTOR_JAVA = 12;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_JAVA = 10;
 
     /**
      * The feature id for the '<em><b>Operation Selector Regex</b></em>' containment reference.
@@ -483,7 +465,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATION_SELECTOR_REGEX = 13;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_REGEX = 11;
 
     /**
      * The feature id for the '<em><b>Operation Selector Xpath</b></em>' containment reference.
@@ -492,7 +474,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATION_SELECTOR_XPATH = 14;
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_XPATH = 12;
 
     /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -501,7 +483,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTIES = 15;
+	int DOCUMENT_ROOT__PROPERTIES = 13;
 
     /**
      * The feature id for the '<em><b>Property</b></em>' containment reference.
@@ -510,7 +492,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTY = 16;
+	int DOCUMENT_ROOT__PROPERTY = 14;
 
     /**
      * The feature id for the '<em><b>Resource</b></em>' containment reference.
@@ -519,7 +501,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RESOURCE = 17;
+	int DOCUMENT_ROOT__RESOURCE = 15;
 
     /**
      * The feature id for the '<em><b>Securities</b></em>' containment reference.
@@ -528,7 +510,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__SECURITIES = 18;
+    int DOCUMENT_ROOT__SECURITIES = 16;
 
                 /**
      * The feature id for the '<em><b>Security</b></em>' containment reference.
@@ -537,7 +519,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__SECURITY = 19;
+    int DOCUMENT_ROOT__SECURITY = 17;
 
                 /**
      * The feature id for the '<em><b>Switchyard</b></em>' containment reference.
@@ -546,7 +528,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-                int DOCUMENT_ROOT__SWITCHYARD = 20;
+                int DOCUMENT_ROOT__SWITCHYARD = 18;
 
                 /**
      * The feature id for the '<em><b>Throttling</b></em>' containment reference.
@@ -555,7 +537,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__THROTTLING = 21;
+    int DOCUMENT_ROOT__THROTTLING = 19;
 
                 /**
      * The feature id for the '<em><b>Transform</b></em>' containment reference.
@@ -564,7 +546,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-                int DOCUMENT_ROOT__TRANSFORM = 22;
+                int DOCUMENT_ROOT__TRANSFORM = 20;
 
                 /**
      * The feature id for the '<em><b>Transforms</b></em>' containment reference.
@@ -573,7 +555,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-                int DOCUMENT_ROOT__TRANSFORMS = 23;
+                int DOCUMENT_ROOT__TRANSFORMS = 21;
 
                 /**
      * The feature id for the '<em><b>Validate</b></em>' containment reference.
@@ -582,7 +564,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-                int DOCUMENT_ROOT__VALIDATE = 24;
+                int DOCUMENT_ROOT__VALIDATE = 22;
 
                 /**
      * The feature id for the '<em><b>Validates</b></em>' containment reference.
@@ -591,7 +573,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-                int DOCUMENT_ROOT__VALIDATES = 25;
+                int DOCUMENT_ROOT__VALIDATES = 23;
 
                 /**
      * The feature id for the '<em><b>Clustered</b></em>' attribute.
@@ -600,7 +582,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__CLUSTERED = 26;
+    int DOCUMENT_ROOT__CLUSTERED = 24;
 
                 /**
      * The feature id for the '<em><b>Load Balance</b></em>' attribute.
@@ -609,7 +591,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__LOAD_BALANCE = 27;
+    int DOCUMENT_ROOT__LOAD_BALANCE = 25;
 
                 /**
      * The feature id for the '<em><b>Security Attr</b></em>' attribute.
@@ -618,7 +600,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__SECURITY_ATTR = 28;
+    int DOCUMENT_ROOT__SECURITY_ATTR = 26;
 
                 /**
      * The feature id for the '<em><b>Target</b></em>' attribute.
@@ -627,7 +609,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__TARGET = 29;
+    int DOCUMENT_ROOT__TARGET = 27;
 
                 /**
      * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
@@ -636,7 +618,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__TARGET_NAMESPACE = 30;
+    int DOCUMENT_ROOT__TARGET_NAMESPACE = 28;
 
                 /**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -645,7 +627,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 31;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 29;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -685,22 +667,13 @@ public interface SwitchyardPackage extends EPackage {
 	int DOMAIN_TYPE__PROPERTIES = 2;
 
 	/**
-     * The feature id for the '<em><b>Handlers</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOMAIN_TYPE__HANDLERS = 3;
-
-	/**
      * The feature id for the '<em><b>Securities</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOMAIN_TYPE__SECURITIES = 4;
+    int DOMAIN_TYPE__SECURITIES = 3;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -709,7 +682,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOMAIN_TYPE__NAME = 5;
+	int DOMAIN_TYPE__NAME = 4;
 
     /**
      * The number of structural features of the '<em>Domain Type</em>' class.
@@ -718,7 +691,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOMAIN_TYPE_FEATURE_COUNT = 6;
+	int DOMAIN_TYPE_FEATURE_COUNT = 5;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl <em>Esb Interface</em>}' class.
@@ -812,71 +785,6 @@ public interface SwitchyardPackage extends EPackage {
 	int ESB_INTERFACE_FEATURE_COUNT = ScaPackage.INTERFACE_FEATURE_COUNT + 3;
 
 	/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlersTypeImpl <em>Handlers Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlersTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getHandlersType()
-     * @generated
-     */
-	int HANDLERS_TYPE = 6;
-
-	/**
-     * The feature id for the '<em><b>Handler</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int HANDLERS_TYPE__HANDLER = 0;
-
-	/**
-     * The number of structural features of the '<em>Handlers Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int HANDLERS_TYPE_FEATURE_COUNT = 1;
-
-	/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlerTypeImpl <em>Handler Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getHandlerType()
-     * @generated
-     */
-	int HANDLER_TYPE = 7;
-
-	/**
-     * The feature id for the '<em><b>Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int HANDLER_TYPE__CLASS = 0;
-
-	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int HANDLER_TYPE__NAME = 1;
-
-	/**
-     * The number of structural features of the '<em>Handler Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int HANDLER_TYPE_FEATURE_COUNT = 2;
-
-	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.MessageComposerTypeImpl <em>Message Composer Type</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -884,7 +792,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getMessageComposerType()
      * @generated
      */
-	int MESSAGE_COMPOSER_TYPE = 9;
+	int MESSAGE_COMPOSER_TYPE = 7;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.PropertiesTypeImpl <em>Properties Type</em>}' class.
@@ -894,7 +802,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertiesType()
      * @generated
      */
-	int PROPERTIES_TYPE = 10;
+	int PROPERTIES_TYPE = 8;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.PropertyTypeImpl <em>Property Type</em>}' class.
@@ -904,7 +812,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyType()
      * @generated
      */
-	int PROPERTY_TYPE = 11;
+	int PROPERTY_TYPE = 9;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ResourceTypeImpl <em>Resource Type</em>}' class.
@@ -914,7 +822,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getResourceType()
      * @generated
      */
-	int RESOURCE_TYPE = 13;
+	int RESOURCE_TYPE = 11;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl <em>Switch Yard Binding Type</em>}' class.
@@ -924,7 +832,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardBindingType()
      * @generated
      */
-	int SWITCH_YARD_BINDING_TYPE = 17;
+	int SWITCH_YARD_BINDING_TYPE = 15;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl <em>Switch Yard Type</em>}' class.
@@ -934,7 +842,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardType()
      * @generated
      */
-	int SWITCH_YARD_TYPE = 19;
+	int SWITCH_YARD_TYPE = 17;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformsTypeImpl <em>Transforms Type</em>}' class.
@@ -944,7 +852,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getTransformsType()
      * @generated
      */
-	int TRANSFORMS_TYPE = 21;
+	int TRANSFORMS_TYPE = 19;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl <em>Transform Type</em>}' class.
@@ -954,7 +862,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getTransformType()
      * @generated
      */
-	int TRANSFORM_TYPE = 22;
+	int TRANSFORM_TYPE = 20;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidatesTypeImpl <em>Validates Type</em>}' class.
@@ -964,7 +872,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getValidatesType()
      * @generated
      */
-	int VALIDATES_TYPE = 23;
+	int VALIDATES_TYPE = 21;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidateTypeImpl <em>Validate Type</em>}' class.
@@ -974,7 +882,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getValidateType()
      * @generated
      */
-	int VALIDATE_TYPE = 24;
+	int VALIDATE_TYPE = 22;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.
@@ -984,7 +892,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardOperationSelectorType()
      * @generated
      */
-    int SWITCH_YARD_OPERATION_SELECTOR_TYPE = 18;
+    int SWITCH_YARD_OPERATION_SELECTOR_TYPE = 16;
 
     /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -1021,7 +929,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getThrottlingType()
      * @generated
      */
-    int THROTTLING_TYPE = 20;
+    int THROTTLING_TYPE = 18;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.JavaOperationSelectorTypeImpl <em>Java Operation Selector Type</em>}' class.
@@ -1031,7 +939,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getJavaOperationSelectorType()
      * @generated
      */
-	int JAVA_OPERATION_SELECTOR_TYPE = 8;
+	int JAVA_OPERATION_SELECTOR_TYPE = 6;
 
 				/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -1140,7 +1048,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getRegexOperationSelectorType()
      * @generated
      */
-	int REGEX_OPERATION_SELECTOR_TYPE = 12;
+	int REGEX_OPERATION_SELECTOR_TYPE = 10;
 
 				/**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -1213,7 +1121,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getStaticOperationSelectorType()
      * @generated
      */
-	int STATIC_OPERATION_SELECTOR_TYPE = 16;
+	int STATIC_OPERATION_SELECTOR_TYPE = 14;
 
 				/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.XPathOperationSelectorTypeImpl <em>XPath Operation Selector Type</em>}' class.
@@ -1223,7 +1131,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getXPathOperationSelectorType()
      * @generated
      */
-	int XPATH_OPERATION_SELECTOR_TYPE = 25;
+	int XPATH_OPERATION_SELECTOR_TYPE = 23;
 
 				/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl <em>Security Type</em>}' class.
@@ -1233,7 +1141,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecurityType()
      * @generated
      */
-    int SECURITY_TYPE = 15;
+    int SECURITY_TYPE = 13;
 
                 /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecuritiesTypeImpl <em>Securities Type</em>}' class.
@@ -1243,7 +1151,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecuritiesType()
      * @generated
      */
-    int SECURITIES_TYPE = 14;
+    int SECURITIES_TYPE = 12;
 
                 /**
      * The feature id for the '<em><b>Security</b></em>' containment reference list.
@@ -1703,7 +1611,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropBoolean()
      * @generated
      */
-    int PROP_BOOLEAN = 26;
+    int PROP_BOOLEAN = 24;
 
                 /**
      * The meta object id for the '<em>Property Value</em>' data type.
@@ -1713,7 +1621,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyValue()
      * @generated
      */
-    int PROPERTY_VALUE = 27;
+    int PROPERTY_VALUE = 25;
 
                 /**
      * The meta object id for the '<em>Prop Integer</em>' data type.
@@ -1723,7 +1631,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropInteger()
      * @generated
      */
-    int PROP_INTEGER = 28;
+    int PROP_INTEGER = 26;
 
                 /**
      * The meta object id for the '<em>Prop Long</em>' data type.
@@ -1733,7 +1641,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropLong()
      * @generated
      */
-    int PROP_LONG = 29;
+    int PROP_LONG = 27;
 
 
                 /**
@@ -1940,28 +1848,6 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      */
 	EReference getDocumentRoot_Domain();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandler <em>Handler</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Handler</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandler()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_Handler();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandlers <em>Handlers</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Handlers</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandlers()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_Handlers();
 
 	/**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getInterfaceEsb <em>Interface Esb</em>}'.
@@ -2249,17 +2135,6 @@ public interface SwitchyardPackage extends EPackage {
 	EReference getDomainType_Properties();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getHandlers <em>Handlers</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Handlers</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getHandlers()
-     * @see #getDomainType()
-     * @generated
-     */
-	EReference getDomainType_Handlers();
-
-	/**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getName <em>Name</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2325,59 +2200,6 @@ public interface SwitchyardPackage extends EPackage {
     EAttribute getEsbInterface_FaultType();
 
     /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType <em>Handlers Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Handlers Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType
-     * @generated
-     */
-	EClass getHandlersType();
-
-	/**
-     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType#getHandler <em>Handler</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Handler</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType#getHandler()
-     * @see #getHandlersType()
-     * @generated
-     */
-	EReference getHandlersType_Handler();
-
-	/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType <em>Handler Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Handler Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType
-     * @generated
-     */
-	EClass getHandlerType();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType#getClass_ <em>Class</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Class</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType#getClass_()
-     * @see #getHandlerType()
-     * @generated
-     */
-	EAttribute getHandlerType_Class();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType#getName <em>Name</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType#getName()
-     * @see #getHandlerType()
-     * @generated
-     */
-	EAttribute getHandlerType_Name();
-
-	/**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType <em>Message Composer Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3151,22 +2973,6 @@ public interface SwitchyardPackage extends EPackage {
 		EReference DOCUMENT_ROOT__DOMAIN = eINSTANCE.getDocumentRoot_Domain();
 
 		/**
-         * The meta object literal for the '<em><b>Handler</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__HANDLER = eINSTANCE.getDocumentRoot_Handler();
-
-		/**
-         * The meta object literal for the '<em><b>Handlers</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__HANDLERS = eINSTANCE.getDocumentRoot_Handlers();
-
-		/**
          * The meta object literal for the '<em><b>Interface Esb</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3377,14 +3183,6 @@ public interface SwitchyardPackage extends EPackage {
 		EReference DOMAIN_TYPE__PROPERTIES = eINSTANCE.getDomainType_Properties();
 
 		/**
-         * The meta object literal for the '<em><b>Handlers</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOMAIN_TYPE__HANDLERS = eINSTANCE.getDomainType_Handlers();
-
-		/**
          * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3435,50 +3233,6 @@ public interface SwitchyardPackage extends EPackage {
         EAttribute ESB_INTERFACE__FAULT_TYPE = eINSTANCE.getEsbInterface_FaultType();
 
         /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlersTypeImpl <em>Handlers Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlersTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getHandlersType()
-         * @generated
-         */
-		EClass HANDLERS_TYPE = eINSTANCE.getHandlersType();
-
-		/**
-         * The meta object literal for the '<em><b>Handler</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference HANDLERS_TYPE__HANDLER = eINSTANCE.getHandlersType_Handler();
-
-		/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlerTypeImpl <em>Handler Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getHandlerType()
-         * @generated
-         */
-		EClass HANDLER_TYPE = eINSTANCE.getHandlerType();
-
-		/**
-         * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute HANDLER_TYPE__CLASS = eINSTANCE.getHandlerType_Class();
-
-		/**
-         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute HANDLER_TYPE__NAME = eINSTANCE.getHandlerType_Name();
-
-		/**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.MessageComposerTypeImpl <em>Message Composer Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

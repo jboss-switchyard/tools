@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
@@ -33,7 +32,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getTransforms <em>Transforms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getValidates <em>Validates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getHandlers <em>Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getSecurities <em>Securities</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getName <em>Name</em>}</li>
  * </ul>
@@ -71,16 +69,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
      * @ordered
      */
 	protected PropertiesType properties;
-
-	/**
-     * The cached value of the '{@link #getHandlers() <em>Handlers</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getHandlers()
-     * @generated
-     * @ordered
-     */
-	protected HandlersType handlers;
 
 	/**
      * The cached value of the '{@link #getSecurities() <em>Securities</em>}' containment reference.
@@ -265,49 +253,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public HandlersType getHandlers() {
-        return handlers;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetHandlers(HandlersType newHandlers, NotificationChain msgs) {
-        HandlersType oldHandlers = handlers;
-        handlers = newHandlers;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__HANDLERS, oldHandlers, newHandlers);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setHandlers(HandlersType newHandlers) {
-        if (newHandlers != handlers) {
-            NotificationChain msgs = null;
-            if (handlers != null)
-                msgs = ((InternalEObject)handlers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__HANDLERS, null, msgs);
-            if (newHandlers != null)
-                msgs = ((InternalEObject)newHandlers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__HANDLERS, null, msgs);
-            msgs = basicSetHandlers(newHandlers, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__HANDLERS, newHandlers, newHandlers));
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	public String getName() {
         return name;
     }
@@ -381,8 +326,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return basicSetValidates(null, msgs);
             case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
                 return basicSetProperties(null, msgs);
-            case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
-                return basicSetHandlers(null, msgs);
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 return basicSetSecurities(null, msgs);
         }
@@ -403,8 +346,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return getValidates();
             case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
                 return getProperties();
-            case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
-                return getHandlers();
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 return getSecurities();
             case SwitchyardPackage.DOMAIN_TYPE__NAME:
@@ -429,9 +370,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return;
             case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
                 setProperties((PropertiesType)newValue);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
-                setHandlers((HandlersType)newValue);
                 return;
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 setSecurities((SecuritiesType)newValue);
@@ -460,9 +398,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
             case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
                 setProperties((PropertiesType)null);
                 return;
-            case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
-                setHandlers((HandlersType)null);
-                return;
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 setSecurities((SecuritiesType)null);
                 return;
@@ -487,8 +422,6 @@ public class DomainTypeImpl extends EObjectImpl implements DomainType {
                 return validates != null;
             case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
                 return properties != null;
-            case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
-                return handlers != null;
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 return securities != null;
             case SwitchyardPackage.DOMAIN_TYPE__NAME:

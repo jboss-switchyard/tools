@@ -112,18 +112,6 @@ public class SwitchyardSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SwitchyardPackage.HANDLERS_TYPE: {
-                HandlersType handlersType = (HandlersType)theEObject;
-                T result = caseHandlersType(handlersType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SwitchyardPackage.HANDLER_TYPE: {
-                HandlerType handlerType = (HandlerType)theEObject;
-                T result = caseHandlerType(handlerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: {
                 JavaOperationSelectorType javaOperationSelectorType = (JavaOperationSelectorType)theEObject;
                 T result = caseJavaOperationSelectorType(javaOperationSelectorType);
@@ -334,36 +322,6 @@ public class SwitchyardSwitch<T> extends Switch<T> {
      * @generated
      */
 	public T caseEsbInterface(EsbInterface object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Handlers Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Handlers Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseHandlersType(HandlersType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Handler Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Handler Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseHandlerType(HandlerType object) {
         return null;
     }
 

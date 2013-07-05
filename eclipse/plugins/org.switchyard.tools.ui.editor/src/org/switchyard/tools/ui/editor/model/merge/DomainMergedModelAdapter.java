@@ -10,7 +10,6 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.model.merge;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
@@ -38,13 +37,6 @@ public class DomainMergedModelAdapter extends AbstractMergedModelAdapter {
      */
     public String getName() {
         return (String) getAggregatedValue(SwitchyardPackage.eINSTANCE.getDomainType_Name());
-    }
-
-    /**
-     * @return the merged handlers value.
-     */
-    public HandlersType getHandlers() {
-        return (HandlersType) getAggregatedValue(SwitchyardPackage.eINSTANCE.getDomainType_Handlers());
     }
 
     /**

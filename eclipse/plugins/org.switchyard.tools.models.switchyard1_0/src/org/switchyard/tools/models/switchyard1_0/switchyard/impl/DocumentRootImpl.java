@@ -25,8 +25,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
@@ -60,8 +58,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getArtifacts <em>Artifacts</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getBindingSwitchyard <em>Binding Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getHandler <em>Handler</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getHandlers <em>Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getInterfaceEsb <em>Interface Esb</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getOperationSelector <em>Operation Selector</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getOperationSelectorSwitchyard <em>Operation Selector Switchyard</em>}</li>
@@ -397,60 +393,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      */
 	public void setDomain(DomainType newDomain) {
         ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, newDomain);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public HandlerType getHandler() {
-        return (HandlerType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, true);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetHandler(HandlerType newHandler, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, newHandler, msgs);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setHandler(HandlerType newHandler) {
-        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, newHandler);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public HandlersType getHandlers() {
-        return (HandlersType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, true);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetHandlers(HandlersType newHandlers, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, newHandlers, msgs);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setHandlers(HandlersType newHandlers) {
-        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, newHandlers);
     }
 
 	/**
@@ -1037,10 +979,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingSwitchyard(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 return basicSetDomain(null, msgs);
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-                return basicSetHandler(null, msgs);
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-                return basicSetHandlers(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 return basicSetInterfaceEsb(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
@@ -1104,10 +1042,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingSwitchyard();
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 return getDomain();
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-                return getHandler();
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-                return getHandlers();
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 return getInterfaceEsb();
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
@@ -1181,12 +1115,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 setDomain((DomainType)newValue);
-                return;
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-                setHandler((HandlerType)newValue);
-                return;
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-                setHandlers((HandlersType)newValue);
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 setInterfaceEsb((EsbInterface)newValue);
@@ -1275,12 +1203,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 setDomain((DomainType)null);
                 return;
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-                setHandler((HandlerType)null);
-                return;
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-                setHandlers((HandlersType)null);
-                return;
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 setInterfaceEsb((EsbInterface)null);
                 return;
@@ -1364,10 +1286,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingSwitchyard() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 return getDomain() != null;
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-                return getHandler() != null;
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-                return getHandlers() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 return getInterfaceEsb() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:

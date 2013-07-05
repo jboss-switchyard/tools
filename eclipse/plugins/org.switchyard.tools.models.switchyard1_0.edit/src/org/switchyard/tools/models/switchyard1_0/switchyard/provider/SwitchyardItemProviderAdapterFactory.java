@@ -37,7 +37,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
-import org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.util.ScaSwitch;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
@@ -239,52 +238,6 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
         }
 
         return esbInterfaceItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected HandlersTypeItemProvider handlersTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createHandlersTypeAdapter() {
-        if (handlersTypeItemProvider == null) {
-            handlersTypeItemProvider = new HandlersTypeItemProvider(this);
-        }
-
-        return handlersTypeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected HandlerTypeItemProvider handlerTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createHandlerTypeAdapter() {
-        if (handlerTypeItemProvider == null) {
-            handlerTypeItemProvider = new HandlerTypeItemProvider(this);
-        }
-
-        return handlerTypeItemProvider;
     }
 
     /**
@@ -741,8 +694,6 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (domainTypeItemProvider != null) domainTypeItemProvider.dispose();
         if (esbInterfaceItemProvider != null) esbInterfaceItemProvider.dispose();
-        if (handlersTypeItemProvider != null) handlersTypeItemProvider.dispose();
-        if (handlerTypeItemProvider != null) handlerTypeItemProvider.dispose();
         if (javaOperationSelectorTypeItemProvider != null) javaOperationSelectorTypeItemProvider.dispose();
         if (messageComposerTypeItemProvider != null) messageComposerTypeItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();

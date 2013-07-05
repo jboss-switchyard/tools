@@ -100,14 +100,6 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createEsbInterfaceAdapter();
             }
             @Override
-            public Adapter caseHandlersType(HandlersType object) {
-                return createHandlersTypeAdapter();
-            }
-            @Override
-            public Adapter caseHandlerType(HandlerType object) {
-                return createHandlerTypeAdapter();
-            }
-            @Override
             public Adapter caseJavaOperationSelectorType(JavaOperationSelectorType object) {
                 return createJavaOperationSelectorTypeAdapter();
             }
@@ -296,34 +288,6 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
 	public Adapter createEsbInterfaceAdapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType <em>Handlers Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType
-     * @generated
-     */
-	public Adapter createHandlersTypeAdapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType <em>Handler Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType
-     * @generated
-     */
-	public Adapter createHandlerTypeAdapter() {
         return null;
     }
 

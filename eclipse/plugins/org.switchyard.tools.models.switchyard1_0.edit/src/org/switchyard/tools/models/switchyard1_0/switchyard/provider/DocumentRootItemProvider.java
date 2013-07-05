@@ -248,8 +248,6 @@ public class DocumentRootItemProvider
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACT);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACTS);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD);
@@ -332,8 +330,6 @@ public class DocumentRootItemProvider
             case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
             case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
@@ -381,16 +377,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN,
                  SwitchyardFactory.eINSTANCE.createDomainType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER,
-                 SwitchyardFactory.eINSTANCE.createHandlerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS,
-                 SwitchyardFactory.eINSTANCE.createHandlersType()));
 
         newChildDescriptors.add
             (createChildParameter

@@ -36,6 +36,11 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-extensions-java</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
                   <artifactId>switchyard-extensions-wsdl</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>

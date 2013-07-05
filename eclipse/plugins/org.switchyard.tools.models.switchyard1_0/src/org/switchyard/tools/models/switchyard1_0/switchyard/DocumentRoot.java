@@ -27,8 +27,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getArtifacts <em>Artifacts</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getBindingSwitchyard <em>Binding Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandler <em>Handler</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandlers <em>Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getInterfaceEsb <em>Interface Esb</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelector <em>Operation Selector</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorSwitchyard <em>Operation Selector Switchyard</em>}</li>
@@ -208,60 +206,6 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
 	void setDomain(DomainType value);
-
-	/**
-     * Returns the value of the '<em><b>Handler</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Handler</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Handler</em>' containment reference.
-     * @see #setHandler(HandlerType)
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_Handler()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='handler' namespace='##targetNamespace'"
-     * @generated
-     */
-	HandlerType getHandler();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandler <em>Handler</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Handler</em>' containment reference.
-     * @see #getHandler()
-     * @generated
-     */
-	void setHandler(HandlerType value);
-
-	/**
-     * Returns the value of the '<em><b>Handlers</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Handlers</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Handlers</em>' containment reference.
-     * @see #setHandlers(HandlersType)
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_Handlers()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='handlers' namespace='##targetNamespace'"
-     * @generated
-     */
-	HandlersType getHandlers();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getHandlers <em>Handlers</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Handlers</em>' containment reference.
-     * @see #getHandlers()
-     * @generated
-     */
-	void setHandlers(HandlersType value);
 
 	/**
      * Returns the value of the '<em><b>Interface Esb</b></em>' containment reference.

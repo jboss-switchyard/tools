@@ -110,7 +110,6 @@ public class DomainTypeItemProvider
             childrenFeatures.add(SwitchyardPackage.Literals.DOMAIN_TYPE__TRANSFORMS);
             childrenFeatures.add(SwitchyardPackage.Literals.DOMAIN_TYPE__VALIDATES);
             childrenFeatures.add(SwitchyardPackage.Literals.DOMAIN_TYPE__PROPERTIES);
-            childrenFeatures.add(SwitchyardPackage.Literals.DOMAIN_TYPE__HANDLERS);
             childrenFeatures.add(SwitchyardPackage.Literals.DOMAIN_TYPE__SECURITIES);
         }
         return childrenFeatures;
@@ -172,7 +171,6 @@ public class DomainTypeItemProvider
             case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
             case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
             case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
-            case SwitchyardPackage.DOMAIN_TYPE__HANDLERS:
             case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -205,11 +203,6 @@ public class DomainTypeItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.DOMAIN_TYPE__PROPERTIES,
                  SwitchyardFactory.eINSTANCE.createPropertiesType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOMAIN_TYPE__HANDLERS,
-                 SwitchyardFactory.eINSTANCE.createHandlersType()));
 
         newChildDescriptors.add
             (createChildParameter

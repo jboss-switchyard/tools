@@ -205,6 +205,8 @@ public class SOAPBindingTypeItemProvider
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__CONTEXT_MAPPER);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__MESSAGE_COMPOSER);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__BASIC);
+            childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__NTLM);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__PROXY);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__MTOM);
             childrenFeatures.add(SOAPPackage.Literals.SOAP_BINDING_TYPE__IN_INTERCEPTORS);
@@ -273,6 +275,8 @@ public class SOAPBindingTypeItemProvider
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
             case SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER:
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_CONFIG:
+            case SOAPPackage.SOAP_BINDING_TYPE__BASIC:
+            case SOAPPackage.SOAP_BINDING_TYPE__NTLM:
             case SOAPPackage.SOAP_BINDING_TYPE__PROXY:
             case SOAPPackage.SOAP_BINDING_TYPE__MTOM:
             case SOAPPackage.SOAP_BINDING_TYPE__IN_INTERCEPTORS:
@@ -308,6 +312,21 @@ public class SOAPBindingTypeItemProvider
             (createChildParameter
                 (SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG,
                  SOAPFactory.eINSTANCE.createEndpointConfigType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__BASIC,
+                 SOAPFactory.eINSTANCE.createBasicAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__BASIC,
+                 SOAPFactory.eINSTANCE.createNTLMAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.SOAP_BINDING_TYPE__NTLM,
+                 SOAPFactory.eINSTANCE.createNTLMAuthenticationType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -348,6 +367,8 @@ public class SOAPBindingTypeItemProvider
         }
 
         boolean qualify =
+            childFeature == SOAPPackage.Literals.SOAP_BINDING_TYPE__BASIC ||
+            childFeature == SOAPPackage.Literals.SOAP_BINDING_TYPE__NTLM ||
             childFeature == SOAPPackage.Literals.SOAP_BINDING_TYPE__IN_INTERCEPTORS ||
             childFeature == SOAPPackage.Literals.SOAP_BINDING_TYPE__OUT_INTERCEPTORS;
 

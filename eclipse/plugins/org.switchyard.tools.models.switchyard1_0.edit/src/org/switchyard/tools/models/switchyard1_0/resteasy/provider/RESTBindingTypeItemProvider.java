@@ -16,6 +16,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -136,6 +138,8 @@ public class RESTBindingTypeItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__CONTEXT_MAPPER);
             childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__MESSAGE_COMPOSER);
+            childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__BASIC);
+            childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__NTLM);
             childrenFeatures.add(ResteasyPackage.Literals.REST_BINDING_TYPE__PROXY);
         }
         return childrenFeatures;
@@ -220,6 +224,8 @@ public class RESTBindingTypeItemProvider
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:
             case ResteasyPackage.REST_BINDING_TYPE__MESSAGE_COMPOSER:
+            case ResteasyPackage.REST_BINDING_TYPE__BASIC:
+            case ResteasyPackage.REST_BINDING_TYPE__NTLM:
             case ResteasyPackage.REST_BINDING_TYPE__PROXY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -260,8 +266,52 @@ public class RESTBindingTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__BASIC,
+                 ResteasyFactory.eINSTANCE.createBasicAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__BASIC,
+                 ResteasyFactory.eINSTANCE.createNTLMAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ResteasyPackage.Literals.REST_BINDING_TYPE__NTLM,
+                 ResteasyFactory.eINSTANCE.createNTLMAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (ResteasyPackage.Literals.REST_BINDING_TYPE__PROXY,
                  ResteasyFactory.eINSTANCE.createProxyType()));
+    }
+
+    /**
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+        Object childFeature = feature;
+        Object childObject = child;
+
+        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
+            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
+            childFeature = entry.getEStructuralFeature();
+            childObject = entry.getValue();
+        }
+
+        boolean qualify =
+            childFeature == ResteasyPackage.Literals.REST_BINDING_TYPE__BASIC ||
+            childFeature == ResteasyPackage.Literals.REST_BINDING_TYPE__NTLM;
+
+        if (qualify) {
+            return getString
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+        }
+        return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**

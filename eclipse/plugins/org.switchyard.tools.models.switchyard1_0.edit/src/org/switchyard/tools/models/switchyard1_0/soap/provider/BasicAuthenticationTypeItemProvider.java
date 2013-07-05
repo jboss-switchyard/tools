@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.switchyard.tools.models.switchyard1_0.switchyard.provider;
+package org.switchyard.tools.models.switchyard1_0.soap.provider;
 
 
 import java.util.Collection;
@@ -16,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -24,20 +19,23 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProvider;
+
+import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
+
+import org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HandlerTypeItemProvider
-    extends ItemProviderAdapter
+public class BasicAuthenticationTypeItemProvider
+    extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -50,7 +48,7 @@ public class HandlerTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public HandlerTypeItemProvider(AdapterFactory adapterFactory) {
+    public BasicAuthenticationTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -65,26 +63,26 @@ public class HandlerTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addClassPropertyDescriptor(object);
-            addNamePropertyDescriptor(object);
+            addUserPropertyDescriptor(object);
+            addPasswordPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Class feature.
+     * This adds a property descriptor for the User feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addClassPropertyDescriptor(Object object) {
+    protected void addUserPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_HandlerType_class_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_HandlerType_class_feature", "_UI_HandlerType_type"),
-                 SwitchyardPackage.Literals.HANDLER_TYPE__CLASS,
+                 getString("_UI_BasicAuthenticationType_user_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BasicAuthenticationType_user_feature", "_UI_BasicAuthenticationType_type"),
+                 SOAPPackage.Literals.BASIC_AUTHENTICATION_TYPE__USER,
                  true,
                  false,
                  false,
@@ -94,19 +92,19 @@ public class HandlerTypeItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Name feature.
+     * This adds a property descriptor for the Password feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNamePropertyDescriptor(Object object) {
+    protected void addPasswordPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_HandlerType_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_HandlerType_name_feature", "_UI_HandlerType_type"),
-                 SwitchyardPackage.Literals.HANDLER_TYPE__NAME,
+                 getString("_UI_BasicAuthenticationType_password_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BasicAuthenticationType_password_feature", "_UI_BasicAuthenticationType_type"),
+                 SOAPPackage.Literals.BASIC_AUTHENTICATION_TYPE__PASSWORD,
                  true,
                  false,
                  false,
@@ -116,14 +114,14 @@ public class HandlerTypeItemProvider
     }
 
     /**
-     * This returns HandlerType.gif.
+     * This returns BasicAuthenticationType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/HandlerType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/BasicAuthenticationType"));
     }
 
     /**
@@ -134,10 +132,10 @@ public class HandlerTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((HandlerType)object).getName();
+        String label = ((BasicAuthenticationType)object).getUser();
         return label == null || label.length() == 0 ?
-            getString("_UI_HandlerType_type") :
-            getString("_UI_HandlerType_type") + " " + label;
+            getString("_UI_BasicAuthenticationType_type") :
+            getString("_UI_BasicAuthenticationType_type") + " " + label;
     }
 
     /**
@@ -151,9 +149,9 @@ public class HandlerTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(HandlerType.class)) {
-            case SwitchyardPackage.HANDLER_TYPE__CLASS:
-            case SwitchyardPackage.HANDLER_TYPE__NAME:
+        switch (notification.getFeatureID(BasicAuthenticationType.class)) {
+            case SOAPPackage.BASIC_AUTHENTICATION_TYPE__USER:
+            case SOAPPackage.BASIC_AUTHENTICATION_TYPE__PASSWORD:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -180,7 +178,7 @@ public class HandlerTypeItemProvider
      */
     @Override
     public ResourceLocator getResourceLocator() {
-        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+        return Switchyard_1EditPlugin.INSTANCE;
     }
 
 }

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getTransforms <em>Transforms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getValidates <em>Validates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getHandlers <em>Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurities <em>Securities</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getName <em>Name</em>}</li>
  * </ul>
@@ -110,33 +109,6 @@ public interface DomainType extends EObject {
      * @generated
      */
 	void setProperties(PropertiesType value);
-
-	/**
-     * Returns the value of the '<em><b>Handlers</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Handlers</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Handlers</em>' containment reference.
-     * @see #setHandlers(HandlersType)
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDomainType_Handlers()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='handlers' namespace='##targetNamespace'"
-     * @generated
-     */
-	HandlersType getHandlers();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getHandlers <em>Handlers</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Handlers</em>' containment reference.
-     * @see #getHandlers()
-     * @generated
-     */
-	void setHandlers(HandlersType value);
 
 	/**
      * Returns the value of the '<em><b>Name</b></em>' attribute.

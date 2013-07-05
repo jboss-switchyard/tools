@@ -80,24 +80,6 @@ public interface SwitchyardFactory extends EFactory {
 	EsbInterface createEsbInterface();
 
 	/**
-     * Returns a new object of class '<em>Handlers Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Handlers Type</em>'.
-     * @generated
-     */
-	HandlersType createHandlersType();
-
-	/**
-     * Returns a new object of class '<em>Handler Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Handler Type</em>'.
-     * @generated
-     */
-	HandlerType createHandlerType();
-
-	/**
      * Returns a new object of class '<em>Message Composer Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

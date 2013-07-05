@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.switchyard.tools.models.switchyard1_0.switchyard.provider;
+package org.switchyard.tools.models.switchyard1_0.soap.provider;
 
 
 import java.util.Collection;
@@ -13,32 +9,27 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HandlersTypeItemProvider
-    extends ItemProviderAdapter
+public class NTLMAuthenticationTypeItemProvider
+    extends BasicAuthenticationTypeItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -51,7 +42,7 @@ public class HandlersTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public HandlersTypeItemProvider(AdapterFactory adapterFactory) {
+    public NTLMAuthenticationTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -66,49 +57,42 @@ public class HandlersTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addDomainPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * This adds a property descriptor for the Domain feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(SwitchyardPackage.Literals.HANDLERS_TYPE__HANDLER);
-        }
-        return childrenFeatures;
+    protected void addDomainPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_NTLMAuthenticationType_domain_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_NTLMAuthenticationType_domain_feature", "_UI_NTLMAuthenticationType_type"),
+                 SOAPPackage.Literals.NTLM_AUTHENTICATION_TYPE__DOMAIN,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
-
-        return super.getChildFeature(object, child);
-    }
-
-    /**
-     * This returns HandlersType.gif.
+     * This returns NTLMAuthenticationType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/HandlersType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/NTLMAuthenticationType"));
     }
 
     /**
@@ -119,7 +103,10 @@ public class HandlersTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_HandlersType_type");
+        String label = ((NTLMAuthenticationType)object).getUser();
+        return label == null || label.length() == 0 ?
+            getString("_UI_NTLMAuthenticationType_type") :
+            getString("_UI_NTLMAuthenticationType_type") + " " + label;
     }
 
     /**
@@ -133,9 +120,9 @@ public class HandlersTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(HandlersType.class)) {
-            case SwitchyardPackage.HANDLERS_TYPE__HANDLER:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        switch (notification.getFeatureID(NTLMAuthenticationType.class)) {
+            case SOAPPackage.NTLM_AUTHENTICATION_TYPE__DOMAIN:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
         super.notifyChanged(notification);
@@ -151,22 +138,6 @@ public class HandlersTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.HANDLERS_TYPE__HANDLER,
-                 SwitchyardFactory.eINSTANCE.createHandlerType()));
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
 }

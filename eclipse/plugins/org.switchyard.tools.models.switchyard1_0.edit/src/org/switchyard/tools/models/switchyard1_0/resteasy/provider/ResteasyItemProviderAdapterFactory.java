@@ -99,6 +99,52 @@ public class ResteasyItemProviderAdapterFactory extends ResteasyAdapterFactory i
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BasicAuthenticationTypeItemProvider basicAuthenticationTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBasicAuthenticationTypeAdapter() {
+        if (basicAuthenticationTypeItemProvider == null) {
+            basicAuthenticationTypeItemProvider = new BasicAuthenticationTypeItemProvider(this);
+        }
+
+        return basicAuthenticationTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected NTLMAuthenticationTypeItemProvider ntlmAuthenticationTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createNTLMAuthenticationTypeAdapter() {
+        if (ntlmAuthenticationTypeItemProvider == null) {
+            ntlmAuthenticationTypeItemProvider = new NTLMAuthenticationTypeItemProvider(this);
+        }
+
+        return ntlmAuthenticationTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -246,6 +292,8 @@ public class ResteasyItemProviderAdapterFactory extends ResteasyAdapterFactory i
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (proxyTypeItemProvider != null) proxyTypeItemProvider.dispose();
         if (restBindingTypeItemProvider != null) restBindingTypeItemProvider.dispose();
+        if (basicAuthenticationTypeItemProvider != null) basicAuthenticationTypeItemProvider.dispose();
+        if (ntlmAuthenticationTypeItemProvider != null) ntlmAuthenticationTypeItemProvider.dispose();
     }
 
 }

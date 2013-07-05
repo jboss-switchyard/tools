@@ -1182,16 +1182,6 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 SwitchyardFactory.eINSTANCE.createHandlersType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 SwitchyardFactory.eINSTANCE.createHandlerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType()));
 
         newChildDescriptors.add
@@ -1417,6 +1407,16 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 SOAPFactory.eINSTANCE.createBasicAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 SOAPFactory.eINSTANCE.createNTLMAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  TransformFactory.eINSTANCE.createJavaTransformType1()));
 
         newChildDescriptors.add
@@ -1558,6 +1558,16 @@ public class PropertiesDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  ResteasyFactory.eINSTANCE.createRESTBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 ResteasyFactory.eINSTANCE.createBasicAuthenticationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 ResteasyFactory.eINSTANCE.createNTLMAuthenticationType()));
 
         newChildDescriptors.add
             (createChildParameter

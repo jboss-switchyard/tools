@@ -145,6 +145,52 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BasicAuthenticationTypeItemProvider basicAuthenticationTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBasicAuthenticationTypeAdapter() {
+        if (basicAuthenticationTypeItemProvider == null) {
+            basicAuthenticationTypeItemProvider = new BasicAuthenticationTypeItemProvider(this);
+        }
+
+        return basicAuthenticationTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected NTLMAuthenticationTypeItemProvider ntlmAuthenticationTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createNTLMAuthenticationTypeAdapter() {
+        if (ntlmAuthenticationTypeItemProvider == null) {
+            ntlmAuthenticationTypeItemProvider = new NTLMAuthenticationTypeItemProvider(this);
+        }
+
+        return ntlmAuthenticationTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -438,6 +484,8 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
         if (proxyTypeItemProvider != null) proxyTypeItemProvider.dispose();
         if (soapBindingTypeItemProvider != null) soapBindingTypeItemProvider.dispose();
+        if (basicAuthenticationTypeItemProvider != null) basicAuthenticationTypeItemProvider.dispose();
+        if (ntlmAuthenticationTypeItemProvider != null) ntlmAuthenticationTypeItemProvider.dispose();
     }
 
 }

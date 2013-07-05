@@ -61,8 +61,6 @@ import org.eclipse.ui.part.MultiPageEditorSite;
 import org.eclipse.ui.part.MultiPageSelectionProvider;
 import org.eclipse.wst.sse.ui.StructuredTextEditor;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
@@ -80,6 +78,8 @@ import org.w3c.dom.Node;
  * 
  */
 public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener {
+
+    private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled";
 
     /** The text editor used in page 0. */
     private SwitchyardSCAEditor _diagramEditor;
@@ -278,18 +278,21 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 domain = SwitchyardFactory.eINSTANCE.createDomainType();
                 _syRoot.setDomain(domain);
             }
-            HandlersType handlers = domain.getHandlers();
-            if (handlers == null) {
-                handlers = SwitchyardFactory.eINSTANCE.createHandlersType();
-                domain.setHandlers(handlers);
+            PropertiesType properties = domain.getProperties();
+            if (properties == null) {
+                properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
+                domain.setProperties(properties);
             }
-            if (handlers != null) {
-                EList<HandlerType> handlersList = handlers.getHandler();
-                HandlerType messageTraceHandler = SwitchyardFactory.eINSTANCE.createHandlerType();
-                messageTraceHandler.setClass("org.switchyard.handlers.MessageTrace");
-                messageTraceHandler.setName("MessageTrace");
-                handlersList.add(messageTraceHandler);
+            for (PropertyType property : properties.getProperty()) {
+                if (MESSAGE_TRACE_KEY.equals(property.getName())) {
+                    property.setValue(Boolean.toString(true));
+                    return;
+                }
             }
+            PropertyType messageTraceProperty = SwitchyardFactory.eINSTANCE.createPropertyType();
+            messageTraceProperty.setName(MESSAGE_TRACE_KEY);
+            messageTraceProperty.setValue(Boolean.toString(true));
+            properties.getProperty().add(messageTraceProperty);
         }
     }
 
@@ -354,18 +357,14 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         if (_syRoot != null) {
             DomainType domain = _syRoot.getDomain();
             if (domain != null) {
-                HandlersType handlers = domain.getHandlers();
-                if (handlers != null) {
-                    EList<HandlerType> handlersList = handlers.getHandler();
-                    HandlerType handlerToRemove = null;
-                    for (HandlerType handler : handlersList) {
-                        if (handler.getName().equalsIgnoreCase("MessageTrace")
-                                && handler.getClass_().equalsIgnoreCase("org.switchyard.handlers.MessageTrace")) {
-                            handlerToRemove = handler;
-                            break;
+                PropertiesType properties = domain.getProperties();
+                if (properties != null) {
+                    for (PropertyType property : properties.getProperty()) {
+                        if (MESSAGE_TRACE_KEY.equals(property.getName())) {
+                            property.setValue(Boolean.toString(false));
+                            return;
                         }
                     }
-                    handlersList.remove(handlerToRemove);
                 }
             }
         }
@@ -396,13 +395,11 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         if (_syRoot != null) {
             DomainType domain = _syRoot.getDomain();
             if (domain != null) {
-                HandlersType handlers = domain.getHandlers();
-                if (handlers != null) {
-                    EList<HandlerType> handlersList = handlers.getHandler();
-                    for (HandlerType handler : handlersList) {
-                        if (handler.getName().equalsIgnoreCase("MessageTrace")
-                                && handler.getClass_().equalsIgnoreCase("org.switchyard.handlers.MessageTrace")) {
-                            return true;
+                PropertiesType properties = domain.getProperties();
+                if (properties != null) {
+                    for (PropertyType property : properties.getProperty()) {
+                        if (MESSAGE_TRACE_KEY.equals(property.getName())) {
+                            return Boolean.valueOf(property.getValue());
                         }
                     }
                 }

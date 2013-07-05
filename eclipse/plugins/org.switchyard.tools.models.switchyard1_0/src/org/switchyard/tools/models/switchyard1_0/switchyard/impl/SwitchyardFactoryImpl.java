@@ -70,8 +70,6 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
             case SwitchyardPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case SwitchyardPackage.DOMAIN_TYPE: return createDomainType();
             case SwitchyardPackage.ESB_INTERFACE: return createEsbInterface();
-            case SwitchyardPackage.HANDLERS_TYPE: return createHandlersType();
-            case SwitchyardPackage.HANDLER_TYPE: return createHandlerType();
             case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: return createJavaOperationSelectorType();
             case SwitchyardPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
             case SwitchyardPackage.PROPERTIES_TYPE: return createPropertiesType();
@@ -191,26 +189,6 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
 	public EsbInterface createEsbInterface() {
         EsbInterfaceImpl esbInterface = new EsbInterfaceImpl();
         return esbInterface;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public HandlersType createHandlersType() {
-        HandlersTypeImpl handlersType = new HandlersTypeImpl();
-        return handlersType;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public HandlerType createHandlerType() {
-        HandlerTypeImpl handlerType = new HandlerTypeImpl();
-        return handlerType;
     }
 
 	/**
