@@ -40,9 +40,9 @@ public final class StyleUtil {
     /** The color palette for references. */
     public static final FigurePalette REFERENCE_PALETTE = new FigurePalette("291F33", "bf95ea", "a482c6", "bf95ea");
     /** The color palette for services. */
-    public static final FigurePalette SERVICE_PALETTE = new FigurePalette("053305", "86ce86", "86ce86", "86c386");
+    public static final FigurePalette SERVICE_PALETTE = new FigurePalette("053305", "86ce86", "86c386", "86ce86");
     /** The color palette for components. */
-    public static final FigurePalette COMPONENT_PALETTE = new FigurePalette("1A1D33", "aab3fa", "aab3fa", "9ba0fc");
+    public static final FigurePalette COMPONENT_PALETTE = new FigurePalette("1A1D33", "aab3fa", "9ba0fc", "aab3fa");
     /** The color palette for composites. */
     public static final FigurePalette COMPOSITE_PALETTE = new FigurePalette("1F2933", "a5d2ff", "a5d2ff", "a5d2ff");
 
