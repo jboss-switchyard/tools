@@ -61,13 +61,12 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
 	@Override
 	public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case BPMPackage.OPERATIONS_TYPE: return createOperationsType();
-            case BPMPackage.BPM_OPERATION_TYPE: return createBPMOperationType();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE: return createBPMImplementationType();
             case BPMPackage.CHANNELS_TYPE: return createChannelsType();
             case BPMPackage.CHANNEL_TYPE: return createChannelType();
             case BPMPackage.CONTAINER_TYPE: return createContainerType();
             case BPMPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case BPMPackage.FAULTS_TYPE: return createFaultsType();
             case BPMPackage.GLOBALS_TYPE: return createGlobalsType();
             case BPMPackage.INPUTS_TYPE: return createInputsType();
             case BPMPackage.LISTENERS_TYPE: return createListenersType();
@@ -76,15 +75,16 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.LOGGER_TYPE1: return createLoggerType1();
             case BPMPackage.MANIFEST_TYPE: return createManifestType();
             case BPMPackage.MAPPING_TYPE: return createMappingType();
+            case BPMPackage.OPERATIONS_TYPE: return createOperationsType();
+            case BPMPackage.BPM_OPERATION_TYPE: return createBPMOperationType();
             case BPMPackage.OUTPUTS_TYPE: return createOutputsType();
             case BPMPackage.PROPERTIES_TYPE: return createPropertiesType();
             case BPMPackage.PROPERTY_TYPE: return createPropertyType();
             case BPMPackage.RESOURCES_TYPE: return createResourcesType();
             case BPMPackage.RESOURCE_TYPE: return createResourceType();
+            case BPMPackage.USER_GROUP_CALLBACK_TYPE: return createUserGroupCallbackType();
             case BPMPackage.WORK_ITEM_HANDLERS_TYPE: return createWorkItemHandlersType();
             case BPMPackage.WORK_ITEM_HANDLER_TYPE: return createWorkItemHandlerType();
-            case BPMPackage.USER_GROUP_CALLBACK_TYPE: return createUserGroupCallbackType();
-            case BPMPackage.FAULTS_TYPE: return createFaultsType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -98,22 +98,14 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
-            case BPMPackage.OPERATION_TYPE:
-                return createOperationTypeFromString(eDataType, initialValue);
-            case BPMPackage.EXPRESSION_TYPE:
-                return createExpressionTypeFromString(eDataType, initialValue);
             case BPMPackage.LOGGER_TYPE:
                 return createLoggerTypeFromString(eDataType, initialValue);
-            case BPMPackage.SCOPE_TYPE:
-                return createScopeTypeFromString(eDataType, initialValue);
-            case BPMPackage.OPERATION_TYPE_OBJECT:
-                return createOperationTypeObjectFromString(eDataType, initialValue);
-            case BPMPackage.EXPRESSION_TYPE_OBJECT:
-                return createExpressionTypeObjectFromString(eDataType, initialValue);
+            case BPMPackage.OPERATION_TYPE:
+                return createOperationTypeFromString(eDataType, initialValue);
             case BPMPackage.LOGGER_TYPE_OBJECT:
                 return createLoggerTypeObjectFromString(eDataType, initialValue);
-            case BPMPackage.SCOPE_TYPE_OBJECT:
-                return createScopeTypeObjectFromString(eDataType, initialValue);
+            case BPMPackage.OPERATION_TYPE_OBJECT:
+                return createOperationTypeObjectFromString(eDataType, initialValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -127,22 +119,14 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
-            case BPMPackage.OPERATION_TYPE:
-                return convertOperationTypeToString(eDataType, instanceValue);
-            case BPMPackage.EXPRESSION_TYPE:
-                return convertExpressionTypeToString(eDataType, instanceValue);
             case BPMPackage.LOGGER_TYPE:
                 return convertLoggerTypeToString(eDataType, instanceValue);
-            case BPMPackage.SCOPE_TYPE:
-                return convertScopeTypeToString(eDataType, instanceValue);
-            case BPMPackage.OPERATION_TYPE_OBJECT:
-                return convertOperationTypeObjectToString(eDataType, instanceValue);
-            case BPMPackage.EXPRESSION_TYPE_OBJECT:
-                return convertExpressionTypeObjectToString(eDataType, instanceValue);
+            case BPMPackage.OPERATION_TYPE:
+                return convertOperationTypeToString(eDataType, instanceValue);
             case BPMPackage.LOGGER_TYPE_OBJECT:
                 return convertLoggerTypeObjectToString(eDataType, instanceValue);
-            case BPMPackage.SCOPE_TYPE_OBJECT:
-                return convertScopeTypeObjectToString(eDataType, instanceValue);
+            case BPMPackage.OPERATION_TYPE_OBJECT:
+                return convertOperationTypeObjectToString(eDataType, instanceValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -413,26 +397,6 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public ExpressionType createExpressionTypeFromString(EDataType eDataType, String initialValue) {
-        ExpressionType result = ExpressionType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertExpressionTypeToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public LoggerType createLoggerTypeFromString(EDataType eDataType, String initialValue) {
         LoggerType result = LoggerType.get(initialValue);
         if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -445,26 +409,6 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      * @generated
      */
     public String convertLoggerTypeToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ScopeType createScopeTypeFromString(EDataType eDataType, String initialValue) {
-        ScopeType result = ScopeType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertScopeTypeToString(EDataType eDataType, Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
     }
 
@@ -491,24 +435,6 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public ExpressionType createExpressionTypeObjectFromString(EDataType eDataType, String initialValue) {
-        return createExpressionTypeFromString(BPMPackage.Literals.EXPRESSION_TYPE, initialValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertExpressionTypeObjectToString(EDataType eDataType, Object instanceValue) {
-        return convertExpressionTypeToString(BPMPackage.Literals.EXPRESSION_TYPE, instanceValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public LoggerType createLoggerTypeObjectFromString(EDataType eDataType, String initialValue) {
         return createLoggerTypeFromString(BPMPackage.Literals.LOGGER_TYPE, initialValue);
     }
@@ -520,24 +446,6 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      */
     public String convertLoggerTypeObjectToString(EDataType eDataType, Object instanceValue) {
         return convertLoggerTypeToString(BPMPackage.Literals.LOGGER_TYPE, instanceValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ScopeType createScopeTypeObjectFromString(EDataType eDataType, String initialValue) {
-        return createScopeTypeFromString(BPMPackage.Literals.SCOPE_TYPE, initialValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertScopeTypeObjectToString(EDataType eDataType, Object instanceValue) {
-        return convertScopeTypeToString(BPMPackage.Literals.SCOPE_TYPE, instanceValue);
     }
 
     /**

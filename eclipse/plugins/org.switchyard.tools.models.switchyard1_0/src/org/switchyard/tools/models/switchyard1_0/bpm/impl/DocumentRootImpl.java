@@ -59,11 +59,11 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFault <em>Fault</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFaults <em>Faults</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getGlobal <em>Global</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getImplementationBpm <em>Implementation Bpm</em>}</li>
@@ -74,17 +74,17 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getLogger <em>Logger</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getLoggers <em>Loggers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getManifest <em>Manifest</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getUserGroupCallback <em>User Group Callback</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getWorkItemHandler <em>Work Item Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getUserGroupCallback <em>User Group Callback</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFaults <em>Faults</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFault <em>Fault</em>}</li>
  * </ul>
  * </p>
  *
@@ -892,16 +892,16 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-            case BPMPackage.DOCUMENT_ROOT__OPERATION:
-                return basicSetOperation(null, msgs);
-            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
-                return basicSetOperations(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 return basicSetChannel(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
                 return basicSetChannels(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return basicSetContainer(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                return basicSetFault(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                return basicSetFaults(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__GLOBAL:
                 return basicSetGlobal(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
@@ -922,6 +922,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetLoggers(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 return basicSetManifest(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                return basicSetOperation(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                return basicSetOperations(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__OUTPUT:
                 return basicSetOutput(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
@@ -934,16 +938,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetResource(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 return basicSetResources(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                return basicSetUserGroupCallback(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLER:
                 return basicSetWorkItemHandler(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 return basicSetWorkItemHandlers(null, msgs);
-            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
-                return basicSetUserGroupCallback(null, msgs);
-            case BPMPackage.DOCUMENT_ROOT__FAULTS:
-                return basicSetFaults(null, msgs);
-            case BPMPackage.DOCUMENT_ROOT__FAULT:
-                return basicSetFault(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -965,16 +965,16 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
-            case BPMPackage.DOCUMENT_ROOT__OPERATION:
-                return getOperation();
-            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
-                return getOperations();
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel();
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
                 return getChannels();
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return getContainer();
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                return getFault();
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                return getFaults();
             case BPMPackage.DOCUMENT_ROOT__GLOBAL:
                 return getGlobal();
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
@@ -995,6 +995,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getLoggers();
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 return getManifest();
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                return getOperation();
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                return getOperations();
             case BPMPackage.DOCUMENT_ROOT__OUTPUT:
                 return getOutput();
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
@@ -1007,16 +1011,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getResource();
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources();
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                return getUserGroupCallback();
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLER:
                 return getWorkItemHandler();
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 return getWorkItemHandlers();
-            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
-                return getUserGroupCallback();
-            case BPMPackage.DOCUMENT_ROOT__FAULTS:
-                return getFaults();
-            case BPMPackage.DOCUMENT_ROOT__FAULT:
-                return getFault();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1038,12 +1038,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
                 return;
-            case BPMPackage.DOCUMENT_ROOT__OPERATION:
-                setOperation((BPMOperationType)newValue);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
-                setOperations((OperationsType)newValue);
-                return;
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)newValue);
                 return;
@@ -1052,6 +1046,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 setContainer((ContainerType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                setFault((MappingType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                setFaults((FaultsType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__GLOBAL:
                 setGlobal((MappingType)newValue);
@@ -1083,6 +1083,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 setManifest((ManifestType)newValue);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                setOperation((BPMOperationType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                setOperations((OperationsType)newValue);
+                return;
             case BPMPackage.DOCUMENT_ROOT__OUTPUT:
                 setOutput((MappingType)newValue);
                 return;
@@ -1101,20 +1107,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)newValue);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                setUserGroupCallback((UserGroupCallbackType)newValue);
+                return;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLER:
                 setWorkItemHandler((WorkItemHandlerType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 setWorkItemHandlers((WorkItemHandlersType)newValue);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
-                setUserGroupCallback((UserGroupCallbackType)newValue);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__FAULTS:
-                setFaults((FaultsType)newValue);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__FAULT:
-                setFault((MappingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -1137,12 +1137,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
-            case BPMPackage.DOCUMENT_ROOT__OPERATION:
-                setOperation((BPMOperationType)null);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
-                setOperations((OperationsType)null);
-                return;
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)null);
                 return;
@@ -1151,6 +1145,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 setContainer((ContainerType)null);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                setFault((MappingType)null);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                setFaults((FaultsType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__GLOBAL:
                 setGlobal((MappingType)null);
@@ -1182,6 +1182,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 setManifest((ManifestType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                setOperation((BPMOperationType)null);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                setOperations((OperationsType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__OUTPUT:
                 setOutput((MappingType)null);
                 return;
@@ -1200,20 +1206,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                setUserGroupCallback((UserGroupCallbackType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLER:
                 setWorkItemHandler((WorkItemHandlerType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 setWorkItemHandlers((WorkItemHandlersType)null);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
-                setUserGroupCallback((UserGroupCallbackType)null);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__FAULTS:
-                setFaults((FaultsType)null);
-                return;
-            case BPMPackage.DOCUMENT_ROOT__FAULT:
-                setFault((MappingType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -1233,16 +1233,16 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case BPMPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-            case BPMPackage.DOCUMENT_ROOT__OPERATION:
-                return getOperation() != null;
-            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
-                return getOperations() != null;
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel() != null;
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
                 return getChannels() != null;
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return getContainer() != null;
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+                return getFault() != null;
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
+                return getFaults() != null;
             case BPMPackage.DOCUMENT_ROOT__GLOBAL:
                 return getGlobal() != null;
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
@@ -1263,6 +1263,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getLoggers() != null;
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
                 return getManifest() != null;
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+                return getOperation() != null;
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
+                return getOperations() != null;
             case BPMPackage.DOCUMENT_ROOT__OUTPUT:
                 return getOutput() != null;
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
@@ -1275,16 +1279,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getResource() != null;
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources() != null;
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
+                return getUserGroupCallback() != null;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLER:
                 return getWorkItemHandler() != null;
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
                 return getWorkItemHandlers() != null;
-            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
-                return getUserGroupCallback() != null;
-            case BPMPackage.DOCUMENT_ROOT__FAULTS:
-                return getFaults() != null;
-            case BPMPackage.DOCUMENT_ROOT__FAULT:
-                return getFault() != null;
         }
         return super.eIsSet(featureID);
     }

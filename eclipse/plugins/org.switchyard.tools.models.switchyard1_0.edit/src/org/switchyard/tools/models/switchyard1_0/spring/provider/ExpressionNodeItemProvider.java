@@ -1254,16 +1254,6 @@ public class ExpressionNodeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 BPMFactory.eINSTANCE.createOperationsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 BPMFactory.eINSTANCE.createBPMOperationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  BPMFactory.eINSTANCE.createBPMImplementationType()));
 
         newChildDescriptors.add
@@ -1280,6 +1270,11 @@ public class ExpressionNodeItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  BPMFactory.eINSTANCE.createContainerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 BPMFactory.eINSTANCE.createFaultsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1324,6 +1319,16 @@ public class ExpressionNodeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 BPMFactory.eINSTANCE.createOperationsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 BPMFactory.eINSTANCE.createBPMOperationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  BPMFactory.eINSTANCE.createOutputsType()));
 
         newChildDescriptors.add
@@ -1349,22 +1354,17 @@ public class ExpressionNodeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 BPMFactory.eINSTANCE.createUserGroupCallbackType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  BPMFactory.eINSTANCE.createWorkItemHandlersType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  BPMFactory.eINSTANCE.createWorkItemHandlerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 BPMFactory.eINSTANCE.createUserGroupCallbackType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 BPMFactory.eINSTANCE.createFaultsType()));
 
         newChildDescriptors.add
             (createChildParameter

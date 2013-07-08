@@ -726,13 +726,12 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
      * @generated
      */
     public void dispose() {
-        if (operationsTypeItemProvider != null) operationsTypeItemProvider.dispose();
-        if (bpmOperationTypeItemProvider != null) bpmOperationTypeItemProvider.dispose();
         if (bpmImplementationTypeItemProvider != null) bpmImplementationTypeItemProvider.dispose();
         if (channelsTypeItemProvider != null) channelsTypeItemProvider.dispose();
         if (channelTypeItemProvider != null) channelTypeItemProvider.dispose();
         if (containerTypeItemProvider != null) containerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (faultsTypeItemProvider != null) faultsTypeItemProvider.dispose();
         if (globalsTypeItemProvider != null) globalsTypeItemProvider.dispose();
         if (inputsTypeItemProvider != null) inputsTypeItemProvider.dispose();
         if (listenersTypeItemProvider != null) listenersTypeItemProvider.dispose();
@@ -741,15 +740,16 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
         if (loggerType1ItemProvider != null) loggerType1ItemProvider.dispose();
         if (manifestTypeItemProvider != null) manifestTypeItemProvider.dispose();
         if (mappingTypeItemProvider != null) mappingTypeItemProvider.dispose();
+        if (operationsTypeItemProvider != null) operationsTypeItemProvider.dispose();
+        if (bpmOperationTypeItemProvider != null) bpmOperationTypeItemProvider.dispose();
         if (outputsTypeItemProvider != null) outputsTypeItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
         if (resourcesTypeItemProvider != null) resourcesTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
+        if (userGroupCallbackTypeItemProvider != null) userGroupCallbackTypeItemProvider.dispose();
         if (workItemHandlersTypeItemProvider != null) workItemHandlersTypeItemProvider.dispose();
         if (workItemHandlerTypeItemProvider != null) workItemHandlerTypeItemProvider.dispose();
-        if (userGroupCallbackTypeItemProvider != null) userGroupCallbackTypeItemProvider.dispose();
-        if (faultsTypeItemProvider != null) faultsTypeItemProvider.dispose();
     }
 
 }

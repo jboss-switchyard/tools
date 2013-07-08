@@ -39,6 +39,14 @@ public enum OperationType implements Enumerator {
     SIGNALEVENT(1, "SIGNALEVENT", "SIGNAL_EVENT"),
 
     /**
+     * The '<em><b>SIGNALEVENTALL</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #SIGNALEVENTALL_VALUE
+     * @generated
+     * @ordered
+     */
+    SIGNALEVENTALL(2, "SIGNALEVENTALL", "SIGNAL_EVENT_ALL"), /**
      * The '<em><b>ABORTPROCESSINSTANCE</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -46,7 +54,7 @@ public enum OperationType implements Enumerator {
      * @generated
      * @ordered
      */
-    ABORTPROCESSINSTANCE(2, "ABORTPROCESSINSTANCE", "ABORT_PROCESS_INSTANCE");
+    ABORTPROCESSINSTANCE(3, "ABORTPROCESSINSTANCE", "ABORT_PROCESS_INSTANCE");
 
     /**
      * The '<em><b>STARTPROCESS</b></em>' literal value.
@@ -79,6 +87,21 @@ public enum OperationType implements Enumerator {
     public static final int SIGNALEVENT_VALUE = 1;
 
     /**
+     * The '<em><b>SIGNALEVENTALL</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>SIGNALEVENTALL</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #SIGNALEVENTALL
+     * @model literal="SIGNAL_EVENT_ALL"
+     * @generated
+     * @ordered
+     */
+    public static final int SIGNALEVENTALL_VALUE = 2;
+
+    /**
      * The '<em><b>ABORTPROCESSINSTANCE</b></em>' literal value.
      * <!-- begin-user-doc -->
      * <p>
@@ -91,7 +114,7 @@ public enum OperationType implements Enumerator {
      * @generated
      * @ordered
      */
-    public static final int ABORTPROCESSINSTANCE_VALUE = 2;
+    public static final int ABORTPROCESSINSTANCE_VALUE = 3;
 
     /**
      * An array of all the '<em><b>Operation Type</b></em>' enumerators.
@@ -103,6 +126,7 @@ public enum OperationType implements Enumerator {
         new OperationType[] {
             STARTPROCESS,
             SIGNALEVENT,
+            SIGNALEVENTALL,
             ABORTPROCESSINSTANCE,
         };
 
@@ -156,6 +180,7 @@ public enum OperationType implements Enumerator {
         switch (value) {
             case STARTPROCESS_VALUE: return STARTPROCESS;
             case SIGNALEVENT_VALUE: return SIGNALEVENT;
+            case SIGNALEVENTALL_VALUE: return SIGNALEVENTALL;
             case ABORTPROCESSINSTANCE_VALUE: return ABORTPROCESSINSTANCE;
         }
         return null;

@@ -12,9 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-import org.switchyard.tools.models.switchyard1_0.bpm.ExpressionType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ScopeType;
 
 /**
  * <!-- begin-user-doc -->

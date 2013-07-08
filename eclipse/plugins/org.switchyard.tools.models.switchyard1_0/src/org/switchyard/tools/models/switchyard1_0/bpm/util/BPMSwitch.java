@@ -72,20 +72,6 @@ public class BPMSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case BPMPackage.OPERATIONS_TYPE: {
-                OperationsType operationsType = (OperationsType)theEObject;
-                T result = caseOperationsType(operationsType);
-                if (result == null) result = caseCommonExtensionBase(operationsType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case BPMPackage.BPM_OPERATION_TYPE: {
-                BPMOperationType bpmOperationType = (BPMOperationType)theEObject;
-                T result = caseBPMOperationType(bpmOperationType);
-                if (result == null) result = caseCommonExtensionBase(bpmOperationType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case BPMPackage.BPM_IMPLEMENTATION_TYPE: {
                 BPMImplementationType bpmImplementationType = (BPMImplementationType)theEObject;
                 T result = caseBPMImplementationType(bpmImplementationType);
@@ -118,6 +104,13 @@ public class BPMSwitch<T> extends Switch<T> {
             case BPMPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.FAULTS_TYPE: {
+                FaultsType faultsType = (FaultsType)theEObject;
+                T result = caseFaultsType(faultsType);
+                if (result == null) result = caseCommonExtensionBase(faultsType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -177,6 +170,20 @@ public class BPMSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BPMPackage.OPERATIONS_TYPE: {
+                OperationsType operationsType = (OperationsType)theEObject;
+                T result = caseOperationsType(operationsType);
+                if (result == null) result = caseCommonExtensionBase(operationsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.BPM_OPERATION_TYPE: {
+                BPMOperationType bpmOperationType = (BPMOperationType)theEObject;
+                T result = caseBPMOperationType(bpmOperationType);
+                if (result == null) result = caseCommonExtensionBase(bpmOperationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BPMPackage.OUTPUTS_TYPE: {
                 OutputsType outputsType = (OutputsType)theEObject;
                 T result = caseOutputsType(outputsType);
@@ -212,6 +219,13 @@ public class BPMSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BPMPackage.USER_GROUP_CALLBACK_TYPE: {
+                UserGroupCallbackType userGroupCallbackType = (UserGroupCallbackType)theEObject;
+                T result = caseUserGroupCallbackType(userGroupCallbackType);
+                if (result == null) result = caseCommonExtensionBase(userGroupCallbackType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BPMPackage.WORK_ITEM_HANDLERS_TYPE: {
                 WorkItemHandlersType workItemHandlersType = (WorkItemHandlersType)theEObject;
                 T result = caseWorkItemHandlersType(workItemHandlersType);
@@ -223,20 +237,6 @@ public class BPMSwitch<T> extends Switch<T> {
                 WorkItemHandlerType workItemHandlerType = (WorkItemHandlerType)theEObject;
                 T result = caseWorkItemHandlerType(workItemHandlerType);
                 if (result == null) result = caseCommonExtensionBase(workItemHandlerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case BPMPackage.USER_GROUP_CALLBACK_TYPE: {
-                UserGroupCallbackType userGroupCallbackType = (UserGroupCallbackType)theEObject;
-                T result = caseUserGroupCallbackType(userGroupCallbackType);
-                if (result == null) result = caseCommonExtensionBase(userGroupCallbackType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case BPMPackage.FAULTS_TYPE: {
-                FaultsType faultsType = (FaultsType)theEObject;
-                T result = caseFaultsType(faultsType);
-                if (result == null) result = caseCommonExtensionBase(faultsType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

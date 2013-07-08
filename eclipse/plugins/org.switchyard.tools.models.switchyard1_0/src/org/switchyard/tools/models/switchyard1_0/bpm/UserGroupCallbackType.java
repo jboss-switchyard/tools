@@ -60,7 +60,7 @@ public interface UserGroupCallbackType extends CommonExtensionBase {
      * @return the value of the '<em>Class</em>' attribute.
      * @see #setClass(String)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getUserGroupCallbackType_Class()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='attribute' name='class'"
      * @generated
      */

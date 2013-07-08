@@ -213,7 +213,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
                 new TextCellEditor(_propertyTreeTable.getTable()),
                 new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {
                         OperationType.STARTPROCESS.getLiteral(), OperationType.SIGNALEVENT.getLiteral(),
-                        OperationType.ABORTPROCESSINSTANCE.getLiteral() }),
+                        OperationType.SIGNALEVENTALL.getLiteral(), OperationType.ABORTPROCESSINSTANCE.getLiteral() }),
                 new TextCellEditor(_propertyTreeTable.getTable()) });
 
         _mAddButton = new Button(this, SWT.NONE);

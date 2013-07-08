@@ -74,14 +74,6 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
 	protected BPMSwitch<Adapter> modelSwitch =
 		new BPMSwitch<Adapter>() {
             @Override
-            public Adapter caseOperationsType(OperationsType object) {
-                return createOperationsTypeAdapter();
-            }
-            @Override
-            public Adapter caseBPMOperationType(BPMOperationType object) {
-                return createBPMOperationTypeAdapter();
-            }
-            @Override
             public Adapter caseBPMImplementationType(BPMImplementationType object) {
                 return createBPMImplementationTypeAdapter();
             }
@@ -100,6 +92,10 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
+            }
+            @Override
+            public Adapter caseFaultsType(FaultsType object) {
+                return createFaultsTypeAdapter();
             }
             @Override
             public Adapter caseGlobalsType(GlobalsType object) {
@@ -134,6 +130,14 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createMappingTypeAdapter();
             }
             @Override
+            public Adapter caseOperationsType(OperationsType object) {
+                return createOperationsTypeAdapter();
+            }
+            @Override
+            public Adapter caseBPMOperationType(BPMOperationType object) {
+                return createBPMOperationTypeAdapter();
+            }
+            @Override
             public Adapter caseOutputsType(OutputsType object) {
                 return createOutputsTypeAdapter();
             }
@@ -154,20 +158,16 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createResourceTypeAdapter();
             }
             @Override
+            public Adapter caseUserGroupCallbackType(UserGroupCallbackType object) {
+                return createUserGroupCallbackTypeAdapter();
+            }
+            @Override
             public Adapter caseWorkItemHandlersType(WorkItemHandlersType object) {
                 return createWorkItemHandlersTypeAdapter();
             }
             @Override
             public Adapter caseWorkItemHandlerType(WorkItemHandlerType object) {
                 return createWorkItemHandlerTypeAdapter();
-            }
-            @Override
-            public Adapter caseUserGroupCallbackType(UserGroupCallbackType object) {
-                return createUserGroupCallbackTypeAdapter();
-            }
-            @Override
-            public Adapter caseFaultsType(FaultsType object) {
-                return createFaultsTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {

@@ -60,39 +60,19 @@
   </genPackages>
   <genPackages prefix="BPM" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" fileExtensions="" ecorePackage="component.bpm.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//OperationType">
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/STARTPROCESS"/>
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/SIGNALEVENT"/>
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/ABORTPROCESSINSTANCE"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//ExpressionType">
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ExpressionType/MVEL"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//LoggerType">
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//LoggerType/CONSOLE"/>
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//LoggerType/FILE"/>
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//LoggerType/THREADEDFILE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//ScopeType">
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ScopeType/MESSAGE"/>
-      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ScopeType/EXCHANGE"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//OperationType">
+      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/STARTPROCESS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/SIGNALEVENT"/>
+      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/SIGNALEVENTALL"/>
+      <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//OperationType/ABORTPROCESSINSTANCE"/>
     </genEnums>
-    <genDataTypes ecoreDataType="component.bpm.ecore#//OperationTypeObject"/>
-    <genDataTypes ecoreDataType="component.bpm.ecore#//ExpressionTypeObject"/>
     <genDataTypes ecoreDataType="component.bpm.ecore#//LoggerTypeObject"/>
-    <genDataTypes ecoreDataType="component.bpm.ecore#//ScopeTypeObject"/>
-    <genClasses ecoreClass="component.bpm.ecore#//OperationsType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//OperationsType/operation"/>
-    </genClasses>
-    <genClasses ecoreClass="component.bpm.ecore#//BPMOperationType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/globals"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/inputs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/outputs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/faults"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/eventId"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/type"/>
-    </genClasses>
+    <genDataTypes ecoreDataType="component.bpm.ecore#//OperationTypeObject"/>
     <genClasses ecoreClass="component.bpm.ecore#//BPMImplementationType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/listeners"/>
@@ -125,11 +105,11 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/operation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/channel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/container"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/fault"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/faults"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/global"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/globals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/implementationBpm"/>
@@ -140,17 +120,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/logger"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/loggers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/manifest"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/output"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/outputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resource"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/userGroupCallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/workItemHandler"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/workItemHandlers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/userGroupCallback"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/faults"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/fault"/>
+    </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//FaultsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//FaultsType/fault"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//GlobalsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//GlobalsType/global"/>
@@ -180,6 +163,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//MappingType/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//MappingType/to"/>
     </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//OperationsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//OperationsType/operation"/>
+    </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//BPMOperationType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/globals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/outputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMOperationType/faults"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/eventId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMOperationType/type"/>
+    </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//OutputsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//OutputsType/output"/>
     </genClasses>
@@ -197,19 +192,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceType/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceType/type"/>
     </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//UserGroupCallbackType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//UserGroupCallbackType/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//UserGroupCallbackType/class"/>
+    </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//WorkItemHandlersType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//WorkItemHandlersType/workItemHandler"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//WorkItemHandlerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//WorkItemHandlerType/class"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//WorkItemHandlerType/name"/>
-    </genClasses>
-    <genClasses ecoreClass="component.bpm.ecore#//UserGroupCallbackType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//UserGroupCallbackType/properties"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//UserGroupCallbackType/class"/>
-    </genClasses>
-    <genClasses ecoreClass="component.bpm.ecore#//FaultsType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//FaultsType/fault"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Switchyard" basePackage="org.switchyard.tools.models.switchyard1_0"

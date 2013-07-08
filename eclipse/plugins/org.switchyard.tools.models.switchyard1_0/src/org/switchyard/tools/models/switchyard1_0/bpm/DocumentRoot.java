@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getFault <em>Fault</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getFaults <em>Faults</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getGlobal <em>Global</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getImplementationBpm <em>Implementation Bpm</em>}</li>
@@ -38,17 +38,17 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getLogger <em>Logger</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getLoggers <em>Loggers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getManifest <em>Manifest</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOutput <em>Output</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getUserGroupCallback <em>User Group Callback</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandler <em>Work Item Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getUserGroupCallback <em>User Group Callback</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getFaults <em>Faults</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getFault <em>Fault</em>}</li>
  * </ul>
  * </p>
  *

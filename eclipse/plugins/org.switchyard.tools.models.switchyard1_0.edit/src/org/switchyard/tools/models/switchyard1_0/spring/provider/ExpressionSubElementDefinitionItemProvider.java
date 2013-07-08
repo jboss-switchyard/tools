@@ -1249,16 +1249,6 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
-                 BPMFactory.eINSTANCE.createOperationsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
-                 BPMFactory.eINSTANCE.createBPMOperationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  BPMFactory.eINSTANCE.createBPMImplementationType()));
 
         newChildDescriptors.add
@@ -1275,6 +1265,11 @@ public class ExpressionSubElementDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  BPMFactory.eINSTANCE.createContainerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 BPMFactory.eINSTANCE.createFaultsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1319,6 +1314,16 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 BPMFactory.eINSTANCE.createOperationsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 BPMFactory.eINSTANCE.createBPMOperationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  BPMFactory.eINSTANCE.createOutputsType()));
 
         newChildDescriptors.add
@@ -1344,22 +1349,17 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 BPMFactory.eINSTANCE.createUserGroupCallbackType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  BPMFactory.eINSTANCE.createWorkItemHandlersType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  BPMFactory.eINSTANCE.createWorkItemHandlerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
-                 BPMFactory.eINSTANCE.createUserGroupCallbackType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
-                 BPMFactory.eINSTANCE.createFaultsType()));
 
         newChildDescriptors.add
             (createChildParameter

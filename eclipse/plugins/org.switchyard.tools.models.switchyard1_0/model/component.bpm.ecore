@@ -4,91 +4,6 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="&#xA;   &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;>&#xA;    &lt;h1>About the XML namespace&lt;/h1>&#xA;&#xA;    &lt;div class=&quot;bodytext&quot;>&#xA;     &lt;p>&#xA;      This schema document describes the XML namespace, in a form&#xA;      suitable for import by other schema documents.&#xA;     &lt;/p>&#xA;     &lt;p>&#xA;      See &lt;a href=&quot;http://www.w3.org/XML/1998/namespace.html&quot;>&#xA;      http://www.w3.org/XML/1998/namespace.html&lt;/a> and&#xA;      &lt;a href=&quot;http://www.w3.org/TR/REC-xml&quot;>&#xA;      http://www.w3.org/TR/REC-xml&lt;/a> for information &#xA;      about this namespace.&#xA;     &lt;/p>&#xA;     &lt;p>&#xA;      Note that local names in this namespace are intended to be&#xA;      defined only by the World Wide Web Consortium or its subgroups.&#xA;      The names currently defined in this namespace are listed below.&#xA;      They should not be used with conflicting semantics by any Working&#xA;      Group, specification, or document instance.&#xA;     &lt;/p>&#xA;     &lt;p>   &#xA;      See further below in this document for more information about &lt;a href=&quot;#usage&quot;>how to refer to this schema document from your own&#xA;      XSD schema documents&lt;/a> and about &lt;a href=&quot;#nsversioning&quot;>the&#xA;      namespace-versioning policy governing this schema document&lt;/a>.&#xA;     &lt;/p>&#xA;    &lt;/div>&#xA;   &lt;/div>&#xA;  &#xA;&#xA;   &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;>&#xA;   &#xA;    &lt;h3>Father (in any context at all)&lt;/h3> &#xA;&#xA;    &lt;div class=&quot;bodytext&quot;>&#xA;     &lt;p>&#xA;      denotes Jon Bosak, the chair of &#xA;      the original XML Working Group.  This name is reserved by &#xA;      the following decision of the W3C XML Plenary and &#xA;      XML Coordination groups:&#xA;     &lt;/p>&#xA;     &lt;blockquote>&#xA;       &lt;p>&#xA;&#x9;In appreciation for his vision, leadership and&#xA;&#x9;dedication the W3C XML Plenary on this 10th day of&#xA;&#x9;February, 2000, reserves for Jon Bosak in perpetuity&#xA;&#x9;the XML name &quot;xml:Father&quot;.&#xA;       &lt;/p>&#xA;     &lt;/blockquote>&#xA;    &lt;/div>&#xA;   &lt;/div>&#xA;  &#xA;&#xA;   &lt;div id=&quot;usage&quot; xml:id=&quot;usage&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;>&#xA;    &lt;h2>&#xA;      &lt;a name=&quot;usage&quot;>About this schema document&lt;/a>&#xA;    &lt;/h2>&#xA;&#xA;    &lt;div class=&quot;bodytext&quot;>&#xA;     &lt;p>&#xA;      This schema defines attributes and an attribute group suitable&#xA;      for use by schemas wishing to allow &lt;code>xml:base&lt;/code>,&#xA;      &lt;code>xml:lang&lt;/code>, &lt;code>xml:space&lt;/code> or&#xA;      &lt;code>xml:id&lt;/code> attributes on elements they define.&#xA;     &lt;/p>&#xA;     &lt;p>&#xA;      To enable this, such a schema must import this schema for&#xA;      the XML namespace, e.g. as follows:&#xA;     &lt;/p>&#xA;     &lt;pre>&#xA;          &amp;lt;schema . . .&amp;gt;&#xA;           . . .&#xA;           &amp;lt;import namespace=&quot;http://www.w3.org/XML/1998/namespace&quot;&#xA;                      schemaLocation=&quot;http://www.w3.org/2001/xml.xsd&quot;/&amp;gt;&#xA;     &lt;/pre>&#xA;     &lt;p>&#xA;      or&#xA;     &lt;/p>&#xA;     &lt;pre>&#xA;           &amp;lt;import namespace=&quot;http://www.w3.org/XML/1998/namespace&quot;&#xA;                      schemaLocation=&quot;http://www.w3.org/2009/01/xml.xsd&quot;/&amp;gt;&#xA;     &lt;/pre>&#xA;     &lt;p>&#xA;      Subsequently, qualified reference to any of the attributes or the&#xA;      group defined below will have the desired effect, e.g.&#xA;     &lt;/p>&#xA;     &lt;pre>&#xA;          &amp;lt;type . . .&amp;gt;&#xA;           . . .&#xA;           &amp;lt;attributeGroup ref=&quot;xml:specialAttrs&quot;/&amp;gt;&#xA;     &lt;/pre>&#xA;     &lt;p>&#xA;      will define a type which will schema-validate an instance element&#xA;      with any of those attributes.&#xA;     &lt;/p>&#xA;    &lt;/div>&#xA;   &lt;/div>&#xA;  &#xA;&#xA;   &lt;div id=&quot;nsversioning&quot; xml:id=&quot;nsversioning&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;>&#xA;    &lt;h2>&#xA;      &lt;a name=&quot;nsversioning&quot;>Versioning policy for this schema document&lt;/a>&#xA;    &lt;/h2>&#xA;    &lt;div class=&quot;bodytext&quot;>&#xA;     &lt;p>&#xA;      In keeping with the XML Schema WG's standard versioning&#xA;      policy, this schema document will persist at&#xA;      &lt;a href=&quot;http://www.w3.org/2009/01/xml.xsd&quot;>&#xA;       http://www.w3.org/2009/01/xml.xsd&lt;/a>.&#xA;     &lt;/p>&#xA;     &lt;p>&#xA;      At the date of issue it can also be found at&#xA;      &lt;a href=&quot;http://www.w3.org/2001/xml.xsd&quot;>&#xA;       http://www.w3.org/2001/xml.xsd&lt;/a>.&#xA;     &lt;/p>&#xA;     &lt;p>&#xA;      The schema document at that URI may however change in the future,&#xA;      in order to remain compatible with the latest version of XML&#xA;      Schema itself, or with the XML namespace itself.  In other words,&#xA;      if the XML Schema or XML namespaces change, the version of this&#xA;      document at &lt;a href=&quot;http://www.w3.org/2001/xml.xsd&quot;>&#xA;       http://www.w3.org/2001/xml.xsd &#xA;      &lt;/a> &#xA;      will change accordingly; the version at &#xA;      &lt;a href=&quot;http://www.w3.org/2009/01/xml.xsd&quot;>&#xA;       http://www.w3.org/2009/01/xml.xsd &#xA;      &lt;/a> &#xA;      will not change.&#xA;     &lt;/p>&#xA;     &lt;p>&#xA;      Previous dated (and unchanging) versions of this schema &#xA;      document are at:&#xA;     &lt;/p>&#xA;     &lt;ul>&#xA;      &lt;li>&#xA;          &lt;a href=&quot;http://www.w3.org/2009/01/xml.xsd&quot;>&#xA;&#x9;http://www.w3.org/2009/01/xml.xsd&lt;/a>&#xA;        &lt;/li>&#xA;      &lt;li>&#xA;          &lt;a href=&quot;http://www.w3.org/2007/08/xml.xsd&quot;>&#xA;&#x9;http://www.w3.org/2007/08/xml.xsd&lt;/a>&#xA;        &lt;/li>&#xA;      &lt;li>&#xA;          &lt;a href=&quot;http://www.w3.org/2004/10/xml.xsd&quot;>&#xA;&#x9;http://www.w3.org/2004/10/xml.xsd&lt;/a>&#xA;        &lt;/li>&#xA;      &lt;li>&#xA;          &lt;a href=&quot;http://www.w3.org/2001/03/xml.xsd&quot;>&#xA;&#x9;http://www.w3.org/2001/03/xml.xsd&lt;/a>&#xA;        &lt;/li>&#xA;     &lt;/ul>&#xA;    &lt;/div>&#xA;   &lt;/div>&#xA;  "/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationsType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="OperationsType"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" upperBound="-1"
-        eType="#//BPMOperationType" containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="operation"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="OperationType">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="operationType"/>
-    </eAnnotations>
-    <eLiterals name="STARTPROCESS" literal="START_PROCESS"/>
-    <eLiterals name="SIGNALEVENT" value="1" literal="SIGNAL_EVENT"/>
-    <eLiterals name="ABORTPROCESSINSTANCE" value="2" literal="ABORT_PROCESS_INSTANCE"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BPMOperationType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="BPMOperationType"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="globals" eType="#//GlobalsType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="globals"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" eType="#//InputsType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="inputs"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" eType="#//OutputsType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="outputs"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="faults" eType="#//FaultsType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="faults"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="eventId"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="name"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//OperationType"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="type"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="OperationTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="operationType:Object"/>
-      <details key="baseType" value="operationType"/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMImplementationType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Implementation">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="BPMImplementationType"/>
@@ -282,24 +197,6 @@
         <details key="name" value="xsi:schemaLocation"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" upperBound="-2"
-        eType="#//BPMOperationType" volatile="true" transient="true" derived="true"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="operation"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-2"
-        eType="#//OperationsType" volatile="true" transient="true" derived="true"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="operations"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="channel" upperBound="-2"
         eType="#//ChannelType" volatile="true" transient="true" derived="true" containment="true"
         resolveProxies="false">
@@ -324,6 +221,24 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="container"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fault" upperBound="-2"
+        eType="#//MappingType" volatile="true" transient="true" derived="true" containment="true"
+        resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fault"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="faults" upperBound="-2"
+        eType="#//FaultsType" volatile="true" transient="true" derived="true" containment="true"
+        resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="faults"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -418,6 +333,24 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" upperBound="-2"
+        eType="#//BPMOperationType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="operation"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-2"
+        eType="#//OperationsType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="operations"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="output" upperBound="-2"
         eType="#//MappingType" volatile="true" transient="true" derived="true" containment="true"
         resolveProxies="false">
@@ -472,6 +405,15 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userGroupCallback" upperBound="-2"
+        eType="#//UserGroupCallbackType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="userGroupCallback"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="workItemHandler" upperBound="-2"
         eType="#//WorkItemHandlerType" volatile="true" transient="true" derived="true"
         containment="true" resolveProxies="false">
@@ -490,45 +432,20 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="userGroupCallback" upperBound="-2"
-        eType="#//UserGroupCallbackType" volatile="true" transient="true" derived="true"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="userGroupCallback"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="faults" upperBound="-2"
-        eType="#//FaultsType" volatile="true" transient="true" derived="true" containment="true"
-        resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="faults"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fault" upperBound="-2"
-        eType="#//MappingType" volatile="true" transient="true" derived="true" containment="true"
-        resolveProxies="false">
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FaultsType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="FaultsType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fault" upperBound="-1"
+        eType="#//MappingType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="fault"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ExpressionType">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="expressionType"/>
-    </eAnnotations>
-    <eLiterals name="MVEL"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="ExpressionTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="expressionType:Object"/>
-      <details key="baseType" value="expressionType"/>
-    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalsType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -678,6 +595,92 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationsType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="OperationsType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" upperBound="-1"
+        eType="#//BPMOperationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="operation"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OperationType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="operationType"/>
+    </eAnnotations>
+    <eLiterals name="STARTPROCESS" literal="START_PROCESS"/>
+    <eLiterals name="SIGNALEVENT" value="1" literal="SIGNAL_EVENT"/>
+    <eLiterals name="SIGNALEVENTALL" value="2" literal="SIGNAL_EVENT_ALL"/>
+    <eLiterals name="ABORTPROCESSINSTANCE" value="3" literal="ABORT_PROCESS_INSTANCE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BPMOperationType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="BPMOperationType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globals" eType="#//GlobalsType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="globals"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" eType="#//InputsType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="inputs"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" eType="#//OutputsType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="outputs"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="faults" eType="#//FaultsType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="faults"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="eventId"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="name"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//OperationType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="type"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="OperationTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="operationType:Object"/>
+      <details key="baseType" value="operationType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutputsType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="OutputsType"/>
@@ -757,18 +760,25 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ScopeType">
+  <eClassifiers xsi:type="ecore:EClass" name="UserGroupCallbackType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="scopeType"/>
+      <details key="name" value="UserGroupCallbackType"/>
+      <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eLiterals name="MESSAGE"/>
-    <eLiterals name="EXCHANGE" value="1"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="ScopeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="scopeType:Object"/>
-      <details key="baseType" value="scopeType"/>
-    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//PropertiesType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="properties"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="class"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkItemHandlersType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -799,40 +809,6 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="name"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserGroupCallbackType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="UserGroupCallbackType"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//PropertiesType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="properties"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="class" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="class"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FaultsType" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="FaultsType"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fault" upperBound="-1"
-        eType="#//MappingType" containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="fault"/>
-        <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

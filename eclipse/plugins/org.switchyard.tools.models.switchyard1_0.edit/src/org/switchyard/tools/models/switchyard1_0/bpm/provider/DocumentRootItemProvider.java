@@ -83,11 +83,11 @@ public class DocumentRootItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OPERATION);
-            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OPERATIONS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__CHANNEL);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__CHANNELS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__CONTAINER);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__FAULT);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__FAULTS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__GLOBALS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_BPM);
@@ -98,17 +98,17 @@ public class DocumentRootItemProvider
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__LOGGER);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__LOGGERS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__MANIFEST);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OPERATION);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OPERATIONS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__OUTPUTS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__PROPERTIES);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__PROPERTY);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__RESOURCE);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__RESOURCES);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__USER_GROUP_CALLBACK);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__WORK_ITEM_HANDLER);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__WORK_ITEM_HANDLERS);
-            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__USER_GROUP_CALLBACK);
-            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__FAULTS);
-            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__FAULT);
         }
         return childrenFeatures;
     }
@@ -160,11 +160,11 @@ public class DocumentRootItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
-            case BPMPackage.DOCUMENT_ROOT__OPERATION:
-            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
             case BPMPackage.DOCUMENT_ROOT__CHANNEL:
             case BPMPackage.DOCUMENT_ROOT__CHANNELS:
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
+            case BPMPackage.DOCUMENT_ROOT__FAULT:
+            case BPMPackage.DOCUMENT_ROOT__FAULTS:
             case BPMPackage.DOCUMENT_ROOT__GLOBAL:
             case BPMPackage.DOCUMENT_ROOT__GLOBALS:
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
@@ -175,17 +175,17 @@ public class DocumentRootItemProvider
             case BPMPackage.DOCUMENT_ROOT__LOGGER:
             case BPMPackage.DOCUMENT_ROOT__LOGGERS:
             case BPMPackage.DOCUMENT_ROOT__MANIFEST:
+            case BPMPackage.DOCUMENT_ROOT__OPERATION:
+            case BPMPackage.DOCUMENT_ROOT__OPERATIONS:
             case BPMPackage.DOCUMENT_ROOT__OUTPUT:
             case BPMPackage.DOCUMENT_ROOT__OUTPUTS:
             case BPMPackage.DOCUMENT_ROOT__PROPERTIES:
             case BPMPackage.DOCUMENT_ROOT__PROPERTY:
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
+            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLER:
             case BPMPackage.DOCUMENT_ROOT__WORK_ITEM_HANDLERS:
-            case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
-            case BPMPackage.DOCUMENT_ROOT__FAULTS:
-            case BPMPackage.DOCUMENT_ROOT__FAULT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -205,16 +205,6 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.DOCUMENT_ROOT__OPERATION,
-                 BPMFactory.eINSTANCE.createBPMOperationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BPMPackage.Literals.DOCUMENT_ROOT__OPERATIONS,
-                 BPMFactory.eINSTANCE.createOperationsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__CHANNEL,
                  BPMFactory.eINSTANCE.createChannelType()));
 
@@ -227,6 +217,16 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__CONTAINER,
                  BPMFactory.eINSTANCE.createContainerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__FAULT,
+                 BPMFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__FAULTS,
+                 BPMFactory.eINSTANCE.createFaultsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -280,6 +280,16 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__OPERATION,
+                 BPMFactory.eINSTANCE.createBPMOperationType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__OPERATIONS,
+                 BPMFactory.eINSTANCE.createOperationsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT,
                  BPMFactory.eINSTANCE.createMappingType()));
 
@@ -310,6 +320,11 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__USER_GROUP_CALLBACK,
+                 BPMFactory.eINSTANCE.createUserGroupCallbackType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__WORK_ITEM_HANDLER,
                  BPMFactory.eINSTANCE.createWorkItemHandlerType()));
 
@@ -317,21 +332,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__WORK_ITEM_HANDLERS,
                  BPMFactory.eINSTANCE.createWorkItemHandlersType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BPMPackage.Literals.DOCUMENT_ROOT__USER_GROUP_CALLBACK,
-                 BPMFactory.eINSTANCE.createUserGroupCallbackType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BPMPackage.Literals.DOCUMENT_ROOT__FAULTS,
-                 BPMFactory.eINSTANCE.createFaultsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BPMPackage.Literals.DOCUMENT_ROOT__FAULT,
-                 BPMFactory.eINSTANCE.createMappingType()));
     }
 
     /**
@@ -346,10 +346,10 @@ public class DocumentRootItemProvider
         Object childObject = child;
 
         boolean qualify =
+            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__FAULT ||
             childFeature == BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL ||
             childFeature == BPMPackage.Literals.DOCUMENT_ROOT__INPUT ||
-            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT ||
-            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__FAULT;
+            childFeature == BPMPackage.Literals.DOCUMENT_ROOT__OUTPUT;
 
         if (qualify) {
             return getString
