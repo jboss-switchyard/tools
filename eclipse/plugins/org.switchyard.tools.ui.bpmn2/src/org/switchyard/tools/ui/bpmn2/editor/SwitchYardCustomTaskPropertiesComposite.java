@@ -13,9 +13,11 @@ package org.switchyard.tools.ui.bpmn2.editor;
 import java.util.List;
 
 import org.eclipse.bpmn2.Assignment;
+import org.eclipse.bpmn2.Bpmn2Factory;
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.DataAssociation;
 import org.eclipse.bpmn2.DataInput;
+import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.FormalExpression;
 import org.eclipse.bpmn2.InputOutputSpecification;
 import org.eclipse.bpmn2.InputSet;
@@ -23,6 +25,9 @@ import org.eclipse.bpmn2.ItemAwareElement;
 import org.eclipse.bpmn2.Task;
 import org.eclipse.bpmn2.modeler.core.adapters.InsertionAdapter;
 import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractBpmn2PropertySection;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.BooleanObjectEditor;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.IntObjectEditor;
+import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.NCNameObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.TextObjectEditor;
 import org.eclipse.bpmn2.modeler.core.runtime.ModelExtensionDescriptor;
@@ -32,8 +37,9 @@ import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmCustomTaskDetailComposite;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Composite;
@@ -72,8 +78,6 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
         migrateTaskName(task);
         ModelExtensionAdapter adapter = ModelExtensionDescriptor.getModelExtensionAdapter(task);
         if (adapter != null) {
-            Resource resource = task.eResource();
-
             /*
              * This Task object has <modelExtension> properties defined in the
              * plugin.xml check if any of the <property> elements extend the
@@ -85,7 +89,7 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
             List<Property> props = adapter.getProperties("ioSpecification/dataInputs/name");
             InputOutputSpecification ioSpec = task.getIoSpecification();
             if (ioSpec == null) {
-                ioSpec = FACTORY.createInputOutputSpecification();
+                ioSpec = copyCreateModelObject(InputOutputSpecification.class);
                 InsertionAdapter.add(task, PACKAGE.getActivity_IoSpecification(), ioSpec);
             }
             for (Property property : props) {
@@ -112,15 +116,14 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
 
                 // create the DataInput element (the parameter) if needed
                 if (parameter == null) {
-                    parameter = FACTORY.createDataInput();
-                    ModelUtil.setID(parameter, resource);
+                    parameter = copyCreateModelObject(DataInput.class);
                     parameter.setName(name);
                     InsertionAdapter.add(ioSpec, PACKAGE.getInputOutputSpecification_DataInputs(), parameter);
 
                     // create the InputSet if needed
                     InputSet inputSet = null;
                     if (ioSpec.getInputSets().size() == 0) {
-                        inputSet = FACTORY.createInputSet();
+                        inputSet = copyCreateModelObject(InputSet.class);
                         InsertionAdapter.add(ioSpec, PACKAGE.getInputOutputSpecification_InputSets(), inputSet);
                     } else {
                         inputSet = ioSpec.getInputSets().get(0);
@@ -131,7 +134,7 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
 
                 // create the DataInputAssociation if needed
                 if (association == null) {
-                    association = FACTORY.createDataInputAssociation();
+                    association = copyCreateModelObject(DataInputAssociation.class);
                     association.setTargetRef(parameter);
                     InsertionAdapter.add(task, PACKAGE.getActivity_DataInputAssociations(), association);
                 }
@@ -147,14 +150,16 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                     fromExpression = (FormalExpression) assignment.getFrom();
                 }
                 if (assignment == null) {
-                    assignment = FACTORY.createAssignment();
-                    FormalExpression toExpression = FACTORY.createFormalExpression();
+                    assignment = copyCreateModelObject(Assignment.class);
+                    FormalExpression toExpression = copyCreateModelObject(FormalExpression.class);
                     toExpression.setBody(parameter.getId());
+                    toExpression.setLanguage("http://www.mvel.org/2.0");
                     assignment.setTo(toExpression);
                     InsertionAdapter.add(association, PACKAGE.getDataAssociation_Assignment(), assignment);
                 }
                 if (fromExpression == null) {
-                    fromExpression = FACTORY.createFormalExpression();
+                    fromExpression = copyCreateModelObject(FormalExpression.class);
+                    fromExpression.setLanguage("http://www.mvel.org/2.0");
                     InsertionAdapter.add(assignment, PACKAGE.getAssignment_From(), fromExpression);
                 }
 
@@ -162,21 +167,35 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                 // the data type is obtained from the DataInput <property>
                 // element from plugin.xml
                 EAttribute attribute = PACKAGE.getFormalExpression_Body();
-                ObjectEditor editor = null;
+                String dataType = property.type;
                 if ("FaultWorkItemAction".equals(name)) {
-                    editor = new FaultActionObjectEditor(this, fromExpression);
-                } else if ("FaultEventId".equals(name)) {
-                    editor = new FaultSignalIdObjectEditor(this, fromExpression);
+                    ObjectEditor editor = new FaultActionObjectEditor(this, fromExpression);
+                    editor.createControl(getAttributesParent(), "Fault Action");
+                } else if ("FaultResultName".equals(name)) {
+                    TextObjectEditor editor = createTextObjectEditor(association, fromExpression, attribute);
+                    editor.setMultiLine(false);
+                    editor.createControl(getAttributesParent(), "Fault Name");
                 } else {
-                    editor = createTextObjectEditor(association, fromExpression, attribute);
-                    ((TextObjectEditor) editor).setMultiLine(false);
+                    ObjectEditor editor;
+                    if ("FaultEventId".equals(name)) {
+                        editor = new FaultSignalIdObjectEditor(this, fromExpression);
+                    } else if ("EInt".equals(dataType)) {
+                        editor = new IntObjectEditor(this, fromExpression, attribute);
+                    } else if ("EBoolean".equals(dataType)) {
+                        editor = new BooleanObjectEditor(this, fromExpression, attribute);
+                    } else if ("ID".equals(dataType)) {
+                        editor = new NCNameObjectEditor(this, fromExpression, attribute);
+                    } else {
+                        editor = createTextObjectEditor(association, fromExpression, attribute);
+                        ((TextObjectEditor) editor).setMultiLine(false);
+                    }
+                    editor.createControl(getAttributesParent(), ModelUtil.toDisplayName(name));
                 }
-                editor.createControl(getAttributesParent(), ModelUtil.toDisplayName(name));
             }
         }
     }
 
-    private ObjectEditor createTextObjectEditor(final DataAssociation association,
+    private TextObjectEditor createTextObjectEditor(final DataAssociation association,
             final FormalExpression fromExpression, final EAttribute attribute) {
         return new TextObjectEditor(this, fromExpression, attribute) {
             // special handling if the association is mapped from a variable
@@ -315,4 +334,13 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
         }
     }
 
+    private <T extends EObject> T copyCreateModelObject(Class<T> clazz) {
+        T object = null;
+        EClass eClass = (EClass) Bpmn2Package.eINSTANCE.getEClassifier(clazz.getSimpleName());
+        if (eClass != null) {
+            object = clazz.cast(Bpmn2Factory.eINSTANCE.create(eClass));
+            ModelUtil.setID(object, ModelUtil.getResource(businessObject));
+        }
+        return object;
+    }
 }

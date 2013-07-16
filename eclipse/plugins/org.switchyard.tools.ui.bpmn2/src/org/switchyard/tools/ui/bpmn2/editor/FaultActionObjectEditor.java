@@ -57,8 +57,9 @@ public class FaultActionObjectEditor extends ComboObjectEditor {
     @Override
     protected Hashtable<String, Object> getChoiceOfValues(EObject object, EStructuralFeature feature) {
         Hashtable<String, Object> values = new Hashtable<String, Object>();
-        values.put("Abort", "abort");
-        values.put("Complete", "complete");
+        values.put("Abort", "ABORT");
+        values.put("Complete", "COMPLETE");
+        values.put("Throw", "THROW");
         return values;
     }
 }

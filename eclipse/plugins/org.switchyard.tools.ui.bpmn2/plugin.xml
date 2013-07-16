@@ -135,11 +135,13 @@
 							<property name="to" type="FormalExpression">
 								<value>
 									<property name="body"/>
+									<property name="language" value="http://www.mvel.org/2.0"/>
 								</value>
 							</property>
 							<property name="from" type="FormalExpression">
 								<value>
 									<property name="body" value="Parameter"/>
+									<property name="language" value="http://www.mvel.org/2.0"/>
 								</value>
 							</property>
 						</value>
@@ -154,11 +156,13 @@
 							<property name="to" type="FormalExpression">
 								<value>
 									<property name="body"/>
+									<property name="language" value="http://www.mvel.org/2.0"/>
 								</value>
 							</property>
 							<property name="from" type="FormalExpression">
 								<value>
 									<property name="body" value="Result"/>
+									<property name="language" value="http://www.mvel.org/2.0"/>
 								</value>
 							</property>
 						</value>

@@ -936,12 +936,6 @@
            name="%mixin.http.name">
      </switchYardTestMixIn>
      <switchYardTestMixIn
-           componentId="org.switchyard.components:switchyard-component-test-mixin-bpm"
-           description="%mixin.bpm.description"
-           mixInClass="org.switchyard.component.test.mixins.bpm.BPMMixIn"
-           name="%mixin.bpm.name">
-     </switchYardTestMixIn>
-     <switchYardTestMixIn
            componentId="org.switchyard.components:switchyard-component-test-mixin-smooks"
            description="%mixin.smooks.description"
            mixInClass="org.switchyard.component.test.mixins.smooks.SmooksMixIn"

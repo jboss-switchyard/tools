@@ -22,6 +22,7 @@ import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
@@ -70,6 +71,11 @@ public class SwitchYardCustomTaskPropertySection extends JbpmCustomTaskPropertyS
     @Override
     protected AbstractDetailComposite createSectionRoot() {
         return new SwitchYardCustomTaskPropertiesComposite(this);
+    }
+
+    @Override
+    public AbstractDetailComposite createSectionRoot(Composite parent, int style) {
+        return new SwitchYardCustomTaskPropertiesComposite(parent, style);
     }
 
     @Override
