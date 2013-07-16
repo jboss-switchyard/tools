@@ -11,14 +11,16 @@
 package org.switchyard.tools.ui.bpmn2.component;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.PrintWriter;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
@@ -37,7 +39,12 @@ import org.switchyard.tools.models.switchyard1_0.bpm.OperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
+import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
+
+import freemarker.template.Configuration;
+import freemarker.template.DefaultObjectWrapper;
+import freemarker.template.Template;
 
 /**
  * NewBPMComponentWizard
@@ -49,6 +56,13 @@ import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
  * @author Rob Cernich
  */
 public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements INewWizard {
+
+    private static final String TEMPLATE = "ProcessTemplate.ftl";
+    private static final String PACKAGE_NAME_PARAM = "packageName";
+    private static final String PROCESS_NAME_PARAM = "processName";
+    private static final String PROCESS_ID_PARAM = "processID";
+    private static final String MESSAGE_IN_NAME_PARAM = "messageInName";
+    private static final String MESSAGE_OUT_NAME_PARAM = "messageOutName";
 
     private BPMImplementationType _implementation;
     private NewBPMProcessDetailsWizardPage _processPage;
@@ -201,80 +215,35 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
 
     @Override
     protected InputStream getInitialContents() {
-        // this is crappy. ideally we would be using the bpmn2 model to do this.
-        final StringBuffer buf = new StringBuffer();
-        final String messageIn = _processPage.getMessageInName() == null ? "Parameter" : _processPage
-                .getMessageInName();
-        final String messageOut = _processPage.getMessageOutName() == null ? "Result" : _processPage
-                .getMessageOutName();
-        final String messageInItem = "_" + messageIn + "Item";
-        final String messageOutItem = "_" + messageOut + "Item";
-        String lineSeparator;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
-            lineSeparator = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot()).findRecommendedLineSeparator();
-        } catch (JavaModelException e1) {
-            lineSeparator = "\n";
-        }
-        buf.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>").append(lineSeparator);
-        buf.append(
-                "<definitions id=\"Definition_1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" xmlns:tns=\"http://www.jboss.org/drools\" xsi:schemaLocation=\"http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd\" targetNamespace=\"http://www.jboss.org/drools\">")
-                .append(lineSeparator);
-        if (messageIn != null && messageIn.length() > 0) {
-            buf.append("    <itemDefinition id=\"").append(messageInItem).append("\"/>").append(lineSeparator);
-        }
-        if (messageOut != null && messageOut.length() > 0) {
-            buf.append("    <itemDefinition id=\"").append(messageOutItem).append("\"/>").append(lineSeparator);
-        }
-        buf.append("    <process id=\"").append(_implementation.getProcessId()).append("\" tns:packageName=\"")
-                .append(_processPage.getPackageName()).append("\" name=\"").append(_processPage.getProcessName())
-                .append("\" isExecutable=\"true\" processType=\"Private\">").append(lineSeparator);
-        buf.append("        <!-- process variables -->").append(lineSeparator);
-        if (messageIn != null && messageIn.length() > 0) {
-            buf.append("        <property id=\"").append(messageIn).append("\" itemSubjectRef=\"")
-                    .append(messageInItem).append("\"/>").append(lineSeparator);
-        }
-        if (messageOut != null && messageOut.length() > 0) {
-            buf.append("        <property id=\"").append(messageOut).append("\" itemSubjectRef=\"")
-                    .append(messageOutItem).append("\"/>").append(lineSeparator);
-        }
-        buf.append("        <startEvent id=\"StartEvent_1\">").append(lineSeparator);
-        buf.append("            <outgoing>SequenceFlow_1</outgoing>").append(lineSeparator);
-        buf.append("        </startEvent>").append(lineSeparator);
-        buf.append(
-                "        <sequenceFlow id=\"SequenceFlow_1\" tns:priority=\"1\" sourceRef=\"StartEvent_1\" targetRef=\"EndEvent_1\"/>")
-                .append(lineSeparator);
-        buf.append("        <endEvent id=\"EndEvent_1\">").append(lineSeparator);
-        buf.append("            <incoming>SequenceFlow_1</incoming>").append(lineSeparator);
-        buf.append("        </endEvent>").append(lineSeparator);
-        buf.append("    </process>").append(lineSeparator);
-        // i wish there were a way we could get away without having to
-        // initialize layout
-        buf.append("    <bpmndi:BPMNDiagram>").append(lineSeparator);
-        buf.append("        <bpmndi:BPMNPlane bpmnElement=\"").append(_implementation.getProcessId()).append("\" >")
-                .append(lineSeparator);
-        buf.append("            <bpmndi:BPMNShape id=\"BPMNShape_StartEvent_1\" bpmnElement=\"StartEvent_1\" >")
-                .append(lineSeparator);
-        buf.append("                <dc:Bounds x=\"50\" y=\"50\" width=\"48\" height=\"48\" />").append(lineSeparator);
-        buf.append("            </bpmndi:BPMNShape>").append(lineSeparator);
-        buf.append("            <bpmndi:BPMNShape id=\"BPMNShape_EndEvent_1\" bpmnElement=\"EndEvent_1\" >").append(
-                lineSeparator);
-        buf.append("                <dc:Bounds x=\"200\" y=\"50\" width=\"48\" height=\"48\" />").append(lineSeparator);
-        buf.append("            </bpmndi:BPMNShape>").append(lineSeparator);
-        buf.append(
-                "            <bpmndi:BPMNEdge id=\"BPMNEdge_SequenceFlow_1\" bpmnElement=\"SequenceFlow_1\" sourceElement=\"BPMNShape_StartEvent_1\" targetElement=\"BPMNShape_EndEvent_1\">")
-                .append(lineSeparator);
-        buf.append("                <di:waypoint x=\"98\" y=\"74\" />").append(lineSeparator);
-        buf.append("                <di:waypoint x=\"200\" y=\"74\" />").append(lineSeparator);
-        buf.append("            </bpmndi:BPMNEdge>").append(lineSeparator);
-        buf.append("        </bpmndi:BPMNPlane>").append(lineSeparator);
-        buf.append("    </bpmndi:BPMNDiagram>").append(lineSeparator);
-        buf.append("</definitions>").append(lineSeparator);
+            Configuration config = new Configuration();
+            config.setClassForTemplateLoading(getClass(), "");
+            config.setObjectWrapper(new DefaultObjectWrapper());
 
-        try {
-            return new ByteArrayInputStream(buf.toString().getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            // something better than nothing
-            return new ByteArrayInputStream(buf.toString().getBytes());
+            Template template = config.getTemplate(TEMPLATE);
+
+            Map<String, Object> parameters = new HashMap<String, Object>();
+            parameters.put(PACKAGE_NAME_PARAM, _processPage.getPackageName());
+            parameters.put(PROCESS_NAME_PARAM, _processPage.getProcessName());
+            parameters.put(PROCESS_ID_PARAM, _processPage.getProcessId());
+            parameters.put(MESSAGE_IN_NAME_PARAM,
+                    _processPage.getMessageInName() == null ? "Parameter" : _processPage.getMessageInName());
+            parameters.put(MESSAGE_OUT_NAME_PARAM,
+                    _processPage.getMessageOutName() == null ? "Result" : _processPage.getMessageOutName());
+
+            template.process(parameters, new PrintWriter(baos));
+            return new ByteArrayInputStream(baos.toByteArray());
+        } catch (Exception e) {
+            Activator.getDefault().getLog()
+                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error occurred creating bpmn2 file.", e));
+            return null;
+        } finally {
+            try {
+                baos.close();
+            } catch (IOException e) {
+                e.fillInStackTrace();
+            }
         }
     }
 

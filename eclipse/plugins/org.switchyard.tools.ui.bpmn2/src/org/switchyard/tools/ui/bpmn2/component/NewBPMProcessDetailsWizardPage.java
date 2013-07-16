@@ -162,10 +162,10 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
         processPropertiesGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         processPropertiesGroup.setText("Process Property Names");
 
-        createLabel(processPropertiesGroup, "Input Message:");
+        createLabel(processPropertiesGroup, "Parameter:");
         _messageInNameText = new Text(processPropertiesGroup, SWT.SINGLE | SWT.BORDER);
         _messageInNameText
-                .setToolTipText("The name for the property in which the input message contents will be stored.  (default, \"messageContentIn\")");
+                .setToolTipText("The name of the process variable in which the input message contents will be stored.  (default, \"Parameter\")");
         _messageInNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _messageInNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -175,10 +175,10 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(processPropertiesGroup, "Output Message:");
+        createLabel(processPropertiesGroup, "Result:");
         _messageOutNameText = new Text(processPropertiesGroup, SWT.SINGLE | SWT.BORDER);
         _messageOutNameText
-                .setToolTipText("The name for the property in which the output message contents will be stored.  (default, \"messageContentOut\")");
+                .setToolTipText("The name of the process variable in which the output message content will be retrieved.  (default, \"Result\")");
         _messageOutNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _messageOutNameText.addModifyListener(new ModifyListener() {
             @Override
