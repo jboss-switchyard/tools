@@ -399,6 +399,18 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 updateFeature(_binding, new String[] {"wsdl", "wsdlPort" }, new Object[] {_sWSDLURI, wsdlPort });
             } else if (control.equals(_mWSDLSocketText)) {
                 _bindingSocket = _mWSDLSocketText.getText().trim();
+                // for SWITCHYARD-1614 - check to make sure we have a colon and add one if missing
+                boolean isJustPort = false;
+                try {
+                    Integer.valueOf(_bindingSocket);
+                    isJustPort = true;
+                } catch (NumberFormatException nfe) {
+                    isJustPort = false;
+                }
+                if (isJustPort && !_bindingSocket.startsWith(":")) {
+                    _bindingSocket = ":" + _bindingSocket;
+                    _mWSDLSocketText.setText(_bindingSocket);
+                }
                 updateFeature(_binding, "socketAddr", _bindingSocket);
             } else if (control.equals(_soapHeadersTypeCombo)) {
                 final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
