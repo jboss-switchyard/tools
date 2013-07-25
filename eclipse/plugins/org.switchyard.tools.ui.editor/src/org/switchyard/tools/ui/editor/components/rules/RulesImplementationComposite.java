@@ -138,7 +138,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         TabItem actions = new TabItem(folder, SWT.NONE);
         TabItem advanced = new TabItem(folder, SWT.NONE);
 
-        resources.setText("Resources");
+        resources.setText("General");
         actions.setText("Operations");
         advanced.setText("Advanced");
 
@@ -205,7 +205,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section resourcesSection = factory.createSection(control, Section.TITLE_BAR | Section.EXPANDED);
-        resourcesSection.setText("Resources");
+        resourcesSection.setText("Manifest");
         resourcesSection.setLayout(new GridLayout(2, false));
         resourcesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -410,7 +410,8 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         control.setLayout(new GridLayout());
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
+                | Section.EXPANDED);
         channelsSection.setText("Channels");
         channelsSection.setLayout(new GridLayout());
         channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -431,22 +432,21 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         factory.adapt(_channelsTable);
         channelsSection.setClient(_channelsTable);
 
-        Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
-                | Section.EXPANDED);
-        propertiesSection.setText("Drools Runtime Properties");
-        propertiesSection.setLayout(new GridLayout());
-        propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        propertiesSection.addExpansionListener(new ExpansionAdapter() {
+        Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        listenersSection.setText("Listeners");
+        listenersSection.setLayout(new GridLayout());
+        listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        listenersSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
                 getContainer().layout();
             }
         });
 
-        _propertiesTable = new RulesPropertyTable(propertiesSection, SWT.NONE);
-        _propertiesTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_propertiesTable);
-        propertiesSection.setClient(_propertiesTable);
+        _listenersTable = new RulesEventListenerTable(listenersSection, SWT.NONE);
+        _listenersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_listenersTable);
+        listenersSection.setClient(_listenersTable);
 
         Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
         loggersSection.setText("Loggers");
@@ -464,21 +464,21 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         factory.adapt(_loggersTable);
         loggersSection.setClient(_loggersTable);
 
-        Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        listenersSection.setText("Event Listeners");
-        listenersSection.setLayout(new GridLayout());
-        listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        listenersSection.addExpansionListener(new ExpansionAdapter() {
+        Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        propertiesSection.setText("Properties");
+        propertiesSection.setLayout(new GridLayout());
+        propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        propertiesSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
                 getContainer().layout();
             }
         });
 
-        _listenersTable = new RulesEventListenerTable(listenersSection, SWT.NONE);
-        _listenersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_listenersTable);
-        listenersSection.setClient(_listenersTable);
+        _propertiesTable = new RulesPropertyTable(propertiesSection, SWT.NONE);
+        _propertiesTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_propertiesTable);
+        propertiesSection.setClient(_propertiesTable);
 
         item.setControl(control);
     }

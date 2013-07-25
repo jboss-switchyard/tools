@@ -171,7 +171,7 @@ public class RulesEventListenerTable extends Composite implements ICellModifier 
         tableComposite.setLayout(tableLayout);
 
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText("Name");
+        nameColumn.setText("Class");
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 300, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);

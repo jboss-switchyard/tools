@@ -109,13 +109,13 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof LoggerType1 && columnIndex == 0) {
+            if (element instanceof LoggerType1 && columnIndex == 1) {
                 if (((LoggerType1) element).getLog() != null) {
                     return ((LoggerType1) element).getLog();
                 } else {
                     return "";
                 }
-            } else if (element instanceof LoggerType1 && columnIndex == 1) {
+            } else if (element instanceof LoggerType1 && columnIndex == 0) {
                 return ((LoggerType1) element).getType().getLiteral();
             } else if (element instanceof LoggerType1 && columnIndex == 2) {
                 if (((LoggerType1) element).getInterval() != null) {
@@ -134,7 +134,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
     private static final String TYPE_COLUMN = "type";
     private static final String INTERVAL_COLUMN = "interval";
 
-    private static final String[] TREE_COLUMNS = new String[] {LOG_COLUMN, TYPE_COLUMN, INTERVAL_COLUMN };
+    private static final String[] TREE_COLUMNS = new String[] {TYPE_COLUMN, LOG_COLUMN, INTERVAL_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -188,12 +188,12 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
         TableColumnLayout tableLayout = new TableColumnLayout();
         tableComposite.setLayout(tableLayout);
 
-        TableColumn logColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        logColumn.setText("Log");
-        tableLayout.setColumnData(logColumn, new ColumnWeightData(100, 150, true));
         TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         typeColumn.setText("Type");
         tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
+        TableColumn logColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        logColumn.setText("Log");
+        tableLayout.setColumnData(logColumn, new ColumnWeightData(100, 150, true));
         TableColumn intervalColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         intervalColumn.setText("Interval");
         tableLayout.setColumnData(intervalColumn, new ColumnWeightData(100, 150, true));
@@ -206,9 +206,9 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
 
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
-                new TextCellEditor(_propertyTreeTable.getTable()),
                 new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {LoggerType.CONSOLE.getLiteral(),
                         LoggerType.FILE.getLiteral(), LoggerType.THREADEDFILE.getLiteral() }),
+                new TextCellEditor(_propertyTreeTable.getTable()),
                 new EDataTypeCellEditor(BPMPackage.eINSTANCE.getLoggerType1_Interval().getEAttributeType(),
                         _propertyTreeTable.getTable()) });
 
@@ -409,6 +409,20 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public boolean canModify(Object element, String property) {
+        if (element instanceof LoggerType1) {
+            LoggerType1 logger = (LoggerType1) element;
+            if (property.equalsIgnoreCase(LOG_COLUMN) 
+                    && (logger.getType().equals(LoggerType.THREADEDFILE) 
+                            || logger.getType().equals(LoggerType.FILE))) {
+                return true;
+            } else if (property.equalsIgnoreCase(INTERVAL_COLUMN)
+                && (logger.getType().equals(LoggerType.THREADEDFILE))) {
+                return true;
+            } else if (property.equalsIgnoreCase(TYPE_COLUMN)) {
+                return true;
+            }
+            return false;
+        }
         return true;
     }
 
@@ -479,6 +493,12 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
                             LoggerType1 parm = (LoggerType1) ti.getData();
                             LoggerType atype = LoggerType.get(((Integer) value).intValue());
                             parm.setType(atype);
+                            if (atype.equals(LoggerType.FILE)) {
+                                parm.setInterval(null);
+                            } else if (!atype.equals(LoggerType.THREADEDFILE)) {
+                                parm.setLog(null);
+                                parm.setInterval(null);
+                            }
                             getTableViewer().refresh(true);
                         }
                     });
@@ -486,6 +506,12 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
                     LoggerType1 parm = (LoggerType1) ti.getData();
                     LoggerType atype = LoggerType.get(((Integer) value).intValue());
                     parm.setType(atype);
+                    if (atype.equals(LoggerType.FILE)) {
+                        parm.setInterval(null);
+                    } else if (!atype.equals(LoggerType.THREADEDFILE)) {
+                        parm.setLog(null);
+                        parm.setInterval(null);
+                    }
                     getTableViewer().refresh(true);
                 }
             }

@@ -407,6 +407,23 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         mappingsComposite.setLayout(new GridLayout());
         mappingsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
+        Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
+        globalsSection.setText("Globals");
+        globalsSection.setLayout(new GridLayout());
+        globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        globalsSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                getContainer().layout();
+            }
+        });
+
+        _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE,"message.content", "", 
+                BPMPackage.eINSTANCE.getBPMOperationType_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global());
+        _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_globalsTable);
+        globalsSection.setClient(_globalsTable);
+
         Section inputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
         inputsSection.setText("Inputs");
@@ -461,23 +478,6 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         factory.adapt(_faultsTable);
         faultsSection.setClient(_faultsTable);
 
-        Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
-        globalsSection.setText("Globals");
-        globalsSection.setLayout(new GridLayout());
-        globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        globalsSection.addExpansionListener(new ExpansionAdapter() {
-            @Override
-            public void expansionStateChanged(ExpansionEvent e) {
-                getContainer().layout();
-            }
-        });
-
-        _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE,"message.content", "", 
-                BPMPackage.eINSTANCE.getBPMOperationType_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global());
-        _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_globalsTable);
-        globalsSection.setClient(_globalsTable);
-
         _inputsTable.setEnabled(false);
         _outputsTable.setEnabled(false);
         _globalsTable.setEnabled(false);
@@ -492,8 +492,56 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         control.setLayout(new GridLayout());
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
+        Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        channelsSection.setText("Channels");
+        channelsSection.setLayout(new GridLayout());
+        channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        channelsSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                getContainer().layout();
+            }
+        });
+
+        _channelsTable = new BPMChannelTable(channelsSection, SWT.NONE);
+        _channelsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_channelsTable);
+        channelsSection.setClient(_channelsTable);
+
+        Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        listenersSection.setText("Listeners");
+        listenersSection.setLayout(new GridLayout());
+        listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        listenersSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                getContainer().layout();
+            }
+        });
+
+        _listenersTable = new BPMEventListenerTable(listenersSection, SWT.NONE);
+        _listenersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_listenersTable);
+        listenersSection.setClient(_listenersTable);
+
+        Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        loggersSection.setText("Loggers");
+        loggersSection.setLayout(new GridLayout());
+        loggersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        loggersSection.addExpansionListener(new ExpansionAdapter() {
+            @Override
+            public void expansionStateChanged(ExpansionEvent e) {
+                getContainer().layout();
+            }
+        });
+
+        _loggersTable = new BPMLoggerTable(loggersSection, SWT.NONE);
+        _loggersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        factory.adapt(_loggersTable);
+        loggersSection.setClient(_loggersTable);
+
+        Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
         propertiesSection.setText("Properties");
         propertiesSection.setLayout(new GridLayout());
         propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -509,21 +557,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         factory.adapt(_propertiesTable);
         propertiesSection.setClient(_propertiesTable);
 
-        Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        loggersSection.setText("Audit Loggers");
-        loggersSection.setLayout(new GridLayout());
-        loggersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        loggersSection.addExpansionListener(new ExpansionAdapter() {
-            @Override
-            public void expansionStateChanged(ExpansionEvent e) {
-                getContainer().layout();
-            }
-        });
-
-        _loggersTable = new BPMLoggerTable(loggersSection, SWT.NONE);
-        _loggersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_loggersTable);
-        loggersSection.setClient(_loggersTable);
+        addUserGroupCallBackSection(factory, control);
 
         final Section handlersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
         handlersSection.setText("Work Item Handlers");
@@ -540,40 +574,6 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         _handlersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_handlersTable);
         handlersSection.setClient(_handlersTable);
-
-        Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        listenersSection.setText("Event Listeners");
-        listenersSection.setLayout(new GridLayout());
-        listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        listenersSection.addExpansionListener(new ExpansionAdapter() {
-            @Override
-            public void expansionStateChanged(ExpansionEvent e) {
-                getContainer().layout();
-            }
-        });
-
-        _listenersTable = new BPMEventListenerTable(listenersSection, SWT.NONE);
-        _listenersTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_listenersTable);
-        listenersSection.setClient(_listenersTable);
-
-        Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        channelsSection.setText("Channels");
-        channelsSection.setLayout(new GridLayout());
-        channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        channelsSection.addExpansionListener(new ExpansionAdapter() {
-            @Override
-            public void expansionStateChanged(ExpansionEvent e) {
-                getContainer().layout();
-            }
-        });
-
-        _channelsTable = new BPMChannelTable(channelsSection, SWT.NONE);
-        _channelsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        factory.adapt(_channelsTable);
-        channelsSection.setClient(_channelsTable);
-
-        addUserGroupCallBackSection(factory, control);
 
         item.setControl(control);
     }
@@ -595,7 +595,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         userGroupCallbackControl.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         _callbackLinkLabel = new Link(userGroupCallbackControl, SWT.NONE);
-        String message = "<a>Callback Class:</a>";
+        String message = "<a>Class:</a>";
         _callbackLinkLabel.setText(message);
         _callbackLinkLabel.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -655,7 +655,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
         
-        Label callbackPropsLabel = factory.createLabel(userGroupCallbackControl, "Callback Properties:");
+        Label callbackPropsLabel = factory.createLabel(userGroupCallbackControl, "Properties:");
         callbackPropsLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1));
         
         _userCallbackPropertiesTable = new BPMUserGroupCallbackPropertyTable(userGroupCallbackControl, SWT.NONE);
