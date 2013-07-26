@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SwitchYard CXF Libraries
 Bundle-SymbolicName: org.switchyard.tools.cxf;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.switchyard.tools.cxf.Activator
 Bundle-Vendor: www.jboss.org/switchyard
 Require-Bundle: org.eclipse.ui,
