@@ -45,11 +45,6 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
     }
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
-    }
-
-    @Override
     public void setBinding(Binding impl) {
         if (impl instanceof JCABinding) {
             this._binding = (JCABinding) impl;
@@ -60,16 +55,8 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
     }
 
     @Override
-    public void setTargetObject(Object target) {
-        super.setTargetObject(target);
-    }
-
-    @Override
     protected boolean validate() {
         setErrorMessage(null);
-        if (getBinding() != null) {
-            super.validateTabs();
-        }
         return (getErrorMessage() == null);
     }
 

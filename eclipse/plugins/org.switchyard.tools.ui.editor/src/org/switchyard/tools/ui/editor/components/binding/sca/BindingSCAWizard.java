@@ -10,11 +10,14 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.binding.sca;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
-import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * BindingSCAWizard
@@ -22,42 +25,18 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * <p/>
  * Wizard for creating new SCA Binding objects.
  */
-public class BindingSCAWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private boolean _showConsumer;
-    private BindingSCAWizardPage _page;
-    private Contract _container;
+public class BindingSCAWizard extends AbstractBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new BindingSCAWizardPage(BindingSCAWizardPage.class.getCanonicalName());
-        _page.setShowConsumer(_showConsumer);
-        addPage(_page);
+    protected Binding createBinding() {
+        final SCABinding binding = ScaFactory.eINSTANCE.createSCABinding();
+        binding.setName(makeUniqueName("sca"));
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
-    }
-
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _showConsumer = container instanceof Service;
-        _container = container;
-    }
-    
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
+    protected List<IBindingComposite> createComposites() {
+        return BindingSCATypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
 }

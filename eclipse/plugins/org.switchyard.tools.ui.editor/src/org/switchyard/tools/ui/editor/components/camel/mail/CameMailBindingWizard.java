@@ -10,11 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.mail;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * CamelFileBindingWizard
@@ -24,42 +28,23 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author Rob Cernich
  */
-public class CameMailBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private boolean _showConsumer;
-    private CamelMailBindingWizardPage _page;
-    private Contract _container;
+public class CameMailBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new CamelMailBindingWizardPage(CamelMailBindingWizardPage.class.getCanonicalName());
-        _page.setShowConsumer(_showConsumer);
-        addPage(_page);
+    protected Binding createBinding() {
+        final CamelMailBindingType binding = MailFactory.eINSTANCE.createCamelMailBindingType();
+        if (getTargetContainer() instanceof Service) {
+            binding.setConsume(MailFactory.eINSTANCE.createCamelMailConsumerType());
+        } else {
+            binding.setProduce(MailFactory.eINSTANCE.createCamelMailProducerType());
+        }
+        binding.setName(makeUniqueName("mail"));
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
-    }
-
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _showConsumer = container instanceof Service;
-        _container = container;
-    }
-    
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
+    protected List<IBindingComposite> createComposites() {
+        return CamelMailBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
 }

@@ -12,8 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.binding;
 
-import java.util.List;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -27,15 +25,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -48,17 +40,23 @@ public class CamelComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelBindingType _binding = null;
+    private Text _nameText;
     private Text _configURIText;
-    private TabFolder _tabFolder;
     private OperationSelectorComposite _opSelectorComposite;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "Camel Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your Camel Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelBindingType) {
             this._binding = (CamelBindingType) impl;
             setInUpdate(true);
@@ -73,9 +71,13 @@ public class CamelComposite extends AbstractSYBindingComposite {
                 _opSelectorComposite.setBinding(this._binding);
                 _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
 
             setInUpdate(false);
-            super.setTabsBinding(_binding);
             validate();
         } else {
             this._binding = null;
@@ -84,7 +86,7 @@ public class CamelComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    public void setTargetObject(Object target) {
+    public void setTargetObject(EObject target) {
         super.setTargetObject(target);
         if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
             _opSelectorComposite.setTargetObject((EObject) target);
@@ -99,7 +101,6 @@ public class CamelComposite extends AbstractSYBindingComposite {
                 setErrorMessage("Config URI may not be empty.");
             }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -111,36 +112,27 @@ public class CamelComposite extends AbstractSYBindingComposite {
             _panel.setLayoutData(getRootGridData());
         }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Camel");
-        one.setControl(getSchedulerTabControl(_tabFolder));
+        getSchedulerTabControl(_panel);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
                 _opSelectorComposite.setTargetObject((EObject) getTargetObject());
             }
         }
-        
-        addTabs(_tabFolder);
     }
 
-    private Control getSchedulerTabControl(TabFolder tabFolder) {
+    private Control getSchedulerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        Group schedulerGroup = new Group(composite, SWT.NONE);
-        schedulerGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        schedulerGroup.setLayout(new GridLayout(2, false));
-        schedulerGroup.setText("Gateway Options");
+        _nameText = createLabelAndText(composite, "Name");
 
-        _configURIText = createLabelAndText(schedulerGroup, "Config URI*");
+        _configURIText = createLabelAndText(composite, "Config URI*");
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
             _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
             _opSelectorComposite.setLayout(new GridLayout(2, false));
             _opSelectorComposite.addChangeListener(new ChangeListener() {
                 @Override
@@ -164,6 +156,8 @@ public class CamelComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         }
         super.handleModify(control);
         setHasChanged(false);
@@ -174,26 +168,13 @@ public class CamelComposite extends AbstractSYBindingComposite {
         if (_binding != null) {
             if (control.equals(_configURIText)) {
                 _configURIText.setText(this._binding.getConfigURI());
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else {
                 super.handleUndo(control);
             }
         }
         setHasChanged(false);
-    }
-
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        return null;
-    }
-    
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
 
 }

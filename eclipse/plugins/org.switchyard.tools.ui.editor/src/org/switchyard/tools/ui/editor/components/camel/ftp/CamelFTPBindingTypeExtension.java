@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.ftp;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +25,9 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
+import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
@@ -53,11 +56,8 @@ public class CamelFTPBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public IBindingComposite createComposite(Binding binding) {
-        if (binding.eContainer() instanceof Service) {
-            return new CamelFTPConsumerComposite();
-        }
-        return new CamelFTPProducerComposite();
+    public List<IBindingComposite> createComposites(Binding binding) {
+        return createComposites(binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -68,5 +68,72 @@ public class CamelFTPBindingTypeExtension implements IBindingTypeExtension {
     @Override
     public String getTypeName(Binding object) {
         return "FTP";
+    }
+    
+    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+        final List<IBindingComposite> composites = new ArrayList<IBindingComposite>();
+        if (forConsumer) {
+            composites.add(new CamelFTPConsumerComposite());
+            composites.add(new MessageComposerComposite());
+            composites.add(new AdvancedBindingDetailsComposite(CONSUMER_ADVANCED_PROPS));
+        } else {
+            composites.add(new CamelFTPProducerComposite());
+            composites.add(new MessageComposerComposite());
+            composites.add(new AdvancedBindingDetailsComposite(PRODUCER_ADVANCED_PROPS));
+        }
+        return composites;
+    }
+    private static final List<String> PRODUCER_ADVANCED_PROPS;
+    
+    static {
+        PRODUCER_ADVANCED_PROPS = new ArrayList<String>();
+        PRODUCER_ADVANCED_PROPS.add("passiveMode");
+        PRODUCER_ADVANCED_PROPS.add("timeout");
+        PRODUCER_ADVANCED_PROPS.add("soTimeout");
+        PRODUCER_ADVANCED_PROPS.add("siteCommand");
+        PRODUCER_ADVANCED_PROPS.add("connectTimeout");
+        PRODUCER_ADVANCED_PROPS.add("disconnect");
+        PRODUCER_ADVANCED_PROPS.add("maximumReconnectAttempts");
+        PRODUCER_ADVANCED_PROPS.add("reconnectDelay");
+        PRODUCER_ADVANCED_PROPS.add("separator");
+        PRODUCER_ADVANCED_PROPS.add("stepwise");
+        PRODUCER_ADVANCED_PROPS.add("throwExceptionOnConnectFailed");
+        PRODUCER_ADVANCED_PROPS.add("tempPrefix");
+        PRODUCER_ADVANCED_PROPS.add("tempFileName");
+        PRODUCER_ADVANCED_PROPS.add("keepLastModified");
+        PRODUCER_ADVANCED_PROPS.add("eagerDeleteTargetFile");
+        PRODUCER_ADVANCED_PROPS.add("doneFileName");
+    }
+
+    private static final List<String> CONSUMER_ADVANCED_PROPS;
+    
+    static {
+        CONSUMER_ADVANCED_PROPS = new ArrayList<String>();
+        CONSUMER_ADVANCED_PROPS.add("passiveMode");
+        CONSUMER_ADVANCED_PROPS.add("timeout");
+        CONSUMER_ADVANCED_PROPS.add("soTimeout");
+        CONSUMER_ADVANCED_PROPS.add("siteCommand");
+        CONSUMER_ADVANCED_PROPS.add("connectTimeout");
+        CONSUMER_ADVANCED_PROPS.add("disconnect");
+        CONSUMER_ADVANCED_PROPS.add("maximumReconnectAttempts");
+        CONSUMER_ADVANCED_PROPS.add("reconnectDelay");
+        CONSUMER_ADVANCED_PROPS.add("separator");
+        CONSUMER_ADVANCED_PROPS.add("stepwise");
+        CONSUMER_ADVANCED_PROPS.add("throwExceptionOnConnectFailed");
+        CONSUMER_ADVANCED_PROPS.add("noop");
+        CONSUMER_ADVANCED_PROPS.add("idempotent");
+        CONSUMER_ADVANCED_PROPS.add("idempotentRepository");
+        CONSUMER_ADVANCED_PROPS.add("inProgressRepository");
+        CONSUMER_ADVANCED_PROPS.add("filter");
+        CONSUMER_ADVANCED_PROPS.add("sorter");
+        CONSUMER_ADVANCED_PROPS.add("sortBy");
+        CONSUMER_ADVANCED_PROPS.add("readLock");
+        CONSUMER_ADVANCED_PROPS.add("readLockTimeout");
+        CONSUMER_ADVANCED_PROPS.add("readLockCheckInterval");
+        CONSUMER_ADVANCED_PROPS.add("exclusiveReadLockStrategy");
+        CONSUMER_ADVANCED_PROPS.add("processStrategy");
+        CONSUMER_ADVANCED_PROPS.add("startingDirectoryMustExist");
+        CONSUMER_ADVANCED_PROPS.add("directoryMustExist");
+        CONSUMER_ADVANCED_PROPS.add("doneFileName");
     }
 }

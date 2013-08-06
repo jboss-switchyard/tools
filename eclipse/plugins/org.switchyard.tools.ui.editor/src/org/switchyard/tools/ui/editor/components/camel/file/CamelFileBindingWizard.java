@@ -10,11 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.file;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * CamelFileBindingWizard
@@ -24,42 +28,23 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author Rob Cernich
  */
-public class CamelFileBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private boolean _showConsumer;
-    private CamelFileBindingWizardPage _page;
-    private Contract _container;
+public class CamelFileBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new CamelFileBindingWizardPage(CamelFileBindingWizardPage.class.getCanonicalName());
-        _page.setShowConsumer(_showConsumer);
-        addPage(_page);
+    protected Binding createBinding() {
+        final CamelFileBindingType binding = FileFactory.eINSTANCE.createCamelFileBindingType();
+        if (getTargetContainer() instanceof Service) {
+            binding.setConsume(FileFactory.eINSTANCE.createFileConsumerType());
+        } else {
+            binding.setProduce(FileFactory.eINSTANCE.createFileProducerType());
+        }
+        binding.setName(makeUniqueName("file"));
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
-    }
-
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _showConsumer = container instanceof Service;
-        _container = container;
-    }
-    
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
+    protected List<IBindingComposite> createComposites() {
+        return CamelFileBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
 }

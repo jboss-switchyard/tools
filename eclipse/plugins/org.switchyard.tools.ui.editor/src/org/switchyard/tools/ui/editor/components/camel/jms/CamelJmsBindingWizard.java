@@ -10,10 +10,14 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.jms;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * CamelFileBindingWizard
@@ -23,38 +27,18 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author Rob Cernich
  */
-public class CamelJmsBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private CamelJmsBindingWizardPage _page;
-    private Contract _container;
+public class CamelJmsBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new CamelJmsBindingWizardPage(CamelJmsBindingWizardPage.class.getCanonicalName());
-        addPage(_page);
+    protected Binding createBinding() {
+        final CamelJmsBindingType binding = JmsFactory.eINSTANCE.createCamelJmsBindingType();
+        binding.setName(makeUniqueName("jms"));
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
-    }
-
-    @Override
-    public void init(Contract container) {
-        _container = container;
-    }
-    
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
+    protected List<IBindingComposite> createComposites() {
+        return CamelJMSBindingTypeExtension.createComposites();
     }
 
 }

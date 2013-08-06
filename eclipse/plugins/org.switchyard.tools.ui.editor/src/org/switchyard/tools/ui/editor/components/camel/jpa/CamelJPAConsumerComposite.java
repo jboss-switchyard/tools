@@ -13,7 +13,6 @@
 package org.switchyard.tools.ui.editor.components.camel.jpa;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -41,15 +40,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -63,8 +57,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelJpaBindingType _binding = null;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
+    private Text _nameText;
     private Text _entityClassNameText;
     private Button _browseEntityClassButton;
     private Text _persistenceUnitText;
@@ -79,12 +72,18 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
     private IJavaProject _project;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "JPA Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your JPA Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelJpaBindingType) {
             this._binding = (CamelJpaBindingType) impl;
             setInUpdate(true);
@@ -128,6 +127,11 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             } else {
                 _transcationManagerText.setText("");
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
 
             final Resource resource = MergedModelUtil.getSwitchYard((EObject) getTargetObject()).eResource();
             if (resource.getURI().isPlatformResource()) {
@@ -138,18 +142,12 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 }
             }
 
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
         }
         addObservableListeners();
-    }
-
-    @Override
-    public void setTargetObject(Object target) {
-        super.setTargetObject(target);
     }
 
     @Override
@@ -168,7 +166,6 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
 //                }
             }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -176,32 +173,21 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Consumer");
-        one.setControl(getConsumerTabControl(_tabFolder));
-
-        addTabs(_tabFolder);
+        getConsumerTabControl(_panel);
     }
 
-    private Control getConsumerTabControl(TabFolder tabFolder) {
+    private Control getConsumerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
 
-        Group jpaGroup = new Group(composite, SWT.NONE);
-        jpaGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        jpaGroup.setLayout(new GridLayout(3, false));
-        jpaGroup.setText("JPA Options");
+        _nameText = createLabelAndText(composite, "Name");
+        _nameText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
 
-        _entityClassNameText = createLabelAndText(jpaGroup, "Entity Class Name");
+        _entityClassNameText = createLabelAndText(composite, "Entity Class Name");
 
-        _browseEntityClassButton = new Button(jpaGroup, SWT.PUSH);
+        _browseEntityClassButton = new Button(composite, SWT.PUSH);
         _browseEntityClassButton.setText("Browse...");
         GridData btnGD = new GridData();
         _browseEntityClassButton.setLayoutData(btnGD);
@@ -218,14 +204,14 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             }
         });
 
-        _persistenceUnitText = createLabelAndText(jpaGroup, "Persistence Unit");
+        _persistenceUnitText = createLabelAndText(composite, "Persistence Unit");
         addGridData(_persistenceUnitText, 2, GridData.FILL_HORIZONTAL);
         
-        _transcationManagerText = createLabelAndText(jpaGroup, "Transaction Manager");
+        _transcationManagerText = createLabelAndText(composite, "Transaction Manager");
         addGridData(_transcationManagerText, 2, GridData.FILL_HORIZONTAL);
 
         Group consumeGroup = new Group(composite, SWT.NONE);
-        consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
         consumeGroup.setLayout(new GridLayout(3, false));
         consumeGroup.setText("Consumer Options");
 
@@ -294,6 +280,8 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             updateConsumeFeature("consumerNativeQuery", _nativeQueryText.getText().trim());
         } else if (control.equals(_transactedCheckbox)) {
             updateConsumeFeature("consumerTransacted", _transactedCheckbox.getSelection());
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         } else {
             super.handleModify(control);
         }
@@ -324,36 +312,13 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 _nativeQueryText.setText(this._binding.getConsume().getConsumerNativeQuery());
             } else if (control.equals(_transactedCheckbox)) {
                 _transactedCheckbox.setSelection(this._binding.getConsume().isConsumerTransacted());
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else {
                 super.handleUndo(control);
             }
         }
         setHasChanged(false);
-    }
-
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("maxMessagesPerPoll");
-            _advancedPropsFilterList.add("initialDelay");
-            _advancedPropsFilterList.add("delay");
-            _advancedPropsFilterList.add("useFixedDelay");
-            _advancedPropsFilterList.add("sendEmptyMessageWhenIdle");
-            _advancedPropsFilterList.add("timeUnit");
-            _advancedPropsFilterList.add("consumerResultClass");
-        }
-        return _advancedPropsFilterList;
-    }
-
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
 
     private String handleBrowse(String filter) {

@@ -13,7 +13,6 @@
 package org.switchyard.tools.ui.editor.components.jca;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -32,8 +31,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.jca.Connection;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
@@ -55,6 +52,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private JCABinding _binding = null;
+    private Text _nameText;
     private Combo _resourceAdapterText;
     private Text _connectionJNDINameText;
 //    private Button _browseResourceAdapterButton;
@@ -63,16 +61,20 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     private enum ENDPOINT_MAPPING_TYPE {
         JMSPROCESSOR, CCIPROCESSOR
     }
-    private TabFolder _tabFolder;
-//    private List<String> _advancedPropsFilterList;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "JCA Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your JCA Binding. Resource adapters may require unique properties.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof JCABinding) {
             this._binding = (JCABinding) impl;
             setInUpdate(true);
@@ -103,7 +105,11 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                     }
                 }
             }
-            super.setTabsBinding(_binding);
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
             setInUpdate(false);
         } else {
             this._binding = null;
@@ -115,9 +121,6 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     @Override
     protected boolean validate() {
         setErrorMessage(null);
-        if (getBinding() != null) {
-            super.validateTabs();
-        }
         return (getErrorMessage() == null);
     }
 
@@ -125,29 +128,18 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
 
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("JCA Outbound Binding");
-        one.setControl(getJCATabControl(_tabFolder));
-
-        addTabs(_tabFolder);
+        getJCATabControl(_panel);
     }
 
-    private Control getJCATabControl(TabFolder tabFolder) {
+    private Control getJCATabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        Group outboundConnectionGroup = new Group(composite, SWT.NONE);
-        outboundConnectionGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        outboundConnectionGroup.setLayout(new GridLayout(2, false));
-        outboundConnectionGroup.setText("Outbound Connection Options");
+        _nameText = createLabelAndText(composite, "Name");
 
-        _resourceAdapterText = createLabelAndCombo(outboundConnectionGroup, "Resource Adapter Archive", false);
+        _resourceAdapterText = createLabelAndCombo(composite, "Resource Adapter Archive", false);
         _resourceAdapterText.add("hornetq-ra.rar");
 //        _browseResourceAdapterButton = new Button(outboundConnectionGroup, SWT.PUSH);
 //        _browseResourceAdapterButton.setText("Browse...");
@@ -169,10 +161,10 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 //            }
 //        });
 
-        _connectionJNDINameText = createLabelAndText(outboundConnectionGroup, "JNDI Name");
+        _connectionJNDINameText = createLabelAndText(composite, "JNDI Name");
 
         Group outboundInteractionGroup = new Group(composite, SWT.NONE);
-        outboundInteractionGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        outboundInteractionGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true, 2, 1));
         outboundInteractionGroup.setLayout(new GridLayout(2, false));
         outboundInteractionGroup.setText("Outbound Interaction Options");
 
@@ -184,7 +176,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
         Group activationPropsGroup = new Group(outboundInteractionGroup, SWT.NONE);
         activationPropsGroup.setText("Processor Properties");
-        activationPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1));
+        activationPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true, 3, 1));
         activationPropsGroup.setLayout(new GridLayout(1, false));
 
         _propsList = new JCAProcessorPropertyTable(activationPropsGroup, SWT.NONE);
@@ -325,6 +317,8 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             updateOutboundConnectionConnectionFeature("jndiName", _connectionJNDINameText.getText().trim());
         } else if (control.equals(_processorMappingTypeCombo)) {
             updateProcessorFeature();
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         } else {
             super.handleModify(control);
         }
@@ -337,6 +331,8 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             if (_binding != null) {
                  if (control.equals(_resourceAdapterText)) {
                      _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
+                 } else if (control.equals(_nameText)) {
+                     _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
                 }
             } else {
                 super.handleUndo(control);
@@ -361,19 +357,6 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             }
         }
         return null;
-    }
-
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        return null;
-//        if (_advancedPropsFilterList == null) {
-//            _advancedPropsFilterList = new ArrayList<String>();
-//            _advancedPropsFilterList.add("jndiURL");
-//            _advancedPropsFilterList.add("initialContextFactory");
-//            _advancedPropsFilterList.add("resAuth");
-//            _advancedPropsFilterList.add("managed");
-//        }
-//        return _advancedPropsFilterList;
     }
 
 }

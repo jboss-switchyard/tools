@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.components.soap.SOAPMessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
@@ -51,11 +53,8 @@ public class JCABindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public IBindingComposite createComposite(Binding binding) {
-        if (binding.eContainer() instanceof Service) {
-            return new JCABindingInboundComposite();
-        }
-        return new JCABindingOutboundComposite();
+    public List<IBindingComposite> createComposites(Binding binding) {
+        return createComposites(binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -66,5 +65,18 @@ public class JCABindingTypeExtension implements IBindingTypeExtension {
     @Override
     public String getTypeName(Binding object) {
         return "JCA";
+    }
+
+    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+        final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);
+        if (forConsumer) {
+            composites.add(new JCABindingInboundComposite());
+            composites.add(new JCAInteractionDetailsComposite());
+            composites.add(new SOAPMessageComposerComposite());
+        } else {
+            composites.add(new JCABindingOutboundComposite());
+            composites.add(new SOAPMessageComposerComposite());
+        }
+        return composites;
     }
 }

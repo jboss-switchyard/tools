@@ -13,7 +13,6 @@
 package org.switchyard.tools.ui.editor.components.camel.mail;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
@@ -25,15 +24,10 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
@@ -46,8 +40,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
 
     private Composite _panel;
     private CamelMailBindingType _binding = null;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
+    private Text _nameText;
     private Text _hostText;
     private Text _portText;
     private Text _usernameText;
@@ -62,12 +55,18 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
     private Button _securedCheckbox;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "Mail Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your Mail Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelMailBindingType) {
             this._binding = (CamelMailBindingType) impl;
             setInUpdate(true);
@@ -116,20 +115,19 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             } else {
                 _passwordText.setText("");
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
             _securedCheckbox.setSelection(this._binding.isSecure());
 
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
         }
         addObservableListeners();
-    }
-
-    @Override
-    public void setTargetObject(Object target) {
-        super.setTargetObject(target);
     }
 
     @Override
@@ -152,7 +150,6 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
 //                }
             }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -160,38 +157,26 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Consumer");
-        one.setControl(getConsumerTabControl(_tabFolder));
-        
-        addTabs(_tabFolder);
+        getConsumerTabControl(_panel);
     }
 
-    private Control getConsumerTabControl(TabFolder tabFolder) {
+    private Control getConsumerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        Group mailGroup = new Group(composite, SWT.NONE);
-        mailGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        mailGroup.setLayout(new GridLayout(2, false));
-        mailGroup.setText("Mail Server Options");
+        _nameText = createLabelAndText(composite, "Name");
 
-        _hostText = createLabelAndText(mailGroup, "Host*");
-        _portText = createLabelAndText(mailGroup, "Port");
-        _usernameText = createLabelAndText(mailGroup, "User Name");
-        _passwordText = createLabelAndText(mailGroup, "Password");
+        _hostText = createLabelAndText(composite, "Host*");
+        _portText = createLabelAndText(composite, "Port");
+        _usernameText = createLabelAndText(composite, "User Name");
+        _passwordText = createLabelAndText(composite, "Password");
         _passwordText.setEchoChar('*');
-        _securedCheckbox = createCheckbox(mailGroup, "Secured");
+        _securedCheckbox = createCheckbox(composite, "Secured");
 
         Group consumeGroup = new Group(composite, SWT.NONE);
-        consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         consumeGroup.setLayout(new GridLayout(2, false));
         consumeGroup.setText("Consumer Options");
         
@@ -266,6 +251,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             updateConsumeFeature("accountType", acctType);
         } else if (control.equals(_securedCheckbox)) {
             updateFeature(_binding, "secure", _securedCheckbox.getSelection());
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         } else {
             super.handleModify(control);
         }
@@ -304,6 +291,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 _passwordText.setText(this._binding.getPassword());
             } else if (control.equals(_securedCheckbox)) {
                 _securedCheckbox.setSelection(this._binding.isSecure());
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else {
                 super.handleUndo(control);
             }
@@ -311,31 +300,4 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         setHasChanged(false);
     }
 
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("connectionTimeout");
-            _advancedPropsFilterList.add("maxMessagesPerPoll");
-            _advancedPropsFilterList.add("initialDelay");
-            _advancedPropsFilterList.add("delay");
-            _advancedPropsFilterList.add("useFixedDelay");
-            _advancedPropsFilterList.add("sendEmptyMessageWhenIdle");
-            _advancedPropsFilterList.add("timeUnit");
-            _advancedPropsFilterList.add("copyTo");
-            _advancedPropsFilterList.add("disconnect");
-        }
-        return _advancedPropsFilterList;
-    }
-
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
-    }
-    
 }

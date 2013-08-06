@@ -10,10 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.http;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * ResteasyBindingWizard
@@ -23,38 +28,18 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author bfitzpat
  */
-public class HttpBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private HttpBindingWizardPage _page;
-    private Contract _container;
+public class HttpBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new HttpBindingWizardPage(HttpBindingWizardPage.class.getCanonicalName());
-        addPage(_page);
+    protected Binding createBinding() {
+        final HTTPBindingType binding = HttpFactory.eINSTANCE.createHTTPBindingType();
+        binding.setName(makeUniqueName("http"));
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
+    protected List<IBindingComposite> createComposites() {
+        return HttpBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _container = container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
-    }
-
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
 }

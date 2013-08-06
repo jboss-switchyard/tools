@@ -11,6 +11,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
@@ -26,7 +28,7 @@ public interface IBindingTypeExtension extends IEditorTypeExtension<Binding> {
 
     /**
      * @param binding the binding being edited.
-     * @return a new composite for use in the "bindings" property section.
+     * @return a list of composites for use in the "bindings" property section.
      */
-    public IBindingComposite createComposite(Binding binding);
+    public List<IBindingComposite> createComposites(Binding binding);
 }

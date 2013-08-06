@@ -79,6 +79,16 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
         private Combo _acknowledgeModeCombo;
 
         @Override
+        public String getTitle() {
+            return getDisplayName();
+        }
+
+        @Override
+        public String getDescription() {
+            return getTitle();
+        }
+
+        @Override
         protected boolean validate() {
             if (!_destinationText.isDisposed() && _destinationText.getText().trim().isEmpty()) {
                 setErrorMessage("Destination topic must be specified.");

@@ -59,8 +59,7 @@ import org.eclipse.ui.forms.widgets.ScrolledPageBook;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
-import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.BindingPropertyComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
@@ -199,8 +198,8 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                     String key = createKey(testBinding);
                     IBindingComposite testcomposite = _composites.get(key);
                     if (testcomposite == null) {
-                        testcomposite = BindingTypeExtensionManager.instance().getExtensionFor(testBinding.getClass())
-                                .createComposite(testBinding);
+                        testcomposite = new BindingPropertyComposite(BindingTypeExtensionManager.instance()
+                                .getExtensionFor(testBinding.getClass()).createComposites(testBinding));
                         _composites.put(key, testcomposite);
                     }
                     if (_composite == null || _composite != testcomposite) {
@@ -220,8 +219,8 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                 @Override
                 public void widgetSelected(SelectionEvent e) {
                     if (e.widget.equals(_removeButton) && _removeButton.isEnabled()) {
-                        if (_composite != null && ((AbstractSYBindingComposite) _composite).getDidSomething()) {
-                            ((AbstractSYBindingComposite) _composite).setDidSomething(false);
+                        if (_composite != null && _composite.getDidSomething()) {
+                            _composite.setDidSomething(false);
                             return;
                         }
                         // remove old binding
@@ -274,8 +273,8 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                     } else if (contract instanceof Reference) {
                         _listViewer.setInput(((Reference) contract).getBinding());
                     }
-                    if (_composite != null && ((AbstractSYBindingComposite) _composite).getDidSomething()) {
-                        ((AbstractSYBindingComposite) _composite).setDidSomething(false);
+                    if (_composite != null && _composite.getDidSomething()) {
+                        _composite.setDidSomething(false);
                     }
                     if (_targetBO == null) {
                         _targetBO = newTarget;
@@ -332,25 +331,21 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         if (_binding != null) {
             String bindingKey = createKey(_binding);
             IBindingComposite composite = _composites.get(bindingKey);
-            if (((AbstractSwitchyardComposite) composite).getPanel() == null) {
-                ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
-                if (composite instanceof AbstractSYBindingComposite) {
-                    AbstractSYBindingComposite bindingComposite = (AbstractSYBindingComposite) composite;
-                    bindingComposite.setTargetObject(_binding.eContainer());
-                    bindingComposite.addChangeListener(new ChangeListener() {
+            if (composite.getPanel() == null) {
+                composite.setOpenOnCreate(true);
+                    composite.setTargetObject(_binding.eContainer());
+                    composite.addChangeListener(new ChangeListener() {
                         @Override
                         public void stateChanged(ChangeEvent arg0) {
-                            if (_composite != null && _composite instanceof AbstractSYBindingComposite) {
-                                AbstractSYBindingComposite syComposite = (AbstractSYBindingComposite) _composite;
-                                _validError = syComposite.getErrorMessage();
+                            if (_composite != null) {
+                                _validError = _composite.getErrorMessage();
                                 getContainer().validated(validate());
                             }
                         }
                     });
-                }
-                ((AbstractSwitchyardComposite) composite).createContents(_pageBook.getContainer(), SWT.NONE);
-                _pageBook.registerPage(bindingKey, ((AbstractSwitchyardComposite) composite).getPanel());
-                adaptChildren(((AbstractSwitchyardComposite) composite).getPanel());
+                composite.createContents(_pageBook.getContainer(), SWT.NONE);
+                _pageBook.registerPage(bindingKey, composite.getPanel());
+                adaptChildren(composite.getPanel());
             }
             _composite = composite;
             composite.setBinding(_binding);

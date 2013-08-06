@@ -33,7 +33,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -43,17 +43,12 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Port;
-import org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
-import org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType;
-import org.switchyard.tools.models.switchyard1_0.soap.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
@@ -61,7 +56,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.diagram.shared.TabFolderLayout;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
@@ -74,6 +68,7 @@ import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
+    private Text _nameText;
     private Text _mWSDLURIText;
     private String _sWSDLURI = null;
     private SOAPBindingType _binding = null;
@@ -86,120 +81,52 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
     private Link _newWSDLLink;
-    private TabFolder _tabFolder;
     private Text _endpointAddressText;
     private String _endpointAddress = null;
     private Button _enableMtomCheckbox = null;
     private Button _enableXopExpandCheckbox = null;
     private Button _disableMtomCheckbox =  null;
-    private Text _proxyHostText;
-    private Text _proxyPortText;
-    private String _proxyPort;
-    private Text _proxyUserText;
-    private Text _proxyPasswordText;
-    private Combo _proxyTypeCombo;
-    private Combo _authTypeCombo;
-    private Text _authUserText;
-    private Text _authPasswordText;
-    private Text _authDomainText;
+    private final SOAPMessageComposerComposite _messageComposerComposite;
 
     /**
-     * Constructor.
+     * Create a new SOAPBindingReferenceComposite.
+     * 
+     * @param messageComposerComposite the associated composite for editing
+     *            message composer/context mapper settings.
      */
-    public SOAPBindingReferenceComposite() {
-        // empty
+    public SOAPBindingReferenceComposite(SOAPMessageComposerComposite messageComposerComposite) {
+        _messageComposerComposite = messageComposerComposite;
+    }
+
+    @Override
+    public String getTitle() {
+        return "SOAP Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your SOAP Binding.";
     }
 
     /**
      * @param parent composite parent
      * @param style any style bits
      */
+    @Override
     public void createContents(Composite parent, int style) {
-
         _panel = new Composite(parent, style);
-        GridLayout gl = new GridLayout();
-        gl.numColumns = 1;
-        _panel.setLayout(gl);
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
+        _panel.setLayout(new FillLayout());
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-        _tabFolder.setLayout(new TabFolderLayout(_tabFolder));
-        _tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Producer");
-        one.setControl(getSOAPTabControl(_tabFolder));
-
-        TabItem two = new TabItem(_tabFolder, SWT.NONE);
-        two.setText("Authentication");
-        two.setControl(getAuthenticationControl(_tabFolder));
-
-        TabItem three = new TabItem(_tabFolder, SWT.NONE);
-        three.setText("Proxy Settings");
-        three.setControl(getProxyTabControl(_tabFolder));
-
-        addTabs(_tabFolder);
+        getSOAPTabControl(_panel);
     }
 
-    private Control getAuthenticationControl(TabFolder tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(2, false);
-        composite.setLayout(gl);
-        
-        _authTypeCombo = createLabelAndCombo(composite, "Authentication Type", true);
-        _authTypeCombo.add("Basic");
-        _authTypeCombo.add("NTLM");
-        _authTypeCombo.setText("Basic");
-        _authTypeCombo.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
-                _authUserText.setText("");
-                _authPasswordText.setText("");
-                _authDomainText.setText("");
-                removeAuthFeatures();
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
-        
-        _authUserText = createLabelAndText(composite, "User");
-        _authPasswordText = createLabelAndText(composite, "Password");
-        _authDomainText = createLabelAndText(composite, "Domain");
-        
-        _authTypeCombo.select(0);
-        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
-        
-        return composite;
-    }
-
-    private Control getProxyTabControl(TabFolder tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(2, false);
-        composite.setLayout(gl);
-
-        _proxyTypeCombo = createLabelAndCombo(composite, "Type");
-        _proxyTypeCombo.add("HTTP");
-        _proxyTypeCombo.add("SOCKS");
-        _proxyTypeCombo.select(0);
-        _proxyHostText = createLabelAndText(composite, "Host");
-        _proxyPortText = createLabelAndText(composite, "Port");
-        _proxyUserText = createLabelAndText(composite, "User Name");
-        _proxyPasswordText = createLabelAndText(composite, "Password");
-        
-        return composite;
-    }
-    
-    private Control getSOAPTabControl(TabFolder tabFolder) {
+    private Control getSOAPTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
+
+        _nameText = createLabelAndText(composite, "Name");
+        _nameText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
 
         _newWSDLLink = new Link(composite, SWT.NONE);
         String message = "<a>WSDL URI</a>";
@@ -352,10 +279,10 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 updateFeature(_binding, "socketAddr", _bindingSocket);
             } else if (control.equals(_soapHeadersTypeCombo)) {
                 final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
-                updateContextMapperFeature("soapHeadersType", mapperValue);
+                _messageComposerComposite.updateContextMapperFeature("soapHeadersType", mapperValue);
             } else if (control.equals(_unwrappedPayloadCheckbox)) {
                 _unwrappedPayloadCheckbox.setData("unwrapped");
-                updateMessageComposerFeature(_unwrappedPayloadCheckbox);
+                _messageComposerComposite.updateMessageComposerFeature(_unwrappedPayloadCheckbox);
             } else if (control.equals(_contextPathText)) {
                 final String contextPath = _contextPathText.getText().trim();
                 updateFeature(_binding, "contextPath", contextPath);
@@ -379,31 +306,8 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 updateMTomFeature("enabled", !_disableMtomCheckbox.getSelection());
             } else if (control.equals(_enableXopExpandCheckbox)) {
                 updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection());
-            } else if (control.equals(_proxyTypeCombo)) {
-                updateProxyFeature("type", _proxyTypeCombo.getText());
-            } else if (control.equals(_proxyHostText)) {
-                updateProxyFeature("host", _proxyHostText.getText());
-            } else if (control.equals(_proxyPasswordText)) {
-                updateProxyFeature("password", _proxyPasswordText.getText());
-            } else if (control.equals(_proxyUserText)) {
-                updateProxyFeature("user", _proxyUserText.getText());
-            } else if (control.equals(_proxyPortText)) {
-                _proxyPort = _proxyPortText.getText();
-                try {
-                    Integer portVal = Integer.parseInt(_proxyPort);
-                    updateProxyFeature("port", portVal);
-                } catch (NumberFormatException nfe) {
-                    nfe.fillInStackTrace();
-                }
-            } else if (control.equals(_authUserText)) {
-                String user = _authUserText.getText().trim();
-                updateAuthFeature("user", user);
-            } else if (control.equals(_authPasswordText)) {
-                String password = _authPasswordText.getText().trim();
-                updateAuthFeature("password", password);
-            } else if (control.equals(_authDomainText)) {
-                String domain = _authDomainText.getText().trim();
-                updateAuthFeature("domain", domain);
+            } else if (control.equals(_nameText)) {
+                super.updateFeature(_binding, "name", _nameText.getText().trim());
             } else {
                 super.handleModify(control);
             }
@@ -466,36 +370,8 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 if (_binding.getMtom() != null) {
                     _enableXopExpandCheckbox.setSelection(!_binding.getMtom().isXopExpand());
                 }
-            } else if (control.equals(_proxyTypeCombo)) {
-                if (_binding.getProxy() != null) {
-                    setTextValue(_proxyTypeCombo, _binding.getProxy().getType());
-                } else {
-                    _proxyTypeCombo.setText("HTTP");
-                }
-            } else if (control.equals(_proxyHostText)) {
-                if (_binding.getProxy() != null) {
-                    setTextValue(_proxyHostText, _binding.getProxy().getHost());
-                } else {
-                    setTextValue(_proxyHostText, null);
-                }
-            } else if (control.equals(_proxyPasswordText)) {
-                if (_binding.getProxy() != null) {
-                    setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
-                } else {
-                    setTextValue(_proxyPasswordText, null);
-                }
-            } else if (control.equals(_proxyUserText)) {
-                if (_binding.getProxy() != null) {
-                    setTextValue(_proxyUserText, _binding.getProxy().getUser());
-                } else {
-                    setTextValue(_proxyUserText, null);
-                }
-            } else if (control.equals(_proxyPortText)) {
-                if (_binding.getProxy() != null) {
-                    setTextValue(_proxyPortText, _binding.getProxy().getPort().toString());
-                } else {
-                    setTextValue(_proxyPortText, null);
-                }
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else {
                 super.handleUndo(control);
             }
@@ -513,16 +389,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
             setErrorMessage("No spaces allowed in uri");
         }
         
-        if (_proxyPort != null && _proxyPort.trim().length() > 0) {
-            try {
-                Integer.parseInt(_proxyPort);
-            } catch (NumberFormatException nfe) {
-                setErrorMessage("The proxy port must be a valid integer");
-            }
-        }
-
-        super.validateTabs();
-
         return (getErrorMessage() == null);
     }
 
@@ -531,13 +397,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
      */
     public String getWSDLURI() {
         return this._sWSDLURI;
-    }
-
-    /**
-     * @return SOAP Binding
-     */
-    public Binding getBinding() {
-        return _binding;
     }
 
     /**
@@ -551,6 +410,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
      * @param switchYardBindingType binding
      */
     public void setBinding(Binding switchYardBindingType) {
+        super.setBinding(switchYardBindingType);
         if (switchYardBindingType instanceof SOAPBindingType) {
             setTargetObject(switchYardBindingType.eContainer());
             this._binding = (SOAPBindingType) switchYardBindingType;
@@ -643,36 +503,11 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                     _disableMtomCheckbox.setEnabled(false);
                 }
             }
-            if (_binding.getProxy() != null) {
-                setTextValue(_proxyTypeCombo, _binding.getProxy().getType());
-                setTextValue(_proxyHostText, _binding.getProxy().getHost());
-                if (_binding.getProxy().getPort() != null) {
-                    setTextValue(_proxyPortText, _binding.getProxy().getPort().toString());
-                }
-                setTextValue(_proxyUserText, _binding.getProxy().getUser());
-                setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
-            }
-            if (this._binding.getBasic() != null) {
-                _authTypeCombo.select(0);
-                setTextValue(_authUserText, this._binding.getBasic().getUser());
-                setTextValue(_authPasswordText, this._binding.getBasic().getPassword());
-            } else if (this._binding.getNtlm() != null) {
-                _authTypeCombo.select(1);
-                setTextValue(_authUserText, this._binding.getNtlm().getUser());
-                setTextValue(_authPasswordText, this._binding.getNtlm().getPassword());
-                setTextValue(_authDomainText, this._binding.getNtlm().getDomain());
+            if (_binding.getName() == null) {
+                _nameText.setText("");
             } else {
-                if (_authTypeCombo != null) {
-                    _authTypeCombo.select(0);
-                    setTextValue(_authUserText, null);
-                    setTextValue(_authPasswordText, null);
-                    setTextValue(_authDomainText, null);
-                }
+                _nameText.setText(_binding.getName());
             }
-            if (_authDomainText != null) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
-            }
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         }
@@ -765,41 +600,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         updateControlEditable(_endpointAddressText);
     }
 
-    class MessageComposerOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getMessageComposer() == null) {
-                MessageComposerType messageComposer = (MessageComposerType) createMessageComposer();
-                setFeatureValue(_binding, "messageComposer", messageComposer);
-            }
-        }
-    }
-    
-    class AddProxyOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getProxy() == null) {
-                ProxyType proxy = SOAPFactory.eINSTANCE.createProxyType();
-                setFeatureValue(_binding, "proxy", proxy);
-                setFeatureValue(_binding.getProxy(), "type", "HTTP");
-            }
-        }
-    }
-
-    class CleanupProxyOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getProxy() != null) {
-                if (_binding.getProxy().getHost() == null 
-                        && _binding.getProxy().getPassword() == null 
-                        && _binding.getProxy().getPort() == null
-                        && _binding.getProxy().getUser() == null) {
-                    setFeatureValue(_binding, "proxy", null);
-                }
-            }
-        }
-    }
-
     class AddMTomOp extends ModelOperation {
         @Override
         public void run() throws Exception {
@@ -819,13 +619,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         }
     }
 
-    protected void updateMessageComposerFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new MessageComposerOp());
-        ops.add(new BasicOperation("messageComposer", featureId, value));
-        wrapOperation(ops);
-    }
-    
     protected void updateMTomFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new AddMTomOp());
@@ -841,83 +634,4 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         wrapOperation(ops);
     }
 
-    protected void updateProxyFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new AddProxyOp());
-        if (featureId != null) {
-            ops.add(new BasicOperation("proxy", featureId, value));
-        }
-        ops.add(new CleanupProxyOp());
-        wrapOperation(ops);
-    }
-
-    class RemoveBasicAuthenticationOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getBasic() != null) {
-                setFeatureValue(_binding, "basic", null);
-            }
-        }
-    }
-    
-    class RemoveNtlmAuthenticationOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getNtlm() != null) {
-                setFeatureValue(_binding, "ntlm", null);
-            }
-        }
-    }
-
-    class AddBasicAuthenticatiOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getBasic() == null) {
-                BasicAuthenticationType basicAuth = SOAPFactory.eINSTANCE.createBasicAuthenticationType();
-                _binding.setBasic(basicAuth);
-            }
-        }
-    }
-    
-    class AddNtlmAuthenticatiOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getNtlm() == null) {
-                NTLMAuthenticationType ntlmAuth = SOAPFactory.eINSTANCE.createNTLMAuthenticationType();
-                _binding.setNtlm(ntlmAuth);
-            }
-        }
-    }
-
-    protected void updateBasicAuthFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveNtlmAuthenticationOp());
-        ops.add(new AddBasicAuthenticatiOp());
-        ops.add(new BasicOperation("basic", featureId, value));
-        wrapOperation(ops);
-    }
-
-    protected void updateNtlmAuthFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveBasicAuthenticationOp());
-        ops.add(new AddNtlmAuthenticatiOp());
-        ops.add(new BasicOperation("ntlm", featureId, value));
-        wrapOperation(ops);
-    }
-    
-    protected void removeAuthFeatures() {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveBasicAuthenticationOp());
-        ops.add(new RemoveNtlmAuthenticationOp());
-        wrapOperation(ops);
-    }
-
-    private void updateAuthFeature(String featureId, Object value) {
-        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic");
-        if (basicAuth) {
-            updateBasicAuthFeature(featureId, value);
-        } else {
-            updateNtlmAuthFeature(featureId, value);
-        }
-    }
 }

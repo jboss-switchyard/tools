@@ -10,10 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.resteasy;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * ResteasyBindingWizard
@@ -23,38 +28,18 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author bfitzpat
  */
-public class ResteasyBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private ResteasyBindingWizardPage _page;
-    private Contract _container;
+public class ResteasyBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new ResteasyBindingWizardPage(ResteasyBindingWizardPage.class.getCanonicalName());
-        addPage(_page);
+    protected Binding createBinding() {
+        final RESTBindingType binding = ResteasyFactory.eINSTANCE.createRESTBindingType();
+        binding.setName(makeUniqueName("rest"));
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
+    protected List<IBindingComposite> createComposites() {
+        return ResteasyBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _container = container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
-    }
-
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
 }

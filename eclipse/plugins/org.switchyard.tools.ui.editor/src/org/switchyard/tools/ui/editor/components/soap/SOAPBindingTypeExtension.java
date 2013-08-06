@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.soap;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,12 +52,8 @@ public class SOAPBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public IBindingComposite createComposite(Binding binding) {
-        if (binding.eContainer() instanceof Service) {
-            return new SOAPBindingServiceComposite();
-        } else {
-            return new SOAPBindingReferenceComposite();
-        }
+    public List<IBindingComposite> createComposites(Binding binding) {
+        return createComposites(binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -67,5 +64,22 @@ public class SOAPBindingTypeExtension implements IBindingTypeExtension {
     @Override
     public String getTypeName(Binding object) {
         return "SOAP";
+    }
+
+    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+        final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);
+        if (forConsumer) {
+            final SOAPMessageComposerComposite messageComposer = new SOAPMessageComposerComposite();
+            composites.add(new SOAPBindingServiceComposite(messageComposer));
+            composites.add(new SOAPInterceptorsComposite());
+            composites.add(messageComposer);
+        } else {
+            final SOAPMessageComposerComposite messageComposer = new SOAPMessageComposerComposite();
+            composites.add(new SOAPBindingReferenceComposite(messageComposer));
+            composites.add(new SOAPAuthenticationComposite());
+            composites.add(new SOAPProxyComposite());
+            composites.add(messageComposer);
+        }
+        return composites;
     }
 }

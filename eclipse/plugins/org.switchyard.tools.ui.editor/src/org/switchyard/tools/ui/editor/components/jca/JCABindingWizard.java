@@ -10,51 +10,44 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * SOAPBindingWizard
  * 
  * <p/>
- * Wizard for creating new SOAPBindingType objects.
+ * Wizard for creating new {@link JCABinding} objects.
  * 
  * @author Rob Cernich
  */
-public class JCABindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private JCABindingWizardPage _page;
-    private Contract _container;
+public class JCABindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new JCABindingWizardPage(JCABindingWizardPage.class.getCanonicalName());
-        addPage(_page);
-    }
-
-    @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
-    }
-
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _container = container;
+    protected Binding createBinding() {
+        final JCABinding binding = JcaFactory.eINSTANCE.createJCABinding();
+        if (getTargetContainer() instanceof Service) {
+            binding.setInboundConnection(JcaFactory.eINSTANCE.createJCAInboundConnection());
+            binding.getInboundConnection().setActivationSpec(JcaFactory.eINSTANCE.createActivationSpec());
+            binding.setInboundInteraction(JcaFactory.eINSTANCE.createJCAInboundInteraction());
+        } else {
+            binding.setOutboundConnection(JcaFactory.eINSTANCE.createJCAOutboundConnection());
+            binding.setOutboundInteraction(JcaFactory.eINSTANCE.createJCAOutboundInteraction());
+        }
+        binding.setName(makeUniqueName("jca"));
+        return binding;
     }
 
     @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
+    protected List<IBindingComposite> createComposites() {
+        return JCABindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
 }

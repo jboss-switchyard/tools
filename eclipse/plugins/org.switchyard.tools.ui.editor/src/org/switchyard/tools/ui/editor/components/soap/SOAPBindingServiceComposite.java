@@ -33,24 +33,21 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
-import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -60,7 +57,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.diagram.shared.TabFolderLayout;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
@@ -73,6 +69,7 @@ import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
+    private Text _nameText;
     private Text _mWSDLURIText;
     private String _sWSDLURI = null;
     private SOAPBindingType _binding = null;
@@ -86,161 +83,57 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     private Button _browseBtnFile;
     private Button _browseBtnConfigWorkspace;
     private Link _newWSDLLink;
-    private TabFolder _tabFolder;
     private Button _enableMtomCheckbox = null;
     private Button _enableXopExpandCheckbox = null;
     private Button _disableMtomCheckbox =  null;
     private Text _configFileText;
     private Text _configNameText;
-    private InterceptorTable _inInterceptorTable;
-    private InterceptorTable _outInterceptorTable;
+    private final SOAPMessageComposerComposite _messageComposerComposite;
 
     /**
-     * Constructor.
+     * Create a new SOAPBindingServiceComposite.
+     * 
+     * @param messageComposerComposite the associated composite for editing
+     *            message composer/context mapper settings.
      */
-    public SOAPBindingServiceComposite() {
-        // empty
+    public SOAPBindingServiceComposite(SOAPMessageComposerComposite messageComposerComposite) {
+        _messageComposerComposite = messageComposerComposite;
+    }
+
+    @Override
+    public String getTitle() {
+        return "SOAP Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your SOAP Binding.";
     }
 
     /**
      * @param parent composite parent
      * @param style any style bits
      */
+    @Override
     public void createContents(Composite parent, int style) {
-
         _panel = new Composite(parent, style);
-        GridLayout gl = new GridLayout();
-        gl.numColumns = 1;
-        _panel.setLayout(gl);
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
+        _panel.setLayout(new FillLayout());
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-        _tabFolder.setLayout(new TabFolderLayout(_tabFolder));
-        _tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Consumer");
-        one.setControl(getSOAPTabControl(_tabFolder));
-        
-        TabItem two = new TabItem(_tabFolder, SWT.NONE);
-        two.setText("Interceptors");
-        two.setControl(getInterceptorsTabControl(_tabFolder));
-
-        addTabs(_tabFolder);
+        getSOAPTabControl(_panel);
     }
 
-    private Control getInterceptorsTabControl(TabFolder tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
-        composite.setLayout(gl);
-        
-        Group inGroup = new Group(composite, SWT.NONE);
-        inGroup.setText("Inbound Interceptors");
-        GridData inGrpGD = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
-        inGroup.setLayoutData(inGrpGD);
-        inGroup.setLayout(new GridLayout(2, false));
-        
-        _inInterceptorTable = new InterceptorTable(inGroup, SWT.NONE) {
-            
-            @Override
-            protected void removeFromList() {
-                final InterceptorType interceptor = _inInterceptorTable.getTableSelection();
-                if (interceptor != null) {
-                    removeInInterceptorTypeFeature(interceptor);
-                }
-            }
-            
-            @Override
-            protected void addInterceptorTypeToList() {
-                final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
-                        .getActiveShell());
-                InterceptorType interceptor = SOAPFactory.eINSTANCE.createInterceptorType();
-                dialog.setInterceptor(interceptor);
-                int rtn_value = dialog.open();
-                if (rtn_value == InterceptorTypeInputDialog.OK) {
-                    addInInterceptorTypeFeature(interceptor);
-                    _inInterceptorTable.setSelection(_binding.getInInterceptors().getInterceptor());
-                }
-            }
-
-            @Override
-            protected void editInterceptorType() {
-                final InterceptorType interceptor = _inInterceptorTable.getTableSelection();
-                if (interceptor != null) {
-                    final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
-                            .getActiveShell());
-                    dialog.setInterceptor(interceptor);
-                    int rtn_value = dialog.open();
-                    if (rtn_value == InterceptorTypeInputDialog.OK) {
-                        addInInterceptorTypeFeature(interceptor);
-                        _inInterceptorTable.setSelection(_binding.getInInterceptors().getInterceptor());
-                    }
-                }
-            }
-        };
-        _inInterceptorTable.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
-
-        Group outGroup = new Group(composite, SWT.NONE);
-        outGroup.setText("Outbound Interceptors");
-        GridData outGrpGD = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
-        outGroup.setLayoutData(outGrpGD);
-        outGroup.setLayout(new GridLayout(2, false));
-
-        _outInterceptorTable = new InterceptorTable(outGroup, SWT.NONE) {
-            
-            @Override
-            protected void removeFromList() {
-                final InterceptorType interceptor = _outInterceptorTable.getTableSelection();
-                if (interceptor != null) {
-                    removeOutInterceptorTypeFeature(interceptor);
-                }
-            }
-            
-            @Override
-            protected void addInterceptorTypeToList() {
-                final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
-                        .getActiveShell());
-                InterceptorType interceptor = SOAPFactory.eINSTANCE.createInterceptorType();
-                dialog.setInterceptor(interceptor);
-                int rtn_value = dialog.open();
-                if (rtn_value == InterceptorTypeInputDialog.OK) {
-                    addOutInterceptorTypeFeature(interceptor);
-                    _outInterceptorTable.setSelection(_binding.getOutInterceptors().getInterceptor());
-                }
-            }
-
-            @Override
-            protected void editInterceptorType() {
-                final InterceptorType interceptor = _outInterceptorTable.getTableSelection();
-                if (interceptor != null) {
-                    final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
-                            .getActiveShell());
-                    dialog.setInterceptor(interceptor);
-                    int rtn_value = dialog.open();
-                    if (rtn_value == InterceptorTypeInputDialog.OK) {
-                        addOutInterceptorTypeFeature(interceptor);
-                        _outInterceptorTable.setSelection(_binding.getOutInterceptors().getInterceptor());
-                    }
-                }
-            }
-        };
-        _outInterceptorTable.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
-
-        return composite;
-    }
-    
-    private Control getSOAPTabControl(TabFolder tabFolder) {
+    private Control getSOAPTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
+
+        _nameText = createLabelAndText(composite, "Name");
+        _nameText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
 
         _newWSDLLink = new Link(composite, SWT.NONE);
         String message = "<a>WSDL URI</a>";
         _newWSDLLink.setText(message);
         _newWSDLLink.setEnabled(canEdit());
-
         _newWSDLLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -265,9 +158,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         });
         _mWSDLURIText = createLabelAndText(composite, null);
         _mWSDLURIText.setEnabled(canEdit());
-
-        GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
-        _mWSDLURIText.setLayoutData(uriGD);
+        _mWSDLURIText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
         _browseBtnWorkspace = new Button(composite, SWT.PUSH);
         _browseBtnWorkspace.setText("Browse...");
@@ -414,10 +305,10 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 updateFeature(_binding, "socketAddr", _bindingSocket);
             } else if (control.equals(_soapHeadersTypeCombo)) {
                 final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
-                updateContextMapperFeature("soapHeadersType", mapperValue);
+                _messageComposerComposite.updateContextMapperFeature("soapHeadersType", mapperValue);
             } else if (control.equals(_unwrappedPayloadCheckbox)) {
                 _unwrappedPayloadCheckbox.setData("unwrapped");
-                updateMessageComposerFeature(_unwrappedPayloadCheckbox);
+                _messageComposerComposite.updateMessageComposerFeature(_unwrappedPayloadCheckbox);
             } else if (control.equals(_contextPathText)) {
                 final String contextPath = _contextPathText.getText().trim();
                 updateFeature(_binding, "contextPath", contextPath);
@@ -450,6 +341,8 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 } else {
                     updateEndpointConfigFeature("configName", _configNameText.getText().trim());
                 }
+            } else if (control.equals(_nameText)) {
+                super.updateFeature(_binding, "name", _nameText.getText().trim());
             } else {
                 super.handleModify(control);
             }
@@ -524,6 +417,8 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 } else {
                     setTextValue(_configNameText, null);
                 }
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else {
                 super.handleUndo(control);
             }
@@ -571,8 +466,6 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
 //            }
 //        }
 
-        super.validateTabs();
-
         return (getErrorMessage() == null);
     }
 
@@ -581,13 +474,6 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
      */
     public String getWSDLURI() {
         return this._sWSDLURI;
-    }
-
-    /**
-     * @return SOAP Binding
-     */
-    public Binding getBinding() {
-        return _binding;
     }
 
     /**
@@ -601,6 +487,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
      * @param switchYardBindingType binding
      */
     public void setBinding(Binding switchYardBindingType) {
+        super.setBinding(switchYardBindingType);
         if (switchYardBindingType instanceof SOAPBindingType) {
             setTargetObject(switchYardBindingType.eContainer());
             this._binding = (SOAPBindingType) switchYardBindingType;
@@ -699,13 +586,11 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                     _disableMtomCheckbox.setEnabled(false);
                 }
             }
-            if (_binding.getInInterceptors() != null && !_inInterceptorTable.isDisposed()) {
-                _inInterceptorTable.setSelection(_binding.getInInterceptors().getInterceptor());
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
             }
-            if (_binding.getOutInterceptors() != null && !_outInterceptorTable.isDisposed()) {
-                _outInterceptorTable.setSelection(_binding.getOutInterceptors().getInterceptor());
-            }
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         }
@@ -896,96 +781,4 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         wrapOperation(ops);
     }
     
-    class AddInInterceptorTypeOp extends ModelOperation {
-        
-        private InterceptorType _interceptor = null;
-        
-        public AddInInterceptorTypeOp(InterceptorType interceptor) {
-            _interceptor = interceptor;
-        }
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getInInterceptors() == null) {
-                _binding.setInInterceptors(SOAPFactory.eINSTANCE.createInterceptorsType());
-            }
-            if (_binding.getInInterceptors().getInterceptor().contains(_interceptor)) {
-                _binding.getInInterceptors().getInterceptor().remove(_interceptor);
-            }
-            _binding.getInInterceptors().getInterceptor().add(_interceptor);
-        }
-    }
-    
-    class RemoveInInterceptorTypeOp extends ModelOperation {
-        private InterceptorType _interceptor = null;
-        
-        public RemoveInInterceptorTypeOp(InterceptorType interceptor) {
-            _interceptor = interceptor;
-        }
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getInInterceptors() != null) {
-                _binding.getInInterceptors().getInterceptor().remove(_interceptor);
-            }
-            if (_binding.getInInterceptors().getInterceptor().isEmpty()) {
-                setFeatureValue(_binding, "inInterceptors", null);
-            }
-        }
-    }
-    
-    class AddOutInterceptorTypeOp extends ModelOperation {
-        
-        private InterceptorType _interceptor = null;
-        
-        public AddOutInterceptorTypeOp(InterceptorType interceptor) {
-            _interceptor = interceptor;
-        }
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getOutInterceptors() == null) {
-                _binding.setOutInterceptors(SOAPFactory.eINSTANCE.createInterceptorsType());
-            }
-            _binding.getOutInterceptors().getInterceptor().add(_interceptor);
-        }
-    }
-
-    class RemoveOutInterceptorTypeOp extends ModelOperation {
-        private InterceptorType _interceptor = null;
-        
-        public RemoveOutInterceptorTypeOp(InterceptorType interceptor) {
-            _interceptor = interceptor;
-        }
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getOutInterceptors() != null) {
-                _binding.getOutInterceptors().getInterceptor().remove(_interceptor);
-            }
-            if (_binding.getOutInterceptors().getInterceptor().isEmpty()) {
-                setFeatureValue(_binding, "outInterceptors", null);
-            }
-        }
-    }
-
-    protected void addInInterceptorTypeFeature(final InterceptorType interceptor) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new AddInInterceptorTypeOp(interceptor));
-        wrapOperation(ops);
-    }
-    
-    protected void removeInInterceptorTypeFeature(final InterceptorType interceptor) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveInInterceptorTypeOp(interceptor));
-        wrapOperation(ops);
-    }
-
-    protected void addOutInterceptorTypeFeature(final InterceptorType interceptor) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new AddOutInterceptorTypeOp(interceptor));
-        wrapOperation(ops);
-    }
-
-    protected void removeOutInterceptorTypeFeature(final InterceptorType interceptor) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveOutInterceptorTypeOp(interceptor));
-        wrapOperation(ops);
-    }
 }

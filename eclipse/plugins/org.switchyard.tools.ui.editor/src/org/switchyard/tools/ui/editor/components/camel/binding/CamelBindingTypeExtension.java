@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.binding;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
+import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
@@ -50,8 +52,8 @@ public class CamelBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public IBindingComposite createComposite(Binding binding) {
-        return new CamelComposite();
+    public List<IBindingComposite> createComposites(Binding binding) {
+        return createComposites();
     }
 
     @Override
@@ -62,5 +64,12 @@ public class CamelBindingTypeExtension implements IBindingTypeExtension {
     @Override
     public String getTypeName(Binding object) {
         return "Camel URI";
+    }
+
+    protected static List<IBindingComposite> createComposites() {
+        final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(2);
+        composites.add(new CamelComposite());
+        composites.add(new MessageComposerComposite());
+        return composites;
     }
 }

@@ -60,6 +60,16 @@ public class JCAGenericResourceAdapterExtension extends AbstractResourceAdapterE
         private Composite _panel;
 
         @Override
+        public String getTitle() {
+            return getDisplayName();
+        }
+
+        @Override
+        public String getDescription() {
+            return getTitle();
+        }
+
+        @Override
         protected boolean validate() {
             if (_resourceAdapterText.getText().trim().isEmpty()) {
                 setErrorMessage("Resource adapter name must not be empty.");

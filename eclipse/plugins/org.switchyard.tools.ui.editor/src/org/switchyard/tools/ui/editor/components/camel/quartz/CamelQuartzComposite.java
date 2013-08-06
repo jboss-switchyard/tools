@@ -14,9 +14,7 @@ package org.switchyard.tools.ui.editor.components.camel.quartz;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -33,13 +31,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
@@ -59,17 +52,21 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     private Text _cronText;
     private Text _startTimeText;
     private Text _endTimeText;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "Scheduling Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your Scheduling Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelQuartzBindingType) {
             this._binding = (CamelQuartzBindingType) impl;
             setInUpdate(true);
@@ -109,7 +106,6 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                     }
                 }
             }
-            super.setTabsBinding(_binding);
             validate();
         } else {
             this._binding = null;
@@ -118,7 +114,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    public void setTargetObject(Object target) {
+    public void setTargetObject(EObject target) {
         super.setTargetObject(target);
         if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
             _opSelectorComposite.setTargetObject((EObject) target);
@@ -152,7 +148,6 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
 //                }
 //            }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -160,36 +155,22 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Scheduler");
-        one.setControl(getSchedulerTabControl(_tabFolder));
-
-        addTabs(_tabFolder);
+        getSchedulerTabControl(_panel);
     }
 
-    private Control getSchedulerTabControl(TabFolder tabFolder) {
+    private Control getSchedulerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        Group schedulerGroup = new Group(composite, SWT.NONE);
-        schedulerGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        schedulerGroup.setLayout(new GridLayout(2, false));
-        schedulerGroup.setText("Scheduler Options");
-
-        _nameText = createLabelAndText(schedulerGroup, "Name*");
-        _cronText = createLabelAndText(schedulerGroup, "Cron*");
-        _startTimeText = createLabelAndText(schedulerGroup, "Start Time");
-        _endTimeText = createLabelAndText(schedulerGroup, "End Time");
+        _nameText = createLabelAndText(composite, "Name*");
+        _cronText = createLabelAndText(composite, "Cron*");
+        _startTimeText = createLabelAndText(composite, "Start Time");
+        _endTimeText = createLabelAndText(composite, "End Time");
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         _opSelectorComposite.setLayout(new GridLayout(2, false));
         _opSelectorComposite.addChangeListener(new ChangeListener() {
             @Override
@@ -218,6 +199,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     protected void handleModify(final Control control) {
         if (control.equals(_nameText)) {
             updateFeature(_binding, "camelBindingName", _nameText.getText().trim());
+            updateFeature(_binding, "name", _nameText.getText().trim());
         } else if (control.equals(_cronText)) {
             updateFeature(_binding, "cron", _cronText.getText().trim());
         } else if (control.equals(_startTimeText)) {
@@ -276,25 +258,6 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             }
         }
         setHasChanged(false);
-    }
-
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("stateful");
-        }
-        return _advancedPropsFilterList;
-    }
-    
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
 
 }

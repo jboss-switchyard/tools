@@ -14,23 +14,14 @@ package org.switchyard.tools.ui.editor.components.camel.sftp;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -38,22 +29,14 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
-import org.switchyard.tools.ui.JavaUtil;
-import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
@@ -64,6 +47,7 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelSftpBindingType _binding = null;
+    private Text _nameText;
     private Text _hostText;
     private Text _portText;
     private Text _usernameText;
@@ -80,20 +64,21 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
     private Text _includeText;
     private Text _excludeText;
     private Text _delayText;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
-    private Text _privateKeyFileText;
-    private Text _privateKeyFilePassphraseText;
-    private Button _browseBtn;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "SFTP Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your SFTP Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelSftpBindingType) {
             this._binding = (CamelSftpBindingType) impl;
             setInUpdate(true);
@@ -162,22 +147,16 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
             } else {
                 _pwdText.setText("");
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
             _binaryButton.setSelection(this._binding.isBinary());
-            if (this._binding.getPrivateKeyFile() != null) {
-                _privateKeyFileText.setText(this._binding.getPrivateKeyFile());
-            } else {
-                _privateKeyFileText.setText("");
-            }
-            if (this._binding.getPrivateKeyFilePassphrase() != null) {
-                _privateKeyFilePassphraseText.setText(this._binding.getPrivateKeyFilePassphrase());
-            } else {
-                _privateKeyFilePassphraseText.setText("");
-            }
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
             _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
             
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
@@ -187,7 +166,7 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    public void setTargetObject(Object target) {
+    public void setTargetObject(EObject target) {
         super.setTargetObject(target);
         if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
             _opSelectorComposite.setTargetObject((EObject) target);
@@ -203,7 +182,6 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
                 return false;
             }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -211,105 +189,26 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Consumer");
-        one.setControl(getConsumerTabControl(_tabFolder));
-
-        TabItem two = new TabItem(_tabFolder, SWT.NONE);
-        two.setText("Secure");
-        two.setControl(getFTPSTabControl(_tabFolder));
-
-        addTabs(_tabFolder);
+        getConsumerTabControl(_panel);
     }
     
-    private Control getFTPSTabControl(TabFolder tabFolder) {
+    private Control getConsumerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
-        composite.setLayout(gl);
-        
-        Group sftpGroup = new Group(composite, SWT.NONE);
-        sftpGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        sftpGroup.setLayout(new GridLayout(3, false));
-        sftpGroup.setText("SFTP Options");
-        
-        _privateKeyFileText = createLabelAndText(sftpGroup, "Private Key File");
-        _browseBtn = new Button(sftpGroup, SWT.PUSH);
-        _browseBtn.setText("...");
-        _browseBtn.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                browse();
-            }
-        });
-        
-        _privateKeyFilePassphraseText = createLabelAndText(sftpGroup, "Private Key File Passphrase");
-        GridData gd = new GridData(SWT.FILL, SWT.TOP, true, false);
-        gd.horizontalSpan = 2;
-        _privateKeyFilePassphraseText.setLayoutData(gd);
-        
-        return composite;
-    }
-
-    private void browse() {
-        final String pathString = _privateKeyFileText.getText();
-        IResource resource = null;
-        IProject resProject = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
-        IJavaProject javaProject = JavaCore.create(resProject);
-        if (pathString == null || pathString.isEmpty()) {
-            final IResource temp = JavaUtil.getFirstResourceRoot(javaProject);
-            resource = temp == null ? javaProject.getResource() : temp;
-        } else {
-            final IPath path = new Path(pathString);
-            if (path.isValidPath(pathString)) {
-                try {
-                    resource = javaProject.getProject().getWorkspace().getRoot().getFile(path);
-                } catch (IllegalArgumentException e) {
-                    final IResource temp = JavaUtil.getFirstResourceRoot(javaProject);
-                    resource = temp == null ? javaProject.getResource() : temp;
-                }
-            } else {
-                final IResource temp = JavaUtil.getFirstResourceRoot(javaProject);
-                resource = temp == null ? javaProject.getResource() : temp;
-            }
-        }
-
-        if (resource != null) {
-            ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getPanel().getShell(),
-                    resource.getProject());
-            dialog.setInitialPattern("*.*");
-            dialog.setTitle("Select Private Key File");
-            if (dialog.open() == ClasspathResourceSelectionDialog.OK) {
-                _privateKeyFileText.setText(((IResource) dialog.getFirstResult()).getFullPath().toString());
-                handleModify(_privateKeyFileText);
-            }
-        }
-    }
-  
-    private Control getConsumerTabControl(TabFolder tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        Group ftpGroup = new Group(composite, SWT.NONE);
-        ftpGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        ftpGroup.setLayout(new GridLayout(2, false));
-        ftpGroup.setText("FTP Options");
+        _nameText = createLabelAndText(composite, "Name");
 
-        _hostText = createLabelAndText(ftpGroup, "Host");
-        _portText = createLabelAndText(ftpGroup, "Port (Default 21)");
-        _usernameText = createLabelAndText(ftpGroup, "User Name");
-        _pwdText = createLabelAndText(ftpGroup, "Password");
+        _hostText = createLabelAndText(composite, "Host");
+        _portText = createLabelAndText(composite, "Port (Default 21)");
+        _usernameText = createLabelAndText(composite, "User Name");
+        _pwdText = createLabelAndText(composite, "Password");
         _pwdText.setEchoChar('*');
-        _binaryButton = createCheckbox(ftpGroup, "Use Binary Transfer Mode");
+        _binaryButton = createCheckbox(composite, "Use Binary Transfer Mode");
 
         Group fileGroup = new Group(composite, SWT.NONE);
-        fileGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        fileGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         fileGroup.setLayout(new GridLayout(2, false));
         fileGroup.setText("File and Directory Options");
 
@@ -322,7 +221,7 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
         _recursiveButton = createCheckbox(fileGroup, "Process Sub-Directories Recursively");
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         _opSelectorComposite.setLayout(new GridLayout(2, false));
         _opSelectorComposite.addChangeListener(new ChangeListener() {
             @Override
@@ -332,7 +231,7 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
          });
 
         Group moveGroup = new Group(composite, SWT.NONE);
-        moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         moveGroup.setLayout(new GridLayout(2, false));
         moveGroup.setText("Move Options");
 
@@ -341,7 +240,7 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
         _moveFailedText = createLabelAndText(moveGroup, "Move Failed");
 
         Group pollGroup = new Group(composite, SWT.NONE);
-        pollGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        pollGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         pollGroup.setLayout(new GridLayout(2, false));
         pollGroup.setText("Poll Options");
 
@@ -413,10 +312,6 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
             updateFeature(_binding, "password", _pwdText.getText().trim());
         } else if (control.equals(_binaryButton)) {
             updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection()));
-        } else if (control.equals(_privateKeyFileText)) {
-            updateFeature(_binding, "privateKeyFile", _privateKeyFileText.getText().trim());
-        } else if (control.equals(_privateKeyFilePassphraseText)) {
-            updateFeature(_binding, "privateKeyFilePassphrase", _privateKeyFilePassphraseText.getText().trim());
         } else if (control.equals(_portText)) {
             try {
                 int port = Integer.parseInt(_portText.getText().trim());
@@ -424,6 +319,8 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
             } catch (NumberFormatException nfe) {
                 updateFeature(_binding, "port", _portText.getText().trim());
             }
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         } else {
             handleConsumer(control);
         }
@@ -450,10 +347,8 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
                 _pwdText.setText(this._binding.getPassword());
             } else if (control.equals(_binaryButton)) {
                 _binaryButton.setSelection(this._binding.isBinary());
-            } else if (control.equals(_privateKeyFileText)) {
-                _privateKeyFileText.setText(this._binding.getPrivateKeyFile());
-            } else if (control.equals(_privateKeyFilePassphraseText)) {
-                _privateKeyFilePassphraseText.setText(this._binding.getPrivateKeyFilePassphrase());
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
                     setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
@@ -479,50 +374,4 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
         setHasChanged(false);
     }
 
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("bufferSize");
-            _advancedPropsFilterList.add("flatten");
-            _advancedPropsFilterList.add("charset");
-            _advancedPropsFilterList.add("connectTimeout");
-            _advancedPropsFilterList.add("disconnect");
-            _advancedPropsFilterList.add("maximumReconnectAttempts");
-            _advancedPropsFilterList.add("reconnectDelay");
-            _advancedPropsFilterList.add("separator");
-            _advancedPropsFilterList.add("stepwise");
-            _advancedPropsFilterList.add("throwExceptionOnConnectFailed");
-
-            _advancedPropsFilterList.add("noop");
-            _advancedPropsFilterList.add("idempotent");
-            _advancedPropsFilterList.add("idempotentRepository");
-            _advancedPropsFilterList.add("inProgressRepository");
-            _advancedPropsFilterList.add("filter");
-            _advancedPropsFilterList.add("sorter");
-            _advancedPropsFilterList.add("sortBy");
-            _advancedPropsFilterList.add("readLock");
-            _advancedPropsFilterList.add("readLockTimeout");
-            _advancedPropsFilterList.add("readLockCheckInterval");
-            _advancedPropsFilterList.add("exclusiveReadLockStrategy");
-            _advancedPropsFilterList.add("processStrategy");
-            _advancedPropsFilterList.add("startingDirectoryMustExist");
-            _advancedPropsFilterList.add("directoryMustExist");
-            _advancedPropsFilterList.add("doneFileName");
-            
-            _advancedPropsFilterList.add("knownHostsFile");
-        }
-        return _advancedPropsFilterList;
-    }
-
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
-    }
-    
 }

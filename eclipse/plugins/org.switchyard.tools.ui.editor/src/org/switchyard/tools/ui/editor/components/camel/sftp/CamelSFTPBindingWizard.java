@@ -10,11 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.sftp;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * CamelFileBindingWizard
@@ -24,41 +28,23 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author Rob Cernich
  */
-public class CamelSFTPBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private boolean _showConsumer;
-    private CamelSFTPBindingWizardPage _page;
-    private Contract _container;
+public class CamelSFTPBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new CamelSFTPBindingWizardPage(CamelSFTPBindingWizardPage.class.getCanonicalName());
-        _page.setShowConsumer(_showConsumer);
-        addPage(_page);
-    }
-
-    @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
+    protected Binding createBinding() {
+        final CamelSftpBindingType binding = FtpFactory.eINSTANCE.createCamelSftpBindingType();
+        if (getTargetContainer() instanceof Service) {
+            binding.setConsume(FtpFactory.eINSTANCE.createRemoteFileConsumerType());
+        } else {
+            binding.setProduce(FtpFactory.eINSTANCE.createRemoteFileProducerType());
+        }
+        binding.setName(makeUniqueName("sftp"));
+        return binding;
     }
 
     @Override
-    public void init(Contract container) {
-        // FIXME init
-        _showConsumer = container instanceof Service;
-        _container = container;
+    protected List<IBindingComposite> createComposites() {
+        return CamelSFTPBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
-    }
-
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
 }

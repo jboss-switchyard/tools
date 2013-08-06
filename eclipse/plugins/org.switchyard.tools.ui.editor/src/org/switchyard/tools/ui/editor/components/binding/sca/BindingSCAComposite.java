@@ -12,7 +12,6 @@ package org.switchyard.tools.ui.editor.components.binding.sca;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -45,13 +44,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
@@ -65,24 +59,29 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
 
     private Composite _panel;
     private SCABinding _binding = null;
+    private Text _nameText;
     private Button _clusteredCheckbox;
     private Combo _loadBalancingCombo;
     private Text _loadBalancingCustomClassText;
     private Button _browseLoadBalancingClassButton;
     private Text _targetServiceText;
     private Text _targetNamespaceText;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
     private boolean _showConsumer;
     private IJavaProject _project;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "SCA Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your SCA Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof SCABinding) {
             this._binding = (SCABinding) impl;
             setInUpdate(true);
@@ -104,8 +103,12 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                     _project = JavaCore.create(file.getProject());
                 }
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
 
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
@@ -156,7 +159,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
     }
     
     @Override
-    public void setTargetObject(Object target) {
+    public void setTargetObject(EObject target) {
         super.setTargetObject(target);
         if (target instanceof Service) {
             _showConsumer = true;
@@ -166,8 +169,6 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
     @Override
     protected boolean validate() {
         setErrorMessage(null);
-        // nothing really to validate
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -175,30 +176,23 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
-
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        if (_showConsumer) {
-            one.setText("Consumer");
-        } else {
-            one.setText("Producer");
-        }
-        one.setControl(getConsumerTabControl(_tabFolder));
-        
-        addTabs(_tabFolder, false, false);
+        getConsumerTabControl(_panel);
     }
 
-    private Control getConsumerTabControl(TabFolder tabFolder) {
+    private Control getConsumerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
+        _nameText = createLabelAndText(composite, "Name");
+
+        if (!_showConsumer) {
+            _targetServiceText = createLabelAndText(composite, "Target Service");
+            _targetNamespaceText = createLabelAndText(composite, "Target Namespace");
+        }
+
         Group clusteringGroup = new Group(composite, SWT.NONE);
-        clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+        clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         clusteringGroup.setLayout(new GridLayout(3, false));
         clusteringGroup.setText("Clustering");
         
@@ -207,7 +201,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         
         if (!_showConsumer) {
             _loadBalancingCombo = createLabelAndCombo(clusteringGroup, "Load Balancing", true);
-            addGridData(_loadBalancingCombo, 3, GridData.FILL_HORIZONTAL);
+            addGridData(_loadBalancingCombo, 2, GridData.FILL_HORIZONTAL);
             _loadBalancingCombo.removeAll();
             _loadBalancingCombo.add("");
             _loadBalancingCombo.add("RoundRobinStrategy");
@@ -232,12 +226,6 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                     }
                 }
             });
-            
-            _targetServiceText = createLabelAndText(composite, "Target Service");
-            addGridData(_targetServiceText, 3, GridData.FILL_HORIZONTAL);
-
-            _targetNamespaceText = createLabelAndText(composite, "Target Namespace");
-            addGridData(_targetNamespaceText, 3, GridData.FILL_HORIZONTAL);
         }
 
         return composite;
@@ -349,6 +337,8 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 value = _loadBalancingCustomClassText.getText().trim();
             }
             updateFeature(_binding, "loadBalance", value);
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         } else {
             super.handleModify(control);
         }
@@ -405,6 +395,8 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                     _loadBalancingCustomClassText.setEnabled(false);
                     setTextValue(_loadBalancingCustomClassText, "");
                 }
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else {
                 super.handleUndo(control);
             }
@@ -413,21 +405,6 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         setHasChanged(false);
     }
 
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        return _advancedPropsFilterList;
-    }
-
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
-    }
-    
     /**
      * Must be called prior to creating the control.
      * 

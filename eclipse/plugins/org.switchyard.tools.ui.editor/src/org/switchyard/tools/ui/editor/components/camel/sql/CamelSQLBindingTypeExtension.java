@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.sql;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +23,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
+import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
@@ -50,8 +53,8 @@ public class CamelSQLBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public IBindingComposite createComposite(Binding binding) {
-        return new CamelSQLComposite();
+    public List<IBindingComposite> createComposites(Binding binding) {
+        return createComposites();
     }
 
     @Override
@@ -62,5 +65,20 @@ public class CamelSQLBindingTypeExtension implements IBindingTypeExtension {
     @Override
     public String getTypeName(Binding object) {
         return "SQL";
+    }
+
+    protected static List<IBindingComposite> createComposites() {
+        final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
+        composites.add(new CamelSQLComposite());
+        composites.add(new MessageComposerComposite());
+        composites.add(new AdvancedBindingDetailsComposite(ADVANCED_PROPS));
+        return composites;
+    }
+
+    private static final List<String> ADVANCED_PROPS;
+    
+    static {
+        ADVANCED_PROPS = new ArrayList<String>();
+        ADVANCED_PROPS.add("batch");
     }
 }

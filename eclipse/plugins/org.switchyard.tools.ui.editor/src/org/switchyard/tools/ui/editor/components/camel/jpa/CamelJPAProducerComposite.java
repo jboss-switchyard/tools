@@ -13,7 +13,6 @@
 package org.switchyard.tools.ui.editor.components.camel.jpa;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -41,15 +40,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -62,8 +56,7 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelJpaBindingType _binding = null;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
+    private Text _nameText;
     private Text _entityClassNameText;
     private Button _browseEntityClassButton;
     private Text _persistenceUnitText;
@@ -73,12 +66,18 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
     private IJavaProject _project;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "JPA Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your JPA Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelJpaBindingType) {
             this._binding = (CamelJpaBindingType) impl;
             setInUpdate(true);
@@ -101,6 +100,11 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
             } else {
                 _transcationManagerText.setText("");
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
             final Resource resource = MergedModelUtil.getSwitchYard((EObject) getTargetObject()).eResource();
             if (resource.getURI().isPlatformResource()) {
                 final IFile file = ResourcesPlugin.getWorkspace().getRoot()
@@ -109,7 +113,6 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                     _project = JavaCore.create(file.getProject());
                 }
             }
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
@@ -128,7 +131,6 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                 setErrorMessage("Persistence Unit may not be empty.");
             }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -136,31 +138,20 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Producer");
-        one.setControl(getProducerTabControl(_tabFolder));
-
-        addTabs(_tabFolder);
+        getProducerTabControl(_panel);
     }
 
-    private Control getProducerTabControl(TabFolder tabFolder) {
+    private Control getProducerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
 
-        Group jpaGroup = new Group(composite, SWT.NONE);
-        jpaGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        jpaGroup.setLayout(new GridLayout(3, false));
-        jpaGroup.setText("JPA Options");
+        _nameText = createLabelAndText(composite, "Name");
+        _nameText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
 
-        _entityClassNameText = createLabelAndText(jpaGroup, "Entity Class Name");
-        _browseEntityClassButton = new Button(jpaGroup, SWT.PUSH);
+        _entityClassNameText = createLabelAndText(composite, "Entity Class Name");
+        _browseEntityClassButton = new Button(composite, SWT.PUSH);
         _browseEntityClassButton.setText("Browse...");
         GridData btnGD = new GridData();
         _browseEntityClassButton.setLayoutData(btnGD);
@@ -177,14 +168,14 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
             }
         });
 
-        _persistenceUnitText = createLabelAndText(jpaGroup, "Persistence Unit");
+        _persistenceUnitText = createLabelAndText(composite, "Persistence Unit");
         addGridData(_persistenceUnitText, 2, GridData.FILL_HORIZONTAL);
         
-        _transcationManagerText = createLabelAndText(jpaGroup, "Transaction Manager");
+        _transcationManagerText = createLabelAndText(composite, "Transaction Manager");
         addGridData(_transcationManagerText, 2, GridData.FILL_HORIZONTAL);
 
         Group producerGroup = new Group(composite, SWT.NONE);
-        producerGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        producerGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         producerGroup.setLayout(new GridLayout(2, false));
         producerGroup.setText("Producer Options");
         
@@ -226,6 +217,8 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
             updateProduceFeature("flushOnSend", _flushOnSendCheckbox.getSelection());
         } else if (control.equals(_usePersistCheckbox)) {
             updateProduceFeature("usePersist", _usePersistCheckbox.getSelection());
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         } else {
             super.handleModify(control);
         }
@@ -247,30 +240,14 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                     _flushOnSendCheckbox.setSelection(this._binding.getProduce().isFlushOnSend());
                 } else if (control.equals(_usePersistCheckbox)) {
                     _usePersistCheckbox.setSelection(this._binding.getProduce().isUsePersist());
+                } else if (control.equals(_nameText)) {
+                    _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
                 } else {
                     super.handleUndo(control);
                 }
             }
         }
         setHasChanged(false);
-    }
-
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-        }
-        return _advancedPropsFilterList;
-    }
-
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
 
     private String handleBrowse(String filter) {
@@ -295,8 +272,4 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         return null;
     }
 
-    @Override
-    public void setTargetObject(Object target) {
-        super.setTargetObject(target);
-    }
 }

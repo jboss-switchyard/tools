@@ -10,10 +10,14 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.quartz;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * CamelQuartzBindingWizard
@@ -23,39 +27,19 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author bfitzpat
  */
-public class CamelQuartzBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private CamelQuartzBindingWizardPage _page;
-    private Contract _container;
+public class CamelQuartzBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        _page = new CamelQuartzBindingWizardPage(CamelQuartzBindingWizardPage.class.getCanonicalName());
-        addPage(_page);
+    protected Binding createBinding() {
+        final CamelQuartzBindingType binding = QuartzFactory.eINSTANCE.createCamelQuartzBindingType();
+        final String contractName = getTargetContainer().getName();
+        binding.setName(contractName == null ? makeUniqueName("scheduler") : contractName);
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
-    }
-
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _container = container;
-    }
-    
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
+    protected List<IBindingComposite> createComposites() {
+        return CamelQuartzBindingTypeExtension.createComposites();
     }
 
 }

@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.http;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,10 +20,12 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
+import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
@@ -50,8 +53,8 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public IBindingComposite createComposite(Binding binding) {
-        return new HttpBindingComposite();
+    public List<IBindingComposite> createComposites(Binding binding) {
+        return createComposites(binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -62,5 +65,19 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
     @Override
     public String getTypeName(Binding object) {
         return "HTTP";
+    }
+
+    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+        final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);
+        if (forConsumer) {
+            composites.add(new HttpBindingComposite());
+            composites.add(new MessageComposerComposite());
+        } else {
+            composites.add(new HttpBindingComposite());
+            composites.add(new HttpAuthenticationComposite());
+            composites.add(new HttpProxyComposite());
+            composites.add(new MessageComposerComposite());
+        }
+        return composites;
     }
 }

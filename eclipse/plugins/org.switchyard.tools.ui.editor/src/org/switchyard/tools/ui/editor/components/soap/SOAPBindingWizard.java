@@ -10,10 +10,17 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.soap;
 
+import java.util.List;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
  * SOAPBindingWizard
@@ -23,39 +30,32 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author Rob Cernich
  */
-public class SOAPBindingWizard extends LinkedWizardBase implements IBindingWizard {
-
-    private SOAPBindingWizardPage _page;
-    private Contract _container;
+public class SOAPBindingWizard extends AbstractBindingWizard implements IBindingWizard {
 
     @Override
-    public void addPages() {
-        setWindowTitle("SOAP Binding");
-        _page = new SOAPBindingWizardPage(SOAPBindingWizardPage.class.getCanonicalName());
-        addPage(_page);
+    protected Binding createBinding() {
+        final SOAPBindingType binding = SOAPFactory.eINSTANCE.createSOAPBindingType();
+        if (getTargetContainer() instanceof Reference) {
+            binding.setSocketAddr(null);
+        }
+        if (getTargetContainer().getInterface() instanceof WSDLPortType) {
+            String wsdlPortType = ((WSDLPortType) getTargetContainer().getInterface()).getInterface();
+            if (wsdlPortType != null) {
+                final int fragmentIndex = wsdlPortType.indexOf('#');
+                if (fragmentIndex >= 0) {
+                    binding.setWsdl(wsdlPortType.substring(0, fragmentIndex));
+                } else {
+                    binding.setWsdl(wsdlPortType);
+                }
+            }
+        }
+        binding.setName(makeUniqueName("soap"));
+        return binding;
     }
 
     @Override
-    public Binding getCreatedObject() {
-        return _page.getBinding();
+    protected List<IBindingComposite> createComposites() {
+        return SOAPBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
     }
 
-    @Override
-    public void init(Contract container) {
-        // FIXME init
-        _container = container;
-    }
-
-    @Override
-    public boolean doFinish() {
-        // not much to do
-        return true;
-    }
-
-    /**
-     * @return Target container
-     */
-    public Contract getTargetContainer() {
-        return _container;
-    }
 }

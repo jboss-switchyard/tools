@@ -29,7 +29,7 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
@@ -120,8 +120,8 @@ public final class BindingTypeExtensionManager {
         }
 
         @Override
-        public IBindingComposite createComposite(Binding binding) {
-            return new DefaultBindingComposite();
+        public List<IBindingComposite> createComposites(Binding binding) {
+            return Collections.<IBindingComposite> singletonList(new DefaultBindingComposite());
         }
 
         @Override
@@ -135,9 +135,18 @@ public final class BindingTypeExtensionManager {
         }
     }
 
-    private static final class DefaultBindingComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+    private static final class DefaultBindingComposite extends AbstractSYBindingComposite {
         private Composite _composite;
-        private Binding _binding;
+
+        @Override
+        public String getTitle() {
+            return "Unknown Binding Type";
+        }
+
+        @Override
+        public String getDescription() {
+            return "The details for this binding cannot be displayed.";
+        }
 
         @Override
         protected boolean validate() {
@@ -156,16 +165,6 @@ public final class BindingTypeExtensionManager {
         @Override
         public void createContents(Composite parent, int style) {
             _composite = new Composite(parent, style);
-        }
-
-        @Override
-        public Binding getBinding() {
-            return _binding;
-        }
-
-        @Override
-        public void setBinding(Binding binding) {
-            _binding = binding;
         }
     }
 

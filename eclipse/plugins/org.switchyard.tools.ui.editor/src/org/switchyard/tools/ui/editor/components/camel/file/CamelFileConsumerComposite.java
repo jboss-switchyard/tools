@@ -14,7 +14,6 @@ package org.switchyard.tools.ui.editor.components.camel.file;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -30,20 +29,14 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.diagram.shared.TabFolderLayout;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
@@ -54,6 +47,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
 
     private Composite _panel;
     private CamelFileBindingType _binding = null;
+    private Text _nameText;
     private Text _directoryText;
     private Text _fileNameText;
     private Button _autoCreateButton;
@@ -64,17 +58,21 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     private Text _moveFailedText;
     private Text _maxMessagesPerPollText;
     private Text _delayText;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "File Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your File Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelFileBindingType) {
             this._binding = (CamelFileBindingType) impl;
             setInUpdate(true);
@@ -127,12 +125,16 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             } else {
                 _fileNameText.setText("");
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
             _autoCreateButton.setSelection(this._binding.isAutoCreate());
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
             _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
 
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
@@ -142,7 +144,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     }
 
     @Override
-    public void setTargetObject(Object target) {
+    public void setTargetObject(EObject target) {
         super.setTargetObject(target);
         if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
             _opSelectorComposite.setTargetObject((EObject) target);
@@ -169,7 +171,6 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
 //                }
             }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -177,39 +178,26 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-        _tabFolder.setLayout(new TabFolderLayout(_tabFolder));
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Consumer");
-        one.setControl(getConsumerTabControl(_tabFolder));
-        
-        addTabs(_tabFolder);
+        getConsumerTabControl(_panel);
     }
 
-    private Control getConsumerTabControl(TabFolder tabFolder) {
+    private Control getConsumerTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        Group fileGroup = new Group(composite, SWT.NONE);
-        fileGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        fileGroup.setLayout(new GridLayout(2, false));
-        fileGroup.setText("File and Directory Options");
+        _nameText = createLabelAndText(composite, "Name");
 
-        _directoryText = createLabelAndText(fileGroup, "Directory*");
-        _fileNameText = createLabelAndText(fileGroup, "File Name");
+        _directoryText = createLabelAndText(composite, "Directory*");
+        _fileNameText = createLabelAndText(composite, "File Name");
 
-        _autoCreateButton = createCheckbox(fileGroup, "Auto Create Missing Directories in File Path");
-        _includeText = createLabelAndText(fileGroup, "Include");
-        _excludeText = createLabelAndText(fileGroup, "Exclude");
+        _autoCreateButton = createCheckbox(composite, "Auto Create Missing Directories in File Path");
+        _includeText = createLabelAndText(composite, "Include");
+        _excludeText = createLabelAndText(composite, "Exclude");
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         _opSelectorComposite.setLayout(new GridLayout(2, false));
         _opSelectorComposite.addChangeListener(new ChangeListener() {
             @Override
@@ -219,7 +207,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
          });
         
         Group moveGroup = new Group(composite, SWT.NONE);
-        moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         moveGroup.setLayout(new GridLayout(2, false));
         moveGroup.setText("Move Options");
 
@@ -228,7 +216,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         _moveFailedText = createLabelAndText(moveGroup, "Move Failed");
 
         Group pollGroup = new Group(composite, SWT.NONE);
-        pollGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        pollGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         pollGroup.setLayout(new GridLayout(2, false));
         pollGroup.setText("Poll Options");
 
@@ -293,6 +281,8 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
         } else {
             super.handleModify(control);
         }
@@ -312,6 +302,8 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
                     setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
@@ -337,46 +329,4 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         setHasChanged(false);
     }
 
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("bufferSize");
-            _advancedPropsFilterList.add("flatten");
-            _advancedPropsFilterList.add("charset");
-            _advancedPropsFilterList.add("delete");
-            _advancedPropsFilterList.add("recursive");
-            _advancedPropsFilterList.add("noop");
-            _advancedPropsFilterList.add("idempotent");
-            _advancedPropsFilterList.add("idempotentRepository");
-            _advancedPropsFilterList.add("inProgressRepository");
-            _advancedPropsFilterList.add("filter");
-            _advancedPropsFilterList.add("sorter");
-            _advancedPropsFilterList.add("sortBy");
-            _advancedPropsFilterList.add("readLock");
-            _advancedPropsFilterList.add("readLockTimeout");
-            _advancedPropsFilterList.add("readLockCheckInterval");
-            _advancedPropsFilterList.add("exclusiveReadLockStrategy");
-            _advancedPropsFilterList.add("processStrategy");
-            _advancedPropsFilterList.add("startingDirectoryMustExist");
-            _advancedPropsFilterList.add("directoryMustExist");
-            _advancedPropsFilterList.add("doneFileName");
-            _advancedPropsFilterList.add("initialDelay");
-            _advancedPropsFilterList.add("useFixedDelay");
-            _advancedPropsFilterList.add("sendEmptyMessageWhenIdle");
-            _advancedPropsFilterList.add("timeUnit");
-        }
-        return _advancedPropsFilterList;
-    }
-
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
-    }
-    
 }

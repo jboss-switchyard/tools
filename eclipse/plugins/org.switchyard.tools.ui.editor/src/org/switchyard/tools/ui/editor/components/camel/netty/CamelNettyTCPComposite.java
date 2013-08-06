@@ -12,9 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.netty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -28,13 +25,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
@@ -51,19 +43,24 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelNettyTcpBindingType _binding = null;
+    private Text _nameText;
     private Text _hostText;
     private Text _portText;
-    private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
 
     @Override
-    public Binding getBinding() {
-        return this._binding;
+    public String getTitle() {
+        return "TCP Binding Details";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Specify pertinent details for your Netty TCP Binding.";
     }
 
     @Override
     public void setBinding(Binding impl) {
+        super.setBinding(impl);
         if (impl instanceof CamelNettyTcpBindingType) {
             this._binding = (CamelNettyTcpBindingType) impl;
             setInUpdate(true);
@@ -77,6 +74,11 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             } else {
                 _portText.setText("");
             }
+            if (_binding.getName() == null) {
+                _nameText.setText("");
+            } else {
+                _nameText.setText(_binding.getName());
+            }
 
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
                 OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
@@ -84,7 +86,6 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
                 _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
             }
 
-            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
@@ -94,7 +95,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    public void setTargetObject(Object target) {
+    public void setTargetObject(EObject target) {
         super.setTargetObject(target);
         if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
             _opSelectorComposite.setTargetObject((EObject) target);
@@ -121,7 +122,6 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
 //                }
             }
         }
-        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -129,41 +129,29 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
     public void createContents(Composite parent, int style) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
-        if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
-        }
 
-        _tabFolder = new TabFolder(_panel, SWT.NONE);
-
-        TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("Netty TCP Gateway");
-        one.setControl(getNettyTCPTabControl(_tabFolder));
+        getNettyTCPTabControl(_panel);
         
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
                 _opSelectorComposite.setTargetObject((EObject) getTargetObject());
             }
         }
-
-        addTabs(_tabFolder);
     }
 
-    private Control getNettyTCPTabControl(TabFolder tabFolder) {
+    private Control getNettyTCPTabControl(Composite tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        Group tcpGroup = new Group(composite, SWT.NONE);
-        tcpGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        tcpGroup.setLayout(new GridLayout(2, false));
-        tcpGroup.setText("TCP Options");
+        _nameText = createLabelAndText(composite, "Name");
 
-        _hostText = createLabelAndText(tcpGroup, "Host*");
-        _portText = createLabelAndText(tcpGroup, "Port*");
+        _hostText = createLabelAndText(composite, "Host*");
+        _portText = createLabelAndText(composite, "Port*");
         
         if (getTargetObject() instanceof Service) {
             _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
-            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
             _opSelectorComposite.setLayout(new GridLayout(2, false));
             _opSelectorComposite.addChangeListener(new ChangeListener() {
                 @Override
@@ -198,8 +186,11 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        } else if (control.equals(_nameText)) {
+            super.updateFeature(_binding, "name", _nameText.getText().trim());
+        } else {
+            super.handleModify(control);
         }
-        super.handleModify(control);
         setHasChanged(false);
         setDidSomething(true);
     }
@@ -210,6 +201,8 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+            } else if (control.equals(_nameText)) {
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
             } else {
                 super.handleUndo(control);
             }
@@ -217,43 +210,4 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
         setHasChanged(false);
     }
 
-    @Override
-    protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("textline");
-            _advancedPropsFilterList.add("tcpNoDelay");
-            _advancedPropsFilterList.add("reuseAddress");
-            _advancedPropsFilterList.add("encoders");
-            _advancedPropsFilterList.add("decoders");
-            _advancedPropsFilterList.add("allowDefaultCodec");
-            _advancedPropsFilterList.add("workerCount");
-            _advancedPropsFilterList.add("disconnect");
-            _advancedPropsFilterList.add("receiveBufferSize");
-            _advancedPropsFilterList.add("sendBufferSize");
-            _advancedPropsFilterList.add("ssl");
-            _advancedPropsFilterList.add("sslHandler");
-            _advancedPropsFilterList.add("passphrase");
-            _advancedPropsFilterList.add("securityProvider");
-            _advancedPropsFilterList.add("keyStoreFormat");
-            _advancedPropsFilterList.add("keyStoreFile");
-            _advancedPropsFilterList.add("trustStoreFile");
-            _advancedPropsFilterList.add("sslContextParametersRef");
-            _advancedPropsFilterList.add("sync");
-            _advancedPropsFilterList.add("keepAlive");
-
-        }
-        return _advancedPropsFilterList;
-    }
-
-    @Override
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    @Override
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
-    }
-    
 }

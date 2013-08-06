@@ -436,7 +436,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
             styles = SWT.BORDER | SWT.DROP_DOWN | SWT.READ_ONLY;
         }
         Combo combo = new Combo(parent, styles);
-        combo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+        combo.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         if (!readOnly) {
             addEnterNextListener(combo);
         }
@@ -598,12 +598,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
     }
 
     protected TransactionalEditingDomain getDomain(EObject object) {
-        TransactionalEditingDomain domain = null;
         if (object != null) {
-            if (object.eContainer() != null) {
-                domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                return domain;
-            }
+            SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(object);
+            return editor == null ? null : editor.getEditingDomain();
         }
         return null;
     }

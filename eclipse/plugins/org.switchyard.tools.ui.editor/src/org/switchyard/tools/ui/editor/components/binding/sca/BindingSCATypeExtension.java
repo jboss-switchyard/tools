@@ -20,6 +20,7 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
@@ -50,8 +51,8 @@ public class BindingSCATypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public IBindingComposite createComposite(Binding binding) {
-        return new BindingSCAComposite();
+    public List<IBindingComposite> createComposites(Binding binding) {
+        return createComposites(binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -62,5 +63,11 @@ public class BindingSCATypeExtension implements IBindingTypeExtension {
     @Override
     public String getTypeName(Binding object) {
         return "SCA";
+    }
+
+    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+        final BindingSCAComposite composite = new BindingSCAComposite();
+        composite.setShowConsumer(forConsumer);
+        return Collections.<IBindingComposite> singletonList(composite);
     }
 }
