@@ -17,6 +17,7 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
@@ -43,7 +44,6 @@ import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -262,7 +262,8 @@ public class RulesResourceTable extends Composite {
                 newAction.setType("BPMN2");
             }
             if (impl.eContainer() != null) {
-                TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                TransactionalEditingDomain domain = 
+                        (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(impl);
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
@@ -298,7 +299,8 @@ public class RulesResourceTable extends Composite {
             final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
             final ResourceType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
-                TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                TransactionalEditingDomain domain = 
+                        (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(impl);
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
@@ -441,7 +443,8 @@ public class RulesResourceTable extends Composite {
 
         @Override
         protected void setValue(final Object element, final Object value) {
-            TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            TransactionalEditingDomain domain = 
+                    (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(element);
             domain.getCommandStack().execute(new RecordingCommand(domain) {
                 @Override
                 protected void doExecute() {
@@ -485,7 +488,8 @@ public class RulesResourceTable extends Composite {
 
         @Override
         protected void setValue(final Object element, final Object value) {
-            TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            TransactionalEditingDomain domain = 
+                    (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(element);
             domain.getCommandStack().execute(new RecordingCommand(domain) {
                 @Override
                 protected void doExecute() {
