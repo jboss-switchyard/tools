@@ -226,7 +226,8 @@ final class WiringValidationContext {
         try {
             Thread.currentThread().setContextClassLoader(
                     JavaUtil.getProjectClassLoader(
-                            JavaCore.create(WorkspaceSynchronizer.getFile(switchyard.eResource()).getProject()), null));
+                            JavaCore.create(WorkspaceSynchronizer.getFile(switchyard.eResource()).getProject()), 
+                            getClass().getClassLoader()));
             for (Iterator<EObject> it = EcoreUtil.getAllContents(switchyard, true); it.hasNext();) {
                 EObject eobject = it.next();
                 if (eobject instanceof Contract) {
