@@ -16,6 +16,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceType#getResourceDetail <em>Resource Detail</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceType#getLocation <em>Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceType#getType <em>Type</em>}</li>
  * </ul>
@@ -26,6 +27,33 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * @generated
  */
 public interface ResourceType extends CommonExtensionBase {
+
+    /**
+     * Returns the value of the '<em><b>Resource Detail</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Resource Detail</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Resource Detail</em>' containment reference.
+     * @see #setResourceDetail(ResourceDetailType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getResourceType_ResourceDetail()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='resourceDetail' namespace='##targetNamespace'"
+     * @generated
+     */
+    ResourceDetailType getResourceDetail();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceType#getResourceDetail <em>Resource Detail</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Resource Detail</em>' containment reference.
+     * @see #getResourceDetail()
+     * @generated
+     */
+    void setResourceDetail(ResourceDetailType value);
 
     /**
      * Returns the value of the '<em><b>Location</b></em>' attribute.

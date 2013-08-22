@@ -188,6 +188,15 @@ public interface BPMFactory extends EFactory {
     PropertyType createPropertyType();
 
     /**
+     * Returns a new object of class '<em>Resource Detail Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Resource Detail Type</em>'.
+     * @generated
+     */
+    ResourceDetailType createResourceDetailType();
+
+    /**
      * Returns a new object of class '<em>Resources Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

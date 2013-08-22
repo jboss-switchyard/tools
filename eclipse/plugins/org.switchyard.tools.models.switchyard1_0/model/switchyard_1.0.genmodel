@@ -127,6 +127,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resourceDetail"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resources"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/userGroupCallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/workItemHandler"/>
@@ -185,10 +186,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//PropertyType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//PropertyType/value"/>
     </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//ResourceDetailType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceDetailType/inputType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceDetailType/usingExternalTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceDetailType/worksheetName"/>
+    </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//ResourcesType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ResourcesType/resource"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//ResourceType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ResourceType/resourceDetail"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceType/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceType/type"/>
     </genClasses>
@@ -424,6 +431,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/resource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/resourceDetail"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/resources"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/fault"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//DocumentRoot/faults"/>
@@ -466,10 +474,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//PropertyType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//PropertyType/value"/>
     </genClasses>
+    <genClasses ecoreClass="component.rules.ecore#//ResourceDetailType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ResourceDetailType/inputType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ResourceDetailType/usingExternalTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ResourceDetailType/worksheetName"/>
+    </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//ResourcesType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ResourcesType/resource"/>
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//ResourceType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ResourceType/resourceDetail"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ResourceType/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ResourceType/type"/>
     </genClasses>

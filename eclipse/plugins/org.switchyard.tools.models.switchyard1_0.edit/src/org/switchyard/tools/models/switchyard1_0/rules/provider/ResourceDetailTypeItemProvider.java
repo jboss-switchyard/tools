@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.switchyard.tools.models.switchyard1_0.rules.provider;
 
@@ -15,7 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,23 +18,23 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProvider;
+
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ResourceType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourceTypeItemProvider
+public class ResourceDetailTypeItemProvider
     extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
@@ -53,7 +48,7 @@ public class ResourceTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public ResourceTypeItemProvider(AdapterFactory adapterFactory) {
+    public ResourceDetailTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -68,26 +63,27 @@ public class ResourceTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addLocationPropertyDescriptor(object);
-            addTypePropertyDescriptor(object);
+            addInputTypePropertyDescriptor(object);
+            addUsingExternalTypesPropertyDescriptor(object);
+            addWorksheetNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Location feature.
+     * This adds a property descriptor for the Input Type feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addLocationPropertyDescriptor(Object object) {
+    protected void addInputTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ResourceType_location_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceType_location_feature", "_UI_ResourceType_type"),
-                 RulesPackage.Literals.RESOURCE_TYPE__LOCATION,
+                 getString("_UI_ResourceDetailType_inputType_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceDetailType_inputType_feature", "_UI_ResourceDetailType_type"),
+                 RulesPackage.Literals.RESOURCE_DETAIL_TYPE__INPUT_TYPE,
                  true,
                  false,
                  false,
@@ -97,19 +93,41 @@ public class ResourceTypeItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Type feature.
+     * This adds a property descriptor for the Using External Types feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addTypePropertyDescriptor(Object object) {
+    protected void addUsingExternalTypesPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ResourceType_type_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceType_type_feature", "_UI_ResourceType_type"),
-                 RulesPackage.Literals.RESOURCE_TYPE__TYPE,
+                 getString("_UI_ResourceDetailType_usingExternalTypes_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceDetailType_usingExternalTypes_feature", "_UI_ResourceDetailType_type"),
+                 RulesPackage.Literals.RESOURCE_DETAIL_TYPE__USING_EXTERNAL_TYPES,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Worksheet Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addWorksheetNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ResourceDetailType_worksheetName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceDetailType_worksheetName_feature", "_UI_ResourceDetailType_type"),
+                 RulesPackage.Literals.RESOURCE_DETAIL_TYPE__WORKSHEET_NAME,
                  true,
                  false,
                  false,
@@ -119,44 +137,14 @@ public class ResourceTypeItemProvider
     }
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(RulesPackage.Literals.RESOURCE_TYPE__RESOURCE_DETAIL);
-        }
-        return childrenFeatures;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
-
-        return super.getChildFeature(object, child);
-    }
-
-    /**
-     * This returns ResourceType.gif.
+     * This returns ResourceDetailType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/ResourceType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ResourceDetailType"));
     }
 
     /**
@@ -167,10 +155,10 @@ public class ResourceTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ResourceType)object).getLocation();
+        String label = ((ResourceDetailType)object).getWorksheetName();
         return label == null || label.length() == 0 ?
-            getString("_UI_ResourceType_type") :
-            getString("_UI_ResourceType_type") + " " + label;
+            getString("_UI_ResourceDetailType_type") :
+            getString("_UI_ResourceDetailType_type") + " " + label;
     }
 
     /**
@@ -184,13 +172,11 @@ public class ResourceTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(ResourceType.class)) {
-            case RulesPackage.RESOURCE_TYPE__LOCATION:
-            case RulesPackage.RESOURCE_TYPE__TYPE:
+        switch (notification.getFeatureID(ResourceDetailType.class)) {
+            case RulesPackage.RESOURCE_DETAIL_TYPE__INPUT_TYPE:
+            case RulesPackage.RESOURCE_DETAIL_TYPE__USING_EXTERNAL_TYPES:
+            case RulesPackage.RESOURCE_DETAIL_TYPE__WORKSHEET_NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case RulesPackage.RESOURCE_TYPE__RESOURCE_DETAIL:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -206,11 +192,6 @@ public class ResourceTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (RulesPackage.Literals.RESOURCE_TYPE__RESOURCE_DETAIL,
-                 RulesFactory.eINSTANCE.createResourceDetailType()));
     }
 
     /**

@@ -103,6 +103,7 @@ public class DocumentRootItemProvider
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTIES);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__FAULT);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__FAULTS);
@@ -177,6 +178,7 @@ public class DocumentRootItemProvider
             case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
             case RulesPackage.DOCUMENT_ROOT__PROPERTY:
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
             case RulesPackage.DOCUMENT_ROOT__FAULT:
             case RulesPackage.DOCUMENT_ROOT__FAULTS:
@@ -296,6 +298,11 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE,
                  RulesFactory.eINSTANCE.createResourceType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL,
+                 RulesFactory.eINSTANCE.createResourceDetailType()));
 
         newChildDescriptors.add
             (createChildParameter

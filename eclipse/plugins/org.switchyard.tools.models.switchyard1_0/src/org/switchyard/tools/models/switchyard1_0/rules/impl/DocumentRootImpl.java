@@ -40,6 +40,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.rules.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
@@ -76,6 +77,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResourceDetail <em>Resource Detail</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getFault <em>Fault</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getFaults <em>Faults</em>}</li>
@@ -715,6 +717,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ResourceDetailType getResourceDetail() {
+        return (ResourceDetailType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetResourceDetail(ResourceDetailType newResourceDetail, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL, newResourceDetail, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setResourceDetail(ResourceDetailType newResourceDetail) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL, newResourceDetail);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ResourcesType getResources() {
         return (ResourcesType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES, true);
     }
@@ -845,6 +874,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetProperty(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return basicSetResource(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                return basicSetResourceDetail(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 return basicSetResources(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__FAULT:
@@ -912,6 +943,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getProperty();
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource();
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                return getResourceDetail();
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources();
             case RulesPackage.DOCUMENT_ROOT__FAULT:
@@ -998,6 +1031,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                setResourceDetail((ResourceDetailType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)newValue);
@@ -1089,6 +1125,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)null);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                setResourceDetail((ResourceDetailType)null);
+                return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)null);
                 return;
@@ -1156,6 +1195,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getProperty() != null;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource() != null;
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                return getResourceDetail() != null;
             case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources() != null;
             case RulesPackage.DOCUMENT_ROOT__FAULT:

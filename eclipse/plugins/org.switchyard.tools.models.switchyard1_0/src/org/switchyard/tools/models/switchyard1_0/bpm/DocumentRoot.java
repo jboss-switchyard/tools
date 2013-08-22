@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResourceDetail <em>Resource Detail</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResources <em>Resources</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getUserGroupCallback <em>User Group Callback</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandler <em>Work Item Handler</em>}</li>
@@ -651,6 +652,33 @@ public interface DocumentRoot extends EObject {
 	void setResource(ResourceType value);
 
 	/**
+     * Returns the value of the '<em><b>Resource Detail</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Resource Detail</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Resource Detail</em>' containment reference.
+     * @see #setResourceDetail(ResourceDetailType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_ResourceDetail()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='resourceDetail' namespace='##targetNamespace'"
+     * @generated
+     */
+    ResourceDetailType getResourceDetail();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResourceDetail <em>Resource Detail</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Resource Detail</em>' containment reference.
+     * @see #getResourceDetail()
+     * @generated
+     */
+    void setResourceDetail(ResourceDetailType value);
+
+    /**
      * Returns the value of the '<em><b>Resources</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>

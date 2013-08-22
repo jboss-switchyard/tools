@@ -32,6 +32,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -40,6 +41,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
@@ -127,6 +129,7 @@ public class RulesResourceTable extends Composite {
 
     private Button _mAddButton;
     private Button _mRemoveButton;
+    private Button _mAdvancedButton;
     private boolean _isReadOnly = false;
     private EObject _targetObj = null;
     private String _mWarning = null;
@@ -134,7 +137,8 @@ public class RulesResourceTable extends Composite {
 
     private String[] _resourceTypeList = 
             new String[] {"BPMN", "BPMN2", "BRL", "CHANGE_SET", 
-            "DESCR", "DRF", "DRL", "DSL", "DSLR", "DTABLE", "PMML", "PKG", "WID", "XDRL"};
+            "DESCR", "DRF", "DRL", "DSL", "DSLR", "DTABLE", "PMML", "PKG", "WID", "XDRL" };
+    // "SCARD" removed for now per SWITCHYARD-1662
 
     /**
      * Constructor.
@@ -170,7 +174,7 @@ public class RulesResourceTable extends Composite {
         setLayout(gridLayout);
 
         Composite tableComposite = new Composite(this, additionalStyles);
-        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2);
+        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 3);
         gd11.heightHint = 100;
         tableComposite.setLayoutData(gd11);
 
@@ -218,6 +222,21 @@ public class RulesResourceTable extends Composite {
 
             public void widgetSelected(SelectionEvent e) {
                 updatePropertyButtons();
+            }
+        });
+
+        _mAdvancedButton = new Button(this, SWT.NONE);
+        _mAdvancedButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+        _mAdvancedButton.setText("Advanced...");
+        _mAdvancedButton.setEnabled(false);
+        _mAdvancedButton.addSelectionListener(new SelectionAdapter() {
+            public void widgetSelected(SelectionEvent e) {
+                // pop up dialog
+                int rtn = handleAdvancedResourceDetails();
+                if (rtn == Window.OK) {
+                    // if dialog returns OK, fire change event
+                    fireChangedEvent(e.getSource());
+                }
             }
         });
 
@@ -291,6 +310,115 @@ public class RulesResourceTable extends Composite {
         }
     }
 
+    private String getNullOrValue(String input) {
+        if (input != null) {
+            if (input.trim().isEmpty()) {
+                return null;
+            } else {
+                return input;
+            }
+        }
+        return null;
+    }
+    
+    protected int handleAdvancedResourceDetails() {
+        if (getTargetObject() instanceof RulesImplementationType) {
+            final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+            final ResourceType resourceToAddDetailsTo = getTableSelection();
+            
+            final ResourceDetailInputDialog dialog = new ResourceDetailInputDialog(getShell());
+            dialog.setResourceType(resourceToAddDetailsTo);
+            
+            if (resourceToAddDetailsTo.getResourceDetail() != null) {
+                if (resourceToAddDetailsTo.getResourceDetail().getInputType() != null) {
+                    dialog.setInputType(resourceToAddDetailsTo.getResourceDetail().getInputType());
+                }
+                if (resourceToAddDetailsTo.getResourceDetail().getWorksheetName() != null) {
+                    dialog.setWorksheetName(resourceToAddDetailsTo.getResourceDetail().getWorksheetName());
+                }
+                if (resourceToAddDetailsTo.getResourceDetail().isSetUsingExternalTypes()) {
+                    dialog.setUsingExternalTypes(resourceToAddDetailsTo.getResourceDetail().isUsingExternalTypes());
+                }
+            }
+            int rtn_code = dialog.open();
+            if (rtn_code == Window.OK) {
+                if (impl.eContainer() != null) {
+                    TransactionalEditingDomain domain = 
+                            (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(impl);
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            ResourceDetailType detailType = null;
+                            if (resourceToAddDetailsTo.getResourceDetail() == null) {
+                                detailType = RulesFactory.eINSTANCE.createResourceDetailType();
+                                resourceToAddDetailsTo.setResourceDetail(detailType);
+                            } else {
+                                detailType = resourceToAddDetailsTo.getResourceDetail();
+                            }
+                            boolean inputTypeIsEmpty = false;
+                            detailType.setInputType(getNullOrValue(dialog.getInputType()));
+                            if (detailType.getInputType() == null || detailType.getInputType().trim().isEmpty()) {
+                                inputTypeIsEmpty = true;
+                            }
+                            boolean worksheetNameIsEmpty = false;
+                            detailType.setWorksheetName(getNullOrValue(dialog.getWorksheetName()));
+                            if (detailType.getWorksheetName() == null || detailType.getWorksheetName().trim().isEmpty()) {
+                                worksheetNameIsEmpty = true;
+                            }
+                            boolean usesExternalTypesIsDefault = true;
+                            if (dialog.getUsingExternalTypes()) {
+                                usesExternalTypesIsDefault = false;
+                                detailType.setUsingExternalTypes(dialog.getUsingExternalTypes());
+                            } else {
+                                detailType.unsetUsingExternalTypes();
+                            }
+                            
+                            // if everything is empty, then remove the detail
+                            if (inputTypeIsEmpty && worksheetNameIsEmpty && usesExternalTypesIsDefault) {
+                                resourceToAddDetailsTo.setResourceDetail(null);
+                            }
+                            getTableViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    ResourceDetailType detailType = null;
+                    if (resourceToAddDetailsTo.getResourceDetail() == null) {
+                        detailType = RulesFactory.eINSTANCE.createResourceDetailType();
+                        resourceToAddDetailsTo.setResourceDetail(detailType);
+                    } else {
+                        detailType = resourceToAddDetailsTo.getResourceDetail();
+                    }
+                    boolean inputTypeIsEmpty = false;
+                    detailType.setInputType(getNullOrValue(dialog.getInputType()));
+                    if (detailType.getInputType() == null || detailType.getInputType().trim().isEmpty()) {
+                        inputTypeIsEmpty = true;
+                    }
+                    boolean worksheetNameIsEmpty = false;
+                    detailType.setWorksheetName(getNullOrValue(dialog.getWorksheetName()));
+                    if (detailType.getWorksheetName() == null || detailType.getWorksheetName().trim().isEmpty()) {
+                        worksheetNameIsEmpty = true;
+                    }
+                    boolean usesExternalTypesIsDefault = true;
+                    if (dialog.getUsingExternalTypes()) {
+                        usesExternalTypesIsDefault = false;
+                        detailType.setUsingExternalTypes(dialog.getUsingExternalTypes());
+                    } else {
+                        detailType.unsetUsingExternalTypes();
+                    }
+                    
+                    // if everything is empty, then remove the detail
+                    if (inputTypeIsEmpty && worksheetNameIsEmpty && usesExternalTypesIsDefault) {
+                        resourceToAddDetailsTo.setResourceDetail(null);
+                    }
+                    getTableViewer().refresh(true);
+                }
+                fireChangedEvent(this);
+            }
+            return rtn_code;
+        }
+        return Window.CANCEL;
+     }
+
     /**
      * Remove a property from the list
      */
@@ -339,11 +467,21 @@ public class RulesResourceTable extends Composite {
         if (_isReadOnly) {
             this._mAddButton.setEnabled(false);
             this._mRemoveButton.setEnabled(false);
-
+            this._mAdvancedButton.setEnabled(false);
         } else {
             this._mAddButton.setEnabled(true);
+            this._mRemoveButton.setEnabled(false);
+            this._mAdvancedButton.setEnabled(false);
             if (getTableSelection() != null) {
                 _mRemoveButton.setEnabled(true);
+
+                if (getTableSelection().getType() != null) {
+                    String rType = getTableSelection().getType();
+                    if (rType.equalsIgnoreCase("DTABLE")) {
+//                         || rType.equalsIgnoreCase("SCARD")) {
+                        this._mAdvancedButton.setEnabled(true);
+                    }
+                }
             }
         }
     }
@@ -455,6 +593,7 @@ public class RulesResourceTable extends Composite {
             });
             fireChangedEvent(_propertyTreeTable);
             getTableViewer().refresh(true);
+            updatePropertyButtons();
         }
     }
 

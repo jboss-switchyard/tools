@@ -786,13 +786,22 @@ public interface RulesPackage extends EPackage {
 	int DOCUMENT_ROOT__RESOURCE = 22;
 
 	/**
+     * The feature id for the '<em><b>Resource Detail</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__RESOURCE_DETAIL = 23;
+
+    /**
      * The feature id for the '<em><b>Resources</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__RESOURCES = 23;
+    int DOCUMENT_ROOT__RESOURCES = 24;
 
     /**
      * The feature id for the '<em><b>Fault</b></em>' containment reference.
@@ -801,7 +810,7 @@ public interface RulesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__FAULT = 24;
+    int DOCUMENT_ROOT__FAULT = 25;
 
     /**
      * The feature id for the '<em><b>Faults</b></em>' containment reference.
@@ -810,7 +819,7 @@ public interface RulesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__FAULTS = 25;
+    int DOCUMENT_ROOT__FAULTS = 26;
 
     /**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -819,7 +828,7 @@ public interface RulesPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 26;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 27;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.GlobalsTypeImpl <em>Globals Type</em>}' class.
@@ -1373,6 +1382,70 @@ public interface RulesPackage extends EPackage {
     int PROPERTY_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ResourceDetailTypeImpl <em>Resource Detail Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ResourceDetailTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getResourceDetailType()
+     * @generated
+     */
+    int RESOURCE_DETAIL_TYPE = 17;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_DETAIL_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_DETAIL_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Input Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_DETAIL_TYPE__INPUT_TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Using External Types</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_DETAIL_TYPE__USING_EXTERNAL_TYPES = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Worksheet Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_DETAIL_TYPE__WORKSHEET_NAME = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Resource Detail Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_DETAIL_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ResourcesTypeImpl <em>Resources Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1380,7 +1453,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getResourcesType()
      * @generated
      */
-    int RESOURCES_TYPE = 17;
+    int RESOURCES_TYPE = 18;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1426,7 +1499,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getResourceType()
      * @generated
      */
-	int RESOURCE_TYPE = 18;
+	int RESOURCE_TYPE = 19;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1447,13 +1520,22 @@ public interface RulesPackage extends EPackage {
     int RESOURCE_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
 
     /**
+     * The feature id for the '<em><b>Resource Detail</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_TYPE__RESOURCE_DETAIL = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESOURCE_TYPE__LOCATION = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+    int RESOURCE_TYPE__LOCATION = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1462,7 +1544,7 @@ public interface RulesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESOURCE_TYPE__TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+    int RESOURCE_TYPE__TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Resource Type</em>' class.
@@ -1471,7 +1553,7 @@ public interface RulesPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int RESOURCE_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+	int RESOURCE_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl <em>Implementation Type</em>}' class.
@@ -1481,7 +1563,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRulesImplementationType()
      * @generated
      */
-	int RULES_IMPLEMENTATION_TYPE = 19;
+	int RULES_IMPLEMENTATION_TYPE = 20;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1590,7 +1672,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getFaultsType()
      * @generated
      */
-    int FAULTS_TYPE = 20;
+    int FAULTS_TYPE = 21;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1636,7 +1718,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getOperationType()
      * @generated
      */
-    int OPERATION_TYPE = 21;
+    int OPERATION_TYPE = 22;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ExpressionType <em>Expression Type</em>}' enum.
@@ -1646,7 +1728,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExpressionType()
      * @generated
      */
-    int EXPRESSION_TYPE = 22;
+    int EXPRESSION_TYPE = 23;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.LoggerType <em>Logger Type</em>}' enum.
@@ -1656,7 +1738,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerType()
      * @generated
      */
-    int LOGGER_TYPE = 23;
+    int LOGGER_TYPE = 24;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ScopeType <em>Scope Type</em>}' enum.
@@ -1666,7 +1748,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getScopeType()
      * @generated
      */
-    int SCOPE_TYPE = 24;
+    int SCOPE_TYPE = 25;
 
     /**
      * The meta object id for the '<em>Operation Type Object</em>' data type.
@@ -1676,7 +1758,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getOperationTypeObject()
      * @generated
      */
-    int OPERATION_TYPE_OBJECT = 25;
+    int OPERATION_TYPE_OBJECT = 26;
 
     /**
      * The meta object id for the '<em>Expression Type Object</em>' data type.
@@ -1686,7 +1768,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExpressionTypeObject()
      * @generated
      */
-    int EXPRESSION_TYPE_OBJECT = 26;
+    int EXPRESSION_TYPE_OBJECT = 27;
 
     /**
      * The meta object id for the '<em>Logger Type Object</em>' data type.
@@ -1696,7 +1778,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerTypeObject()
      * @generated
      */
-    int LOGGER_TYPE_OBJECT = 27;
+    int LOGGER_TYPE_OBJECT = 28;
 
     /**
      * The meta object id for the '<em>Scope Type Object</em>' data type.
@@ -1706,7 +1788,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getScopeTypeObject()
      * @generated
      */
-    int SCOPE_TYPE_OBJECT = 28;
+    int SCOPE_TYPE_OBJECT = 29;
 
 
     /**
@@ -2221,6 +2303,17 @@ public interface RulesPackage extends EPackage {
 	EReference getDocumentRoot_Resource();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getResourceDetail <em>Resource Detail</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Resource Detail</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getResourceDetail()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_ResourceDetail();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getResources <em>Resources</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2540,6 +2633,49 @@ public interface RulesPackage extends EPackage {
     EAttribute getPropertyType_Value();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType <em>Resource Detail Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Resource Detail Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType
+     * @generated
+     */
+    EClass getResourceDetailType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType#getInputType <em>Input Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Input Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType#getInputType()
+     * @see #getResourceDetailType()
+     * @generated
+     */
+    EAttribute getResourceDetailType_InputType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType#isUsingExternalTypes <em>Using External Types</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Using External Types</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType#isUsingExternalTypes()
+     * @see #getResourceDetailType()
+     * @generated
+     */
+    EAttribute getResourceDetailType_UsingExternalTypes();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType#getWorksheetName <em>Worksheet Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Worksheet Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType#getWorksheetName()
+     * @see #getResourceDetailType()
+     * @generated
+     */
+    EAttribute getResourceDetailType_WorksheetName();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourcesType <em>Resources Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2571,6 +2707,17 @@ public interface RulesPackage extends EPackage {
 	EClass getResourceType();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceType#getResourceDetail <em>Resource Detail</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Resource Detail</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ResourceType#getResourceDetail()
+     * @see #getResourceType()
+     * @generated
+     */
+    EReference getResourceType_ResourceDetail();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.ResourceType#getLocation <em>Location</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3188,6 +3335,14 @@ public interface RulesPackage extends EPackage {
 		EReference DOCUMENT_ROOT__RESOURCE = eINSTANCE.getDocumentRoot_Resource();
 
 		/**
+         * The meta object literal for the '<em><b>Resource Detail</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__RESOURCE_DETAIL = eINSTANCE.getDocumentRoot_ResourceDetail();
+
+        /**
          * The meta object literal for the '<em><b>Resources</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3450,6 +3605,40 @@ public interface RulesPackage extends EPackage {
         EAttribute PROPERTY_TYPE__VALUE = eINSTANCE.getPropertyType_Value();
 
         /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ResourceDetailTypeImpl <em>Resource Detail Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ResourceDetailTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getResourceDetailType()
+         * @generated
+         */
+        EClass RESOURCE_DETAIL_TYPE = eINSTANCE.getResourceDetailType();
+
+        /**
+         * The meta object literal for the '<em><b>Input Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RESOURCE_DETAIL_TYPE__INPUT_TYPE = eINSTANCE.getResourceDetailType_InputType();
+
+        /**
+         * The meta object literal for the '<em><b>Using External Types</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RESOURCE_DETAIL_TYPE__USING_EXTERNAL_TYPES = eINSTANCE.getResourceDetailType_UsingExternalTypes();
+
+        /**
+         * The meta object literal for the '<em><b>Worksheet Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RESOURCE_DETAIL_TYPE__WORKSHEET_NAME = eINSTANCE.getResourceDetailType_WorksheetName();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ResourcesTypeImpl <em>Resources Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3478,6 +3667,14 @@ public interface RulesPackage extends EPackage {
 		EClass RESOURCE_TYPE = eINSTANCE.getResourceType();
 
 		/**
+         * The meta object literal for the '<em><b>Resource Detail</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESOURCE_TYPE__RESOURCE_DETAIL = eINSTANCE.getResourceType_ResourceDetail();
+
+        /**
          * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

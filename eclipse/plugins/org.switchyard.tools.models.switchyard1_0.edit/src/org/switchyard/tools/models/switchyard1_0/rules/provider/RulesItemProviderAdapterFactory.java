@@ -467,6 +467,29 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ResourceDetailTypeItemProvider resourceDetailTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createResourceDetailTypeAdapter() {
+        if (resourceDetailTypeItemProvider == null) {
+            resourceDetailTypeItemProvider = new ResourceDetailTypeItemProvider(this);
+        }
+
+        return resourceDetailTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ResourcesType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -674,6 +697,7 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
         if (outputsTypeItemProvider != null) outputsTypeItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (resourceDetailTypeItemProvider != null) resourceDetailTypeItemProvider.dispose();
         if (resourcesTypeItemProvider != null) resourcesTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
         if (rulesImplementationTypeItemProvider != null) rulesImplementationTypeItemProvider.dispose();

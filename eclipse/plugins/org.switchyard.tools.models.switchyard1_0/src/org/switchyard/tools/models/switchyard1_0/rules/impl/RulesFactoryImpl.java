@@ -32,7 +32,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
      */
 	public static RulesFactory init() {
         try {
-            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-rules:config:1.0"); 
+            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory(RulesPackage.eNS_URI);
             if (theRulesFactory != null) {
                 return theRulesFactory;
             }
@@ -78,6 +78,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
             case RulesPackage.OUTPUTS_TYPE: return createOutputsType();
             case RulesPackage.PROPERTIES_TYPE: return createPropertiesType();
             case RulesPackage.PROPERTY_TYPE: return createPropertyType();
+            case RulesPackage.RESOURCE_DETAIL_TYPE: return createResourceDetailType();
             case RulesPackage.RESOURCES_TYPE: return createResourcesType();
             case RulesPackage.RESOURCE_TYPE: return createResourceType();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE: return createRulesImplementationType();
@@ -313,6 +314,16 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
     public PropertyType createPropertyType() {
         PropertyTypeImpl propertyType = new PropertyTypeImpl();
         return propertyType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResourceDetailType createResourceDetailType() {
+        ResourceDetailTypeImpl resourceDetailType = new ResourceDetailTypeImpl();
+        return resourceDetailType;
     }
 
     /**

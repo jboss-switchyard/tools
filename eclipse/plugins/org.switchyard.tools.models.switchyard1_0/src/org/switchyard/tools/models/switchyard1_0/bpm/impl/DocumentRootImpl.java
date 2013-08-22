@@ -43,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResourceDetailType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.UserGroupCallbackType;
@@ -81,6 +82,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResourceDetail <em>Resource Detail</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResources <em>Resources</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getUserGroupCallback <em>User Group Callback</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getWorkItemHandler <em>Work Item Handler</em>}</li>
@@ -721,6 +723,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ResourceDetailType getResourceDetail() {
+        return (ResourceDetailType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetResourceDetail(ResourceDetailType newResourceDetail, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL, newResourceDetail, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setResourceDetail(ResourceDetailType newResourceDetail) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__RESOURCE_DETAIL, newResourceDetail);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ResourcesType getResources() {
         return (ResourcesType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__RESOURCES, true);
     }
@@ -936,6 +965,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetProperty(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return basicSetResource(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                return basicSetResourceDetail(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 return basicSetResources(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
@@ -1009,6 +1040,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getProperty();
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource();
+            case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                return getResourceDetail();
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources();
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:
@@ -1103,6 +1136,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                setResourceDetail((ResourceDetailType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)newValue);
@@ -1203,6 +1239,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                setResourceDetail((ResourceDetailType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 setResources((ResourcesType)null);
                 return;
@@ -1277,6 +1316,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getProperty() != null;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource() != null;
+            case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
+                return getResourceDetail() != null;
             case BPMPackage.DOCUMENT_ROOT__RESOURCES:
                 return getResources() != null;
             case BPMPackage.DOCUMENT_ROOT__USER_GROUP_CALLBACK:

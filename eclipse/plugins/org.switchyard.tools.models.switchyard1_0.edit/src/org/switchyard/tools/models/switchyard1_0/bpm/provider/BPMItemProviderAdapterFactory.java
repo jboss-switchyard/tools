@@ -490,6 +490,29 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ResourceDetailType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ResourceDetailTypeItemProvider resourceDetailTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ResourceDetailType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createResourceDetailTypeAdapter() {
+        if (resourceDetailTypeItemProvider == null) {
+            resourceDetailTypeItemProvider = new ResourceDetailTypeItemProvider(this);
+        }
+
+        return resourceDetailTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -745,6 +768,7 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
         if (outputsTypeItemProvider != null) outputsTypeItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (resourceDetailTypeItemProvider != null) resourceDetailTypeItemProvider.dispose();
         if (resourcesTypeItemProvider != null) resourcesTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
         if (userGroupCallbackTypeItemProvider != null) userGroupCallbackTypeItemProvider.dispose();

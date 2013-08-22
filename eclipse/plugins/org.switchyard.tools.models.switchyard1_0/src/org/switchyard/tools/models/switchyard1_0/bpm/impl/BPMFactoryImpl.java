@@ -32,7 +32,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      */
 	public static BPMFactory init() {
         try {
-            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bpm:config:1.0"); 
+            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory(BPMPackage.eNS_URI);
             if (theBPMFactory != null) {
                 return theBPMFactory;
             }
@@ -80,6 +80,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.OUTPUTS_TYPE: return createOutputsType();
             case BPMPackage.PROPERTIES_TYPE: return createPropertiesType();
             case BPMPackage.PROPERTY_TYPE: return createPropertyType();
+            case BPMPackage.RESOURCE_DETAIL_TYPE: return createResourceDetailType();
             case BPMPackage.RESOURCES_TYPE: return createResourcesType();
             case BPMPackage.RESOURCE_TYPE: return createResourceType();
             case BPMPackage.USER_GROUP_CALLBACK_TYPE: return createUserGroupCallbackType();
@@ -310,6 +311,16 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
     public PropertyType createPropertyType() {
         PropertyTypeImpl propertyType = new PropertyTypeImpl();
         return propertyType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResourceDetailType createResourceDetailType() {
+        ResourceDetailTypeImpl resourceDetailType = new ResourceDetailTypeImpl();
+        return resourceDetailType;
     }
 
     /**

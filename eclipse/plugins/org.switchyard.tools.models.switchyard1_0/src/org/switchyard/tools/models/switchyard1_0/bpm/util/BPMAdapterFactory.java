@@ -150,6 +150,10 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createPropertyTypeAdapter();
             }
             @Override
+            public Adapter caseResourceDetailType(ResourceDetailType object) {
+                return createResourceDetailTypeAdapter();
+            }
+            @Override
             public Adapter caseResourcesType(ResourcesType object) {
                 return createResourcesTypeAdapter();
             }
@@ -446,6 +450,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createPropertyTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ResourceDetailType <em>Resource Detail Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ResourceDetailType
+     * @generated
+     */
+    public Adapter createResourceDetailTypeAdapter() {
         return null;
     }
 
