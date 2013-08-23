@@ -168,10 +168,10 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                 // element from plugin.xml
                 EAttribute attribute = PACKAGE.getFormalExpression_Body();
                 String dataType = property.type;
-                if ("FaultWorkItemAction".equals(name)) {
+                if ("FaultAction".equals(name)) {
                     ObjectEditor editor = new FaultActionObjectEditor(this, fromExpression);
                     editor.createControl(getAttributesParent(), "Fault Action");
-                } else if ("FaultResultName".equals(name)) {
+                } else if ("FaultName".equals(name)) {
                     TextObjectEditor editor = createTextObjectEditor(association, fromExpression, attribute);
                     editor.setMultiLine(false);
                     editor.createControl(getAttributesParent(), "Fault Name");
@@ -312,6 +312,24 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                         @Override
                         protected void doExecute() {
                             di.setName("ResultName");
+                        }
+                    });
+        } else if ("FaultWorkItemAction".equals(di.getName())) {
+            TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
+            domain.getCommandStack().execute(
+                    new RecordingCommand(domain, "Update \"FaultWorkItemAction\" to \"FaultAction\"") {
+                        @Override
+                        protected void doExecute() {
+                            di.setName("FaultAction");
+                        }
+                    });
+        } else if ("FaultResultName".equals(di.getName())) {
+            TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
+            domain.getCommandStack().execute(
+                    new RecordingCommand(domain, "Update \"FaultResultName\" to \"FaultName\"") {
+                        @Override
+                        protected void doExecute() {
+                            di.setName("FaultName");
                         }
                     });
         }

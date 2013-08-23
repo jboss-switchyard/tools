@@ -82,7 +82,7 @@
 							<property
              description="The name of the fault result to be invoked on the SwitchYard service."
              name="name"
-             value="FaultResultName"/>
+             value="FaultName"/>
 						</value>
 					</property>
 					<property name="dataInputs">
@@ -98,7 +98,7 @@
 							<property
              description="The action to take when a fault occurs.  Acceptbable values are: abort, complete or &lt;unset&gt;."
              name="name"
-             value="FaultWorkItemAction"/>
+             value="FaultAction"/>
 						</value>
 					</property>
 

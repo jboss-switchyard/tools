@@ -232,10 +232,10 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                     // element from plugin.xml
                     EAttribute attribute = PACKAGE.getFormalExpression_Body();
                     String dataType = property.type;
-                    if ("FaultWorkItemAction".equals(name)) {
+                    if ("FaultAction".equals(name)) {
                         ObjectEditor editor = new FaultActionObjectEditor(this, fromExpression);
                         editor.createControl(getAttributesParent(), "Fault Action");
-                    } else if ("FaultResultName".equals(name)) {
+                    } else if ("FaultName".equals(name)) {
                         TextObjectEditor editor = new TextObjectEditor(this, fromExpression, attribute);
                         editor.setMultiLine(false);
                         editor.createControl(getAttributesParent(), "Fault Name");
