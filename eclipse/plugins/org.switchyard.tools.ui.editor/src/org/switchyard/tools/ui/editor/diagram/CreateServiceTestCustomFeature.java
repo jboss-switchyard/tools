@@ -22,7 +22,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
-import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.ImageProvider;
@@ -87,15 +86,15 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
         final NewServiceTestClassWizard wizard = new NewServiceTestClassWizard();
         final WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                 wizard);
-        wizard.init(PlatformUI.getWorkbench(), getResourceForInterface(contract.getInterface()));
+        wizard.init(PlatformUI.getWorkbench(), getResourceForInterface(contract));
         wizard.forceServiceContract(contract);
         dialog.open();
     }
 
-    private IStructuredSelection getResourceForInterface(Interface intf) {
-        IResource file = (IResource) Platform.getAdapterManager().loadAdapter(intf, IResource.class.getCanonicalName());
+    private IStructuredSelection getResourceForInterface(Contract contract) {
+        IResource file = (IResource) Platform.getAdapterManager().loadAdapter(contract, IResource.class.getCanonicalName());
         if (file == null) {
-            file = PlatformResourceAdapterFactory.getContainingProject(intf);
+            file = PlatformResourceAdapterFactory.getContainingProject(contract);
             if (file == null) {
                 return StructuredSelection.EMPTY;
             }

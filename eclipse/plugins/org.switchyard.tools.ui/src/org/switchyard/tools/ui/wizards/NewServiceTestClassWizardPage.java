@@ -87,7 +87,12 @@ import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.project.MavenProjectUtils;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.soa.sca.sca1_1.model.sca.util.ScaSwitch;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -667,18 +672,57 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         _serviceDialogField.setEnabled(root != null);
 
         Contract contract = getServiceContract();
+        Interface intf = getContractInterface(contract);
         if (contract == null) {
             _serviceInterfaceStatus.setWarning("No service is specified. A simple stub class will be created.");
-        } else if (contract.getInterface() == null) {
-            _serviceInterfaceStatus.setError("Selected service does not define any interface.");
+        } else if (intf == null) {
+            _serviceInterfaceStatus.setWarning("Selected service does not define any interface.");
         }
-        _interfaceControl.init(contract == null ? null : contract.getInterface(), null);
+        _interfaceControl.init(contract == null ? null : intf, null);
 
         String newName = createDefaultClassName();
         if (updateDefault(_oldTypeName, newName, getTypeName())) {
             setTypeName(newName, true);
         }
         _oldTypeName = newName;
+    }
+
+    private Interface getContractInterface(Contract contract) {
+        return contract == null ? null : new ScaSwitch<Interface>() {
+            @Override
+            public Interface caseReference(Reference object) {
+                Interface intf = object.getInterface();
+                if (intf == null) {
+                    if (object.getPromote() != null) {
+                        for (ComponentReference promoted : object.getPromote()) {
+                            if (promoted.getInterface() == null) {
+                                continue;
+                            }
+                            intf = promoted.getInterface();
+                            break;
+                        }
+                    }
+                }
+                return intf;
+            }
+
+            @Override
+            public Interface caseService(Service object) {
+                Interface intf = object.getInterface();
+                if (intf == null) {
+                    if (object.getPromote() != null) {
+                        intf = object.getPromote().getInterface();
+                    }
+                }
+                return intf;
+            }
+
+            @Override
+            public Interface caseContract(Contract object) {
+                return object.getInterface();
+            }
+
+        }.doSwitch(contract);
     }
 
     private String createDefaultClassName() {
