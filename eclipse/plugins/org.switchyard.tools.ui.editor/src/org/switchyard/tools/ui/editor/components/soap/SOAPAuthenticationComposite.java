@@ -163,6 +163,7 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
                 _authTypeCombo.select(0);
                 setTextValue(_authUserText, this._binding.getBasic().getUser());
                 setTextValue(_authPasswordText, this._binding.getBasic().getPassword());
+                setTextValue(_authDomainText, null);
             } else if (this._binding.getNtlm() != null) {
                 _authTypeCombo.select(1);
                 setTextValue(_authUserText, this._binding.getNtlm().getUser());

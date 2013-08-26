@@ -46,7 +46,6 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
     private Text _authHostText;
     private Text _authPortText;
     private Text _authDomainText;
-    private String _proxyPort;
 
     @Override
     public String getTitle() {
@@ -122,13 +121,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                 updateAuthFeature("password", password);
             } else if (control.equals(_authPortText)) {
                 String port = _authPortText.getText().trim();
-                try {
-                    Integer portInt = Integer.parseInt(port);
-                    updateAuthFeature("port", portInt);
-                } catch (NumberFormatException nfe) {
-                    // ignore
-                    nfe.fillInStackTrace();
-                }
+                updateAuthFeature("port", port);
             } else if (control.equals(_authRealmText)) {
                 String realm = _authRealmText.getText().trim();
                 updateAuthFeature("realm", realm);
@@ -157,25 +150,6 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
 
     protected boolean validate() {
         setErrorMessage(null);
-        String portText = null;
-        if (_authPortText != null && !_authPortText.isDisposed()) {
-            portText = _authPortText.getText();
-            if (!portText.trim().isEmpty()) {
-                try {
-                    Integer.parseInt(portText);
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("The authentication port must be a valid integer");
-                }
-            }
-        }
-
-        if (_proxyPort != null && _proxyPort.trim().length() > 0) {
-            try {
-                Integer.parseInt(_proxyPort);
-            } catch (NumberFormatException nfe) {
-                setErrorMessage("The proxy port must be a valid integer");
-            }
-        }
 
         return (getErrorMessage() == null);
     }
@@ -208,6 +182,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                 } else {
                     setTextValue(_authPortText, "");
                 }
+                setTextValue(_authDomainText, null);
             } else if (this._binding.getNtlm() != null) {
                 _authTypeCombo.select(1);
                 setTextValue(_authUserText, this._binding.getNtlm().getUser());
@@ -285,11 +260,42 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         }
     }
 
+    class CleanupBasicAuthenticationOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getBasic() != null) {
+                if (_binding.getBasic().getHost() == null 
+                        && _binding.getBasic().getPassword() == null 
+                        && _binding.getBasic().getPort() == null
+                        && _binding.getBasic().getUser() == null
+                        && _binding.getBasic().getRealm() == null) {
+                    setFeatureValue(_binding, "basic", null);
+                }
+            }
+        }
+    }
+
+    class CleanupNTLMAuthenticationOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getNtlm() != null) {
+                if (_binding.getNtlm().getHost() == null 
+                        && _binding.getNtlm().getPassword() == null 
+                        && _binding.getNtlm().getPort() == null
+                        && _binding.getNtlm().getUser() == null
+                        && _binding.getNtlm().getRealm() == null) {
+                    setFeatureValue(_binding, "ntlm", null);
+                }
+            }
+        }
+    }
+
     protected void updateBasicAuthFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new RemoveNtlmAuthenticationOp());
         ops.add(new AddBasicAuthenticatiOp());
         ops.add(new BasicOperation("basic", featureId, value));
+        ops.add(new CleanupBasicAuthenticationOp());
         wrapOperation(ops);
     }
 
@@ -298,6 +304,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         ops.add(new RemoveBasicAuthenticationOp());
         ops.add(new AddNtlmAuthenticatiOp());
         ops.add(new BasicOperation("ntlm", featureId, value));
+        ops.add(new CleanupNTLMAuthenticationOp());
         wrapOperation(ops);
     }
 

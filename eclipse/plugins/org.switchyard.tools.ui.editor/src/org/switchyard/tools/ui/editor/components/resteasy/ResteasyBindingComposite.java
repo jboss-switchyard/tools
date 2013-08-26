@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -42,6 +43,7 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
     private Text _contextPathText = null;
     private DelimitedStringList _interfacesList = null;
     private RESTBindingType _binding = null;
+    private Text _requestTimeoutText = null;
 
     @Override
     public String getTitle() {
@@ -75,6 +77,10 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         if (getTargetObject() instanceof Reference) {
             _mAddressURLText = createLabelAndText(composite, "Address");
             _mAddressURLText.setEnabled(canEdit());
+
+            _requestTimeoutText = createLabelAndText(composite, "Request Timeout");
+            _requestTimeoutText.setEnabled(canEdit());
+            
         } else {
             _contextPathText = createLabelAndText(composite, "Context Path");
             _contextPathText.setEnabled(canEdit());
@@ -112,6 +118,9 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_interfacesList)) {
                 String interfacesString = _interfacesList.getSelection();
                 updateFeature(_binding, "interfaces", interfacesString);
+            } else if (control.equals(_requestTimeoutText)) {
+                final String requestTimeout = _requestTimeoutText.getText();
+                updateFeature(_binding, "timeout", requestTimeout);
             } else if (control.equals(_nameText)) {
                 super.updateFeature(_binding, "name", _nameText.getText().trim());
             }
@@ -195,6 +204,13 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
             } else {
                 _nameText.setText(_binding.getName());
             }
+            if (_requestTimeoutText != null && !_requestTimeoutText.isDisposed()) {
+                if (_binding.getTimeout() == null) {
+                    _requestTimeoutText.setText("");
+                } else {
+                    _requestTimeoutText.setText(PropTypeUtil.getPropValueString(_binding.getTimeout()));
+                }
+            }
             setInUpdate(false);
             validate();
         } else {
@@ -217,6 +233,9 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         if (this._interfacesList != null && !this._interfacesList.isDisposed()) {
             this._interfacesList.setEnabled(canEdit());
         }
+        if (this._requestTimeoutText != null && !this._requestTimeoutText.isDisposed()) {
+            this._requestTimeoutText.setEnabled(canEdit());
+        }
     }
 
     protected void handleUndo(Control control) {
@@ -227,6 +246,8 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
                 _mAddressURLText.setText(_binding.getAddress());
             } else if (control.equals(_nameText)) {
                 _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+            } else if (control.equals(_requestTimeoutText)) {
+                _requestTimeoutText.setText(_binding.getTimeout() == null ? "" : PropTypeUtil.getPropValueString(_binding.getTimeout()));
             } else {
                 super.handleUndo(control);
             }

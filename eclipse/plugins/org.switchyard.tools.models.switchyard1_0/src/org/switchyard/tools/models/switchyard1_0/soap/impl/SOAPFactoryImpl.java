@@ -35,7 +35,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
      */
     public static SOAPFactory init() {
         try {
-            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-soap:config:1.0"); 
+            SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory(SOAPPackage.eNS_URI);
             if (theSOAPFactory != null) {
                 return theSOAPFactory;
             }

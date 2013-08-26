@@ -396,8 +396,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getHTTPBindingType_Basic() {
-        return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(6);
+    public EAttribute getHTTPBindingType_Timeout() {
+        return (EAttribute)httpBindingTypeEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -405,7 +405,7 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getHTTPBindingType_Ntlm() {
+    public EReference getHTTPBindingType_Basic() {
         return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(7);
     }
 
@@ -414,8 +414,17 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getHTTPBindingType_Proxy() {
+    public EReference getHTTPBindingType_Ntlm() {
         return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getHTTPBindingType_Proxy() {
+        return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(9);
     }
 
     /**
@@ -583,6 +592,7 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__ADDRESS);
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__METHOD);
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__CONTENT_TYPE);
+        createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__TIMEOUT);
         createEReference(httpBindingTypeEClass, HTTP_BINDING_TYPE__BASIC);
         createEReference(httpBindingTypeEClass, HTTP_BINDING_TYPE__NTLM);
         createEReference(httpBindingTypeEClass, HTTP_BINDING_TYPE__PROXY);
@@ -641,7 +651,7 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         initEAttribute(getBasicAuthenticationType_Password(), theXMLTypePackage.getString(), "password", null, 1, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBasicAuthenticationType_Realm(), theXMLTypePackage.getString(), "realm", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBasicAuthenticationType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBasicAuthenticationType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -656,6 +666,7 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         initEAttribute(getHTTPBindingType_Address(), theXMLTypePackage.getString(), "address", null, 0, 1, HTTPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHTTPBindingType_Method(), theXMLTypePackage.getString(), "method", null, 0, 1, HTTPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHTTPBindingType_ContentType(), theXMLTypePackage.getString(), "contentType", null, 0, 1, HTTPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getHTTPBindingType_Timeout(), theSwitchyardPackage.getPropInteger(), "timeout", null, 0, 1, HTTPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getHTTPBindingType_Basic(), this.getBasicAuthenticationType(), null, "basic", null, 0, 1, HTTPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getHTTPBindingType_Ntlm(), this.getNTLMAuthenticationType(), null, "ntlm", null, 0, 1, HTTPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getHTTPBindingType_Proxy(), this.getProxyType(), null, "proxy", null, 0, 1, HTTPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -665,7 +676,7 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
 
         initEClass(proxyTypeEClass, ProxyType.class, "ProxyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProxyType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProxyType_Port(), theXMLTypePackage.getInteger(), "port", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProxyType_User(), theXMLTypePackage.getString(), "user", null, 1, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProxyType_Password(), theXMLTypePackage.getString(), "password", null, 1, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -822,6 +833,14 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
            new String[] {
              "kind", "element",
              "name", "contentType",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getHTTPBindingType_Timeout(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "timeout",
              "namespace", "##targetNamespace"
            });		
         addAnnotation

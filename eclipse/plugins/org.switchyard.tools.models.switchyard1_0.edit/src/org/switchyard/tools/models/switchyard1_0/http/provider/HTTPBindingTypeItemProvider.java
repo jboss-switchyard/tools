@@ -77,6 +77,7 @@ public class HTTPBindingTypeItemProvider
             addAddressPropertyDescriptor(object);
             addMethodPropertyDescriptor(object);
             addContentTypePropertyDescriptor(object);
+            addTimeoutPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -170,6 +171,28 @@ public class HTTPBindingTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Timeout feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimeoutPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_HTTPBindingType_timeout_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_HTTPBindingType_timeout_feature", "_UI_HTTPBindingType_type"),
+                 HttpPackage.Literals.HTTP_BINDING_TYPE__TIMEOUT,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -244,6 +267,7 @@ public class HTTPBindingTypeItemProvider
             case HttpPackage.HTTP_BINDING_TYPE__ADDRESS:
             case HttpPackage.HTTP_BINDING_TYPE__METHOD:
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
+            case HttpPackage.HTTP_BINDING_TYPE__TIMEOUT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case HttpPackage.HTTP_BINDING_TYPE__CONTEXT_MAPPER:

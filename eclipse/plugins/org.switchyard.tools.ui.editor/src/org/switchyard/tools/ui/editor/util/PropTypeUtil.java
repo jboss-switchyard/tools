@@ -25,7 +25,7 @@ public final class PropTypeUtil {
     }
     
     /**
-     * @param value Integer, String, or Long
+     * @param value Integer, String, Long, BigInteger, or Boolean
      * @return String value
      */
     public static String getPropValueString(Object value) {
@@ -38,9 +38,22 @@ public final class PropTypeUtil {
                 return ((Long)value).toString();
             } else if (value instanceof BigInteger) {
                 return ((BigInteger)value).toString();
+            } else if (value instanceof Boolean) {
+                return ((Boolean)value).toString();
             }
         }
         return null;
+    }
+    
+    /**
+     * @param value Boolean
+     * @return true/false
+     */
+    public static boolean getBooleanPropValue(Object value) {
+        if (value != null && value instanceof Boolean) {
+            return ((Boolean)value).booleanValue();
+        }
+        return false;
     }
         
 }

@@ -31,7 +31,7 @@ public class HttpFactoryImpl extends EFactoryImpl implements HttpFactory {
      */
     public static HttpFactory init() {
         try {
-            HttpFactory theHttpFactory = (HttpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-http:config:1.0"); 
+            HttpFactory theHttpFactory = (HttpFactory)EPackage.Registry.INSTANCE.getEFactory(HttpPackage.eNS_URI);
             if (theHttpFactory != null) {
                 return theHttpFactory;
             }

@@ -89,12 +89,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
                 if (_proxyPort.trim().isEmpty()) {
                     updateProxyFeature("port", null);
                 } else {
-                    try {
-                        Integer portVal = Integer.parseInt(_proxyPort);
-                        updateProxyFeature("port", portVal);
-                    } catch (NumberFormatException nfe) {
-                        nfe.fillInStackTrace();
-                    }
+                    updateProxyFeature("port", _proxyPort);
                 }
             }
         }
@@ -106,13 +101,13 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
 
     protected boolean validate() {
         setErrorMessage(null);
-        if (_proxyPort != null && _proxyPort.trim().length() > 0) {
-            try {
-                Integer.parseInt(_proxyPort);
-            } catch (NumberFormatException nfe) {
-                setErrorMessage("The proxy port must be a valid integer");
-            }
-        }
+//        if (_proxyPort != null && _proxyPort.trim().length() > 0) {
+//            try {
+//                Integer.parseInt(_proxyPort);
+//            } catch (NumberFormatException nfe) {
+//                setErrorMessage("The proxy port must be a valid integer");
+//            }
+//        }
 
         return (getErrorMessage() == null);
     }
@@ -137,9 +132,16 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
                 setTextValue(_proxyHostText, _binding.getProxy().getHost());
                 if (_binding.getProxy().getPort() != null) {
                     setTextValue(_proxyPortText, _binding.getProxy().getPort().toString());
+                } else {
+                    setTextValue(_proxyPortText, null);
                 }
                 setTextValue(_proxyUserText, _binding.getProxy().getUser());
                 setTextValue(_proxyPasswordText, _binding.getProxy().getPassword());
+            } else {
+                setTextValue(_proxyHostText, null);
+                setTextValue(_proxyPortText, null);
+                setTextValue(_proxyUserText, null);
+                setTextValue(_proxyPasswordText, null);
             }
             setInUpdate(false);
             validate();

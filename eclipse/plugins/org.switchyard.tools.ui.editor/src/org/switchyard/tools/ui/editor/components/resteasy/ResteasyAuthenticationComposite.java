@@ -121,13 +121,7 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
                 updateAuthFeature("password", password);
             } else if (control.equals(_authPortText)) {
                 String port = _authPortText.getText().trim();
-                try {
-                    Integer portInt = Integer.parseInt(port);
-                    updateAuthFeature("port", portInt);
-                } catch (NumberFormatException nfe) {
-                    // ignore
-                    nfe.fillInStackTrace();
-                }
+                updateAuthFeature("port", port);
             } else if (control.equals(_authRealmText)) {
                 String realm = _authRealmText.getText().trim();
                 updateAuthFeature("realm", realm);
@@ -147,17 +141,17 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
 
     protected boolean validate() {
         setErrorMessage(null);
-        String portText = null;
-        if (_authPortText != null && !_authPortText.isDisposed()) {
-            portText = _authPortText.getText();
-            if (!portText.trim().isEmpty()) {
-                try {
-                    Integer.parseInt(portText);
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("The authentication port must be a valid integer");
-                }
-            }
-        }
+//        String portText = null;
+//        if (_authPortText != null && !_authPortText.isDisposed()) {
+//            portText = _authPortText.getText();
+//            if (!portText.trim().isEmpty()) {
+//                try {
+//                    Integer.parseInt(portText);
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("The authentication port must be a valid integer");
+//                }
+//            }
+//        }
 
         return (getErrorMessage() == null);
     }
@@ -189,6 +183,7 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
                 } else {
                     setTextValue(_authPortText, "");
                 }
+                setTextValue(_authDomainText, null);
             } else if (this._binding.getNtlm() != null) {
                 _authTypeCombo.select(1);
                 setTextValue(_authUserText, this._binding.getNtlm().getUser());

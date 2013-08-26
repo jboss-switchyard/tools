@@ -98,7 +98,7 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createInterceptorTypeAdapter();
             }
             @Override
-            public Adapter caseMessageComposerType(MessageComposerType object) {
+            public Adapter caseMessageComposerType(org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType object) {
                 return createMessageComposerTypeAdapter();
             }
             @Override
@@ -138,7 +138,7 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
                 return createCommonExtensionBaseAdapter();
             }
             @Override
-            public Adapter caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
+            public Adapter caseSwitchyard_MessageComposerType(MessageComposerType object) {
                 return createSwitchyard_MessageComposerTypeAdapter();
             }
             @Override

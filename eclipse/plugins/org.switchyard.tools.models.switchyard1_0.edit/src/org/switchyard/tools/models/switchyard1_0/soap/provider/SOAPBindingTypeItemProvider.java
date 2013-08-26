@@ -76,6 +76,7 @@ public class SOAPBindingTypeItemProvider
             addSocketAddrPropertyDescriptor(object);
             addContextPathPropertyDescriptor(object);
             addEndpointAddressPropertyDescriptor(object);
+            addTimeoutPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -191,6 +192,28 @@ public class SOAPBindingTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Timeout feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimeoutPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_SOAPBindingType_timeout_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SOAPBindingType_timeout_feature", "_UI_SOAPBindingType_type"),
+                 SOAPPackage.Literals.SOAP_BINDING_TYPE__TIMEOUT,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -270,6 +293,7 @@ public class SOAPBindingTypeItemProvider
             case SOAPPackage.SOAP_BINDING_TYPE__SOCKET_ADDR:
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH:
             case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
+            case SOAPPackage.SOAP_BINDING_TYPE__TIMEOUT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:

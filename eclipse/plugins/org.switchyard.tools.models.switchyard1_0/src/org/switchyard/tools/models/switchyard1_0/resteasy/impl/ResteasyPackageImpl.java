@@ -331,8 +331,17 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getRESTBindingType_Timeout() {
+        return (EAttribute)restBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getRESTBindingType_Basic() {
-        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(5);
+        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -341,7 +350,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * @generated
      */
     public EReference getRESTBindingType_Ntlm() {
-        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(6);
+        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(7);
     }
 
     /**
@@ -359,7 +368,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * @generated
      */
     public EReference getRESTBindingType_Proxy() {
-        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(7);
+        return (EReference)restBindingTypeEClass.getEStructuralFeatures().get(8);
     }
 
     /**
@@ -570,6 +579,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__INTERFACES);
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__CONTEXT_PATH);
         createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__ADDRESS);
+        createEAttribute(restBindingTypeEClass, REST_BINDING_TYPE__TIMEOUT);
         createEReference(restBindingTypeEClass, REST_BINDING_TYPE__BASIC);
         createEReference(restBindingTypeEClass, REST_BINDING_TYPE__NTLM);
         createEReference(restBindingTypeEClass, REST_BINDING_TYPE__PROXY);
@@ -632,7 +642,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
 
         initEClass(proxyTypeEClass, ProxyType.class, "ProxyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProxyType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProxyType_Port(), theXMLTypePackage.getInteger(), "port", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProxyType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 0, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProxyType_User(), theXMLTypePackage.getString(), "user", null, 1, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProxyType_Password(), theXMLTypePackage.getString(), "password", null, 1, 1, ProxyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -642,6 +652,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         initEAttribute(getRESTBindingType_Interfaces(), theXMLTypePackage.getString(), "interfaces", null, 1, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRESTBindingType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRESTBindingType_Address(), theXMLTypePackage.getString(), "address", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRESTBindingType_Timeout(), theSwitchyardPackage.getPropInteger(), "timeout", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRESTBindingType_Basic(), this.getBasicAuthenticationType(), null, "basic", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRESTBindingType_Ntlm(), this.getNTLMAuthenticationType(), null, "ntlm", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRESTBindingType_Proxy(), this.getProxyType(), null, "proxy", null, 0, 1, RESTBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -651,7 +662,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         initEAttribute(getBasicAuthenticationType_Password(), theXMLTypePackage.getString(), "password", null, 1, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBasicAuthenticationType_Realm(), theXMLTypePackage.getString(), "realm", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBasicAuthenticationType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBasicAuthenticationType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBasicAuthenticationType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 0, 1, BasicAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(ntlmAuthenticationTypeEClass, NTLMAuthenticationType.class, "NTLMAuthenticationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getNTLMAuthenticationType_Domain(), theXMLTypePackage.getString(), "domain", null, 1, 1, NTLMAuthenticationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -793,6 +804,14 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
            new String[] {
              "kind", "element",
              "name", "address",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getRESTBindingType_Timeout(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "timeout",
              "namespace", "##targetNamespace"
            });		
         addAnnotation

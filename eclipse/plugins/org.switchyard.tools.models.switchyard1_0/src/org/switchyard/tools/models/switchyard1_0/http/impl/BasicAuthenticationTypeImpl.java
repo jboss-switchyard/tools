@@ -120,7 +120,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * @generated
      * @ordered
      */
-    protected static final Integer PORT_EDEFAULT = null;
+    protected static final Object PORT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -130,7 +130,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * @generated
      * @ordered
      */
-    protected Integer port = PORT_EDEFAULT;
+    protected Object port = PORT_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -240,7 +240,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getPort() {
+    public Object getPort() {
         return port;
     }
 
@@ -249,8 +249,8 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(Integer newPort) {
-        Integer oldPort = port;
+    public void setPort(Object newPort) {
+        Object oldPort = port;
         port = newPort;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT, oldPort, port));
@@ -299,7 +299,7 @@ public class BasicAuthenticationTypeImpl extends CommonExtensionBaseImpl impleme
                 setHost((String)newValue);
                 return;
             case HttpPackage.BASIC_AUTHENTICATION_TYPE__PORT:
-                setPort((Integer)newValue);
+                setPort(newValue);
                 return;
         }
         super.eSet(featureID, newValue);

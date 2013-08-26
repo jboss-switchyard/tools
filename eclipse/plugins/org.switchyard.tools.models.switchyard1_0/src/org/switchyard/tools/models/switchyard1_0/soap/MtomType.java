@@ -13,9 +13,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#getThreshold <em>Threshold</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isXopExpand <em>Xop Expand</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#getXopExpand <em>Xop Expand</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,7 +26,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 public interface MtomType extends CommonExtensionBase {
     /**
      * Returns the value of the '<em><b>Enabled</b></em>' attribute.
-     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
@@ -34,50 +33,23 @@ public interface MtomType extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Enabled</em>' attribute.
-     * @see #isSetEnabled()
-     * @see #unsetEnabled()
-     * @see #setEnabled(boolean)
+     * @see #setEnabled(Object)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getMtomType_Enabled()
-     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropBoolean"
      *        extendedMetaData="kind='attribute' name='enabled'"
      * @generated
      */
-    boolean isEnabled();
+    Object getEnabled();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isEnabled <em>Enabled</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#getEnabled <em>Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Enabled</em>' attribute.
-     * @see #isSetEnabled()
-     * @see #unsetEnabled()
-     * @see #isEnabled()
+     * @see #getEnabled()
      * @generated
      */
-    void setEnabled(boolean value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isEnabled <em>Enabled</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetEnabled()
-     * @see #isEnabled()
-     * @see #setEnabled(boolean)
-     * @generated
-     */
-    void unsetEnabled();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isEnabled <em>Enabled</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Enabled</em>' attribute is set.
-     * @see #unsetEnabled()
-     * @see #isEnabled()
-     * @see #setEnabled(boolean)
-     * @generated
-     */
-    boolean isSetEnabled();
+    void setEnabled(Object value);
 
     /**
      * Returns the value of the '<em><b>Threshold</b></em>' attribute.
@@ -88,13 +60,13 @@ public interface MtomType extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Threshold</em>' attribute.
-     * @see #setThreshold(BigInteger)
+     * @see #setThreshold(Object)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getMtomType_Threshold()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='attribute' name='threshold'"
      * @generated
      */
-    BigInteger getThreshold();
+    Object getThreshold();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#getThreshold <em>Threshold</em>}' attribute.
@@ -104,7 +76,7 @@ public interface MtomType extends CommonExtensionBase {
      * @see #getThreshold()
      * @generated
      */
-    void setThreshold(BigInteger value);
+    void setThreshold(Object value);
 
     /**
      * Returns the value of the '<em><b>Xop Expand</b></em>' attribute.
@@ -115,49 +87,22 @@ public interface MtomType extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Xop Expand</em>' attribute.
-     * @see #isSetXopExpand()
-     * @see #unsetXopExpand()
-     * @see #setXopExpand(boolean)
+     * @see #setXopExpand(Object)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getMtomType_XopExpand()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropBoolean"
      *        extendedMetaData="kind='attribute' name='xopExpand'"
      * @generated
      */
-    boolean isXopExpand();
+    Object getXopExpand();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isXopExpand <em>Xop Expand</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#getXopExpand <em>Xop Expand</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Xop Expand</em>' attribute.
-     * @see #isSetXopExpand()
-     * @see #unsetXopExpand()
-     * @see #isXopExpand()
+     * @see #getXopExpand()
      * @generated
      */
-    void setXopExpand(boolean value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isXopExpand <em>Xop Expand</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetXopExpand()
-     * @see #isXopExpand()
-     * @see #setXopExpand(boolean)
-     * @generated
-     */
-    void unsetXopExpand();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.MtomType#isXopExpand <em>Xop Expand</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Xop Expand</em>' attribute is set.
-     * @see #unsetXopExpand()
-     * @see #isXopExpand()
-     * @see #setXopExpand(boolean)
-     * @generated
-     */
-    boolean isSetXopExpand();
+    void setXopExpand(Object value);
 
 } // MtomType

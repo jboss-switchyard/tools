@@ -495,13 +495,22 @@ public interface ResteasyPackage extends EPackage {
     int REST_BINDING_TYPE__ADDRESS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
+     * The feature id for the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_BINDING_TYPE__TIMEOUT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+
+    /**
      * The feature id for the '<em><b>Basic</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__BASIC = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+    int REST_BINDING_TYPE__BASIC = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Ntlm</b></em>' containment reference.
@@ -510,7 +519,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int REST_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Proxy</b></em>' containment reference.
@@ -519,7 +528,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+    int REST_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
 
     /**
      * The number of structural features of the '<em>REST Binding Type</em>' class.
@@ -528,7 +537,7 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+    int REST_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.BasicAuthenticationTypeImpl <em>Basic Authentication Type</em>}' class.
@@ -756,6 +765,17 @@ public interface ResteasyPackage extends EPackage {
      * @generated
      */
     EAttribute getRESTBindingType_Address();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getTimeout <em>Timeout</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Timeout</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getTimeout()
+     * @see #getRESTBindingType()
+     * @generated
+     */
+    EAttribute getRESTBindingType_Timeout();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType#getBasic <em>Basic</em>}'.
@@ -1058,6 +1078,14 @@ public interface ResteasyPackage extends EPackage {
          * @generated
          */
         EAttribute REST_BINDING_TYPE__ADDRESS = eINSTANCE.getRESTBindingType_Address();
+
+        /**
+         * The meta object literal for the '<em><b>Timeout</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REST_BINDING_TYPE__TIMEOUT = eINSTANCE.getRESTBindingType_Timeout();
 
         /**
          * The meta object literal for the '<em><b>Basic</b></em>' containment reference feature.

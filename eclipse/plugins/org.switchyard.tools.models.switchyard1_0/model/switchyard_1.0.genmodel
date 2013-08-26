@@ -563,6 +563,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/contextPath"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/endpointConfig"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/endpointAddress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/timeout"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/basic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/ntlm"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//SOAPBindingType/proxy"/>
@@ -2522,6 +2523,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/interfaces"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/contextPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/timeout"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/basic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/ntlm"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//RESTBindingType/proxy"/>
@@ -2559,6 +2561,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/address"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/method"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/contentType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.http.ecore#//HTTPBindingType/timeout"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/basic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/ntlm"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//HTTPBindingType/proxy"/>

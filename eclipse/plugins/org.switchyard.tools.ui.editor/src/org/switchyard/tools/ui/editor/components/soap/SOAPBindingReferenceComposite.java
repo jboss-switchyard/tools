@@ -59,6 +59,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 
 /**
@@ -87,6 +88,8 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
     private Button _enableXopExpandCheckbox = null;
     private Button _disableMtomCheckbox =  null;
     private final SOAPMessageComposerComposite _messageComposerComposite;
+    private Text _requestTimeoutText = null;
+    private Text _mtomThresholdText = null;
 
     /**
      * Create a new SOAPBindingReferenceComposite.
@@ -221,9 +224,15 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         epAddrGD.horizontalSpan = 2;
         _endpointAddressText.setLayoutData(epAddrGD);
         
+        _requestTimeoutText = createLabelAndText(composite, "Request Timeout");
+        _requestTimeoutText.setEnabled(canEdit());
+        GridData rtAddrGD = new GridData(GridData.FILL_HORIZONTAL);
+        rtAddrGD.horizontalSpan = 2;
+        _requestTimeoutText.setLayoutData(rtAddrGD);
+        
         Group mtomGroup = new Group(composite, SWT.NONE);
         mtomGroup.setText("MTom");
-        mtomGroup.setLayout(new GridLayout(2, false));
+        mtomGroup.setLayout(new GridLayout(4, false));
         GridData epConfigGroupGD = new GridData(GridData.FILL_HORIZONTAL);
         epConfigGroupGD.horizontalSpan = 3;
         epConfigGroupGD.horizontalIndent = -5;
@@ -231,7 +240,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
 
         _enableMtomCheckbox = createCheckbox(mtomGroup, "Enable");
         GridData enableMtomChxGD = new GridData();
-        enableMtomChxGD.horizontalSpan = 2;
+        enableMtomChxGD.horizontalSpan = 4;
         _enableMtomCheckbox.setLayoutData(enableMtomChxGD);
 
         _disableMtomCheckbox = createCheckbox(mtomGroup, "Temporarily Disable");
@@ -242,6 +251,10 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         _enableXopExpandCheckbox = createCheckbox(mtomGroup, "xopExpand");
         GridData enableXopExpandChxGD = new GridData();
         _enableXopExpandCheckbox.setLayoutData(enableXopExpandChxGD);
+        
+        _mtomThresholdText = createLabelAndText(mtomGroup, "Threshold");
+        GridData mtomThresholdGD = new GridData(GridData.FILL_HORIZONTAL);
+        _mtomThresholdText.setLayoutData(mtomThresholdGD);
 
         return composite;
     }
@@ -295,6 +308,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_enableMtomCheckbox)) {
                 _disableMtomCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
                 _enableXopExpandCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
+                _mtomThresholdText.setEnabled(_enableMtomCheckbox.getSelection());
                 if (!_enableMtomCheckbox.getSelection()) {
                     _disableMtomCheckbox.setSelection(false);
                     _enableXopExpandCheckbox.setSelection(false);
@@ -308,6 +322,12 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection());
             } else if (control.equals(_nameText)) {
                 super.updateFeature(_binding, "name", _nameText.getText().trim());
+            } else if (control.equals(_requestTimeoutText)) {
+                final String requestTimeout = _requestTimeoutText.getText();
+                updateFeature(_binding, "timeout", requestTimeout);
+            } else if (control.equals(_mtomThresholdText)) {
+                final String threshold = _mtomThresholdText.getText();
+                updateMTomFeature("threshold", threshold);
             } else {
                 super.handleModify(control);
             }
@@ -352,26 +372,36 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 if (_binding.getMtom() != null) {
                     _enableXopExpandCheckbox.setEnabled(true);
                     _disableMtomCheckbox.setEnabled(true);
-                    if (_binding.getMtom().isEnabled()) {
-                        _disableMtomCheckbox.setSelection(!_binding.getMtom().isEnabled());
-                        if (_binding.getMtom().isXopExpand()) {
-                            _enableXopExpandCheckbox.setSelection(_binding.getMtom().isXopExpand());
+                    _mtomThresholdText.setEnabled(true);
+                    if (_binding.getMtom().getEnabled() != null) {
+                        _disableMtomCheckbox.setSelection(!(Boolean)_binding.getMtom().getEnabled());
+                        if (_binding.getMtom().getXopExpand() != null) {
+                            _enableXopExpandCheckbox.setSelection((Boolean)_binding.getMtom().getXopExpand());
                         }
                     }
                 } else {
+                    _mtomThresholdText.setEnabled(false);
                     _enableXopExpandCheckbox.setEnabled(false);
                     _disableMtomCheckbox.setEnabled(false);
                 }
+            } else if (control.equals(_mtomThresholdText)) {
+                if (_binding.getMtom() != null && _binding.getMtom().getThreshold() != null) {
+                    _mtomThresholdText.setText(PropTypeUtil.getPropValueString(_binding.getMtom().getThreshold()));
+                } else {
+                    _mtomThresholdText.setText("");
+                }
             } else if (control.equals(_disableMtomCheckbox)) {
                 if (_binding.getMtom() != null) {
-                    _disableMtomCheckbox.setSelection(!_binding.getMtom().isEnabled());
+                    _disableMtomCheckbox.setSelection(!(Boolean)_binding.getMtom().getEnabled());
                 }
             } else if (control.equals(_enableXopExpandCheckbox)) {
                 if (_binding.getMtom() != null) {
-                    _enableXopExpandCheckbox.setSelection(!_binding.getMtom().isXopExpand());
+                    _enableXopExpandCheckbox.setSelection(!(Boolean)_binding.getMtom().getXopExpand());
                 }
             } else if (control.equals(_nameText)) {
                 _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+            } else if (control.equals(_requestTimeoutText)) {
+                _requestTimeoutText.setText(_binding.getTimeout() == null ? "" : PropTypeUtil.getPropValueString(_binding.getTimeout()));
             } else {
                 super.handleUndo(control);
             }
@@ -496,17 +526,33 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                 if (_binding.getMtom() != null) {
                     _enableXopExpandCheckbox.setEnabled(true);
                     _disableMtomCheckbox.setEnabled(true);
-                    _disableMtomCheckbox.setSelection(!_binding.getMtom().isEnabled());
-                    _enableXopExpandCheckbox.setSelection(_binding.getMtom().isXopExpand());
+                    _mtomThresholdText.setEnabled(true);
+                    if (_binding.getMtom().getEnabled() != null) {
+                        _disableMtomCheckbox.setSelection(!PropTypeUtil.getBooleanPropValue(_binding.getMtom().getEnabled()));
+                    }
+                    if (_binding.getMtom().getXopExpand() != null) {
+                        _enableXopExpandCheckbox.setSelection(PropTypeUtil.getBooleanPropValue(_binding.getMtom().getXopExpand()));
+                    }
+                    if (_binding.getMtom().getThreshold() != null) {
+                        _mtomThresholdText.setText(PropTypeUtil.getPropValueString(_binding.getMtom().getThreshold()));
+                    } else {
+                        _mtomThresholdText.setText("");
+                    }
                 } else {
                     _enableXopExpandCheckbox.setEnabled(false);
                     _disableMtomCheckbox.setEnabled(false);
+                    _mtomThresholdText.setEnabled(false);
                 }
             }
             if (_binding.getName() == null) {
                 _nameText.setText("");
             } else {
                 _nameText.setText(_binding.getName());
+            }
+            if (_binding.getTimeout() == null) {
+                _requestTimeoutText.setText("");
+            } else {
+                _requestTimeoutText.setText(PropTypeUtil.getPropValueString(_binding.getTimeout()));
             }
             setInUpdate(false);
             validate();

@@ -76,6 +76,7 @@ public class RESTBindingTypeItemProvider
             addInterfacesPropertyDescriptor(object);
             addContextPathPropertyDescriptor(object);
             addAddressPropertyDescriptor(object);
+            addTimeoutPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -116,6 +117,28 @@ public class RESTBindingTypeItemProvider
                  getString("_UI_RESTBindingType_address_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_RESTBindingType_address_feature", "_UI_RESTBindingType_type"),
                  ResteasyPackage.Literals.REST_BINDING_TYPE__ADDRESS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Timeout feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimeoutPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_RESTBindingType_timeout_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_RESTBindingType_timeout_feature", "_UI_RESTBindingType_type"),
+                 ResteasyPackage.Literals.REST_BINDING_TYPE__TIMEOUT,
                  true,
                  false,
                  false,
@@ -220,6 +243,7 @@ public class RESTBindingTypeItemProvider
             case ResteasyPackage.REST_BINDING_TYPE__INTERFACES:
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_PATH:
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
+            case ResteasyPackage.REST_BINDING_TYPE__TIMEOUT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__CONTEXT_MAPPER:

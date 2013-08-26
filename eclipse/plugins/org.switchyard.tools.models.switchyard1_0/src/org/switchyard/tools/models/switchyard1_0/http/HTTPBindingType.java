@@ -20,6 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getMethod <em>Method</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getContentType <em>Content Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getTimeout <em>Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getBasic <em>Basic</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getNtlm <em>Ntlm</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getProxy <em>Proxy</em>}</li>
@@ -186,6 +187,32 @@ public interface HTTPBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setContentType(String value);
+
+    /**
+     * Returns the value of the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The HTTP request's time-out value in milliseconds.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Timeout</em>' attribute.
+     * @see #setTimeout(Object)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getHTTPBindingType_Timeout()
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
+     *        extendedMetaData="kind='element' name='timeout' namespace='##targetNamespace'"
+     * @generated
+     */
+    Object getTimeout();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getTimeout <em>Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Timeout</em>' attribute.
+     * @see #getTimeout()
+     * @generated
+     */
+    void setTimeout(Object value);
 
     /**
      * Returns the value of the '<em><b>Basic</b></em>' containment reference.

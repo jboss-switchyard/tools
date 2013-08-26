@@ -32,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getContextPath <em>Context Path</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getAddress <em>Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getTimeout <em>Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getBasic <em>Basic</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getNtlm <em>Ntlm</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTBindingTypeImpl#getProxy <em>Proxy</em>}</li>
@@ -120,6 +121,26 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
      * @ordered
      */
     protected String address = ADDRESS_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeout()
+     * @generated
+     * @ordered
+     */
+    protected static final Object TIMEOUT_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeout()
+     * @generated
+     * @ordered
+     */
+    protected Object timeout = TIMEOUT_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getBasic() <em>Basic</em>}' containment reference.
@@ -296,6 +317,27 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
         address = newAddress;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__ADDRESS, oldAddress, address));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Object getTimeout() {
+        return timeout;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTimeout(Object newTimeout) {
+        Object oldTimeout = timeout;
+        timeout = newTimeout;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ResteasyPackage.REST_BINDING_TYPE__TIMEOUT, oldTimeout, timeout));
     }
 
     /**
@@ -488,6 +530,8 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return getContextPath();
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 return getAddress();
+            case ResteasyPackage.REST_BINDING_TYPE__TIMEOUT:
+                return getTimeout();
             case ResteasyPackage.REST_BINDING_TYPE__BASIC:
                 return getBasic();
             case ResteasyPackage.REST_BINDING_TYPE__NTLM:
@@ -520,6 +564,9 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 setAddress((String)newValue);
+                return;
+            case ResteasyPackage.REST_BINDING_TYPE__TIMEOUT:
+                setTimeout(newValue);
                 return;
             case ResteasyPackage.REST_BINDING_TYPE__BASIC:
                 setBasic((BasicAuthenticationType)newValue);
@@ -557,6 +604,9 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 setAddress(ADDRESS_EDEFAULT);
                 return;
+            case ResteasyPackage.REST_BINDING_TYPE__TIMEOUT:
+                setTimeout(TIMEOUT_EDEFAULT);
+                return;
             case ResteasyPackage.REST_BINDING_TYPE__BASIC:
                 setBasic((BasicAuthenticationType)null);
                 return;
@@ -588,6 +638,8 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
                 return CONTEXT_PATH_EDEFAULT == null ? contextPath != null : !CONTEXT_PATH_EDEFAULT.equals(contextPath);
             case ResteasyPackage.REST_BINDING_TYPE__ADDRESS:
                 return ADDRESS_EDEFAULT == null ? address != null : !ADDRESS_EDEFAULT.equals(address);
+            case ResteasyPackage.REST_BINDING_TYPE__TIMEOUT:
+                return TIMEOUT_EDEFAULT == null ? timeout != null : !TIMEOUT_EDEFAULT.equals(timeout);
             case ResteasyPackage.REST_BINDING_TYPE__BASIC:
                 return basic != null;
             case ResteasyPackage.REST_BINDING_TYPE__NTLM:
@@ -614,6 +666,8 @@ public class RESTBindingTypeImpl extends SwitchYardBindingTypeImpl implements RE
         result.append(contextPath);
         result.append(", address: ");
         result.append(address);
+        result.append(", timeout: ");
+        result.append(timeout);
         result.append(')');
         return result.toString();
     }

@@ -512,13 +512,22 @@ public interface HttpPackage extends EPackage {
     int HTTP_BINDING_TYPE__CONTENT_TYPE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
+     * The feature id for the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int HTTP_BINDING_TYPE__TIMEOUT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+
+    /**
      * The feature id for the '<em><b>Basic</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int HTTP_BINDING_TYPE__BASIC = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int HTTP_BINDING_TYPE__BASIC = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Ntlm</b></em>' containment reference.
@@ -527,7 +536,7 @@ public interface HttpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int HTTP_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+    int HTTP_BINDING_TYPE__NTLM = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Proxy</b></em>' containment reference.
@@ -536,7 +545,7 @@ public interface HttpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int HTTP_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+    int HTTP_BINDING_TYPE__PROXY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
 
     /**
      * The number of structural features of the '<em>HTTP Binding Type</em>' class.
@@ -545,7 +554,7 @@ public interface HttpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 10;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.NTLMAuthenticationTypeImpl <em>NTLM Authentication Type</em>}' class.
@@ -844,6 +853,17 @@ public interface HttpPackage extends EPackage {
     EAttribute getHTTPBindingType_ContentType();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getTimeout <em>Timeout</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Timeout</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getTimeout()
+     * @see #getHTTPBindingType()
+     * @generated
+     */
+    EAttribute getHTTPBindingType_Timeout();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType#getBasic <em>Basic</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1095,6 +1115,14 @@ public interface HttpPackage extends EPackage {
          * @generated
          */
         EAttribute HTTP_BINDING_TYPE__CONTENT_TYPE = eINSTANCE.getHTTPBindingType_ContentType();
+
+        /**
+         * The meta object literal for the '<em><b>Timeout</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute HTTP_BINDING_TYPE__TIMEOUT = eINSTANCE.getHTTPBindingType_Timeout();
 
         /**
          * The meta object literal for the '<em><b>Basic</b></em>' containment reference feature.

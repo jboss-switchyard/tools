@@ -35,6 +35,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -50,6 +51,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     private Text _contextPathText = null;
     private HTTPBindingType _binding = null;
     private OperationSelectorComposite _opSelectorComposite;
+    private Text _requestTimeoutText = null;
 
     @Override
     public String getTitle() {
@@ -120,6 +122,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
 
             _contentTypeText = createLabelAndText(composite, "Content Type");
             _contentTypeText.setEnabled(canEdit());
+
+            _requestTimeoutText = createLabelAndText(composite, "Request Timeout");
+            _requestTimeoutText.setEnabled(canEdit());
         }
 
         return composite;
@@ -144,6 +149,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                 updateFeature(_binding, "contentType", contentType);
             } else if (control.equals(_nameText)) {
                 super.updateFeature(_binding, "name", _nameText.getText().trim());
+            } else if (control.equals(_requestTimeoutText)) {
+                final String requestTimeout = _requestTimeoutText.getText();
+                updateFeature(_binding, "timeout", requestTimeout);
             }
         }
         super.handleModify(control);
@@ -228,6 +236,13 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                     }
                 }
             }
+            if (_requestTimeoutText != null && !_requestTimeoutText.isDisposed()) {
+                if (_binding.getTimeout() == null) {
+                    _requestTimeoutText.setText("");
+                } else {
+                    _requestTimeoutText.setText(PropTypeUtil.getPropValueString(_binding.getTimeout()));
+                }
+            }
             
             setInUpdate(false);
             validate();
@@ -248,6 +263,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         if (this._contextPathText != null && !this._contextPathText.isDisposed()) {
             this._contextPathText.setEnabled(canEdit());
         }
+        if (this._requestTimeoutText != null && !this._requestTimeoutText.isDisposed()) {
+            this._requestTimeoutText.setEnabled(canEdit());
+        }
     }
 
     protected void handleUndo(Control control) {
@@ -258,6 +276,8 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                 _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
            } else if (control.equals(_mAddressURLText)) {
                _mAddressURLText.setText(_binding.getAddress());
+           } else if (control.equals(_requestTimeoutText)) {
+               _requestTimeoutText.setText(_binding.getTimeout() == null ? "" : PropTypeUtil.getPropValueString(_binding.getTimeout()));
            }
         } else {
             super.handleUndo(control);
