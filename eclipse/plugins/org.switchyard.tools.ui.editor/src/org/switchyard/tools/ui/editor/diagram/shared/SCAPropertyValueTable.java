@@ -141,6 +141,7 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
 
     private TreeViewer _propertyTreeTable;
     
+    // XXX: the following column names must match the model feature names.
     /**
      *  Name column.
      */
@@ -214,8 +215,8 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
         _propertyTreeTable.setContentProvider(new PropertyTypeTreeContentProvider());
 
         _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {null, new TextCellEditor(_propertyTreeTable.getTree()),
-                null });
+        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTree()),
+                new TextCellEditor(_propertyTreeTable.getTree()) });
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
@@ -394,7 +395,8 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
      * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object, java.lang.String)
      */
     public boolean canModify(Object element, String value) {
-        if (element instanceof PropertyValue && value.equalsIgnoreCase(VALUE_COLUMN)) {
+        if (element instanceof PropertyValue
+                && (value.equalsIgnoreCase(VALUE_COLUMN) || NAME_COLUMN.equalsIgnoreCase(value))) {
             return true;
         }
         return false;
@@ -409,8 +411,12 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
      * java.lang.String)
      */
     public Object getValue(Object element, String value) {
-        if (element instanceof PropertyValue && value.equalsIgnoreCase(VALUE_COLUMN)) {
-            return ((PropertyValue) element).getValue();
+        if (element instanceof PropertyValue) {
+            if (value.equalsIgnoreCase(VALUE_COLUMN)) {
+                return ((PropertyValue) element).getValue();
+            } else if (NAME_COLUMN.equalsIgnoreCase(value)) {
+                return ((PropertyValue) element).getName();
+            }
         }
         return null;
     }
@@ -423,8 +429,8 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
      * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
      * java.lang.String, java.lang.Object)
      */
-    public void modify(Object element, String propvalue, final Object value) {
-        if (element instanceof TreeItem && propvalue.equalsIgnoreCase(VALUE_COLUMN)) {
+    public void modify(Object element, final String propvalue, final Object value) {
+        if (element instanceof TreeItem) {
             final TreeItem ti = (TreeItem) element;
             if (getTargetObject() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
                 final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) getTargetObject();
@@ -434,13 +440,13 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
                         @Override
                         protected void doExecute() {
                             PropertyValue parm = (PropertyValue) ti.getData();
-                            setFeatureValue(parm, "value", value);
+                            setFeatureValue(parm, propvalue, value);
                             getTreeViewer().refresh(true);
                         }
                     });
                 } else {
                     PropertyValue parm = (PropertyValue) ti.getData();
-                    setFeatureValue(parm, "value", value);
+                    setFeatureValue(parm, propvalue, value);
                     getTreeViewer().refresh(true);
                 }
             } else if (getTargetObject() instanceof Component) {
@@ -451,13 +457,13 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
                         @Override
                         protected void doExecute() {
                             PropertyValue parm = (PropertyValue) ti.getData();
-                            setFeatureValue(parm, "value", value);
+                            setFeatureValue(parm, propvalue, value);
                             getTreeViewer().refresh(true);
                         }
                     });
                 } else {
                     PropertyValue parm = (PropertyValue) ti.getData();
-                    setFeatureValue(parm, "value", value);
+                    setFeatureValue(parm, propvalue, value);
                     getTreeViewer().refresh(true);
                 }
             }
