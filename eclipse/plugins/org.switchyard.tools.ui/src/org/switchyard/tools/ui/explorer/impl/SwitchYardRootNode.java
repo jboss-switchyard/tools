@@ -154,8 +154,9 @@ public class SwitchYardRootNode implements ISwitchYardRootNode {
         resetState();
         try {
             IFile outputFile = _switchYardProject.getOutputSwitchYardConfigurationFile();
-            if (outputFile == null) {
-                return;
+            if (outputFile == null || !outputFile.exists()) {
+                // just load the source, better than nothing
+                outputFile = _switchYardProject.getSwitchYardConfigurationFile();
             }
             ModelPuller<SwitchYardModel> puller = new ModelPuller<SwitchYardModel>();
             _configuration = puller.pull(outputFile.getContents());

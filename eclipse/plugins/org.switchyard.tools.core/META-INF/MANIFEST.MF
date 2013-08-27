@@ -43,7 +43,8 @@ Bundle-ClassPath: .,
  lib/switchyard-component-camel-switchyard.jar,
  lib/switchyard-component-camel-test.jar,
  lib/switchyard-component-common-camel.jar,
- lib/switchyard-extensions-java.jar
+ lib/switchyard-extensions-java.jar,
+ lib/jboss-logging.jar
 Export-Package: org.switchyard,
  org.switchyard.annotations,
  org.switchyard.common.camel,

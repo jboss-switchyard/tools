@@ -12,6 +12,7 @@ package org.switchyard.tools.ui.actions;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -38,8 +39,10 @@ import org.eclipse.ui.navigator.ICommonMenuConstants;
 import org.eclipse.ui.navigator.ICommonViewerWorkbenchSite;
 import org.eclipse.ui.navigator.WizardActionGroup;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener.Type;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.ISwitchYardRootNode;
+import org.switchyard.tools.ui.explorer.SwitchYardExplorerContentProvider;
 import org.switchyard.tools.ui.explorer.impl.ComponentNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentReference;
 import org.switchyard.tools.ui.explorer.impl.ComponentService;
@@ -57,6 +60,7 @@ import org.switchyard.tools.ui.explorer.impl.ServiceNode;
 @SuppressWarnings("restriction")
 public class SwitchYardActionProvider extends CommonActionProvider {
 
+    private static final String SWITCHYARD_NAVIGATOR_EXTENSION = "org.switchyard.tools.ui.explorer.content";
     private static final String SWITCHYARD_MENU = "org.switchyard.tools.ui.switchyard";
     private static final String NEW_MENU = "new.menu";
 
@@ -93,7 +97,13 @@ public class SwitchYardActionProvider extends CommonActionProvider {
                 if (selection == null || selection.isEmpty() || !(selection instanceof IStructuredSelection)) {
                     return;
                 }
-                getActionSite().getStructuredViewer().refresh(((IStructuredSelection) selection).getFirstElement());
+                ISwitchYardNode node = (ISwitchYardNode) ((IStructuredSelection) selection).getFirstElement();
+                SwitchYardExplorerContentProvider switchYardContentProvider = (SwitchYardExplorerContentProvider) getActionSite()
+                        .getContentService().getContentExtensionById(SWITCHYARD_NAVIGATOR_EXTENSION)
+                        .getContentProvider();
+                switchYardContentProvider
+                        .projectUpdated(node.getRoot().getSwitchYardProject(), EnumSet.of(Type.CONFIG));
+                getActionSite().getStructuredViewer().refresh(node);
             }
         };
         _refreshAction.setActionDefinitionId(IWorkbenchCommandConstants.FILE_REFRESH);

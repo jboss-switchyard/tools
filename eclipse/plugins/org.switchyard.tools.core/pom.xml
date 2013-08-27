@@ -196,6 +196,10 @@
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>
                 <artifactItem>
+                  <groupId>org.jboss.logging</groupId>
+                  <artifactId>jboss-logging</artifactId>
+                </artifactItem>
+                <artifactItem>
                   <groupId>org.apache.camel</groupId>
                   <artifactId>camel-core</artifactId>
                 </artifactItem>
