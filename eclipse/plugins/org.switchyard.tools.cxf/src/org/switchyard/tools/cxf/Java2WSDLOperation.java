@@ -176,7 +176,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         @Override
         public QName getInParameterName(OperationInfo op, Method method, int paramNumber) {
             QName name = _default.getInParameterName(op, method, paramNumber);
-            if (name == null || !name.getLocalPart().matches("arg\\d*")) {
+            if (name == null || !name.getLocalPart().matches("arg\\d*")) { //$NON-NLS-1$
                 return name;
             }
             return replaceDefaultWithTypeName(method.getParameterTypes()[paramNumber], name);
@@ -185,7 +185,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         @Override
         public QName getOutParameterName(OperationInfo op, Method method, int paramNumber) {
             QName name = _default.getOutParameterName(op, method, paramNumber);
-            if (name == null || !name.getLocalPart().matches("return\\d*")) {
+            if (name == null || !name.getLocalPart().matches("return\\d*")) { //$NON-NLS-1$
                 return name;
             }
             return replaceDefaultWithTypeName(method.getReturnType(), name);
@@ -216,7 +216,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         @Override
         public QName getInterfaceName() {
             if (_default instanceof DefaultServiceConfiguration) {
-                return new QName(_options.getTargetNamespace(), getServiceName() + "PortType");
+                return new QName(_options.getTargetNamespace(), getServiceName() + "PortType"); //$NON-NLS-1$
             }
             return _default.getInterfaceName();
         }
@@ -224,7 +224,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         @Override
         public QName getEndpointName() {
             if (_default instanceof DefaultServiceConfiguration) {
-                return new QName(_options.getTargetNamespace(), getServiceName() + "Port");
+                return new QName(_options.getTargetNamespace(), getServiceName() + "Port"); //$NON-NLS-1$
             }
             return _default.getEndpointName();
         }

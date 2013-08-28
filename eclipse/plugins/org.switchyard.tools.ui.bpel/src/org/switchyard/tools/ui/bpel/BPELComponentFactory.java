@@ -41,7 +41,7 @@ public class BPELComponentFactory extends BaseComponentFactory {
     private String getTypeName(BPELImplementation implementation) {
         final QName process = implementation.getProcess();
         if (process == null || process.getLocalPart() == null || process.getLocalPart().length() == 0) {
-            return "BPELProcess";
+            return Messages.BPELComponentFactory_typeName;
         }
         return process.getLocalPart();
     }

@@ -27,7 +27,7 @@ public class OpenShiftProjectTester extends PropertyTester {
     @Override
     public boolean test(Object arg0, String arg1, Object[] arg2, Object arg3) {
         IProject project = (IProject) arg0;
-        IFolder openshiftFolder = project.getFolder(".openshift");
+        IFolder openshiftFolder = project.getFolder(".openshift"); //$NON-NLS-1$
         if (openshiftFolder != null && openshiftFolder.exists()) {
             if (!isJarPackaging(project)) {
                 return true;
@@ -38,7 +38,7 @@ public class OpenShiftProjectTester extends PropertyTester {
 
     private boolean isJarPackaging(IProject project) {
         final IMavenProjectFacade mavenFacade = MavenPlugin.getMavenProjectRegistry().getProject(project);
-        return mavenFacade == null || "jar".equals(mavenFacade.getPackaging());
+        return mavenFacade == null || "jar".equals(mavenFacade.getPackaging()); //$NON-NLS-1$
     }
 
 }

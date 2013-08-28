@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.implementation.bpel.BPELComponentImplementationModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * BPELComponentImplementationtModelPropertySource
@@ -25,7 +26,7 @@ import org.switchyard.config.model.implementation.bpel.BPELComponentImplementati
  */
 public class BPELComponentImplementationtModelPropertySource implements IPropertySource {
 
-    private static final String PROP_PROCESS = "process";
+    private static final String PROP_PROCESS = "process"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final BPELComponentImplementationModel _model;
@@ -66,7 +67,7 @@ public class BPELComponentImplementationtModelPropertySource implements IPropert
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_PROCESS, "Process") };
-        DESCRIPTORS[0].setDescription("The resource containing the BPEL process.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_PROCESS, Messages.BPELComponentImplementationtModelPropertySource_propertyDescriptor_bpelProcess) };
+        DESCRIPTORS[0].setDescription(Messages.BPELComponentImplementationtModelPropertySource_propertyDescriptorDescriptor_bpelProcess);
     }
 }

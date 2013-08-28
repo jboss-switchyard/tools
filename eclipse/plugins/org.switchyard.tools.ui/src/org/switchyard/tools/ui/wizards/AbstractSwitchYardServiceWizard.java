@@ -95,7 +95,7 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
             _newTestClassPage.setServiceContract(_serviceContract, false);
             // update type name
             if (_testTypeName == null || _testTypeName.equals(_newTestClassPage.getTypeName())) {
-                _testTypeName = _serviceName + "Test";
+                _testTypeName = _serviceName + "Test"; //$NON-NLS-1$
                 _newTestClassPage.setTypeName(_testTypeName, true);
             }
             // update package name
@@ -144,7 +144,7 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
         if (_serviceContract.getInterface() instanceof JavaInterface) {
             return ((JavaInterface) _serviceContract.getInterface()).getInterface();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     private IPackageFragment getPackageFragment() {

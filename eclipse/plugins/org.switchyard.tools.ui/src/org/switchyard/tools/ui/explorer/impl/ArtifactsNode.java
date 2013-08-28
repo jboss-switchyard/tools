@@ -20,6 +20,7 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.explorer.AbstractSwitchYardNode;
 import org.switchyard.tools.ui.explorer.IArtifactNode;
 import org.switchyard.tools.ui.explorer.IArtifactsNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ArtifactsNode
@@ -64,7 +65,7 @@ public class ArtifactsNode extends AbstractSwitchYardNode implements IArtifactsN
 
     @Override
     public String getName() {
-        return "Artifacts";
+        return Messages.ArtifactsNode_labelArtifacts;
     }
 
     @Override

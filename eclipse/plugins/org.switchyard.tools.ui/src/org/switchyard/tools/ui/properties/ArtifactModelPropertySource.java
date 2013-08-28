@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.switchyard.ArtifactModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ArtifactModelPropertySource
@@ -25,8 +26,8 @@ import org.switchyard.config.model.switchyard.ArtifactModel;
  */
 public class ArtifactModelPropertySource implements IPropertySource {
 
-    private static final String PROP_NAME = "name";
-    private static final String PROP_URL = "url";
+    private static final String PROP_NAME = "name"; //$NON-NLS-1$
+    private static final String PROP_URL = "url"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final ArtifactModel _model;
@@ -69,9 +70,9 @@ public class ArtifactModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, "Name"),
-                new PropertyDescriptor(PROP_URL, "URL") };
-        DESCRIPTORS[0].setDescription("The name for the artifact reference.");
-        DESCRIPTORS[1].setDescription("The location for the artifact reference.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, Messages.ArtifactModelPropertySource_propertyDescriptor_name),
+                new PropertyDescriptor(PROP_URL, Messages.ArtifactModelPropertySource_propertyDescriptor_url) };
+        DESCRIPTORS[0].setDescription(Messages.ArtifactModelPropertySource_propertyDescriptorDescription_name);
+        DESCRIPTORS[1].setDescription(Messages.ArtifactModelPropertySource_propertyDescriptorDescription_url);
     }
 }

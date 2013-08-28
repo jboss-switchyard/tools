@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="switchYardComponent" name="SwitchYardComponent" schema="schema/switchYardComponent.exsd"/>
-   <extension-point id="repositorySupport" name="RepositorySupport" schema="schema/repositorySupport.exsd"/>
-   <extension-point id="switchYardTestMixIn" name="switchYardTestMixIn" schema="schema/switchYardTestMixIn.exsd"/>
+   <extension-point id="switchYardComponent" name="%extensionPointName.switchyardComponent" schema="schema/switchYardComponent.exsd"/>
+   <extension-point id="repositorySupport" name="%extensionPointName.repositorySupport" schema="schema/repositorySupport.exsd"/>
+   <extension-point id="switchYardTestMixIn" name="%extensionPointName.switchyardTestMixIn" schema="schema/switchYardTestMixIn.exsd"/>
    <extension
          point="org.eclipse.ui.newWizards">
       <category
@@ -979,9 +979,9 @@
      <wizard
            class="org.switchyard.tools.ui.wizards.NewGenericArtifactReferenceWizard"
            id="org.switchyard.tools.ui.repository.generic"
-           name="Generic Artifact Reference">
+           name="%wizardTitle.genericArtifactReference">
         <description>
-           Adds an &lt;artifact&gt; element to the project&apos;s switchyard.xml file.
+           %wizardDescription.genericArtifactReference
         </description>
      </wizard>
   </extension>
@@ -1123,7 +1123,7 @@
   </extension>
   <extension
         id="projectValidator"
-        name="SwitchYard Configuration Validator"
+        name="%projectValidator.switchyardConfiguration"
         point="org.eclipse.wst.validation.validatorV2">
      <validator
            class="org.switchyard.tools.ui.validation.SwitchYardProjectValidator"
@@ -1200,11 +1200,11 @@
        point="org.eclipse.emf.validation.constraintProviders">
     <category
           id="org.switchyard.tools.validationCategory/sca"
-          name="SwitchYard SCA Constraints">
+          name="%constraintCategoryName.sca">
     </category>
     <category
           id="org.switchyard.tools.validationCategory/bean"
-          name="SwitchYard Bean Component Constraints">
+          name="%constraintCategoryName.bean">
     </category>
     <constraintProvider
           cache="true">
@@ -1219,10 +1219,10 @@
                 isEnabledByDefault="true"
                 lang="Java"
                 mode="Batch"
-                name="Service Wiring Constraints"
+                name="%constraintCategory.childConstraintName.serviceWiring"
                 statusCode="0">
              <message>
-                Service wiring constraints.
+                %constraintCategory.childConstraintMessage.serviceWiring
              </message>
              <target
                    class="Contract">
@@ -1234,14 +1234,14 @@
                 isEnabledByDefault="true"
                 lang="Java"
                 mode="Batch"
-                name="Service Interface Not Defined"
+                name="%constraintCategory.childConstraintName.serviceInterface"
                 severity="ERROR"
                 statusCode="1001">
              <message>
-                No interface is defined for the service/reference.
+                %constraintCategory.childConstraintMessage.serviceInterface
              </message>
              <description>
-                All services and references must define an interface.
+                %constraintCategory.childConstraintDescription.serviceInterface
              </description>
              <target
                    class="Contract">
@@ -1262,10 +1262,10 @@
                 isEnabledByDefault="true"
                 lang="Java"
                 mode="Batch"
-                name="Bean Component Constraints"
+                name="%constraintCategory.childConstraintName.beanComponent"
                 statusCode="0">
              <message>
-                Bean component constraints.
+                %constraintCategory.childConstraintMessage.beanComponent
              </message>
              <target
                    class="BeanImplementationType">

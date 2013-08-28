@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
 
 /**
@@ -37,7 +38,7 @@ public class CreateServiceTestOperation extends AbstractSwitchYardProjectOperati
      * @param uiInfo adaptable for UI Shell, may be null.
      */
     public CreateServiceTestOperation(NewServiceTestClassWizardPage serviceTestClassPage, IAdaptable uiInfo) {
-        super(null, serviceTestClassPage.getSelectedMixInComponents(), false, "Creating new SwitchYard service test.",
+        super(null, serviceTestClassPage.getSelectedMixInComponents(), false, Messages.CreateServiceTestOperation_wizardPageText_creatingNewSYServiceTest,
                 uiInfo);
         _serviceTestClassPage = serviceTestClassPage;
     }
@@ -45,8 +46,8 @@ public class CreateServiceTestOperation extends AbstractSwitchYardProjectOperati
     @Override
     protected void execute(IProgressMonitor monitor) throws CoreException {
         try {
-            monitor.beginTask("", 100);
-            monitor.subTask("Creating service implementation.");
+            monitor.beginTask("", 100); //$NON-NLS-1$
+            monitor.subTask(Messages.CreateServiceTestOperation_subtaskLabel_creatingServiceImpl);
             IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 100,
                     SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             try {
@@ -55,10 +56,10 @@ public class CreateServiceTestOperation extends AbstractSwitchYardProjectOperati
                 throw new CoreException(new Status(Status.CANCEL, Activator.PLUGIN_ID, e.getMessage(), e));
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
         } finally {
-            monitor.setTaskName("");
+            monitor.setTaskName(""); //$NON-NLS-1$
             monitor.done();
         }
     }

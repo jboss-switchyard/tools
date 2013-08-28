@@ -107,7 +107,7 @@ public class ValidationStatusAdapter extends AdapterImpl {
         private String _message;
 
         public MultiStatusWithMessage(IStatus[] newChildren) {
-            super(Activator.PLUGIN_ID, 0, newChildren, "", null);
+            super(Activator.PLUGIN_ID, 0, newChildren, "", null); //$NON-NLS-1$
         }
 
         @Override
@@ -123,7 +123,7 @@ public class ValidationStatusAdapter extends AdapterImpl {
                 if (status.isOK()) {
                     continue;
                 }
-                sb.append(" - ").append(status.getMessage()).append('\n');
+                sb.append(" - ").append(status.getMessage()).append('\n'); //$NON-NLS-1$
             }
             if (sb.length() > 0) {
                 sb.deleteCharAt(sb.length() - 1);

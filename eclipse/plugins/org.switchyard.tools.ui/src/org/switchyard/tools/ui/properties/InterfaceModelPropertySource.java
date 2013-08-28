@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.composite.InterfaceModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * InterfaceModelPropertySource
@@ -25,7 +26,7 @@ import org.switchyard.config.model.composite.InterfaceModel;
  */
 public class InterfaceModelPropertySource implements IPropertySource {
 
-    private static final String PROP_INTERFACE = "interface";
+    private static final String PROP_INTERFACE = "interface"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final InterfaceModel _model;
@@ -66,7 +67,7 @@ public class InterfaceModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_INTERFACE, "Interface") };
-        DESCRIPTORS[0].setDescription("The interface provided by a service or required by a reference.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_INTERFACE, Messages.InterfaceModelPropertySource_propertyDescriptor_interface) };
+        DESCRIPTORS[0].setDescription(Messages.InterfaceModelPropertySource_propertyDescriptorDescription_interface);
     }
 }

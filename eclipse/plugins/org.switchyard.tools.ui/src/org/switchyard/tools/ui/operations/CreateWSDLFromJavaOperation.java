@@ -34,10 +34,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
 import org.switchyard.tools.cxf.Java2WSDLOperation;
 import org.switchyard.tools.cxf.Java2WSDLOptions;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.w3c.dom.Element;
 
 /**
@@ -50,7 +52,7 @@ import org.w3c.dom.Element;
  */
 public class CreateWSDLFromJavaOperation implements IWorkspaceRunnable {
 
-    private final MultiStatus _status = new MultiStatus(Activator.PLUGIN_ID, 0, "Java2WSDL Operation Status", null);
+    private final MultiStatus _status = new MultiStatus(Activator.PLUGIN_ID, 0, Messages.CreateWSDLFromJavaOperation_statusLabel_java2WSDLOperation, null);
     private final Java2WSDLOptions _options;
     private final IFile _wsdlFile;
 
@@ -78,23 +80,23 @@ public class CreateWSDLFromJavaOperation implements IWorkspaceRunnable {
         try {
             java2wsdl.run(monitor);
         } catch (InvocationTargetException e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "WSDL generation failed.",
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_exceptionMessage_wsdlGenerationFailed,
                     e.getTargetException()));
         } catch (Exception e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "WSDL generation failed.", e));
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_exceptionMessage_wsdlGenerationFailed, e));
         }
-        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, "WSDL generated successfully."));
+        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusMessage_wsdlGeneratedSuccessfully));
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         InputStream is = null;
         try {
             WSDLFactory.newInstance().newWSDLWriter().writeWSDL(java2wsdl.getGeneratedWSDL(), baos);
             is = new ByteArrayInputStream(baos.toByteArray());
-            final CreateFileOperation op = new CreateFileOperation(_wsdlFile, null, is, "Writing WSDL File: "
-                    + _wsdlFile.getName());
+            String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_operationLabel_writingWSDLFile, _wsdlFile.getName());
+            final CreateFileOperation op = new CreateFileOperation(_wsdlFile, null, is, message);
             op.execute(monitor, null);
         } catch (Exception e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error writing WSDL to file.", e));
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_exceptionMessage_errorWritingWSDL, e));
         } finally {
             try {
                 baos.close();
@@ -111,7 +113,7 @@ public class CreateWSDLFromJavaOperation implements IWorkspaceRunnable {
             baos = null;
             is = null;
         }
-        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, "WSDL file written successfully."));
+        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusMessage_wsdlWrittenSuccessfully));
 
         try {
             final Transformer transformer = createTransformer();
@@ -128,13 +130,13 @@ public class CreateWSDLFromJavaOperation implements IWorkspaceRunnable {
                     transformer.transform(source, result);
                     is = new ByteArrayInputStream(baos.toByteArray());
                     final CreateFileOperation op = new CreateFileOperation(schemaFile, null, is,
-                            "Writing Schema File: " + schemaFile.getName());
+                            Messages.CreateWSDLFromJavaOperation_operationLabel_writingSchemaFile + schemaFile.getName());
                     op.execute(monitor, null);
-                    _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, schemaFile.getName()
-                            + " written successfully."));
+                    String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_statusMessage_schemaWrittenSuccessfully, schemaFile.getName());
+                    _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, message));
                 } catch (Exception e) {
-                    _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, "Error writing imported schema: "
-                            + schemaFile.getName(), e));
+                    String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_statusMessage_errorWritingImportedSchema, schemaFile.getName());
+                    _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, message, e));
                 } finally {
                     try {
                         if (baos != null) {
@@ -155,17 +157,17 @@ public class CreateWSDLFromJavaOperation implements IWorkspaceRunnable {
                 }
             }
         } catch (Exception e) {
-            _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, "Error writing included schema files.", e));
+            _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusLabel_errorWritingSchemaFiles, e));
         }
     }
 
     private Transformer createTransformer() throws TransformerConfigurationException,
             TransformerFactoryConfigurationError {
         final Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-        transformer.setOutputProperty(OutputKeys.ENCODING, "utf-8");
+        transformer.setOutputProperty(OutputKeys.METHOD, "xml"); //$NON-NLS-1$
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); //$NON-NLS-1$ //$NON-NLS-2$
+        transformer.setOutputProperty(OutputKeys.ENCODING, "utf-8"); //$NON-NLS-1$
         return transformer;
     }
 }

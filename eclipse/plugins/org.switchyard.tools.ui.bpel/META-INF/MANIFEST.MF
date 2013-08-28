@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: SwitchYard Tools BPEL Support
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.switchyard.tools.ui.bpel;singleton:=true
 Bundle-Version: 1.1.0.qualifier
-Bundle-Vendor: www.jboss.org
+Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,

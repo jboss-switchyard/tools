@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Status;
 import org.switchyard.tools.cxf.WSDL2JavaOperation;
 import org.switchyard.tools.cxf.WSDL2JavaOptions;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * CreateJavaFromWSDLOperation
@@ -31,7 +32,7 @@ import org.switchyard.tools.ui.Activator;
  */
 public class CreateJavaFromWSDLOperation implements IWorkspaceRunnable {
 
-    private final MultiStatus _status = new MultiStatus(Activator.PLUGIN_ID, 0, "WSDL2Java Operation Status", null);
+    private final MultiStatus _status = new MultiStatus(Activator.PLUGIN_ID, 0, Messages.CreateJavaFromWSDLOperation_statusLabel_wsdl2JavaOperation, null);
     private final WSDL2JavaOptions _options;
 
     /**
@@ -56,16 +57,16 @@ public class CreateJavaFromWSDLOperation implements IWorkspaceRunnable {
         try {
             wsdl2Java.run(monitor);
         } catch (InvocationTargetException e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Java generation failed.",
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateJavaFromWSDLOperation_statusLabel_javaGenerationFailed,
                     e.getTargetException()));
         } catch (Exception e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Java generation failed.", e));
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateJavaFromWSDLOperation_statusLabel_javaGenerationFailed, e));
         }
-        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, "Java generated successfully."));
+        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateJavaFromWSDLOperation_statusLabel_javaGeneratedSuccessfully));
 
         try {
             _options.getOutputFolder().refreshLocal(IResource.DEPTH_INFINITE, monitor);
-            _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, "Refreshed output folder."));
+            _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateJavaFromWSDLOperation_statusLabel_refreshedOutputFolder));
         } catch (CoreException e) {
             _status.add(e.getStatus());
         }

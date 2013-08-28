@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.component.bean.config.model.BeanComponentImplementationModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * BeanComponentImplementationtModelPropertySource
@@ -25,7 +26,7 @@ import org.switchyard.component.bean.config.model.BeanComponentImplementationMod
  */
 public class BeanComponentImplementationtModelPropertySource implements IPropertySource {
 
-    private static final String PROP_CLASS = "class";
+    private static final String PROP_CLASS = "class"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final BeanComponentImplementationModel _model;
@@ -66,7 +67,7 @@ public class BeanComponentImplementationtModelPropertySource implements IPropert
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_CLASS, "Class") };
-        DESCRIPTORS[0].setDescription("The class used to implement the component.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_CLASS, Messages.BeanComponentImplementationtModelPropertySource_propertyDescriptor_class) };
+        DESCRIPTORS[0].setDescription(Messages.BeanComponentImplementationtModelPropertySource_propertyDescriptorDescription_class);
     }
 }

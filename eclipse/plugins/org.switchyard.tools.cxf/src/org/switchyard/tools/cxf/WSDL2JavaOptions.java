@@ -146,20 +146,20 @@ public class WSDL2JavaOptions {
     /* package */String[] toArgs() {
         final List<String> args = new ArrayList<String>(16);
         if (_serviceName != null && _serviceName.length() > 0) {
-            args.add("-sn");
+            args.add("-sn"); //$NON-NLS-1$
             args.add(_serviceName);
         }
         if (_wrapped) {
-            args.add("-bareMethods");
+            args.add("-bareMethods"); //$NON-NLS-1$
         }
         if (!_overwrite) {
-            args.add("-keep");
+            args.add("-keep"); //$NON-NLS-1$
         }
-        args.add("-fe");
-        args.add("switchyard");
-        args.add("-p");
+        args.add("-fe"); //$NON-NLS-1$
+        args.add("switchyard"); //$NON-NLS-1$
+        args.add("-p"); //$NON-NLS-1$
         args.add(_targetPackage.getElementName());
-        args.add("-d");
+        args.add("-d"); //$NON-NLS-1$
         args.add(_outputFolder.getLocation().toOSString());
         args.add(_wsdlFile.getLocation().toOSString());
         return args.toArray(new String[args.size()]);

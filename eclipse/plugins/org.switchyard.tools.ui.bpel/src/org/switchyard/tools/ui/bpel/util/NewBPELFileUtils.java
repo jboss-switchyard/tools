@@ -47,7 +47,6 @@ import org.eclipse.bpel.ui.BPELUIPlugin;
 import org.eclipse.bpel.ui.Templates;
 import org.eclipse.bpel.ui.Templates.TemplateResource;
 import org.eclipse.bpel.ui.util.BPELUtil;
-import org.eclipse.bpel.ui.wizards.Messages;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -57,6 +56,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.Fault;
 import org.eclipse.wst.wsdl.Import;
@@ -67,6 +67,7 @@ import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.WSDLFactory;
 import org.eclipse.wst.wsdl.util.WSDLConstants;
 import org.xml.sax.SAXException;
+import org.switchyard.tools.ui.bpel.Messages;
 
 /**
  * Copied from
@@ -119,15 +120,15 @@ public class NewBPELFileUtils {
     public void createResourcesFromTemplate(IProgressMonitor monitor) throws CoreException {
 
         final Map<String, Object> tplProperties = new HashMap<String, Object>();
-        tplProperties.put("processName", _creationDetails.getProcessName());
-        tplProperties.put("namespace", _creationDetails.getProcessNamespace());
-        tplProperties.put("bpelNamespace", _creationDetails.isAbstractProcess() ? BPELConstants.NAMESPACE_ABSTRACT_2007
+        tplProperties.put("processName", _creationDetails.getProcessName()); //$NON-NLS-1$
+        tplProperties.put("namespace", _creationDetails.getProcessNamespace()); //$NON-NLS-1$
+        tplProperties.put("bpelNamespace", _creationDetails.isAbstractProcess() ? BPELConstants.NAMESPACE_ABSTRACT_2007 //$NON-NLS-1$
                 : BPELConstants.NAMESPACE);
-        tplProperties.put("date", new Date());
+        tplProperties.put("date", new Date()); //$NON-NLS-1$
         tplProperties.putAll(_templateDetails.getProcessTemplateProperties());
 
         List<Templates.TemplateResource> tplResources = _templateDetails.getSelectedTemplate().getResources();
-        monitor.subTask(Messages.BPELCreateOperation_0);
+        monitor.subTask(org.eclipse.bpel.ui.wizards.Messages.BPELCreateOperation_0);
 
         for (TemplateResource tplResource : tplResources) {
             String result = tplResource.process(tplProperties);
@@ -154,7 +155,7 @@ public class NewBPELFileUtils {
     public void createResourcesFromWsdl(IProgressMonitor monitor) throws IOException, CoreException {
 
         // Import the original WSDL?
-        monitor.subTask("Processing the original WSDL definition...");
+        monitor.subTask(Messages.NewBPELFileUtils_taskName_creatingResourcesFromWSDL);
         String newWsdlUrl = _wsdlDetails.getWsdlUrl();
         if (_wsdlDetails.isImportWsdl()) {
             File targetDirectory = _targetFile.getParent().getLocation().toFile();
@@ -163,7 +164,7 @@ public class NewBPELFileUtils {
                         targetDirectory, newWsdlUrl);
                 File importedWsdlFile = uriToImportedFile.get(newWsdlUrl);
                 if (importedWsdlFile == null) {
-                    throw new IOException("The WSDL file could not be found after import.");
+                    throw new IOException(Messages.NewBPELFileUtils_exception_wsdlFileNotFoundAfterImport);
                 }
 
                 // The URL to put in the imports is the relative location of the
@@ -173,16 +174,16 @@ public class NewBPELFileUtils {
                 newWsdlUrl = importedWsdlFile.getName();
 
             } catch (IllegalArgumentException e) {
-                throw new IOException("The WSDL could not be imported in the project.", e);
+                throw new IOException(Messages.NewBPELFileUtils_exception_wsdlFileCouldNotBeImportedInProject, e);
 
             } catch (URISyntaxException e) {
-                throw new IOException("The WSDL could not be imported in the project.", e);
+                throw new IOException(Messages.NewBPELFileUtils_exception_wsdlFileCouldNotBeImportedInProject, e);
 
             } catch (SAXException e) {
-                throw new IOException("The WSDL could not be imported in the project.", e);
+                throw new IOException(Messages.NewBPELFileUtils_exception_wsdlFileCouldNotBeImportedInProject, e);
 
             } catch (ParserConfigurationException e) {
-                throw new IOException("The WSDL could not be imported in the project.", e);
+                throw new IOException(Messages.NewBPELFileUtils_exception_wsdlFileCouldNotBeImportedInProject, e);
             }
         }
 
@@ -193,12 +194,12 @@ public class NewBPELFileUtils {
         saveOptions.put(BPELWriter.SKIP_AUTO_IMPORT, Boolean.TRUE);
 
         ResourceSet resourceSet = WsdlParser.createBasicResourceSetForWsdl();
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("bpel", new BPELResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("bpel", new BPELResourceFactoryImpl()); //$NON-NLS-1$
         resourceSet.getPackageRegistry().put(PartnerlinktypePackage.eNS_URI, PartnerlinktypePackage.eINSTANCE);
         resourceSet.getPackageRegistry().put(BPELPackage.eNS_URI, BPELPackage.eINSTANCE);
 
         // Create the WSDL for the artifacts
-        monitor.subTask("Generating the WSDL for the artifacts...");
+        monitor.subTask(Messages.NewBPELFileUtils_subtaskName_generatingWSDLForArtifacts);
         Definition artifactsDefinition = generateWsdlArtifacts(monitor, newWsdlUrl);
         IFile wsdlFile = _targetFile.getParent().getFile(new Path(computeWsdlArtifactsName()));
         URI emfUri = URI.createPlatformResourceURI(wsdlFile.getFullPath().toString(), true);
@@ -207,7 +208,7 @@ public class NewBPELFileUtils {
         artifactsResource.getContents().add(artifactsDefinition);
 
         // Create the process
-        monitor.subTask("Generating the BPEL file...");
+        monitor.subTask(Messages.NewBPELFileUtils_subtaskName_generatingBPELFile);
         Process bpelProcess = generateBpelProcess(monitor, artifactsDefinition, newWsdlUrl);
         emfUri = URI.createPlatformResourceURI(_targetFile.getFullPath().toString(), true);
 
@@ -254,7 +255,7 @@ public class NewBPELFileUtils {
 
         // Hack for the role: we need to define manually the name space prefix
         // for the TNS of the business WSDL
-        artifactsDefinition.getNamespaces().put("tns", businessDefinition.getTargetNamespace());
+        artifactsDefinition.getNamespaces().put("tns", businessDefinition.getTargetNamespace()); //$NON-NLS-1$
 
         // WSDL import
         Import wsdlImport = WSDLFactory.eINSTANCE.createImport();
@@ -264,10 +265,10 @@ public class NewBPELFileUtils {
 
         // Partner Link Type
         PartnerLinkType plType = PartnerlinktypeFactory.eINSTANCE.createPartnerLinkType();
-        plType.setName(_creationDetails.getProcessName() + "PLT");
+        plType.setName(_creationDetails.getProcessName() + "PLT"); //$NON-NLS-1$
 
         Role plRole = PartnerlinktypeFactory.eINSTANCE.createRole();
-        plRole.setName(_creationDetails.getServiceName() + "Role");
+        plRole.setName(_creationDetails.getServiceName() + "Role"); //$NON-NLS-1$
         plRole.setPortType(portType);
 
         plType.getRole().add(plRole);
@@ -327,11 +328,11 @@ public class NewBPELFileUtils {
 
         // Prepare the flow itself
         Sequence mainSequence = BPELFactory.eINSTANCE.createSequence();
-        mainSequence.setName("MainSequence");
+        mainSequence.setName("MainSequence"); //$NON-NLS-1$
         bpelProcess.setActivity(mainSequence);
 
         Pick mainPick = BPELFactory.eINSTANCE.createPick();
-        mainPick.setName("SwitchInvokedOperation");
+        mainPick.setName("SwitchInvokedOperation"); //$NON-NLS-1$
         mainPick.setCreateInstance(true);
         mainSequence.getActivities().add(mainPick);
 
@@ -364,7 +365,7 @@ public class NewBPELFileUtils {
 
         // Input: create the variable...
         Variable var = BPELFactory.eINSTANCE.createVariable();
-        var.setName(opName + "Request");
+        var.setName(opName + "Request"); //$NON-NLS-1$
         findAndSetVariableXmlType(var, operation.getEInput().getEMessage().getQName(), definitions);
         bpelProcess.getVariables().getChildren().add(var);
 
@@ -380,13 +381,13 @@ public class NewBPELFileUtils {
 
             // Create the variable...
             var = BPELFactory.eINSTANCE.createVariable();
-            var.setName(opName + "Response");
+            var.setName(opName + "Response"); //$NON-NLS-1$
             findAndSetVariableXmlType(var, operation.getEOutput().getEMessage().getQName(), definitions);
             bpelProcess.getVariables().getChildren().add(var);
 
             // And add a Reply activity
             Reply reply = BPELFactory.eINSTANCE.createReply();
-            reply.setName("ReplyTo" + BPELUtil.upperCaseFirstLetter(opName));
+            reply.setName("ReplyTo" + BPELUtil.upperCaseFirstLetter(opName)); //$NON-NLS-1$
             reply.setVariable(var);
             reply.setOperation(operation);
             reply.setPartnerLink(partnerLink);
@@ -444,13 +445,11 @@ public class NewBPELFileUtils {
 
         // Log possible errors
         if (!found) {
-            BPELUIPlugin.log(new Exception("The message " + messageName + " could not be found."), IStatus.ERROR);
+            BPELUIPlugin.log(new Exception(NLS.bind(Messages.NewBPELFileUtils_errorMessage_messageNotFound, messageName)), IStatus.ERROR);
         } else if (!processed) {
-            BPELUIPlugin.log(new Exception("The message " + messageName
-                    + " contains more than 1 part. This case is not supported."), IStatus.ERROR);
+            BPELUIPlugin.log(new Exception(NLS.bind(Messages.NewBPELFileUtils_errorMessage_messageContainsMoreThanOnePart, messageName)), IStatus.ERROR);
         } else if (variable.getXSDElement() == null && variable.getType() == null) {
-            BPELUIPlugin.log(new Exception("The XML type could not be set for the variable " + variable.getName()
-                    + ". Please, report a bug."), IStatus.ERROR);
+            BPELUIPlugin.log(new Exception(NLS.bind(Messages.NewBPELFileUtils_errorMessage_xmlTypeCouldNotBeSetForVariable, variable.getName())), IStatus.ERROR);
         }
     }
 
@@ -459,6 +458,6 @@ public class NewBPELFileUtils {
      */
     private String computeWsdlArtifactsName() {
         IPath path = new Path(_targetFile.getName());
-        return path.removeFileExtension().toString() + "Partners.wsdl";
+        return path.removeFileExtension().toString() + "Partners.wsdl"; //$NON-NLS-1$
     }
 }

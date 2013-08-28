@@ -18,6 +18,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.component.rules.config.model.RulesComponentImplementationModel;
 import org.switchyard.config.model.resource.ResourceModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * RulesComponentImplementationtModelPropertySource
@@ -29,7 +30,7 @@ import org.switchyard.config.model.resource.ResourceModel;
  */
 public class RulesComponentImplementationtModelPropertySource implements IPropertySource {
 
-    private static final String PROP_RESOURCES = "resources";
+    private static final String PROP_RESOURCES = "resources"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final RulesComponentImplementationModel _model;
@@ -84,7 +85,7 @@ public class RulesComponentImplementationtModelPropertySource implements IProper
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_RESOURCES, "Resources") };
-        DESCRIPTORS[0].setDescription("The resources used by the implementation.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_RESOURCES, Messages.RulesComponentImplementationtModelPropertySource_propertyDescriptor_resources) };
+        DESCRIPTORS[0].setDescription(Messages.RulesComponentImplementationtModelPropertySource_propertyDescriptorDescription_resources);
     }
 }

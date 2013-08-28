@@ -25,6 +25,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * Allows user to select a resource on the project's classpath.
@@ -70,7 +71,7 @@ public class ClasspathResourceSelectionDialog extends FilteredResourcesSelection
         super(parentShell, false, container, IResource.FILE);
         _fJavaModel = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot());
         _fileExtensions = fileExtensions == null ? Collections.<String> emptySet() : fileExtensions;
-        setTitle("Select Resource");
+        setTitle(Messages.ClasspathResourceSelectionDialog_dialogTitle);
     }
 
     @Override

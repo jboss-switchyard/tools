@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.tools.ui.explorer.impl.ComponentReference;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ComponentReferencePropertySource
@@ -25,7 +26,7 @@ import org.switchyard.tools.ui.explorer.impl.ComponentReference;
  */
 public class ComponentReferencePropertySource implements IPropertySource {
 
-    private static final String PROP_MODEL = "model";
+    private static final String PROP_MODEL = "model"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private ComponentReference _node;
@@ -49,7 +50,7 @@ public class ComponentReferencePropertySource implements IPropertySource {
         if (PROP_MODEL.equals(id)) {
             return _node.getModel();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     @Override
@@ -66,7 +67,7 @@ public class ComponentReferencePropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, "SwitchYard Component Reference") };
-        DESCRIPTORS[0].setDescription("SwitchYard component reference details.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, Messages.ComponentReferencePropertySource_propertyDescriptor_syComponentReference) };
+        DESCRIPTORS[0].setDescription(Messages.ComponentReferencePropertySource_propertyDescriptorDescription_syComponentReference);
     }
 }

@@ -63,8 +63,8 @@ public class WorkbenchAdapterFactory implements IAdapterFactory {
 
         @Override
         public String getLabel(Object o) {
-            final EStructuralFeature nameFeature = ((EObject) o).eClass().getEStructuralFeature("name");
-            return nameFeature == null ? "<implement me>" : "" + ((EObject) o).eGet(nameFeature);
+            final EStructuralFeature nameFeature = ((EObject) o).eClass().getEStructuralFeature("name"); //$NON-NLS-1$
+            return nameFeature == null ? "<implement me>" : "" + ((EObject) o).eGet(nameFeature); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         @Override

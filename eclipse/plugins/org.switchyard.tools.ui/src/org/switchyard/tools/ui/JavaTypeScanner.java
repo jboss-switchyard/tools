@@ -53,11 +53,11 @@ public class JavaTypeScanner {
                 if (annoTypes == null || annoTypes.length == 0) {
                     continue;
                 }
-                if (!"org.switchyard.component.bean".equals(annoTypes[0][0]) || !"Service".equals(annoTypes[0][1])) {
+                if (!"org.switchyard.component.bean".equals(annoTypes[0][0]) || !"Service".equals(annoTypes[0][1])) { //$NON-NLS-1$ //$NON-NLS-2$
                     continue;
                 }
                 for (IMemberValuePair pair : annotation.getMemberValuePairs()) {
-                    if ("value".equals(pair.getMemberName())) {
+                    if ("value".equals(pair.getMemberName())) { //$NON-NLS-1$
                         if (service == null) {
                             service = ScaFactory.eINSTANCE.createComponentService();
                         }
@@ -81,7 +81,7 @@ public class JavaTypeScanner {
                         } catch (Exception e) {
                             e.fillInStackTrace();
                         }
-                    } else if ("name".equals(pair.getMemberName())) {
+                    } else if ("name".equals(pair.getMemberName())) { //$NON-NLS-1$
                         String name = (String) pair.getValue();
                         if (name == null || name.length() == 0) {
                             continue;
@@ -111,8 +111,8 @@ public class JavaTypeScanner {
                         if (annoTypes == null || annoTypes.length == 0) {
                             continue;
                         }
-                        if (!"org.switchyard.component.bean".equals(annoTypes[0][0])
-                                || !"Reference".equals(annoTypes[0][1])) {
+                        if (!"org.switchyard.component.bean".equals(annoTypes[0][0]) //$NON-NLS-1$
+                                || !"Reference".equals(annoTypes[0][1])) { //$NON-NLS-1$
                             continue;
                         }
 
@@ -133,7 +133,7 @@ public class JavaTypeScanner {
                         reference.setName(getSimpleNameFromQualifiedName(interfaceName));
 
                         for (IMemberValuePair pair : annotation.getMemberValuePairs()) {
-                            if ("value".equals(pair.getMemberName())) {
+                            if ("value".equals(pair.getMemberName())) { //$NON-NLS-1$
                                 String name = (String) pair.getValue();
                                 if (name != null && name.length() > 0) {
                                     reference.setName(name);

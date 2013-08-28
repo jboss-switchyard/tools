@@ -71,7 +71,7 @@ public class SwitchYardWSDLToJavaProcessor extends WSDLToJavaProcessor {
         for (OperationInfo operation : operations) {
             JavaInterface dummyInterface = new JavaInterface();
             if (seenOperations.put(operation.getName(), Boolean.TRUE) != null) {
-                LOG.log(Level.WARNING, "SKIP_OVERLOADED_OPERATION", operation.getName());
+                LOG.log(Level.WARNING, Messages.SwitchYardWSDLToJavaProcessor_warning_SkipOverloadedOperation, operation.getName());
                 continue;
             }
             OperationProcessor operationProcessor = new OperationProcessor(context);

@@ -47,8 +47,8 @@ public class BPELProcessDetailsWizardPage extends WizardPage {
      */
     public BPELProcessDetailsWizardPage(String pageName) {
         super(pageName);
-        setTitle("Business Process Details");
-        setDescription("Please specify details about the business process.");
+        setTitle(Messages.BPELProcessDetailsWizardPage_wizardPageTitle);
+        setDescription(Messages.BPELProcessDetailsWizardPage_wizardPageDescription);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class BPELProcessDetailsWizardPage extends WizardPage {
         Composite contents = new Composite(parent, SWT.NONE);
         contents.setLayout(new GridLayout(2, false));
 
-        createLabel(contents, "Name:");
+        createLabel(contents, Messages.BPELProcessDetailsWizardPage_processNameLabel);
         _processNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
         _processNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _processNameText.addModifyListener(new ModifyListener() {
@@ -67,7 +67,7 @@ public class BPELProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(contents, "Namespace:");
+        createLabel(contents, Messages.BPELProcessDetailsWizardPage_processNamespaceLabel);
         _processNamespaceText = new Text(contents, SWT.SINGLE | SWT.BORDER);
         _processNamespaceText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _processNamespaceText.addModifyListener(new ModifyListener() {
@@ -149,7 +149,7 @@ public class BPELProcessDetailsWizardPage extends WizardPage {
     }
 
     private String emptyForNull(String string) {
-        return string == null ? "" : string;
+        return string == null ? "" : string; //$NON-NLS-1$
     }
 
     private String nullForEmpty(String string) {
@@ -165,9 +165,9 @@ public class BPELProcessDetailsWizardPage extends WizardPage {
         setErrorMessage(null);
         // TODO: we probably need to verify the content as well
         if (getProcessName() == null) {
-            setErrorMessage("Please specify a name.");
+            setErrorMessage(Messages.BPELProcessDetailsWizardPage_errorMessageSpecifyName);
         } else if (getProcessNamespace() == null) {
-            setErrorMessage("Please specify a namespace.");
+            setErrorMessage(Messages.BPELProcessDetailsWizardPage_errorMessageSpecifyNamespace);
         }
         setPageComplete(getErrorMessage() == null);
     }

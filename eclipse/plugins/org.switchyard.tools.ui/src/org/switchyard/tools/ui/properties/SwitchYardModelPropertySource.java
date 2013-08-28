@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardModelPropertySource
@@ -25,8 +26,8 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
  */
 public class SwitchYardModelPropertySource implements IPropertySource {
 
-    private static final String PROP_NAME = "name";
-    private static final String PROP_TARGET_NAMESPACE = "targetNamespace";
+    private static final String PROP_NAME = "name"; //$NON-NLS-1$
+    private static final String PROP_TARGET_NAMESPACE = "targetNamespace"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final SwitchYardModel _model;
@@ -75,9 +76,9 @@ public class SwitchYardModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, "Name"),
-                new PropertyDescriptor(PROP_TARGET_NAMESPACE, "Target Namespace") };
-        DESCRIPTORS[0].setDescription("The name for the SwitchYard application.");
-        DESCRIPTORS[1].setDescription("The target namespace for the SwitchYard application.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, Messages.SwitchYardModelPropertySource_propertyDescriptor_name),
+                new PropertyDescriptor(PROP_TARGET_NAMESPACE, Messages.SwitchYardModelPropertySource_propertyDescriptor_tns) };
+        DESCRIPTORS[0].setDescription(Messages.SwitchYardModelPropertySource_propertyDescriptorDescription_name);
+        DESCRIPTORS[1].setDescription(Messages.SwitchYardModelPropertySource_propertyDescriptorDescription_tns);
     }
 }

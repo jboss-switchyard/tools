@@ -21,7 +21,9 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.osgi.util.NLS;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardTestMixInExtensionManager
@@ -59,32 +61,32 @@ public final class SwitchYardTestMixInExtensionManager {
 
     private void loadExtensions() {
         IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(Activator.PLUGIN_ID,
-                "switchYardTestMixIn");
+                "switchYardTestMixIn"); //$NON-NLS-1$
         for (IExtension pluginExtension : extensionPoint.getExtensions()) {
             for (IConfigurationElement element : pluginExtension.getConfigurationElements()) {
-                if (!"switchYardTestMixIn".equals(element.getName())) {
+                if (!"switchYardTestMixIn".equals(element.getName())) { //$NON-NLS-1$
                     continue;
                 }
-                final String name = element.getAttribute("name");
-                final String description = element.getAttribute("description");
-                final String mixInClass = element.getAttribute("mixInClass");
+                final String name = element.getAttribute("name"); //$NON-NLS-1$
+                final String description = element.getAttribute("description"); //$NON-NLS-1$
+                final String mixInClass = element.getAttribute("mixInClass"); //$NON-NLS-1$
                 final ISwitchYardComponentExtension capability = SwitchYardComponentExtensionManager.instance()
-                        .getComponentExtension(element.getAttribute("componentId"));
+                        .getComponentExtension(element.getAttribute("componentId")); //$NON-NLS-1$
                 if (name == null) {
+                    String message = NLS.bind(Messages.SwitchYardTestMixInExtensionManager_logMessageMissingNameForSYMixIn, 
+                            new Object[] {mixInClass, element.getNamespaceIdentifier()});
                     Activator
                             .getDefault()
                             .getLog()
-                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                    "No name specified for switchYardTestMixIn extension: " + mixInClass
-                                            + ", namespace=" + element.getNamespaceIdentifier()));
+                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID,message));
                     continue;
                 } else if (_extensions.containsKey(name)) {
+                    String message = NLS.bind(Messages.SwitchYardTestMixInExtensionManager_logMessageDuplicateNameForSYMixIn, 
+                            new Object[] {name, element.getNamespaceIdentifier()});
                     Activator
                             .getDefault()
                             .getLog()
-                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                    "Duplicate switchYardTestMixIn extension: " + name + ", namespace="
-                                            + element.getNamespaceIdentifier()));
+                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID, message));
                     continue;
                 }
                 _extensions.put(name, new SwitchYardTestMixInExtension(name, description, mixInClass, capability));

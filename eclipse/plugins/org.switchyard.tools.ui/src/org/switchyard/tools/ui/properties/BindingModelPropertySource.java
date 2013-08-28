@@ -17,6 +17,7 @@ import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.common.lang.Strings;
 import org.switchyard.config.model.composer.ContextMapperModel;
 import org.switchyard.config.model.composite.BindingModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * BindingModelPropertySource
@@ -28,10 +29,10 @@ import org.switchyard.config.model.composite.BindingModel;
  */
 public class BindingModelPropertySource implements IPropertySource {
 
-    private static final String PROP_TYPE = "type";
-    private static final String PROP_CONTEXT_MAPPER = "context-mapper";
-    private static final String PROP_MESSAGE_COMPOSER = "message-composer";
-    private static final String PROP_OPERATION_SELECTOR = "operation-selector";
+    private static final String PROP_TYPE = "type"; //$NON-NLS-1$
+    private static final String PROP_CONTEXT_MAPPER = "context-mapper"; //$NON-NLS-1$
+    private static final String PROP_MESSAGE_COMPOSER = "message-composer"; //$NON-NLS-1$
+    private static final String PROP_OPERATION_SELECTOR = "operation-selector"; //$NON-NLS-1$
     protected static final PropertyDescriptor[] DESCRIPTORS;
 
     private final BindingModel _model;
@@ -85,21 +86,21 @@ public class BindingModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_TYPE, "Binding Type"),
-                new PropertyDescriptor(PROP_CONTEXT_MAPPER, "Context Mapper"),
-                new PropertyDescriptor(PROP_MESSAGE_COMPOSER, "Message Composer"),
-                new PropertyDescriptor(PROP_OPERATION_SELECTOR, "Operation Selector")};
-        DESCRIPTORS[0].setDescription("The binding type.");
-        DESCRIPTORS[0].setCategory("General");
-        DESCRIPTORS[1].setDescription("The context mapper for the binding.");
-        DESCRIPTORS[1].setCategory("General");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_TYPE, Messages.BindingModelPropertySource_propertyDescriptor_bindingType),
+                new PropertyDescriptor(PROP_CONTEXT_MAPPER, Messages.BindingModelPropertySource_propertyDescriptor_contextMapper),
+                new PropertyDescriptor(PROP_MESSAGE_COMPOSER, Messages.BindingModelPropertySource_propertyDescriptor_messageComposer),
+                new PropertyDescriptor(PROP_OPERATION_SELECTOR, Messages.BindingModelPropertySource_propertyDescriptor_operationSelector)};
+        DESCRIPTORS[0].setDescription(Messages.BindingModelPropertySource_propertyDescriptorDescription_bindingType);
+        DESCRIPTORS[0].setCategory(Messages.BindingModelPropertySource_propertyDescriptorCategory_general);
+        DESCRIPTORS[1].setDescription(Messages.BindingModelPropertySource_propertyDescriptorDescription_contextMapper);
+        DESCRIPTORS[1].setCategory(Messages.BindingModelPropertySource_propertyDescriptorCategory_general);
         DESCRIPTORS[1].setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
-                return Strings.trimToNull(((ContextMapperModel) element).getModelConfiguration().getAttribute("class"));
+                return Strings.trimToNull(((ContextMapperModel) element).getModelConfiguration().getAttribute("class")); //$NON-NLS-1$
             }
         });
-        DESCRIPTORS[1].setDescription("The message composer for the binding.");
-        DESCRIPTORS[2].setCategory("General");
+        DESCRIPTORS[1].setDescription(Messages.BindingModelPropertySource_propertyDescriptorDescription_messageComposer);
+        DESCRIPTORS[2].setCategory(Messages.BindingModelPropertySource_propertyDescriptorCategory_general);
     }
 }

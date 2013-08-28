@@ -61,7 +61,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
  */
 public class BPELComponentWizard extends BaseNewServiceFileWizard implements INewWizard {
 
-    private static final String WSDL_PORTTYPE = "#wsdl.porttype(";
+    private static final String WSDL_PORTTYPE = "#wsdl.porttype("; //$NON-NLS-1$
     private boolean _openAfterCreate;
     private BPELImplementation _implementation;
     private BPELProcessDetailsWizardPage _processPage;
@@ -74,7 +74,7 @@ public class BPELComponentWizard extends BaseNewServiceFileWizard implements INe
      *            editor.
      */
     public BPELComponentWizard(boolean openAfterCreate) {
-        super(false, "bpel", EnumSet.of(InterfaceType.WSDL));
+        super(false, "bpel", EnumSet.of(InterfaceType.WSDL)); //$NON-NLS-1$
         _openAfterCreate = openAfterCreate;
     }
 
@@ -89,12 +89,12 @@ public class BPELComponentWizard extends BaseNewServiceFileWizard implements INe
         super.addPages();
 
         WizardNewFileCreationPage page = getFileCreationPage();
-        page.setTitle("New SwitchYard BPEL File");
-        page.setDescription("Create a new SwitchYard BPEL file.");
+        page.setTitle(Messages.BPELComponentWizard_wizardPageTitle);
+        page.setDescription(Messages.BPELComponentWizard_wizardPageDescription);
         if (getService() == null) {
-            page.setFileName("Process.bpel");
+            page.setFileName("Process.bpel"); //$NON-NLS-1$
         } else {
-            page.setFileName("" + getService().getName() + "Process.bpel");
+            page.setFileName("" + getService().getName() + "Process.bpel"); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         _processPage = new BPELProcessDetailsWizardPage(BPELProcessDetailsWizardPage.class.getCanonicalName());
@@ -140,10 +140,10 @@ public class BPELComponentWizard extends BaseNewServiceFileWizard implements INe
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error creating BPEL process.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.BPELComponentWizard_errorMessageCreatingBPELFile,
                                 realException));
             }
-            MessageDialog.openError(getShell(), "Error Creating BPEL Service", realException.getMessage());
+            MessageDialog.openError(getShell(), Messages.BPELComponentWizard_errorMessageCreatingBPELService, realException.getMessage());
         }
 
         // make sure the implementation is initialized (to get correct defaults)
@@ -164,7 +164,7 @@ public class BPELComponentWizard extends BaseNewServiceFileWizard implements INe
                         IDE.openEditor(activePage, getCreatedFile(), true);
                     } catch (PartInitException e) {
                         Activator.getDefault().getLog()
-                                .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error opening BPEL file.", e));
+                                .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.BPELComponentWizard_errorMessageOpeningBPELFile, e));
                     }
                 }
             });

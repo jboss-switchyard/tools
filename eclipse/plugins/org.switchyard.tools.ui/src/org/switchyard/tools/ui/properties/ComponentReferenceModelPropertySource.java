@@ -16,6 +16,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.composite.ComponentReferenceModel;
 import org.switchyard.config.model.composite.InterfaceModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ComponentReferenceModelPropertySource
@@ -27,9 +28,9 @@ import org.switchyard.config.model.composite.InterfaceModel;
  */
 public class ComponentReferenceModelPropertySource implements IPropertySource {
 
-    private static final String PROP_NAME = "name";
-    private static final String PROP_INTERFACE = "interface";
-    private static final String PROP_POLICIES = "policies";
+    private static final String PROP_NAME = "name"; //$NON-NLS-1$
+    private static final String PROP_INTERFACE = "interface"; //$NON-NLS-1$
+    private static final String PROP_POLICIES = "policies"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final ComponentReferenceModel _model;
@@ -74,17 +75,17 @@ public class ComponentReferenceModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, "Name"),
-                new PropertyDescriptor(PROP_INTERFACE, "Interface"),
-                new PropertyDescriptor(PROP_POLICIES, "Policy Requirements") };
-        DESCRIPTORS[0].setDescription("The name for the SwitchYard component reference.");
-        DESCRIPTORS[1].setDescription("The interface details for the reference.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, Messages.ComponentReferenceModelPropertySource_propertyDescriptor_name),
+                new PropertyDescriptor(PROP_INTERFACE, Messages.ComponentReferenceModelPropertySource_propertyDescriptor_interface),
+                new PropertyDescriptor(PROP_POLICIES, Messages.ComponentReferenceModelPropertySource_propertyDescriptor_policyRequirements) };
+        DESCRIPTORS[0].setDescription(Messages.ComponentReferenceModelPropertySource_propertyDescriptorDescription_name);
+        DESCRIPTORS[1].setDescription(Messages.ComponentReferenceModelPropertySource_propertyDescriptorDescription_interface);
         DESCRIPTORS[1].setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
                 return ((InterfaceModel) element).getType();
             }
         });
-        DESCRIPTORS[2].setDescription("The policy requirements for the reference.");
+        DESCRIPTORS[2].setDescription(Messages.ComponentReferenceModelPropertySource_propertyDescriptorDescription_policyRequirements);
     }
 }

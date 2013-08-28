@@ -47,6 +47,7 @@ import org.switchyard.metadata.ServiceInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardModelUtils
@@ -68,7 +69,7 @@ public final class SwitchYardModelUtils {
         SwitchYardModel switchYardModel = new V1SwitchYardModel();
         switchYardModel.setName(name);
         // switchYardModel.setTargetNamespace(_targetNamespace);
-        switchYardModel.getModelConfiguration().setAttribute("targetNamespace", targetNamespace);
+        switchYardModel.getModelConfiguration().setAttribute("targetNamespace", targetNamespace); //$NON-NLS-1$
         return switchYardModel;
     }
 
@@ -82,7 +83,7 @@ public final class SwitchYardModelUtils {
      * @return the targetNamespace.
      */
     public static String createTargetnamespace(String groupId, String artifactId, String version) {
-        return "urn:" + groupId + ":" + artifactId + ":" + version;
+        return "urn:" + groupId + ":" + artifactId + ":" + version; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     /**
@@ -258,8 +259,8 @@ public final class SwitchYardModelUtils {
                         esbIntfc.getFaultType() == null ? null : new QName(esbIntfc.getFaultType())));
             }
         }
-        throw new IllegalArgumentException("Interface type is not supported: "
-                + (intf == null ? "null" : intf.eClass().getInstanceTypeName()));
+        throw new IllegalArgumentException(Messages.SwitchYardModelUtils_InterfaceTypeUnsupportedException
+                + (intf == null ? "null" : intf.eClass().getInstanceTypeName())); //$NON-NLS-1$
 
     }
 

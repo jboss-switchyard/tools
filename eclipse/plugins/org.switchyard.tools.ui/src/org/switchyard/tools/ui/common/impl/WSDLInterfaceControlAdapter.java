@@ -43,6 +43,7 @@ import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
 import org.switchyard.tools.ui.common.WSDLPortTypeSelectionDialog;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.wizards.Java2WSDLWizard;
 import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 
@@ -86,7 +87,7 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
     public boolean browse(Shell shell, IJavaElement element) {
         WSDLPortTypeSelectionDialog dialog = new WSDLPortTypeSelectionDialog(shell, element == null ? ResourcesPlugin
                 .getWorkspace().getRoot() : element.getJavaProject().getProject());
-        dialog.setInitialPattern("*.wsdl");
+        dialog.setInitialPattern("*.wsdl"); //$NON-NLS-1$
         if (dialog.open() == WSDLPortTypeSelectionDialog.OK) {
             PortType result = dialog.getSelectedPortType();
             if (result != null) {
@@ -118,7 +119,7 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
 
         NewWSDLFileWizard newWizard = new NewWSDLFileWizard();
         newWizard.setOpenOnFinish(false);
-        newWizard.setStartingFileName("MyService.wsdl");
+        newWizard.setStartingFileName("MyService.wsdl"); //$NON-NLS-1$
         newWizard.init(PlatformUI.getWorkbench(), selectionToPass);
 
         WizardDialog dialog = new WizardDialog(shell, newWizard);
@@ -165,7 +166,7 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public String getText() {
         if (_interface.getInterface() == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         return _interface.getInterface();
     }
@@ -173,13 +174,13 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public IStatus validate(IJavaProject project) {
         if (_interface.getInterface() == null) {
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please specify a WSDL portType.");
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.WSDLInterfaceControlAdapter_statusMessage_selectPortType);
         } else {
             IResource wsdlResource = SwitchYardModelUtils.getJavaResource(
                     project == null ? null : project.getProject(), _interface.getInterface());
             if (wsdlResource == null) {
                 return new Status(Status.WARNING, Activator.PLUGIN_ID,
-                        "The specified WSDL file is not on the project's classpath.");
+                        Messages.WSDLInterfaceControlAdapter_statusMessage_selectedWSDLNotOnClasspath);
 
             }
             // else {
@@ -193,6 +194,6 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
         IPath filePath = new Path(portType.eResource().getURI().toPlatformString(true));
         IResource resource = element.getJavaProject().getProject().getWorkspace().getRoot().getFile(filePath);
         filePath = JavaUtil.getJavaPathForResource(resource);
-        return filePath.toString() + "#wsdl.porttype(" + portType.getQName().getLocalPart() + ")";
+        return filePath.toString() + "#wsdl.porttype(" + portType.getQName().getLocalPart() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 }

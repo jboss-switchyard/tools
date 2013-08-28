@@ -49,6 +49,7 @@ import org.switchyard.tools.ui.explorer.ISwitchYardRootNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentReference;
 import org.switchyard.tools.ui.explorer.impl.ComponentService;
 import org.switchyard.tools.ui.explorer.impl.SwitchYardRootNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * Java2WSDLOptionsWizardPage
@@ -61,8 +62,8 @@ import org.switchyard.tools.ui.explorer.impl.SwitchYardRootNode;
  */
 public class Java2WSDLOptionsWizardPage extends WizardPage {
 
-    private static final String DEFAULT_LOCATION = "http://localhost:8080/%1$s/%2$s";
-    private static final String DEFAULT_LOCATION_MATCH = "(^.+?:.*\\/)%1$s$";
+    private static final String DEFAULT_LOCATION = "http://localhost:8080/%1$s/%2$s"; //$NON-NLS-1$
+    private static final String DEFAULT_LOCATION_MATCH = "(^.+?:.*\\/)%1$s$"; //$NON-NLS-1$
 
     private IStructuredSelection _selection;
     private boolean _isInitialized;
@@ -71,7 +72,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
     private String _oldServiceName;
     private String _targetNamespace;
     private String _applicationName;
-    private String _locationURI = String.format(DEFAULT_LOCATION, "", "");
+    private String _locationURI = String.format(DEFAULT_LOCATION, "", ""); //$NON-NLS-1$ //$NON-NLS-2$
     private boolean _useImportedSchema;
     private boolean _useWrappedMessages = true;
     private Text _serviceInterfaceText;
@@ -86,8 +87,8 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
      */
     public Java2WSDLOptionsWizardPage() {
         super(Java2WSDLOptionsWizardPage.class.getName());
-        setTitle("Java2WSDL Options");
-        setDescription("Specify WSDL generation options.");
+        setTitle(Messages.Java2WSDLOptionsWizardPage_wizardPageTitle);
+        setDescription(Messages.Java2WSDLOptionsWizardPage_wizardPageDescription);
     }
 
     /**
@@ -189,7 +190,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
     private void initFromSwitchYardRoot(ISwitchYardRootNode root) {
         _targetNamespace = root.getTargetNamespace();
         _applicationName = root.getName();
-        _locationURI = String.format(DEFAULT_LOCATION, _applicationName, "");
+        _locationURI = String.format(DEFAULT_LOCATION, _applicationName, ""); //$NON-NLS-1$
     }
 
     private void initFromProject(final IProject project) {
@@ -201,7 +202,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
                     switchYardNode.reload(monitor);
                     _targetNamespace = switchYardNode.getTargetNamespace();
                     _applicationName = switchYardNode.getName();
-                    _locationURI = String.format(DEFAULT_LOCATION, _applicationName, _serviceName == null ? ""
+                    _locationURI = String.format(DEFAULT_LOCATION, _applicationName, _serviceName == null ? "" //$NON-NLS-1$
                             : _serviceName);
                 }
             });
@@ -216,11 +217,11 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         contents.setLayout(new GridLayout(3, false));
 
         Label label = new Label(contents, SWT.NONE);
-        label.setText("Service Interface:");
+        label.setText(Messages.Java2WSDLOptionsWizardPage_labelServiceInterface);
         _serviceInterfaceText = new Text(contents, SWT.READ_ONLY | SWT.BORDER | SWT.SINGLE);
         _serviceInterfaceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         Button selectType = new Button(contents, SWT.PUSH);
-        selectType.setText("Select Type...");
+        selectType.setText(Messages.Java2WSDLOptionsWizardPage_labelSelectType);
         selectType.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 try {
@@ -247,25 +248,25 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         });
 
         label = new Label(contents, SWT.NONE);
-        label.setText("Service Name:");
+        label.setText(Messages.Java2WSDLOptionsWizardPage_labelServiceName);
         _serviceNameText = new Text(contents, SWT.BORDER | SWT.SINGLE);
         _serviceNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         _serviceNameText.addModifyListener(new ModifyListener() {
             @Override
             public void modifyText(ModifyEvent e) {
                 final Matcher matcher = Pattern.compile(
-                        String.format(DEFAULT_LOCATION_MATCH, _serviceName == null ? "" : _serviceName)).matcher(
+                        String.format(DEFAULT_LOCATION_MATCH, _serviceName == null ? "" : _serviceName)).matcher(//$NON-NLS-1$
                         _locationURI);
                 _serviceName = _serviceNameText.getText();
                 if (matcher.matches()) {
-                    _locationURIText.setText(matcher.replaceFirst("$1" + _serviceName));
+                    _locationURIText.setText(matcher.replaceFirst("$1" + _serviceName)); //$NON-NLS-1$
                 }
                 validate();
             }
         });
 
         label = new Label(contents, SWT.NONE);
-        label.setText("Target Namespace:");
+        label.setText(Messages.Java2WSDLOptionsWizardPage_labelTargetNamespace);
         _targetNamespaceText = new Text(contents, SWT.BORDER | SWT.SINGLE);
         _targetNamespaceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         _targetNamespaceText.addModifyListener(new ModifyListener() {
@@ -278,7 +279,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
 
         // advanced
         label = new Label(contents, SWT.NONE);
-        label.setText("Endpoint URI:");
+        label.setText(Messages.Java2WSDLOptionsWizardPage_labelEndpointURI);
         _locationURIText = new Text(contents, SWT.BORDER | SWT.SINGLE);
         _locationURIText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         _locationURIText.addModifyListener(new ModifyListener() {
@@ -291,7 +292,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
 
         new Label(contents, SWT.NONE);
         _useWrappedMessagesCheck = new Button(contents, SWT.CHECK);
-        _useWrappedMessagesCheck.setText("Use \"wrapped\" messages");
+        _useWrappedMessagesCheck.setText(Messages.Java2WSDLOptionsWizardPage_checkboxUseWrappedMessages);
         _useWrappedMessagesCheck.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         _useWrappedMessagesCheck.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -303,7 +304,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
 
         new Label(contents, SWT.NONE);
         _useImportedSchemaCheck = new Button(contents, SWT.CHECK);
-        _useImportedSchemaCheck.setText("Use imports for generated type schema");
+        _useImportedSchemaCheck.setText(Messages.Java2WSDLOptionsWizardPage_checkboxUseImportsForGeneratedSchemas);
         _useImportedSchemaCheck.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         _useImportedSchemaCheck.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -367,27 +368,27 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
     private void validate() {
         setErrorMessage(null);
         if (_serviceInterface == null) {
-            setErrorMessage("Must select a service interface.");
+            setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_mustSelectServiceInterface);
         } else if (_serviceName == null || _serviceName.length() == 0) {
-            setErrorMessage("Must specify a name for service.");
-        } else if (_serviceName.matches("[^_\\p{Alpha}]")) {
-            setErrorMessage("Invalid service name: must start with '_' or a letter.");
-        } else if (_serviceName.matches(".*:")) {
-            setErrorMessage("Invalid service name: invalid character ':'.");
+            setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_mustSpecifyServiceName);
+        } else if (_serviceName.matches("[^_\\p{Alpha}]")) { //$NON-NLS-1$
+            setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_serviceNameMustStartWithUnderscoreOrLetter);
+        } else if (_serviceName.matches(".*:")) { //$NON-NLS-1$
+            setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_invalidColonInServiceName);
         } else if (_targetNamespace == null || _targetNamespace.length() == 0) {
-            setErrorMessage("Must specify a target namespace.");
+            setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_mustSpecifyTargetNamespace);
         } else if (_locationURI == null || _locationURI.length() == 0) {
-            setErrorMessage("Must specify an endpoint URI.");
+            setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_mustSpecifyEndpointURI);
         } else {
             try {
                 new URI(_targetNamespace);
             } catch (URISyntaxException e) {
-                setErrorMessage("Invalid target namespace: " + e.getReason());
+                setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_invalidTargetNamespace + e.getReason());
             }
             try {
                 new URI(_locationURI);
             } catch (URISyntaxException e) {
-                setErrorMessage("Invalid endpoint: " + e.getReason());
+                setErrorMessage(Messages.Java2WSDLOptionsWizardPage_errorMessage_invalidEndpoint + e.getReason());
             }
         }
         setPageComplete(getErrorMessage() == null);

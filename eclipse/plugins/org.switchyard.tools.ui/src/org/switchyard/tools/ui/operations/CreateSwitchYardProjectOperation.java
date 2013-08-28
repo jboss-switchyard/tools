@@ -59,6 +59,7 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * CreateSwitchYardProjectOperation
@@ -72,7 +73,7 @@ import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
  */
 public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
-    private static final String DEFAULT_JAVA_VERSION = "1.6";
+    private static final String DEFAULT_JAVA_VERSION = "1.6"; //$NON-NLS-1$
 
     /**
      * Simple bean used for specifying details about the project to be created.
@@ -224,9 +225,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
     @Override
     public void run(IProgressMonitor monitor) throws CoreException {
-        MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 15, "Errors occurred while creating project", null);
+        MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 15, Messages.CreateSwitchYardProjectOperation_statusLabel_errorsCreatingProject, null);
 
-        monitor.beginTask("Creating new SwitchYard project.", 600);
+        monitor.beginTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingSYProject, 600);
         try {
             // create the project
             IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 100,
@@ -236,79 +237,79 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 final IProjectDescription description = workspace.newProjectDescription(_projectMetatData
                         .getNewProjectHandle().getName());
                 description.setLocationURI(_projectMetatData.getProjectLocation());
-                CreateProjectOperation op = new CreateProjectOperation(description, "New SwitchYard Project");
+                CreateProjectOperation op = new CreateProjectOperation(description, Messages.CreateSwitchYardProjectOperation_operationLabel_newSYProject);
                 op.execute(subMonitor, _uiInfo);
             } catch (ExecutionException e) {
                 if (e.getCause() instanceof CoreException) {
                     throw (CoreException) e.getCause();
                 }
                 throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "Error occurred creating SwitchYard project.", e));
+                        Messages.CreateSwitchYardProjectOperation_exceptionMessage_errorCreatingSYProject, e));
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // create the folder structure
             try {
-                monitor.subTask("Creating default folders.");
+                monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingDefaultFolders);
                 String packageFolder = _projectMetatData.getPackageName().replace('.', '/');
                 IFolder folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_JAVA_PATH)
                         .getFolder(packageFolder);
                 CreateFolderOperation op = new CreateFolderOperation(folder, null,
-                        "Creating default main source folder");
+                        Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainSourceFolder);
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
 
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH);
-                op = new CreateFolderOperation(folder, null, "Creating default main resource folder");
+                op = new CreateFolderOperation(folder, null, Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainResourceFolder);
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
 
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_JAVA_PATH)
                         .getFolder(packageFolder);
-                op = new CreateFolderOperation(folder, null, "Creating default test source folder");
+                op = new CreateFolderOperation(folder, null, Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainTestSourceFolder);
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
 
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_RESOURCES_PATH);
-                op = new CreateFolderOperation(folder, null, "Creating default test resource folder");
+                op = new CreateFolderOperation(folder, null, Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultTestResourceFolder);
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
             } catch (Exception e) {
-                mergeStatus(status, "Error creating default folders.", e);
+                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingDefaultFolders, e);
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // create pom.xml
             try {
-                monitor.subTask("Creating project pom.xml.");
+                monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingPOM);
                 Model model = createPom();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 MavenPlugin.getMaven().writeModel(model, baos);
-                IFile pomFile = _projectMetatData.getNewProjectHandle().getFile("pom.xml");
+                IFile pomFile = _projectMetatData.getNewProjectHandle().getFile("pom.xml"); //$NON-NLS-1$
                 CreateFileOperation op = new CreateFileOperation(pomFile, null, new ByteArrayInputStream(
-                        baos.toByteArray()), "Creating pom.xml");
+                        baos.toByteArray()), Messages.CreateSwitchYardProjectOperation_operationLabel_creatingPOM);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
             } catch (Exception e) {
-                mergeStatus(status, "Error creating pom.xml.", e);
+                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingPOM, e);
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // create switchyard.xml
             try {
-                monitor.subTask("Creating switchyard.xml file.");
+                monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingSYXMLFile);
                 final String namespace = _projectMetatData.getNamespace();
                 SwitchYardModel switchYardModel = newSwitchYardModel(
                         _projectMetatData.getNewProjectHandle().getName(),
@@ -320,19 +321,19 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
                         .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
                 CreateFileOperation op = new CreateFileOperation(_switchYardFile, null, new ByteArrayInputStream(
-                        baos.toByteArray()), "Creating switchyard.xml");
+                        baos.toByteArray()), Messages.CreateSwitchYardProjectOperation_operationLabel_creatingSYXML);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
             } catch (Exception e) {
-                mergeStatus(status, "Error creating switchyard.xml.", e);
+                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingSYXML, e);
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // update maven configuration.
             try {
-                monitor.subTask("Updating maven project configuration.");
+                monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_updatingMavenProjectConfig);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 IProjectConfigurationManager mavenProjectConfigurationManager = MavenPlugin
                         .getProjectConfigurationManager();
@@ -340,10 +341,10 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                         mavenProjectConfigurationManager.getResolverConfiguration(_projectMetatData
                                 .getNewProjectHandle()), subMonitor);
             } catch (Exception e) {
-                mergeStatus(status, "Error updating maven project configuration.", e);
+                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorUpdatingMavenProjectConfig, e);
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // attach project facets
@@ -381,17 +382,17 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         Model model = new Model();
 
         // basic project setup
-        model.setModelVersion("4.0.0");
+        model.setModelVersion("4.0.0"); //$NON-NLS-1$
         model.setGroupId(_projectMetatData.getGroupId());
         model.setArtifactId(_projectMetatData.getNewProjectHandle().getName());
         model.setVersion(_projectMetatData.getProjectVersion());
-        model.setPackaging("jar");
-        model.setName(_projectMetatData.getGroupId() + ":" + _projectMetatData.getNewProjectHandle().getName());
+        model.setPackaging("jar"); //$NON-NLS-1$
+        model.setName(_projectMetatData.getGroupId() + ":" + _projectMetatData.getNewProjectHandle().getName()); //$NON-NLS-1$
 
         // add runtime dependencies
         model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
 
-        String versionString = "${" + SWITCHYARD_VERSION + "}";
+        String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
         Set<String> scanners = new LinkedHashSet<String>();
         for (ISwitchYardComponentExtension component : _projectMetatData.getComponents()) {
             String scanner = component.getScannerClassName();
@@ -425,25 +426,25 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
     private Plugin createCompilerPlugin() {
         Plugin plugin = new Plugin();
-        plugin.setArtifactId("maven-compiler-plugin");
-        plugin.setGroupId("org.apache.maven.plugins");
-        plugin.setVersion("2.3.2");
+        plugin.setArtifactId("maven-compiler-plugin"); //$NON-NLS-1$
+        plugin.setGroupId("org.apache.maven.plugins"); //$NON-NLS-1$
+        plugin.setVersion("2.3.2"); //$NON-NLS-1$
 
-        Xpp3Dom configuration = new Xpp3Dom("configuration");
-        Xpp3Dom source = new Xpp3Dom("source");
+        Xpp3Dom configuration = new Xpp3Dom("configuration"); //$NON-NLS-1$
+        Xpp3Dom source = new Xpp3Dom("source"); //$NON-NLS-1$
         source.setValue(DEFAULT_JAVA_VERSION);
         configuration.addChild(source);
-        Xpp3Dom target = new Xpp3Dom("target");
+        Xpp3Dom target = new Xpp3Dom("target"); //$NON-NLS-1$
         target.setValue(DEFAULT_JAVA_VERSION);
         configuration.addChild(target);
-        Xpp3Dom debug = new Xpp3Dom("debug");
-        debug.setValue("true");
+        Xpp3Dom debug = new Xpp3Dom("debug"); //$NON-NLS-1$
+        debug.setValue("true"); //$NON-NLS-1$
         configuration.addChild(debug);
-        Xpp3Dom showWarnings = new Xpp3Dom("showWarnings");
-        showWarnings.setValue("true");
+        Xpp3Dom showWarnings = new Xpp3Dom("showWarnings"); //$NON-NLS-1$
+        showWarnings.setValue("true"); //$NON-NLS-1$
         configuration.addChild(showWarnings);
-        Xpp3Dom showDeprecation = new Xpp3Dom("showDeprecation");
-        showDeprecation.setValue("true");
+        Xpp3Dom showDeprecation = new Xpp3Dom("showDeprecation"); //$NON-NLS-1$
+        showDeprecation.setValue("true"); //$NON-NLS-1$
         configuration.addChild(showDeprecation);
         plugin.setConfiguration(configuration);
 

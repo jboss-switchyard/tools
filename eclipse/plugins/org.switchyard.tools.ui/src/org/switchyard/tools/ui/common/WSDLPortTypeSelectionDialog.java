@@ -44,6 +44,7 @@ import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * Allows user to select a portType from available project WSDL files.
@@ -65,7 +66,7 @@ public class WSDLPortTypeSelectionDialog extends ClasspathResourceSelectionDialo
      */
     public WSDLPortTypeSelectionDialog(Shell parentShell, IContainer container) {
         super(parentShell, container);
-        setTitle("Select WSDL file and portType");
+        setTitle(Messages.WSDLPortTypeSelectionDialog_dialogTitle);
     }
 
     /**
@@ -82,7 +83,7 @@ public class WSDLPortTypeSelectionDialog extends ClasspathResourceSelectionDialo
         contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
         Label label = new Label(contents, SWT.NONE);
-        label.setText("Select portType:");
+        label.setText(Messages.WSDLPortTypeSelectionDialog_labelSelectPortType);
 
         _portTypesList = new ListViewer(contents, SWT.SINGLE | SWT.BORDER);
         _portTypesList.setLabelProvider(new LabelProvider() {
@@ -159,7 +160,7 @@ public class WSDLPortTypeSelectionDialog extends ClasspathResourceSelectionDialo
         if (item instanceof PortType) {
             return Status.OK_STATUS;
         }
-        return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please select a WSDL file and portType.");
+        return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.WSDLPortTypeSelectionDialog_validateMessage_SelectWSDLFileAndPortType);
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.tools.ui.explorer.impl.ServiceNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ServicePropertySource
@@ -25,7 +26,7 @@ import org.switchyard.tools.ui.explorer.impl.ServiceNode;
  */
 public class ServicePropertySource implements IPropertySource {
 
-    private static final String PROP_MODEL = "model";
+    private static final String PROP_MODEL = "model"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private ServiceNode _node;
@@ -49,7 +50,7 @@ public class ServicePropertySource implements IPropertySource {
         if (PROP_MODEL.equals(id)) {
             return _node.getModel();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     @Override
@@ -66,7 +67,7 @@ public class ServicePropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, "SwitchYard Service") };
-        DESCRIPTORS[0].setDescription("SwitchYard service details.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, Messages.ServicePropertySource_propertyDescriptor_syService) };
+        DESCRIPTORS[0].setDescription(Messages.ServicePropertySource_propertyDescriptorDescription_syService);
     }
 }

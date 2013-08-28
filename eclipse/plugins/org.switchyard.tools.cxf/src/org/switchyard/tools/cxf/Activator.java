@@ -38,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
     private static Activator plugin;
 
     // prevent these from polluting the Eclipse classpath
-    private static final Pattern BLACKLIST = Pattern.compile("(xercesImpl|xml-apis|xml-resolver|jaxb-impl|jaxb-xjc|xmlschema-core)");
+    private static final Pattern BLACKLIST = Pattern.compile("(xercesImpl|xml-apis|xml-resolver|jaxb-impl|jaxb-xjc|xmlschema-core)"); //$NON-NLS-1$
 
     /**
      * The constructor.
@@ -85,15 +85,15 @@ public class Activator extends AbstractUIPlugin {
         IProject project = javaProject.getProject();
         IWorkspaceRoot root = project.getWorkspace().getRoot();
         List<URL> urls = new ArrayList<URL>();
-        urls.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1) + "/")
+        urls.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1) + "/") //$NON-NLS-1$ //$NON-NLS-2$
                 .toURI().toURL());
         for (IClasspathEntry classpathEntry : javaProject.getResolvedClasspath(true)) {
             if (classpathEntry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
                 IPath projectPath = classpathEntry.getPath();
                 IProject otherProject = root.getProject(projectPath.segment(0));
                 IJavaProject otherJavaProject = JavaCore.create(otherProject);
-                urls.add(new File(otherProject.getLocation() + "/"
-                        + otherJavaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL());
+                urls.add(new File(otherProject.getLocation() + "/" //$NON-NLS-1$
+                        + otherJavaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL()); //$NON-NLS-1$
             } else if (classpathEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
                 IPath path = classpathEntry.getPath();
                 if (!BLACKLIST.matcher(path.lastSegment()).find()) {

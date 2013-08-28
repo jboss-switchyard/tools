@@ -41,6 +41,7 @@ import org.switchyard.tools.cxf.WSDL2JavaOptions;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateJavaFromWSDLOperation;
 
 /**
@@ -53,7 +54,7 @@ import org.switchyard.tools.ui.operations.CreateJavaFromWSDLOperation;
 @SuppressWarnings("restriction")
 public class WSDL2JavaOptionsWizardPage extends NewTypeWizardPage {
 
-    private static final String WSDL_FILE = "WSDL_FILE";
+    private static final String WSDL_FILE = "WSDL_FILE"; //$NON-NLS-1$
 
     private IStatus _wsdlFileStatus = Status.OK_STATUS;
 
@@ -67,8 +68,8 @@ public class WSDL2JavaOptionsWizardPage extends NewTypeWizardPage {
      */
     public WSDL2JavaOptionsWizardPage() {
         super(true, WSDL2JavaOptionsWizardPage.class.getName());
-        setTitle("WSDL2Java Options");
-        setDescription("Specify Java generation options.");
+        setTitle(Messages.WSDL2JavaOptionsWizardPage_wizardPageTitle);
+        setDescription(Messages.WSDL2JavaOptionsWizardPage_wizardPageDescription);
 
         _wsdlFileDialogField = new StringButtonDialogField(new IStringButtonAdapter() {
             @Override
@@ -82,17 +83,17 @@ public class WSDL2JavaOptionsWizardPage extends NewTypeWizardPage {
                 handleFieldChanged(WSDL_FILE);
             }
         });
-        _wsdlFileDialogField.setLabelText("WSDL File:");
-        _wsdlFileDialogField.setButtonLabel("Browse...");
+        _wsdlFileDialogField.setLabelText(Messages.WSDL2JavaOptionsWizardPage_labelWSDLFile);
+        _wsdlFileDialogField.setButtonLabel(Messages.WSDL2JavaOptionsWizardPage_buttonBrowse);
 
         _wrappedCheckField = new SelectionButtonDialogField(SWT.CHECK);
-        _wrappedCheckField.setLabelText("Create wrapper for message parts");
+        _wrappedCheckField.setLabelText(Messages.WSDL2JavaOptionsWizardPage_checkboxLabelCreateWrapperForMessageParts);
 
         _generateTypesCheckField = new SelectionButtonDialogField(SWT.CHECK);
-        _generateTypesCheckField.setLabelText("Generate parameter and result types");
+        _generateTypesCheckField.setLabelText(Messages.WSDL2JavaOptionsWizardPage_checkboxLabelGenerateParameterAndResultTypes);
 
         _overwriteCheckField = new SelectionButtonDialogField(SWT.CHECK);
-        _overwriteCheckField.setLabelText("Overwrite existing files");
+        _overwriteCheckField.setLabelText(Messages.WSDL2JavaOptionsWizardPage_checkboxLabelOverwriteExistingFiles);
     }
 
     @Override
@@ -199,7 +200,7 @@ public class WSDL2JavaOptionsWizardPage extends NewTypeWizardPage {
             _wsdlFileStatus = wsdlFileChanged(getWSDLFile());
         } else if (PACKAGE.equals(fieldName) && !fPackageStatus.matches(IStatus.ERROR)
                 && getPackageFragment().isDefaultPackage()) {
-            ((StatusInfo) fPackageStatus).setError("Cannot generate into default package.");
+            ((StatusInfo) fPackageStatus).setError(Messages.WSDL2JavaOptionsWizardPage_errorMessage_cannotGenerateIntoDefaultPackage);
         }
         doStatusUpdate();
     }
@@ -218,12 +219,12 @@ public class WSDL2JavaOptionsWizardPage extends NewTypeWizardPage {
                     @Override
                     public boolean matchItem(Object item) {
                         IResource resource = (IResource) item;
-                        return super.matchItem(item) && "wsdl".equals(resource.getFileExtension());
+                        return super.matchItem(item) && "wsdl".equals(resource.getFileExtension()); //$NON-NLS-1$
                     }
                 };
             }
         };
-        dialog.setInitialPattern("* ");
+        dialog.setInitialPattern("* "); //$NON-NLS-1$
         if (dialog.open() == FilteredResourcesSelectionDialog.OK) {
             Object[] result = dialog.getResult();
             if (result == null || result.length != 1 || !(result[0] instanceof IResource)) {
@@ -243,16 +244,16 @@ public class WSDL2JavaOptionsWizardPage extends NewTypeWizardPage {
 
     private IStatus wsdlFileChanged(IFile wsdlFile) {
         if (wsdlFile == null || !wsdlFile.exists() || !wsdlFile.isAccessible()) {
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Specified WSDL file does not exist.");
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.WSDL2JavaOptionsWizardPage_errorStatus_specifiedWSDLDoesNotExist);
         }
         IContentTypeManager manager = Platform.getContentTypeManager();
-        IContentType wsdlType = manager.getContentType("org.eclipse.wst.wsdl.wsdlsource");
+        IContentType wsdlType = manager.getContentType("org.eclipse.wst.wsdl.wsdlsource"); //$NON-NLS-1$
         for (IContentType type : manager.findContentTypesFor(wsdlFile.getName())) {
             if (type.isKindOf(wsdlType)) {
                 return Status.OK_STATUS;
             }
         }
-        return new Status(Status.ERROR, Activator.PLUGIN_ID, "Specified file is not a WSDL file.");
+        return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.WSDL2JavaOptionsWizardPage_errorStatus_specifiedFileNotAWSDL);
     }
 
 }

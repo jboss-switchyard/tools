@@ -26,28 +26,28 @@ public interface ISwitchYardFacetConstants {
      * Property ID used to indicate whether or not the runtime supplies the
      * SwitchYard dependencies.
      */
-    public static final String RUNTIME_PROVIDED = "SwitchYard.RUNTIME_PROVIDED";
+    public static final String RUNTIME_PROVIDED = "SwitchYard.RUNTIME_PROVIDED"; //$NON-NLS-1$
     /** Property ID used to indicate the desired SwitchYard runtime version. */
-    public static final String RUNTIME_VERSION = "SwitchYard.RUNTIME_VERSION";
+    public static final String RUNTIME_VERSION = "SwitchYard.RUNTIME_VERSION"; //$NON-NLS-1$
     /** Property ID used to indicate the desired SwitchYard components. */
-    public static final String RUNTIME_COMPONENTS = "SwitchYard.RUNTIME_COMPONENTS";
+    public static final String RUNTIME_COMPONENTS = "SwitchYard.RUNTIME_COMPONENTS"; //$NON-NLS-1$
     /** Property ID used to indicate the ISwitchYardProject instance. */
-    public static final String SWITCHYARD_PROJECT = "SwitchYard.SWITCHYARD_PROJECT";
+    public static final String SWITCHYARD_PROJECT = "SwitchYard.SWITCHYARD_PROJECT"; //$NON-NLS-1$
 
     /** The ID of the SwitchYard facet. */
-    public static final String SWITCHYARD_FACET_ID = "switchyard.core";
+    public static final String SWITCHYARD_FACET_ID = "switchyard.core"; //$NON-NLS-1$
 
     /** The ID of the basic SwitchYard facet set. */
-    public static final String SWITCHYARD_BASIC_PRESET_ID = "preset.switchyard.basic";
+    public static final String SWITCHYARD_BASIC_PRESET_ID = "preset.switchyard.basic"; //$NON-NLS-1$
     /** The ID of the JAR SwitchYard facet set. */
-    public static final String SWITCHYARD_JAR_PRESET_ID = "preset.switchyard.jar";
+    public static final String SWITCHYARD_JAR_PRESET_ID = "preset.switchyard.jar"; //$NON-NLS-1$
 
     /** The ID of the framework default facet set. */
-    public static final String DEFAULT_PRESET_ID = "default.configuration";
+    public static final String DEFAULT_PRESET_ID = "default.configuration"; //$NON-NLS-1$
     /** The ID of the Java facet. */
-    public static final String JAVA_FACET_ID = "java";
+    public static final String JAVA_FACET_ID = "java"; //$NON-NLS-1$
     /** Our preferred version of Java. */
-    public static final String JAVA_FACET_VERSION = "1.6";
+    public static final String JAVA_FACET_VERSION = "1.6"; //$NON-NLS-1$
     /** The ID of the JBoss Maven Integration facet. */
     public static final String JBOSS_M2_FACET_ID = "jboss.m2";
 

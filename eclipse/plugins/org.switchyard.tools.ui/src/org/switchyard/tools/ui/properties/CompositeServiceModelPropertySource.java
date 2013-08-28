@@ -16,6 +16,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.composite.CompositeServiceModel;
 import org.switchyard.config.model.composite.InterfaceModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * CompositeServiceModelPropertySource
@@ -27,9 +28,9 @@ import org.switchyard.config.model.composite.InterfaceModel;
  */
 public class CompositeServiceModelPropertySource implements IPropertySource {
 
-    private static final String PROP_NAME = "name";
-    private static final String PROP_INTERFACE = "interface";
-    private static final String PROP_PROMOTE = "promote";
+    private static final String PROP_NAME = "name"; //$NON-NLS-1$
+    private static final String PROP_INTERFACE = "interface"; //$NON-NLS-1$
+    private static final String PROP_PROMOTE = "promote"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final CompositeServiceModel _model;
@@ -74,12 +75,12 @@ public class CompositeServiceModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, "Name"),
-                new PropertyDescriptor(PROP_PROMOTE, "Promoted Service"),
-                new PropertyDescriptor(PROP_INTERFACE, "Interface") };
-        DESCRIPTORS[0].setDescription("The name for the SwitchYard service.");
-        DESCRIPTORS[1].setDescription("The promoted component service.");
-        DESCRIPTORS[2].setDescription("The interface details for the service.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, Messages.CompositeServiceModelPropertySource_propertyDescriptor_name),
+                new PropertyDescriptor(PROP_PROMOTE, Messages.CompositeServiceModelPropertySource_propertyDescriptor_promotedService),
+                new PropertyDescriptor(PROP_INTERFACE, Messages.CompositeServiceModelPropertySource_propertyDescriptor_interface) };
+        DESCRIPTORS[0].setDescription(Messages.CompositeServiceModelPropertySource_propertyDescriptorDescription_name);
+        DESCRIPTORS[1].setDescription(Messages.CompositeServiceModelPropertySource_propertyDescriptorDescription_promotedService);
+        DESCRIPTORS[2].setDescription(Messages.CompositeServiceModelPropertySource_propertyDescriptorDescription_interface);
         DESCRIPTORS[2].setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {

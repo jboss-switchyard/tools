@@ -36,6 +36,7 @@ import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener;
 import org.switchyard.tools.ui.explorer.impl.SwitchYardRootNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardExplorerContentProvider
@@ -177,14 +178,14 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
 
     private final class SwitchYardRefreshJob extends Job {
         private SwitchYardRefreshJob() {
-            super("Refreshing SwitchYard project configuration.");
+            super(Messages.SwitchYardExplorerContentProvider_jobMessage_RefreshingSYProjectConfig);
             // we don't want this to get in the way of build or maven jobs.
             setPriority(DECORATE);
         }
 
         @Override
         protected IStatus run(IProgressMonitor monitor) {
-            monitor.beginTask("Refreshing SwitchYard project configuration: ", IProgressMonitor.UNKNOWN);
+            monitor.beginTask(Messages.SwitchYardExplorerContentProvider_jobMessage_RefreshingSYProjectConfig, IProgressMonitor.UNKNOWN);
             IStatus status = Status.OK_STATUS;
             try {
                 final Set<SwitchYardRootNode> updatedNodes = new LinkedHashSet<SwitchYardRootNode>();

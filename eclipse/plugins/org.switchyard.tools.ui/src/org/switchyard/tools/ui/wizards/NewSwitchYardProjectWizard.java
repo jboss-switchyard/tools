@@ -32,6 +32,7 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation.NewSwitchYardProjectMetaData;
 
@@ -46,9 +47,9 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
     // TODO: use preferences
     /** The default runtime version. */
-    public static final String DEFAULT_RUNTIME_VERSION = "1.0.0.Final";
-    private static final String DEFAULT_PROJECT_NAME = "switchyard-example";
-    private static final String DEFAULT_PROJECT_VERSION = "0.0.1-SNAPSHOT";
+    public static final String DEFAULT_RUNTIME_VERSION = "1.0.0.Final"; //$NON-NLS-1$
+    private static final String DEFAULT_PROJECT_NAME = "switchyard-example"; //$NON-NLS-1$
+    private static final String DEFAULT_PROJECT_VERSION = "0.0.1-SNAPSHOT"; //$NON-NLS-1$
 
     private WizardNewProjectCreationPage _newProjectPage;
     private ProjectConfigurationWizardPage _configurationPage;
@@ -61,7 +62,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
     public NewSwitchYardProjectWizard() {
         super();
         setNeedsProgressMonitor(true);
-        setWindowTitle("New SwitchYard Project");
+        setWindowTitle(Messages.NewSwitchYardProjectWizard_windowTitle);
     }
 
     @Override
@@ -79,17 +80,17 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
     @Override
     public void addPages() {
-        _newProjectPage = new WizardNewProjectCreationPage("NewProjectPage") {
+        _newProjectPage = new WizardNewProjectCreationPage("NewProjectPage") { //$NON-NLS-1$
             public void createControl(Composite parent) {
                 super.createControl(parent);
                 createWorkingSetGroup((Composite) getControl(), _selection, new String[] {
                         "org.eclipse.ui.resourceWorkingSetPage", //$NON-NLS-1$
-                        "org.eclipse.jdt.ui.JavaWorkingSetPage" });
+                        "org.eclipse.jdt.ui.JavaWorkingSetPage" }); //$NON-NLS-1$
                 Dialog.applyDialogFont(getControl());
             }
         };
-        _newProjectPage.setTitle("New SwitchYard Project");
-        _newProjectPage.setDescription("Please specify project name and location.");
+        _newProjectPage.setTitle(Messages.NewSwitchYardProjectWizard_projectPageTitle);
+        _newProjectPage.setDescription(Messages.NewSwitchYardProjectWizard_projectPageDescription);
         _newProjectPage.setInitialProjectName(getInitialProjectName());
         addPage(_newProjectPage);
 
@@ -144,7 +145,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
                                             .getDefault()
                                             .getLog()
                                             .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                                    "Error opening switchyard.xml.", e));
+                                                    Messages.NewSwitchYardProjectWizard_logError_errorOpeningSYXML, e));
                                 }
                             }
                         });
@@ -161,10 +162,10 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error creating SwitchYard project.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.NewSwitchYardProjectWizard_logError_errorCreatingSYProject,
                                 realException));
             }
-            MessageDialog.openError(getShell(), "Error Creating Project", realException.getMessage());
+            MessageDialog.openError(getShell(), Messages.NewSwitchYardProjectWizard_errorMessage_errorCreatingProject, realException.getMessage());
             return projectMetaData.getNewProjectHandle().exists();
         }
 

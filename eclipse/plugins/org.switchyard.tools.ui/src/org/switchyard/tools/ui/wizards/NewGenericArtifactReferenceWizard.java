@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui.wizards;
 
 import org.eclipse.ui.IWorkbenchWizard;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * NewGenericArtifactReferenceWizard
@@ -27,7 +28,7 @@ public class NewGenericArtifactReferenceWizard extends NewArtifactReferenceWizar
      */
     public NewGenericArtifactReferenceWizard() {
         super(false);
-        setWindowTitle("Generic Artifact Reference");
+        setWindowTitle(Messages.NewGenericArtifactReferenceWizard_wizardTitle);
     }
 
     @Override

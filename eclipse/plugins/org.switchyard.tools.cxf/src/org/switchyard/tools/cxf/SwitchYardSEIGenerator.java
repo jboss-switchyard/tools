@@ -30,7 +30,7 @@ import org.apache.cxf.tools.wsdlto.frontend.jaxws.processor.WSDLToJavaProcessor;
  */
 public class SwitchYardSEIGenerator extends AbstractGenerator {
 
-    private static final String SEI_TEMPLATE = "org/switchyard/tools/cxf/sei.vm";
+    private static final String SEI_TEMPLATE = "org/switchyard/tools/cxf/sei.vm"; //$NON-NLS-1$
 
     @Override
     public void register(ClassCollector collector, String packageName, String fileName) {
@@ -50,7 +50,7 @@ public class SwitchYardSEIGenerator extends AbstractGenerator {
             }
             for (JavaInterface intf : interfaces.values()) {
                 clearAttributes();
-                setAttributes("intf", intf);
+                setAttributes("intf", intf); //$NON-NLS-1$
                 setCommonAttributes();
 
                 doWrite(SEI_TEMPLATE, parseOutputName(intf.getPackageName(), intf.getName()));

@@ -33,6 +33,7 @@ import org.switchyard.config.model.switchyard.ArtifactsModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * CreateArtifactReferenceOperation
@@ -71,21 +72,21 @@ public class CreateArtifactReferenceOperation implements IWorkspaceRunnable {
 
     @Override
     public void run(IProgressMonitor monitor) throws CoreException {
-        monitor.beginTask("Adding artifact reference to SwitchYard project.", 200);
+        monitor.beginTask(Messages.CreateArtifactReferenceOperation_taskLabel_addingArtifactReferenceToProject, 200);
         try {
             IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 100,
                     SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             try {
-                monitor.subTask("Updating switchyard.xml file.");
+                monitor.subTask(Messages.CreateArtifactReferenceOperation_taskLabel_updatingSYXMLFile);
                 updateSwitchYardFile(subMonitor);
             } catch (CoreException e) {
                 throw e;
             } catch (Exception e) {
                 throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "Error occurred updating switchyard.xml file.", e));
+                        Messages.CreateArtifactReferenceOperation_exceptionMessage_errorUpdatingSYXMLFile, e));
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             if (_downloadOperation == null) {
@@ -93,23 +94,23 @@ public class CreateArtifactReferenceOperation implements IWorkspaceRunnable {
             }
 
             subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-            monitor.subTask("Downloading artifact resource.");
+            monitor.subTask(Messages.CreateArtifactReferenceOperation_taskLabel_downloadingArtifactResource);
             try {
                 _downloadOperation.run(subMonitor);
             } catch (CoreException e) {
                 throw new CoreException(new Status(Status.WARNING, Activator.PLUGIN_ID,
-                        "Error occurred while downloading artifact resource.", e));
+                        Messages.CreateArtifactReferenceOperation_exceptionMessage_errorWhileDownloadingArtifact, e));
             }
         } finally {
-            monitor.subTask("");
+            monitor.subTask(""); //$NON-NLS-1$
             monitor.done();
         }
     }
 
     private void updateSwitchYardFile(IProgressMonitor monitor) throws CoreException, ExecutionException, IOException {
-        monitor.beginTask("Updating switchyard.xml file.", 200);
+        monitor.beginTask(Messages.CreateArtifactReferenceOperation_taskLabel_updatingSYXMLFile, 200);
 
-        monitor.subTask("Loading switchyard.xml file.");
+        monitor.subTask(Messages.CreateArtifactReferenceOperation_taskLabel_loadingSYXMLFile);
         SwitchYardModel switchYardModel = _switchYardProject.loadSwitchYardModel(new NullProgressMonitor());
         monitor.worked(100);
         
@@ -126,7 +127,7 @@ public class CreateArtifactReferenceOperation implements IWorkspaceRunnable {
         artifact.setURL(_url);
         artifacts.addArtifact(artifact);
         
-        monitor.subTask("Writing udpated switchyard.xml");
+        monitor.subTask(Messages.CreateArtifactReferenceOperation_taskLabel_writingUpdatedSYXML);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         switchYardModel.getModelConfiguration().write(baos, new OutputKey[0]);
         if (switchYardFile.exists()) {
@@ -135,7 +136,7 @@ public class CreateArtifactReferenceOperation implements IWorkspaceRunnable {
         } else {
             try {
                 new CreateFileOperation(switchYardFile, null, new ByteArrayInputStream(baos.toByteArray()),
-                        "Creating switchyard.xml file.").execute(new SubProgressMonitor(monitor, 100), _uiInfo);
+                        Messages.CreateArtifactReferenceOperation_operationLabel_creatingSYXMLFile).execute(new SubProgressMonitor(monitor, 100), _uiInfo);
             } catch (ExecutionException e) {
                 if (e.getCause() instanceof CoreException) {
                     throw (CoreException) e.getCause();

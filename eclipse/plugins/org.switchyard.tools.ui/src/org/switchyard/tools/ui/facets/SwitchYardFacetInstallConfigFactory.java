@@ -30,6 +30,7 @@ import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
 
 /**
@@ -83,7 +84,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
             for (ListIterator<Version> lit = _versions.listIterator(_versions.size()); lit.hasPrevious();) {
                 Version version = lit.previous();
                 _defaultVersion = version;
-                if (!version.toString().endsWith("-SNAPSHOT")) {
+                if (!version.toString().endsWith("-SNAPSHOT")) { //$NON-NLS-1$
                     _defaultVersion = version;
                     break;
                 }
@@ -145,7 +146,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
             if (version instanceof Version) {
                 return Status.OK_STATUS;
             }
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Must specify SwitchYard runtime version.");
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.SwitchYardFacetInstallConfigFactory_statusMessage_MustSpecifySYVersion);
         } else if (RUNTIME_COMPONENTS.equals(name)) {
             return Status.OK_STATUS;
         }

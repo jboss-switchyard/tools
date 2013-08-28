@@ -290,7 +290,7 @@ public class NewWSDLFileWizard extends NewWSDLWizard {
     @Override
     public void init(IWorkbench workbench, IStructuredSelection currentSelection) {
         super.init(workbench, currentSelection);
-        setWindowTitle("New WSDL File");
+        setWindowTitle(org.switchyard.tools.ui.i18n.Messages.NewWSDLFileWizard_wizardTitle);
         _selection = currentSelection;
     }
 

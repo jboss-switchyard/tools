@@ -29,6 +29,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
 
 /**
@@ -69,7 +70,7 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
 
     @Override
     public void addPages() {
-        setWindowTitle("New Bean Service");
+        setWindowTitle(Messages.NewBeanServiceWizard_windowTitle);
         _newClassPage = new NewBeanServiceClassWizardPage();
         _newClassPage.init(selection);
         if (_serviceInterface != null) {
@@ -143,10 +144,10 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error creating bean service class.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.NewBeanServiceWizard_logMessage_errorCreatingBeanServiceClass,
                                 realException));
             }
-            MessageDialog.openError(getShell(), "Error Creating Bean Service", realException.getMessage());
+            MessageDialog.openError(getShell(), Messages.NewBeanServiceWizard_errorMessage_errorCreatingBeanService, realException.getMessage());
             if (!_newClassPage.getModifiedResource().exists()) {
                 return false;
             }
@@ -181,7 +182,7 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
                                     .getDefault()
                                     .getLog()
                                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                            "Error opening bean service source.", e));
+                                            Messages.NewBeanServiceWizard_logMessage_errorOpeningBeanServiceSource, e));
                         }
                     }
                 });

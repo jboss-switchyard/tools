@@ -6,7 +6,7 @@
       <configurator
             class="org.switchyard.tools.m2e.SwitchYardProjectConfigurator"
             id="org.switchyard.tools.m2e.switchYardProjectConfigurator"
-            name="SwitchYard m2e Project Configurator">
+            name="%configurator.name">
       </configurator>
    </extension>
    <extension

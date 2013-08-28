@@ -62,7 +62,7 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
             }
         }
         // make sure a JEE facet is installed
-        if (UTILITY_MODULE_FACET != null && "jar".equals(request.getMavenProject().getPackaging())
+        if (UTILITY_MODULE_FACET != null && "jar".equals(request.getMavenProject().getPackaging()) //$NON-NLS-1$
                 && !ifpwc.hasProjectFacet(UTILITY_MODULE_FACET)) {
             // add utility module facet
             ifpwc.addProjectFacet(UTILITY_MODULE_FACET.getDefaultVersion());
@@ -88,7 +88,7 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
 
     protected void addFilesToClean(ResourceCleaner fileCleaner, IPath[] paths) {
         for (IPath resourceFolderPath : paths) {
-            fileCleaner.addFiles(resourceFolderPath.append("META-INF/MANIFEST.MF"));
+            fileCleaner.addFiles(resourceFolderPath.append("META-INF/MANIFEST.MF")); //$NON-NLS-1$
         }
     }
 
@@ -100,7 +100,7 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
 
     private IPreset getSwitchYardBasicPreset(IFacetedProjectWorkingCopy ifpwc) {
         for (IPreset preset : ifpwc.getAvailablePresets()) {
-            if ("preset.switchyard.basic".equals(preset.getId())) {
+            if ("preset.switchyard.basic".equals(preset.getId())) { //$NON-NLS-1$
                 return preset;
             }
         }
@@ -116,8 +116,8 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
     }
 
     static {
-        if (ProjectFacetsManager.isProjectFacetDefined("jst.utility")) {
-            UTILITY_MODULE_FACET = ProjectFacetsManager.getProjectFacet("jst.utility");
+        if (ProjectFacetsManager.isProjectFacetDefined("jst.utility")) { //$NON-NLS-1$
+            UTILITY_MODULE_FACET = ProjectFacetsManager.getProjectFacet("jst.utility"); //$NON-NLS-1$
         } else {
             UTILITY_MODULE_FACET = null;
         }

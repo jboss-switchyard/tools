@@ -16,6 +16,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.composite.ComponentServiceModel;
 import org.switchyard.config.model.composite.InterfaceModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ComponentServiceModelPropertySource
@@ -27,9 +28,9 @@ import org.switchyard.config.model.composite.InterfaceModel;
  */
 public class ComponentServiceModelPropertySource implements IPropertySource {
 
-    private static final String PROP_NAME = "name";
-    private static final String PROP_INTERFACE = "interface";
-    private static final String PROP_POLICIES = "policies";
+    private static final String PROP_NAME = "name"; //$NON-NLS-1$
+    private static final String PROP_INTERFACE = "interface"; //$NON-NLS-1$
+    private static final String PROP_POLICIES = "policies"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final ComponentServiceModel _model;
@@ -74,17 +75,17 @@ public class ComponentServiceModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, "Name"),
-                new PropertyDescriptor(PROP_INTERFACE, "Interface"),
-                new PropertyDescriptor(PROP_POLICIES, "Policy Requirements") };
-        DESCRIPTORS[0].setDescription("The name for the SwitchYard component service.");
-        DESCRIPTORS[1].setDescription("The interface details for the service.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, Messages.ComponentServiceModelPropertySource_propertyDescriptor_name),
+                new PropertyDescriptor(PROP_INTERFACE, Messages.ComponentServiceModelPropertySource_propertyDescriptor_interface),
+                new PropertyDescriptor(PROP_POLICIES, Messages.ComponentServiceModelPropertySource_propertyDescriptor_policyRequirements) };
+        DESCRIPTORS[0].setDescription(Messages.ComponentServiceModelPropertySource_propertyDescriptorDescription_name);
+        DESCRIPTORS[1].setDescription(Messages.ComponentServiceModelPropertySource_propertyDescriptorDescription_interface);
         DESCRIPTORS[1].setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
                 return ((InterfaceModel) element).getType();
             }
         });
-        DESCRIPTORS[2].setDescription("The policy requirements for the service.");
+        DESCRIPTORS[2].setDescription(Messages.ComponentServiceModelPropertySource_propertyDescriptorDescription_policyRequirements);
     }
 }

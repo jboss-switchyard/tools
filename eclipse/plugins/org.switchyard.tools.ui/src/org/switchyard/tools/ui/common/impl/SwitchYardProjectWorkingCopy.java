@@ -41,6 +41,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardProjectWorkingCopy
@@ -252,7 +253,7 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 monitor.done();
                 return;
             }
-            monitor.beginTask("Updating project pom.", 300);
+            monitor.beginTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_updatingProjectPOM, 300);
             IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 100,
                     SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             if (processUpdates(subMonitor)) {
@@ -296,17 +297,17 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     private boolean processUpdates(IProgressMonitor monitor) throws CoreException {
         boolean modelUpdated = false;
 
-        monitor.beginTask("Processing SwitchYard settings changes.", 50);
+        monitor.beginTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_processingSYSettingsChanges, 50);
 
         if (_mavenProject != _switchYardProject.getMavenProject()) {
             throw new CoreException(
                     new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "ISwitchYardProjectWorkingCopy is out of sync with ISwitchYardProject.  Updates cannot be processed."));
+                            Messages.SwitchYardProjectWorkingCopy_errorMessage_workingCopyOutOfSync));
         }
 
         Model model = _switchYardProject.getMavenProject().getOriginalModel();
 
-        monitor.subTask("Validating switchyard.version property.");
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingVersionProperty);
         final String switchYardVersionPropertyKey = getVersionPropertyKey();
         final String currentSwitchYardVersion = _switchYardProject.getVersion();
         if (switchYardVersionPropertyKey != null) {
@@ -314,13 +315,13 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 model.addProperty(switchYardVersionPropertyKey, _newVersion);
                 modelUpdated = true;
             } else if (currentSwitchYardVersion == null) {
-                model.addProperty(switchYardVersionPropertyKey, "");
+                model.addProperty(switchYardVersionPropertyKey, ""); //$NON-NLS-1$
                 modelUpdated = true;
             }
         }
         monitor.worked(10);
 
-        monitor.subTask("Validating component dependencies.");
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingComponentDependencies);
 
         if (_removedComponents.size() > 0) {
             // there's got to be a better way....
@@ -360,14 +361,14 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         }
         monitor.worked(10);
 
-        monitor.subTask("Validating SwitchYard plugin.");
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingSYPlugin);
         if (_switchYardProject.getPlugin().updateScannerClasses(collectScanners(_addedComponents.values()),
                 collectScanners(_removedComponents.values()))) {
             modelUpdated = true;
         }
         monitor.worked(10);
 
-        monitor.subTask("Validating repository settings.");
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingRepoSettings);
         boolean foundRepo = false;
         for (Repository repo : getMavenProject().getRepositories()) {
             if (JBOSS_PUBLIC_REPOSITORY_URL.equals(repo.getUrl())) {

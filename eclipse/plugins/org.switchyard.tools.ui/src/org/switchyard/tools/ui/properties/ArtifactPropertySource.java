@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.tools.ui.explorer.impl.ArtifactNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ArtifactPropertySource
@@ -25,7 +26,7 @@ import org.switchyard.tools.ui.explorer.impl.ArtifactNode;
  */
 public class ArtifactPropertySource implements IPropertySource {
 
-    private static final String PROP_MODEL = "model";
+    private static final String PROP_MODEL = "model"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private ArtifactNode _node;
@@ -49,7 +50,7 @@ public class ArtifactPropertySource implements IPropertySource {
         if (PROP_MODEL.equals(id)) {
             return _node.getModel();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     @Override
@@ -66,7 +67,7 @@ public class ArtifactPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, "SwitchYard Artifact") };
-        DESCRIPTORS[0].setDescription("Details for a SwitchYard artifact reference.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, Messages.ArtifactPropertySource_propertyDescriptor_artifact) };
+        DESCRIPTORS[0].setDescription(Messages.ArtifactPropertySource_propertyDescriptorDescription_artifact);
     }
 }

@@ -31,6 +31,7 @@ import org.switchyard.tools.ui.common.ILayoutUtilities;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.common.SwitchYardSettingsGroup;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardFacetInstallWizardPage
@@ -50,9 +51,9 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
      * Create a new SwitchYardFacetInstallWizardPage.
      */
     public SwitchYardFacetInstallWizardPage() {
-        super("SwitchYard");
-        setTitle("SwitchYard");
-        setDescription("Configure SwitchYard capabilities on project");
+        super(Messages.SwitchYardFacetInstallWizardPage_pageName_switchYard);
+        setTitle(Messages.SwitchYardFacetInstallWizardPage_pageTitle_switchYard);
+        setDescription(Messages.SwitchYardFacetInstallWizardPage_pageDescription_switchYard);
     }
 
     @Override

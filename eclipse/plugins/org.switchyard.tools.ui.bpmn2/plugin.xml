@@ -24,7 +24,7 @@
 		</propertyTab>
 
       <customTask
-            description="This task represents the invocation of a SwitchYard service."
+            description="%customTask.description"
             featureContainer="org.switchyard.tools.ui.bpmn2.editor.SwitchYardCustomTaskFeatureContainer"
             id="org.switchyard.tools.ui.bpmn2.switchYardCustomTask"
             name="SwitchYard Service Task"

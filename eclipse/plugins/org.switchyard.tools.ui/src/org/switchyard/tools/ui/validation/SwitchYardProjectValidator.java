@@ -49,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResou
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardProjectValidator
@@ -59,7 +60,7 @@ import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 public class SwitchYardProjectValidator extends AbstractValidator {
 
     /** ID for SwitchYard specific problem markers. */
-    public static final String SWITCHYARD_MARKER_ID = "org.switchyard.tools.ui.problemMarker";
+    public static final String SWITCHYARD_MARKER_ID = "org.switchyard.tools.ui.problemMarker"; //$NON-NLS-1$
 
     /**
      * Get the SwitchYard model object from the resource.
@@ -128,7 +129,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
         }
         try {
             if (resource.getContents().isEmpty()) {
-                ValidatorMessage message = ValidatorMessage.create("Invalid switchyard.xml file", event.getResource());
+                ValidatorMessage message = ValidatorMessage.create(Messages.SwitchYardProjectValidator_validatorMessage_InvalidSYXMLFile, event.getResource());
                 message.setType(SWITCHYARD_MARKER_ID);
                 result.add(message);
             } else {
@@ -178,7 +179,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
             if (ics.getResultLocus().size() > 0) {
                 StringBuffer relatedUris = new StringBuffer();
                 for (EObject eobject : ics.getResultLocus()) {
-                    relatedUris.append(getURIStringForObject(eobject, patchURIs)).append(" ");
+                    relatedUris.append(getURIStringForObject(eobject, patchURIs)).append(" "); //$NON-NLS-1$
                 }
                 relatedUris.deleteCharAt(relatedUris.length() - 1);
                 message.setAttribute(EValidator.RELATED_URIS_ATTRIBUTE, relatedUris.toString());
@@ -193,7 +194,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
     private String getURIStringForObject(EObject object, boolean patchURI) {
         final URI objectURI = EcoreUtil.getURI(object);
         if (patchURI) {
-            return URI.createGenericURI("switchyard", "generated", objectURI.fragment()).toString();
+            return URI.createGenericURI("switchyard", "generated", objectURI.fragment()).toString(); //$NON-NLS-1$ //$NON-NLS-2$
         }
         return objectURI.toString();
     }

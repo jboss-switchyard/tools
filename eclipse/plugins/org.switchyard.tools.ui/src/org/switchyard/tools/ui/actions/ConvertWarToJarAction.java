@@ -62,6 +62,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.facets.SwitchYardFacetInstallWizardPage;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ConvertWarToJarAction
@@ -103,16 +104,16 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
             if (MessageDialog
                     .openQuestion(
                             _targetPart.getSite().getShell(),
-                            "Add SwitchYard Capabilities?",
-                            "The selected project is not a SwitchYard project.\n\nDo you wish to add SwitchYard capabilities?\n\n* Note, this will convert the project to Faceted Form.")) {
+                            Messages.ConvertWarToJarAction_messageDialog_title_AddSYCapabilitiesAndFacets,
+                            Messages.ConvertWarToJarAction_messageDialog_message_AddSYCapabilitiesAndFacets)) {
                 convertToFacetedProject();
                 updateOpenShiftProject();
             }
             return;
         } else if (!ifp.hasProjectFacet(SWITCHYARD_FACET)) {
             // check to see if SwitchYard is installed
-            if (MessageDialog.openQuestion(_targetPart.getSite().getShell(), "Add SwitchYard Capabilities?",
-                    "The selected project is not a SwitchYard project.\n\nDo you wish to add SwitchYard capabilities?")) {
+            if (MessageDialog.openQuestion(_targetPart.getSite().getShell(), Messages.ConvertWarToJarAction_messageDialog_title_AddSYCapabilities,
+                    Messages.ConvertWarToJarAction_messageDialog_message_AddSYCapabilities)) {
                 installSwitchYardFacet(ifp.createWorkingCopy());
                 updateOpenShiftProject();
             }
@@ -133,7 +134,7 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
         Set<IProjectFacetVersion> ipfvs = ifp.getProjectFacets();
         for (IProjectFacetVersion pf : ipfvs) {
             String id = pf.getProjectFacet().getId();
-            if (!(id.equalsIgnoreCase("jboss.m2") || id.equalsIgnoreCase("java") || id.equalsIgnoreCase("jst.cdi"))) {
+            if (!(id.equalsIgnoreCase("jboss.m2") || id.equalsIgnoreCase("java") || id.equalsIgnoreCase("jst.cdi"))) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 //                System.out.println("Removing: " + pf.getProjectFacet().getId());
                 fpwc.removeProjectFacet(pf);
             }
@@ -154,8 +155,8 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
                 preset = ((IDynamicPreset) preset).resolve(context);
             }
             if (preset == null) {
-                MessageDialog.openError(_targetPart.getSite().getShell(), "Error Installing SwitchYard Facet",
-                        "Failed to install SwitchYard facet on project.");
+                MessageDialog.openError(_targetPart.getSite().getShell(), Messages.ConvertWarToJarAction_errorDialog_title_errorInstallingSYFacet,
+                        Messages.ConvertWarToJarAction_errorDialog_message_errorInstallingSYFacet);
                 return;
             }
             // this should setup the java facet correctly
@@ -209,7 +210,7 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
                     Activator
                             .getDefault()
                             .getLog()
-                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error initializing SwitchYard facet.",
+                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.ConvertWarToJarAction_errorMessage_errorInitializingSYFacet,
                                     e));
                 }
             }
@@ -221,7 +222,7 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error initializing SwitchYard facet.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.ConvertWarToJarAction_errorMessage_errorInitializingSYFacet,
                                 e1));
             }
         } finally {
@@ -254,7 +255,7 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
     private void displayPropertyDialog() {
         // display project properties dialog, open to SwitchYard Settings
         PreferencesUtil.createPropertyDialogOn(_targetPart.getSite().getShell(), _project,
-                "org.switchyard.tools.ui.configuration.page", null, null, PreferencesUtil.OPTION_NONE).open();
+                "org.switchyard.tools.ui.configuration.page", null, null, PreferencesUtil.OPTION_NONE).open(); //$NON-NLS-1$
     }
 
     /*
@@ -277,15 +278,15 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
         Iterator<?> profileIter = profileList.iterator();
         while (profileIter.hasNext()) {
             Element profile = (Element) profileIter.next();
-            Element build = profile.getChild("build", ns);
-            Element plugins = build.getChild("plugins", ns);
+            Element build = profile.getChild("build", ns); //$NON-NLS-1$
+            Element plugins = build.getChild("plugins", ns); //$NON-NLS-1$
             
             List<?> pluginList = plugins.getChildren();
             Iterator<?> pluginIter = pluginList.iterator();
             while (pluginIter.hasNext()) {
                 Element plugin = (Element) pluginIter.next();
-                Element artifactId = plugin.getChild("artifactId", ns);
-                if (artifactId.getText().equalsIgnoreCase("maven-war-plugin")) {
+                Element artifactId = plugin.getChild("artifactId", ns); //$NON-NLS-1$
+                if (artifactId.getText().equalsIgnoreCase("maven-war-plugin")) { //$NON-NLS-1$
                     return plugin;
                 }
             }
@@ -313,7 +314,7 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error POM for SwitchYard project.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.ConvertWarToJarAction_errorMesssage_ErrorInPOMForSYProject,
                                 e));
             }
         }
@@ -325,7 +326,7 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
             return;
         }
 
-        IFile pomFile = _project.getFile("pom.xml");
+        IFile pomFile = _project.getFile("pom.xml"); //$NON-NLS-1$
         if (pomFile != null) {
             SAXBuilder builder = new SAXBuilder();
             File xmlFile = new File(pomFile.getLocationURI());
@@ -335,30 +336,30 @@ public class ConvertWarToJarAction extends SwitchYardSettingsAction {
                 Element rootNode = doc.getRootElement();
 
                 boolean madeChanges = false;
-                Element packagingNode = rootNode.getChild("packaging", rootNode.getNamespace());
+                Element packagingNode = rootNode.getChild("packaging", rootNode.getNamespace()); //$NON-NLS-1$
 
-                if (packagingNode != null && packagingNode.getText().equalsIgnoreCase("war")) {
-                    packagingNode.setText("jar");
+                if (packagingNode != null && packagingNode.getText().equalsIgnoreCase("war")) { //$NON-NLS-1$
+                    packagingNode.setText("jar"); //$NON-NLS-1$
                     madeChanges = true;
                 }
 
-                Element profiles = rootNode.getChild("profiles", rootNode.getNamespace());
+                Element profiles = rootNode.getChild("profiles", rootNode.getNamespace()); //$NON-NLS-1$
 
                 if (profiles != null) {
                     Element plugin = warProfileExists(profiles, rootNode.getNamespace());
                     if (plugin != null) {
-                        Element artifactId = plugin.getChild("artifactId", rootNode.getNamespace());
-                        if (artifactId.getText().equalsIgnoreCase("maven-war-plugin")) {
-                            artifactId.setText("maven-jar-plugin");
-                            Element version = plugin.getChild("version", rootNode.getNamespace());
+                        Element artifactId = plugin.getChild("artifactId", rootNode.getNamespace()); //$NON-NLS-1$
+                        if (artifactId.getText().equalsIgnoreCase("maven-war-plugin")) { //$NON-NLS-1$
+                            artifactId.setText("maven-jar-plugin"); //$NON-NLS-1$
+                            Element version = plugin.getChild("version", rootNode.getNamespace()); //$NON-NLS-1$
                             if (version != null) {
                                 // set the version
-                                version.setText("2.3.1");
+                                version.setText("2.3.1"); //$NON-NLS-1$
                             }
-                            Element configuration = plugin.getChild("configuration", rootNode.getNamespace());
+                            Element configuration = plugin.getChild("configuration", rootNode.getNamespace()); //$NON-NLS-1$
                             if (configuration != null) {
                                 // remove this
-                                configuration.removeChild("warName", rootNode.getNamespace());
+                                configuration.removeChild("warName", rootNode.getNamespace()); //$NON-NLS-1$
                             }
                             madeChanges = true;
                         }

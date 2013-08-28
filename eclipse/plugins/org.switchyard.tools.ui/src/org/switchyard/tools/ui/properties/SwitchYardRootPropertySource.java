@@ -15,6 +15,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.tools.ui.explorer.impl.SwitchYardRootNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ArtifactPropertySource
@@ -26,8 +27,8 @@ import org.switchyard.tools.ui.explorer.impl.SwitchYardRootNode;
  */
 public class SwitchYardRootPropertySource implements IPropertySource {
 
-    private static final String PROP_MODEL = "model";
-    private static final String PROP_RESOURCE = "resource";
+    private static final String PROP_MODEL = "model"; //$NON-NLS-1$
+    private static final String PROP_RESOURCE = "resource"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private SwitchYardRootNode _node;
@@ -53,7 +54,7 @@ public class SwitchYardRootPropertySource implements IPropertySource {
         } else if (PROP_RESOURCE.equals(id)) {
             return _node.getSwitchYardProject().getSwitchYardConfigurationFile();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     @Override
@@ -70,14 +71,14 @@ public class SwitchYardRootPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, "Application"),
-                new PropertyDescriptor(PROP_RESOURCE, "Configuration File") };
-        DESCRIPTORS[0].setDescription("SwitchYard application details.");
-        DESCRIPTORS[1].setDescription("switchyard.xml file details.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_MODEL, Messages.SwitchYardRootPropertySource_propertyDescriptor_application),
+                new PropertyDescriptor(PROP_RESOURCE, Messages.SwitchYardRootPropertySource_propertyDescriptor_configFile) };
+        DESCRIPTORS[0].setDescription(Messages.SwitchYardRootPropertySource_propertyDescriptorDescription_application);
+        DESCRIPTORS[1].setDescription(Messages.SwitchYardRootPropertySource_propertyDescriptorDescription_configFile);
         DESCRIPTORS[1].setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
-                return "";
+                return ""; //$NON-NLS-1$
             }
 
         });

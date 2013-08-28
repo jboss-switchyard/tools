@@ -49,6 +49,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.facets.SwitchYardFacetInstallWizardPage;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardSettingsAction
@@ -91,15 +92,15 @@ public class SwitchYardSettingsAction extends ActionDelegate implements IObjectA
             if (MessageDialog
                     .openQuestion(
                             _targetPart.getSite().getShell(),
-                            "Add SwitchYard Capabilities?",
-                            "The selected project is not a SwitchYard project.\n\nDo you wish to add SwitchYard capabilities?\n\n* Note, this will convert the project to Faceted Form.")) {
+                            Messages.SwitchYardSettingsAction_messageDialog_title_addSYCapabilitiesAndFacet,
+                            Messages.SwitchYardSettingsAction_messageDialog_message_addSYCapabilitiesAndFacet)) {
                 convertToFacetedProject();
             }
             return;
         } else if (!ifp.hasProjectFacet(SWITCHYARD_FACET)) {
             // check to see if SwitchYard is installed
-            if (MessageDialog.openQuestion(_targetPart.getSite().getShell(), "Add SwitchYard Capabilities?",
-                    "The selected project is not a SwitchYard project.\n\nDo you wish to add SwitchYard capabilities?")) {
+            if (MessageDialog.openQuestion(_targetPart.getSite().getShell(), Messages.SwitchYardSettingsAction_messageDialog_title_addSYCapabilities,
+                    Messages.SwitchYardSettingsAction_messageDialog_message_addSYCapabilities)) {
                 installSwitchYardFacet(ifp.createWorkingCopy());
             }
             return;
@@ -130,8 +131,8 @@ public class SwitchYardSettingsAction extends ActionDelegate implements IObjectA
                 preset = ((IDynamicPreset) preset).resolve(context);
             }
             if (preset == null) {
-                MessageDialog.openError(_targetPart.getSite().getShell(), "Error Installing SwitchYard Facet",
-                        "Failed to install SwitchYard facet on project.");
+                MessageDialog.openError(_targetPart.getSite().getShell(), Messages.SwitchYardSettingsAction_errorMessage_title_errorInstallingSYFacet,
+                        Messages.SwitchYardSettingsAction_errorMessage_errorInstallingSYFacet);
                 return;
             }
             // this should setup the java facet correctly
@@ -185,7 +186,7 @@ public class SwitchYardSettingsAction extends ActionDelegate implements IObjectA
                     Activator
                             .getDefault()
                             .getLog()
-                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error initializing SwitchYard facet.",
+                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.SwitchYardSettingsAction_logMessage_errorInitializingSYFacet,
                                     e));
                 }
             }
@@ -197,7 +198,7 @@ public class SwitchYardSettingsAction extends ActionDelegate implements IObjectA
 
     private boolean isJarPackaging() {
         final IMavenProjectFacade mavenFacade = MavenPlugin.getMavenProjectRegistry().getProject(_project);
-        return mavenFacade == null || "jar".equals(mavenFacade.getPackaging());
+        return mavenFacade == null || "jar".equals(mavenFacade.getPackaging()); //$NON-NLS-1$
     }
 
     @Override
@@ -225,7 +226,7 @@ public class SwitchYardSettingsAction extends ActionDelegate implements IObjectA
     private void displayPropertyDialog() {
         // display project properties dialog, open to SwitchYard Settings
         PreferencesUtil.createPropertyDialogOn(_targetPart.getSite().getShell(), _project,
-                "org.switchyard.tools.ui.configuration.page", null, null, PreferencesUtil.OPTION_NONE).open();
+                "org.switchyard.tools.ui.configuration.page", null, null, PreferencesUtil.OPTION_NONE).open(); //$NON-NLS-1$
     }
 
 }

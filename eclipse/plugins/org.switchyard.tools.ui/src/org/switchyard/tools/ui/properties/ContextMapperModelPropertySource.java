@@ -15,6 +15,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.common.lang.Strings;
 import org.switchyard.config.model.composer.ContextMapperModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ContextMapperModelPropertySource
@@ -26,11 +27,11 @@ import org.switchyard.config.model.composer.ContextMapperModel;
  */
 public class ContextMapperModelPropertySource implements IPropertySource {
 
-    private static final String PROP_CLASS = "class";
-    private static final String PROP_INCLUDES = "includes";
-    private static final String PROP_EXCLUDES = "excludes";
-    private static final String PROP_INCLUDE_NAMESPACES = "include-namespaces";
-    private static final String PROP_EXCLUDE_NAMESPACES = "exclude-namespaces";
+    private static final String PROP_CLASS = "class"; //$NON-NLS-1$
+    private static final String PROP_INCLUDES = "includes"; //$NON-NLS-1$
+    private static final String PROP_EXCLUDES = "excludes"; //$NON-NLS-1$
+    private static final String PROP_INCLUDE_NAMESPACES = "include-namespaces"; //$NON-NLS-1$
+    private static final String PROP_EXCLUDE_NAMESPACES = "exclude-namespaces"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final ContextMapperModel _model;
@@ -52,7 +53,7 @@ public class ContextMapperModelPropertySource implements IPropertySource {
     @Override
     public Object getPropertyValue(Object id) {
         if (PROP_CLASS.equals(id)) {
-            return Strings.trimToNull(_model.getModelConfiguration().getAttribute("class"));
+            return Strings.trimToNull(_model.getModelConfiguration().getAttribute("class")); //$NON-NLS-1$
         } else if (PROP_INCLUDES.equals(id)) {
             return _model.getIncludes();
         } else if (PROP_EXCLUDES.equals(id)) {
@@ -79,14 +80,14 @@ public class ContextMapperModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_CLASS, "Class"),
-                new PropertyDescriptor(PROP_INCLUDES, "Includes"), new PropertyDescriptor(PROP_EXCLUDES, "Excludes"),
-                new PropertyDescriptor(PROP_INCLUDE_NAMESPACES, "Include Namespaces"),
-                new PropertyDescriptor(PROP_EXCLUDE_NAMESPACES, "Exclude Namespaces") };
-        DESCRIPTORS[0].setDescription("The class implementing the context mapper.");
-        DESCRIPTORS[1].setDescription("The included context properties.");
-        DESCRIPTORS[2].setDescription("The excluded context properties.");
-        DESCRIPTORS[3].setDescription("The included namespaces.");
-        DESCRIPTORS[4].setDescription("The excluded namespaces.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_CLASS, Messages.ContextMapperModelPropertySource_propertyDescriptor_class),
+                new PropertyDescriptor(PROP_INCLUDES, Messages.ContextMapperModelPropertySource_propertyDescriptor_includes), new PropertyDescriptor(PROP_EXCLUDES, Messages.ContextMapperModelPropertySource_propertyDescriptor_exludes),
+                new PropertyDescriptor(PROP_INCLUDE_NAMESPACES, Messages.ContextMapperModelPropertySource_propertyDescriptor_includesNS),
+                new PropertyDescriptor(PROP_EXCLUDE_NAMESPACES, Messages.ContextMapperModelPropertySource_propertyDescriptor_excludesNS) };
+        DESCRIPTORS[0].setDescription(Messages.ContextMapperModelPropertySource_propertyDescriptorDescription_class);
+        DESCRIPTORS[1].setDescription(Messages.ContextMapperModelPropertySource_propertyDescriptorDescription_includes);
+        DESCRIPTORS[2].setDescription(Messages.ContextMapperModelPropertySource_propertyDescriptorDescription_excludes);
+        DESCRIPTORS[3].setDescription(Messages.ContextMapperModelPropertySource_propertyDescriptorDescription_includesNS);
+        DESCRIPTORS[4].setDescription(Messages.ContextMapperModelPropertySource_propertyDescriptorDescription_excludesNS);
     }
 }

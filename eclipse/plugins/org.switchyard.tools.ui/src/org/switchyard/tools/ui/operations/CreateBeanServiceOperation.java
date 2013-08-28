@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.wizards.NewBeanServiceClassWizardPage;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
 
@@ -60,7 +61,7 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
      */
     public CreateBeanServiceOperation(NewBeanServiceClassWizardPage serviceClassPage,
             NewServiceTestClassWizardPage serviceTestClassPage, boolean addServices, IAdaptable uiInfo) {
-        super(null, REQUIRED_COMPONENTS, addServices, "Creating new SwitchYard bean service.", uiInfo);
+        super(null, REQUIRED_COMPONENTS, addServices, Messages.CreateBeanServiceOperation_wizardPageDescription_creatingNewBeanService, uiInfo);
         _serviceClassPage = serviceClassPage;
         _serviceTestClassPage = serviceTestClassPage;
     }
@@ -68,8 +69,8 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
     @Override
     protected void execute(IProgressMonitor monitor) throws CoreException {
         try {
-            monitor.beginTask("", 100);
-            monitor.subTask("Creating service implementation.");
+            monitor.beginTask("", 100); //$NON-NLS-1$
+            monitor.subTask(Messages.CreateBeanServiceOperation_taskLabel_creatingServiceImplementation);
             IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 50,
                     SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             try {
@@ -78,26 +79,26 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
                 throw new CoreException(new Status(Status.CANCEL, Activator.PLUGIN_ID, e.getMessage(), e));
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             try {
                 if (_serviceTestClassPage != null) {
-                    monitor.subTask("Creating service test.");
+                    monitor.subTask(Messages.CreateBeanServiceOperation_taskLabel_creatingServiceTest);
                     subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                     _serviceTestClassPage.createType(subMonitor);
                 }
             } catch (CoreException e) {
                 throw new CoreException(new Status(Status.WARNING, Activator.PLUGIN_ID,
-                        "An error occurred while creating service test class.", e));
+                        Messages.CreateBeanServiceOperation_exceptionMessage_errorWhileCreatingServiceTestClass, e));
             } catch (InterruptedException e) {
                 throw new CoreException(new Status(Status.CANCEL, Activator.PLUGIN_ID, e.getMessage(), e));
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
         } finally {
-            monitor.setTaskName("");
+            monitor.setTaskName(""); //$NON-NLS-1$
             monitor.done();
         }
     }
@@ -111,7 +112,7 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
         ISwitchYardComponentExtension found = null;
         for (ISwitchYardComponentExtension extension : SwitchYardComponentExtensionManager.instance()
                 .getComponentExtensions()) {
-            if ("org.switchyard.components:switchyard-component-bean".equals(extension.getId())) {
+            if ("org.switchyard.components:switchyard-component-bean".equals(extension.getId())) { //$NON-NLS-1$
                 found = extension;
                 break;
             }

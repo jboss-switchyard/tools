@@ -27,6 +27,7 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateServiceTestOperation;
 
 /**
@@ -49,7 +50,7 @@ public class NewServiceTestClassWizard extends BasicNewResourceWizard {
 
     @Override
     public void addPages() {
-        setWindowTitle("Service Test Class");
+        setWindowTitle(Messages.NewServiceTestClassWizard_wizardTitle);
         _newClassPage.init(selection);
         addPage(_newClassPage);
     }
@@ -84,10 +85,10 @@ public class NewServiceTestClassWizard extends BasicNewResourceWizard {
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error creating test class.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.NewServiceTestClassWizard_logMessage_errorCreatingTestClass,
                                 realException));
             }
-            MessageDialog.openError(getShell(), "Error Creating Test Class", realException.getMessage());
+            MessageDialog.openError(getShell(), Messages.NewServiceTestClassWizard_errorMessage_errorCreatingTestClass, realException.getMessage());
             if (!_newClassPage.getModifiedResource().exists()) {
                 return false;
             }
@@ -111,7 +112,7 @@ public class NewServiceTestClassWizard extends BasicNewResourceWizard {
                                     .getDefault()
                                     .getLog()
                                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                            "Error opening bean service source.", e));
+                                            Messages.NewServiceTestClassWizard_logMessage_errorOpeningBeanServiceSource, e));
                         }
                     }
                 });

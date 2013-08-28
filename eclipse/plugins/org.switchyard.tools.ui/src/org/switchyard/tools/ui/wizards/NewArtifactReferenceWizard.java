@@ -35,6 +35,7 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateArtifactReferenceOperation;
 
 /**
@@ -106,9 +107,9 @@ public abstract class NewArtifactReferenceWizard extends Wizard implements IWork
                         .getDefault()
                         .getLog()
                         .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "Error adding artifact reference to SwitchYard project.", realException));
+                                Messages.NewArtifactReferenceWizard_logMessage_errorAddingArtifactReference, realException));
             }
-            MessageDialog.openError(getShell(), "Error Adding Artifact Reference", realException.getMessage());
+            MessageDialog.openError(getShell(), Messages.NewArtifactReferenceWizard_errorMessage_errorAddingArtifactReference, realException.getMessage());
             return partialSuccess;
         }
 

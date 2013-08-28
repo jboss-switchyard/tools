@@ -23,6 +23,7 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.PresetDefinition;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardBasicPresetFactory
@@ -67,12 +68,12 @@ public class SwitchYardBasicPresetFactory implements IPresetFactory, ISwitchYard
         // JBoss Maven Integration facet (if available)
         // JBIDE-13929, m2 installation will fail if jst.seam is missing
         if (ProjectFacetsManager.isProjectFacetDefined(JBOSS_M2_FACET_ID)
-                && ProjectFacetsManager.isProjectFacetDefined("jst.seam")) {
+                && ProjectFacetsManager.isProjectFacetDefined("jst.seam")) { //$NON-NLS-1$
             facets.add(ProjectFacetsManager.getProjectFacet(JBOSS_M2_FACET_ID).getDefaultVersion());
         }
 
-        return new PresetDefinition("Basic SwitchYard Application",
-                "Basic project facet set for SwitchYard applications.", facets);
+        return new PresetDefinition(Messages.SwitchYardBasicPresetFactory_presetTitle_basicSYApplication,
+                Messages.SwitchYardBasicPresetFactory_presetDescription_basicSYApplication, facets);
     }
 
 }

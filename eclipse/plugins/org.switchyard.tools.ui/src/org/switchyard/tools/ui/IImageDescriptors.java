@@ -21,18 +21,18 @@ package org.switchyard.tools.ui;
 public interface IImageDescriptors {
 
     /** 16px SwitchYard icon. */
-    public static final String SWITCH_YARD_SMALL = "icons/switchyard_icon_16px.png";
+    public static final String SWITCH_YARD_SMALL = "icons/switchyard_icon_16px.png"; //$NON-NLS-1$
 
     /** 200px SwitchYard icon. */
-    public static final String SWITCH_YARD_LARGE = "icons/switchyard_icon_200px.png";
+    public static final String SWITCH_YARD_LARGE = "icons/switchyard_icon_200px.png"; //$NON-NLS-1$
 
     /** 16px representing a service. */
-    public static final String SERVICE_ICON = "icons/service_16px.gif";
+    public static final String SERVICE_ICON = "icons/service_16px.gif"; //$NON-NLS-1$
     /** 16px representing a reference. */
-    public static final String REFERENCE_ICON = "icons/reference_16px.gif";
+    public static final String REFERENCE_ICON = "icons/reference_16px.gif"; //$NON-NLS-1$
     /** 16px representing a component. */
-    public static final String COMPONENT_ICON = "icons/component_16px.gif";
+    public static final String COMPONENT_ICON = "icons/component_16px.gif"; //$NON-NLS-1$
     /** 16px representing an artifact. */
-    public static final String ARTIFACT_ICON = "icons/artifact_16px.gif";
+    public static final String ARTIFACT_ICON = "icons/artifact_16px.gif"; //$NON-NLS-1$
 
 }

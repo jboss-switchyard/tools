@@ -26,6 +26,7 @@ import org.switchyard.tools.ui.explorer.IReferencesNode;
 import org.switchyard.tools.ui.explorer.IServicesNode;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.ISwitchYardRootNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardRootNode
@@ -166,7 +167,7 @@ public class SwitchYardRootNode implements ISwitchYardRootNode {
             Activator
                     .getDefault()
                     .getLog()
-                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error loading SwitchYard configuration for: "
+                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.SwitchYardRootNode_errorLogMessage_errorLoadingSYConfig
                             + _switchYardProject.getProject(), e));
         }
         monitor.done();

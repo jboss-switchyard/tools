@@ -73,8 +73,8 @@ public class BPELImplementationWizardPage extends WizardPage {
      */
     public BPELImplementationWizardPage(String pageName) {
         super(pageName);
-        setTitle("BPEL Implementation Details");
-        setDescription("Select a BPEL file.");
+        setTitle(Messages.BPELImplementationWizardPage_wizardPageTitle);
+        setDescription(Messages.BPELImplementationWizardPage_wizardPageDescription);
         setPageComplete(false);
         ResourceSet resourceSet = (ResourceSet) SwitchyardSCAEditor.getActiveEditor().getEditorInput()
                 .getAdapter(ResourceSet.class);
@@ -132,7 +132,7 @@ public class BPELImplementationWizardPage extends WizardPage {
         contents.setLayout(new GridLayout(3, false));
 
         _newBPELLink = new Link(contents, SWT.NONE);
-        _newBPELLink.setText("<a>BPEL File:</a>");
+        _newBPELLink.setText("<a>" + Messages.BPELImplementationWizardPage_newBPELFileLinkLabel + "</a>"); //$NON-NLS-1$ //$NON-NLS-2$
         _newBPELLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -152,7 +152,7 @@ public class BPELImplementationWizardPage extends WizardPage {
         });
 
         _browseBPELButton = new Button(contents, SWT.PUSH);
-        _browseBPELButton.setText("Browse...");
+        _browseBPELButton.setText(Messages.BPELImplementationWizardPage_browseBPELFileButton);
         _browseBPELButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -167,7 +167,7 @@ public class BPELImplementationWizardPage extends WizardPage {
     private void validate() {
         setErrorMessage(null);
         if (_implementation == null) {
-            setErrorMessage("Please select a BPEL file.");
+            setErrorMessage(Messages.BPELImplementationWizardPage_errorMessageSelectBPELFile);
         }
         setPageComplete(getErrorMessage() == null);
     }
@@ -179,7 +179,7 @@ public class BPELImplementationWizardPage extends WizardPage {
         } else {
             container = _project.getProject();
         }
-        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "bpel");
+        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "bpel"); //$NON-NLS-1$
         if (dialog.open() == SelectionDialog.OK) {
             Object[] result = dialog.getResult();
             if (result.length > 0 && result[0] instanceof IFile) {
@@ -217,7 +217,7 @@ public class BPELImplementationWizardPage extends WizardPage {
         if (dialog.open() == WizardDialog.OK) {
             _implementation = (BPELImplementation) wizard.getCreatedObject().getImplementation();
             _service = wizard.getService();
-            _bpelFileText.setText(_implementation.getProcess().getLocalPart() + " "
+            _bpelFileText.setText(_implementation.getProcess().getLocalPart() + " " //$NON-NLS-1$
                     + _implementation.getProcess().getNamespaceURI());
         }
     }

@@ -18,6 +18,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.component.soap.config.model.SOAPBindingModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SOAPBindingModelPropertySource
@@ -29,10 +30,10 @@ import org.switchyard.component.soap.config.model.SOAPBindingModel;
  */
 public class SOAPBindingModelPropertySource extends BindingModelPropertySource implements IPropertySource {
 
-    private static final String PROP_WSDL = "wsdl";
-    private static final String PROP_WSDL_PORT = "port";
-    private static final String PROP_SOCKET_ADDRESS = "socket-address";
-    private static final String PROP_CONTEXT_PATH = "context-path";
+    private static final String PROP_WSDL = "wsdl"; //$NON-NLS-1$
+    private static final String PROP_WSDL_PORT = "port"; //$NON-NLS-1$
+    private static final String PROP_SOCKET_ADDRESS = "socket-address"; //$NON-NLS-1$
+    private static final String PROP_CONTEXT_PATH = "context-path"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final SOAPBindingModel _model;
@@ -84,18 +85,18 @@ public class SOAPBindingModelPropertySource extends BindingModelPropertySource i
 
     static {
         List<PropertyDescriptor> temp = new ArrayList<PropertyDescriptor>(10);
-        temp.add(new PropertyDescriptor(PROP_WSDL, "WSDL File"));
-        temp.add(new PropertyDescriptor(PROP_WSDL_PORT, "WSDL Port"));
-        temp.add(new PropertyDescriptor(PROP_SOCKET_ADDRESS, "Socket Address"));
-        temp.add(new PropertyDescriptor(PROP_CONTEXT_PATH, "Context Path"));
-        temp.get(0).setDescription("The WSDL file.");
-        temp.get(0).setCategory("SOAP");
-        temp.get(1).setDescription("The WSDL port describing the service.");
-        temp.get(1).setCategory("SOAP");
-        temp.get(2).setDescription("The socket address through which the service is accessed.");
-        temp.get(2).setCategory("SOAP");
-        temp.get(3).setDescription("The context path on which the service is located.");
-        temp.get(3).setCategory("SOAP");
+        temp.add(new PropertyDescriptor(PROP_WSDL, Messages.SOAPBindingModelPropertySource_propertyDescriptor_wsdlFile));
+        temp.add(new PropertyDescriptor(PROP_WSDL_PORT, Messages.SOAPBindingModelPropertySource_propertyDescriptor_wsdlPort));
+        temp.add(new PropertyDescriptor(PROP_SOCKET_ADDRESS, Messages.SOAPBindingModelPropertySource_propertyDescriptor_socketAddress));
+        temp.add(new PropertyDescriptor(PROP_CONTEXT_PATH, Messages.SOAPBindingModelPropertySource_propertyDescriptor_contextPath));
+        temp.get(0).setDescription(Messages.SOAPBindingModelPropertySource_propertyDescriptorDescription_wsdlFile);
+        temp.get(0).setCategory(Messages.SOAPBindingModelPropertySource_propertyDescriptorCategory_soap);
+        temp.get(1).setDescription(Messages.SOAPBindingModelPropertySource_propertyDescriptorDescription_wsdlPort);
+        temp.get(1).setCategory(Messages.SOAPBindingModelPropertySource_propertyDescriptorCategory_soap);
+        temp.get(2).setDescription(Messages.SOAPBindingModelPropertySource_propertyDescriptorDescription_socketAddress);
+        temp.get(2).setCategory(Messages.SOAPBindingModelPropertySource_propertyDescriptorCategory_soap);
+        temp.get(3).setDescription(Messages.SOAPBindingModelPropertySource_propertyDescriptorDescription_contextPath);
+        temp.get(3).setCategory(Messages.SOAPBindingModelPropertySource_propertyDescriptorCategory_soap);
         temp.addAll(Arrays.asList(BindingModelPropertySource.DESCRIPTORS));
         DESCRIPTORS = temp.toArray(new PropertyDescriptor[temp.size()]);
     }

@@ -20,6 +20,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * WSDL2JavaWizard
@@ -36,7 +37,7 @@ public class WSDL2JavaWizard extends BasicNewResourceWizard {
      */
     public WSDL2JavaWizard() {
         setNeedsProgressMonitor(true);
-        setWindowTitle("Java2WSDL");
+        setWindowTitle(Messages.WSDL2JavaWizard_wizardTitle);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class WSDL2JavaWizard extends BasicNewResourceWizard {
                         @Override
                         public void run() {
                             ErrorDialog.openError(getContainer().getShell(), null,
-                                    "An error occurred generating the Java files.", e.getStatus());
+                                    Messages.WSDL2JavaWizard_errorMessage_errorWhileGeneratingJava, e.getStatus());
                         }
                     });
                 }

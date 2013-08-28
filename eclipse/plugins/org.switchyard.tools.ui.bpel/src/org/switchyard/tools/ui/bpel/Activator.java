@@ -38,9 +38,9 @@ public class Activator extends AbstractUIPlugin {
     public static final String PLUGIN_ID = "org.switchyard.tools.ui.bpel"; //$NON-NLS-1$
 
     /** The property key for retrieving the cached process name on a resource. */
-    public static final QualifiedName PROCESS_NAME_PROPERTY = new QualifiedName(PLUGIN_ID, "bpelProcessName");
+    public static final QualifiedName PROCESS_NAME_PROPERTY = new QualifiedName(PLUGIN_ID, "bpelProcessName"); //$NON-NLS-1$
 
-    private static final QName NULL_NAME = new QName("null:NULL", "null");
+    private static final QName NULL_NAME = new QName("null:NULL", "null"); //$NON-NLS-1$ //$NON-NLS-2$
 
     // The shared instance
     private static Activator plugin;
@@ -109,7 +109,7 @@ public class Activator extends AbstractUIPlugin {
             // if more than one file has the same process name, we'll take
             // the first member
             for (IResource resource : resourceRoot.members()) {
-                if (resource.getType() != IResource.FILE || !"bpel".equals(resource.getFileExtension())) {
+                if (resource.getType() != IResource.FILE || !"bpel".equals(resource.getFileExtension())) { //$NON-NLS-1$
                     // it's not a file
                     // it's not a bpel file
                     continue;
@@ -182,7 +182,7 @@ public class Activator extends AbstractUIPlugin {
     private void clearRelated(IResourceDelta delta) {
         final IResource resource = delta.getResource();
         if (resource.getType() == IResource.FILE) {
-            if ("bpel".equals(resource.getFileExtension())
+            if ("bpel".equals(resource.getFileExtension()) //$NON-NLS-1$
                     && (delta.getFlags() & IResourceDelta.CONTENT) == IResourceDelta.CONTENT) {
                 try {
                     resource.setSessionProperty(PROCESS_NAME_PROPERTY, null);

@@ -47,6 +47,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * WiringValidationContext
@@ -248,7 +249,7 @@ final class WiringValidationContext {
         } catch (Exception e) {
             e.fillInStackTrace();
             _problems.add(new Status(Status.WARNING, Activator.PLUGIN_ID,
-                    "Error loading service interface meta-data.  Interface compatibility cannot be verified."));
+                    Messages.WiringValidationContext_statusMessage_errorLoadingServiceInterfaceMetadata));
         } finally {
             Thread.currentThread().setContextClassLoader(oldTCCL);
         }

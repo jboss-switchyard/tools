@@ -35,7 +35,7 @@ public class NewArtifactReferenceWizardRegistry extends AbstractExtensionWizardR
 
     @Override
     protected String getExtensionPoint() {
-        return "repositorySupport";
+        return "repositorySupport"; //$NON-NLS-1$
     }
 
     @Override

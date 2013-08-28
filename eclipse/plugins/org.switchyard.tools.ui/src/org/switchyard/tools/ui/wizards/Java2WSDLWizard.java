@@ -43,6 +43,7 @@ import org.switchyard.tools.ui.explorer.IComponentService;
 import org.switchyard.tools.ui.explorer.IReferenceNode;
 import org.switchyard.tools.ui.explorer.IServiceNode;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateWSDLFromJavaOperation;
 
 /**
@@ -64,7 +65,7 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
      */
     public Java2WSDLWizard() {
         setNeedsProgressMonitor(true);
-        setWindowTitle("Java2WSDL");
+        setWindowTitle(Messages.Java2WSDLWizard_wizardTitle);
     }
 
     /**
@@ -76,7 +77,7 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
 
     @Override
     public void addPages() {
-        _filePage = new WizardNewFileCreationPage("NewWSDLFilePage", StructuredSelection.EMPTY) {
+        _filePage = new WizardNewFileCreationPage("NewWSDLFilePage", StructuredSelection.EMPTY) { //$NON-NLS-1$
             @Override
             public void createControl(Composite parent) {
                 super.createControl(parent);
@@ -97,9 +98,9 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
             protected void createLinkTarget() {
             }
         };
-        _filePage.setFileExtension("wsdl");
-        _filePage.setTitle("New WSDL File");
-        _filePage.setDescription("Specify the location of the new WSDL file.");
+        _filePage.setFileExtension("wsdl"); //$NON-NLS-1$
+        _filePage.setTitle(Messages.Java2WSDLWizard_wsdlFilePageTitle);
+        _filePage.setDescription(Messages.Java2WSDLWizard_wsdlFilePageDescription);
         setFilePageDefaults();
         addPage(_filePage);
 
@@ -134,7 +135,7 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
                             @Override
                             public void run() {
                                 ErrorDialog.openError(getContainer().getShell(), null,
-                                        "An error occurred generating schema files associated with the WSDL.", status);
+                                        Messages.Java2WSDLWizard_errorMessage_errorWhileGeneratingSchemaFiles, status);
                             }
                         });
                     }
@@ -144,7 +145,7 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
                         @Override
                         public void run() {
                             ErrorDialog.openError(getContainer().getShell(), null,
-                                    "An error occurred generating the WSDL.", e.getStatus());
+                                    Messages.Java2WSDLWizard_errorMessage_errorWhileGeneratingWSDL, e.getStatus());
                         }
                     });
                 }

@@ -115,6 +115,7 @@ import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.common.SwitchYardTestMixInExtensionManager;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentService;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * NewServiceTestClassWizardPage
@@ -126,7 +127,7 @@ import org.switchyard.tools.ui.explorer.impl.ComponentService;
 @SuppressWarnings("restriction")
 public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
 
-    private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE";
+    private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE"; //$NON-NLS-1$
 
     private ComboDialogField _serviceDialogField;
     private InterfaceControl _interfaceControl;
@@ -147,8 +148,8 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     public NewServiceTestClassWizardPage() {
         super(true, NewServiceTestClassWizardPage.class.getSimpleName());
 
-        setTitle("New Service Test Class");
-        setDescription("Create a new service test class.");
+        setTitle(Messages.NewServiceTestClassWizardPage_wizardPageTitle);
+        setDescription(Messages.NewServiceTestClassWizardPage_wizardPageDescription);
 
         _serviceDialogField = new ComboDialogField(SWT.DROP_DOWN | SWT.READ_ONLY);
         _serviceDialogField.setDialogFieldListener(new IDialogFieldListener() {
@@ -157,7 +158,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 handleFieldChanged(SERVICE_INTERFACE);
             }
         });
-        _serviceDialogField.setLabelText("Service:");
+        _serviceDialogField.setLabelText(Messages.NewServiceTestClassWizardPage_labelService);
         _interfaceControl = new InterfaceControl(getJavaProject());
     }
 
@@ -173,7 +174,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         initContainerPage(getInitialContainerElement(selection, elem));
         initTypePage(elem);
         // clear out super types
-        setSuperClass("", true);
+        setSuperClass("", true); //$NON-NLS-1$
         setSuperInterfaces(Collections.<String> emptyList(), true);
         setModifiers(Flags.AccPublic, false);
         if (getTypeName().length() == 0) {
@@ -326,16 +327,16 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         addTypeAnnotations(type, imports, monitor);
 
         String lineDelimiter = getJavaProject().getJavaModel().findRecommendedLineSeparator();
-        type.createField("private " + imports.addImport("org.switchyard.test.SwitchYardTestKit") + " testKit;", null,
+        type.createField("private " + imports.addImport("org.switchyard.test.SwitchYardTestKit") + " testKit;", null, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 false, new SubProgressMonitor(monitor, 1));
         for (String mixin : getSelectedMixinClasses()) {
-            type.createField("private " + imports.addImport(mixin) + " " + getFieldNameForType(mixin) + ";", null,
+            type.createField("private " + imports.addImport(mixin) + " " + getFieldNameForType(mixin) + ";", null, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                     false, new SubProgressMonitor(monitor, 1));
         }
         type.createField(
-                "@" + imports.addImport("org.switchyard.test.ServiceOperation") + "(\""
-                        + getSimpleServiceInterfaceName() + "\")" + lineDelimiter + "private "
-                        + imports.addImport("org.switchyard.test.Invoker") + " service;", null, false,
+                "@" + imports.addImport("org.switchyard.test.ServiceOperation") + "(\"" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                        + getSimpleServiceInterfaceName() + "\")" + lineDelimiter + "private " //$NON-NLS-1$ //$NON-NLS-2$
+                        + imports.addImport(Messages.NewServiceTestClassWizardPage_16) + " service;", null, false, //$NON-NLS-2$
                 new SubProgressMonitor(monitor, 1));
 
         ServiceInterface serviceTypeBinding = resolveServiceType();
@@ -376,7 +377,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             ImportsManager imports, String lineDelimiter, IProgressMonitor monitor) throws CoreException {
         String typeName = type.getFullyQualifiedName();
         for (ServiceOperation method : interfaceType.getOperations()) {
-            if (method.getOutputType() == null || "void".equals(method.getOutputType())) {
+            if (method.getOutputType() == null || "void".equals(method.getOutputType())) { //$NON-NLS-1$
                 type.createMethod(createInOnlyTestMethodContents(method, typeName, cu, imports, lineDelimiter), null,
                         false, new SubProgressMonitor(monitor, 1));
             } else {
@@ -388,15 +389,15 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
 
     private String getTestMethodName(String name) {
         // ESB interfaces only have a single, unnamed "process" method
-        return "test"
-                + (name == null || name.length() == 0 ? "Process" : name.substring(0, 1).toUpperCase()
+        return "test" //$NON-NLS-1$
+                + (name == null || name.length() == 0 ? "Process" : name.substring(0, 1).toUpperCase() //$NON-NLS-1$
                         + name.substring(1));
     }
 
     private StringBuffer getTestMethodPreface(String testMethodName, ImportsManager imports, String lineDelimiter) {
         StringBuffer sb = new StringBuffer();
-        sb.append("@").append(imports.addImport("org.junit.Test")).append(lineDelimiter);
-        sb.append("public void ").append(testMethodName).append("() throws Exception {").append(lineDelimiter);
+        sb.append("@").append(imports.addImport("org.junit.Test")).append(lineDelimiter); //$NON-NLS-1$ //$NON-NLS-2$
+        sb.append("public void ").append(testMethodName).append("() throws Exception {").append(lineDelimiter); //$NON-NLS-1$ //$NON-NLS-2$
         return sb;
     }
 
@@ -416,13 +417,13 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 imports.addImport(Signature.toString(parameterType));
             }
             contentCastType = imports.addImport(Signature.toString(Signature.getTypeErasure(signature)));
-            body.append("@SuppressWarnings(\"unchecked\")").append(lineDelimiter);
+            body.append("@SuppressWarnings(\"unchecked\")").append(lineDelimiter); //$NON-NLS-1$
         } else {
             resultType = imports.addImport(Signature.toString(returnTypeBinding.toSignature()));
             contentCastType = resultType;
         }
-        body.append(resultType).append(" result = service.operation(\"").append(methodName)
-                .append("\").sendInOut(message).getContent(").append(contentCastType).append(".class);")
+        body.append(resultType).append(" result = service.operation(\"").append(methodName) //$NON-NLS-1$
+                .append("\").sendInOut(message).getContent(").append(contentCastType).append(".class);") //$NON-NLS-1$ //$NON-NLS-2$
                 .append(lineDelimiter).append(lineDelimiter);
         body.append(getBodyEnd(imports, lineDelimiter));
 
@@ -433,7 +434,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         } catch (CoreException e) {
             sb.append(body);
         }
-        sb.append("}");
+        sb.append("}"); //$NON-NLS-1$
         return sb.toString();
     }
 
@@ -443,7 +444,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         String testMethodName = getTestMethodName(methodName);
 
         StringBuffer body = getBodyStart(method, imports, lineDelimiter);
-        body.append("service.operation(\"").append(methodName).append("\").sendInOnly(message);").append(lineDelimiter)
+        body.append("service.operation(\"").append(methodName).append("\").sendInOnly(message);").append(lineDelimiter) //$NON-NLS-1$ //$NON-NLS-2$
                 .append(lineDelimiter);
         body.append(getBodyEnd(imports, lineDelimiter));
 
@@ -454,23 +455,23 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         } catch (CoreException e) {
             sb.append(body);
         }
-        sb.append("}");
+        sb.append("}"); //$NON-NLS-1$
         return sb.toString();
     }
 
     private StringBuffer getBodyStart(ServiceOperation method, ImportsManager imports, String lineDelimiter) {
         BindingKey parameterType = getBindingForQName(method.getInputType());
         StringBuffer sb = new StringBuffer();
-        sb.append("// initialize your test message").append(lineDelimiter);
-        sb.append(parameterType == null ? "Object" : imports.addImport(Signature.toString(parameterType.toSignature())))
-                .append(" message = null;").append(lineDelimiter);
+        sb.append("// initialize your test message").append(lineDelimiter); //$NON-NLS-1$
+        sb.append(parameterType == null ? "Object" : imports.addImport(Signature.toString(parameterType.toSignature()))) //$NON-NLS-1$
+                .append(" message = null;").append(lineDelimiter); //$NON-NLS-1$
         return sb;
     }
 
     private StringBuffer getBodyEnd(ImportsManager imports, String lineDelimiter) {
         StringBuffer sb = new StringBuffer();
-        sb.append("// validate the results").append(lineDelimiter);
-        sb.append(imports.addImport("org.junit.Assert")).append(".assertTrue(\"Implement me\", false);")
+        sb.append("// validate the results").append(lineDelimiter); //$NON-NLS-1$
+        sb.append(imports.addImport("org.junit.Assert")).append(".assertTrue(\"Implement me\", false);") //$NON-NLS-1$ //$NON-NLS-2$
                 .append(lineDelimiter);
         return sb;
     }
@@ -481,7 +482,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         }
         String typeString = Object.class.getCanonicalName();
         if (typeName.getNamespaceURI() == XMLConstants.NULL_NS_URI && typeName.getLocalPart() != null
-                && typeName.getLocalPart().startsWith("java:")) {
+                && typeName.getLocalPart().startsWith("java:")) { //$NON-NLS-1$
             typeString = typeName.getLocalPart().substring(5);
         }
         return new BindingKey(BindingKey.createTypeBindingKey(typeString));
@@ -506,7 +507,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             return;
         }
         if (!Arrays.asList(_mavenProjectFacade.getTestCompileSourceLocations()).contains(root.getPath())) {
-            _rootStatus.setWarning("Source folder is not configured for test source.");
+            _rootStatus.setWarning(Messages.NewServiceTestClassWizardPage_warningMessage_sourceFolderNotConfiguredForTestSource);
         }
     }
 
@@ -538,8 +539,8 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     protected IStatus typeNameChanged() {
         IStatus status = super.typeNameChanged();
         if (status.isOK()) {
-            if (!getTypeName().endsWith("Test")) {
-                return new StatusInfo(StatusInfo.ERROR, "Class name must end with \"Test\"");
+            if (!getTypeName().endsWith("Test")) { //$NON-NLS-1$
+                return new StatusInfo(StatusInfo.ERROR, Messages.NewServiceTestClassWizardPage_statusMessage_classNameMustEndWithTest);
             }
         }
         return status;
@@ -591,7 +592,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         Resource resource = null;
         try {
             ResourceSet rs = new ResourceSetImpl();
-            rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new SwitchyardResourceFactoryImpl());
+            rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new SwitchyardResourceFactoryImpl()); //$NON-NLS-1$
             try {
                 resource = rs.getResource(URI.createPlatformResourceURI(
                         MavenProjectUtils.getFullPath(_mavenProjectFacade.getProject(), switchYardOutputFile)
@@ -625,7 +626,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 }
             }
             // allow the user to deselect services
-            _configuredServices.put("", null);
+            _configuredServices.put("", null); //$NON-NLS-1$
         } finally {
             _servicesCache.put(switchYardOutputFile, _configuredServices);
             if (resource != null) {
@@ -654,7 +655,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         int selection = _serviceDialogField.getSelectionIndex();
         String[] items = _serviceDialogField.getItems();
         if (selection < 0 || selection > items.length) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         return items[selection];
     }
@@ -674,9 +675,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         Contract contract = getServiceContract();
         Interface intf = getContractInterface(contract);
         if (contract == null) {
-            _serviceInterfaceStatus.setWarning("No service is specified. A simple stub class will be created.");
+            _serviceInterfaceStatus.setWarning(Messages.NewServiceTestClassWizardPage_warningStatus_noServiceSpecifiedStubWillBeCreated);
         } else if (intf == null) {
-            _serviceInterfaceStatus.setWarning("Selected service does not define any interface.");
+            _serviceInterfaceStatus.setWarning(Messages.NewServiceTestClassWizardPage_warningStatus_selectedServiceDoesNotDefineInterface);
         }
         _interfaceControl.init(contract == null ? null : intf, null);
 
@@ -728,9 +729,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     private String createDefaultClassName() {
         String serviceName = getSimpleServiceInterfaceName();
         if (serviceName == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
-        return serviceName + "Test";
+        return serviceName + "Test"; //$NON-NLS-1$
     }
 
     private ServiceInterface resolveServiceType() throws CoreException {
@@ -748,7 +749,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 Thread.currentThread().setContextClassLoader(oldTCCL);
             }
         } catch (Exception e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving service interface.",
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.NewServiceTestClassWizardPage_exceptionMessage_errorResolvingServiceInterface,
                     e));
         }
     }
@@ -762,7 +763,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
 
     private void createMixInsTable(Composite parent, int nColumns) {
         Label label = new Label(parent, SWT.NONE);
-        label.setText("Test Mix-ins:");
+        label.setText(Messages.NewServiceTestClassWizardPage_labelTestMixIns);
         label.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
 
         _componentsTable = CheckboxTableViewer.newCheckList(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
@@ -814,7 +815,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     private Collection<String> getSelectedMixinClasses() {
         final Collection<String> mixins = new LinkedHashSet<String>();
         // always add CDI mixin
-        mixins.add("org.switchyard.component.test.mixins.cdi.CDIMixIn");
+        mixins.add("org.switchyard.component.test.mixins.cdi.CDIMixIn"); //$NON-NLS-1$
         for (Object o : _checkedMixins) {
             final String mixin = ((ISwitchYardTestMixInExtension) o).getMixInClass();
             if (mixin != null) {
@@ -852,20 +853,20 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             final AST ast = cuAST.getAST();
             final SingleMemberAnnotation annotation = ast.newSingleMemberAnnotation();
             final TypeLiteral value = ast.newTypeLiteral();
-            value.setType(ast.newSimpleType(createTypeName(ast, "org.switchyard.test.SwitchYardRunner")));
-            annotation.setTypeName(createTypeName(ast, "org.junit.runner.RunWith"));
+            value.setType(ast.newSimpleType(createTypeName(ast, "org.switchyard.test.SwitchYardRunner"))); //$NON-NLS-1$
+            annotation.setTypeName(createTypeName(ast, "org.junit.runner.RunWith")); //$NON-NLS-1$
             annotation.setValue(value);
             return annotation;
         }
 
         @Override
         protected IJavaElement generateResultHandle() {
-            return getType().getAnnotation(_imports.addImport("org.junit.runner.RunWith"));
+            return getType().getAnnotation(_imports.addImport("org.junit.runner.RunWith")); //$NON-NLS-1$
         }
 
         @Override
         public String getMainTaskName() {
-            return "Creating annotation";
+            return Messages.NewServiceTestClassWizardPage_taskName_creatingAnnotation;
         }
 
         @Override
@@ -906,7 +907,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) throws JavaModelException {
             final AST ast = cuAST.getAST();
             final NormalAnnotation annotation = ast.newNormalAnnotation();
-            annotation.setTypeName(createTypeName(ast, "org.switchyard.test.SwitchYardTestCaseConfig"));
+            annotation.setTypeName(createTypeName(ast, "org.switchyard.test.SwitchYardTestCaseConfig")); //$NON-NLS-1$
             annotation.values().add(createConfigValue(ast));
             annotation.values().add(createMixInsValue(ast));
             return annotation;
@@ -915,9 +916,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         private Object createConfigValue(AST ast) {
             final MemberValuePair pair = ast.newMemberValuePair();
             final Name value = ast.newQualifiedName(
-                    createTypeName(ast, "org.switchyard.test.SwitchYardTestCaseConfig"),
-                    ast.newSimpleName("SWITCHYARD_XML"));
-            pair.setName(ast.newSimpleName("config"));
+                    createTypeName(ast, "org.switchyard.test.SwitchYardTestCaseConfig"), //$NON-NLS-1$
+                    ast.newSimpleName("SWITCHYARD_XML")); //$NON-NLS-1$
+            pair.setName(ast.newSimpleName("config")); //$NON-NLS-1$
             pair.setValue(value);
             return pair;
         }
@@ -926,7 +927,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         private Object createMixInsValue(AST ast) {
             final MemberValuePair pair = ast.newMemberValuePair();
             final ArrayInitializer value = ast.newArrayInitializer();
-            pair.setName(ast.newSimpleName("mixins"));
+            pair.setName(ast.newSimpleName("mixins")); //$NON-NLS-1$
             for (String mixin : getSelectedMixinClasses()) {
                 final TypeLiteral mixinType = ast.newTypeLiteral();
                 mixinType.setType(ast.newSimpleType(createTypeName(ast, mixin)));
@@ -938,12 +939,12 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
 
         @Override
         protected IJavaElement generateResultHandle() {
-            return getType().getAnnotation(_imports.addImport("org.switchyard.test.SwitchYardTestCaseConfig"));
+            return getType().getAnnotation(_imports.addImport("org.switchyard.test.SwitchYardTestCaseConfig")); //$NON-NLS-1$
         }
 
         @Override
         public String getMainTaskName() {
-            return "Creating annotation";
+            return Messages.NewServiceTestClassWizardPage_taskName_creatingAnnotation;
         }
 
         @Override

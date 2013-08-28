@@ -43,12 +43,12 @@ public class BPELComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CompositeCreateFeature(fp, "Process (BPEL)",
-                "A BPEL process based component/implementation.", new CreateComponentFeature(fp,
-                        new BPELComponentFactory(), "Process (BPEL)",
-                        "Create a component implemented as a BPEL process.", ImageProvider.IMG_16_BPMN),
-                new CreateImplementationFeature(fp, new BPELImplementationFactory(), "Process (BPEL)",
-                        "An implementation using a BPEL process.") {
+        return new ICreateFeature[] {new CompositeCreateFeature(fp, Messages.BPELComponentTypeExtension_featureName,
+                Messages.BPELComponentTypeExtension_featureDescription, new CreateComponentFeature(fp,
+                        new BPELComponentFactory(), Messages.BPELComponentTypeExtension_componentToolItemName,
+                        Messages.BPELComponentTypeExtension_componentToolItemDescription, ImageProvider.IMG_16_BPMN),
+                new CreateImplementationFeature(fp, new BPELImplementationFactory(), Messages.BPELComponentTypeExtension_implementationToolItemName,
+                        Messages.BPELComponentTypeExtension_implementationToolItemDescription) {
                     @Override
                     public boolean canCreate(ICreateContext context) {
                         if (super.canCreate(context)) {
@@ -73,7 +73,7 @@ public class BPELComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Implementation object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-bpel");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-bpel"); //$NON-NLS-1$
     }
 
     @Override
@@ -83,6 +83,6 @@ public class BPELComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public String getTypeName(Implementation object) {
-        return "BPEL";
+        return Messages.BPELComponentTypeExtension_typeName;
     }
 }

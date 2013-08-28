@@ -50,6 +50,7 @@ import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentReference;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * NewBeanServiceClassWizardPage
@@ -61,7 +62,7 @@ import org.switchyard.tools.ui.explorer.impl.ComponentReference;
 @SuppressWarnings("restriction")
 public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
 
-    private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE";
+    private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE"; //$NON-NLS-1$
 
     private ContractControl _serviceInterfaceControl;
     private SelectionButtonDialogField _createTestClassButton;
@@ -74,8 +75,8 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     public NewBeanServiceClassWizardPage() {
         super(true, NewBeanServiceClassWizardPage.class.getSimpleName());
 
-        setTitle("New Bean Service Class");
-        setDescription("Create a new Bean service implementation class.");
+        setTitle(Messages.NewBeanServiceClassWizardPage_wizardPageTitle);
+        setDescription(Messages.NewBeanServiceClassWizardPage_wizardPageDescription);
 
         _serviceInterfaceControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
                 EnumSet.of(InterfaceType.Java));
@@ -87,7 +88,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         });
 
         _createTestClassButton = new SelectionButtonDialogField(SWT.CHECK);
-        _createTestClassButton.setLabelText("Create test class");
+        _createTestClassButton.setLabelText(Messages.NewBeanServiceClassWizardPage_buttonLabelCreateTestClass);
         _createTestClassButton.setDialogFieldListener(new IDialogFieldListener() {
             @Override
             public void dialogFieldChanged(DialogField field) {
@@ -236,10 +237,10 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         final String simpleServiceInterfaceName = getSimpleServiceInterfaceName(getServiceInterface());
         final String serviceAnnotation;
         if (simpleServiceInterfaceName == null || simpleServiceInterfaceName.equals(getServiceName())) {
-            serviceAnnotation = "@Service(" + simpleServiceInterfaceName + ".class)" + lineDelimiter;
+            serviceAnnotation = "@Service(" + simpleServiceInterfaceName + ".class)" + lineDelimiter; //$NON-NLS-1$ //$NON-NLS-2$
         } else {
-            serviceAnnotation = "@Service(value=" + simpleServiceInterfaceName + ".class, name=\"" + getServiceName()
-                    + "\")" + lineDelimiter;
+            serviceAnnotation = "@Service(value=" + simpleServiceInterfaceName + ".class, name=\"" + getServiceName() //$NON-NLS-1$ //$NON-NLS-2$
+                    + "\")" + lineDelimiter; //$NON-NLS-1$
         }
         return super.constructCUContent(cu, serviceAnnotation + typeContent, lineDelimiter);
     }
@@ -249,7 +250,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         createInheritedMethods(type, false, true, imports, new SubProgressMonitor(monitor, 1));
 
         // add the import for @Service
-        imports.addImport("org.switchyard.component.bean.Service");
+        imports.addImport("org.switchyard.component.bean.Service"); //$NON-NLS-1$
 
         if (monitor != null) {
             monitor.done();
@@ -366,7 +367,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     private String getSimpleServiceInterfaceName(Interface serviceInterface) {
         if (serviceInterface == null || !(serviceInterface instanceof JavaInterface)
                 || ((JavaInterface) serviceInterface).getInterface() == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         String serviceInterfaceName = ((JavaInterface) serviceInterface).getInterface();
         int lastDotIndex = serviceInterfaceName.lastIndexOf('.');
@@ -383,9 +384,9 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     private String createDefaultClassName() {
         String serviceName = getServiceName();
         if (serviceName == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
-        return serviceName + "Bean";
+        return serviceName + "Bean"; //$NON-NLS-1$
     }
 
     private boolean updateDefault(String oldValue, String newValue, String currentValue) {

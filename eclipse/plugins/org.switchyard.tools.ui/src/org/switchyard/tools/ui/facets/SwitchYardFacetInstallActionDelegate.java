@@ -44,6 +44,7 @@ import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 
 /**
@@ -78,7 +79,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
                     new Status(
                             Status.ERROR,
                             Activator.PLUGIN_ID,
-                            "Could not resolve SwitchYard project.  SwitchYard facet installation is incomplete.  Project POM has not been updated."));
+                            Messages.SwitchYardFacetInstallActionDelegate_exceptionMessage_cannotResolveSYProject));
         }
 
         Object versionObject = dataModel.getProperty(ISwitchYardFacetConstants.RUNTIME_VERSION);
@@ -90,12 +91,12 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
                 .getProperty(ISwitchYardFacetConstants.RUNTIME_COMPONENTS));
 
         // make sure the sy stuff is in the pom
-        new AbstractSwitchYardProjectOperation(workingCopy, false, "Installing SwitchYard Facet", null) {
+        new AbstractSwitchYardProjectOperation(workingCopy, false, Messages.SwitchYardFacetInstallActionDelegate_operationLabel_installingSYFacet, null) {
             @Override
             protected void execute(IProgressMonitor monitor) throws CoreException {
                 // make sure test folders get removed, save initiating a maven
                 // project update
-                WTPProjectsUtil.removeTestFolderLinks(getProject(), workingCopy.getMavenProject(), monitor, "/");
+                WTPProjectsUtil.removeTestFolderLinks(getProject(), workingCopy.getMavenProject(), monitor, "/"); //$NON-NLS-1$
             }
 
             @Override
@@ -112,19 +113,19 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
     }
 
     private Element createModule(Namespace ns, String identifier, String implClass) {
-        Element newModule = new Element("module", ns);
-        newModule.setAttribute("identifier", identifier);
-        newModule.setAttribute("implClass", implClass);
+        Element newModule = new Element("module", ns); //$NON-NLS-1$
+        newModule.setAttribute("identifier", identifier); //$NON-NLS-1$
+        newModule.setAttribute("implClass", implClass); //$NON-NLS-1$
         return newModule;
     }
 
     private boolean switchyardExtensionExists(Element extensions) {
-        List<?> extensionList = extensions.getChildren("extension", extensions.getNamespace());
+        List<?> extensionList = extensions.getChildren("extension", extensions.getNamespace()); //$NON-NLS-1$
         Iterator<?> extensionIter = extensionList.iterator();
         while (extensionIter.hasNext()) {
             Element extension = (Element) extensionIter.next();
-            if (extension.getAttribute("module") != null
-                    && extension.getAttributeValue("module").equalsIgnoreCase("org.switchyard")) {
+            if (extension.getAttribute("module") != null //$NON-NLS-1$
+                    && extension.getAttributeValue("module").equalsIgnoreCase("org.switchyard")) { //$NON-NLS-1$ //$NON-NLS-2$
                 return true;
             }
         }
@@ -137,7 +138,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
         while (subsystemIter.hasNext()) {
             Element subsystem = (Element) subsystemIter.next();
             if (subsystem.getNamespace() != null
-                    && subsystem.getNamespace().getURI().equalsIgnoreCase("urn:jboss:domain:switchyard:1.0")) {
+                    && subsystem.getNamespace().getURI().equalsIgnoreCase("urn:jboss:domain:switchyard:1.0")) { //$NON-NLS-1$
                 return true;
             }
         }
@@ -149,9 +150,9 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
             return false;
         }
 
-        IFolder openshiftFolder = project.getFolder(".openshift");
+        IFolder openshiftFolder = project.getFolder(".openshift"); //$NON-NLS-1$
         if (openshiftFolder != null) {
-            IFile configFile = openshiftFolder.getFolder("config").getFile("standalone.xml");
+            IFile configFile = openshiftFolder.getFolder("config").getFile("standalone.xml"); //$NON-NLS-1$ //$NON-NLS-2$
             if (configFile != null) {
                 return true;
             }
@@ -164,9 +165,9 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
             return;
         }
 
-        IFolder openshiftFolder = project.getFolder(".openshift");
+        IFolder openshiftFolder = project.getFolder(".openshift"); //$NON-NLS-1$
         if (openshiftFolder != null) {
-            IFile configFile = openshiftFolder.getFolder("config").getFile("standalone.xml");
+            IFile configFile = openshiftFolder.getFolder("config").getFile("standalone.xml"); //$NON-NLS-1$ //$NON-NLS-2$
 
             SAXBuilder builder = new SAXBuilder();
             File xmlFile = new File(configFile.getLocationURI());
@@ -180,47 +181,47 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
                 Element rootNode = doc.getRootElement();
 
                 boolean madeChanges = false;
-                Element extensions = rootNode.getChild("extensions", rootNode.getNamespace());
+                Element extensions = rootNode.getChild("extensions", rootNode.getNamespace()); //$NON-NLS-1$
 
                 if (extensions != null) {
                     if (!switchyardExtensionExists(extensions)) {
-                        Element sy_extension = new Element("extension", extensions.getNamespace());
-                        sy_extension.setAttribute("module", "org.switchyard");
+                        Element sy_extension = new Element("extension", extensions.getNamespace()); //$NON-NLS-1$
+                        sy_extension.setAttribute("module", "org.switchyard"); //$NON-NLS-1$ //$NON-NLS-2$
                         extensions.addContent(sy_extension);
                         madeChanges = true;
                     }
                 }
 
-                Element profiles = rootNode.getChild("profile", rootNode.getNamespace());
+                Element profiles = rootNode.getChild("profile", rootNode.getNamespace()); //$NON-NLS-1$
 
                 if (profiles != null) {
                     if (!switchyardSubsystemExists(profiles)) {
-                        Namespace syNamespace = Namespace.getNamespace("urn:jboss:domain:switchyard:1.0");
-                        Element sySubsystem = new Element("subsystem", syNamespace);
-                        Element syModules = new Element("modules", syNamespace);
-                        Element beanModule = createModule(syNamespace, "org.switchyard.component.bean",
-                                "org.switchyard.component.bean.deploy.BeanComponent");
+                        Namespace syNamespace = Namespace.getNamespace("urn:jboss:domain:switchyard:1.0"); //$NON-NLS-1$
+                        Element sySubsystem = new Element("subsystem", syNamespace); //$NON-NLS-1$
+                        Element syModules = new Element("modules", syNamespace); //$NON-NLS-1$
+                        Element beanModule = createModule(syNamespace, "org.switchyard.component.bean", //$NON-NLS-1$
+                                "org.switchyard.component.bean.deploy.BeanComponent"); //$NON-NLS-1$
                         syModules.addContent(beanModule);
-                        Element soapModule = createModule(syNamespace, "org.switchyard.component.soap",
-                                "org.switchyard.component.soap.deploy.SOAPComponent");
+                        Element soapModule = createModule(syNamespace, "org.switchyard.component.soap", //$NON-NLS-1$
+                                "org.switchyard.component.soap.deploy.SOAPComponent"); //$NON-NLS-1$
                         syModules.addContent(soapModule);
-                        Element camelModule = createModule(syNamespace, "org.switchyard.component.camel.core",
-                                "org.switchyard.component.camel.core.deploy.CamelCoreComponent");
+                        Element camelModule = createModule(syNamespace, "org.switchyard.component.camel.core", //$NON-NLS-1$
+                                "org.switchyard.component.camel.core.deploy.CamelCoreComponent"); //$NON-NLS-1$
                         syModules.addContent(camelModule);
-                        Element rulesModule = createModule(syNamespace, "org.switchyard.component.rules",
-                                "org.switchyard.component.rules.deploy.RulesComponent");
+                        Element rulesModule = createModule(syNamespace, "org.switchyard.component.rules", //$NON-NLS-1$
+                                "org.switchyard.component.rules.deploy.RulesComponent"); //$NON-NLS-1$
                         syModules.addContent(rulesModule);
-                        Element bpmModule = createModule(syNamespace, "org.switchyard.component.bpm",
-                                "org.switchyard.component.bpm.deploy.BPMComponent");
+                        Element bpmModule = createModule(syNamespace, "org.switchyard.component.bpm", //$NON-NLS-1$
+                                "org.switchyard.component.bpm.deploy.BPMComponent"); //$NON-NLS-1$
                         syModules.addContent(bpmModule);
-                        Element bpelModule = createModule(syNamespace, "org.switchyard.component.bpel",
-                                "org.switchyard.component.bpel.deploy.BPELComponent");
+                        Element bpelModule = createModule(syNamespace, "org.switchyard.component.bpel", //$NON-NLS-1$
+                                "org.switchyard.component.bpel.deploy.BPELComponent"); //$NON-NLS-1$
                         syModules.addContent(bpelModule);
-                        Element restModule = createModule(syNamespace, "org.switchyard.component.resteasy",
-                                "org.switchyard.component.resteasy.deploy.RESTEasyComponent");
+                        Element restModule = createModule(syNamespace, "org.switchyard.component.resteasy", //$NON-NLS-1$
+                                "org.switchyard.component.resteasy.deploy.RESTEasyComponent"); //$NON-NLS-1$
                         syModules.addContent(restModule);
-                        Element httpModule = createModule(syNamespace, "org.switchyard.component.http",
-                                "org.switchyard.component.http.deploy.HttpComponent");
+                        Element httpModule = createModule(syNamespace, "org.switchyard.component.http", //$NON-NLS-1$
+                                "org.switchyard.component.http.deploy.HttpComponent"); //$NON-NLS-1$
                         syModules.addContent(httpModule);
                         sySubsystem.addContent(syModules);
                         profiles.addContent(sySubsystem);

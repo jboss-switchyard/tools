@@ -5,5 +5,5 @@ Bundle-Version: 1.1.0.qualifier
 Require-Bundle: org.eclipse.wst.xml.core;bundle-version="1.0.0";resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Bundle-Name: SwitchYard XML Schema Catalog
-Bundle-Vendor: www.jboss.org
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor

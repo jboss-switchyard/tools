@@ -118,7 +118,7 @@ public class Java2WSDLOptions {
      */
     public String getLocationURI() {
         if (_locationURI == null || _locationURI.length() == 0) {
-            return "http://localhost:8081/" + getServiceName();
+            return "http://localhost:8081/" + getServiceName(); //$NON-NLS-1$
         }
         return _locationURI;
     }

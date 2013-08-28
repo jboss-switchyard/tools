@@ -20,6 +20,7 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.explorer.AbstractSwitchYardNode;
 import org.switchyard.tools.ui.explorer.IReferenceNode;
 import org.switchyard.tools.ui.explorer.IReferencesNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ReferencesNode
@@ -59,7 +60,7 @@ public class ReferencesNode extends AbstractSwitchYardNode implements IReference
 
     @Override
     public String getName() {
-        return "References";
+        return Messages.ReferencesNode_labelReferences;
     }
 
     @Override

@@ -16,6 +16,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.composite.CompositeReferenceModel;
 import org.switchyard.config.model.composite.InterfaceModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * CompositeReferenceModelPropertySource
@@ -27,9 +28,9 @@ import org.switchyard.config.model.composite.InterfaceModel;
  */
 public class CompositeReferenceModelPropertySource implements IPropertySource {
 
-    private static final String PROP_NAME = "name";
-    private static final String PROP_INTERFACE = "interface";
-    private static final String PROP_PROMOTE = "promote";
+    private static final String PROP_NAME = "name"; //$NON-NLS-1$
+    private static final String PROP_INTERFACE = "interface"; //$NON-NLS-1$
+    private static final String PROP_PROMOTE = "promote"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final CompositeReferenceModel _model;
@@ -74,12 +75,12 @@ public class CompositeReferenceModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, "Name"),
-                new PropertyDescriptor(PROP_PROMOTE, "Promoted Reference"),
-                new PropertyDescriptor(PROP_INTERFACE, "Interface") };
-        DESCRIPTORS[0].setDescription("The name for the SwitchYard service reference.");
-        DESCRIPTORS[1].setDescription("The promoted component reference.");
-        DESCRIPTORS[2].setDescription("The interface details for the service reference.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, Messages.CompositeReferenceModelPropertySource_propertyDescriptor_name),
+                new PropertyDescriptor(PROP_PROMOTE, Messages.CompositeReferenceModelPropertySource_propertyDescriptor_promotedReference),
+                new PropertyDescriptor(PROP_INTERFACE, Messages.CompositeReferenceModelPropertySource_propertyDescriptor_interface) };
+        DESCRIPTORS[0].setDescription(Messages.CompositeReferenceModelPropertySource_propertyDescriptorDescription_name);
+        DESCRIPTORS[1].setDescription(Messages.CompositeReferenceModelPropertySource_propertyDescriptorDescription_promotedReference);
+        DESCRIPTORS[2].setDescription(Messages.CompositeReferenceModelPropertySource_propertyDescriptorDescription_interface);
         DESCRIPTORS[2].setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {

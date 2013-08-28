@@ -16,6 +16,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.config.model.composite.ComponentImplementationModel;
 import org.switchyard.config.model.composite.ComponentModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ComponentModelPropertySource
@@ -27,8 +28,8 @@ import org.switchyard.config.model.composite.ComponentModel;
  */
 public class ComponentModelPropertySource implements IPropertySource {
 
-    private static final String PROP_NAME = "name";
-    private static final String PROP_IMPLEMENTATION = "implementation";
+    private static final String PROP_NAME = "name"; //$NON-NLS-1$
+    private static final String PROP_IMPLEMENTATION = "implementation"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final ComponentModel _model;
@@ -71,10 +72,10 @@ public class ComponentModelPropertySource implements IPropertySource {
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, "Name"),
-                new PropertyDescriptor(PROP_IMPLEMENTATION, "Implementation") };
-        DESCRIPTORS[0].setDescription("The name for the SwitchYard component.");
-        DESCRIPTORS[1].setDescription("The implementation details for the component.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_NAME, Messages.ComponentModelPropertySource_propertyDescriptor_name),
+                new PropertyDescriptor(PROP_IMPLEMENTATION, Messages.ComponentModelPropertySource_propertyDescriptor_implementation) };
+        DESCRIPTORS[0].setDescription(Messages.ComponentModelPropertySource_propertyDescriptorDescription_name);
+        DESCRIPTORS[1].setDescription(Messages.ComponentModelPropertySource_propertyDescriptorDescription_implementation);
         DESCRIPTORS[1].setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {

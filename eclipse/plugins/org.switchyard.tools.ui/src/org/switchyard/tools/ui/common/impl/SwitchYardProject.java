@@ -67,6 +67,7 @@ import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener.Type;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardProject
@@ -176,7 +177,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                         .getDefault()
                         .getLog()
                         .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "Exception while loading switchyard.xml file.", e));
+                                Messages.SwitchYardProject_errorMessage_exceptionWhileLodingSYFile, e));
             }
         }
         return new ModelPuller<SwitchYardModel>().pull(new QName(SwitchYardModel.DEFAULT_NAMESPACE,
@@ -204,7 +205,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
             _lastOutputTimestamp = getOutputSwitchYardConfigurationFile().getModificationStamp();
             return;
         }
-        monitor.beginTask("Loading Maven configuration for SwitchYard project.", 100);
+        monitor.beginTask(Messages.SwitchYardProject_taskMessage_loadingMavenConfig, 100);
         monitor.worked(10);
         SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 75);
         Set<Type> types;
@@ -352,7 +353,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
         } else if (_rawVersionString == UNKNOWN_VERSION_STRING) {
             if (_version == null) {
                 _usingDependencyManagement = false;
-                _rawVersionString = "${" + _versionPropertyKey + "}";
+                _rawVersionString = "${" + _versionPropertyKey + "}"; //$NON-NLS-1$ //$NON-NLS-2$
             } else {
                 _usingDependencyManagement = true;
                 _rawVersionString = null;
@@ -361,7 +362,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
         _components = readComponents(mavenProject);
 
         for (IPath resourceLocation : MavenProjectUtils.getResourceLocations(_project, mavenProject.getResources())) {
-            IFile temp = _project.getFolder(resourceLocation).getFile("META-INF/switchyard.xml");
+            IFile temp = _project.getFolder(resourceLocation).getFile("META-INF/switchyard.xml"); //$NON-NLS-1$
             if (_switchYardConfigurationFile == null) {
                 _switchYardConfigurationFile = temp;
             }
@@ -434,7 +435,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
         for (Dependency dependency : mavenProject.getOriginalModel().getDependencies()) {
             if (SWITCHYARD_CORE_GROUP_ID.equals(dependency.getGroupId())) {
                 String dependencyVersion = dependency.getVersion();
-                if (dependencyVersion == null || !dependencyVersion.startsWith("${") || dependencyVersion.length() < 4) {
+                if (dependencyVersion == null || !dependencyVersion.startsWith("${") || dependencyVersion.length() < 4) { //$NON-NLS-1$
                     foundComponent = true;
                     continue;
                 }
@@ -445,7 +446,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
             for (Dependency dependency : mavenProject.getOriginalModel().getDependencyManagement().getDependencies()) {
                 if (SWITCHYARD_CORE_GROUP_ID.equals(dependency.getGroupId())) {
                     String dependencyVersion = dependency.getVersion();
-                    if (dependencyVersion == null || !dependencyVersion.startsWith("${")
+                    if (dependencyVersion == null || !dependencyVersion.startsWith("${") //$NON-NLS-1$
                             || dependencyVersion.length() < 4) {
                         foundComponent = true;
                         continue;
@@ -459,7 +460,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
             return foundComponent ? null : SWITCHYARD_VERSION;
         }
         String pluginVersion = switchYardPlugin.getVersion();
-        if (pluginVersion == null || !pluginVersion.startsWith("${") || pluginVersion.length() < 4) {
+        if (pluginVersion == null || !pluginVersion.startsWith("${") || pluginVersion.length() < 4) { //$NON-NLS-1$
             return null;
         }
         return pluginVersion.substring(2, pluginVersion.length() - 1);

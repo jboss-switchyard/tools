@@ -20,6 +20,7 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.explorer.AbstractSwitchYardNode;
 import org.switchyard.tools.ui.explorer.IComponentNode;
 import org.switchyard.tools.ui.explorer.IComponentsNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ComponentsNode
@@ -59,7 +60,7 @@ public class ComponentsNode extends AbstractSwitchYardNode implements IComponent
 
     @Override
     public String getName() {
-        return "Components";
+        return Messages.ComponentsNode_labelComponents;
     }
 
     @Override

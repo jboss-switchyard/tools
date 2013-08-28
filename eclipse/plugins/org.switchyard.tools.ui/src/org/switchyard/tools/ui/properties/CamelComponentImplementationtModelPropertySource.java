@@ -14,6 +14,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.switchyard.component.camel.model.CamelComponentImplementationModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * CamelComponentImplementationtModelPropertySource
@@ -25,8 +26,8 @@ import org.switchyard.component.camel.model.CamelComponentImplementationModel;
  */
 public class CamelComponentImplementationtModelPropertySource implements IPropertySource {
 
-    private static final String PROP_JAVA_CLASS = "java-class";
-    private static final String PROP_ROUTE = "route";
+    private static final String PROP_JAVA_CLASS = "java-class"; //$NON-NLS-1$
+    private static final String PROP_ROUTE = "route"; //$NON-NLS-1$
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final CamelComponentImplementationModel _model;
@@ -69,9 +70,9 @@ public class CamelComponentImplementationtModelPropertySource implements IProper
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_JAVA_CLASS, "Java Class"),
-                new PropertyDescriptor(PROP_ROUTE, "Route") };
-        DESCRIPTORS[0].setDescription("The class used to define the route(s).");
-        DESCRIPTORS[1].setDescription("The route definition.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_JAVA_CLASS, Messages.CamelComponentImplementationtModelPropertySource_propertyDescriptor_javaClass),
+                new PropertyDescriptor(PROP_ROUTE, Messages.CamelComponentImplementationtModelPropertySource_propertyDescriptor_route) };
+        DESCRIPTORS[0].setDescription(Messages.CamelComponentImplementationtModelPropertySource_propertyDescriptorDescription_javaClass);
+        DESCRIPTORS[1].setDescription(Messages.CamelComponentImplementationtModelPropertySource_propertyDescriptorDescription_route);
     }
 }

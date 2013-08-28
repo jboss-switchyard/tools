@@ -25,15 +25,15 @@ import org.jboss.tools.cdi.core.extension.feature.IInjectionPointValidatorFeatur
 public class SwitchYardCDIExtension implements ICDIExtension, IInjectionPointValidatorFeature {
 
     /** The fully qualified type name for SwitchYard's @Reference annotation. */
-    public static final String SWITCHYARD_REFERENCE_ANNOTATION = "org.switchyard.component.bean.Reference";
+    public static final String SWITCHYARD_REFERENCE_ANNOTATION = "org.switchyard.component.bean.Reference"; //$NON-NLS-1$
     /** The fully qualified type name for SwitchYard's @Property annotation. */
-    public static final String SWITCHYARD_PROPERTY_ANNOTATION = "org.switchyard.component.bean.Property";
+    public static final String SWITCHYARD_PROPERTY_ANNOTATION = "org.switchyard.component.bean.Property"; //$NON-NLS-1$
     /** The fully qualified type name for SwitchYard's exchange Context. */
-    public static final String SWITCHYARD_CONTEXT_TYPE = "org.switchyard.Context";
+    public static final String SWITCHYARD_CONTEXT_TYPE = "org.switchyard.Context"; //$NON-NLS-1$
     /** The fully qualified type name for SwitchYard's exchange Message. */
-    public static final String SWITCHYARD_MESSAGE_TYPE = "org.switchyard.Message";
+    public static final String SWITCHYARD_MESSAGE_TYPE = "org.switchyard.Message"; //$NON-NLS-1$
     /** The fully qualified type name for SwitchYard's BeanBag. */
-    public static final String SWITCHYARD_BEANBAG_TYPE = "org.switchyard.component.bean.BeanBag";
+    public static final String SWITCHYARD_BEANBAG_TYPE = "org.switchyard.component.bean.BeanBag"; //$NON-NLS-1$
 
     /**
      * Create a new SwitchYardCDIExtension.

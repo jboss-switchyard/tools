@@ -55,57 +55,57 @@ import org.sonatype.aether.util.artifact.DefaultArtifact;
 public final class M2EUtils {
 
     /** The switchyard.version property key. */
-    public static final String SWITCHYARD_VERSION = "switchyard.version";
+    public static final String SWITCHYARD_VERSION = "switchyard.version"; //$NON-NLS-1$
 
     /** The group ID for SwitchYard core projects. */
-    public static final String SWITCHYARD_CORE_GROUP_ID = "org.switchyard";
+    public static final String SWITCHYARD_CORE_GROUP_ID = "org.switchyard"; //$NON-NLS-1$
     /** The core SwitchYard API project artifact ID. */
-    public static final String SWITCHYARD_API_ARTIFACT_ID = "switchyard-api";
+    public static final String SWITCHYARD_API_ARTIFACT_ID = "switchyard-api"; //$NON-NLS-1$
     /** The core SwitchYard plugin project artifact ID. */
-    public static final String SWITCHYARD_PLUGIN_ARTIFACT_ID = "switchyard-plugin";
+    public static final String SWITCHYARD_PLUGIN_ARTIFACT_ID = "switchyard-plugin"; //$NON-NLS-1$
 
     /** src/main/java. */
-    public static final String MAVEN_MAIN_JAVA_PATH = "src/main/java";
+    public static final String MAVEN_MAIN_JAVA_PATH = "src/main/java"; //$NON-NLS-1$
     /** src/main/resources. */
-    public static final String MAVEN_MAIN_RESOURCES_PATH = "src/main/resources";
+    public static final String MAVEN_MAIN_RESOURCES_PATH = "src/main/resources"; //$NON-NLS-1$
     /** src/test/java. */
-    public static final String MAVEN_TEST_JAVA_PATH = "src/test/java";
+    public static final String MAVEN_TEST_JAVA_PATH = "src/test/java"; //$NON-NLS-1$
     /** src/test/resources. */
-    public static final String MAVEN_TEST_RESOURCES_PATH = "src/test/resources";
+    public static final String MAVEN_TEST_RESOURCES_PATH = "src/test/resources"; //$NON-NLS-1$
 
     /** The default ID for representing the JBoss Public Maven repository. */
-    public static final String JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID = "jboss-public-repository";
+    public static final String JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID = "jboss-public-repository"; //$NON-NLS-1$
 
     /** switchyard.xml. */
-    public static final String SWITCHYARD_XML = "switchyard.xml";
+    public static final String SWITCHYARD_XML = "switchyard.xml"; //$NON-NLS-1$
     /** META-INF. */
-    public static final String META_INF = "META-INF";
+    public static final String META_INF = "META-INF"; //$NON-NLS-1$
 
     /**
      * The as opposed to null, this identifies an indeterminate for the version
      * string.
      */
-    public static final String UNKNOWN_VERSION_STRING = new String("unknown");
+    public static final String UNKNOWN_VERSION_STRING = new String("unknown"); //$NON-NLS-1$
 
     // SwitchYard configure plugin configuration
     /** The key identifying the SwitchYard configure plugin. */
     public static final String SWITCHYARD_PLUGIN_KEY = Plugin.constructKey(SWITCHYARD_CORE_GROUP_ID,
             SWITCHYARD_PLUGIN_ARTIFACT_ID);
     /** Maven "configuration" element. */
-    public static final String CONFIGURATION_ELEMENT = "configuration";
+    public static final String CONFIGURATION_ELEMENT = "configuration"; //$NON-NLS-1$
     /** The SwitchYard plugin "scannerClassNames" element. */
-    public static final String SCANNER_CLASS_NAMES_ELEMENT = "scannerClassNames";
+    public static final String SCANNER_CLASS_NAMES_ELEMENT = "scannerClassNames"; //$NON-NLS-1$
     /** The SwitchYard plugin "outputFile" element. */
-    public static final String OUTPUT_FILE_ELEMENT = "outputFile";
+    public static final String OUTPUT_FILE_ELEMENT = "outputFile"; //$NON-NLS-1$
     /** The SwitchYard plugin "outputDirectory" element. */
-    public static final String OUTPUT_DIRECTORY_ELEMENT = "outputDirectory";
+    public static final String OUTPUT_DIRECTORY_ELEMENT = "outputDirectory"; //$NON-NLS-1$
     /** The SwitchYard plugin "param" element. */
-    public static final String PARAM_ELEMENT = "param";
+    public static final String PARAM_ELEMENT = "param"; //$NON-NLS-1$
     /** The SwitchYard plugin "configure" goal. */
-    public static final String CONFIGURE_GOAL = "configure";
+    public static final String CONFIGURE_GOAL = "configure"; //$NON-NLS-1$
 
     /** The URL for the JBoss public Maven repository. */
-    public static final String JBOSS_PUBLIC_REPOSITORY_URL = "http://repository.jboss.org/nexus/content/groups/public";
+    public static final String JBOSS_PUBLIC_REPOSITORY_URL = "http://repository.jboss.org/nexus/content/groups/public"; //$NON-NLS-1$
 
     /**
      * @param groupId the groupId
@@ -139,9 +139,9 @@ public final class M2EUtils {
     public static Repository createJBossPublicRepository(String id) {
         Repository repository = new Repository();
         repository.setId(id);
-        repository.setName("JBoss Public Maven Repository");
+        repository.setName("JBoss Public Maven Repository"); //$NON-NLS-1$
         repository.setUrl(JBOSS_PUBLIC_REPOSITORY_URL);
-        repository.setLayout("default");
+        repository.setLayout("default"); //$NON-NLS-1$
         return repository;
     }
 
@@ -153,8 +153,8 @@ public final class M2EUtils {
      * @throws CoreException if an error occurs.
      */
     public static VersionRangeResult resolveSwitchYardVersionRange(IProgressMonitor monitor) throws CoreException {
-        return resolveVersionRange(new DefaultArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "jar",
-                "[,]"), monitor);
+        return resolveVersionRange(new DefaultArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "jar", //$NON-NLS-1$
+                "[,]"), monitor); //$NON-NLS-1$
     }
 
     /**
@@ -185,7 +185,7 @@ public final class M2EUtils {
             VersionRangeRequest rangeRequest = new VersionRangeRequest(artifact, getRemoteRepositories(), null);
             return repoSystem.resolveVersionRange(session, rangeRequest);
         } catch (Exception e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e));
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e)); //$NON-NLS-1$
         }
     }
 
@@ -210,7 +210,7 @@ public final class M2EUtils {
                 }
             }
             if (!found) {
-                RemoteRepository remoteRepository = new RemoteRepository(repository.getId(), "default",
+                RemoteRepository remoteRepository = new RemoteRepository(repository.getId(), "default", //$NON-NLS-1$
                         repository.getUrl());
                 AuthenticationInfo authInfo = repository.getAuthenticationInfo();
                 if (authInfo != null) {
@@ -276,16 +276,16 @@ public final class M2EUtils {
         }
         Xpp3Dom configuration = findSwitchYardPluginConfiguration(plugin);
         if (configuration != null) {
-            Xpp3Dom node = configuration.getChild("outputFile");
+            Xpp3Dom node = configuration.getChild("outputFile"); //$NON-NLS-1$
             if (node != null && node.getValue() != null) {
                 return new File(project.getBasedir(), node.getValue());
             }
-            node = configuration.getChild("outputDirectory");
+            node = configuration.getChild("outputDirectory"); //$NON-NLS-1$
             if (node != null && node.getValue() != null) {
-                return new File(new File(project.getBasedir(), node.getValue()), "META-INF/switchyard.xml");
+                return new File(new File(project.getBasedir(), node.getValue()), "META-INF/switchyard.xml"); //$NON-NLS-1$
             }
         }
-        return new File(project.getBuild().getOutputDirectory(), "META-INF/switchyard.xml");
+        return new File(project.getBuild().getOutputDirectory(), "META-INF/switchyard.xml"); //$NON-NLS-1$
     }
 
     private static Plugin findSwitchYardPlugin(Model model) {

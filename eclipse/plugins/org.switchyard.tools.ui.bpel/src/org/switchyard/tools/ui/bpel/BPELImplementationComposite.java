@@ -72,7 +72,7 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
 
         _newBPELLink = new Link(_panel, SWT.NONE);
         factory.adapt(_newBPELLink, false, false);
-        _newBPELLink.setText("<a>BPEL File:</a>");
+        _newBPELLink.setText("<a>" + Messages.BPELImplementationComposite_newBPELFileLinkLabel + "</a>"); //$NON-NLS-1$ //$NON-NLS-2$
         _newBPELLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -81,7 +81,7 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
 
         });
 
-        _bpelFileText = factory.createText(_panel, "", SWT.READ_ONLY);
+        _bpelFileText = factory.createText(_panel, "", SWT.READ_ONLY); //$NON-NLS-1$
         _bpelFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _bpelFileText.addModifyListener(new ModifyListener() {
             @Override
@@ -101,7 +101,7 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
 
         });
 
-        _browseBPELButton = factory.createButton(_panel, "Browse...", SWT.PUSH);
+        _browseBPELButton = factory.createButton(_panel, Messages.BPELImplementationComposite_browseBPELFileButton, SWT.PUSH);
         _browseBPELButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -124,7 +124,7 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
         _updating = true;
         try {
             if (_implementation == null || _implementation.getProcess() == null) {
-                _bpelFileText.setText("");
+                _bpelFileText.setText(""); //$NON-NLS-1$
             } else {
                 _bpelFileText.setText(_implementation.getProcess().toString());
 
@@ -155,7 +155,7 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
             container = _project.getProject();
         }
         ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(_panel.getShell(), container,
-                "bpel");
+                "bpel"); //$NON-NLS-1$
         if (dialog.open() == SelectionDialog.OK) {
             Object[] result = dialog.getResult();
             if (result.length > 0 && result[0] instanceof IFile) {

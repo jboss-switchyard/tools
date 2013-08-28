@@ -41,6 +41,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * AbstractSwitchYardProjectOperation
@@ -51,12 +52,12 @@ import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
  */
 public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRunnable {
 
-    private final static String BEANS_XML_CONTENT = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-            + "<beans xmlns=\"http://java.sun.com/xml/ns/javaee\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
-            + "    xsi:schemaLocation=\"\n"
-            + "      http://java.sun.com/xml/ns/javaee \n"
-            + "      http://java.sun.com/xml/ns/javaee/beans_1_0.xsd\">\n"
-            + "</beans>\n";
+    private final static String BEANS_XML_CONTENT = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" //$NON-NLS-1$
+            + "<beans xmlns=\"http://java.sun.com/xml/ns/javaee\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" //$NON-NLS-1$
+            + "    xsi:schemaLocation=\"\n" //$NON-NLS-1$
+            + "      http://java.sun.com/xml/ns/javaee \n" //$NON-NLS-1$
+            + "      http://java.sun.com/xml/ns/javaee/beans_1_0.xsd\">\n" //$NON-NLS-1$
+            + "</beans>\n"; //$NON-NLS-1$
     private final static byte[] BEANS_XML_BYTES;
     private ISwitchYardProjectWorkingCopy _workingCopy;
     private String _switchYardVersion;
@@ -107,7 +108,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
     @Override
     public void run(IProgressMonitor monitor) throws CoreException {
         MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 15,
-                "Errors occurred while updating project configuration", null);
+                Messages.AbstractSwitchYardProjectOperation_statusLabel_errorsUpdatingProjectConfig, null);
 
         monitor.beginTask(_label, 600);
         try {
@@ -123,7 +124,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 }
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // make sure the working copy is setup
@@ -135,7 +136,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 _workingCopy.setRuntimeVersion(_switchYardVersion);
             }
 
-            monitor.subTask("Reading pom.xml file.");
+            monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_readingPOM);
             subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             if (_workingCopy.needsLoading()) {
                 _workingCopy.load(subMonitor);
@@ -144,40 +145,40 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
 
             // make sure bean.xml exists
             try {
-                monitor.subTask("Creating beans.xml files.");
+                monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_creatingBeansXMLFiles);
                 // create source beans.xml
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 createBeansXMLFile(MavenProjectUtils.getResourceLocations(_workingCopy.getProject(), _workingCopy
                         .getMavenProject().getResources()), subMonitor);
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
 
                 // create test beans.xml
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 createBeansXMLFile(MavenProjectUtils.getResourceLocations(_workingCopy.getProject(), _workingCopy
                         .getMavenProject().getTestResources()), subMonitor);
             } catch (ExecutionException e) {
-                status.merge(new Status(Status.ERROR, Activator.PLUGIN_ID, "Unable to create beans.xml.", e));
+                status.merge(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.AbstractSwitchYardProjectOperation_statusMessage_unableToCreateBeansXML, e));
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // make sure composite exists in switchyard.xml
             try {
-                monitor.subTask("Updating switchyard.xml file.");
+                monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_updatingSYXMLFile);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 updateSwitchYardFile(subMonitor);
             } catch (CoreException e) {
                 status.merge(e.getStatus());
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             // update the project's pom
             try {
-                monitor.subTask("Updating project pom.xml file");
+                monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_updatingPOMFile);
                 UpdateProjectPomOperation op = new UpdateProjectPomOperation(_workingCopy);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.run(subMonitor);
@@ -185,14 +186,14 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 status.merge(e.getStatus());
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
             if (!status.isOK()) {
                 throw new CoreException(status);
             }
         } finally {
-            monitor.subTask("");
+            monitor.subTask(""); //$NON-NLS-1$
             monitor.done();
         }
     }
@@ -216,7 +217,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
         IFile beansFile = null;
         IProject project = _workingCopy.getProject();
         for (IPath resourceLocation : resourceLocations) {
-            IFile temp = project.getFolder(resourceLocation).getFile("META-INF/beans.xml");
+            IFile temp = project.getFolder(resourceLocation).getFile("META-INF/beans.xml"); //$NON-NLS-1$
             if (temp.exists()) {
                 beansFile = temp;
                 break;
@@ -225,16 +226,16 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
         if (beansFile == null && resourceLocations.length > 0) {
             // TODO: find the first resource root that would include a beans.xml
             // file
-            IFile beansIFile = project.getFolder(resourceLocations[0]).getFile("META-INF/beans.xml");
-            CreateFileOperation op = new CreateFileOperation(beansIFile, null, new ByteArrayInputStream(BEANS_XML_BYTES), "Creating beans.xml file.");
+            IFile beansIFile = project.getFolder(resourceLocations[0]).getFile("META-INF/beans.xml"); //$NON-NLS-1$
+            CreateFileOperation op = new CreateFileOperation(beansIFile, null, new ByteArrayInputStream(BEANS_XML_BYTES), Messages.AbstractSwitchYardProjectOperation_operationLabel_creatingBeansXMLFile);
             op.execute(monitor, _uiInfo);
         }
     }
 
     private void updateSwitchYardFile(IProgressMonitor monitor) throws CoreException {
-        monitor.beginTask("Updating switchyard.xml", 100);
+        monitor.beginTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_updatingSYXML, 100);
         try {
-            monitor.subTask("Reading switchyard.xml");
+            monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_readingSYXML);
             IFile switchYardFile = _workingCopy.getSwitchYardConfigurationFile();
 
             boolean modelUpdated = false;
@@ -277,7 +278,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 return;
             }
 
-            monitor.subTask("Writing udpated switchyard.xml");
+            monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_writingUpdatedSYXML);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             switchYardModel.getModelConfiguration().write(baos, new OutputKey[0]);
             if (switchYardFile.exists()) {
@@ -286,7 +287,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             } else {
                 try {
                     new CreateFileOperation(switchYardFile, null, new ByteArrayInputStream(baos.toByteArray()),
-                            "Creating switchyard.xml file.").execute(monitor, _uiInfo);
+                            Messages.AbstractSwitchYardProjectOperation_operationLabel_creatingSYXMLFile).execute(monitor, _uiInfo);
                 } catch (ExecutionException e) {
                     if (e.getCause() instanceof CoreException) {
                         throw (CoreException) e.getCause();
@@ -295,7 +296,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 }
             }
         } catch (Exception e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error updating switchyard.xml.", e));
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.AbstractSwitchYardProjectOperation_exceptionMessage_errorUpdatingSYXML, e));
         } finally {
             monitor.done();
         }
@@ -304,7 +305,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
     static {
         byte[] bytes = new byte[0];
         try {
-            bytes = BEANS_XML_CONTENT.getBytes("UTF-8");
+            bytes = BEANS_XML_CONTENT.getBytes("UTF-8"); //$NON-NLS-1$
         } catch (Exception e) {
             bytes = BEANS_XML_CONTENT.getBytes();
         }

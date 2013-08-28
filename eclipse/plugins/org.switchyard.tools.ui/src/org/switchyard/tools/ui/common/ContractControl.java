@@ -35,6 +35,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ContractControl
@@ -63,7 +64,7 @@ public class ContractControl implements ISelectionProvider {
      */
     public ContractControl(EClass contractType, IJavaProject project, Set<InterfaceType> supportedTypes) {
         if (!contractType.getEAllSuperTypes().contains(ScaPackage.eINSTANCE.getContract())) {
-            throw new IllegalArgumentException("contractType must extend Contract: " + contractType.getName());
+            throw new IllegalArgumentException(Messages.ContractControl_errorContractTypeMustExtendContract + contractType.getName());
         }
         _service = (Contract) contractType.getEPackage().getEFactoryInstance().create(contractType);
         _interfaceControl = new InterfaceControl(null, supportedTypes);
@@ -83,7 +84,7 @@ public class ContractControl implements ISelectionProvider {
                         if (_serviceNameText == null) {
                             _service.setName(newName);
                         } else {
-                            _serviceNameText.setText(newName == null ? "" : newName);
+                            _serviceNameText.setText(newName == null ? "" : newName); //$NON-NLS-1$
                         }
                         // we don't want to fire two change notices, so update
                         // the old name and return
@@ -107,7 +108,7 @@ public class ContractControl implements ISelectionProvider {
         _interfaceControl.createControl(parent, numColumns);
 
         Label label = new Label(parent, SWT.NONE);
-        label.setText("Service Name:");
+        label.setText(Messages.ContractControl_labelServiceName);
 
         _serviceNameText = new Text(parent, SWT.SINGLE | SWT.BORDER);
         _serviceNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, numColumns - 2, 1));
@@ -211,7 +212,7 @@ public class ContractControl implements ISelectionProvider {
         if (status.getSeverity() != IStatus.ERROR) {
             // validate service name
             if (_service.getName() == null) {
-                return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please specify a name.");
+                return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.ContractControl_validateMessageMustSpecifyName);
             }
         }
         return status;

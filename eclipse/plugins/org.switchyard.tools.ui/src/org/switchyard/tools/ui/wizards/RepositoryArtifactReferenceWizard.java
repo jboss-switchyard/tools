@@ -22,6 +22,7 @@ import org.eclipse.ui.internal.dialogs.WorkbenchWizardElement;
 import org.eclipse.ui.internal.dialogs.WorkbenchWizardListSelectionPage;
 import org.eclipse.ui.internal.dialogs.WorkbenchWizardNode;
 import org.eclipse.ui.internal.registry.WizardsRegistryReader;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * RepositoryArtifactReferenceWizard
@@ -37,8 +38,8 @@ public class RepositoryArtifactReferenceWizard extends Wizard implements INewWiz
     private class WizardSelectionPage extends WorkbenchWizardListSelectionPage {
 
         public WizardSelectionPage() {
-            super(_workbench, _selection, _wizardsList, "Wizards:", "org.switchyard.tools.ui.repositorySupport");
-            setTitle("Select a wizard");
+            super(_workbench, _selection, _wizardsList, Messages.RepositoryArtifactReferenceWizard_pageTitle, "org.switchyard.tools.ui.repositorySupport"); //$NON-NLS-2$
+            setTitle(Messages.RepositoryArtifactReferenceWizard_wizardPageTitle);
         }
 
         @Override
@@ -64,7 +65,7 @@ public class RepositoryArtifactReferenceWizard extends Wizard implements INewWiz
         super();
         setForcePreviousAndNextButtons(true);
         setNeedsProgressMonitor(true);
-        setWindowTitle("Add Artifact Reference");
+        setWindowTitle(Messages.RepositoryArtifactReferenceWizard_windowTitle);
     }
 
     /**

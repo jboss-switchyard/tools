@@ -22,6 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ESBInterfaceInputDialog;
 import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * EsbInterfaceControlAdapter
@@ -102,25 +103,25 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public String getText() {
         if (_interface == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         } else if (_interface.getInputType() == null && _interface.getOutputType() == null && _interface.getFaultType() == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         // (void | outputType) esbOperation(inputType) throws faultType
-        String renderText = "";
+        String renderText = ""; //$NON-NLS-1$
         if (_interface.getOutputType() != null) {
-            renderText = "(" + _interface.getOutputType() + ") ";
+            renderText = "(" + _interface.getOutputType() + ") "; //$NON-NLS-1$ //$NON-NLS-2$
         } else {
-            renderText = "(void) ";
+            renderText = "(void) "; //$NON-NLS-1$
         }
-        renderText = renderText + "esbOperation(";
+        renderText = renderText + "esbOperation("; //$NON-NLS-1$
         if (_interface.getInputType() != null) {
-            renderText = renderText + _interface.getInputType() + ")";
+            renderText = renderText + _interface.getInputType() + ")"; //$NON-NLS-1$
         } else {
-            renderText = renderText + ")";
+            renderText = renderText + ")"; //$NON-NLS-1$
         }
         if (_interface.getFaultType() != null) {
-            renderText = renderText + " throws " + _interface.getFaultType();
+            renderText = renderText + " throws " + _interface.getFaultType(); //$NON-NLS-1$
         }
         return renderText;
     }
@@ -128,11 +129,11 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public IStatus validate(IJavaProject project) {
         if (_interface.getInputType() == null) {
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please specify an input type for the ESB interface.");
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.ESBInterfaceControlAdapter_statusMessage_specifyInputType);
         }
         
         if (_interface.getFaultType() != null && _interface.getOutputType() == null) {
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Specifying a fault type also requires the output type for the ESB interface.");
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.ESBInterfaceControlAdapter_statusMessage_specifyingFaultTypeRequiresOutputType);
         }
         
         return Status.OK_STATUS;

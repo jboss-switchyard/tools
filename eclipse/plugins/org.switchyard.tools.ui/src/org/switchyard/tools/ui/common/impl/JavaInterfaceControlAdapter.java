@@ -39,6 +39,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.wizards.WSDL2JavaWizard;
 
 /**
@@ -89,7 +90,7 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
         try {
             SelectionDialog dialog = JavaUI.createTypeDialog(shell, PlatformUI.getWorkbench().getProgressService(),
                     scope, IJavaElementSearchConstants.CONSIDER_INTERFACES, false,
-                    _interface.getInterface() == null ? "*Service" : _interface.getInterface());
+                    _interface.getInterface() == null ? "*Service" : _interface.getInterface()); //$NON-NLS-1$
             if (dialog.open() == SelectionDialog.OK) {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {
@@ -166,7 +167,7 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public String getText() {
         if (_interface.getInterface() == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         return _interface.getInterface();
     }
@@ -174,11 +175,11 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public IStatus validate(IJavaProject project) {
         if (_interface.getInterface() == null) {
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please specify a Java interface.");
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.JavaInterfaceControlAdapter_statusMessage_selectJavaInterface);
         } else if (SwitchYardModelUtils.getJavaType(project == null ? null : project.getProject(),
                 _interface.getInterface()) == null) {
             return new Status(Status.WARNING, Activator.PLUGIN_ID,
-                    "The specified type is not on the project's classpath.");
+                    Messages.JavaInterfaceControlAdapter_statusMessage_SelectedTypeNotOnClasspath);
         }
         return Status.OK_STATUS;
     }

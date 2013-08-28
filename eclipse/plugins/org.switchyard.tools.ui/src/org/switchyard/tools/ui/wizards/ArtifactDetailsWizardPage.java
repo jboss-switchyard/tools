@@ -15,6 +15,7 @@ import java.net.URL;
 
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -28,6 +29,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.config.model.switchyard.ArtifactModel;
 import org.switchyard.config.model.switchyard.ArtifactsModel;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ArtifactDetailsWizardPage
@@ -52,8 +54,8 @@ public class ArtifactDetailsWizardPage extends WizardPage {
     protected ArtifactDetailsWizardPage(boolean supportsDownload) {
         super(ArtifactDetailsWizardPage.class.getName());
         _supportsDownload = supportsDownload;
-        setTitle("Artifact Details");
-        setDescription("Specify details about the artifact reference.");
+        setTitle(Messages.ArtifactDetailsWizardPage_wizardPageTitle);
+        setDescription(Messages.ArtifactDetailsWizardPage_wizardPageDescription);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ArtifactDetailsWizardPage extends WizardPage {
         content.setLayout(new GridLayout(2, false));
 
         Label label = new Label(content, SWT.NONE);
-        label.setText("Artifact Name:");
+        label.setText(Messages.ArtifactDetailsWizardPage_labelArtifactName);
 
         _nameText = new Text(content, SWT.SINGLE | SWT.BORDER);
         _nameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -74,7 +76,7 @@ public class ArtifactDetailsWizardPage extends WizardPage {
         });
 
         label = new Label(content, SWT.NONE);
-        label.setText("Artifact URL:");
+        label.setText(Messages.ArtifactDetailsWizardPage_labelArtifactURL);
 
         _urlText = new Text(content, SWT.SINGLE | SWT.BORDER);
         _urlText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -86,7 +88,7 @@ public class ArtifactDetailsWizardPage extends WizardPage {
         });
 
         _downloadCheckbox = new Button(content, SWT.CHECK);
-        _downloadCheckbox.setText("Download artifact to workspace?");
+        _downloadCheckbox.setText(Messages.ArtifactDetailsWizardPage__checkboxLabelDownloadArtifactToWorkspace);
         _downloadCheckbox.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 2, 1));
         _downloadCheckbox.setEnabled(_supportsDownload);
         _downloadCheckbox.addSelectionListener(new SelectionAdapter() {
@@ -120,7 +122,7 @@ public class ArtifactDetailsWizardPage extends WizardPage {
         if (_nameText == null) {
             return;
         }
-        _nameText.setText(name == null ? "" : name);
+        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
     }
 
     /**
@@ -140,7 +142,7 @@ public class ArtifactDetailsWizardPage extends WizardPage {
         if (_urlText == null) {
             return;
         }
-        _urlText.setText(url == null ? "" : url);
+        _urlText.setText(url == null ? "" : url); //$NON-NLS-1$
     }
 
     /**
@@ -156,17 +158,18 @@ public class ArtifactDetailsWizardPage extends WizardPage {
 
     private void validate() {
         if (_nameText.getText().isEmpty()) {
-            setErrorMessage("Must specify a name.");
+            setErrorMessage(Messages.ArtifactDetailsWizardPage_errorMessage_mustSpecifyName);
         } else if (isDuplicateName(_nameText.getText())) {
-            setErrorMessage("An artifact with the specified name already exists.  Please specify a unique name.");
+            setErrorMessage(Messages.ArtifactDetailsWizardPage_errorMessage_nameAlreadyExists);
         } else if (_urlText.getText().isEmpty()) {
-            setErrorMessage("Must specify a URL.");
+            setErrorMessage(Messages.ArtifactDetailsWizardPage_errorMessage_mustSpecifyURL);
         } else {
             try {
                 new URL(_urlText.getText());
                 setErrorMessage(null);
             } catch (MalformedURLException e) {
-                setErrorMessage("The specified URL is invalid: " + e.getLocalizedMessage());
+                String message = NLS.bind(Messages.ArtifactDetailsWizardPage_errorMessage_urlInvalid, e.getLocalizedMessage());
+                setErrorMessage(message);
             }
         }
         setPageComplete(getErrorMessage() == null);

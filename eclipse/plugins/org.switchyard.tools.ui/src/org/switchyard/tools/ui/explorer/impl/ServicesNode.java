@@ -20,6 +20,7 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.explorer.AbstractSwitchYardNode;
 import org.switchyard.tools.ui.explorer.IServiceNode;
 import org.switchyard.tools.ui.explorer.IServicesNode;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * ServicesNode
@@ -59,7 +60,7 @@ public class ServicesNode extends AbstractSwitchYardNode implements IServicesNod
 
     @Override
     public String getName() {
-        return "Services";
+        return Messages.ServicesNode_labelServices;
     }
 
     @Override
