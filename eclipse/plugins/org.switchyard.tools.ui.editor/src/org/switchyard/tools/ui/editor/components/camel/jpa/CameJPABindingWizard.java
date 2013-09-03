@@ -38,7 +38,7 @@ public class CameJPABindingWizard extends AbstractBindingWizard implements IBind
         } else {
             binding.setProduce(JpaFactory.eINSTANCE.createJpaProducerType());
         }
-        binding.setName(makeUniqueName("jpa"));
+        binding.setName(makeUniqueName("jpa")); //$NON-NLS-1$
         return binding;
     }
 

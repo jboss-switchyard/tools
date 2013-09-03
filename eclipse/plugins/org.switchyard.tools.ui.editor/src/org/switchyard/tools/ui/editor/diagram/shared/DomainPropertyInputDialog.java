@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -50,15 +51,15 @@ public class DomainPropertyInputDialog extends TitleAreaDialog {
 
     @Override
     protected Control createDialogArea(Composite parent) {
-        setTitle("New Property Details");
-        setMessage("Specify a name and value for the new property.");
-        getShell().setText("Domain Property");
+        setTitle(Messages.title_newPropertyDetails);
+        setMessage(Messages.description_newPropertyDetails);
+        getShell().setText(Messages.title_domainProperty);
 
         Composite area = new Composite(parent, SWT.NULL);
         GridLayout gridLayout = new GridLayout(2, false);
         area.setLayout(gridLayout);
         area.setLayoutData(new GridData(GridData.FILL_BOTH));
-        _propertyNameText = createLabelAndText(area, "Name*");
+        _propertyNameText = createLabelAndText(area, Messages.label_nameStar);
         if (_propertyName != null && !_propertyName.trim().isEmpty()) {
             _propertyNameText.setText(_propertyName);
         }
@@ -68,7 +69,7 @@ public class DomainPropertyInputDialog extends TitleAreaDialog {
                 _propertyName = _propertyNameText.getText().trim();
             }
         });
-        _propertyValueText = createLabelAndText(area, "Value*");
+        _propertyValueText = createLabelAndText(area, Messages.label_valueStar);
         if (_propertyValue != null && !_propertyValue.trim().isEmpty()) {
             _propertyValueText.setText(_propertyValue);
         }
@@ -126,9 +127,9 @@ public class DomainPropertyInputDialog extends TitleAreaDialog {
     protected boolean validate() {
         setErrorMessage(null);
         if (_propertyNameText.getText().trim().isEmpty()) {
-            setErrorMessage("Please specify a name for the new property.");
+            setErrorMessage(Messages.error_noPropertyName);
         } else if (_propertyValueText.getText().trim().isEmpty()) {
-            setErrorMessage("Please specify a value for the new property.");
+            setErrorMessage(Messages.error_noPropertyValue);
         }
         return (getErrorMessage() == null);
     }

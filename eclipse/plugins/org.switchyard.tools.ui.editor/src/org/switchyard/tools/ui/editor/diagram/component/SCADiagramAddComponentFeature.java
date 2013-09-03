@@ -98,7 +98,7 @@ public class SCADiagramAddComponentFeature extends AbstractAddShapeFeature {
 
         // create link and wire it
         link(containerShape, addedComponent);
-        Graphiti.getPeService().setPropertyValue(roundedRectangle, "sca-type", "component");
+        Graphiti.getPeService().setPropertyValue(roundedRectangle, "sca-type", "component"); //$NON-NLS-1$ //$NON-NLS-2$
 
         // SHAPE WITH TEXT
         // create and set text graphics algorithm

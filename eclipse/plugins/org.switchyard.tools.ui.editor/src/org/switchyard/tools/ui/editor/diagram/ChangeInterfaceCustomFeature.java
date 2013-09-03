@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.InterfaceChangeDialog;
 
 /**
@@ -46,7 +47,7 @@ public class ChangeInterfaceCustomFeature extends AbstractCustomFeature implemen
 
     @Override
     public String getDescription() {
-        return "Edit the interface.";
+        return Messages.featureDescription_editInterface;
     }
 
     @Override
@@ -68,7 +69,7 @@ public class ChangeInterfaceCustomFeature extends AbstractCustomFeature implemen
 
     @Override
     public String getName() {
-        return "Edit Interface";
+        return Messages.featureName_editInterface;
     }
 
     @Override

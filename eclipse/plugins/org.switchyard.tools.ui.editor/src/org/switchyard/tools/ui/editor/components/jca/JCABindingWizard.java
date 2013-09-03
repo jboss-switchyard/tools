@@ -41,7 +41,7 @@ public class JCABindingWizard extends AbstractBindingWizard implements IBindingW
             binding.setOutboundConnection(JcaFactory.eINSTANCE.createJCAOutboundConnection());
             binding.setOutboundInteraction(JcaFactory.eINSTANCE.createJCAOutboundInteraction());
         }
-        binding.setName(makeUniqueName("jca"));
+        binding.setName(makeUniqueName("jca")); //$NON-NLS-1$
         return binding;
     }
 

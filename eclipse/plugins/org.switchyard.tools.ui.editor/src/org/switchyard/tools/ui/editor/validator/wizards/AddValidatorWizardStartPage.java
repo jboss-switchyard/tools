@@ -28,6 +28,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.editor.util.ValidatorTypesUtil;
 
@@ -52,8 +53,8 @@ public class AddValidatorWizardStartPage extends WizardPage {
 
     protected AddValidatorWizardStartPage(String pageName) {
         super(pageName);
-        setTitle("Create a New Validator");
-        setDescription("Specify validator type and details.");
+        setTitle(Messages.title_createNewValidator);
+        setDescription(Messages.description_createNewValidator);
     }
 
     @Override
@@ -64,7 +65,7 @@ public class AddValidatorWizardStartPage extends WizardPage {
         composite.setLayout(gl);
 
         Label listLabel = new Label(composite, SWT.NONE);
-        listLabel.setText("Binding Type:");
+        listLabel.setText(Messages.label_validatorType);
         GridData labelGD = new GridData(GridData.FILL_HORIZONTAL);
         labelGD.horizontalSpan = 2;
         listLabel.setLayoutData(labelGD);
@@ -133,7 +134,7 @@ public class AddValidatorWizardStartPage extends WizardPage {
     private void validate() {
         String errorMessage = null;
         if (_validator == null) {
-            errorMessage = "Please select a validator type.";
+            errorMessage = Messages.error_selectValidatorType;
         }
         setErrorMessage(errorMessage);
         setPageComplete(errorMessage == null);

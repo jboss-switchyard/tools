@@ -70,7 +70,7 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         final List<ComponentService> services = MergedModelUtil.getAdapter(component,
                 ComponentMergedModelAdapter.class).getServices();
         if (!services.contains(service)) {
-            System.err.println("Target component does not contain new service!!!");
+            System.err.println("Target component does not contain new service!!!"); //$NON-NLS-1$
             return null;
         }
 

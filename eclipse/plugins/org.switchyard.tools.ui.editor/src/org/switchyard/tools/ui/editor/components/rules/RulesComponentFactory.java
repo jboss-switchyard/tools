@@ -44,7 +44,7 @@ public class RulesComponentFactory extends BaseComponentFactory {
                 return new Path(resource.getLocation()).removeFileExtension().lastSegment();
             }
         }
-        return "RulesComponent";
+        return "RulesComponent"; //$NON-NLS-1$
     }
 
 }

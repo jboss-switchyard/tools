@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Group;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
@@ -48,12 +49,12 @@ public class SOAPInterceptorsComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "Interceptors";
+        return Messages.title_interceptors;
     }
 
     @Override
     public String getDescription() {
-        return "Specify inbound and outbound interceptors for your SOAP Binding.";
+        return Messages.description_interceptors;
     }
 
     /**
@@ -74,7 +75,7 @@ public class SOAPInterceptorsComposite extends AbstractSYBindingComposite {
         composite.setLayout(gl);
         
         Group inGroup = new Group(composite, SWT.NONE);
-        inGroup.setText("Inbound Interceptors");
+        inGroup.setText(Messages.label_inboundInterceptors);
         GridData inGrpGD = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
         inGroup.setLayoutData(inGrpGD);
         inGroup.setLayout(new GridLayout(2, false));
@@ -120,7 +121,7 @@ public class SOAPInterceptorsComposite extends AbstractSYBindingComposite {
         _inInterceptorTable.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
 
         Group outGroup = new Group(composite, SWT.NONE);
-        outGroup.setText("Outbound Interceptors");
+        outGroup.setText(Messages.label_outboundInterceptors);
         GridData outGrpGD = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL);
         outGroup.setLayoutData(outGrpGD);
         outGroup.setLayout(new GridLayout(2, false));
@@ -244,7 +245,7 @@ public class SOAPInterceptorsComposite extends AbstractSYBindingComposite {
                 _binding.getInInterceptors().getInterceptor().remove(_interceptor);
             }
             if (_binding.getInInterceptors().getInterceptor().isEmpty()) {
-                setFeatureValue(_binding, "inInterceptors", null);
+                setFeatureValue(_binding, "inInterceptors", null); //$NON-NLS-1$
             }
         }
     }
@@ -277,7 +278,7 @@ public class SOAPInterceptorsComposite extends AbstractSYBindingComposite {
                 _binding.getOutInterceptors().getInterceptor().remove(_interceptor);
             }
             if (_binding.getOutInterceptors().getInterceptor().isEmpty()) {
-                setFeatureValue(_binding, "outInterceptors", null);
+                setFeatureValue(_binding, "outInterceptors", null); //$NON-NLS-1$
             }
         }
     }

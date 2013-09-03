@@ -32,7 +32,7 @@ public class CamelSqlBindingWizard extends AbstractBindingWizard implements IBin
     @Override
     protected Binding createBinding() {
         final CamelSqlBindingType binding = SqlFactory.eINSTANCE.createCamelSqlBindingType();
-        binding.setName(makeUniqueName("sql"));
+        binding.setName(makeUniqueName("sql")); //$NON-NLS-1$
         return binding;
     }
 

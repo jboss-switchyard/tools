@@ -20,6 +20,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * NewRulesActionConfigurationWizardPage
@@ -51,7 +52,7 @@ public class NewRulesActionConfigurationWizardPage extends WizardPage {
         contents.setLayout(new GridLayout());
 
         Label label = new Label(contents, SWT.NONE);
-        label.setText("Actions:");
+        label.setText(Messages.label_actions);
 
         _actionsTable = new TableViewer(contents, SWT.H_SCROLL | SWT.V_SCROLL);
         // TODO: initialize providers, cell editors, etc.

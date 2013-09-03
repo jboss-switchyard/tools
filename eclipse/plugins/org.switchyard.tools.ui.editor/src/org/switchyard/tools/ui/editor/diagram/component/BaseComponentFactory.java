@@ -55,7 +55,7 @@ public abstract class BaseComponentFactory extends BaseTypeFactory<Component, Co
      * @return the name for the new component
      */
     protected String getComponentName(Implementation implementation, Composite container) {
-        return makeUniqueComponentName("Component", container);
+        return makeUniqueComponentName("Component", container); //$NON-NLS-1$
     }
 
     /**

@@ -49,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -80,8 +81,8 @@ public class BPMImplementationWizardPage extends WizardPage {
      */
     public BPMImplementationWizardPage(String pageName) {
         super(pageName);
-        setTitle("BPM Implementation Details");
-        setDescription("Select a BPMN file or knowledge container.");
+        setTitle(Messages.title_bpmImplementationDetails);
+        setDescription(Messages.description_bpmImplementationDetails);
         setPageComplete(false);
     }
 
@@ -137,8 +138,8 @@ public class BPMImplementationWizardPage extends WizardPage {
         resourceButtonsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 
         final StackLayout manifestLayout = new StackLayout();
-        final Button resourcesRadio = factory.createButton(resourceButtonsComposite, "Project Resource", SWT.RADIO);
-        final Button containerRadio = factory.createButton(resourceButtonsComposite, "Knowledge Container", SWT.RADIO);
+        final Button resourcesRadio = factory.createButton(resourceButtonsComposite, Messages.label_projectResource, SWT.RADIO);
+        final Button containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
 
         Composite resourceDetailsComposite = factory.createComposite(contents);
         resourceDetailsComposite.setLayout(manifestLayout);
@@ -188,7 +189,7 @@ public class BPMImplementationWizardPage extends WizardPage {
         contents.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
         _newBPMNLink = new Link(contents, SWT.NONE);
-        _newBPMNLink.setText("<a>BPMN File:</a>");
+        _newBPMNLink.setText(Messages.link_bpmnFile);
         _newBPMNLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -208,7 +209,7 @@ public class BPMImplementationWizardPage extends WizardPage {
         });
 
         _browseBPMNButton = new Button(contents, SWT.PUSH);
-        _browseBPMNButton.setText("Browse...");
+        _browseBPMNButton.setText(Messages.button_browse);
         _browseBPMNButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -223,7 +224,7 @@ public class BPMImplementationWizardPage extends WizardPage {
     private void validate() {
         setErrorMessage(null);
         if (_implementation == null) {
-            setErrorMessage("Please select a BPMN file.");
+            setErrorMessage(Messages.error_noBpmnFile);
         }
         setPageComplete(getErrorMessage() == null);
     }
@@ -235,8 +236,8 @@ public class BPMImplementationWizardPage extends WizardPage {
         } else {
             container = _project.getProject();
         }
-        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "bpmn");
-        dialog.setInitialPattern("*.bpmn");
+        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "bpmn"); //$NON-NLS-1$
+        dialog.setInitialPattern("*.bpmn"); //$NON-NLS-1$
         if (dialog.open() == SelectionDialog.OK) {
             Object[] result = dialog.getResult();
             if (result.length > 0 && result[0] instanceof IResource) {
@@ -247,7 +248,7 @@ public class BPMImplementationWizardPage extends WizardPage {
                 final ManifestType manifest = BPMFactory.eINSTANCE.createManifestType();
                 final ResourceType resource = BPMFactory.eINSTANCE.createResourceType();
                 resource.setLocation(bpmnFilePath);
-                resource.setType("BPMN2");
+                resource.setType("BPMN2"); //$NON-NLS-1$
 
                 _resources.getResource().clear();
                 _resources.getResource().add(resource);

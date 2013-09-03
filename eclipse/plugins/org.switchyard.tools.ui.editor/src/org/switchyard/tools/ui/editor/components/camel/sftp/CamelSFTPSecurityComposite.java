@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -49,12 +50,12 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "SFTP Security Details";
+        return Messages.title_sftpSecurityDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify security details for your SFTP Binding.";
+        return Messages.description_sftpSecurityDetails;
     }
 
     @Override
@@ -66,12 +67,12 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
             if (this._binding.getPrivateKeyFile() != null) {
                 _privateKeyFileText.setText(this._binding.getPrivateKeyFile());
             } else {
-                _privateKeyFileText.setText("");
+                _privateKeyFileText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPrivateKeyFilePassphrase() != null) {
                 _privateKeyFilePassphraseText.setText(this._binding.getPrivateKeyFilePassphrase());
             } else {
-                _privateKeyFilePassphraseText.setText("");
+                _privateKeyFilePassphraseText.setText(""); //$NON-NLS-1$
             }
             setInUpdate(false);
             validate();
@@ -100,9 +101,9 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
         
-        _privateKeyFileText = createLabelAndText(composite, "Private Key File");
+        _privateKeyFileText = createLabelAndText(composite, Messages.label_privateKeyFile);
         _browseBtn = new Button(composite, SWT.PUSH);
-        _browseBtn.setText("...");
+        _browseBtn.setText(Messages.buton_dots);
         _browseBtn.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -110,7 +111,7 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
             }
         });
         
-        _privateKeyFilePassphraseText = createLabelAndText(composite, "Private Key File Passphrase");
+        _privateKeyFilePassphraseText = createLabelAndText(composite, Messages.label_privateKeyFilePassphrase);
         GridData gd = new GridData(SWT.FILL, SWT.TOP, true, false);
         gd.horizontalSpan = 2;
         _privateKeyFilePassphraseText.setLayoutData(gd);
@@ -144,8 +145,8 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
         if (resource != null) {
             ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getPanel().getShell(),
                     resource.getProject());
-            dialog.setInitialPattern("*.*");
-            dialog.setTitle("Select Private Key File");
+            dialog.setInitialPattern("*.*"); //$NON-NLS-1$
+            dialog.setTitle(Messages.title_selectPrivateKeyFile);
             if (dialog.open() == ClasspathResourceSelectionDialog.OK) {
                 _privateKeyFileText.setText(((IResource) dialog.getFirstResult()).getFullPath().toString());
                 handleModify(_privateKeyFileText);
@@ -160,9 +161,9 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
 
     protected void handleModify(Control control) {
         if (control.equals(_privateKeyFileText)) {
-            updateFeature(_binding, "privateKeyFile", _privateKeyFileText.getText().trim());
+            updateFeature(_binding, "privateKeyFile", _privateKeyFileText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_privateKeyFilePassphraseText)) {
-            updateFeature(_binding, "privateKeyFilePassphrase", _privateKeyFilePassphraseText.getText().trim());
+            updateFeature(_binding, "privateKeyFilePassphrase", _privateKeyFilePassphraseText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }

@@ -52,7 +52,7 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 public class ApplicationPropertySection extends GFPropertySection implements ITabbedPropertyConstants,
         ResourceSetListener {
 
-    private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled";
+    private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled"; //$NON-NLS-1$
     private Button _messageTraceCheckbox;
     private Object _businessObject;
     private boolean _inUpdate = false;

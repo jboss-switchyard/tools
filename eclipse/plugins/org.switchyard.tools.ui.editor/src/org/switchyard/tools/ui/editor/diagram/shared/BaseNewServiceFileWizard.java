@@ -226,7 +226,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
      */
     @Override
     public void addPages() {
-        _page = new ServiceImplementationFileCreationPage("newFilePage1", getSelection());
+        _page = new ServiceImplementationFileCreationPage("newFilePage1", getSelection()); //$NON-NLS-1$
         if (_createdFilePath != null) {
             _page.setFileName(_createdFilePath);
         }

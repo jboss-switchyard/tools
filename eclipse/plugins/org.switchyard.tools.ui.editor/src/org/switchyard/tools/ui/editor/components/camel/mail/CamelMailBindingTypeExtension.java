@@ -24,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
@@ -39,8 +40,8 @@ public class CamelMailBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelMailBindingFactory(), "Mail",
-                "A Camel Mail based endpoint.", ImageProvider.IMG_16_MAIL) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelMailBindingFactory(), Messages.label_mail,
+                Messages.description_tool_mail, ImageProvider.IMG_16_MAIL) };
     }
 
     @Override
@@ -60,12 +61,12 @@ public class CamelMailBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-mail");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-mail"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "Mail";
+        return Messages.label_mail;
     }
 
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {
@@ -85,21 +86,21 @@ public class CamelMailBindingTypeExtension implements IBindingTypeExtension {
     
     static {
         PRODUCER_ADVANCED_PROPS = new ArrayList<String>();
-        PRODUCER_ADVANCED_PROPS.add("connectionTimeout");
+        PRODUCER_ADVANCED_PROPS.add("connectionTimeout"); //$NON-NLS-1$
     }
 
     private static final List<String> CONSUMER_ADVANCED_PROPS;
     
     static {
         CONSUMER_ADVANCED_PROPS = new ArrayList<String>();
-        CONSUMER_ADVANCED_PROPS.add("connectionTimeout");
-        CONSUMER_ADVANCED_PROPS.add("maxMessagesPerPoll");
-        CONSUMER_ADVANCED_PROPS.add("initialDelay");
-        CONSUMER_ADVANCED_PROPS.add("delay");
-        CONSUMER_ADVANCED_PROPS.add("useFixedDelay");
-        CONSUMER_ADVANCED_PROPS.add("sendEmptyMessageWhenIdle");
-        CONSUMER_ADVANCED_PROPS.add("timeUnit");
-        CONSUMER_ADVANCED_PROPS.add("copyTo");
-        CONSUMER_ADVANCED_PROPS.add("disconnect");
+        CONSUMER_ADVANCED_PROPS.add("connectionTimeout"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("maxMessagesPerPoll"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("initialDelay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("delay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("useFixedDelay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("sendEmptyMessageWhenIdle"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("timeUnit"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("copyTo"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("disconnect"); //$NON-NLS-1$
     }
 }

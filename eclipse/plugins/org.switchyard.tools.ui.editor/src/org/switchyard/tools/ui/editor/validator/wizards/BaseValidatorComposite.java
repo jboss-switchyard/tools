@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.util.ValidatorTypesUtil;
@@ -59,12 +60,12 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
         if (_nameText != null && !_nameText.isDisposed()) {
             String text = _nameText.getText().trim();
             if (text.isEmpty()) {
-                setErrorMessage("Name may not be empty.");
+                setErrorMessage(Messages.error_emptyName);
             } else {
                 try {
                     QName.valueOf(text);
                 } catch (IllegalArgumentException e) {
-                    setErrorMessage("Name must be a valid QName.");
+                    setErrorMessage(Messages.error_invalidQname);
                 }
             }
             if (!text.isEmpty()) {
@@ -75,7 +76,7 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
                     }
                 }
                 if (_typesUtil.validatorExists(text) && !inEdit) {
-                    setWarningMessage("A validator already exists with the selected name.");
+                    setWarningMessage(Messages.error_validatorNameExists);
                 }
             }
         }
@@ -90,7 +91,7 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
         if (getRootGridData() != null) {
             _panel.setLayoutData(getRootGridData());
         }
-        _nameText = createLabelAndCombo(_panel, "Name");
+        _nameText = createLabelAndCombo(_panel, Messages.label_name);
     }
 
     @Override
@@ -125,7 +126,7 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
 
     protected void handleModify(final Control control) {
         if (control.equals(_nameText)) {
-            updateFeature(_validator, "name", _nameText.getText().trim());
+            updateFeature(_validator, "name", _nameText.getText().trim()); //$NON-NLS-1$
         }
         validate();
     }

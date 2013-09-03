@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 
 
@@ -47,15 +48,15 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
     @Override
     public Property[] getPropertyList() {
         ArrayList<Property> list = new ArrayList<Property>();
-        list.add(createNewProperty("destinationType", "javax.jms.Topic"));
-        list.add(createNewProperty("subscriptionDurability", "NonDurable"));
-        list.add(createNewProperty("destination", "topic/YourTopicName"));
+        list.add(createNewProperty("destinationType", "javax.jms.Topic")); //$NON-NLS-1$ //$NON-NLS-2$
+        list.add(createNewProperty("subscriptionDurability", "NonDurable")); //$NON-NLS-1$ //$NON-NLS-2$
+        list.add(createNewProperty("destination", "topic/YourTopicName")); //$NON-NLS-1$ //$NON-NLS-2$
         return list.toArray(new Property[list.size()]);
     }
 
     @Override
     public String getDisplayName() {
-        return "HornetQ Topic Resource Adapter";
+        return Messages.label_hornetQTopicResourceAdapter;
     }
 
     @Override
@@ -94,10 +95,10 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
         @Override
         protected boolean validate() {
             if (!_destinationText.isDisposed() && _destinationText.getText().trim().isEmpty()) {
-                setErrorMessage("Destination topic must be specified.");
+                setErrorMessage(Messages.error_emptyTopic);
                 return false;
             } else if (_subscriptionDurabilityCheckbox.getSelection() && _clientIdText.getText().trim().isEmpty() && _subscriptionNameText.getText().trim().isEmpty()) {
-                setErrorMessage("Client ID and Subscription Name must be specified for Durable subscriptions.");
+                setErrorMessage(Messages.error_emptyClientIdAndSubscriptionName);
                 return false;
             }
             return true;
@@ -107,15 +108,15 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
         public void createContents(Composite parent, int style) {
             _panel = new Composite(parent, style);
             _panel.setLayout(new GridLayout(2, false));
-            _destinationText = createLabelAndText(_panel, "Destination (Topic)");
-            _messageSelectorText = createLabelAndText(_panel, "Message Selector");
-            _acknowledgeModeCombo = createLabelAndCombo(_panel, "Acknowledge Mode", true);
-            _acknowledgeModeCombo.add("Auto-acknowledge");
-            _acknowledgeModeCombo.add("Dups-ok-acknowledge");
-            _acknowledgeModeCombo.setText("Auto-acknowledge");
-            _subscriptionDurabilityCheckbox = createCheckbox(_panel, "Subscription Durability");
-            _clientIdText = createLabelAndText(_panel, "Client ID");
-            _subscriptionNameText = createLabelAndText(_panel, "Subscription Name");
+            _destinationText = createLabelAndText(_panel, Messages.label_destinationTopic);
+            _messageSelectorText = createLabelAndText(_panel, Messages.label_messageSelector);
+            _acknowledgeModeCombo = createLabelAndCombo(_panel, Messages.label_acknowledgeMode, true);
+            _acknowledgeModeCombo.add("Auto-acknowledge"); //$NON-NLS-1$
+            _acknowledgeModeCombo.add("Dups-ok-acknowledge"); //$NON-NLS-1$
+            _acknowledgeModeCombo.setText("Auto-acknowledge"); //$NON-NLS-1$
+            _subscriptionDurabilityCheckbox = createCheckbox(_panel, Messages.label_subscriptionDurability);
+            _clientIdText = createLabelAndText(_panel, Messages.label_clientId);
+            _subscriptionNameText = createLabelAndText(_panel, Messages.label_subscriptionName);
             
             _subscriptionDurabilityCheckbox.addSelectionListener(new SelectionListener(){
 
@@ -125,14 +126,14 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
                     _subscriptionNameText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
                     if (_subscriptionDurabilityCheckbox.getSelection()) {
                         _clientIdText.setText(UUID.randomUUID().toString());
-                        updateInboundActivationProperty("clientId", _clientIdText.getText().trim());
+                        updateInboundActivationProperty("clientId", _clientIdText.getText().trim()); //$NON-NLS-1$
                         _subscriptionNameText.setText(UUID.randomUUID().toString());
-                        updateInboundActivationProperty("subscriptionName", _subscriptionNameText.getText().trim());
+                        updateInboundActivationProperty("subscriptionName", _subscriptionNameText.getText().trim()); //$NON-NLS-1$
                     } else {
-                        _clientIdText.setText("");
-                        _subscriptionNameText.setText("");
-                        updateInboundActivationProperty("clientId", null);
-                        updateInboundActivationProperty("subscriptionName", null);
+                        _clientIdText.setText(""); //$NON-NLS-1$
+                        _subscriptionNameText.setText(""); //$NON-NLS-1$
+                        updateInboundActivationProperty("clientId", null); //$NON-NLS-1$
+                        updateInboundActivationProperty("subscriptionName", null); //$NON-NLS-1$
                     }
                 }
 
@@ -149,21 +150,21 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
         @Override
         protected void handleModify(Control control) {
             if (control.equals(_destinationText)) {
-                updateInboundActivationProperty("destination", _destinationText.getText().trim());
+                updateInboundActivationProperty("destination", _destinationText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_messageSelectorText)) {
-                updateInboundActivationProperty("messageSelector", _messageSelectorText.getText().trim());
+                updateInboundActivationProperty("messageSelector", _messageSelectorText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_clientIdText)) {
-                updateInboundActivationProperty("clientId", _clientIdText.getText().trim());
+                updateInboundActivationProperty("clientId", _clientIdText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_subscriptionNameText)) {
-                updateInboundActivationProperty("subscriptionName", _subscriptionNameText.getText().trim());
+                updateInboundActivationProperty("subscriptionName", _subscriptionNameText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_subscriptionDurabilityCheckbox)) {
                 if (_subscriptionDurabilityCheckbox.getSelection()) {
-                    updateInboundActivationProperty("subscriptionDurability", "Durable");
+                    updateInboundActivationProperty("subscriptionDurability", "Durable"); //$NON-NLS-1$ //$NON-NLS-2$
                 } else {
-                    updateInboundActivationProperty("subscriptionDurability", "NonDurable");
+                    updateInboundActivationProperty("subscriptionDurability", "NonDurable"); //$NON-NLS-1$ //$NON-NLS-2$
                 }
             } else if (control.equals(_acknowledgeModeCombo)) {
-                updateInboundActivationProperty("acknowledgeMode", _acknowledgeModeCombo.getText().trim());
+                updateInboundActivationProperty("acknowledgeMode", _acknowledgeModeCombo.getText().trim()); //$NON-NLS-1$
             } else {
                 super.handleModify(control);
             }
@@ -180,16 +181,16 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
             this._binding = (JCABinding) impl;
             JCAInboundConnection inbound = this._binding.getInboundConnection();
             if (inbound.getResourceAdapter() != null) {
-                getActivationPropertyForControl(inbound.getActivationSpec(), "destination", this._destinationText);
-                getActivationPropertyForControl(inbound.getActivationSpec(), "messageSelector", this._messageSelectorText);
-                getActivationPropertyForControl(inbound.getActivationSpec(), "clientId", this._clientIdText);
-                getActivationPropertyForControl(inbound.getActivationSpec(), "subscriptionName", this._subscriptionNameText);
-                getActivationPropertyForControl(inbound.getActivationSpec(), "acknowledgeMode", this._acknowledgeModeCombo);
+                getActivationPropertyForControl(inbound.getActivationSpec(), "destination", this._destinationText); //$NON-NLS-1$
+                getActivationPropertyForControl(inbound.getActivationSpec(), "messageSelector", this._messageSelectorText); //$NON-NLS-1$
+                getActivationPropertyForControl(inbound.getActivationSpec(), "clientId", this._clientIdText); //$NON-NLS-1$
+                getActivationPropertyForControl(inbound.getActivationSpec(), "subscriptionName", this._subscriptionNameText); //$NON-NLS-1$
+                getActivationPropertyForControl(inbound.getActivationSpec(), "acknowledgeMode", this._acknowledgeModeCombo); //$NON-NLS-1$
 
                 String subscriptionDurability =
-                        getResourceAdapterPropertyValue(inbound.getActivationSpec(), "subscriptionDurability");
+                        getResourceAdapterPropertyValue(inbound.getActivationSpec(), "subscriptionDurability"); //$NON-NLS-1$
                 if (subscriptionDurability != null && !this._subscriptionDurabilityCheckbox.isDisposed()) {
-                    _subscriptionDurabilityCheckbox.setSelection(subscriptionDurability.equals("Durable"));
+                    _subscriptionDurabilityCheckbox.setSelection(subscriptionDurability.equals("Durable")); //$NON-NLS-1$
                     _clientIdText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
                     _subscriptionNameText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
                 }
@@ -202,11 +203,11 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
 
     @Override
     public String getResourceAdapter() {
-        return "hornetq-ra.rar";
+        return "hornetq-ra.rar"; //$NON-NLS-1$
     }
 
     @Override
     public String getDestinationType() {
-        return "javax.jms.Topic";
+        return "javax.jms.Topic"; //$NON-NLS-1$
     }
 }

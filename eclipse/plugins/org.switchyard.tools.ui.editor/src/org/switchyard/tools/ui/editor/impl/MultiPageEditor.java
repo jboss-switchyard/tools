@@ -65,6 +65,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyInputDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyTable;
 import org.switchyard.tools.ui.editor.impl.security.SecurityInstanceTable;
@@ -79,7 +80,7 @@ import org.w3c.dom.Node;
  */
 public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener {
 
-    private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled";
+    private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled"; //$NON-NLS-1$
 
     /** The text editor used in page 0. */
     private SwitchyardSCAEditor _diagramEditor;
@@ -150,7 +151,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     @Override
     public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
         if (!(editorInput instanceof IFileEditorInput)) {
-            throw new PartInitException("Invalid Input: Must be IFileEditorInput");
+            throw new PartInitException(Messages.error_notIFileEditorInput);
         }
         super.init(site, editorInput);
     }
@@ -196,12 +197,12 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 @Override
                 protected void init() {
                     super.init();
-                    setId("show.or.hide.source.view");
+                    setId("show.or.hide.source.view"); //$NON-NLS-1$
                 }
 
                 @Override
                 public String getText() {
-                    return _sourceViewer == null ? "Show Source View" : "Hide Source View";
+                    return _sourceViewer == null ? Messages.label_showSourceView : Messages.label_hideSourceView;
                 }
 
                 @Override
@@ -526,7 +527,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
             createDomainSecuritySettingsSection(toolkit, _domainPage);
 
             int index = addPage(_domainPage);
-            setPageText(index, "Domain");
+            setPageText(index, Messages.title_domain);
             refresh();
         }
     }
@@ -542,7 +543,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 }
                 addPage(pageIndex, _diagramEditor, MultiPageEditor.this.getEditorInput());
                 _defaultTabHeight = _tabFolder.getTabHeight();
-                setPageText(pageIndex, "Design");
+                setPageText(pageIndex, Messages.title_design);
 
                 _defaultTabHeight = _tabFolder.getTabHeight();
 
@@ -566,7 +567,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 addPage(pageIndex, _sourceViewer, input);
                 _tabFolder.getItem(pageIndex).setShowClose(true);
 
-                setPageText(pageIndex, "Source");
+                setPageText(pageIndex, Messages.title_source);
                 updateTabs();
             } catch (Exception e) {
                 e.printStackTrace();

@@ -16,6 +16,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizard;
 
 /**
@@ -35,13 +36,13 @@ public class AddValidatorWizard extends BaseWizard {
     public AddValidatorWizard() {
         super();
         initPages();
-        setWindowTitle("New Validator");
+        setWindowTitle(Messages.title_newValidator);
     }
 
     private void initPages() {
-        _startPage = new AddValidatorWizardStartPage("start");
-        _xmlPage = new AddValidatorWizardXMLPage(_startPage, "xml");
-        _javaPage = new AddValidatorWizardJavaPage(_startPage, "java");
+        _startPage = new AddValidatorWizardStartPage("start"); //$NON-NLS-1$
+        _xmlPage = new AddValidatorWizardXMLPage(_startPage, "xml"); //$NON-NLS-1$
+        _javaPage = new AddValidatorWizardJavaPage(_startPage, "java"); //$NON-NLS-1$
         
     }
 

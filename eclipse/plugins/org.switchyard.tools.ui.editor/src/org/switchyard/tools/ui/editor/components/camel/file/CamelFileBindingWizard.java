@@ -38,7 +38,7 @@ public class CamelFileBindingWizard extends AbstractBindingWizard implements IBi
         } else {
             binding.setProduce(FileFactory.eINSTANCE.createFileProducerType());
         }
-        binding.setName(makeUniqueName("file"));
+        binding.setName(makeUniqueName("file")); //$NON-NLS-1$
         return binding;
     }
 

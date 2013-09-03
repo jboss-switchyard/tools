@@ -35,6 +35,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -56,12 +57,12 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "Scheduling Binding Details";
+        return Messages.title_schedulingBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your Scheduling Binding.";
+        return Messages.description_schedulingBindingDetails;
     }
 
     @Override
@@ -73,22 +74,22 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             if (this._binding.getCamelBindingName() != null) {
                 _nameText.setText(this._binding.getCamelBindingName());
             } else {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getCron() != null) {
                 _cronText.setText(this._binding.getCron());
             } else {
-                _cronText.setText("");
+                _cronText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getTriggerStartTime() != null) {
                 _startTimeText.setText(this._binding.getTriggerStartTime().toString());
             } else {
-                _startTimeText.setText("");
+                _startTimeText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getTriggerEndTime() != null) {
                 _endTimeText.setText(this._binding.getTriggerEndTime().toString());
             } else {
-                _endTimeText.setText("");
+                _endTimeText.setText(""); //$NON-NLS-1$
             }
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
@@ -126,10 +127,10 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_nameText.getText().trim().isEmpty()) {
-                setErrorMessage("Name may not be empty.");
+                setErrorMessage(Messages.error_emptyName);
             }
             if (_cronText.getText().trim().isEmpty()) {
-                setErrorMessage("Cron may not be empty.");
+                setErrorMessage(Messages.error_emptyCron);
             }
 //            if (!_startTimeText.getText().trim().isEmpty()) {
 //                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -164,10 +165,10 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name*");
-        _cronText = createLabelAndText(composite, "Cron*");
-        _startTimeText = createLabelAndText(composite, "Start Time");
-        _endTimeText = createLabelAndText(composite, "End Time");
+        _nameText = createLabelAndText(composite, Messages.label_nameStar);
+        _cronText = createLabelAndText(composite, Messages.label_cronStar);
+        _startTimeText = createLabelAndText(composite, Messages.label_startTime);
+        _endTimeText = createLabelAndText(composite, Messages.label_endTime);
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
@@ -191,19 +192,19 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType());
+                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()); //$NON-NLS-1$
             }
         }
     }
     
     protected void handleModify(final Control control) {
         if (control.equals(_nameText)) {
-            updateFeature(_binding, "camelBindingName", _nameText.getText().trim());
-            updateFeature(_binding, "name", _nameText.getText().trim());
+            updateFeature(_binding, "camelBindingName", _nameText.getText().trim()); //$NON-NLS-1$
+            updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_cronText)) {
-            updateFeature(_binding, "cron", _cronText.getText().trim());
+            updateFeature(_binding, "cron", _cronText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_startTimeText)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //$NON-NLS-1$
             try {
                 XMLGregorianCalendar calendar = null;
                 if (_startTimeText.getText().trim().length() > 0) {
@@ -211,12 +212,12 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                     String dateStr = sdf.format(date);
                     calendar = XMLTypeFactory.eINSTANCE.createDateTime(dateStr);
                 }
-                updateFeature(_binding, "startTime", calendar);
+                updateFeature(_binding, "startTime", calendar); //$NON-NLS-1$
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         } else if (control.equals(_endTimeText)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //$NON-NLS-1$
             try {
                 XMLGregorianCalendar calendar = null;
                 if (_endTimeText.getText().trim().length() > 0) {
@@ -224,7 +225,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                     String dateStr = sdf.format(date);
                     calendar = XMLTypeFactory.eINSTANCE.createDateTime(dateStr);
                 }
-                updateFeature(_binding, "endTime", calendar);
+                updateFeature(_binding, "endTime", calendar); //$NON-NLS-1$
             } catch (ParseException e) {
                 e.printStackTrace();
             }

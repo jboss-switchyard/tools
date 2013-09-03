@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.CreateTypeFeature;
 
 /**
@@ -71,8 +72,8 @@ public class CreateImplementationFeature extends CreateTypeFeature<Implementatio
             if (!MessageDialog
                     .openQuestion(
                             getShell(),
-                            "Replace Current Implementation",
-                            "This component is already associated with an implementation.  Do you want to replace the existing implementation with a new one?")) {
+                            Messages.title_replaceCurrentImplementation,
+                            Messages.description_replaceCurrentImplementation)) {
                 return null;
             }
         }

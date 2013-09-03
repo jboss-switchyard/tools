@@ -92,7 +92,7 @@ public class SCADiagramAddServiceFeature extends AbstractAddShapeFeature {
 
         gaService.setLocationAndSize(p, 0, 0, width, height);
 
-        Graphiti.getPeService().setPropertyValue(p, "sca-type", "service");
+        Graphiti.getPeService().setPropertyValue(p, "sca-type", "service"); //$NON-NLS-1$ //$NON-NLS-2$
 
         // create link and wire it
         link(containerShape, addedService);

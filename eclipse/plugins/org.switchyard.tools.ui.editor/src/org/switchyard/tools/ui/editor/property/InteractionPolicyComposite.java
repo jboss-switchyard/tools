@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -63,18 +64,18 @@ public class InteractionPolicyComposite extends AbstractModelComposite<Contract>
     public InteractionPolicyComposite(ICompositeContainer container, Composite parent, int style) {
         super(Contract.class, container, parent, style);
         _supportedInteractionPolicies = new ArrayList<String>();
-        _supportedInteractionPolicies.add("propagatesTransaction");
-        _supportedInteractionPolicies.add("suspendsTransaction");
+        _supportedInteractionPolicies.add("propagatesTransaction"); //$NON-NLS-1$
+        _supportedInteractionPolicies.add("suspendsTransaction"); //$NON-NLS-1$
 
         setLayout(new GridLayout(2, false));
 
         FormToolkit factory = getWidgetFactory();
 
-        factory.createLabel(this, "Transaction Policy:");
+        factory.createLabel(this, Messages.label_transactionPolicy);
 
         _interactionCombo = new Combo(this, SWT.DROP_DOWN | SWT.BORDER | SWT.READ_ONLY);
         factory.adapt(_interactionCombo, true, false);
-        _interactionCombo.add("None");
+        _interactionCombo.add("None"); //$NON-NLS-1$
         for (String label : _supportedInteractionPolicies) {
             _interactionCombo.add(label);
         }
@@ -105,7 +106,7 @@ public class InteractionPolicyComposite extends AbstractModelComposite<Contract>
                     QName newQName = new QName(existingItem);
                     requires.add(newQName);
                 }
-                if (!value.trim().contentEquals("None")) {
+                if (!value.trim().contentEquals("None")) { //$NON-NLS-1$
                     QName newQName = new QName(value);
                     requires.add(newQName);
                 }
@@ -136,7 +137,7 @@ public class InteractionPolicyComposite extends AbstractModelComposite<Contract>
             if (interactionPolicy != null && !_interactionCombo.isDisposed()) {
                 _interactionCombo.setText(interactionPolicy);
             } else {
-                _interactionCombo.setText("None");
+                _interactionCombo.setText("None"); //$NON-NLS-1$
             }
         } finally {
             _inUpdate = false;

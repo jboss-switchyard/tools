@@ -59,6 +59,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
 
 /**
@@ -100,8 +101,8 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
      */
     public NewTransformWizardPage() {
         super(NewTransformWizardPage.class.getCanonicalName());
-        setTitle("New Transformers");
-        setDescription("Create transformers for the selected transform pairs.");
+        setTitle(Messages.title_newTransformers);
+        setDescription(Messages.description_newTransformers);
     }
 
     /**
@@ -127,7 +128,7 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
         content.setLayout(new GridLayout(3, false));
 
         final Label transformLabel = new Label(content, SWT.NONE);
-        transformLabel.setText("Transformer type pairs:");
+        transformLabel.setText(Messages.label_transformerTypePairs);
         transformLabel.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 3, 1));
 
         final Composite tableComposite = new Composite(content, SWT.NONE);
@@ -142,7 +143,7 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
         tableComposite.setLayoutData(tableCompositeGD);
 
         _selectAll = new Button(content, SWT.PUSH);
-        _selectAll.setText("Select All");
+        _selectAll.setText(Messages.button_selectAll);
         _selectAll.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
         _selectAll.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -154,7 +155,7 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
         });
 
         _deselectAll = new Button(content, SWT.PUSH);
-        _deselectAll.setText("Deselect All");
+        _deselectAll.setText(Messages.button_deselectAll);
         _deselectAll.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
         _deselectAll.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -165,7 +166,7 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
         });
 
         final Label detailsLabel = new Label(content, SWT.NONE);
-        detailsLabel.setText("Interaction contexts for selected type pair:");
+        detailsLabel.setText(Messages.label_interactionContextForSelectedTypePairs);
         detailsLabel.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 3, 1));
 
         _detailsList = new ListViewer(content, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY);
@@ -181,7 +182,7 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
         ((GridData) separator.getLayoutData()).heightHint = 20;
 
         final Label transformTypeLabel = new Label(content, SWT.NONE);
-        transformTypeLabel.setText("Transformer Type:");
+        transformTypeLabel.setText(Messages.label_transformerType);
 
         _transformProviderList = new ComboViewer(content);
         _transformProviderList.getControl().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
@@ -255,12 +256,12 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
         table.setLinesVisible(true);
 
         final TableColumn from = new TableColumn(table, SWT.LEFT);
-        from.setText("From");
+        from.setText(Messages.label_from);
         from.setResizable(true);
         tableLayout.setColumnData(from, new ColumnWeightData(50));
 
         final TableColumn to = new TableColumn(table, SWT.LEFT);
-        to.setText("To");
+        to.setText(Messages.label_to);
         to.setResizable(true);
         tableLayout.setColumnData(to, new ColumnWeightData(50));
 
@@ -382,9 +383,9 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
         setErrorMessage(null);
 
         if (_transformsTable.getCheckedElements().length == 0) {
-            setErrorMessage("Please select one or more transform pairs.");
+            setErrorMessage(Messages.error_selectOneOrMoreTransformPairs);
         } else if (_activeControl == null && !_selectedProvider.providesWizard()) {
-            setErrorMessage("Please select an implementation type for the new transformer(s).");
+            setErrorMessage(Messages.error_selectTransformerImplementationType);
         } else {
             if (status == null && !_selectedProvider.providesWizard()) {
                 status = _activeControl.validate();

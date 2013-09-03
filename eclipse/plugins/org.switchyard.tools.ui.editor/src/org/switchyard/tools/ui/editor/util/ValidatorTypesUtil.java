@@ -163,7 +163,7 @@ public final class ValidatorTypesUtil {
 
         Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
         Map<String, Object> m = reg.getExtensionToFactoryMap();
-        m.put("xml", new SwitchyardResourceFactoryImpl());
+        m.put("xml", new SwitchyardResourceFactoryImpl()); //$NON-NLS-1$
 
         // Obtain a new resource set
         ResourceSet resourceSet = new ResourceSetImpl();

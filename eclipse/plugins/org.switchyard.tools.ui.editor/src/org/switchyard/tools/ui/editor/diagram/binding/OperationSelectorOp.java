@@ -66,9 +66,9 @@ public class OperationSelectorOp extends ModelOperation {
                 }
             }
         }
-        System.out.println("No love, didn't find feature: " + featureId);
+        System.out.println("No love, didn't find feature: " + featureId); //$NON-NLS-1$
         showFeatures(eObject);
-        throw new Exception("Feature ID (" + featureId + ") not found.");
+        throw new Exception("Feature ID (" + featureId + ") not found."); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     private void showFeatures(EObject eObject) {
@@ -76,7 +76,7 @@ public class OperationSelectorOp extends ModelOperation {
         for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
             EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
             if (eStructuralFeature.isChangeable()) {
-                System.out.println("Feature: " + eStructuralFeature.getName());
+                System.out.println("Feature: " + eStructuralFeature.getName()); //$NON-NLS-1$
             }
         }
     }

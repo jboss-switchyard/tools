@@ -56,8 +56,8 @@ public class SwitchYardCustomTaskPropertySection extends JbpmCustomTaskPropertyS
                 if (modelEnablement.isEnabled(object.eClass())) {
                     List<EStructuralFeature> features = ModelUtil.getAnyAttributes(object);
                     for (EStructuralFeature f : features) {
-                        if ("taskName".equals(f.getName())
-                                && ("SwitchYard Service Task".equals(((Task) object).getAnyAttribute().get(f, false)) || "SwitchYard Service"
+                        if ("taskName".equals(f.getName()) //$NON-NLS-1$
+                                && ("SwitchYard Service Task".equals(((Task) object).getAnyAttribute().get(f, false)) || "SwitchYard Service" //$NON-NLS-1$ //$NON-NLS-2$
                                         .equals(((Task) object).getAnyAttribute().get(f, false)))) {
                             return true;
                         }

@@ -22,6 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * JSONTransformProvider
@@ -54,11 +55,11 @@ public class JSONTransformProvider implements ITransformProvider {
                         if (NewTransformWizard.isJavaType(transformer.getFrom())) {
                             if (NewTransformWizard.isJavaType(transformer.getTo())) {
                                 return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                        "JSON transformers only support Java->JSON or JSON->Java.");
+                                        Messages.error_jsonTransformerOnlySupportsJsonToFromJava);
                             }
                         } else if (!NewTransformWizard.isJavaType(transformer.getTo())) {
                             return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                    "JSON transformers only support Java->JSON or JSON->Java.");
+                                    Messages.error_jsonTransformerOnlySupportsJsonToFromJava);
                         }
                     }
                 }
@@ -101,7 +102,7 @@ public class JSONTransformProvider implements ITransformProvider {
 
     @Override
     public String getName() {
-        return "JSON Transformer";
+        return Messages.label_jsonTransformer;
     }
 
 }

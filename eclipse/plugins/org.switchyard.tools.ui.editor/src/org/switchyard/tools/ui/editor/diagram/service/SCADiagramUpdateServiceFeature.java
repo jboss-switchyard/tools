@@ -35,6 +35,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 
 /**
@@ -72,7 +73,7 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
 
         // make sure the component still exists in the model
         if (!GraphitiInternal.getEmfService().isObjectAlive(service)) {
-            return Reason.createTrueReason(String.format("Service {0} has been removed.", service.getName()));
+            return Reason.createTrueReason(String.format(Messages.updateReason_serviceRemoved, service.getName()));
         }
 
         // retrieve name from pictogram model
@@ -88,17 +89,17 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
         boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
                 .contentEquals(businessName)));
         if (updateNameNeeded) {
-            return Reason.createTrueReason("Service name is out of date");
+            return Reason.createTrueReason(Messages.updateReason_serviceName);
         }
 
         // check the wiring
         final Set<Contract> existingConnections = getExistingConnections(cs);
         if (service.getPromote() != null && !existingConnections.remove(service.getPromote())) {
-            return Reason.createTrueReason("Update connections.");
+            return Reason.createTrueReason(Messages.updateReason_updateConnections);
         }
 
         if (existingConnections.size() > 0) {
-            return Reason.createTrueReason("Update connections.");
+            return Reason.createTrueReason(Messages.updateReason_updateConnections);
         }
 
         return Reason.createFalseReason();

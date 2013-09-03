@@ -44,6 +44,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.switchyard.tools.ui.bpmn2.Messages;
 
 /**
  * SwitchYardServiceTaskPropertiesComposite
@@ -86,7 +87,7 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
              * parameter mappings, create temporary objects for the editors
              * (these will go away if they are not touched by the user)
              */
-            List<Property> props = adapter.getProperties("ioSpecification/dataInputs/name");
+            List<Property> props = adapter.getProperties("ioSpecification/dataInputs/name"); //$NON-NLS-1$
             InputOutputSpecification ioSpec = task.getIoSpecification();
             if (ioSpec == null) {
                 ioSpec = copyCreateModelObject(InputOutputSpecification.class);
@@ -153,13 +154,13 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                     assignment = copyCreateModelObject(Assignment.class);
                     FormalExpression toExpression = copyCreateModelObject(FormalExpression.class);
                     toExpression.setBody(parameter.getId());
-                    toExpression.setLanguage("http://www.mvel.org/2.0");
+                    toExpression.setLanguage("http://www.mvel.org/2.0"); //$NON-NLS-1$
                     assignment.setTo(toExpression);
                     InsertionAdapter.add(association, PACKAGE.getDataAssociation_Assignment(), assignment);
                 }
                 if (fromExpression == null) {
                     fromExpression = copyCreateModelObject(FormalExpression.class);
-                    fromExpression.setLanguage("http://www.mvel.org/2.0");
+                    fromExpression.setLanguage("http://www.mvel.org/2.0"); //$NON-NLS-1$
                     InsertionAdapter.add(assignment, PACKAGE.getAssignment_From(), fromExpression);
                 }
 
@@ -168,22 +169,22 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                 // element from plugin.xml
                 EAttribute attribute = PACKAGE.getFormalExpression_Body();
                 String dataType = property.type;
-                if ("FaultAction".equals(name)) {
+                if ("FaultAction".equals(name)) { //$NON-NLS-1$
                     ObjectEditor editor = new FaultActionObjectEditor(this, fromExpression);
-                    editor.createControl(getAttributesParent(), "Fault Action");
-                } else if ("FaultName".equals(name)) {
+                    editor.createControl(getAttributesParent(), "Fault Action"); //$NON-NLS-1$
+                } else if ("FaultName".equals(name)) { //$NON-NLS-1$
                     TextObjectEditor editor = createTextObjectEditor(association, fromExpression, attribute);
                     editor.setMultiLine(false);
-                    editor.createControl(getAttributesParent(), "Fault Name");
+                    editor.createControl(getAttributesParent(), "Fault Name"); //$NON-NLS-1$
                 } else {
                     ObjectEditor editor;
-                    if ("FaultEventId".equals(name)) {
+                    if ("FaultEventId".equals(name)) { //$NON-NLS-1$
                         editor = new FaultSignalIdObjectEditor(this, fromExpression);
-                    } else if ("EInt".equals(dataType)) {
+                    } else if ("EInt".equals(dataType)) { //$NON-NLS-1$
                         editor = new IntObjectEditor(this, fromExpression, attribute);
-                    } else if ("EBoolean".equals(dataType)) {
+                    } else if ("EBoolean".equals(dataType)) { //$NON-NLS-1$
                         editor = new BooleanObjectEditor(this, fromExpression, attribute);
-                    } else if ("ID".equals(dataType)) {
+                    } else if ("ID".equals(dataType)) { //$NON-NLS-1$
                         editor = new NCNameObjectEditor(this, fromExpression, attribute);
                     } else {
                         editor = createTextObjectEditor(association, fromExpression, attribute);
@@ -249,87 +250,87 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
     }
 
     private void migrateOldInputs(final DataInput di) {
-        if ("FaultEventType".equals(di.getName())) {
+        if ("FaultEventType".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack().execute(
-                    new RecordingCommand(domain, "Update \"FaultEventType\" to \"FaultEventId\"") {
+                    new RecordingCommand(domain, Messages.label_updateFaultEventTypeToFaultEventId) {
                         @Override
                         protected void doExecute() {
-                            di.setName("FaultEventId");
+                            di.setName("FaultEventId"); //$NON-NLS-1$
                         }
                     });
-        } else if ("FaultSignalId".equals(di.getName())) {
+        } else if ("FaultSignalId".equals(di.getName())) { //$NON-NLS-1$
                 TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
                 domain.getCommandStack().execute(
-                        new RecordingCommand(domain, "Update \"FaultSignalId\" to \"FaultEventId\"") {
+                        new RecordingCommand(domain, Messages.label_updateFaultSignalIdToFaultEventId) {
                             @Override
                             protected void doExecute() {
-                                di.setName("FaultEventId");
+                                di.setName("FaultEventId"); //$NON-NLS-1$
                             }
                         });
-        } else if ("CompleteAfterFault".equals(di.getName())) {
+        } else if ("CompleteAfterFault".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack()
                     .execute(
                             new RecordingCommand(domain,
-                                    "Update \"CompleteAfterFault\" to \"FaultWorkItemAction\"") {
+                                    Messages.label_updateCompleteAfterFaultToFaultAction) {
                                 @Override
                                 protected void doExecute() {
-                                    di.setName("FaultWorkItemAction");
+                                    di.setName("FaultAction"); //$NON-NLS-1$
                                 }
                             });
-        } else if ("messageContentIn".equals(di.getName())) {
+        } else if ("messageContentIn".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack().execute(
-                    new RecordingCommand(domain, "Update \"messageContentIn\" to \"ParameterName\"") {
+                    new RecordingCommand(domain, Messages.label_updateMessageContentInToParameterName) {
                         @Override
                         protected void doExecute() {
-                            di.setName("ParameterName");
+                            di.setName("ParameterName"); //$NON-NLS-1$
                         }
                     });
-        } else if ("ContentInputName".equals(di.getName())) {
+        } else if ("ContentInputName".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack().execute(
-                    new RecordingCommand(domain, "Update \"ContentInputName\" to \"ParameterName\"") {
+                    new RecordingCommand(domain, Messages.label_updateContentInputNameToParameterName) {
                         @Override
                         protected void doExecute() {
-                            di.setName("ParameterName");
+                            di.setName("ParameterName"); //$NON-NLS-1$
                         }
                     });
-        } else if ("messageContentOut".equals(di.getName())) {
+        } else if ("messageContentOut".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack().execute(
-                    new RecordingCommand(domain, "Update \"messageContentOut\" to \"ResultName\"") {
+                    new RecordingCommand(domain, Messages.label_updateMessageContentOutToResultName) {
                         @Override
                         protected void doExecute() {
-                            di.setName("ResultName");
+                            di.setName("ResultName"); //$NON-NLS-1$
                         }
                     });
-        } else if ("ContentOutputName".equals(di.getName())) {
+        } else if ("ContentOutputName".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack().execute(
-                    new RecordingCommand(domain, "Update \"ContentOutputName\" to \"ResultName\"") {
+                    new RecordingCommand(domain, Messages.label_updateContentOutputNameToResultName) {
                         @Override
                         protected void doExecute() {
-                            di.setName("ResultName");
+                            di.setName("ResultName"); //$NON-NLS-1$
                         }
                     });
-        } else if ("FaultWorkItemAction".equals(di.getName())) {
+        } else if ("FaultWorkItemAction".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack().execute(
-                    new RecordingCommand(domain, "Update \"FaultWorkItemAction\" to \"FaultAction\"") {
+                    new RecordingCommand(domain, Messages.label_updateFaultWorkItemActionToFaultAction) {
                         @Override
                         protected void doExecute() {
-                            di.setName("FaultAction");
+                            di.setName("FaultAction"); //$NON-NLS-1$
                         }
                     });
-        } else if ("FaultResultName".equals(di.getName())) {
+        } else if ("FaultResultName".equals(di.getName())) { //$NON-NLS-1$
             TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
             domain.getCommandStack().execute(
-                    new RecordingCommand(domain, "Update \"FaultResultName\" to \"FaultName\"") {
+                    new RecordingCommand(domain, Messages.label_updateFaultResultNameToFaultName) {
                         @Override
                         protected void doExecute() {
-                            di.setName("FaultName");
+                            di.setName("FaultName"); //$NON-NLS-1$
                         }
                     });
         }
@@ -338,14 +339,14 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
     private void migrateTaskName(final Task task) {
         List<EStructuralFeature> features = ModelUtil.getAnyAttributes(task);
         for (EStructuralFeature f : features) {
-            if ("taskName".equals(f.getName()) && "SwitchYard Service".equals(task.getAnyAttribute().get(f, false))) {
+            if ("taskName".equals(f.getName()) && "SwitchYard Service".equals(task.getAnyAttribute().get(f, false))) { //$NON-NLS-1$ //$NON-NLS-2$
                 final EStructuralFeature taskNameFeature = f;
                 TransactionalEditingDomain domain = getDiagramEditor().getEditingDomain();
                 domain.getCommandStack().execute(
-                        new RecordingCommand(domain, "Update \"SwitchYard Service\" to \"SwitchYard Service Task\"") {
+                        new RecordingCommand(domain, Messages.label_updateSwitchYardServiceToSwitchYardServiceTask) {
                             @Override
                             protected void doExecute() {
-                                task.getAnyAttribute().set(taskNameFeature, "SwitchYard Service Task");
+                                task.getAnyAttribute().set(taskNameFeature, "SwitchYard Service Task"); //$NON-NLS-1$
                             }
                         });
             }

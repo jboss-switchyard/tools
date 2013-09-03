@@ -36,6 +36,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.LoggerType;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * NewRulesDetailsWizardPage
@@ -69,8 +70,8 @@ public class NewRulesDetailsWizardPage extends WizardPage {
      */
     public NewRulesDetailsWizardPage(String pageName) {
         super(pageName);
-        setTitle("Rules Implementation Details");
-        setDescription("Please specify details about the rules implementation.");
+        setTitle(Messages.title_rulesImplementationDetails);
+        setDescription(Messages.description_rulesImplementationDetails);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
         Composite contents = new Composite(parent, SWT.NONE);
         contents.setLayout(new GridLayout(2, false));
 
-        createLabel(contents, "Package Name:");
+        createLabel(contents, Messages.label_packageName);
         _packageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
         _packageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _packageNameText.addModifyListener(new ModifyListener() {
@@ -89,10 +90,10 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(contents, "Input Variable:");
+        createLabel(contents, Messages.label_inputVariable);
         _messageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
         _messageNameText
-                .setToolTipText("The name of the variable the input message contents will be stored; may be empty.");
+                .setToolTipText(Messages.tooltip_inputVariable);
         _messageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _messageNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -128,11 +129,11 @@ public class NewRulesDetailsWizardPage extends WizardPage {
         final Group auditSettingsGroup = new Group(contents, SWT.NONE);
         auditSettingsGroup.setLayout(new GridLayout(2, false));
         auditSettingsGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-        auditSettingsGroup.setText("Audit Settings");
+        auditSettingsGroup.setText(Messages.label_auditSettings);
 
         _auditingEnabledCheckbox = new Button(auditSettingsGroup, SWT.CHECK);
         _auditingEnabledCheckbox.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-        _auditingEnabledCheckbox.setText("Enable auditing");
+        _auditingEnabledCheckbox.setText(Messages.label_enableAuditing);
         _auditingEnabledCheckbox.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -142,7 +143,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(auditSettingsGroup, "Log Name:");
+        createLabel(auditSettingsGroup, Messages.label_logName);
         _auditLogText = new Text(auditSettingsGroup, SWT.SINGLE | SWT.BORDER);
         _auditLogText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _auditLogText.addModifyListener(new ModifyListener() {
@@ -153,7 +154,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(auditSettingsGroup, "Interval:");
+        createLabel(auditSettingsGroup, Messages.label_interval);
         _auditIntervalText = new Text(auditSettingsGroup, SWT.SINGLE | SWT.BORDER);
         _auditIntervalText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _auditIntervalText.addModifyListener(new ModifyListener() {
@@ -168,7 +169,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(auditSettingsGroup, "Log Type:");
+        createLabel(auditSettingsGroup, Messages.label_logType);
         _auditTypeList = new ComboViewer(auditSettingsGroup, SWT.DROP_DOWN);
         _auditTypeList.setLabelProvider(new LabelProvider() {
             @Override
@@ -279,7 +280,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             _auditSettings = auditSettings;
         } else {
             _auditLogText.setText(emptyForNull(auditSettings.getLog()));
-            _auditIntervalText.setText(auditSettings.getInterval() == null ? "" : auditSettings.getInterval()
+            _auditIntervalText.setText(auditSettings.getInterval() == null ? "" : auditSettings.getInterval() //$NON-NLS-1$
                     .toString());
             _auditTypeList.setSelection(new StructuredSelection(auditSettings.getType()), true);
         }
@@ -293,13 +294,13 @@ public class NewRulesDetailsWizardPage extends WizardPage {
     public void update(IJavaProject project) {
         final String newPackageName;
         if (project == null) {
-            newPackageName = "";
+            newPackageName = ""; //$NON-NLS-1$
         } else {
             IJavaElement element = JavaUtil.getInitialPackageForProject(project);
             if (element.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
                 newPackageName = ((IPackageFragment) element).getElementName();
             } else {
-                newPackageName = "";
+                newPackageName = ""; //$NON-NLS-1$
             }
         }
         if (updateDefault(_oldPackageName, newPackageName, _packageNameText.getText())) {
@@ -315,7 +316,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
     }
 
     private String emptyForNull(String string) {
-        return string == null ? "" : string;
+        return string == null ? "" : string; //$NON-NLS-1$
     }
 
     private String nullForEmpty(String string) {

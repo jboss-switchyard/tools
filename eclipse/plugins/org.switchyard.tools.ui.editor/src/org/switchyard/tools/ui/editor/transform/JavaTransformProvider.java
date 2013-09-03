@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui.editor.transform;
 
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * JavaTransformProvider
@@ -37,7 +38,7 @@ public class JavaTransformProvider implements ITransformProvider {
 
     @Override
     public String getName() {
-        return "Java Transformer";
+        return Messages.label_javaTransformer;
     }
 
 }

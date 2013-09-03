@@ -29,6 +29,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * ThrottlingPropertyComposite
@@ -57,9 +58,9 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
 
         FormToolkit factory = getWidgetFactory();
 
-        factory.createText(this, "Specify the maximum number of requests per period (in milliseconds).",
+        factory.createText(this, Messages.tooltip_enableThrottling,
                 SWT.READ_ONLY | SWT.WRAP).setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
-        _enableCheck = factory.createButton(this, "Enable throttling", SWT.CHECK);
+        _enableCheck = factory.createButton(this, Messages.label_enableThrottling, SWT.CHECK);
         _enableCheck.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         _enableCheck.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -71,8 +72,8 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
             }
         });
 
-        factory.createLabel(this, "Maximum Requests:");
-        _maximumRequestsText = factory.createText(this, "", SWT.BORDER);
+        factory.createLabel(this, Messages.label_maximumRequests);
+        _maximumRequestsText = factory.createText(this, "", SWT.BORDER); //$NON-NLS-1$
         _maximumRequestsText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _maximumRequestsText.addModifyListener(new ModifyListener() {
             @Override
@@ -95,8 +96,8 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
             }
         });
 
-        factory.createLabel(this, "Time Period:");
-        _timePeriodText = factory.createText(this, "1000", SWT.BORDER | SWT.READ_ONLY);
+        factory.createLabel(this, Messages.label_timePeriod);
+        _timePeriodText = factory.createText(this, "1000", SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
         _timePeriodText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _timePeriodText.addModifyListener(new ModifyListener() {
             @Override
@@ -133,8 +134,8 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
                 _throttlingType = SwitchyardFactory.eINSTANCE.createThrottlingType();
 
                 _enableCheck.setSelection(false);
-                _timePeriodText.setText("");
-                _maximumRequestsText.setText("");
+                _timePeriodText.setText(""); //$NON-NLS-1$
+                _maximumRequestsText.setText(""); //$NON-NLS-1$
 
                 _enableCheck.setEnabled(false);
                 _timePeriodText.setEnabled(false);
@@ -161,9 +162,9 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
                     _timePeriodText.setEnabled(true);
                     _maximumRequestsText.setEnabled(true);
                 }
-                _timePeriodText.setText(_throttlingType.getTimePeriod() == null ? "" : _throttlingType.getTimePeriod()
+                _timePeriodText.setText(_throttlingType.getTimePeriod() == null ? "" : _throttlingType.getTimePeriod() //$NON-NLS-1$
                         .toString());
-                _maximumRequestsText.setText(_throttlingType.getMaxRequests() == null ? "" : _throttlingType
+                _maximumRequestsText.setText(_throttlingType.getMaxRequests() == null ? "" : _throttlingType //$NON-NLS-1$
                         .getMaxRequests().toString());
             }
         } finally {

@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.implementation.CreateImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.CompositeCreateFeature;
@@ -43,12 +44,12 @@ public class BeanComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CompositeCreateFeature(fp, "Bean",
-                "A Java Bean (CDI)  based component/implementation.", new CreateComponentFeature(fp,
-                        new BeanComponentFactory(), "Bean",
-                        "Create a component with a Java Bean (CDI) implementation.", ImageProvider.IMG_16_BEAN),
-                new CreateImplementationFeature(fp, new BeanImplementationFactory(), "Bean",
-                        "An implementation using a Java Bean (CDI).") {
+        return new ICreateFeature[] {new CompositeCreateFeature(fp, Messages.label_bean,
+                Messages.description_tool_beanComponentImplementation, new CreateComponentFeature(fp,
+                        new BeanComponentFactory(), Messages.label_bean,
+                        Messages.description_tool_beanComponent, ImageProvider.IMG_16_BEAN),
+                new CreateImplementationFeature(fp, new BeanImplementationFactory(), Messages.label_bean,
+                        Messages.description_tool_beanImplementation) {
                     @Override
                     public boolean canCreate(ICreateContext context) {
                         if (super.canCreate(context)) {
@@ -73,7 +74,7 @@ public class BeanComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Implementation object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-bean");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-bean"); //$NON-NLS-1$
     }
 
     @Override
@@ -83,6 +84,6 @@ public class BeanComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public String getTypeName(Implementation object) {
-        return "Bean";
+        return Messages.label_bean;
     }
 }

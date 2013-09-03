@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 
 /**
@@ -40,15 +41,15 @@ public class CreateJavaTransformerOperation extends AbstractSwitchYardProjectOpe
     public CreateJavaTransformerOperation(NewJavaTransformerClassPage page, IAdaptable uiInfo) {
         super(null, Collections
                 .singleton(SwitchYardComponentExtensionManager.instance().getRuntimeComponentExtension()), false,
-                "Creating new Java transformer class.", uiInfo);
+                Messages.message_creatingNewJavaTransformerClass, uiInfo);
         _page = page;
     }
 
     @Override
     protected void execute(IProgressMonitor monitor) throws CoreException {
         try {
-            monitor.beginTask("", 100);
-            monitor.subTask("Creating Java transformer class.");
+            monitor.beginTask("", 100); //$NON-NLS-1$
+            monitor.subTask(Messages.message_creatingJavaTransformerClass);
             IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 100,
                     SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             try {
@@ -57,10 +58,10 @@ public class CreateJavaTransformerOperation extends AbstractSwitchYardProjectOpe
                 throw new CoreException(new Status(Status.CANCEL, Activator.PLUGIN_ID, e.getMessage(), e));
             } finally {
                 subMonitor.done();
-                subMonitor.setTaskName("");
+                subMonitor.setTaskName(""); //$NON-NLS-1$
             }
         } finally {
-            monitor.setTaskName("");
+            monitor.setTaskName(""); //$NON-NLS-1$
             monitor.done();
         }
     }

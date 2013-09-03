@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -62,12 +63,12 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
 
     @Override
     public String getTitle() {
-        return "File Binding Details";
+        return Messages.title_fileBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your File Binding.";
+        return Messages.description_fileBindingDetails;
     }
 
     @Override
@@ -81,52 +82,52 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
                     setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
 //                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else {
-                    _delayText.setText("");
+                    _delayText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().isSetMaxMessagesPerPoll()) {
                     setTextValue(_maxMessagesPerPollText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
 //                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
                 } else {
-                    _maxMessagesPerPollText.setText("");
+                    _maxMessagesPerPollText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else {
-                    _excludeText.setText("");
+                    _excludeText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getInclude() != null) {
                     _includeText.setText(this._binding.getConsume().getInclude());
                 } else {
-                    _includeText.setText("");
+                    _includeText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getMoveFailed() != null) {
                     _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
                 } else {
-                    _moveFailedText.setText("");
+                    _moveFailedText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getMove() != null) {
                     _moveText.setText(this._binding.getConsume().getMove());
                 } else {
-                    _moveText.setText("");
+                    _moveText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getPreMove() != null) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 } else {
-                    _preMoveText.setText("");
+                    _preMoveText.setText(""); //$NON-NLS-1$
                 }
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
             } else {
-                _directoryText.setText("");
+                _directoryText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             } else {
-                _fileNameText.setText("");
+                _fileNameText.setText(""); //$NON-NLS-1$
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -156,7 +157,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
-                setErrorMessage("Directory may not be empty.");
+                setErrorMessage(Messages.error_emptyDirectory);
 //            } else if (!_delayText.getText().trim().isEmpty()) {
 //                try {
 //                    new BigInteger(_delayText.getText().trim());
@@ -187,14 +188,14 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _directoryText = createLabelAndText(composite, "Directory*");
-        _fileNameText = createLabelAndText(composite, "File Name");
+        _directoryText = createLabelAndText(composite, Messages.label_directoryStar);
+        _fileNameText = createLabelAndText(composite, Messages.label_fileName);
 
-        _autoCreateButton = createCheckbox(composite, "Auto Create Missing Directories in File Path");
-        _includeText = createLabelAndText(composite, "Include");
-        _excludeText = createLabelAndText(composite, "Exclude");
+        _autoCreateButton = createCheckbox(composite, Messages.label_autoCreateMissingDirectories);
+        _includeText = createLabelAndText(composite, Messages.label_include);
+        _excludeText = createLabelAndText(composite, Messages.label_exclude);
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
@@ -209,19 +210,19 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         Group moveGroup = new Group(composite, SWT.NONE);
         moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         moveGroup.setLayout(new GridLayout(2, false));
-        moveGroup.setText("Move Options");
+        moveGroup.setText(Messages.label_moveOptions);
 
-        _preMoveText = createLabelAndText(moveGroup, "Pre-Move");
-        _moveText = createLabelAndText(moveGroup, "Move (Default .camel)");
-        _moveFailedText = createLabelAndText(moveGroup, "Move Failed");
+        _preMoveText = createLabelAndText(moveGroup, Messages.label_preMove);
+        _moveText = createLabelAndText(moveGroup, Messages.label_moveDefaultDotCamel);
+        _moveFailedText = createLabelAndText(moveGroup, Messages.label_moveFailed);
 
         Group pollGroup = new Group(composite, SWT.NONE);
         pollGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         pollGroup.setLayout(new GridLayout(2, false));
-        pollGroup.setText("Poll Options");
+        pollGroup.setText(Messages.label_pollOptions);
 
-        _maxMessagesPerPollText = createLabelAndText(pollGroup, "Max Messages Per Poll (Default 0)");
-        _delayText = createLabelAndText(pollGroup, "Delay Between Polls (MS) (Default 500)");
+        _maxMessagesPerPollText = createLabelAndText(pollGroup, Messages.label_maxMessagesPerPollDefault0);
+        _delayText = createLabelAndText(pollGroup, Messages.label_delayBetweenPollsDefault500);
 
         return composite;
     }
@@ -235,7 +236,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", FileFactory.eINSTANCE.createFileConsumerType());
+                setFeatureValue(_binding, "consume", FileFactory.eINSTANCE.createFileConsumerType()); //$NON-NLS-1$
             }
         }
     }
@@ -243,46 +244,46 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     protected void updateConsumeFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ConsumeOp());
-        ops.add(new BasicOperation("consume", featureId, value));
+        ops.add(new BasicOperation("consume", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
     protected void handleModify(final Control control) {
         if (control.equals(_directoryText)) {
-            updateFeature(_binding, "directory", _directoryText.getText().trim());
+            updateFeature(_binding, "directory", _directoryText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_fileNameText)) {
-            updateFeature(_binding, "fileName", _fileNameText.getText().trim());
+            updateFeature(_binding, "fileName", _fileNameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_autoCreateButton)) {
-            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection()));
+            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_delayText)) {
             try {
                 BigInteger delay = new BigInteger(_delayText.getText().trim());
-                updateConsumeFeature("delay", delay);
+                updateConsumeFeature("delay", delay); //$NON-NLS-1$
             } catch (NumberFormatException nfe) {
-                updateConsumeFeature("delay", _delayText.getText().trim());
+                updateConsumeFeature("delay", _delayText.getText().trim()); //$NON-NLS-1$
             }
         } else if (control.equals(_excludeText)) {
-            updateConsumeFeature("exclude", _excludeText.getText().trim());
+            updateConsumeFeature("exclude", _excludeText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_includeText)) {
-            updateConsumeFeature("include", _includeText.getText().trim());
+            updateConsumeFeature("include", _includeText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_maxMessagesPerPollText)) {
             try {
                 BigInteger max = new BigInteger(_maxMessagesPerPollText.getText().trim());
-                updateConsumeFeature("maxMessagesPerPoll", max);
+                updateConsumeFeature("maxMessagesPerPoll", max); //$NON-NLS-1$
             } catch (NumberFormatException nfe) {
-                updateConsumeFeature("maxMessagesPerPoll", _maxMessagesPerPollText.getText().trim());
+                updateConsumeFeature("maxMessagesPerPoll", _maxMessagesPerPollText.getText().trim()); //$NON-NLS-1$
             }
         } else if (control.equals(_moveFailedText)) {
-            updateConsumeFeature("moveFailed", _moveFailedText.getText().trim());
+            updateConsumeFeature("moveFailed", _moveFailedText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_moveText)) {
-            updateConsumeFeature("move", _moveText.getText().trim());
+            updateConsumeFeature("move", _moveText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_preMoveText)) {
-            updateConsumeFeature("preMove", _preMoveText.getText().trim());
+            updateConsumeFeature("preMove", _preMoveText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -303,7 +304,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
 //                String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
                     setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));

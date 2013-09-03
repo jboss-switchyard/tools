@@ -85,7 +85,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
         public void run() throws Exception {
             if (_binding != null && _binding.getInboundConnection() == null) {
                 JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                setFeatureValue(_binding, "inboundConnection", inbound);
+                setFeatureValue(_binding, "inboundConnection", inbound); //$NON-NLS-1$
             }
         }
     }
@@ -95,7 +95,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
         public void run() throws Exception {
             if (_binding != null && _binding.getInboundInteraction() == null) {
                 JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
-                setFeatureValue(_binding, "inboundInteraction", interaction);
+                setFeatureValue(_binding, "inboundInteraction", interaction); //$NON-NLS-1$
             }
         }
     }
@@ -106,7 +106,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
             if (_binding != null && _binding.getInboundConnection() != null
                     && _binding.getInboundConnection().getResourceAdapter() == null) {
                 ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-                setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter);
+                setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter); //$NON-NLS-1$
             }
         }
     }
@@ -119,7 +119,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
                 BatchCommit batchCommit = interaction.getBatchCommit();
                 if (batchCommit == null) {
                     batchCommit = JcaFactory.eINSTANCE.createBatchCommit();
-                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", batchCommit);
+                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", batchCommit); //$NON-NLS-1$
                 }
             }
         }
@@ -132,7 +132,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
             if (interaction != null) {
                 BatchCommit batchCommit = interaction.getBatchCommit();
                 if (batchCommit != null) {
-                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", null);
+                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", null); //$NON-NLS-1$
                 }
             }
         }
@@ -156,12 +156,12 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
             boolean foundEndpoint = true;
             switch (type) {
             case JMSENDPOINT:
-                listener = "javax.jms.MessageListener";
-                endpointClass = "org.switchyard.component.jca.endpoint.JMSEndpoint";
+                listener = "javax.jms.MessageListener"; //$NON-NLS-1$
+                endpointClass = "org.switchyard.component.jca.endpoint.JMSEndpoint"; //$NON-NLS-1$
                 break;
             case CCIENDPOINT:
-                listener = "javax.resource.cci.MessageListener";
-                endpointClass = "org.switchyard.component.jca.endpoint.CCIEndpoint";
+                listener = "javax.resource.cci.MessageListener"; //$NON-NLS-1$
+                endpointClass = "org.switchyard.component.jca.endpoint.CCIEndpoint"; //$NON-NLS-1$
                 break;
             default:
                 foundEndpoint = false;
@@ -173,7 +173,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
                 if (interaction.getEndpoint() == null) {
                     Endpoint endpoint = JcaFactory.eINSTANCE.createEndpoint();
                     endpoint.setType(endpointClass);
-                    setFeatureValue(interaction, "endpoint", endpoint);
+                    setFeatureValue(interaction, "endpoint", endpoint); //$NON-NLS-1$
                 } else {
                     interaction.getEndpoint().setType(endpointClass);
                 }
@@ -184,14 +184,14 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
     protected void updateInboundConnectionFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new InboundConnectionOp());
-        ops.add(new BasicOperation("inboundConnection", featureId, value));
+        ops.add(new BasicOperation("inboundConnection", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
     protected void updateInboundInteractionFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new InboundInteractionOp());
-        ops.add(new BasicOperation("inboundInteraction", featureId, value));
+        ops.add(new BasicOperation("inboundInteraction", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
@@ -199,7 +199,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new InboundConnectionOp());
         ops.add(new ResourceAdapterOp());
-        ops.add(new BasicOperation("inboundConnection/resourceAdapter", featureId, value));
+        ops.add(new BasicOperation("inboundConnection/resourceAdapter", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
@@ -208,7 +208,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
         ops.add(new InboundInteractionOp());
         ops.add(new BatchCommitOp());
         if (featureId != null) {
-            ops.add(new BasicOperation("inboundInteraction/batchCommit", featureId, value));
+            ops.add(new BasicOperation("inboundInteraction/batchCommit", featureId, value)); //$NON-NLS-1$
         }
         wrapOperation(ops);
     }
@@ -283,11 +283,11 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
         public void run() throws Exception {
             if (_binding != null && _binding.getInboundConnection() == null) {
                 JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                setFeatureValue(_binding, "inboundConnection", inbound);
+                setFeatureValue(_binding, "inboundConnection", inbound); //$NON-NLS-1$
             }
             if (_binding != null && _binding.getInboundConnection().getActivationSpec() == null) {
                 ActivationSpec activationSpec = JcaFactory.eINSTANCE.createActivationSpec();
-                setFeatureValue(_binding.getInboundConnection(), "activationSpec", activationSpec);
+                setFeatureValue(_binding.getInboundConnection(), "activationSpec", activationSpec); //$NON-NLS-1$
             }
         }
     }

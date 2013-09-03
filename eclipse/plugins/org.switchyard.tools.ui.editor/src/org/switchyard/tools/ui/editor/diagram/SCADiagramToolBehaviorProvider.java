@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -75,6 +76,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.AutoLayoutFeature.RecreateDiagramFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.component.AbstractComponentFactory;
@@ -138,14 +140,14 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 if (bo instanceof Component || bo instanceof Contract) {
                     ContextMenuEntry openMenu = new ContextMenuEntry(new SCADiagramOpenOnDoubleClickFeature(
                             getFeatureProvider()), context);
-                    openMenu.setText("Open");
+                    openMenu.setText(Messages.menu_open);
                     openMenu.setSubmenu(false);
                     menuList.add(openMenu);
                 }
                 if (bo instanceof Component) {
                     ContextMenuEntry addButton =
                             addCreateFeatureAContextMenu(null, context, menuList);
-                    addButton.setText("Add...");
+                    addButton.setText(Messages.button_add);
                     addButton.setSubmenu(true);
 
                     SCADiagramCreateComponentServiceFeature addService = new SCADiagramCreateComponentServiceFeature(getFeatureProvider());
@@ -156,7 +158,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     
                     IContextMenuEntry addComponentButton =
                             addCreateFeatureAsSubMenu(null, context, addButton);
-                    addComponentButton.setText("Implementation...");
+                    addComponentButton.setText(Messages.button_implementation);
                     addComponentButton.setIconId(ImageProvider.IMG_16_COMPONENT);
                     
                     for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateComponentFeatures()) {
@@ -167,7 +169,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     if (!(((Contract) bo).eContainer() instanceof Component)) {
                         ContextMenuEntry addButton =
                                 addCreateFeatureAContextMenu(null, context, menuList);
-                        addButton.setText("Add Binding...");
+                        addButton.setText(Messages.button_addBinding);
                         addButton.setIconId(ImageProvider.IMG_16_CHAIN);
                         addButton.setSubmenu(true);
 
@@ -184,7 +186,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 if (bo instanceof Composite) {
                     ContextMenuEntry addButton =
                             addCreateFeatureAContextMenu(null, context, menuList);
-                    addButton.setText("Add...");
+                    addButton.setText(Messages.button_add);
                     addButton.setSubmenu(true);
 
                     SCADiagramCreateServiceFeature addService = new SCADiagramCreateServiceFeature(getFeatureProvider());
@@ -195,12 +197,12 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     
                     IContextMenuEntry addComponentButton =
                             addCreateFeatureAsSubMenu(null, context, addButton);
-                    addComponentButton.setText("Component...");
+                    addComponentButton.setText(Messages.button_component);
                     addComponentButton.setIconId(ImageProvider.IMG_16_COMPONENT);
                     
                     CreateComponentFeature addComponent2 = new CreateComponentFeature(getFeatureProvider(), 
-                            new AbstractComponentFactory(), "Component",
-                            "Create a simple component with no implementation, services or references.");
+                            new AbstractComponentFactory(), Messages.label_component,
+                            Messages.description_tool_component);
 
                     addCreateFeatureAsSubMenu(addComponent2, context, addComponentButton);
 
@@ -337,7 +339,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 if (imageRenderingDecorator == null) {
                     imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_UNKNOWN_IMPL);
                 }
-                imageRenderingDecorator.setMessage("Implementation: " + text);
+                imageRenderingDecorator.setMessage(MessageFormat.format(Messages.tooltip_figure_implementation, text));
                 Location loc = getDecoratorLocationTopLeft(pe);
                 imageRenderingDecorator.setX(loc.getX() + 10);
                 imageRenderingDecorator.setY(loc.getY() + 4);
@@ -383,11 +385,11 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 x += 20;
                 String text = LabelAdapter.getLabel(binding);
                 if (binding instanceof SwitchYardBindingType) {
-                    text = "Binding: " + LabelAdapter.getLabel(binding);
+                    text = MessageFormat.format(Messages.tooltip_figure_binding, LabelAdapter.getLabel(binding));
                 }
                 if (binding instanceof SOAPBindingType) {
                     SOAPBindingType soapBinding = (SOAPBindingType) binding;
-                    text = text + "\n" + soapBinding.getWsdl();
+                    text = text + "\n" + soapBinding.getWsdl(); //$NON-NLS-1$
                 }
                 imageRenderingDecorator.setMessage(text);
                 decorators.add(imageRenderingDecorator);
@@ -398,7 +400,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     .getImageDecoratorForInterface(contract.getInterface());
             Interface intfc = contract.getInterface();
             String text = LabelAdapter.getLabel(intfc);
-            imageRenderingDecorator.setMessage("Interface: " + text);
+            imageRenderingDecorator.setMessage(MessageFormat.format(Messages.tooltip_figure_interface, text));
             Location loc = getDecoratorLocationLowerLeft(pe);
             imageRenderingDecorator.setY(loc.getY() - 18);
             imageRenderingDecorator.setX(15);
@@ -422,7 +424,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 String text = LabelAdapter.getLabel(intfc);
                 Location loc = getDecoratorLocationLowerLeft(pe);
                 imageRenderingDecorator.setY(loc.getY() - 18);
-                imageRenderingDecorator.setMessage("Interface (Inherited): " + text);
+                imageRenderingDecorator.setMessage(MessageFormat.format(Messages.tooltip_figure_inheritedInterface, text));
                 decorators.add(imageRenderingDecorator);
             }
         }
@@ -517,7 +519,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         List<IPaletteCompartmentEntry> ret = new ArrayList<IPaletteCompartmentEntry>();
 
         // add new compartment for generic entries
-        PaletteCompartmentEntry compositeEntry = new PaletteCompartmentEntry("Generic", null);
+        PaletteCompartmentEntry compositeEntry = new PaletteCompartmentEntry(Messages.category_tool_generic, null);
         for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateGenericFeatures()) {
             compositeEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
                     .getCreateImageId(), cf.getCreateLargeImageId(), cf));
@@ -531,7 +533,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         ret.add(compositeEntry);
 
         // add new compartment for component/implementation types
-        PaletteCompartmentEntry componentEntry = new PaletteCompartmentEntry("Implementations", null);
+        PaletteCompartmentEntry componentEntry = new PaletteCompartmentEntry(Messages.category_tool_implementations, null);
         for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateComponentFeatures()) {
             componentEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
                     .getCreateImageId(), cf.getCreateLargeImageId(), cf));
@@ -539,7 +541,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         ret.add(componentEntry);
 
         // add new compartment for bindings
-        PaletteCompartmentEntry bindingsEntry = new PaletteCompartmentEntry("Bindings", null);
+        PaletteCompartmentEntry bindingsEntry = new PaletteCompartmentEntry(Messages.category_tool_bindings, null);
         for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateBindingFeatures()) {
             bindingsEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
                     .getCreateImageId(), cf.getCreateLargeImageId(), cf));
@@ -547,7 +549,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         ret.add(bindingsEntry);
 
         // add new compartment for anything else
-        PaletteCompartmentEntry miscEntry = new PaletteCompartmentEntry("Other", null);
+        PaletteCompartmentEntry miscEntry = new PaletteCompartmentEntry(Messages.category_tool_other, null);
         for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateOtherFeatures()) {
             miscEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
                     .getCreateImageId(), cf.getCreateLargeImageId(), cf));
@@ -636,14 +638,14 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             addCreateFeatureAsButtonToPad(addCompositeReference, createContext, data);
             
             CreateComponentFeature addComponent = new CreateComponentFeature(getFeatureProvider(), 
-                    new AbstractComponentFactory(), "Component",
-                    "Create a new component...");
+                    new AbstractComponentFactory(), Messages.category_menu_component,
+                    Messages.tooltip_category_component);
             ContextButtonEntry addComponentButton =
                     addCreateFeatureAsButtonToPad(addComponent, createContext, data);
             
             CreateComponentFeature addComponent2 = new CreateComponentFeature(getFeatureProvider(), 
-                    new AbstractComponentFactory(), "Component",
-                    "Create a simple component with no implementation, services or references.");
+                    new AbstractComponentFactory(), Messages.label_component,
+                    Messages.description_tool_component);
             addCreateFeatureAsContextButtonToPad(addComponent2, createContext, addComponentButton);
 
             for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateComponentFeatures()) {
@@ -677,8 +679,8 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 addCreateFeatureAsButtonToPad(addComponentReference, createContext, data);
                 
                 CreateComponentFeature addComponent = new CreateComponentFeature(getFeatureProvider(), 
-                        new AbstractComponentFactory(), "Implementation",
-                        "Create a new implementation...");
+                        new AbstractComponentFactory(), Messages.category_menu_implementation,
+                        Messages.tooltip_category_implementation);
                 ContextButtonEntry addComponentButton =
                         addCreateFeatureAsButtonToPad(addComponent, createContext, data);
                 
@@ -694,8 +696,8 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
 
                 if (!(((Contract) bo).eContainer() instanceof Component)) {
                     CreateBindingFeature addBinding = new CreateBindingFeature(getFeatureProvider(), 
-                            null, "Binding",
-                            "Create a new binding...");
+                            null, Messages.category_menu_binding,
+                            Messages.tooltip_category_binding);
                     ContextButtonEntry addBindingButton =
                             addCreateFeatureAsButtonToPad(addBinding, createContext, data);
                     
@@ -718,8 +720,8 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 
                 ContextButtonEntry linkbutton = new ContextButtonEntry(null, context);
                 CompositeCreateConnectionFeature linkFeature = new CompositeCreateConnectionFeature(getFeatureProvider(), 
-                        "Wire",
-                        "Wire a composite service/reference", 
+                        Messages.label_wire,
+                        Messages.description_tool_wire, 
                         new SCADiagramCreateReferenceLinkFeature(getFeatureProvider()),
                         new SCADiagramCreateComponentServiceLinkFeature(getFeatureProvider()));
                 linkbutton.setText(linkFeature.getCreateName());

@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -144,12 +145,12 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
     /**
      *  Name column.
      */
-    public static final String NAME_COLUMN = "name";
+    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
     
     /**
      * Value column. 
      */
-    public static final String VALUE_COLUMN = "value";
+    public static final String VALUE_COLUMN = "value"; //$NON-NLS-1$
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN };
 
     private Button _mAddButton;
@@ -200,10 +201,10 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
         _propertyTreeTable.getTree().setLayoutData(gd11);
         _propertyTreeTable.getTree().setHeaderVisible(true);
         TreeColumn nameColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
-        nameColumn.setText("Name");
+        nameColumn.setText(Messages.label_name);
         nameColumn.setWidth(200);
         TreeColumn valueColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
-        valueColumn.setText("Value");
+        valueColumn.setText(Messages.label_value);
         valueColumn.setWidth(200);
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -218,7 +219,7 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
+        this._mAddButton.setText(Messages.button_add);
         this._mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -243,7 +244,7 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
 
         this._mRemoveButton = new Button(this, SWT.NONE);
         this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
+        this._mRemoveButton.setText(Messages.button_remove);
         this._mRemoveButton.setEnabled(false);
         this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -436,13 +437,13 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
                         @Override
                         protected void doExecute() {
                             Property parm = (Property) ti.getData();
-                            setFeatureValue(parm, "value", value);
+                            setFeatureValue(parm, "value", value); //$NON-NLS-1$
                             getTreeViewer().refresh(true);
                         }
                     });
                 } else {
                     Property parm = (Property) ti.getData();
-                    setFeatureValue(parm, "value", value);
+                    setFeatureValue(parm, "value", value); //$NON-NLS-1$
                     getTreeViewer().refresh(true);
                 }
             }

@@ -65,6 +65,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
@@ -108,7 +109,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
 
         _toolkit = getWidgetFactory();
         
-        _addButton = _toolkit.createButton(this, "Add", SWT.PUSH);
+        _addButton = _toolkit.createButton(this, Messages.button_add, SWT.PUSH);
         _addButton.addSelectionListener(new SelectionListener() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -121,7 +122,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
             }
         });
 
-        _editButton = _toolkit.createButton(this, "Edit", SWT.PUSH);
+        _editButton = _toolkit.createButton(this, Messages.button_edit, SWT.PUSH);
         _editButton.setEnabled(false);
         _editButton.addSelectionListener(new SelectionListener() {
             @Override
@@ -134,7 +135,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
                 widgetSelected(e);
             }
         });
-        _removeButton = _toolkit.createButton(this, "Remove", SWT.PUSH);
+        _removeButton = _toolkit.createButton(this, Messages.button_remove, SWT.PUSH);
         _removeButton.setEnabled(false);
         _removeButton.addSelectionListener(new SelectionListener() {
             @Override
@@ -156,7 +157,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
                 | SWT.FULL_SELECTION);
         
         Label legend = new Label(this, SWT.NONE);
-        legend.setText("* = Generated Validator");
+        legend.setText(Messages.label_starEqualsGeneratedValidator);
 
         FormData data = new FormData();
         data.right = new FormAttachment(95, 0);
@@ -190,7 +191,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
 
         // Add the name column
         TableColumn tc2 = new TableColumn(table, SWT.LEFT);
-        tc2.setText("Name");
+        tc2.setText(Messages.label_name);
         tableLayout.setColumnData(tc2,  new ColumnWeightData(45));
         tc2.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
@@ -201,7 +202,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
 
         // Add the type column
         TableColumn tc1 = new TableColumn(table, SWT.LEFT);
-        tc1.setText("Type");
+        tc1.setText(Messages.label_type);
         tableLayout.setColumnData(tc1,  new ColumnWeightData(45));
         tc1.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
@@ -362,7 +363,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
                     SwitchYardType switchYardRoot = getSwitchYardRoot(_composite);
                     ValidatesType validators = switchYardRoot.getValidates();
                     int index = validators.getValidate().indexOf(selected);
-                    EStructuralFeature feature = validators.eClass().getEStructuralFeature("validate");
+                    EStructuralFeature feature = validators.eClass().getEStructuralFeature("validate"); //$NON-NLS-1$
                     removeListItem(validators, feature, index);
                 }
             });

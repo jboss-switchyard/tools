@@ -78,7 +78,7 @@ public abstract class ClassDialogCellEditor extends DialogCellEditor {
             final SelectionDialog dialog = JavaUI.createTypeDialog(cellEditorWindow.getShell(), PlatformUI
                     .getWorkbench().getProgressService(), javaProject == null ? SearchEngine.createWorkspaceScope()
                     : SearchEngine.createStrictHierarchyScope(javaProject, type, true, false, null),
-                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, "* ");
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, "* "); //$NON-NLS-1$
             dialog.setTitle(_title);
             dialog.setMessage(_description);
 

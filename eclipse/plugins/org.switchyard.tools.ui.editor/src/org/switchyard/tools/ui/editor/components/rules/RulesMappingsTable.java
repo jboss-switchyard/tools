@@ -47,6 +47,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -135,12 +136,12 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
     /**
      * From column.
      */
-    public static final String FROM_COLUMN = "from";
+    public static final String FROM_COLUMN = "from"; //$NON-NLS-1$
 
     /**
      * To column.
      */
-    public static final String TO_COLUMN = "to";
+    public static final String TO_COLUMN = "to"; //$NON-NLS-1$
 
 
     private final List<String> _treeColumns;
@@ -224,13 +225,13 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
 
         if (_treeColumns.contains(FROM_COLUMN)) {
             TableColumn expressionColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-            expressionColumn.setText("From");
+            expressionColumn.setText(Messages.label_from);
             tableLayout.setColumnData(expressionColumn, new ColumnWeightData(100, 150, true));
         }
         
         if (_treeColumns.contains(TO_COLUMN)) {
             TableColumn variableColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-            variableColumn.setText("To");
+            variableColumn.setText(Messages.label_to);
             tableLayout.setColumnData(variableColumn, new ColumnWeightData(100, 150, true));
         }
 
@@ -254,7 +255,7 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -278,7 +279,7 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -491,13 +492,13 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
             if (((MappingType) element).getFrom() != null) {
                 return ((MappingType) element).getFrom();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof MappingType && property.equalsIgnoreCase(TO_COLUMN)) {
             if (((MappingType) element).getTo() != null) {
                 return ((MappingType) element).getTo();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

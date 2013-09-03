@@ -50,6 +50,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -80,8 +81,8 @@ public class RulesImplementationWizardPage extends WizardPage {
      */
     public RulesImplementationWizardPage(String pageName) {
         super(pageName);
-        setTitle("Rules Implementation Details");
-        setDescription("Select a rules file.");
+        setTitle(Messages.title_rulesImplementationDetails);
+        setDescription(Messages.description_rulesImplementationDetails);
         setPageComplete(false);
     }
 
@@ -137,8 +138,8 @@ public class RulesImplementationWizardPage extends WizardPage {
         resourceButtonsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 
         final StackLayout manifestLayout = new StackLayout();
-        final Button resourcesRadio = factory.createButton(resourceButtonsComposite, "Project Resource", SWT.RADIO);
-        final Button containerRadio = factory.createButton(resourceButtonsComposite, "Knowledge Container", SWT.RADIO);
+        final Button resourcesRadio = factory.createButton(resourceButtonsComposite, Messages.label_projectResource, SWT.RADIO);
+        final Button containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
 
         Composite resourceDetailsComposite = factory.createComposite(contents);
         resourceDetailsComposite.setLayout(manifestLayout);
@@ -188,7 +189,7 @@ public class RulesImplementationWizardPage extends WizardPage {
         contents.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
         _newRulesLink = new Link(contents, SWT.NONE);
-        _newRulesLink.setText("<a>Rules File:</a>");
+        _newRulesLink.setText(Messages.link_rulesFile);
         _newRulesLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -208,7 +209,7 @@ public class RulesImplementationWizardPage extends WizardPage {
         });
 
         _browseRulesButton = new Button(contents, SWT.PUSH);
-        _browseRulesButton.setText("Browse...");
+        _browseRulesButton.setText(Messages.button_browse);
         _browseRulesButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -223,7 +224,7 @@ public class RulesImplementationWizardPage extends WizardPage {
     private void validate() {
         setErrorMessage(null);
         if (_implementation == null) {
-            setErrorMessage("Please select a rules file.");
+            setErrorMessage(Messages.error_noRulesFile);
         }
         setPageComplete(getErrorMessage() == null);
     }
@@ -235,8 +236,8 @@ public class RulesImplementationWizardPage extends WizardPage {
         } else {
             container = _project.getProject();
         }
-        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "drl");
-        dialog.setInitialPattern("*.drl");
+        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "drl"); //$NON-NLS-1$
+        dialog.setInitialPattern("*.drl"); //$NON-NLS-1$
         if (dialog.open() == SelectionDialog.OK) {
             Object[] result = dialog.getResult();
             if (result.length > 0 && result[0] instanceof IResource) {

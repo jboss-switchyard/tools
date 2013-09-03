@@ -41,6 +41,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
@@ -49,9 +50,9 @@ import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
  */
 public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
 
-    private static final String CONFIDENTIALITY = "confidentiality";
-    private static final String CLIENT_AUTHENTICATION = "clientAuthentication";
-    private static final String AUTHORIZATION = "authorization";
+    private static final String CONFIDENTIALITY = "confidentiality"; //$NON-NLS-1$
+    private static final String CLIENT_AUTHENTICATION = "clientAuthentication"; //$NON-NLS-1$
+    private static final String AUTHORIZATION = "authorization"; //$NON-NLS-1$
     private boolean _inUpdate = false;
     private Button _clientAuthCheckbox;
     private Button _confidentialityCheckbox;
@@ -84,7 +85,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
 
         FormToolkit factory = getWidgetFactory();
 
-        _authorizationCheckbox = factory.createButton(this, "Authorization", SWT.CHECK);
+        _authorizationCheckbox = factory.createButton(this, Messages.label_authorization, SWT.CHECK);
         FormData data = new FormData();
         data.left = new FormAttachment(1, 0);
         data.right = new FormAttachment(100, 0);
@@ -93,7 +94,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         _authorizationCheckbox.addSelectionListener(new CheckboxSelectionListener());
         _authorizationCheckbox.setData(AUTHORIZATION);
 
-        _clientAuthCheckbox = factory.createButton(this, "Client Authentication", SWT.CHECK);
+        _clientAuthCheckbox = factory.createButton(this, Messages.label_clientAuthentication, SWT.CHECK);
         data = new FormData();
         data.left = new FormAttachment(1, 0);
         data.right = new FormAttachment(100, 0);
@@ -102,7 +103,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         _clientAuthCheckbox.addSelectionListener(new CheckboxSelectionListener());
         _clientAuthCheckbox.setData(CLIENT_AUTHENTICATION);
 
-        _confidentialityCheckbox = factory.createButton(this, "Confidentiality", SWT.CHECK);
+        _confidentialityCheckbox = factory.createButton(this, Messages.label_confidentiality, SWT.CHECK);
         data = new FormData();
         data.left = new FormAttachment(1, 0);
         data.right = new FormAttachment(100, 0);
@@ -111,7 +112,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         _confidentialityCheckbox.addSelectionListener(new CheckboxSelectionListener());
         _confidentialityCheckbox.setData(CONFIDENTIALITY);
         
-        Label _securityComboLabel = factory.createLabel(this, "Security Configuration");
+        Label _securityComboLabel = factory.createLabel(this, Messages.label_securityConfiguration);
         data = new FormData();
         data.left = new FormAttachment(1,0);
         data.top = new FormAttachment(_confidentialityCheckbox, 5, 0);
@@ -207,9 +208,9 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                 if (contract.eContainer() instanceof Component && contract instanceof ComponentReference) {
                     showAuthorizationCheckbox = false;
                 }
-                if (getFunkyAttributeValue(contract, "securityAttr") != null) {
+                if (getFunkyAttributeValue(contract, "securityAttr") != null) { //$NON-NLS-1$
                     hasSecurityAttr = true;
-                    securityName = (String) getFunkyAttributeValue(contract,  "securityAttr");
+                    securityName = (String) getFunkyAttributeValue(contract,  "securityAttr"); //$NON-NLS-1$
                 }
             }
 
@@ -238,7 +239,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                 if (hasSecurityAttr) {
                     _securityCombo.setText(securityName);
                 } else {
-                    _securityCombo.setText("default");
+                    _securityCombo.setText("default"); //$NON-NLS-1$
                 }
             }
         } finally {
@@ -268,7 +269,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
             Entry entry = iter.next();
             String name = entry.getEStructuralFeature().getName();
             if (name.contentEquals(propertyName)) {
-                if (name.equals("securityAttr")) {
+                if (name.equals("securityAttr")) { //$NON-NLS-1$
                     String value = (String) entry.getValue();
                     return value;
                 }
@@ -292,7 +293,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                     Iterator<SecurityType> securityTypes = securities.getSecurity().iterator();
                     while (securityTypes.hasNext()) {
                         SecurityType security = securityTypes.next();
-                        String name = "default";
+                        String name = "default"; //$NON-NLS-1$
                         if (security.getName() != null) {
                             name = security.getName();
                         }
@@ -347,8 +348,8 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
 
         @Override
         public void run() throws Exception {
-            if (_localFeature.contentEquals("securityAttr")) {
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_SecurityAttr(), "securityAttr", _localValue);
+            if (_localFeature.contentEquals("securityAttr")) { //$NON-NLS-1$
+                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_SecurityAttr(), "securityAttr", _localValue); //$NON-NLS-1$
             }
         }
     }
@@ -358,7 +359,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
             @Override
             public void run() {
                 FunkyAttributeContractOperation operation = 
-                        new FunkyAttributeContractOperation(contract, "securityAttr", securityName);
+                        new FunkyAttributeContractOperation(contract, "securityAttr", securityName); //$NON-NLS-1$
                 try {
                     operation.run();
                 } catch (Exception e) {

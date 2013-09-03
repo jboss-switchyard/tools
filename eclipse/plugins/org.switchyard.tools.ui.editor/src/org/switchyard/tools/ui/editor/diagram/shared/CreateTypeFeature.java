@@ -32,6 +32,7 @@ import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 
@@ -168,7 +169,7 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
         try {
             ResourcesPlugin.getWorkspace().run(
                     new AbstractSwitchYardProjectOperation(null, capabilities, false,
-                            "Updating SwitchYard project capabilities", null) {
+                            Messages.description_updateSwitchYardCapabilities, null) {
                         @Override
                         protected IProject getProject() {
                             return project;

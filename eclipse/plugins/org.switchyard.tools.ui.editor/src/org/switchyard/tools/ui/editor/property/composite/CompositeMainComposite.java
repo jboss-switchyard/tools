@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
@@ -131,7 +132,7 @@ public class CompositeMainComposite extends AbstractModelComposite<org.eclipse.s
         data.top = new FormAttachment(_nameText, 0, SWT.CENTER);
         valueLabel.setLayoutData(data);
         
-        _targetNamespaceText = factory.createText(this, "");
+        _targetNamespaceText = factory.createText(this, ""); //$NON-NLS-1$
         data = new FormData();
         Integer widthTimes1Point5 = new Integer((int) (85 * 1.5));
         data.left = new FormAttachment(0, widthTimes1Point5.intValue());
@@ -171,7 +172,7 @@ public class CompositeMainComposite extends AbstractModelComposite<org.eclipse.s
             }
         });
 
-        _tnsLabel = factory.createLabel(this, "Target Namespace:");
+        _tnsLabel = factory.createLabel(this, Messages.label_targetNamespace);
         data = new FormData();
         data.left = new FormAttachment(0, 0);
         data.right = new FormAttachment(_targetNamespaceText, -5);

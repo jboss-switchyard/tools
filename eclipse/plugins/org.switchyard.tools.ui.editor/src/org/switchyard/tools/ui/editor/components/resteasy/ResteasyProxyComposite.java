@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
@@ -43,12 +44,12 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "Proxy Settings";
+        return Messages.title_proxySettings;
     }
 
     @Override
     public String getDescription() {
-        return "Specify proxy settings for your REST Binding.";
+        return Messages.description_restProxySettings;
     }
 
     /**
@@ -68,10 +69,10 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _proxyHostText = createLabelAndText(composite, "Host");
-        _proxyPortText = createLabelAndText(composite, "Port");
-        _proxyUserText = createLabelAndText(composite, "User Name");
-        _proxyPasswordText = createLabelAndText(composite, "Password");
+        _proxyHostText = createLabelAndText(composite, Messages.label_host);
+        _proxyPortText = createLabelAndText(composite, Messages.label_port);
+        _proxyUserText = createLabelAndText(composite, Messages.label_userName);
+        _proxyPasswordText = createLabelAndText(composite, Messages.label_password);
 
         return composite;
     }
@@ -79,17 +80,17 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
     protected void handleModify(Control control) {
         if (_binding != null) {
             if (control.equals(_proxyHostText)) {
-                updateProxyFeature("host", _proxyHostText.getText());
+                updateProxyFeature("host", _proxyHostText.getText()); //$NON-NLS-1$
             } else if (control.equals(_proxyPasswordText)) {
-                updateProxyFeature("password", _proxyPasswordText.getText());
+                updateProxyFeature("password", _proxyPasswordText.getText()); //$NON-NLS-1$
             } else if (control.equals(_proxyUserText)) {
-                updateProxyFeature("user", _proxyUserText.getText());
+                updateProxyFeature("user", _proxyUserText.getText()); //$NON-NLS-1$
             } else if (control.equals(_proxyPortText)) {
                 _proxyPort = _proxyPortText.getText();
                 if (_proxyPort.trim().isEmpty()) {
-                    updateProxyFeature("port", null);
+                    updateProxyFeature("port", null); //$NON-NLS-1$
                 } else {
-                    updateProxyFeature("port", _proxyPort);
+                    updateProxyFeature("port", _proxyPort); //$NON-NLS-1$
                 }
             }
         }
@@ -188,7 +189,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new AddProxyOp());
         if (featureId != null) {
-            ops.add(new BasicOperation("proxy", featureId, value));
+            ops.add(new BasicOperation("proxy", featureId, value)); //$NON-NLS-1$
         }
         ops.add(new CleanupProxyOp());
         wrapOperation(ops);
@@ -199,7 +200,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getProxy() == null) {
                 ProxyType proxy = ResteasyFactory.eINSTANCE.createProxyType();
-                setFeatureValue(_binding, "proxy", proxy);
+                setFeatureValue(_binding, "proxy", proxy); //$NON-NLS-1$
             }
         }
     }
@@ -210,7 +211,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
             if (_binding != null && _binding.getProxy() != null) {
                 if (_binding.getProxy().getHost() == null && _binding.getProxy().getPassword() == null
                         && _binding.getProxy().getPort() == null && _binding.getProxy().getUser() == null) {
-                    setFeatureValue(_binding, "proxy", null);
+                    setFeatureValue(_binding, "proxy", null); //$NON-NLS-1$
                 }
             }
         }

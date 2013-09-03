@@ -35,6 +35,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 import org.switchyard.tools.ui.editor.model.merge.CompositeMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -79,11 +80,11 @@ public class SCADiagramUpdateCompositeFeature extends AbstractUpdateFeature {
         // update needed, if names are different
         boolean updateNameNeeded = pictogramName == null ? businessName != null : !pictogramName.equals(businessName);
         if (updateNameNeeded) {
-            return Reason.createTrueReason("Composite name is out of date");
+            return Reason.createTrueReason(Messages.updateReason_compositeName);
         }
 
         if (getChildrenNotInDiagram(composite).length > 0) {
-            return Reason.createTrueReason("Add missing components, services and references");
+            return Reason.createTrueReason(Messages.updateReason_missingComponentsServicesReferences);
         }
         return childrenNeedUpdating(pictogramElement);
     }

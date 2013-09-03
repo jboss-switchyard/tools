@@ -88,14 +88,14 @@ public final class BindingTypeExtensionManager {
 
     private void loadExtensions() {
         IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(Activator.PLUGIN_ID,
-                "editorExtension");
+                "editorExtension"); //$NON-NLS-1$
         for (IExtension pluginExtension : extensionPoint.getExtensions()) {
             for (IConfigurationElement element : pluginExtension.getConfigurationElements()) {
-                if (!"bindingExtension".equals(element.getName())) {
+                if (!"bindingExtension".equals(element.getName())) { //$NON-NLS-1$
                     continue;
                 }
                 try {
-                    _extensions.add((IBindingTypeExtension) element.createExecutableExtension("class"));
+                    _extensions.add((IBindingTypeExtension) element.createExecutableExtension("class")); //$NON-NLS-1$
                 } catch (CoreException e) {
                     Activator.getDefault().getLog().log(e.getStatus());
                 }
@@ -131,7 +131,7 @@ public final class BindingTypeExtensionManager {
 
         @Override
         public String getTypeName(Binding object) {
-            return "Unknown";
+            return Messages.constant_unknown;
         }
     }
 
@@ -140,12 +140,12 @@ public final class BindingTypeExtensionManager {
 
         @Override
         public String getTitle() {
-            return "Unknown Binding Type";
+            return Messages.constant_unknownBindingType;
         }
 
         @Override
         public String getDescription() {
-            return "The details for this binding cannot be displayed.";
+            return Messages.constant_description_unknownBindingType;
         }
 
         @Override

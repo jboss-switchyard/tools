@@ -33,7 +33,7 @@ public class ResteasyBindingWizard extends AbstractBindingWizard implements IBin
     @Override
     protected Binding createBinding() {
         final RESTBindingType binding = ResteasyFactory.eINSTANCE.createRESTBindingType();
-        binding.setName(makeUniqueName("rest"));
+        binding.setName(makeUniqueName("rest")); //$NON-NLS-1$
         return binding;
     }
 

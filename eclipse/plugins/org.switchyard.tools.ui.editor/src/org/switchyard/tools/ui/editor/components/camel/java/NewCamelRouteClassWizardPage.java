@@ -31,6 +31,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * NewCamelRouteClassWizardPage
@@ -41,8 +42,8 @@ import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
  */
 public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
 
-    private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE";
-    private static final String CLASS_NAME_DEFAULT = "CamelServiceRoute";
+    private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE"; //$NON-NLS-1$
+    private static final String CLASS_NAME_DEFAULT = "CamelServiceRoute"; //$NON-NLS-1$
 
     private ContractControl _serviceInterfaceControl;
     private IStatus _serviceInterfaceStatus;
@@ -53,8 +54,8 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
     public NewCamelRouteClassWizardPage() {
         super();
 
-        setTitle("New Camel Route Service");
-        setDescription("Create a new service implementation based on a Camel route definition.");
+        setTitle(Messages.title_newCamelRouteService);
+        setDescription(Messages.description_newCamelRouteService);
 
         _serviceInterfaceControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
                 EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
@@ -76,7 +77,7 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
         if (getTypeName().length() == 0) {
             setTypeName(CLASS_NAME_DEFAULT, true);
         }
-        setSuperClass("org.apache.camel.builder.RouteBuilder", false);
+        setSuperClass("org.apache.camel.builder.RouteBuilder", false); //$NON-NLS-1$
 
         doStatusUpdate();
     }
@@ -93,7 +94,7 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
         _serviceInterfaceControl.init(serviceInterface, null);
         _serviceInterfaceControl.setEnabled(false);
         if (getTypeName().length() == 0 || getTypeName().equals(CLASS_NAME_DEFAULT)) {
-            setTypeName("" + serviceInterface.getName() + "Route", true);
+            setTypeName("" + serviceInterface.getName() + "Route", true); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -149,21 +150,20 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
     protected void createTypeMembers(IType type, ImportsManager imports, IProgressMonitor monitor) throws CoreException {
         super.createTypeMembers(type, imports, monitor);
 
-        final String methodName = "configure";
+        final String methodName = "configure"; //$NON-NLS-1$
         final StringBuffer buf = new StringBuffer();
         final String lineDelim = getJavaProject().getJavaModel().findRecommendedLineSeparator();
-        buf.append("/**").append(lineDelim);
-        buf.append(" * The Camel route is configured via this method.  The from:").append(lineDelim);
-        buf.append(" * endpoint is required to be a SwitchYard service.").append(lineDelim);
-        buf.append(" */").append(lineDelim);
-        buf.append("public void ").append(methodName).append("() {"); //$NON-NLS-1$
+        buf.append("/**").append(lineDelim); //$NON-NLS-1$
+        buf.append(" * ").append(Messages.comment_camelConfigureMethod).append(lineDelim); //$NON-NLS-1$
+        buf.append(" */").append(lineDelim); //$NON-NLS-1$
+        buf.append("public void ").append(methodName).append("() {"); //$NON-NLS-1$ //$NON-NLS-2$
         buf.append(lineDelim);
 
         String serviceName = getService().getName();
         StringBuffer body = new StringBuffer();
-        body.append("from(\"switchyard://").append(serviceName).append("\")");
+        body.append("from(\"switchyard://").append(serviceName).append("\")"); //$NON-NLS-1$ //$NON-NLS-2$
         body.append(lineDelim);
-        body.append(".log(\"Received message for '").append(serviceName).append("' : ${body}\");");
+        body.append(".log(\"Received message for '").append(serviceName).append("' : ${body}\");"); //$NON-NLS-1$ //$NON-NLS-2$
         body.append(lineDelim);
 
         try {

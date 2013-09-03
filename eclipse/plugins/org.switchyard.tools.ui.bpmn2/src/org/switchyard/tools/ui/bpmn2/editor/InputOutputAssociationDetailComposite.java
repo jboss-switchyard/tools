@@ -54,12 +54,12 @@ public class InputOutputAssociationDetailComposite extends JbpmDataAssociationDe
 
         @Override
         protected boolean isModelObjectEnabled(EClass eclass, EStructuralFeature feature) {
-            return "name".equals(feature.getName());
+            return "name".equals(feature.getName()); //$NON-NLS-1$
         }
 
         @Override
         protected void bindAttribute(Composite parent, EObject object, EAttribute attribute, String label) {
-            if ("name".equals(attribute.getName())) {
+            if ("name".equals(attribute.getName())) { //$NON-NLS-1$
                 if (label == null) {
                     label = getPropertiesProvider().getLabel(object, attribute);
                 }

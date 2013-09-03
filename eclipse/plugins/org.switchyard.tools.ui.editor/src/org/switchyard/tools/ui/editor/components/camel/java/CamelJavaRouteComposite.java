@@ -58,6 +58,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.AbstractChangeAwareModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
@@ -92,7 +93,7 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
         _panel.setLayout(new GridLayout(3, false));
 
         _newClassLink = new Link(_panel, SWT.NONE);
-        String message = "<a>Route Builder Class:</a>";
+        String message = Messages.link_routeBuilderClass;
         _newClassLink.setText(message);
         _newClassLink.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -118,7 +119,7 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
                 }
             }
         });
-        _mClassText = factory.createText(_panel, "", SWT.BORDER | SWT.READ_ONLY);
+        _mClassText = factory.createText(_panel, "", SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
         _mClassText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 handleModify(_mClassText);
@@ -128,13 +129,13 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
         _mClassText.setLayoutData(uriGD);
 
-        _browseClassBtn = factory.createButton(_panel, "Browse...", SWT.PUSH);
+        _browseClassBtn = factory.createButton(_panel, Messages.button_browse, SWT.PUSH);
         GridData btnGD = new GridData();
         _browseClassBtn.setLayoutData(btnGD);
         _browseClassBtn.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
                 try {
-                    IType selected = selectType(_panel.getShell(), "org.apache.camel.builder.RouteBuilder", null);
+                    IType selected = selectType(_panel.getShell(), "org.apache.camel.builder.RouteBuilder", null); //$NON-NLS-1$
                     if (selected != null) {
                         // TODO: parse class for service name
                         // (from("switchyard:serviceName)) and interface
@@ -197,8 +198,8 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
         }
         SelectionDialog dialog = JavaUI.createTypeDialog(shell, new ProgressMonitorDialog(shell), searchScope,
                 IJavaElementSearchConstants.CONSIDER_CLASSES_AND_INTERFACES, false);
-        dialog.setTitle("Select entries");
-        dialog.setMessage("Matching items");
+        dialog.setTitle(Messages.label_selectEntries);
+        dialog.setMessage(Messages.label_matchingItems);
         if (dialog.open() == IDialogConstants.CANCEL_ID) {
             return null;
         }
@@ -304,9 +305,9 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
         String className = _mClassText.getText();
 
         if (className == null || className.trim().length() == 0) {
-            errMessage = "No Class specified";
+            errMessage = Messages.error_noClassSpecified;
         } else if (className.trim().length() < className.length()) {
-            errMessage = "No spaces allowed in class name";
+            errMessage = Messages.error_noSpacesInClassName;
         }
 
         if (errMessage != null) {

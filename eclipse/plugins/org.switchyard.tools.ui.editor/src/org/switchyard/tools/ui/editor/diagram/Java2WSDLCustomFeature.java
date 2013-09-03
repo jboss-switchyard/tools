@@ -26,6 +26,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.wizards.Java2WSDLWizard;
 
 /**
@@ -49,7 +50,7 @@ public class Java2WSDLCustomFeature extends AbstractCustomFeature implements ICu
 
     @Override
     public String getDescription() {
-        return "Generate a new WSDL file from a Java inteface.";
+        return Messages.featureDescription_javaToWsdl;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class Java2WSDLCustomFeature extends AbstractCustomFeature implements ICu
 
     @Override
     public String getName() {
-        return "Generate WSDL File";
+        return Messages.featureName_javaToWsdl;
     }
 
     @Override

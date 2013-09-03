@@ -36,6 +36,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.model.merge.CompositeMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.ContractMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -76,7 +77,7 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
 
         // make sure the component still exists in the model
         if (!GraphitiInternal.getEmfService().isObjectAlive(reference)) {
-            return Reason.createTrueReason(String.format("Reference {0} has been removed.", reference.getName()));
+            return Reason.createTrueReason(String.format(Messages.updateReason_referenceRemoved, reference.getName()));
         }
 
         // retrieve name from pictogram model
@@ -91,7 +92,7 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
                 .contentEquals(businessName)));
         if (updateNameNeeded) {
-            return Reason.createTrueReason("Reference name is out of date");
+            return Reason.createTrueReason(Messages.updateReason_referenceName);
         }
 
         // check the wiring
@@ -112,12 +113,12 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         final Set<Contract> existingConnections = getExistingConnections(cs);
         for (ComponentReference promotedReference : promotedReferences) {
             if (promotedReference != null && !existingConnections.remove(promotedReference)) {
-                return Reason.createTrueReason("Update connections.");
+                return Reason.createTrueReason(Messages.updateReason_updateConnections);
             }
         }
 
         if (existingConnections.size() > 0) {
-            return Reason.createTrueReason("Update connections.");
+            return Reason.createTrueReason(Messages.updateReason_updateConnections);
         }
 
         return Reason.createFalseReason();

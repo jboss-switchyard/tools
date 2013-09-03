@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl.security;
 
+import java.text.MessageFormat;
 import java.util.Iterator;
 
 import org.eclipse.core.resources.IProject;
@@ -48,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyInputDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyTable;
 import org.switchyard.tools.ui.editor.impl.DomainPropertyTextValueChangeListener;
@@ -100,27 +102,27 @@ public class NewSecurityTypeWizardPage extends WizardPage {
         layout3.marginHeight = 2;
         client3.setLayout(layout3);
 
-        toolkit.createLabel(client3, "Name (Optional)");
-        _moduleNameText = toolkit.createText(client3, "");
+        toolkit.createLabel(client3, Messages.label_nameOptional);
+        _moduleNameText = toolkit.createText(client3, ""); //$NON-NLS-1$
         _moduleNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, "Roles Allowed");
-        _rolesAllowedText = toolkit.createText(client3, "");
+        toolkit.createLabel(client3, Messages.label_rolesAllowed);
+        _rolesAllowedText = toolkit.createText(client3, ""); //$NON-NLS-1$
         _rolesAllowedText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, "Run As");
-        _runAsText = toolkit.createText(client3, "");
+        toolkit.createLabel(client3, Messages.label_runAs);
+        _runAsText = toolkit.createText(client3, ""); //$NON-NLS-1$
         _runAsText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, "Security Domain");
-        _securityDomainText = toolkit.createText(client3, "");
+        toolkit.createLabel(client3, Messages.label_securityDomain);
+        _securityDomainText = toolkit.createText(client3, ""); //$NON-NLS-1$
         _securityDomainText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, "Callback Handler Class");
-        _callbackHandlerText = toolkit.createText(client3, "", SWT.READ_ONLY);
+        toolkit.createLabel(client3, Messages.label_callbackHandlerClass);
+        _callbackHandlerText = toolkit.createText(client3, "", SWT.READ_ONLY); //$NON-NLS-1$
         _callbackHandlerText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
 
-        _callbackHandlerBrowseBtn = toolkit.createButton(client3, "Browse...", SWT.PUSH);
+        _callbackHandlerBrowseBtn = toolkit.createButton(client3, Messages.button_browse, SWT.PUSH);
         _callbackHandlerBrowseBtn.addSelectionListener(new SelectionListener() {
 
             @Override
@@ -170,7 +172,7 @@ public class NewSecurityTypeWizardPage extends WizardPage {
                 _moduleName = _securityType.getName();
                 _oldModuleName = _moduleName;
             } else {
-                _moduleNameText.setText("default");
+                _moduleNameText.setText("default"); //$NON-NLS-1$
                 _moduleName = null;
                 _oldModuleName = null;
             }
@@ -205,7 +207,7 @@ public class NewSecurityTypeWizardPage extends WizardPage {
             scope = SearchEngine.createWorkspaceScope();
         } else {
             try {
-                IType superType = javaProject.findType("javax.security.auth.callback.CallbackHandler");
+                IType superType = javaProject.findType("javax.security.auth.callback.CallbackHandler"); //$NON-NLS-1$
                 if (superType != null) {
                     scope = SearchEngine.createStrictHierarchyScope(javaProject, superType, true, false, null);
                 } else {
@@ -431,22 +433,22 @@ public class NewSecurityTypeWizardPage extends WizardPage {
                 boolean nameIsNull = (name == null);
                 boolean fieldNameIsNull = (_moduleName == null);
                 boolean fieldNameIsEmpty = fieldNameIsNull || _moduleName.trim().isEmpty();
-                boolean fieldNameIsDefault = fieldNameIsNull || _moduleName.equals("default");
+                boolean fieldNameIsDefault = fieldNameIsNull || _moduleName.equals("default"); //$NON-NLS-1$
                 boolean fieldNameIsSTName = (nameIsNull && fieldNameIsNull) || (!nameIsNull && !fieldNameIsNull && _moduleName.equals(name));
                 boolean oldNameIsNull = (_oldModuleName == null);
                 boolean fieldNameIsOldName = (oldNameIsNull && fieldNameIsNull) || (!oldNameIsNull && !fieldNameIsNull && _moduleName.equals(_oldModuleName));
                 
                 if (nameIsNull && (fieldNameIsNull || fieldNameIsEmpty || fieldNameIsDefault) && !_editing) {
-                    setErrorMessage("One default Security Configuration already exists. Please set the name.");
+                    setErrorMessage(Messages.error_moreThanOneDefaultSecurityConfiguration);
                     return false;
                 } else if (nameIsNull && (fieldNameIsNull || fieldNameIsEmpty || fieldNameIsDefault) && _editing && !fieldNameIsOldName) {
-                    setErrorMessage("One default Security Configuration already exists. Please set the name.");
+                    setErrorMessage(Messages.error_moreThanOneDefaultSecurityConfiguration);
                     return false;
                 } else if (!nameIsNull && fieldNameIsSTName && !_editing) {
-                    setErrorMessage("A Security Configuration already exists with the name '" + _moduleName + "'. Please select a different name.");
+                    setErrorMessage(MessageFormat.format(Messages.error_duplicateSecurityConfigurationName, _moduleName));
                     return false;
                 } else if (!nameIsNull && fieldNameIsSTName && _editing && !fieldNameIsOldName) {
-                    setErrorMessage("A Security Configuration already exists with the name '" + _moduleName + "'. Please select a different name.");
+                    setErrorMessage(MessageFormat.format(Messages.error_duplicateSecurityConfigurationName, _moduleName));
                     return false;
                 }
             }

@@ -42,6 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * SmooksTransformProvider
@@ -68,7 +69,7 @@ public class SmooksTransformProvider implements ITransformProvider {
 
     @Override
     public String getName() {
-        return "Smooks Transformer";
+        return Messages.label_smooksTransformer;
     }
 
     private static final class SmooksTransformControl implements ITransformControl {
@@ -88,7 +89,7 @@ public class SmooksTransformProvider implements ITransformProvider {
             _content.setLayout(new GridLayout(3, false));
 
             final Label label = new Label(_content, SWT.NONE);
-            label.setText("Smooks file:");
+            label.setText(Messages.label_smooksFile);
 
             _fileText = new Text(_content, SWT.BORDER | SWT.SINGLE);
             _fileText.addModifyListener(new ModifyListener() {
@@ -100,7 +101,7 @@ public class SmooksTransformProvider implements ITransformProvider {
             _fileText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
             final Button browseButton = new Button(_content, SWT.PUSH);
-            browseButton.setText("Browse...");
+            browseButton.setText(Messages.button_browse);
             browseButton.addSelectionListener(new SelectionAdapter() {
                 @Override
                 public void widgetSelected(SelectionEvent event) {
@@ -112,7 +113,7 @@ public class SmooksTransformProvider implements ITransformProvider {
             new Label(_content, SWT.NONE);
 
             _createNewFileCheckbox = new Button(_content, SWT.CHECK);
-            _createNewFileCheckbox.setText("Create new Smooks file");
+            _createNewFileCheckbox.setText(Messages.label_createNewSmooksFile);
             _createNewFileCheckbox.setSelection(false);
             _createNewFileCheckbox.setEnabled(false);
             _createNewFileCheckbox.addSelectionListener(new SelectionAdapter() {
@@ -139,28 +140,28 @@ public class SmooksTransformProvider implements ITransformProvider {
                 return new Status(
                         Status.ERROR,
                         Activator.PLUGIN_ID,
-                        "A Smooks configuration file can only provide support for a single transformer.  Please select a single transformer pair.");
+                        Messages.error_smooksTransformerOnlySupportsSingleTransformation);
             }
             final String pathString = _fileText.getText();
             final IPath path = new Path(pathString);
             if (!path.isValidPath(pathString)) {
                 return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "The specified Smooks file is an invalid path.  Please specify a valid path.");
+                        Messages.error_invalidSmooksFilePath);
             }
             try {
                 IFile file = _container.getContainingProject().getWorkspace().getRoot().getFile(path);
                 if (_createNewFileCheckbox.getSelection()) {
                     if (file.exists()) {
                         return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "The specified Smooks file exists in the workspace.  Specify a unique name or uncheck \"Create...\"");
+                                Messages.error_smooksFileExists);
                     }
                 } else if (!file.exists()) {
                     return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "The specified Smooks file does not exist in the workspace.");
+                            Messages.error_smooksFileDoesNotExist);
                 }
                 if (!_project.isOnClasspath(file.getParent())) {
                     return new Status(Status.WARNING, Activator.PLUGIN_ID,
-                            "The specified Smooks file is not on the project's classpath.  The file may not be available at runtime.");
+                            Messages.error_smooksFileNotOnClasspath);
                 }
             } catch (Exception e) {
                 return new Status(Status.ERROR, Activator.PLUGIN_ID, e.getMessage());
@@ -230,9 +231,9 @@ public class SmooksTransformProvider implements ITransformProvider {
             // if (_createNewFileCheckbox.getSelection()) {
             // } else {
             ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(_content.getShell(),
-                    resource.getProject(), "xml");
-            dialog.setInitialPattern("*.xml");
-            dialog.setTitle("Select Smooks File");
+                    resource.getProject(), "xml"); //$NON-NLS-1$
+            dialog.setInitialPattern("*.xml"); //$NON-NLS-1$
+            dialog.setTitle(Messages.title_selectSmooksFile);
             if (dialog.open() == ClasspathResourceSelectionDialog.OK) {
                 _fileText.setText(((IResource) dialog.getFirstResult()).getFullPath().toString());
             }

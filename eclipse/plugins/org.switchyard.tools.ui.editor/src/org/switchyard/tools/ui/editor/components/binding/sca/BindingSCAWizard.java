@@ -30,7 +30,7 @@ public class BindingSCAWizard extends AbstractBindingWizard {
     @Override
     protected Binding createBinding() {
         final SCABinding binding = ScaFactory.eINSTANCE.createSCABinding();
-        binding.setName(makeUniqueName("sca"));
+        binding.setName(makeUniqueName("sca")); //$NON-NLS-1$
         return binding;
     }
 

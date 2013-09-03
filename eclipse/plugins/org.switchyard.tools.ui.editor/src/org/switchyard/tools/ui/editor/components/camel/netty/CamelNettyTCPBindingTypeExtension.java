@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
@@ -38,8 +39,8 @@ public class CamelNettyTCPBindingTypeExtension implements IBindingTypeExtension 
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelNettyTCPBindingFactory(), "Netty TCP",
-                "A Camel Netty TCP based endpoint.", ImageProvider.IMG_16_NETTY_TCP) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelNettyTCPBindingFactory(), Messages.label_nettyTcp,
+                Messages.description_tool_nettyTcp, ImageProvider.IMG_16_NETTY_TCP) };
     }
 
     @Override
@@ -59,12 +60,12 @@ public class CamelNettyTCPBindingTypeExtension implements IBindingTypeExtension 
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-netty");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-netty"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "TCP";
+        return Messages.label_tcp;
     }
 
     protected static List<IBindingComposite> createComposites() {
@@ -79,25 +80,25 @@ public class CamelNettyTCPBindingTypeExtension implements IBindingTypeExtension 
     
     static {
         ADVANCED_PROPS = new ArrayList<String>();
-        ADVANCED_PROPS.add("textline");
-        ADVANCED_PROPS.add("tcpNoDelay");
-        ADVANCED_PROPS.add("reuseAddress");
-        ADVANCED_PROPS.add("encoders");
-        ADVANCED_PROPS.add("decoders");
-        ADVANCED_PROPS.add("allowDefaultCodec");
-        ADVANCED_PROPS.add("workerCount");
-        ADVANCED_PROPS.add("disconnect");
-        ADVANCED_PROPS.add("receiveBufferSize");
-        ADVANCED_PROPS.add("sendBufferSize");
-        ADVANCED_PROPS.add("ssl");
-        ADVANCED_PROPS.add("sslHandler");
-        ADVANCED_PROPS.add("passphrase");
-        ADVANCED_PROPS.add("securityProvider");
-        ADVANCED_PROPS.add("keyStoreFormat");
-        ADVANCED_PROPS.add("keyStoreFile");
-        ADVANCED_PROPS.add("trustStoreFile");
-        ADVANCED_PROPS.add("sslContextParametersRef");
-        ADVANCED_PROPS.add("sync");
-        ADVANCED_PROPS.add("keepAlive");
+        ADVANCED_PROPS.add("textline"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("tcpNoDelay"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("reuseAddress"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("encoders"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("decoders"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("allowDefaultCodec"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("workerCount"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("disconnect"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("receiveBufferSize"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("sendBufferSize"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("ssl"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("sslHandler"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("passphrase"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("securityProvider"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("keyStoreFormat"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("keyStoreFile"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("trustStoreFile"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("sslContextParametersRef"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("sync"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("keepAlive"); //$NON-NLS-1$
     }
 }

@@ -17,6 +17,7 @@ import javax.xml.namespace.QName;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * NewTransformWizard
@@ -33,14 +34,14 @@ public class NewTransformWizard extends Wizard {
      * @return true if the type is a Java type.
      */
     public static boolean isJavaType(String type) {
-        return QName.valueOf(type).getLocalPart().startsWith("java:");
+        return QName.valueOf(type).getLocalPart().startsWith("java:"); //$NON-NLS-1$
     }
 
     /**
      * Create a new NewTransformWizard.
      */
     public NewTransformWizard() {
-        setWindowTitle("New Transformers");
+        setWindowTitle(Messages.title_newTransformers);
         setForcePreviousAndNextButtons(true);
         _page = new NewTransformWizardPage();
     }

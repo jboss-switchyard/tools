@@ -53,6 +53,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -90,7 +91,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         }
 
         _newClassLink = new Link(_panel, SWT.NONE);
-        String message = "<a>Java Interface:</a>";
+        String message = Messages.link_javaInterface;
         _newClassLink.setText(message);
         _newClassLink.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -136,7 +137,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         _mClassText.setLayoutData(uriGD);
 
         _browseClassBtn = new Button(_panel, SWT.PUSH);
-        _browseClassBtn.setText("Browse...");
+        _browseClassBtn.setText(Messages.button_browse);
         GridData btnGD = new GridData();
         _browseClassBtn.setLayoutData(btnGD);
         _browseClassBtn.addSelectionListener(new SelectionAdapter() {
@@ -189,8 +190,8 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         }
         SelectionDialog dialog = JavaUI.createTypeDialog(shell, new ProgressMonitorDialog(shell), searchScope,
                 IJavaElementSearchConstants.CONSIDER_INTERFACES, false);
-        dialog.setTitle("Select entries");
-        dialog.setMessage("Matching items");
+        dialog.setTitle(Messages.title_selectEntries);
+        dialog.setMessage(Messages.description_matchingItems);
         if (dialog.open() == IDialogConstants.CANCEL_ID) {
             return null;
         }
@@ -253,7 +254,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         if (project != null) { //$NON-NLS-1$
             javaProject = JavaCore.create(project);
             if (!className.isEmpty()) {
-                if (className.contains(".")) {
+                if (className.contains(".")) { //$NON-NLS-1$
                     className = className.substring(className.lastIndexOf('.') + 1);
                 }
                 page.setTypeName(className, true);
@@ -323,9 +324,9 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         String className = _mClassText.getText();
 
         if (className == null || className.trim().length() == 0) {
-            setErrorMessage("No Class specified");
+            setErrorMessage(Messages.error_noClassSpecified);
         } else if (className.trim().length() < className.length()) {
-            setErrorMessage("No spaces allowed in class name");
+            setErrorMessage(Messages.error_spacesInClassName);
         }
         return (getErrorMessage() == null);
     }
@@ -348,7 +349,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
             if (javaIntfc.getInterface() != null && !this._mClassText.isDisposed()) {
                 this._mClassText.setText(javaIntfc.getInterface());
             } else if (javaIntfc.getInterface() == null && !this._mClassText.isDisposed()) {
-                this._mClassText.setText("org.example.IServiceInterface");
+                this._mClassText.setText("org.example.IServiceInterface"); //$NON-NLS-1$
             }
             setInUpdate(false);
         }

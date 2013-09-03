@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
@@ -36,8 +37,8 @@ public class BindingSCATypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new BindingSCAFactory(), "SCA",
-                "A SCA Binding based endpoint.", ImageProvider.IMG_16_SCA) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new BindingSCAFactory(), Messages.label_sca,
+                Messages.description_tool_sca, ImageProvider.IMG_16_SCA) };
     }
 
     @Override
@@ -57,12 +58,12 @@ public class BindingSCATypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-sca");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-sca"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "SCA";
+        return Messages.label_sca;
     }
 
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {

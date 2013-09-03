@@ -59,6 +59,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelect
 import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.ErrorUtils;
@@ -158,22 +159,22 @@ public class OperationSelectorComposite extends Composite {
         Group opGroup = new Group(this, additionalStyles);
         opGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         opGroup.setLayout(new GridLayout(2, false));
-        opGroup.setText("Operation Options");
+        opGroup.setText(Messages.label_operationOptions);
 
         RadioListener radioListener = new RadioListener();
-        _opNameRadio = createRadio(opGroup, "Operation Name", false);
+        _opNameRadio = createRadio(opGroup, Messages.label_operationName, false);
         _opNameRadio.addSelectionListener(radioListener);
-        _operationSelectionCombo = createCombo(opGroup, "Operation Name", this._isReadOnly);
+        _operationSelectionCombo = createCombo(opGroup, Messages.label_operationName, this._isReadOnly);
 
-        _xpathRadio = createRadio(opGroup, "XPath", false);
+        _xpathRadio = createRadio(opGroup, Messages.label_xpath, false);
         _xpathRadio.addSelectionListener(radioListener);
         _xpathText = createText(opGroup, this._isReadOnly);
 
-        _regexRadio = createRadio(opGroup, "Regex", false);
+        _regexRadio = createRadio(opGroup, Messages.label_regex, false);
         _regexRadio.addSelectionListener(radioListener);
         _regexText = createText(opGroup, this._isReadOnly);
 
-        _javaRadio = createRadio(opGroup, "Java Class", false);
+        _javaRadio = createRadio(opGroup, Messages.label_javaClass, false);
         _javaRadio.addSelectionListener(radioListener);
         _javaText = createText(opGroup, this._isReadOnly);
 
@@ -370,10 +371,10 @@ public class OperationSelectorComposite extends Composite {
     public void setOperation(SwitchYardOperationSelectorType opSelector) {
         _opSelector = opSelector;
         _inUpdate = true;
-        _operationSelectionCombo.setText("");
-        _xpathText.setText("");
-        _regexText.setText("");
-        _javaText.setText("");
+        _operationSelectionCombo.setText(""); //$NON-NLS-1$
+        _xpathText.setText(""); //$NON-NLS-1$
+        _regexText.setText(""); //$NON-NLS-1$
+        _javaText.setText(""); //$NON-NLS-1$
         
         String value = getValueOfExistingOpSelector(opSelector);
         if (_opSelector instanceof StaticOperationSelectorType) {
@@ -475,19 +476,19 @@ public class OperationSelectorComposite extends Composite {
         ModelOperation newOpSelectorOp = null;
         switch (getSelectedOperationSelectorType()) {
             case STATIC_TYPE:
-                featureId = "operationName";
+                featureId = "operationName"; //$NON-NLS-1$
                 newOpSelectorOp = new StaticOperationSelectorGroupOp((Binding) getBinding());
                 break;
             case REGEX_TYPE:
-                featureId = "expression";
+                featureId = "expression"; //$NON-NLS-1$
                 newOpSelectorOp = new RegexOperationSelectorGroupOp((Binding) getBinding(), value);
                 break;
             case XPATH_TYPE:
-                featureId = "expression";
+                featureId = "expression"; //$NON-NLS-1$
                 newOpSelectorOp = new XPathOperationSelectorGroupOp((Binding) getBinding());
                 break;
             case JAVA_TYPE:
-                featureId = "class";
+                featureId = "class"; //$NON-NLS-1$
                 newOpSelectorOp = new JavaOperationSelectorGroupOp((Binding) getBinding());
                 break;
         }
@@ -623,7 +624,7 @@ public class OperationSelectorComposite extends Composite {
                         @Override
                         public void focusLost(FocusEvent e) {
                             if (_comboTextChanged != null && _comboTextChanged.equals((Control) e.getSource())) {
-                                System.out.println("OperationSelectorComposite: New Combo Value (text entry): " + ((Combo) _comboTextChanged).getText());
+                                System.out.println("OperationSelectorComposite: New Combo Value (text entry): " + ((Combo) _comboTextChanged).getText()); //$NON-NLS-1$
                                 fireChangedEvent(_comboTextChanged);
                                 _comboTextChanged = null;
                             }
@@ -640,7 +641,7 @@ public class OperationSelectorComposite extends Composite {
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
             if (e.diff != null && !_inUpdate) {
-                System.out.println("OperationSelectorComposite: TextValueChanged: " + e.diff);
+                System.out.println("OperationSelectorComposite: TextValueChanged: " + e.diff); //$NON-NLS-1$
                 SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
                 fireChangedEvent((Control) decorator.getWidget());
                 ErrorUtils.showErrorMessage(null);
@@ -652,7 +653,7 @@ public class OperationSelectorComposite extends Composite {
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
             if (e.diff != null && !_inUpdate) {
-                System.out.println("OperationSelectorComposite: ComboValueChanged: " + e.diff);
+                System.out.println("OperationSelectorComposite: ComboValueChanged: " + e.diff); //$NON-NLS-1$
                 SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
                 fireChangedEvent((Control) decorator.getWidget());
                 ErrorUtils.showErrorMessage(null);

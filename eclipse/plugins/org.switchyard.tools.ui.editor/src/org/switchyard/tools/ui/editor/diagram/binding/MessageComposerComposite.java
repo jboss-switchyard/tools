@@ -61,6 +61,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -93,12 +94,12 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
 
     @Override
     public String getTitle() {
-        return "Message Composer";
+        return Messages.title_messageComposer;
     }
 
     @Override
     public String getDescription() {
-        return "Settings for custom message composer and context (header properties) mapper.";
+        return Messages.description_messageComposer;
     }
 
     @Override
@@ -108,81 +109,81 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         _panel.setLayout(gl);
 
         _newComposerClassLink = new Link(_panel, SWT.NONE);
-        String message = "<a>Custom Message Composer Class</a>";
+        String message = Messages.link_customMessageComposerClass;
         _newComposerClassLink.setText(message);
         _newComposerClassLink.setEnabled(canEdit());
         _newComposerClassLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 handleClassLink(_composerClassText, _newComposerClassLink,
-                        "org.switchyard.component.common.composer.MessageComposer");
+                        "org.switchyard.component.common.composer.MessageComposer"); //$NON-NLS-1$
             }
         });
 
         _composerClassText = createLabelAndText(_panel, null);
         _composerClassText.setEnabled(canEdit());
-        _composerClassText.setData("class");
+        _composerClassText.setData("class"); //$NON-NLS-1$
 
         _browseComposerClassBtn = new Button(_panel, SWT.PUSH);
-        _browseComposerClassBtn.setText("Browse...");
+        _browseComposerClassBtn.setText(Messages.button_browse);
         _browseComposerClassBtn.setEnabled(canEdit());
         GridData btnGD = new GridData();
         _browseComposerClassBtn.setLayoutData(btnGD);
         _browseComposerClassBtn.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
                 handleClassBrowse(_browseComposerClassBtn, _composerClassText,
-                        "org.switchyard.component.common.composer.MessageComposer");
+                        "org.switchyard.component.common.composer.MessageComposer"); //$NON-NLS-1$
             }
         });
 
         _newMapperClassLink = new Link(_panel, SWT.NONE);
-        message = "<a>Custom Context Mapper Class</a>";
+        message = Messages.link_customContextMapperClass;
         _newMapperClassLink.setText(message);
         _newMapperClassLink.setEnabled(canEdit());
         _newMapperClassLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 handleClassLink(_mapperClassText, _newMapperClassLink,
-                        "org.switchyard.component.common.composer.ContextMapper");
+                        "org.switchyard.component.common.composer.ContextMapper"); //$NON-NLS-1$
             }
         });
 
         _mapperClassText = createLabelAndText(_panel, null);
         _mapperClassText.setEnabled(canEdit());
-        _mapperClassText.setData("class");
+        _mapperClassText.setData("class"); //$NON-NLS-1$
 
         _browseMapperClassBtn = new Button(_panel, SWT.PUSH);
-        _browseMapperClassBtn.setText("Browse...");
+        _browseMapperClassBtn.setText(Messages.button_browse);
         _browseMapperClassBtn.setEnabled(canEdit());
         GridData btnGD2 = new GridData();
         _browseMapperClassBtn.setLayoutData(btnGD2);
         _browseMapperClassBtn.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
                 handleClassBrowse(_browseMapperClassBtn, _mapperClassText,
-                        "org.switchyard.component.common.composer.ContextMapper");
+                        "org.switchyard.component.common.composer.ContextMapper"); //$NON-NLS-1$
             }
         });
 
         Group regExGroup = new Group(_panel, SWT.NONE);
-        regExGroup.setText("Regular Expressions");
+        regExGroup.setText(Messages.label_regularExpressions);
         regExGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
         regExGroup.setLayout(new GridLayout(2, false));
 
-        _includesText = createLabelAndText(regExGroup, "Includes");
+        _includesText = createLabelAndText(regExGroup, Messages.label_includes);
         _includesText.setEnabled(canEdit());
-        _includesText.setData("includes");
+        _includesText.setData("includes"); //$NON-NLS-1$
 
-        _excludesText = createLabelAndText(regExGroup, "Excludes");
+        _excludesText = createLabelAndText(regExGroup, Messages.label_excludes);
         _excludesText.setEnabled(canEdit());
-        _excludesText.setData("excludes");
+        _excludesText.setData("excludes"); //$NON-NLS-1$
 
-        _includesNSText = createLabelAndText(regExGroup, "Include Namespaces");
+        _includesNSText = createLabelAndText(regExGroup, Messages.label_includeNamespaces);
         _includesNSText.setEnabled(canEdit());
-        _includesNSText.setData("includeNamespaces");
+        _includesNSText.setData("includeNamespaces"); //$NON-NLS-1$
 
-        _excludesNSText = createLabelAndText(regExGroup, "Exclude Namespaces");
+        _excludesNSText = createLabelAndText(regExGroup, Messages.label_excludeNamespaces);
         _excludesNSText.setEnabled(canEdit());
-        _excludesNSText.setData("excludeNamespaces");
+        _excludesNSText.setData("excludeNamespaces"); //$NON-NLS-1$
     }
 
     private void handleClassBrowse(Button classBrowseBtn, Text classText, String interfaceName) {
@@ -348,7 +349,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             SwitchYardBindingType binding = getSwitchYardBinding();
             if (binding != null && binding.getContextMapper() == null) {
                 ContextMapperType contextMapper = createContextMapper();
-                setFeatureValue(binding, "contextMapper", contextMapper);
+                setFeatureValue(binding, "contextMapper", contextMapper); //$NON-NLS-1$
             }
         }
     }
@@ -359,7 +360,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             SwitchYardBindingType binding = getSwitchYardBinding();
             if (binding != null && binding.getMessageComposer() == null) {
                 MessageComposerType messageComposer = createMessageComposer();
-                setFeatureValue(binding, "messageComposer", messageComposer);
+                setFeatureValue(binding, "messageComposer", messageComposer); //$NON-NLS-1$
             }
         }
     }
@@ -367,25 +368,25 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
     protected void updateContextMapperFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ContextMapperOp());
-        ops.add(new BasicOperation("contextMapper", featureId, value));
+        ops.add(new BasicOperation("contextMapper", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
     
     protected void updateContextMapperFeatureClearRegex(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ContextMapperOp());
-        ops.add(new BasicOperation("contextMapper", featureId, value));
-        ops.add(new BasicOperation("contextMapper", "includes", null));
-        ops.add(new BasicOperation("contextMapper", "includeNamespaces", null));
-        ops.add(new BasicOperation("contextMapper", "excludes", null));
-        ops.add(new BasicOperation("contextMapper", "excludeNamespaces", null));
+        ops.add(new BasicOperation("contextMapper", featureId, value)); //$NON-NLS-1$
+        ops.add(new BasicOperation("contextMapper", "includes", null)); //$NON-NLS-1$ //$NON-NLS-2$
+        ops.add(new BasicOperation("contextMapper", "includeNamespaces", null)); //$NON-NLS-1$ //$NON-NLS-2$
+        ops.add(new BasicOperation("contextMapper", "excludes", null)); //$NON-NLS-1$ //$NON-NLS-2$
+        ops.add(new BasicOperation("contextMapper", "excludeNamespaces", null)); //$NON-NLS-1$ //$NON-NLS-2$
         wrapOperation(ops);
     }
 
     protected void updateMessageComposerFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new MessageComposerOp());
-        ops.add(new BasicOperation("messageComposer", featureId, value));
+        ops.add(new BasicOperation("messageComposer", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
@@ -395,10 +396,10 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         if (!regexSupported && control == _mapperClassText) {
             updateContextMapperFeatureClearRegex((String) control.getData(), value);
             setInUpdate(true);
-            _includesText.setText("");
-            _excludesText.setText("");
-            _includesNSText.setText("");
-            _excludesNSText.setText("");
+            _includesText.setText(""); //$NON-NLS-1$
+            _excludesText.setText(""); //$NON-NLS-1$
+            _includesNSText.setText(""); //$NON-NLS-1$
+            _excludesNSText.setText(""); //$NON-NLS-1$
             setInUpdate(false);
         } else {
             updateContextMapperFeature((String) control.getData(), value);
@@ -413,7 +414,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             value = getFeatureValue(binding.getContextMapper(), feature);
         }
         if (value == null) {
-            control.setText("");
+            control.setText(""); //$NON-NLS-1$
         } else if (value instanceof String) {
             control.setText((String) value);
         }
@@ -441,7 +442,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             value = getFeatureValue(binding.getMessageComposer(), feature);
         }
         if (value == null) {
-            control.setText("");
+            control.setText(""); //$NON-NLS-1$
         } else if (value instanceof String) {
             control.setText((String) value);
         }
@@ -476,7 +477,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
                 String[] interfaces = cmClassType.getSuperInterfaceNames();
                 if (interfaces != null) {
                     for (int i = 0; i < interfaces.length; i++) {
-                        if (interfaces[i].contains("RegexContextMapper")) {
+                        if (interfaces[i].contains("RegexContextMapper")) { //$NON-NLS-1$
                             return true;
                         }
                     }
@@ -546,7 +547,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         if (project != null) { //$NON-NLS-1$
             javaProject = JavaCore.create(project);
             if (!className.isEmpty()) {
-                if (className.contains(".")) {
+                if (className.contains(".")) { //$NON-NLS-1$
                     className = className.substring(className.lastIndexOf('.') + 1);
                 }
                 page.setTypeName(className, true);
@@ -613,8 +614,8 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         }
         SelectionDialog dialog = JavaUI.createTypeDialog(shell, new ProgressMonitorDialog(shell), searchScope,
                 IJavaElementSearchConstants.CONSIDER_CLASSES_AND_INTERFACES, false);
-        dialog.setTitle("Select entries");
-        dialog.setMessage("Matching items");
+        dialog.setTitle(Messages.title_selectEntries);
+        dialog.setMessage(Messages.description_matchingItems);
         if (dialog.open() == IDialogConstants.CANCEL_ID) {
             return null;
         }
@@ -651,7 +652,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
 
         @Override
         public void run() throws Exception {
-            String[] path = parseString(_localObjectPath, "/");
+            String[] path = parseString(_localObjectPath, "/"); //$NON-NLS-1$
             EObject object = getBinding();
             for (int i = 0; i < path.length; i++) {
                 object = (EObject) getFeatureValue(object, path[i]);
@@ -670,7 +671,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
 
     protected boolean validChange(String objectpath, String featureId, Object value) {
         SwitchYardBindingType binding = getSwitchYardBinding();
-        String[] path = parseString(objectpath, "/");
+        String[] path = parseString(objectpath, "/"); //$NON-NLS-1$
         EObject object = binding;
         for (int i = 0; i < path.length; i++) {
             object = (EObject) getFeatureValue(object, path[i]);

@@ -61,6 +61,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
@@ -105,7 +106,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
 
         _toolkit = getWidgetFactory();
         
-        _addButton = _toolkit.createButton(this, "Add", SWT.PUSH);
+        _addButton = _toolkit.createButton(this, Messages.button_add, SWT.PUSH);
         _addButton.addSelectionListener(new SelectionListener() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -118,7 +119,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
             }
         });
 
-        _removeButton = _toolkit.createButton(this, "Remove", SWT.PUSH);
+        _removeButton = _toolkit.createButton(this, Messages.button_remove, SWT.PUSH);
         _removeButton.setEnabled(false);
         _removeButton.addSelectionListener(new SelectionListener() {
             @Override
@@ -140,7 +141,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
                 | SWT.FULL_SELECTION);
         
         Label legend = new Label(this, SWT.NONE);
-        legend.setText("* = Generated Transform");
+        legend.setText(Messages.label_starEqualsGeneratedTransform);
 
         FormData data = new FormData();
         data.right = new FormAttachment(95, 0);
@@ -168,7 +169,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
 
         // Add the from column
         TableColumn tc2 = new TableColumn(table, SWT.LEFT);
-        tc2.setText("From");
+        tc2.setText(Messages.label_from);
         tableLayout.setColumnData(tc2,  new ColumnWeightData(45));
         tc2.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
@@ -179,7 +180,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
 
         // Add the to column
         TableColumn tc1 = new TableColumn(table, SWT.LEFT);
-        tc1.setText("To");
+        tc1.setText(Messages.label_to);
         tableLayout.setColumnData(tc1,  new ColumnWeightData(45));
         tc1.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
@@ -190,7 +191,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
 
         // Add the type column
         TableColumn tc3 = new TableColumn(table, SWT.LEFT);
-        tc3.setText("Type");
+        tc3.setText(Messages.label_type);
         tableLayout.setColumnData(tc3,  new ColumnWeightData(10));
         tc3.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
@@ -280,8 +281,8 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
             details = new TransformDetails(switchYardRoot);
 
             if (details.getDeclaredTransforms().containsAll(details.getRequiredTransforms())) {
-                MessageDialog.openInformation(this.getShell(), "No New Transformers Required",
-                        "All required transformers have been created.");
+                MessageDialog.openInformation(this.getShell(), Messages.title_noNewTransformersRequired,
+                        Messages.description_noNewTransformersRequired);
                 return null;
             }
             final NewTransformWizard wizard = new NewTransformWizard();
@@ -313,7 +314,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
                 });
             }
         } catch (Exception e) {
-            MessageDialog.openError(this.getShell(), "Error Resolving Transformers", "Could not resolve required transformers.\n"
+            MessageDialog.openError(this.getShell(), Messages.title_errorResolvingTransformers, Messages.description_errorResolvingTransformers
                     + e.getMessage());
             return null;
         }
@@ -328,7 +329,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
                     SwitchYardType switchYardRoot = getSwitchYardRoot(_composite);
                     TransformsType transforms = switchYardRoot.getTransforms();
                     int index = transforms.getTransform().indexOf(selected);
-                    EStructuralFeature feature = transforms.eClass().getEStructuralFeature("transform");
+                    EStructuralFeature feature = transforms.eClass().getEStructuralFeature("transform"); //$NON-NLS-1$
                     removeListItem(transforms, feature, index);
                 }
             });

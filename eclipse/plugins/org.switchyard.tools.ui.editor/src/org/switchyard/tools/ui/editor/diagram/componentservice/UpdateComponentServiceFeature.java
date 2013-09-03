@@ -34,6 +34,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.model.merge.CompositeMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.ContractMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -71,7 +72,7 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
 
         // make sure the component still exists in the model
         if (!GraphitiInternal.getEmfService().isObjectAlive(service)) {
-            return Reason.createTrueReason(String.format("Service {0} has been removed.", service.getName()));
+            return Reason.createTrueReason(String.format(Messages.updateReason_serviceRemoved, service.getName()));
         }
 
         final ContainerShape container = (ContainerShape) context.getPictogramElement();
@@ -84,7 +85,7 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
         for (Service compositeService : composite.getServices()) {
             if (compositeService.getPromote() == service) {
                 if (!existingConnections.remove(compositeService)) {
-                    return Reason.createTrueReason("Update connections.");
+                    return Reason.createTrueReason(Messages.updateReason_updateConnections);
                 }
             }
         }
@@ -98,7 +99,7 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
                 for (ComponentReference reference : other.getReference()) {
                     if (service.getName().equals(reference.getName())) {
                         if (!existingConnections.remove(reference)) {
-                            return Reason.createTrueReason("Update connections.");
+                            return Reason.createTrueReason(Messages.updateReason_updateConnections);
                         }
                     }
                 }
@@ -106,7 +107,7 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
         }
 
         return existingConnections.isEmpty() ? Reason.createFalseReason() : Reason
-                .createTrueReason("Update connections.");
+                .createTrueReason(Messages.updateReason_updateConnections);
     }
 
     @Override

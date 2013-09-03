@@ -25,6 +25,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
@@ -50,12 +51,12 @@ public class AdvancedBindingDetailsComposite extends AbstractSYBindingComposite 
 
     @Override
     public String getTitle() {
-        return "Advanced Details";
+        return Messages.title_advancedBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Advanced details for the binding.";
+        return Messages.description_advancedBindingDetails;
     }
 
     @Override

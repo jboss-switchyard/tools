@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -68,12 +69,12 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "FTP Binding Details";
+        return Messages.title_ftpBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your FTP Binding.";
+        return Messages.description_ftpBindingDetails;
     }
 
     @Override
@@ -87,32 +88,32 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                     setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
 //                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else {
-                    _delayText.setText("");
+                    _delayText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else {
-                    _excludeText.setText("");
+                    _excludeText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getInclude() != null) {
                     _includeText.setText(this._binding.getConsume().getInclude());
                 } else {
-                    _includeText.setText("");
+                    _includeText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getMoveFailed() != null) {
                     _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
                 } else {
-                    _moveFailedText.setText("");
+                    _moveFailedText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getMove() != null) {
                     _moveText.setText(this._binding.getConsume().getMove());
                 } else {
-                    _moveText.setText("");
+                    _moveText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getPreMove() != null) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 } else {
-                    _preMoveText.setText("");
+                    _preMoveText.setText(""); //$NON-NLS-1$
                 }
                 _deleteButton.setSelection(this._binding.getConsume().isDelete());
                 _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
@@ -120,36 +121,36 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
             } else {
-                _directoryText.setText("");
+                _directoryText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             } else {
-                _fileNameText.setText("");
+                _fileNameText.setText(""); //$NON-NLS-1$
             }
             _autoCreateButton.setSelection(this._binding.isAutoCreate());
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             } else {
-                _hostText.setText("");
+                _hostText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPort() != null) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
             } else {
-                _portText.setText("");
+                _portText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
             } else {
-                _usernameText.setText("");
+                _usernameText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
             } else {
-                _pwdText.setText("");
+                _pwdText.setText(""); //$NON-NLS-1$
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -179,7 +180,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
-                setErrorMessage("Directory may not be empty.");
+                setErrorMessage(Messages.error_emptyDirectory);
                 return false;
             }
         }
@@ -199,27 +200,27 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _hostText = createLabelAndText(composite, "Host");
-        _portText = createLabelAndText(composite, "Port (Default 21)");
-        _usernameText = createLabelAndText(composite, "User Name");
-        _pwdText = createLabelAndText(composite, "Password");
+        _hostText = createLabelAndText(composite, Messages.label_host);
+        _portText = createLabelAndText(composite, Messages.label_portDefault21);
+        _usernameText = createLabelAndText(composite, Messages.label_userName);
+        _pwdText = createLabelAndText(composite, Messages.label_password);
         _pwdText.setEchoChar('*');
-        _binaryButton = createCheckbox(composite, "Use Binary Transfer Mode");
+        _binaryButton = createCheckbox(composite, Messages.label_useBinaryTransferMode);
 
         Group fileGroup = new Group(composite, SWT.NONE);
         fileGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         fileGroup.setLayout(new GridLayout(2, false));
-        fileGroup.setText("File and Directory Options");
+        fileGroup.setText(Messages.label_fileAndDirectoryOptions);
 
-        _directoryText = createLabelAndText(fileGroup, "Directory*");
-        _fileNameText = createLabelAndText(fileGroup, "File Name");
-        _autoCreateButton = createCheckbox(fileGroup, "Auto Create Missing Directories in File Path");
-        _includeText = createLabelAndText(fileGroup, "Include");
-        _excludeText = createLabelAndText(fileGroup, "Exclude");
-        _deleteButton = createCheckbox(fileGroup, "Delete Files Once Processed");
-        _recursiveButton = createCheckbox(fileGroup, "Process Sub-Directories Recursively");
+        _directoryText = createLabelAndText(fileGroup, Messages.label_directoryStar);
+        _fileNameText = createLabelAndText(fileGroup, Messages.label_fileName);
+        _autoCreateButton = createCheckbox(fileGroup, Messages.label_autoCreateMissingDirectories);
+        _includeText = createLabelAndText(fileGroup, Messages.label_include);
+        _excludeText = createLabelAndText(fileGroup, Messages.label_exclude);
+        _deleteButton = createCheckbox(fileGroup, Messages.label_deleteFilesOnceProcessed);
+        _recursiveButton = createCheckbox(fileGroup, Messages.label_processSubDirectoriesRecursively);
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
@@ -234,18 +235,18 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
         Group moveGroup = new Group(composite, SWT.NONE);
         moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         moveGroup.setLayout(new GridLayout(2, false));
-        moveGroup.setText("Move Options");
+        moveGroup.setText(Messages.label_moveOptions);
 
-        _preMoveText = createLabelAndText(moveGroup, "Pre-Move");
-        _moveText = createLabelAndText(moveGroup, "Move (Default .camel)");
-        _moveFailedText = createLabelAndText(moveGroup, "Move Failed");
+        _preMoveText = createLabelAndText(moveGroup, Messages.label_preMove);
+        _moveText = createLabelAndText(moveGroup, Messages.label_moveDefaultDotCamel);
+        _moveFailedText = createLabelAndText(moveGroup, Messages.label_moveFailed);
 
         Group pollGroup = new Group(composite, SWT.NONE);
         pollGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         pollGroup.setLayout(new GridLayout(2, false));
-        pollGroup.setText("Poll Options");
+        pollGroup.setText(Messages.label_pollOptions);
 
-        _delayText = createLabelAndText(pollGroup, "Delay Between Polls (MS) (Default 500)");
+        _delayText = createLabelAndText(pollGroup, Messages.label_delayBetweenPollsDefault500);
 
         return composite;
     }
@@ -259,7 +260,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", FtpFactory.eINSTANCE.createRemoteFileConsumerType());
+                setFeatureValue(_binding, "consume", FtpFactory.eINSTANCE.createRemoteFileConsumerType()); //$NON-NLS-1$
             }
         }
     }
@@ -267,31 +268,31 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
     protected void updateConsumeFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ConsumeOp());
-        ops.add(new BasicOperation("consume", featureId, value));
+        ops.add(new BasicOperation("consume", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
     private void handleConsumer(Control control) {
         if (control.equals(_delayText)) {
             try {
-                updateConsumeFeature("delay", new BigInteger(_delayText.getText().trim()));
+                updateConsumeFeature("delay", new BigInteger(_delayText.getText().trim())); //$NON-NLS-1$
             } catch (NumberFormatException nfe) {
-                updateConsumeFeature("delay", _delayText.getText().trim());
+                updateConsumeFeature("delay", _delayText.getText().trim()); //$NON-NLS-1$
             }
         } else if (control.equals(_deleteButton)) {
-            updateConsumeFeature("delete", new Boolean(_deleteButton.getSelection()));
+            updateConsumeFeature("delete", new Boolean(_deleteButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_recursiveButton)) {
-            updateConsumeFeature("recursive", new Boolean(_recursiveButton.getSelection()));
+            updateConsumeFeature("recursive", new Boolean(_recursiveButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_excludeText)) {
-            updateConsumeFeature("exclude", _excludeText.getText().trim());
+            updateConsumeFeature("exclude", _excludeText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_includeText)) {
-            updateConsumeFeature("include", _includeText.getText().trim());
+            updateConsumeFeature("include", _includeText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_moveFailedText)) {
-            updateConsumeFeature("moveFailed", _moveFailedText.getText().trim());
+            updateConsumeFeature("moveFailed", _moveFailedText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_moveText)) {
-            updateConsumeFeature("move", _moveText.getText().trim());
+            updateConsumeFeature("move", _moveText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_preMoveText)) {
-            updateConsumeFeature("preMove", _preMoveText.getText().trim());
+            updateConsumeFeature("preMove", _preMoveText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
@@ -300,23 +301,23 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
 
     protected void handleModify(Control control) {
         if (control.equals(_directoryText)) {
-            updateFeature(_binding, "directory", _directoryText.getText().trim());
+            updateFeature(_binding, "directory", _directoryText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_fileNameText)) {
-            updateFeature(_binding, "fileName", _fileNameText.getText().trim());
+            updateFeature(_binding, "fileName", _fileNameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_autoCreateButton)) {
-            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection()));
+            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_hostText)) {
-            updateFeature(_binding, "host", _hostText.getText().trim());
+            updateFeature(_binding, "host", _hostText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_usernameText)) {
-            updateFeature(_binding, "username", _usernameText.getText().trim());
+            updateFeature(_binding, "username", _usernameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_pwdText)) {
-            updateFeature(_binding, "password", _pwdText.getText().trim());
+            updateFeature(_binding, "password", _pwdText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_binaryButton)) {
-            updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection()));
+            updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_portText)) {
-            updateFeature(_binding, "port", _portText.getText().trim());
+            updateFeature(_binding, "port", _portText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             handleConsumer(control);
         }
@@ -348,7 +349,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
                     setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));

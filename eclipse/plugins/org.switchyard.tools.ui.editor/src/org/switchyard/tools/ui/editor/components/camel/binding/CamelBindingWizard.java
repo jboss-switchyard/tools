@@ -32,7 +32,7 @@ public class CamelBindingWizard extends AbstractBindingWizard implements IBindin
     @Override
     protected Binding createBinding() {
         final CamelBindingType binding = CoreFactory.eINSTANCE.createCamelBindingType();
-        binding.setName(makeUniqueName("camel"));
+        binding.setName(makeUniqueName("camel")); //$NON-NLS-1$
         return binding;
     }
 

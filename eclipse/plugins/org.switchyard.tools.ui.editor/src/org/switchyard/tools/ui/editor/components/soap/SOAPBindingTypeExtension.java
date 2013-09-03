@@ -24,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
@@ -37,8 +38,8 @@ public class SOAPBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new SOAPBindingFactory(), "SOAP",
-                "A SOAP based endpoint.", ImageProvider.IMG_16_SOAP) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new SOAPBindingFactory(), Messages.label_soap,
+                Messages.description_tool_soap, ImageProvider.IMG_16_SOAP) };
     }
 
     @Override
@@ -58,12 +59,12 @@ public class SOAPBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-soap");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-soap"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "SOAP";
+        return Messages.label_soap;
     }
 
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {

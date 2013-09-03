@@ -29,6 +29,7 @@ import org.eclipse.ui.dialogs.PropertyPage;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * AbstractPropertyPage
@@ -40,7 +41,7 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPage implements ICompositeContainer {
 
-    private static final String TRANSACTION_KEY = "switchyard.property.transaction";
+    private static final String TRANSACTION_KEY = "switchyard.property.transaction"; //$NON-NLS-1$
 
     private FormToolkit _toolkit;
     private AbstractModelComposite<T> _composite;
@@ -104,8 +105,8 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
             try {
                 transaction.commit();
             } catch (RollbackException e) {
-                ErrorDialog.openError(getShell(), "Error Commiting Model Changes",
-                        "An error occurred while trying to commit changes.", new Status(IStatus.ERROR,
+                ErrorDialog.openError(getShell(), Messages.title_errorCommittingModelChanges,
+                        Messages.description_errorCommittingModelChanges, new Status(IStatus.ERROR,
                                 Activator.PLUGIN_ID, e.getMessage(), e));
             }
         }

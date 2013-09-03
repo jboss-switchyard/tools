@@ -19,6 +19,7 @@ import org.eclipse.bpmn2.modeler.core.merrimac.clad.AbstractDetailComposite;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ComboObjectEditor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.switchyard.tools.ui.bpmn2.Messages;
 
 /**
  * Object editor specialized for SwitchYard fault action data input.
@@ -57,9 +58,9 @@ public class FaultActionObjectEditor extends ComboObjectEditor {
     @Override
     protected Hashtable<String, Object> getChoiceOfValues(EObject object, EStructuralFeature feature) {
         Hashtable<String, Object> values = new Hashtable<String, Object>();
-        values.put("Abort", "ABORT");
-        values.put("Complete", "COMPLETE");
-        values.put("Throw", "THROW");
+        values.put(Messages.label_abort, "ABORT"); //$NON-NLS-2$
+        values.put(Messages.label_complete, "COMPLETE"); //$NON-NLS-2$
+        values.put(Messages.label_throw, "THROW"); //$NON-NLS-2$
         return values;
     }
 }

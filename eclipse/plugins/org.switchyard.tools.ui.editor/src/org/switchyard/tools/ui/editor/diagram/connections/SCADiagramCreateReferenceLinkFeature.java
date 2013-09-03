@@ -22,6 +22,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -33,7 +34,7 @@ public class SCADiagramCreateReferenceLinkFeature extends AbstractCreateConnecti
      * @param fp the feature provider
      */
     public SCADiagramCreateReferenceLinkFeature(IFeatureProvider fp) {
-        super(fp, "Wire Reference (dashed)", "Wire Reference");
+        super(fp, Messages.featureName_wireReference, Messages.featureDescription_wireReference);
     }
 
     @Override

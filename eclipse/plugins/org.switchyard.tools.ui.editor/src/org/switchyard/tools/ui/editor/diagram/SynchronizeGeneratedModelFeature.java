@@ -19,6 +19,7 @@ import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor.SwitchyardSCAEditorAdapter;
 
 /**
@@ -64,8 +65,8 @@ public class SynchronizeGeneratedModelFeature extends AbstractCustomFeature {
         } else if (editorAdapter.getSwitchyardEditor().isDirty()) {
             if (!_automated) {
                 MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-                        "Cannot Synchronize",
-                        "Please save the file before synchronizing with the generated configuration.");
+                        Messages.title_cannotSynchronize,
+                        Messages.error_cannotSynchronize);
             }
             return;
         } else if (!getUserDecision()) {
@@ -76,12 +77,12 @@ public class SynchronizeGeneratedModelFeature extends AbstractCustomFeature {
 
     @Override
     public String getName() {
-        return "Synchronize with Generated Configuration";
+        return Messages.featureName_synchronizeConfiguration;
     }
 
     @Override
     public String getDescription() {
-        return "Synchronizes the content in the editor with the generated configuration file.";
+        return Messages.featureDescription_synchronizeConfiguration;
     }
 
     @Override
@@ -112,10 +113,8 @@ public class SynchronizeGeneratedModelFeature extends AbstractCustomFeature {
                 || MessageDialog
                         .openQuestion(
                                 PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-                                "Synchronize Generated Configuration",
-                                "The generated configuration associated with this file has changed.\n\n"
-                                        + "Do you wish to synchronize the contents of the editor with the generated configuration?\n\n"
-                                        + "WARNING: this operation cannot be undone.");
+                                Messages.title_synchronizeConfiguration,
+                                Messages.warning_synchronizeConfiguration);
     }
 
 }

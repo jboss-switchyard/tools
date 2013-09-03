@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -46,12 +47,12 @@ public class CamelComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "Camel Binding Details";
+        return Messages.title_camelBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your Camel Binding.";
+        return Messages.description_camelBindingDetails;
     }
 
     @Override
@@ -63,7 +64,7 @@ public class CamelComposite extends AbstractSYBindingComposite {
             if (this._binding.getConfigURI() != null) {
                 _configURIText.setText(this._binding.getConfigURI());
             } else {
-                _configURIText.setText("");
+                _configURIText.setText(""); //$NON-NLS-1$
             }
 
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
@@ -72,7 +73,7 @@ public class CamelComposite extends AbstractSYBindingComposite {
                 _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -98,7 +99,7 @@ public class CamelComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_configURIText.getText().trim().isEmpty()) {
-                setErrorMessage("Config URI may not be empty.");
+                setErrorMessage(Messages.error_configUriMayNotBeEmpty);
             }
         }
         return (getErrorMessage() == null);
@@ -126,9 +127,9 @@ public class CamelComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _configURIText = createLabelAndText(composite, "Config URI*");
+        _configURIText = createLabelAndText(composite, Messages.label_configUriStar);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
             _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
@@ -152,12 +153,12 @@ public class CamelComposite extends AbstractSYBindingComposite {
 
     protected void handleModify(final Control control) {
         if (control.equals(_configURIText)) {
-            updateFeature(_binding, "configURI", _configURIText.getText().trim());
+            updateFeature(_binding, "configURI", _configURIText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         }
         super.handleModify(control);
         setHasChanged(false);
@@ -169,7 +170,7 @@ public class CamelComposite extends AbstractSYBindingComposite {
             if (control.equals(_configURIText)) {
                 _configURIText.setText(this._binding.getConfigURI());
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else {
                 super.handleUndo(control);
             }

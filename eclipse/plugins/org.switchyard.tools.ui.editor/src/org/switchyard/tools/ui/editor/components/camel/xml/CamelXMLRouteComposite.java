@@ -47,6 +47,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.AbstractChangeAwareModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
@@ -82,7 +83,7 @@ public class CamelXMLRouteComposite extends AbstractChangeAwareModelComposite<Co
         _panel.setLayout(new GridLayout(3, false));
 
         _newXMLLink = new Link(_panel, SWT.NONE);
-        String xmlmessage = "<a>Route XML File:</a>";
+        String xmlmessage = Messages.link_routeXmlFile;
         _newXMLLink.setText(xmlmessage);
         _newXMLLink.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -95,7 +96,7 @@ public class CamelXMLRouteComposite extends AbstractChangeAwareModelComposite<Co
                 }
             }
         });
-        _mXMLText = factory.createText(_panel, "", SWT.READ_ONLY | SWT.BORDER);
+        _mXMLText = factory.createText(_panel, "", SWT.READ_ONLY | SWT.BORDER); //$NON-NLS-1$
         _mXMLText.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -114,12 +115,12 @@ public class CamelXMLRouteComposite extends AbstractChangeAwareModelComposite<Co
         GridData uriGDXML = new GridData(GridData.FILL_HORIZONTAL);
         _mXMLText.setLayoutData(uriGDXML);
 
-        _browseXMLBtn = factory.createButton(_panel, "Browse...", SWT.PUSH);
+        _browseXMLBtn = factory.createButton(_panel, Messages.button_browse, SWT.PUSH);
         GridData btnGDXML = new GridData();
         _browseXMLBtn.setLayoutData(btnGDXML);
         _browseXMLBtn.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
-                String path = selectResourceFromWorkspace(_panel.getShell(), "xml");
+                String path = selectResourceFromWorkspace(_panel.getShell(), "xml"); //$NON-NLS-1$
                 if (path != null) {
                     _mXMLText.setText(path);
                     handleModify(_browseXMLBtn);
@@ -170,9 +171,9 @@ public class CamelXMLRouteComposite extends AbstractChangeAwareModelComposite<Co
         String routeFileName = _mXMLText.getText();
 
         if (routeFileName == null || routeFileName.trim().length() == 0) {
-            errMessage = "No Route file specified";
+            errMessage = Messages.error_noRouteFile;
         } else if (routeFileName.trim().length() < routeFileName.length()) {
-            errMessage = "No spaces allowed in Route file name/path";
+            errMessage = Messages.error_spacesInRouteFilePath;
         }
         if (errMessage != null) {
             return new Status(IStatus.ERROR, Activator.PLUGIN_ID, errMessage);
@@ -236,12 +237,12 @@ public class CamelXMLRouteComposite extends AbstractChangeAwareModelComposite<Co
         }
         ClasspathResourceSelectionDialog dialog = null;
         if (javaProject == null) {
-            dialog = new ClasspathResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), "xml");
+            dialog = new ClasspathResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), "xml"); //$NON-NLS-1$
         } else {
-            dialog = new ClasspathResourceSelectionDialog(shell, javaProject.getProject(), "xml");
+            dialog = new ClasspathResourceSelectionDialog(shell, javaProject.getProject(), "xml"); //$NON-NLS-1$
         }
-        dialog.setTitle("Select Route XML File from Project");
-        dialog.setInitialPattern("*.xml");
+        dialog.setTitle(Messages.title_selectRouteXmlFileFromProject);
+        dialog.setInitialPattern("*.xml"); //$NON-NLS-1$
         dialog.open();
         Object[] result = dialog.getResult();
         if (result == null || result.length == 0 || !(result[0] instanceof IResource)) {

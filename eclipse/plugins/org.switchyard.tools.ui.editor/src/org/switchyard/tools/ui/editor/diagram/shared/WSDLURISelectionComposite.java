@@ -48,6 +48,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.PortType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.WSDLPortTypeSelectionDialog;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
 import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
@@ -89,7 +90,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         }
 
         _newWSDLLink = new Link(_panel, SWT.NONE);
-        String message = "<a>WSDL URI:</a>";
+        String message = Messages.link_wsdlUri;
         _newWSDLLink.setText(message);
         _newWSDLLink.setEnabled(canEdit());
         // link.setSize(400, 100);
@@ -144,7 +145,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         _mWSDLInterfaceURIText.setLayoutData(uriGD);
 
         _browseBtnWorkspace = new Button(_panel, SWT.PUSH);
-        _browseBtnWorkspace.setText("Workspace...");
+        _browseBtnWorkspace.setText(Messages.button_workspace);
         _browseBtnWorkspace.setEnabled(canEdit());
         GridData btnGD = new GridData();
         _browseBtnWorkspace.setLayoutData(btnGD);
@@ -192,14 +193,14 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         String uriString = _mWSDLInterfaceURIText.getText();
 
         if (uriString == null || uriString.trim().length() == 0) {
-            setErrorMessage("No uri specified");
+            setErrorMessage(Messages.error_noUri);
         } else if (uriString.trim().length() < uriString.length()) {
-            setErrorMessage("No spaces allowed in uri");
+            setErrorMessage(Messages.error_spacesInUri);
         } else {
             try {
                 URI.create(uriString);
             } catch (IllegalArgumentException e) {
-                setErrorMessage("Invalid URI");
+                setErrorMessage(Messages.error_invalidUri);
             }
         }
 
@@ -231,7 +232,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             if (_interface.getInterface() != null) {
                 _mWSDLInterfaceURIText.setText(_interface.getInterface());
             } else {
-                _mWSDLInterfaceURIText.setText("MyService.wsdl#wsdl.porttype(MyPortType)");
+                _mWSDLInterfaceURIText.setText("MyService.wsdl#wsdl.porttype(MyPortType)"); //$NON-NLS-1$
             }
             setInUpdate(false);
         }
@@ -252,7 +253,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
     public PortType browse(Shell shell, IJavaProject project) {
         WSDLPortTypeSelectionDialog dialog = new WSDLPortTypeSelectionDialog(shell, project == null ? ResourcesPlugin
                 .getWorkspace().getRoot() : project.getProject());
-        dialog.setInitialPattern("*.wsdl");
+        dialog.setInitialPattern("*.wsdl"); //$NON-NLS-1$
         if (dialog.open() == WSDLPortTypeSelectionDialog.OK) {
             PortType result = dialog.getSelectedPortType();
             if (result != null) {
@@ -311,6 +312,6 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         IPath filePath = new Path(portType.eResource().getURI().toPlatformString(true));
         IResource resource = project.getProject().getWorkspace().getRoot().getFile(filePath);
         filePath = JavaUtil.getJavaPathForResource(resource);
-        return filePath.toString() + "#wsdl.porttype(" + portType.getQName().getLocalPart() + ")";
+        return filePath.toString() + "#wsdl.porttype(" + portType.getQName().getLocalPart() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 }

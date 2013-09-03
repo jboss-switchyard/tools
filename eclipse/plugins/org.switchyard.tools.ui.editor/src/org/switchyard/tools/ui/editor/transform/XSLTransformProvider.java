@@ -66,6 +66,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -82,8 +83,8 @@ import freemarker.template.TemplateModelException;
  */
 public class XSLTransformProvider implements ITransformProvider {
 
-    private static final String TEMPLATE = "XSLTemplate.ftl";
-    private static final String TRANSFORMS_PARAM = "transforms";
+    private static final String TEMPLATE = "XSLTemplate.ftl"; //$NON-NLS-1$
+    private static final String TRANSFORMS_PARAM = "transforms"; //$NON-NLS-1$
 
     @Override
     public boolean providesWizard() {
@@ -102,7 +103,7 @@ public class XSLTransformProvider implements ITransformProvider {
 
     @Override
     public String getName() {
-        return "XSL Transformer";
+        return Messages.label_xslTransformer;
     }
 
     private static final class XSLTransformControl implements ITransformControl {
@@ -122,7 +123,7 @@ public class XSLTransformProvider implements ITransformProvider {
             _content.setLayout(new GridLayout(3, false));
 
             final Label label = new Label(_content, SWT.NONE);
-            label.setText("XSL file:");
+            label.setText(Messages.label_xslFile);
 
             _fileText = new Text(_content, SWT.BORDER | SWT.SINGLE);
             _fileText.addModifyListener(new ModifyListener() {
@@ -134,7 +135,7 @@ public class XSLTransformProvider implements ITransformProvider {
             _fileText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
             final Button browseButton = new Button(_content, SWT.PUSH);
-            browseButton.setText("Browse...");
+            browseButton.setText(Messages.button_browse);
             browseButton.addSelectionListener(new SelectionAdapter() {
                 @Override
                 public void widgetSelected(SelectionEvent event) {
@@ -146,7 +147,7 @@ public class XSLTransformProvider implements ITransformProvider {
             new Label(_content, SWT.NONE);
 
             _createNewFileCheckbox = new Button(_content, SWT.CHECK);
-            _createNewFileCheckbox.setText("Create new XSL file");
+            _createNewFileCheckbox.setText(Messages.label_createNewXslFile);
             _createNewFileCheckbox.setSelection(true);
             _createNewFileCheckbox.addSelectionListener(new SelectionAdapter() {
                 @Override
@@ -176,22 +177,22 @@ public class XSLTransformProvider implements ITransformProvider {
             IPath path = new Path(pathString);
             if (!path.isValidPath(pathString)) {
                 return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "The specified XSL file is an invalid path.  Please specify a valid path.");
+                        Messages.error_invalidXslFilePath);
             }
             try {
                 IFile file = _container.getContainingProject().getWorkspace().getRoot().getFile(path);
                 if (_createNewFileCheckbox.getSelection()) {
                     if (file.exists()) {
                         return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "The specified XSL file exists in the workspace.  Specify a unique name or uncheck \"Create...\"");
+                                Messages.error_xslFileExists);
                     }
                 } else if (!file.exists()) {
                     return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "The specified XSL file does not exist in the workspace.  Specify an existing file or check \"Create...\"");
+                            Messages.error_xslFileDoesNotExist);
                 }
                 if (!_project.isOnClasspath(file.getParent())) {
                     return new Status(Status.WARNING, Activator.PLUGIN_ID,
-                            "The specified XSL file is not on the project's classpath.  The file may not be available at runtime.");
+                            Messages.error_xslFileNotOnClasspath);
                 }
             } catch (Exception e) {
                 return new Status(Status.ERROR, Activator.PLUGIN_ID, e.getMessage());
@@ -207,7 +208,7 @@ public class XSLTransformProvider implements ITransformProvider {
                 if (NewTransformWizard.isJavaType(transformer.getFrom())
                         || NewTransformWizard.isJavaType(transformer.getTo())) {
                     return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "XSL transformers do not support transforming from/to Java types.");
+                            Messages.error_xslDoesNotSupportJavaTypes);
                 }
             }
             return Status.OK_STATUS;
@@ -271,9 +272,9 @@ public class XSLTransformProvider implements ITransformProvider {
                 }
             } else {
                 ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(_content.getShell(),
-                        resource.getProject(), new HashSet<String>(Arrays.asList("xsl", "xslt")));
-                dialog.setInitialPattern("*.xsl");
-                dialog.setTitle("Select XSL File");
+                        resource.getProject(), new HashSet<String>(Arrays.asList("xsl", "xslt"))); //$NON-NLS-1$ //$NON-NLS-2$
+                dialog.setInitialPattern("*.xsl"); //$NON-NLS-1$
+                dialog.setTitle(Messages.title_selectXslFile);
                 if (dialog.open() == ClasspathResourceSelectionDialog.OK) {
                     _fileText.setText(((IResource) dialog.getFirstResult()).getFullPath().toString());
                 }
@@ -292,11 +293,11 @@ public class XSLTransformProvider implements ITransformProvider {
                                 @Override
                                 public void run(IProgressMonitor monitor) throws CoreException {
                                     try {
-                                        new CreateFileOperation(file, null, contents, "Creating XSL transformer file.")
+                                        new CreateFileOperation(file, null, contents, Messages.message_creatingXslTransformerFile)
                                                 .execute(monitor, uiInfo);
                                     } catch (ExecutionException e) {
                                         throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                                "Error creating XSL transformer file.", e));
+                                                Messages.error_errorCreatingXslTransformerFile, e));
                                     }
                                 }
                             }, monitor);
@@ -311,11 +312,11 @@ public class XSLTransformProvider implements ITransformProvider {
                     throw (CoreException) realException;
                 } else {
                     throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Error creating XSL transformer file.", realException));
+                            Messages.error_errorCreatingXslTransformerFile, realException));
                 }
             } catch (InterruptedException e) {
                 throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "Error creating XSL transformer file.", e));
+                        Messages.error_errorCreatingXslTransformerFile, e));
             } finally {
                 try {
                     contents.close();
@@ -329,7 +330,7 @@ public class XSLTransformProvider implements ITransformProvider {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
                 Configuration config = new Configuration();
-                config.setClassForTemplateLoading(getClass(), "");
+                config.setClassForTemplateLoading(getClass(), ""); //$NON-NLS-1$
                 config.setObjectWrapper(new DefaultObjectWrapper() {
                     @Override
                     public TemplateModel wrap(final Object obj) throws TemplateModelException {
@@ -343,9 +344,9 @@ public class XSLTransformProvider implements ITransformProvider {
                                 @Override
                                 public TemplateModel get(String param) throws TemplateModelException {
                                     final QName qname;
-                                    if ("from".equals(param)) {
+                                    if ("from".equals(param)) { //$NON-NLS-1$
                                         qname = QName.valueOf(((TransformType) obj).getFrom());
-                                    } else if ("to".equals(param)) {
+                                    } else if ("to".equals(param)) { //$NON-NLS-1$
                                         qname = QName.valueOf(((TransformType) obj).getTo());
                                     } else {
                                         qname = null;
@@ -361,9 +362,9 @@ public class XSLTransformProvider implements ITransformProvider {
 
                                         @Override
                                         public TemplateModel get(String paramFrom) throws TemplateModelException {
-                                            if ("localPart".equals(paramFrom)) {
+                                            if ("localPart".equals(paramFrom)) { //$NON-NLS-1$
                                                 return wrap(qname.getLocalPart());
-                                            } else if ("namespaceURI".equals(paramFrom)) {
+                                            } else if ("namespaceURI".equals(paramFrom)) { //$NON-NLS-1$
                                                 return wrap(qname.getNamespaceURI());
                                             }
                                             return null;
@@ -385,7 +386,7 @@ public class XSLTransformProvider implements ITransformProvider {
                 return new ByteArrayInputStream(baos.toByteArray());
             } catch (Exception e) {
                 throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "Error occurred creating XSL file.", e));
+                        Messages.error_errorCreatingXslFile, e));
             } finally {
                 try {
                     baos.close();
@@ -402,7 +403,7 @@ public class XSLTransformProvider implements ITransformProvider {
 
             private FileSelectionWizard(IStructuredSelection selection) {
                 _selection = selection;
-                setWindowTitle("New XSL Transformer File");
+                setWindowTitle(Messages.title_newXslTransformerFile);
             }
 
             private IPath getSelection() {
@@ -417,14 +418,14 @@ public class XSLTransformProvider implements ITransformProvider {
 
             @Override
             public void addPages() {
-                _page = new WizardNewFileCreationPage("pageName", _selection) {
+                _page = new WizardNewFileCreationPage("pageName", _selection) { //$NON-NLS-1$
                     @Override
                     protected boolean validatePage() {
                         if (super.validatePage()) {
                             IFile file = _project.getProject().getWorkspace().getRoot()
                                     .getFile(getContainerFullPath().append(getFileName()));
                             if (!_project.isOnClasspath(file.getParent())) {
-                                setMessage("The specified file is not on the project's classpath.", WARNING);
+                                setMessage(Messages.error_specifiedFileNotOnClasspath, WARNING);
                             }
                             return true;
                         }
@@ -444,8 +445,8 @@ public class XSLTransformProvider implements ITransformProvider {
                 if (resource.getType() == IResource.FILE) {
                     _page.setFileName(resource.getFullPath().lastSegment());
                 }
-                _page.setFileExtension("xsl");
-                _page.setDescription("Specify new XSL transformer file.");
+                _page.setFileExtension("xsl"); //$NON-NLS-1$
+                _page.setDescription(Messages.description_newXslTransformerFile);
                 addPage(_page);
             }
         }

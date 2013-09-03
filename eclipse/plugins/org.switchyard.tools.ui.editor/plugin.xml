@@ -31,95 +31,95 @@
 	<extension
 	    point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 	    <propertyTabs contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
-	        <propertyTab label="Main" category="SwitchyardSCA" 
+	        <propertyTab label="%propertyTab.label.main" category="SwitchyardSCA" 
 	            id="switchyard.main.tab">
 	        </propertyTab>
         <propertyTab
               afterTab="switchyard.main.tab"
               category="SwitchyardSCA"
               id="switchyard.binding.tab"
-              label="Bindings">
+              label="%propertyTab.label.bindings">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.binding.tab"
               category="SwitchyardSCA"
               id="switchyard.interface.tab"
-              label="Interface">
+              label="%propertyTab.label.interface">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.implementation.bean.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.bean.tab"
-              label="Implementation">
+              label="%propertyTab.label.implementation">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.implementation.camel.java.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.camel.java.tab"
-              label="Implementation">
+              label="%propertyTab.label.implementation">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.implementation.camel.xml.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.camel.xml.tab"
-              label="Implementation">
+              label="%propertyTab.label.implementation">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.implementation.rules.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.rules.tab"
-              label="Implementation">
+              label="%propertyTab.label.implementation">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.transform.tab"
               category="SwitchyardSCA"
               id="switchyard.transform.tab"
-              label="Transforms">
+              label="%propertyTab.label.transforms">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.validate.tab"
               category="SwitchyardSCA"
               id="switchyard.validate.tab"
-              label="Validators">
+              label="%propertyTab.label.validators">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.interaction.policy.tab"
               category="SwitchyardSCA"
               id="switchyard.interaction.policy.tab"
               indented="true"
-              label="Transaction Policy">
+              label="%propertyTab.label.transactionPolicy">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.implementation.policy.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.policy.tab"
               indented="true"
-              label="Transaction Policy">
+              label="%propertyTab.label.transactionPolicy">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.security.policy.tab"
               category="SwitchyardSCA"
               id="switchyard.security.policy.tab"
               indented="true"
-              label="Security Policy">
+              label="%propertyTab.label.securityPolicy">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.composite.property.tab"
               category="SwitchyardSCA"
               id="switchyard.composite.property.tab"
-              label="Composite Properties">
+              label="%propertyTab.label.compositeProperties">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.component.property.tab"
               category="SwitchyardSCA"
               id="switchyard.component.property.tab"
-              label="Component Properties">
+              label="%propertyTab.label.componentProperties">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.interaction.policy.tab"
               category="SwitchyardSCA"
               id="switchyard.throttling.tab"
-              label="Throttling">
+              label="%propertyTab.label.throttling">
         </propertyTab>
 <!--       <propertyTab
             afterTab="switchyard.advanced.tab"
@@ -247,7 +247,7 @@
           filenames="switchyard.xml"
           icon="icons/16/switchyard_icon_16px.png"
           id="org.switchyard.tools.ui.editor.switchyard.editor"
-          name="Switchyard Visual Editor">
+          name="%editor.name.switchYardVisualEditor">
        <contentTypeBinding
              contentTypeId="org.switchyard.tools.ui.editor.content-type.xml">
        </contentTypeBinding>
@@ -259,7 +259,7 @@
           filenames="switchyard.xml"
           icon="icons/16/switchyard_icon_16px.png"
           id="org.switchyard.tools.ui.editor.switchyard.editor.multi"
-          name="Switchyard Visual Multipage Editor">
+          name="%editor.name.switchYardVisualMultipageEditor">
        <contentTypeBinding
              contentTypeId="org.switchyard.tools.ui.editor.content-type.xml">
        </contentTypeBinding>
@@ -354,7 +354,7 @@
        point="org.eclipse.emf.validation.constraintProviders">
     <category
           id="org.switchyard.tools.validationCategory/capabilities"
-          name="SwitchYard Project Capability Validation">
+          name="%validation.category.name.switchYardProjectCapabilityValidation">
     </category>
     <constraintProvider
           cache="true">
@@ -369,10 +369,10 @@
                 isEnabledByDefault="true"
                 lang="Java"
                 mode="Batch"
-                name="SwitchYard Capability Usage Validator"
+                name="%validation.constraint.name.switchYardCapabilityUsageValidator"
                 statusCode="1002">
              <message>
-                Validates that capabilities required for using specific components are defined on the project.  Validation is also performed to identify unused capabilities.
+                %validation.constraint.message.switchYardCapabilityUsageValidator
              </message>
              <target
                    class="Composite">
@@ -384,10 +384,10 @@
                 isEnabledByDefault="true"
                 lang="Java"
                 mode="Batch"
-                name="SwitchYard Interface Type Validator"
+                name="%validation.constraint.name.switchYardInterfaceTypeValidator"
                 statusCode="1003">
              <message>
-                Validates that contracts provide an interface whose type is supported by the underlying implementation.
+                %validation.constraint.message.switchYardInterfaceTypeValidator
              </message>
              <target
                    class="ComponentService">
@@ -404,7 +404,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.contract.ContractControlPropertyPage"
             id="org.switchyard.tools.ui.contract.propertyPage"
-            name="Contract">
+            name="%property.page.name.contract">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
@@ -415,7 +415,7 @@
             category="org.switchyard.tools.ui.contract.propertyPage"
             class="org.switchyard.tools.ui.editor.property.InteractionPolicyPropertyPage"
             id="org.switchyard.tools.ui.contract.policy.transaction.propertyPage"
-            name="Transaction Policy">
+            name="%property.page.name.transactionPolicy">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
@@ -434,7 +434,7 @@
             category="org.switchyard.tools.ui.contract.propertyPage"
             class="org.switchyard.tools.ui.editor.property.SecurityPolicyPropertyPage"
             id="org.switchyard.tools.ui.contract.policy.security.propertyPage"
-            name="Security Policy">
+            name="%property.page.name.securityPolicy">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">
@@ -452,7 +452,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.implementation.ImplementationPolicyPropertyPage"
             id="org.switchyard.tools.ui.component.policy.transaction.propertyPage"
-            name="Transaction Policy">
+            name="%property.page.name.transactionPolicy">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Component">
@@ -462,7 +462,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.contract.BindingsPropertyPage"
             id="org.switchyard.tools.ui.bindings.propertyPage"
-            name="Bindings">
+            name="%property.page.name.bindings">
          <enabledWhen>
                <or>
                   <instanceof
@@ -477,7 +477,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.component.ComponentMainPropertyPage"
             id="org.switchyard.tools.ui.component.name.propertyPage"
-            name="Component">
+            name="%property.page.name.component">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Component">
@@ -488,7 +488,7 @@
             category="org.switchyard.tools.ui.component.name.propertyPage"
             class="org.switchyard.tools.ui.editor.property.component.ComponentPropertiesPropertyPage"
             id="org.switchyard.tools.ui.component.properties.propertyPage"
-            name="Properties">
+            name="%property.page.name.properties">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Component">
@@ -499,7 +499,7 @@
             category="org.switchyard.tools.ui.composite.name.propertyPage"
             class="org.switchyard.tools.ui.editor.property.composite.CompositePropertiesPropertyPage"
             id="org.switchyard.tools.ui.composite.properties.propertyPage"
-            name="Properties">
+            name="%property.page.name.properties">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
@@ -509,7 +509,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.composite.CompositeMainPropertyPage"
             id="org.switchyard.tools.ui.composite.name.propertyPage"
-            name="Composite">
+            name="%property.page.name.composite">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
@@ -519,7 +519,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.composite.TransformsPropertyPage"
             id="org.switchyard.tools.ui.composite.transforms.propertyPage"
-            name="Transforms">
+            name="%property.page.name.transforms">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
@@ -529,7 +529,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.composite.ValidatorsPropertyPage"
             id="org.switchyard.tools.ui.composite.validators.propertyPage"
-            name="Validators">
+            name="%property.page.name.validators">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Composite">
@@ -539,7 +539,7 @@
       <page
             class="org.switchyard.tools.ui.editor.components.bean.BeanImplementationPropertyPage"
             id="org.switchyard.tools.ui.bean.implementation.propertyPage"
-            name="Implementation">
+            name="%property.page.name.implementation">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
@@ -552,7 +552,7 @@
       <page
             class="org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationPropertyPage"
             id="org.switchyard.tools.ui.camel.java.implementation.propertyPage"
-            name="Implementation">
+            name="%property.page.name.implementation">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
@@ -565,7 +565,7 @@
       <page
             class="org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLImplementationPropertyPage"
             id="org.switchyard.tools.ui.camel.xml.implementation.propertyPage"
-            name="Implementation">
+            name="%property.page.name.implementation">
          <enabledWhen>
          	<and>
 	            <adapt
@@ -588,7 +588,7 @@
       <page
             class="org.switchyard.tools.ui.editor.components.rules.RulesImplementationPropertyPage"
             id="org.switchyard.tools.ui.rules.implementation.propertyPage"
-            name="Implementation">
+            name="%property.page.name.implementation">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
@@ -601,7 +601,7 @@
       <page
             class="org.switchyard.tools.ui.editor.property.ThrottlingPropertyPage"
             id="org.switchyard.tools.ui.contract.extensions.throttling.propertyPage"
-            name="Throttling">
+            name="%property.page.name.throttling">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Contract">

@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 
 
@@ -46,7 +47,7 @@ public class JCAGenericResourceAdapterExtension extends AbstractResourceAdapterE
 
     @Override
     public String getDisplayName() {
-        return "Generic Resource Adapter";
+        return Messages.label_genericResourceAdapter;
     }
 
     /**
@@ -72,7 +73,7 @@ public class JCAGenericResourceAdapterExtension extends AbstractResourceAdapterE
         @Override
         protected boolean validate() {
             if (_resourceAdapterText.getText().trim().isEmpty()) {
-                setErrorMessage("Resource adapter name must not be empty.");
+                setErrorMessage(Messages.error_emptyResourceAdapterName);
                 return false;
             } 
             return true;
@@ -82,13 +83,13 @@ public class JCAGenericResourceAdapterExtension extends AbstractResourceAdapterE
         public void createContents(Composite parent, int style) {
             _panel = new Composite(parent, style);
             _panel.setLayout(new GridLayout(2, false));
-            _resourceAdapterText = createLabelAndText(_panel, "Resource Adapter Archive");
+            _resourceAdapterText = createLabelAndText(_panel, Messages.label_resourceAdapterArchive);
         }
 
         @Override
         protected void handleModify(Control control) {
             if (control.equals(_resourceAdapterText)) {
-                updateInboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim());
+                updateInboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim()); //$NON-NLS-1$
             } else {
                 super.handleModify(control);
             }
@@ -108,7 +109,7 @@ public class JCAGenericResourceAdapterExtension extends AbstractResourceAdapterE
             if (inbound.getResourceAdapter() != null && inbound.getResourceAdapter().getName() != null) {
                 this._resourceAdapterText.setText(inbound.getResourceAdapter().getName());
             } else {
-                this._resourceAdapterText.setText("");
+                this._resourceAdapterText.setText(""); //$NON-NLS-1$
             }
             validate();
             addObservableListeners(true);

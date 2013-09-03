@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
@@ -38,8 +39,8 @@ public class CamelSQLBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelSqlBindingFactory(), "SQL",
-                "A Camel SQL based endpoint.", ImageProvider.IMG_16_SQL) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelSqlBindingFactory(), Messages.label_sql,
+                Messages.description_tool_sql, ImageProvider.IMG_16_SQL) };
     }
 
     @Override
@@ -59,12 +60,12 @@ public class CamelSQLBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-sql");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-sql"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "SQL";
+        return Messages.label_sql;
     }
 
     protected static List<IBindingComposite> createComposites() {
@@ -79,6 +80,6 @@ public class CamelSQLBindingTypeExtension implements IBindingTypeExtension {
     
     static {
         ADVANCED_PROPS = new ArrayList<String>();
-        ADVANCED_PROPS.add("batch");
+        ADVANCED_PROPS.add("batch"); //$NON-NLS-1$
     }
 }

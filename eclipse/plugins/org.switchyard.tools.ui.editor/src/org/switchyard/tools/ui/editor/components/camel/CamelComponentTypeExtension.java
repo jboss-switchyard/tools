@@ -25,6 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaComponentFactory;
 import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationFactory;
 import org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLComponentFactory;
@@ -44,18 +45,18 @@ public class CamelComponentTypeExtension implements IComponentTypeExtension {
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
         return new ICreateFeature[] {
-                new CompositeCreateFeature(fp, "Camel (Java)", "A Java based Camel route component/implementation",
-                        new CreateComponentFeature(fp, new CamelJavaComponentFactory(), "Camel (Java)",
-                                "Create a component implemented as a Java based Camel route.",
+                new CompositeCreateFeature(fp, Messages.label_camelJava, Messages.description_tool_camelJavaComponentImplementation,
+                        new CreateComponentFeature(fp, new CamelJavaComponentFactory(), Messages.label_camelJava,
+                                Messages.description_tool_camelJavaComponent,
                                 ImageProvider.IMG_16_CAMEL_JAVA), new CreateImplementationFeature(fp,
-                                new CamelJavaImplementationFactory(), "Camel (Java)",
-                                "An implementation using a Java based Camel route.")),
-                new CompositeCreateFeature(fp, "Camel (XML)", "An XML based Camel route component/implementation.",
-                        new CreateComponentFeature(fp, new CamelXMLComponentFactory(), "Camel (XML)",
-                                "Create a component implemented as an XML based Camel route.",
+                                new CamelJavaImplementationFactory(), Messages.label_camelJava,
+                                Messages.description_tool_camelJavaImplementation)),
+                new CompositeCreateFeature(fp, Messages.label_camelXml, Messages.description_tool_camelXmlComponentImplementation,
+                        new CreateComponentFeature(fp, new CamelXMLComponentFactory(), Messages.label_camelXml,
+                                Messages.description_tool_camelXmlComponent,
                                 ImageProvider.IMG_16_CAMEL_XML), new CreateImplementationFeature(fp,
-                                new CamelXMLImplementationFactory(), "Camel (XML)",
-                                "An implementation using an XML based Camel route.")) };
+                                new CamelXMLImplementationFactory(), Messages.label_camelXml,
+                                Messages.description_tool_camelXmlImplementation)) };
     }
 
     @Override
@@ -76,7 +77,7 @@ public class CamelComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Implementation object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel"); //$NON-NLS-1$
     }
 
     @Override
@@ -86,6 +87,6 @@ public class CamelComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public String getTypeName(Implementation object) {
-        return "Camel";
+        return Messages.label_camel;
     }
 }

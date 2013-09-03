@@ -24,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
@@ -39,8 +40,8 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelJPABindingFactory(), "JPA",
-                "A Camel JPA based endpoint.", ImageProvider.IMG_16_JPA) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelJPABindingFactory(), Messages.label_jpa,
+                Messages.description_jpa, ImageProvider.IMG_16_JPA) };
     }
 
     @Override
@@ -60,12 +61,12 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-jpa");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-jpa"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "JPA";
+        return Messages.label_jpa;
     }
 
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {
@@ -84,12 +85,12 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
     
     static {
         CONSUMER_ADVANCED_PROPS = new ArrayList<String>();
-        CONSUMER_ADVANCED_PROPS.add("maxMessagesPerPoll");
-        CONSUMER_ADVANCED_PROPS.add("initialDelay");
-        CONSUMER_ADVANCED_PROPS.add("delay");
-        CONSUMER_ADVANCED_PROPS.add("useFixedDelay");
-        CONSUMER_ADVANCED_PROPS.add("sendEmptyMessageWhenIdle");
-        CONSUMER_ADVANCED_PROPS.add("timeUnit");
-        CONSUMER_ADVANCED_PROPS.add("consumerResultClass");
+        CONSUMER_ADVANCED_PROPS.add("maxMessagesPerPoll"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("initialDelay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("delay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("useFixedDelay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("sendEmptyMessageWhenIdle"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("timeUnit"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("consumerResultClass"); //$NON-NLS-1$
     }
 }

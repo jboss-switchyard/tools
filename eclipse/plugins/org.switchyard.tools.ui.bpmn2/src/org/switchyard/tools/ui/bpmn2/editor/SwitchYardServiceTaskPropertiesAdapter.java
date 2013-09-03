@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public class SwitchYardServiceTaskPropertiesAdapter extends ServiceTaskPropertiesAdapter {
 
-    private static final String SWITCHYARD_IMPLEMENTATION = "##SwitchYard";
+    private static final String SWITCHYARD_IMPLEMENTATION = "##SwitchYard"; //$NON-NLS-1$
 
     /**
      * @param adapterFactory the factory
@@ -53,7 +53,7 @@ public class SwitchYardServiceTaskPropertiesAdapter extends ServiceTaskPropertie
                     if (choiceOfValues == null) {
                         choiceOfValues = new Hashtable<String, Object>();
                     }
-                    choiceOfValues.put("SwitchYard Service", SWITCHYARD_IMPLEMENTATION);
+                    choiceOfValues.put("SwitchYard Service", SWITCHYARD_IMPLEMENTATION); //$NON-NLS-1$
                 }
                 return choiceOfValues;
             }

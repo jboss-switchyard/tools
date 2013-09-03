@@ -111,7 +111,7 @@ public class Activator extends AbstractUIPlugin {
     public static void showErrorWithLogging(Exception e) {
         Status s = createStatus(e);
         logStatus(s);
-        ErrorDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(), "An error occured", null, s);
+        ErrorDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(), Messages.error_errorOccurred, null, s);
     }
 
 }

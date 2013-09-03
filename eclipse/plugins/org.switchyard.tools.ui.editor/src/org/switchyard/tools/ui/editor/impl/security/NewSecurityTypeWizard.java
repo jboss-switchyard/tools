@@ -22,6 +22,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -40,7 +41,7 @@ public class NewSecurityTypeWizard extends Wizard {
      */
     public NewSecurityTypeWizard() {
         super();
-        setWindowTitle("Security Configuration");
+        setWindowTitle(Messages.title_securityConfiguration);
     }
     
     /**
@@ -54,16 +55,16 @@ public class NewSecurityTypeWizard extends Wizard {
 
     @Override
     public void addPages() {
-        _page = new NewSecurityTypeWizardPage("wizpage");
+        _page = new NewSecurityTypeWizardPage("wizpage"); //$NON-NLS-1$
         if (_securityType == null) {
             _securityType = SwitchyardFactory.eINSTANCE.createSecurityType();
         }
         if (!_editing) {
-            _page.setTitle("New Security Configuration");
-            _page.setDescription("Specify details for your new Security configuration.");
+            _page.setTitle(Messages.title_newSecurityConfiguration);
+            _page.setDescription(Messages.description_newSecurityConfiguration);
         } else {
-            _page.setTitle("Edit Security Configuration");
-            _page.setDescription("Update details for the selected Security configuration.");
+            _page.setTitle(Messages.title_editSecurityConfiguration);
+            _page.setDescription(Messages.description_editoSecurityConfiguration);
             _page.setEditing(_editing);
         }
         _page.setSecurityType(_securityType);
@@ -120,11 +121,11 @@ public class NewSecurityTypeWizard extends Wizard {
                 @Override
                 protected void doExecute() {
                     try {
-                        setIt(_page.getModuleName(), "name");
-                        setIt(_page.getCallbackHandler(), "callbackHandler");
-                        setIt(_page.getRolesAllowed(), "rolesAllowed");
-                        setIt(_page.getRunAs(), "runAs");
-                        setIt(_page.getSecurityDomain(), "securityDomain");
+                        setIt(_page.getModuleName(), "name"); //$NON-NLS-1$
+                        setIt(_page.getCallbackHandler(), "callbackHandler"); //$NON-NLS-1$
+                        setIt(_page.getRolesAllowed(), "rolesAllowed"); //$NON-NLS-1$
+                        setIt(_page.getRunAs(), "runAs"); //$NON-NLS-1$
+                        setIt(_page.getSecurityDomain(), "securityDomain"); //$NON-NLS-1$
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -150,6 +151,6 @@ public class NewSecurityTypeWizard extends Wizard {
                 }
             }
         }
-        throw new Exception("AbstractSwitchyardComposite:Feature ID (" + featureId + ") not found.");
+        throw new Exception("AbstractSwitchyardComposite:Feature ID (" + featureId + ") not found."); //$NON-NLS-1$ //$NON-NLS-2$
     }
 }

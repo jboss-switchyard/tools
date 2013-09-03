@@ -23,18 +23,18 @@ public interface ISCADiagramRenderingStyle extends IPredefinedRenderingStyle {
     /**
      * Composite gradient ID.
      */
-    public static final String COMPOSITE_ID = "sca-composite";
+    public static final String COMPOSITE_ID = "sca-composite"; //$NON-NLS-1$
     /**
      * Component gradient ID.
      */
-    public static final String COMPONENT_ID = "sca-component";
+    public static final String COMPONENT_ID = "sca-component"; //$NON-NLS-1$
     /**
      * Service gradient ID.
      */
-    public static final String SERVICE_ID = "sca-service";
+    public static final String SERVICE_ID = "sca-service"; //$NON-NLS-1$
     /**
      * Reference gradient ID.
      */
-    public static final String REFERENCE_ID = "sca-reference";
+    public static final String REFERENCE_ID = "sca-reference"; //$NON-NLS-1$
 
 }

@@ -44,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.OperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -126,17 +127,17 @@ public class RulesActionTable extends Composite implements ICellModifier {
     /**
      * Type column.
      */
-    public static final String TYPE_COLUMN = "type";
+    public static final String TYPE_COLUMN = "type"; //$NON-NLS-1$
 
     /**
      * Operation column.
      */
-    public static final String OPERATION_COLUMN = "operation";
+    public static final String OPERATION_COLUMN = "operation"; //$NON-NLS-1$
 
     /**
      * Entry Point ID column.
      */
-    public static final String ENTRY_POINT_COLUMN = "entrypoint";
+    public static final String ENTRY_POINT_COLUMN = "entrypoint"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {
         OPERATION_COLUMN, TYPE_COLUMN, ENTRY_POINT_COLUMN };
@@ -194,15 +195,15 @@ public class RulesActionTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn operationColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        operationColumn.setText("Operation");
+        operationColumn.setText(Messages.label_operation);
         tableLayout.setColumnData(operationColumn, new ColumnWeightData(100, 150, true));
 
         TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        typeColumn.setText("Type");
+        typeColumn.setText(Messages.label_type);
         tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
 
         TableColumn entryPointIdColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointIdColumn.setText("Event ID");
+        entryPointIdColumn.setText(Messages.label_eventId);
         tableLayout.setColumnData(entryPointIdColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -221,7 +222,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -246,7 +247,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -283,7 +284,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
                     protected void doExecute() {
                         RulesOperationType newAction = RulesFactory.eINSTANCE.createRulesOperationType();
                         newAction.setType(OperationType.EXECUTE);
-                        newAction.setName("NewOperation");
+                        newAction.setName("NewOperation"); //$NON-NLS-1$
                         if (impl.getOperations() == null) {
                             impl.setOperations(RulesFactory.eINSTANCE.createOperationsType());
                         }
@@ -294,7 +295,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
             } else {
                 RulesOperationType newAction = RulesFactory.eINSTANCE.createRulesOperationType();
                 newAction.setType(OperationType.EXECUTE);
-                newAction.setName("NewOperation");
+                newAction.setName("NewOperation"); //$NON-NLS-1$
                 if (impl.getOperations() == null) {
                     impl.setOperations(RulesFactory.eINSTANCE.createOperationsType());
                 }
@@ -438,13 +439,13 @@ public class RulesActionTable extends Composite implements ICellModifier {
             if (((RulesOperationType) element).getName() != null) {
                 return ((RulesOperationType) element).getName();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof RulesOperationType && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
             if (((RulesOperationType) element).getEventId() != null) {
                 return ((RulesOperationType) element).getEventId();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

@@ -49,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.property.AbstractChangeAwareModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
@@ -138,9 +139,9 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         TabItem actions = new TabItem(folder, SWT.NONE);
         TabItem advanced = new TabItem(folder, SWT.NONE);
 
-        resources.setText("General");
-        actions.setText("Operations");
-        advanced.setText("Advanced");
+        resources.setText(Messages.label_general);
+        actions.setText(Messages.label_operations);
+        advanced.setText(Messages.label_advanced);
 
         createResourcesControls(folder, resources);
         createActionsControls(folder, actions);
@@ -205,7 +206,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section resourcesSection = factory.createSection(control, Section.TITLE_BAR | Section.EXPANDED);
-        resourcesSection.setText("Manifest");
+        resourcesSection.setText(Messages.label_manifest);
         resourcesSection.setLayout(new GridLayout(2, false));
         resourcesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -254,9 +255,9 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
                 }
             }
         };
-        _resourcesRadio = factory.createButton(resourceButtonsComposite, "Defined Resources", SWT.RADIO);
+        _resourcesRadio = factory.createButton(resourceButtonsComposite, Messages.label_definedResources, SWT.RADIO);
         _resourcesRadio.addSelectionListener(radioListener);
-        _containerRadio = factory.createButton(resourceButtonsComposite, "Knowledge Container", SWT.RADIO);
+        _containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
         _containerRadio.addSelectionListener(radioListener);
 
         Composite resourceDetailsComposite = factory.createComposite(resourcesComposite);
@@ -288,7 +289,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section actionsSection = factory.createSection(actionsComposite, Section.TITLE_BAR | Section.EXPANDED);
-        actionsSection.setText("Operations");
+        actionsSection.setText(Messages.label_operations);
         actionsSection.setLayout(new GridLayout());
         actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -322,7 +323,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         mappingsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
-        globalsSection.setText("Globals");
+        globalsSection.setText(Messages.label_globals);
         globalsSection.setLayout(new GridLayout());
         globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         globalsSection.addExpansionListener(new ExpansionAdapter() {
@@ -332,7 +333,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
             }
         });
 
-        _globalsTable = new RulesMappingsTable(globalsSection, SWT.NONE, "message.content", null,
+        _globalsTable = new RulesMappingsTable(globalsSection, SWT.NONE, "message.content", null, //$NON-NLS-1$
                 RulesPackage.eINSTANCE.getRulesOperationType_Globals(), RulesPackage.eINSTANCE.getGlobalsType_Global(),
                 Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -341,7 +342,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section inputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        inputsSection.setText("Inputs");
+        inputsSection.setText(Messages.label_inputs);
         inputsSection.setLayout(new GridLayout());
         inputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         inputsSection.addExpansionListener(new ExpansionAdapter() {
@@ -351,7 +352,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
             }
         });
 
-        _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, "message.content", null,
+        _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, "message.content", null, //$NON-NLS-1$
                 RulesPackage.eINSTANCE.getRulesOperationType_Inputs(), RulesPackage.eINSTANCE.getInputsType_Input(),
                 Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -360,7 +361,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section outputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        outputsSection.setText("Outputs");
+        outputsSection.setText(Messages.label_outputs);
         outputsSection.setLayout(new GridLayout());
         outputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         outputsSection.addExpansionListener(new ExpansionAdapter() {
@@ -370,7 +371,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
             }
         });
 
-        _outputsTable = new RulesMappingsTable(outputsSection, SWT.NONE, null, "message.content",
+        _outputsTable = new RulesMappingsTable(outputsSection, SWT.NONE, null, "message.content", //$NON-NLS-1$
                 RulesPackage.eINSTANCE.getRulesOperationType_Outputs(), RulesPackage.eINSTANCE.getOutputsType_Output(),
                 Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -379,7 +380,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section faultsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        faultsSection.setText("Faults");
+        faultsSection.setText(Messages.label_faults);
         faultsSection.setLayout(new GridLayout());
         faultsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         faultsSection.addExpansionListener(new ExpansionAdapter() {
@@ -389,7 +390,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
             }
         });
 
-        _faultsTable = new RulesMappingsTable(faultsSection, SWT.NONE, null, "message.content",
+        _faultsTable = new RulesMappingsTable(faultsSection, SWT.NONE, null, "message.content", //$NON-NLS-1$
                 RulesPackage.eINSTANCE.getRulesOperationType_Faults(), RulesPackage.eINSTANCE.getFaultsType_Fault(),
                 Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
         _faultsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -412,7 +413,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        channelsSection.setText("Channels");
+        channelsSection.setText(Messages.label_channels);
         channelsSection.setLayout(new GridLayout());
         channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         channelsSection.addExpansionListener(new ExpansionAdapter() {
@@ -433,7 +434,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         channelsSection.setClient(_channelsTable);
 
         Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        listenersSection.setText("Listeners");
+        listenersSection.setText(Messages.label_listeners);
         listenersSection.setLayout(new GridLayout());
         listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         listenersSection.addExpansionListener(new ExpansionAdapter() {
@@ -449,7 +450,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         listenersSection.setClient(_listenersTable);
 
         Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        loggersSection.setText("Loggers");
+        loggersSection.setText(Messages.label_loggers);
         loggersSection.setLayout(new GridLayout());
         loggersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         loggersSection.addExpansionListener(new ExpansionAdapter() {
@@ -465,7 +466,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         loggersSection.setClient(_loggersTable);
 
         Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        propertiesSection.setText("Properties");
+        propertiesSection.setText(Messages.label_properties);
         propertiesSection.setLayout(new GridLayout());
         propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         propertiesSection.addExpansionListener(new ExpansionAdapter() {

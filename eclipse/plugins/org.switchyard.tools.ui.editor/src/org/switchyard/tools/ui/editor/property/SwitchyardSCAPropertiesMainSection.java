@@ -49,6 +49,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -152,7 +153,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         data.top = new FormAttachment(_nameText, 0, SWT.CENTER);
         valueLabel.setLayoutData(data);
         
-        _targetNamespaceText = factory.createText(composite, "");
+        _targetNamespaceText = factory.createText(composite, ""); //$NON-NLS-1$
         data = new FormData();
         Integer widthTimes1Point5 = new Integer((int) (STANDARD_LABEL_WIDTH * 1.5));
         data.left = new FormAttachment(0, widthTimes1Point5.intValue());
@@ -192,7 +193,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             }
         });
 
-        _tnsLabel = factory.createLabel(composite, "Target Namespace:");
+        _tnsLabel = factory.createLabel(composite, Messages.label_targetNamespace);
         data = new FormData();
         data.left = new FormAttachment(0, 0);
         data.right = new FormAttachment(_targetNamespaceText, -HSPACE);

@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.Activator;
 
 /**
@@ -41,7 +42,7 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 public class KIEContainerDetailsComposite extends Composite {
 
-    private static final Pattern GAV_PATTERN = Pattern.compile("([^: ]*)(:([^: ]*)(:([^: ]*))?)?");
+    private static final Pattern GAV_PATTERN = Pattern.compile("([^: ]*)(:([^: ]*)(:([^: ]*))?)?"); //$NON-NLS-1$
 
     private ContainerType _container = BPMFactory.eINSTANCE.createContainerType();
     private boolean _updating;
@@ -64,8 +65,8 @@ public class KIEContainerDetailsComposite extends Composite {
 
         setLayout(new GridLayout(3, false));
 
-        factory.createLabel(this, "Session Name:");
-        _sessionNameText = factory.createText(this, "", SWT.BORDER);
+        factory.createLabel(this, Messages.label_sessionName);
+        _sessionNameText = factory.createText(this, "", SWT.BORDER); //$NON-NLS-1$
         _sessionNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _sessionNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -84,12 +85,12 @@ public class KIEContainerDetailsComposite extends Composite {
         });
 
         Group releaseGroup = new Group(this, SWT.SHADOW_NONE);
-        releaseGroup.setText("Release ID");
+        releaseGroup.setText(Messages.label_releaseId);
         releaseGroup.setBackground(factory.getColors().getBackground());
         releaseGroup.setForeground(factory.getColors().getForeground());
         releaseGroup.setLayout(new GridLayout(2, false));
         releaseGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 4));
-        releaseGroup.setToolTipText("Release ID for resources in Maven repository");
+        releaseGroup.setToolTipText(Messages.tooltip_releaseId);
 
         ModifyListener releaseIdListener = new ModifyListener() {
             @Override
@@ -108,12 +109,12 @@ public class KIEContainerDetailsComposite extends Composite {
                     if (groupId.length() > 0) {
                         buf.append(groupId);
                     }
-                    buf.append(":");
+                    buf.append(":"); //$NON-NLS-1$
                     if (artifactId.length() > 0) {
                         buf.append(artifactId);
                     }
                     if (version.length() > 0) {
-                        buf.append(":").append(version);
+                        buf.append(":").append(version); //$NON-NLS-1$
                     }
                     newValue = buf.toString();
                 }
@@ -128,23 +129,23 @@ public class KIEContainerDetailsComposite extends Composite {
             }
         };
 
-        factory.createLabel(releaseGroup, "Group ID:");
-        _groupIdText = factory.createText(releaseGroup, "", SWT.BORDER);
+        factory.createLabel(releaseGroup, Messages.label_groupId);
+        _groupIdText = factory.createText(releaseGroup, "", SWT.BORDER); //$NON-NLS-1$
         _groupIdText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _groupIdText.addModifyListener(releaseIdListener);
 
-        factory.createLabel(releaseGroup, "Artifact ID:");
-        _artifactIdText = factory.createText(releaseGroup, "", SWT.BORDER);
+        factory.createLabel(releaseGroup, Messages.label_artifactId);
+        _artifactIdText = factory.createText(releaseGroup, "", SWT.BORDER); //$NON-NLS-1$
         _artifactIdText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _artifactIdText.addModifyListener(releaseIdListener);
 
-        factory.createLabel(releaseGroup, "Version:");
-        _versionText = factory.createText(releaseGroup, "", SWT.BORDER);
+        factory.createLabel(releaseGroup, Messages.label_version);
+        _versionText = factory.createText(releaseGroup, "", SWT.BORDER); //$NON-NLS-1$
         _versionText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _versionText.addModifyListener(releaseIdListener);
 
-        factory.createLabel(this, "Base Name:");
-        _baseNameText = factory.createText(this, "", SWT.BORDER);
+        factory.createLabel(this, Messages.label_baseName);
+        _baseNameText = factory.createText(this, "", SWT.BORDER); //$NON-NLS-1$
         _baseNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _baseNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -162,7 +163,7 @@ public class KIEContainerDetailsComposite extends Composite {
             }
         });
 
-        _scanCheckbox = factory.createButton(this, "Scan for updates", SWT.CHECK);
+        _scanCheckbox = factory.createButton(this, Messages.label_scanForUpdates, SWT.CHECK);
         _scanCheckbox.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         _scanCheckbox.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -180,11 +181,11 @@ public class KIEContainerDetailsComposite extends Composite {
             }
         });
 
-        Label label = factory.createLabel(this, "Scan Interval:");
+        Label label = factory.createLabel(this, Messages.label_scanInterval);
         GridData gd = new GridData();
         gd.horizontalIndent = 20;
         label.setLayoutData(gd);
-        _scanIntervalText = factory.createText(this, "", SWT.BORDER);
+        _scanIntervalText = factory.createText(this, "", SWT.BORDER); //$NON-NLS-1$
         _scanIntervalText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _scanIntervalText.addModifyListener(new ModifyListener() {
             @Override
@@ -217,15 +218,15 @@ public class KIEContainerDetailsComposite extends Composite {
         }
         _container = container;
 
-        _sessionNameText.setText(_container.getSessionName() == null ? "" : _container.getSessionName());
-        _baseNameText.setText(_container.getBaseName() == null ? "" : _container.getBaseName());
+        _sessionNameText.setText(_container.getSessionName() == null ? "" : _container.getSessionName()); //$NON-NLS-1$
+        _baseNameText.setText(_container.getBaseName() == null ? "" : _container.getBaseName()); //$NON-NLS-1$
         _scanCheckbox.setSelection(_container.isScan());
         _scanIntervalText.setEnabled(_container.isScan());
         _scanIntervalText.setText(Long.toString(_container.getScanInterval()));
         if (_container.getReleaseId() == null) {
-            _groupIdText.setText("");
-            _artifactIdText.setText("");
-            _versionText.setText("");
+            _groupIdText.setText(""); //$NON-NLS-1$
+            _artifactIdText.setText(""); //$NON-NLS-1$
+            _versionText.setText(""); //$NON-NLS-1$
         } else {
             final Matcher matcher = GAV_PATTERN.matcher(_container.getReleaseId());
             final String groupId;
@@ -236,13 +237,13 @@ public class KIEContainerDetailsComposite extends Composite {
                 artifactId = matcher.group(3);
                 version = matcher.group(5);
             } else {
-                groupId = "";
-                artifactId = "";
-                version = "";
+                groupId = ""; //$NON-NLS-1$
+                artifactId = ""; //$NON-NLS-1$
+                version = ""; //$NON-NLS-1$
             }
-            _groupIdText.setText(groupId == null ? "" : groupId);
-            _artifactIdText.setText(artifactId == null ? "" : artifactId);
-            _versionText.setText(version == null ? "" : version);
+            _groupIdText.setText(groupId == null ? "" : groupId); //$NON-NLS-1$
+            _artifactIdText.setText(artifactId == null ? "" : artifactId); //$NON-NLS-1$
+            _versionText.setText(version == null ? "" : version); //$NON-NLS-1$
         }
     }
 

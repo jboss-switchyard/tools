@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 
 
@@ -48,14 +49,14 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
     @Override
     public Property[] getPropertyList() {
         ArrayList<Property> list = new ArrayList<Property>();
-        list.add(createNewProperty("destination", "queue/YourQueueName"));
-        list.add(createNewProperty("destinationType", "javax.jms.Queue"));
+        list.add(createNewProperty("destination", "queue/YourQueueName")); //$NON-NLS-1$ //$NON-NLS-2$
+        list.add(createNewProperty("destinationType", "javax.jms.Queue")); //$NON-NLS-1$ //$NON-NLS-2$
         return list.toArray(new Property[list.size()]);
     }
 
     @Override
     public String getDisplayName() {
-        return "HornetQ Queue Resource Adapter";
+        return Messages.label_hornetQResourceAdapter;
     }
 
     @Override
@@ -91,7 +92,7 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
         @Override
         protected boolean validate() {
             if (!_destinationText.isDisposed() && _destinationText.getText().trim().isEmpty()) {
-                setErrorMessage("Destination topic must be specified.");
+                setErrorMessage(Messages.error_emptyTopic);
                 return false;
             }
             return true;
@@ -101,22 +102,22 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
         public void createContents(Composite parent, int style) {
             _panel = new Composite(parent, style);
             _panel.setLayout(new GridLayout(2, false));
-            _destinationText = createLabelAndText(_panel, "Destination (Queue)");
-            _messageSelectorText = createLabelAndText(_panel, "Message Selector");
-            _acknowledgeModeCombo = createLabelAndCombo(_panel, "Acknowledge Mode", true);
-            _acknowledgeModeCombo.add("Auto-acknowledge");
-            _acknowledgeModeCombo.add("Dups-ok-acknowledge");
-            _acknowledgeModeCombo.setText("Auto-acknowledge");
+            _destinationText = createLabelAndText(_panel, Messages.label_destinationQueue);
+            _messageSelectorText = createLabelAndText(_panel, Messages.label_messageSelector);
+            _acknowledgeModeCombo = createLabelAndCombo(_panel, Messages.label_acknowledgeMode, true);
+            _acknowledgeModeCombo.add("Auto-acknowledge"); //$NON-NLS-1$
+            _acknowledgeModeCombo.add("Dups-ok-acknowledge"); //$NON-NLS-1$
+            _acknowledgeModeCombo.setText("Auto-acknowledge"); //$NON-NLS-1$
         }
 
         @Override
         protected void handleModify(Control control) {
             if (control.equals(_destinationText)) {
-                updateInboundActivationProperty("destination", _destinationText.getText().trim());
+                updateInboundActivationProperty("destination", _destinationText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_messageSelectorText)) {
-                updateInboundActivationProperty("messageSelector", _messageSelectorText.getText().trim());
+                updateInboundActivationProperty("messageSelector", _messageSelectorText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_acknowledgeModeCombo)) {
-                updateInboundActivationProperty("acknowledgeMode", _acknowledgeModeCombo.getText().trim());
+                updateInboundActivationProperty("acknowledgeMode", _acknowledgeModeCombo.getText().trim()); //$NON-NLS-1$
             } else {
                 super.handleModify(control);
             }
@@ -133,9 +134,9 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
             this._binding = (JCABinding) impl;
             JCAInboundConnection inbound = this._binding.getInboundConnection();
             if (inbound.getResourceAdapter() != null) {
-                getActivationPropertyForControl(inbound.getActivationSpec(), "destination", this._destinationText);
-                getActivationPropertyForControl(inbound.getActivationSpec(), "messageSelector", this._messageSelectorText);
-                getActivationPropertyForControl(inbound.getActivationSpec(), "acknowledgeMode", this._acknowledgeModeCombo);
+                getActivationPropertyForControl(inbound.getActivationSpec(), "destination", this._destinationText); //$NON-NLS-1$
+                getActivationPropertyForControl(inbound.getActivationSpec(), "messageSelector", this._messageSelectorText); //$NON-NLS-1$
+                getActivationPropertyForControl(inbound.getActivationSpec(), "acknowledgeMode", this._acknowledgeModeCombo); //$NON-NLS-1$
             }
             validate();
             addObservableListeners(true);
@@ -144,11 +145,11 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
 
     @Override
     public String getResourceAdapter() {
-        return "hornetq-ra.rar";
+        return "hornetq-ra.rar"; //$NON-NLS-1$
     }
 
     @Override
     public String getDestinationType() {
-        return "javax.jms.Queue";
+        return "javax.jms.Queue"; //$NON-NLS-1$
     }
 }

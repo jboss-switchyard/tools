@@ -194,7 +194,7 @@
               afterTab="switchyard.implementation.bpm.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.bpm.tab"
-              label="Implementation">
+              label="%propertyTab.label">
         </propertyTab>
         </propertyTabs>
    </extension>
@@ -241,7 +241,7 @@
       <page
             class="org.switchyard.tools.ui.bpmn2.component.BPMImplementationPropertyPage"
             id="org.switchyard.tools.ui.bpmn2.propertyPage"
-            name="Implementation">
+            name="%page.name">
          <enabledWhen>
             <adapt
                   type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">

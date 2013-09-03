@@ -32,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
@@ -57,12 +58,12 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "Authentication Details";
+        return Messages.title_authenticationDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify authentication details for your SOAP Binding.";
+        return Messages.description_soapAuthenticationDetails;
     }
 
     /**
@@ -82,18 +83,18 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
         
-        _authTypeCombo = createLabelAndCombo(composite, "Authentication Type", true);
-        _authTypeCombo.add("Basic");
-        _authTypeCombo.add("NTLM");
-        _authTypeCombo.setText("Basic");
+        _authTypeCombo = createLabelAndCombo(composite, Messages.label_authenticationType, true);
+        _authTypeCombo.add("Basic"); //$NON-NLS-1$
+        _authTypeCombo.add("NTLM"); //$NON-NLS-1$
+        _authTypeCombo.setText("Basic"); //$NON-NLS-1$
         _authTypeCombo.addSelectionListener(new SelectionListener() {
 
             @Override
             public void widgetSelected(SelectionEvent e) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
-                _authUserText.setText("");
-                _authPasswordText.setText("");
-                _authDomainText.setText("");
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
+                _authUserText.setText(""); //$NON-NLS-1$
+                _authPasswordText.setText(""); //$NON-NLS-1$
+                _authDomainText.setText(""); //$NON-NLS-1$
                 removeAuthFeatures();
             }
 
@@ -103,12 +104,12 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
             }
         });
         
-        _authUserText = createLabelAndText(composite, "User");
-        _authPasswordText = createLabelAndText(composite, "Password");
-        _authDomainText = createLabelAndText(composite, "Domain");
+        _authUserText = createLabelAndText(composite, Messages.label_user);
+        _authPasswordText = createLabelAndText(composite, Messages.label_password);
+        _authDomainText = createLabelAndText(composite, Messages.label_domain);
         
         _authTypeCombo.select(0);
-        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
         
         return composite;
     }
@@ -117,13 +118,13 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         if (_binding != null) {
             if (control.equals(_authUserText)) {
                 String user = _authUserText.getText().trim();
-                updateAuthFeature("user", user);
+                updateAuthFeature("user", user); //$NON-NLS-1$
             } else if (control.equals(_authPasswordText)) {
                 String password = _authPasswordText.getText().trim();
-                updateAuthFeature("password", password);
+                updateAuthFeature("password", password); //$NON-NLS-1$
             } else if (control.equals(_authDomainText)) {
                 String domain = _authDomainText.getText().trim();
-                updateAuthFeature("domain", domain);
+                updateAuthFeature("domain", domain); //$NON-NLS-1$
             } else {
                 super.handleModify(control);
             }
@@ -178,7 +179,7 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
                 }
             }
             if (_authDomainText != null) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
             }
             setInUpdate(false);
             validate();
@@ -209,7 +210,7 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getBasic() != null) {
-                setFeatureValue(_binding, "basic", null);
+                setFeatureValue(_binding, "basic", null); //$NON-NLS-1$
             }
         }
     }
@@ -218,7 +219,7 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getNtlm() != null) {
-                setFeatureValue(_binding, "ntlm", null);
+                setFeatureValue(_binding, "ntlm", null); //$NON-NLS-1$
             }
         }
     }
@@ -247,7 +248,7 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new RemoveNtlmAuthenticationOp());
         ops.add(new AddBasicAuthenticatiOp());
-        ops.add(new BasicOperation("basic", featureId, value));
+        ops.add(new BasicOperation("basic", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
@@ -255,7 +256,7 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new RemoveBasicAuthenticationOp());
         ops.add(new AddNtlmAuthenticatiOp());
-        ops.add(new BasicOperation("ntlm", featureId, value));
+        ops.add(new BasicOperation("ntlm", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
     
@@ -267,7 +268,7 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
     }
 
     private void updateAuthFeature(String featureId, Object value) {
-        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic");
+        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic"); //$NON-NLS-1$
         if (basicAuth) {
             updateBasicAuthFeature(featureId, value);
         } else {

@@ -38,7 +38,7 @@ public class CameMailBindingWizard extends AbstractBindingWizard implements IBin
         } else {
             binding.setProduce(MailFactory.eINSTANCE.createCamelMailProducerType());
         }
-        binding.setName(makeUniqueName("mail"));
+        binding.setName(makeUniqueName("mail")); //$NON-NLS-1$
         return binding;
     }
 

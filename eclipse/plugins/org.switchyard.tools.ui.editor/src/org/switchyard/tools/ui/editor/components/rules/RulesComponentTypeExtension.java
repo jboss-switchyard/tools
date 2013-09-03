@@ -25,6 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.implementation.CreateImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.CompositeCreateFeature;
@@ -39,11 +40,11 @@ public class RulesComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CompositeCreateFeature(fp, "Rules (DRL)",
-                "A rules based component/implementation.", new CreateComponentFeature(fp, new RulesComponentFactory(),
-                        "Rules (DRL)", "Create a component implemented using rules.", ImageProvider.IMG_16_RULES),
-                new CreateImplementationFeature(fp, new RulesImplementationFactory(), "Rules (DRL)",
-                        "An implementation using rules.")) };
+        return new ICreateFeature[] {new CompositeCreateFeature(fp, Messages.label_rulesDrl,
+                Messages.description_tool_rulesComponentImplementation, new CreateComponentFeature(fp, new RulesComponentFactory(),
+                        Messages.label_rulesDrl, Messages.description_tool_rulesComponent, ImageProvider.IMG_16_RULES),
+                new CreateImplementationFeature(fp, new RulesImplementationFactory(), Messages.label_rulesDrl,
+                        Messages.description_tool_rulesImplementation)) };
     }
 
     @Override
@@ -58,7 +59,7 @@ public class RulesComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Implementation object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-rules");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-rules"); //$NON-NLS-1$
     }
 
     @Override
@@ -68,6 +69,6 @@ public class RulesComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public String getTypeName(Implementation object) {
-        return "Rules";
+        return Messages.label_rules;
     }
 }

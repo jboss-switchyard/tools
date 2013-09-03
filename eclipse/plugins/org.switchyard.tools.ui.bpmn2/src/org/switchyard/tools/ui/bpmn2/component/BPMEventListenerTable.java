@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenerType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -114,7 +115,7 @@ public class BPMEventListenerTable extends Composite implements ICellModifier {
     /**
      * Name column.
      */
-    public static final String NAME_COLUMN = "name";
+    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN };
 
@@ -171,7 +172,7 @@ public class BPMEventListenerTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText("Class");
+        nameColumn.setText(Messages.label_class);
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 300, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -182,7 +183,7 @@ public class BPMEventListenerTable extends Composite implements ICellModifier {
 
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {new ClassDialogCellEditor(_propertyTreeTable.getTable(),
-                "java.util.EventListener", "Event Listener", "Select event listener class.") {
+                "java.util.EventListener", Messages.title_eventListener, Messages.description_eventListener) { //$NON-NLS-1$
             protected Resource getResource() {
                 return _targetObj == null ? null : _targetObj.eResource();
             }
@@ -190,7 +191,7 @@ public class BPMEventListenerTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -214,7 +215,7 @@ public class BPMEventListenerTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -250,7 +251,7 @@ public class BPMEventListenerTable extends Composite implements ICellModifier {
                     @Override
                     protected void doExecute() {
                         ListenerType newAction = BPMFactory.eINSTANCE.createListenerType();
-                        newAction.setClass("classname");
+                        newAction.setClass("classname"); //$NON-NLS-1$
                         if (impl.getListeners() == null) {
                             impl.setListeners(BPMFactory.eINSTANCE.createListenersType());
                         }
@@ -401,7 +402,7 @@ public class BPMEventListenerTable extends Composite implements ICellModifier {
             if (((ListenerType) element).getClass_() != null) {
                 return ((ListenerType) element).getClass_();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

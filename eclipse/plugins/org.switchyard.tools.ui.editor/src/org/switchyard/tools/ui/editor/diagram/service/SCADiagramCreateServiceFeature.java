@@ -25,6 +25,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
 
 /**
@@ -39,7 +40,7 @@ public class SCADiagramCreateServiceFeature extends AbstractCreateFeature {
      * @param fp the feature provider
      */
     public SCADiagramCreateServiceFeature(IFeatureProvider fp) {
-        super(fp, "Service", "Create Service");
+        super(fp, Messages.featureName_compositeService, Messages.featureDescription_compositeService);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class SCADiagramCreateServiceFeature extends AbstractCreateFeature {
     public Object[] create(ICreateContext context) {
         Service newService = null;
         Composite composite = (Composite) getBusinessObjectForPictogramElement(context.getTargetContainer());
-        BaseNewContractWizard wizard = new BaseNewContractWizard("New Service", "Specify details for the new service.",
+        BaseNewContractWizard wizard = new BaseNewContractWizard(Messages.title_newCompositeService, Messages.description_newCompositeService,
                 ScaPackage.eINSTANCE.getService());
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);

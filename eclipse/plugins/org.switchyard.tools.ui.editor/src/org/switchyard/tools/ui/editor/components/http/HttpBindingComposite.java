@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -55,12 +56,12 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "HTTP Binding Details";
+        return Messages.title_httpBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your HTTP Binding.";
+        return Messages.description_httpBindingDetails;
     }
 
     /**
@@ -87,10 +88,10 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
         if (getTargetObject() instanceof Service) {
-            _contextPathText = createLabelAndText(composite, "Context Path");
+            _contextPathText = createLabelAndText(composite, Messages.label_contextPath);
             _contextPathText.setEnabled(canEdit());
 
             _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
@@ -106,24 +107,24 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         }
 
         if (getTargetObject() instanceof Reference) {
-            _mAddressURLText = createLabelAndText(composite, "Address");
+            _mAddressURLText = createLabelAndText(composite, Messages.label_address);
             _mAddressURLText.setEnabled(canEdit());
             
-            _methodCombo = createLabelAndCombo(composite, "Method", false);
-            _methodCombo.add("GET");
-            _methodCombo.add("POST");
-            _methodCombo.add("PUT");
-            _methodCombo.add("DELETE");
-            _methodCombo.add("HEAD");
-            _methodCombo.add("OPTIONS");
-            _methodCombo.add("TRACE");
-            _methodCombo.add("CONNECT");
+            _methodCombo = createLabelAndCombo(composite, Messages.label_method, false);
+            _methodCombo.add("GET"); //$NON-NLS-1$
+            _methodCombo.add("POST"); //$NON-NLS-1$
+            _methodCombo.add("PUT"); //$NON-NLS-1$
+            _methodCombo.add("DELETE"); //$NON-NLS-1$
+            _methodCombo.add("HEAD"); //$NON-NLS-1$
+            _methodCombo.add("OPTIONS"); //$NON-NLS-1$
+            _methodCombo.add("TRACE"); //$NON-NLS-1$
+            _methodCombo.add("CONNECT"); //$NON-NLS-1$
             _methodCombo.setEnabled(canEdit());
 
-            _contentTypeText = createLabelAndText(composite, "Content Type");
+            _contentTypeText = createLabelAndText(composite, Messages.label_contentType);
             _contentTypeText.setEnabled(canEdit());
 
-            _requestTimeoutText = createLabelAndText(composite, "Request Timeout");
+            _requestTimeoutText = createLabelAndText(composite, Messages.label_requestTimeout);
             _requestTimeoutText.setEnabled(canEdit());
         }
 
@@ -134,24 +135,24 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         if (_binding != null) {
             if (control.equals(_mAddressURLText)) {
                 String _sURL = _mAddressURLText.getText().trim();
-                updateFeature(_binding, "address", _sURL);
+                updateFeature(_binding, "address", _sURL); //$NON-NLS-1$
             } else if (control.equals(_contextPathText)) {
                 String contextPath = _contextPathText.getText().trim();
-                updateFeature(_binding, "contextPath", contextPath);
+                updateFeature(_binding, "contextPath", contextPath); //$NON-NLS-1$
             } else if (control.equals(_opSelectorComposite)) {
                 int opType = _opSelectorComposite.getSelectedOperationSelectorType();
                 updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
             } else if (control.equals(_methodCombo)) {
                 String methodName = _methodCombo.getText().trim();
-                updateFeature(_binding, "method", methodName);
+                updateFeature(_binding, "method", methodName); //$NON-NLS-1$
             } else if (control.equals(_contentTypeText)) {
                 String contentType = _contentTypeText.getText().trim();
-                updateFeature(_binding, "contentType", contentType);
+                updateFeature(_binding, "contentType", contentType); //$NON-NLS-1$
             } else if (control.equals(_nameText)) {
-                super.updateFeature(_binding, "name", _nameText.getText().trim());
+                super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_requestTimeoutText)) {
                 final String requestTimeout = _requestTimeoutText.getText();
-                updateFeature(_binding, "timeout", requestTimeout);
+                updateFeature(_binding, "timeout", requestTimeout); //$NON-NLS-1$
             }
         }
         super.handleModify(control);
@@ -176,7 +177,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
 
             if (urlString != null && urlString.trim().length() > 0) {
                 if (urlString.trim().length() < urlString.length()) {
-                    setErrorMessage("No spaces allowed in address URL");
+                    setErrorMessage(Messages.error_spacesInUrl);
                 }
             }
         }
@@ -206,7 +207,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             setTextValue(_methodCombo, _binding.getMethod());
 
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -238,7 +239,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             }
             if (_requestTimeoutText != null && !_requestTimeoutText.isDisposed()) {
                 if (_binding.getTimeout() == null) {
-                    _requestTimeoutText.setText("");
+                    _requestTimeoutText.setText(""); //$NON-NLS-1$
                 } else {
                     _requestTimeoutText.setText(PropTypeUtil.getPropValueString(_binding.getTimeout()));
                 }
@@ -273,11 +274,11 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             if (control.equals(_contextPathText)) {
                 _contextPathText.setText(_binding.getContextPath());
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
            } else if (control.equals(_mAddressURLText)) {
                _mAddressURLText.setText(_binding.getAddress());
            } else if (control.equals(_requestTimeoutText)) {
-               _requestTimeoutText.setText(_binding.getTimeout() == null ? "" : PropTypeUtil.getPropValueString(_binding.getTimeout()));
+               _requestTimeoutText.setText(_binding.getTimeout() == null ? "" : PropTypeUtil.getPropValueString(_binding.getTimeout())); //$NON-NLS-1$
            }
         } else {
             super.handleUndo(control);

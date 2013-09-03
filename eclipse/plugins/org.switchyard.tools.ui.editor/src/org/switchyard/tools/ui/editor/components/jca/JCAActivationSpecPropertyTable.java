@@ -58,12 +58,12 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                         @Override
                         protected void doExecute() {
                             boolean flag = actSpec.getProperty().remove(toRemove);
-                            System.out.println("Property " + toRemove.getName() + " was removed: " + flag);
+                            System.out.println("Property " + toRemove.getName() + " was removed: " + flag); //$NON-NLS-1$ //$NON-NLS-2$
                         }
                     });
                 } else {
                     boolean flag = actSpec.getProperty().remove(toRemove);
-                    System.out.println("Property " + toRemove.getName() + " was removed: " + flag);
+                    System.out.println("Property " + toRemove.getName() + " was removed: " + flag); //$NON-NLS-1$ //$NON-NLS-2$
                 }
             }
         }
@@ -90,12 +90,12 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                             if (binding.getInboundConnection() == null) {
                                 if (binding.getInboundConnection() == null) {
                                     JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                                    setFeatureValue(binding, "inboundConnection", inbound);
+                                    setFeatureValue(binding, "inboundConnection", inbound); //$NON-NLS-1$
                                 }
                             }
                             if (binding.getInboundConnection().getActivationSpec() == null) {
                                 ActivationSpec newspec = JcaFactory.eINSTANCE.createActivationSpec();
-                                setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec);
+                                setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec); //$NON-NLS-1$
                             }
                             ActivationSpec actSpec = binding.getInboundConnection().getActivationSpec();
                             actSpec.getProperty().add(newProperty);
@@ -109,12 +109,12 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                     if (binding.getInboundConnection() == null) {
                         if (binding.getInboundConnection() == null) {
                             JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                            setFeatureValue(binding, "inboundConnection", inbound);
+                            setFeatureValue(binding, "inboundConnection", inbound); //$NON-NLS-1$
                         }
                     }
                     if (binding.getInboundConnection().getActivationSpec() == null) {
                         ActivationSpec newspec = JcaFactory.eINSTANCE.createActivationSpec();
-                        setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec);
+                        setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec); //$NON-NLS-1$
                     }
                     ActivationSpec actSpec = binding.getInboundConnection().getActivationSpec();
                     actSpec.getProperty().add(newProperty);

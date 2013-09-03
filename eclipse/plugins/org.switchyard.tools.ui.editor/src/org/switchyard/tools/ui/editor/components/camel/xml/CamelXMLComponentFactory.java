@@ -40,7 +40,7 @@ public class CamelXMLComponentFactory extends BaseComponentFactory {
         if (fileName.length() > 0) {
             fileName = fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
         } else {
-            fileName = "CamelXMLRoute";
+            fileName = "CamelXMLRoute"; //$NON-NLS-1$
         }
         return makeUniqueComponentName(fileName, container);
     }

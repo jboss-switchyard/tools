@@ -39,6 +39,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.OperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
@@ -57,12 +58,12 @@ import freemarker.template.Template;
  */
 public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements INewWizard {
 
-    private static final String TEMPLATE = "ProcessTemplate.ftl";
-    private static final String PACKAGE_NAME_PARAM = "packageName";
-    private static final String PROCESS_NAME_PARAM = "processName";
-    private static final String PROCESS_ID_PARAM = "processID";
-    private static final String MESSAGE_IN_NAME_PARAM = "messageInName";
-    private static final String MESSAGE_OUT_NAME_PARAM = "messageOutName";
+    private static final String TEMPLATE = "ProcessTemplate.ftl"; //$NON-NLS-1$
+    private static final String PACKAGE_NAME_PARAM = "packageName"; //$NON-NLS-1$
+    private static final String PROCESS_NAME_PARAM = "processName"; //$NON-NLS-1$
+    private static final String PROCESS_ID_PARAM = "processID"; //$NON-NLS-1$
+    private static final String MESSAGE_IN_NAME_PARAM = "messageInName"; //$NON-NLS-1$
+    private static final String MESSAGE_OUT_NAME_PARAM = "messageOutName"; //$NON-NLS-1$
 
     private BPMImplementationType _implementation;
     private NewBPMProcessDetailsWizardPage _processPage;
@@ -77,7 +78,7 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
      *            editor.
      */
     public NewBPMComponentWizard(boolean openAfterCreate) {
-        super(openAfterCreate, "bpmn");
+        super(openAfterCreate, "bpmn"); //$NON-NLS-1$
     }
 
     @Override
@@ -85,12 +86,12 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         super.addPages();
 
         WizardNewFileCreationPage page = getFileCreationPage();
-        page.setTitle("New SwitchYard BPMN File");
-        page.setDescription("Create a new SwitchYard BPMN file.");
+        page.setTitle(Messages.title_newSwitchYardBpmnFile);
+        page.setDescription(Messages.description_newSwitchYardBpmnFile);
         if (getService() == null) {
-            page.setFileName("ProcessComponent.bpmn");
+            page.setFileName("ProcessComponent.bpmn"); //$NON-NLS-1$
         } else {
-            page.setFileName("" + getService().getName() + "Process.bpmn");
+            page.setFileName("" + getService().getName() + "Process.bpmn"); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         _processPage = new NewBPMProcessDetailsWizardPage(NewBPMProcessDetailsWizardPage.class.getCanonicalName());
@@ -118,7 +119,7 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         } else {
             final InputsType inputs = BPMFactory.eINSTANCE.createInputsType();
             final MappingType inputMapping = BPMFactory.eINSTANCE.createMappingType();
-            inputMapping.setFrom("message.content");
+            inputMapping.setFrom("message.content"); //$NON-NLS-1$
             inputMapping.setTo(_processPage.getMessageInName());
 
             inputs.getInput().add(inputMapping);
@@ -131,7 +132,7 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
             final OutputsType outputs = BPMFactory.eINSTANCE.createOutputsType();
             final MappingType outputMapping = BPMFactory.eINSTANCE.createMappingType();
             outputMapping.setFrom(_processPage.getMessageOutName());
-            outputMapping.setTo("message.content");
+            outputMapping.setTo("message.content"); //$NON-NLS-1$
 
             outputs.getOutput().add(outputMapping);
             startAction.setOutputs(outputs);
@@ -163,7 +164,7 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         final ResourcesType resources = BPMFactory.eINSTANCE.createResourcesType();
         final ResourceType resource = BPMFactory.eINSTANCE.createResourceType();
         resource.setLocation(getCreatedFilePath());
-        resource.setType("BPMN2");
+        resource.setType("BPMN2"); //$NON-NLS-1$
 
         resources.getResource().add(resource);
         manifest.setResources(resources);
@@ -218,7 +219,7 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
             Configuration config = new Configuration();
-            config.setClassForTemplateLoading(getClass(), "");
+            config.setClassForTemplateLoading(getClass(), ""); //$NON-NLS-1$
             config.setObjectWrapper(new DefaultObjectWrapper());
 
             Template template = config.getTemplate(TEMPLATE);
@@ -228,15 +229,15 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
             parameters.put(PROCESS_NAME_PARAM, _processPage.getProcessName());
             parameters.put(PROCESS_ID_PARAM, _processPage.getProcessId());
             parameters.put(MESSAGE_IN_NAME_PARAM,
-                    _processPage.getMessageInName() == null ? "Parameter" : _processPage.getMessageInName());
+                    _processPage.getMessageInName() == null ? "Parameter" : _processPage.getMessageInName()); //$NON-NLS-1$
             parameters.put(MESSAGE_OUT_NAME_PARAM,
-                    _processPage.getMessageOutName() == null ? "Result" : _processPage.getMessageOutName());
+                    _processPage.getMessageOutName() == null ? "Result" : _processPage.getMessageOutName()); //$NON-NLS-1$
 
             template.process(parameters, new PrintWriter(baos));
             return new ByteArrayInputStream(baos.toByteArray());
         } catch (Exception e) {
             Activator.getDefault().getLog()
-                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error occurred creating bpmn2 file.", e));
+                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.error_errorCreatingBpmn2File, e));
             return null;
         } finally {
             try {

@@ -48,6 +48,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -166,7 +167,7 @@ public class DelimitedStringList extends Composite {
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
+        this._mAddButton.setText(Messages.button_add);
         this._mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -184,7 +185,7 @@ public class DelimitedStringList extends Composite {
 
         this._mUpButton = new Button(this, SWT.NONE);
         this._mUpButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mUpButton.setText("Up");
+        this._mUpButton.setText(Messages.button_up);
         this._mUpButton.setEnabled(false);
         this._mUpButton.addSelectionListener(new SelectionAdapter() {
 
@@ -195,7 +196,7 @@ public class DelimitedStringList extends Composite {
 
         this._mDownButton = new Button(this, SWT.NONE);
         this._mDownButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mDownButton.setText("Down");
+        this._mDownButton.setText(Messages.button_down);
         this._mDownButton.setEnabled(false);
         this._mDownButton.addSelectionListener(new SelectionAdapter() {
 
@@ -206,7 +207,7 @@ public class DelimitedStringList extends Composite {
 
         this._mRemoveButton = new Button(this, SWT.NONE);
         this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
+        this._mRemoveButton.setText(Messages.button_remove);
         this._mRemoveButton.setEnabled(false);
         this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -218,7 +219,7 @@ public class DelimitedStringList extends Composite {
         this._mClearAllButton = new Button(this, SWT.NONE);
         this._mClearAllButton.setEnabled(false);
         this._mClearAllButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mClearAllButton.setText("Clear All");
+        this._mClearAllButton.setText(Messages.button_clearAll);
         this._mClearAllButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -382,7 +383,7 @@ public class DelimitedStringList extends Composite {
                         this._mPropsList.add(value_b);
                     } else if (counter == destination) {
                         // ignore
-                        System.out.println("");
+                        System.out.println(""); //$NON-NLS-1$
                     } else {
                         this._mPropsList.add(items[counter]);
                     }
@@ -589,8 +590,8 @@ public class DelimitedStringList extends Composite {
         }
         SelectionDialog dialog = JavaUI.createTypeDialog(shell, new ProgressMonitorDialog(shell), searchScope,
                 IJavaElementSearchConstants.CONSIDER_CLASSES_AND_INTERFACES, false);
-        dialog.setTitle("Select entries");
-        dialog.setMessage("Matching items");
+        dialog.setTitle(Messages.title_selectEntries);
+        dialog.setMessage(Messages.description_matchingItems);
         if (dialog.open() == IDialogConstants.CANCEL_ID) {
             return null;
         }

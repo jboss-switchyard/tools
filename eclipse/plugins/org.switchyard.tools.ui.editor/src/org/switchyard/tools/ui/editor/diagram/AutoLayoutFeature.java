@@ -52,6 +52,7 @@ import org.eclipse.zest.layouts.algorithms.HorizontalTreeLayoutAlgorithm;
 import org.eclipse.zest.layouts.exampleStructures.SimpleNode;
 import org.eclipse.zest.layouts.exampleStructures.SimpleRelationship;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * AutoLayoutFeature
@@ -74,12 +75,12 @@ public class AutoLayoutFeature extends AbstractCustomFeature {
 
     @Override
     public String getDescription() {
-        return "Layout diagram.";
+        return Messages.featureDescription_layoutDiagram;
     }
 
     @Override
     public String getName() {
-        return "Auto-layout Diagram";
+        return Messages.featureName_layoutDiagram;
     }
 
     @Override

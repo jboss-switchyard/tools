@@ -19,6 +19,7 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.util.ExampleUtil;
 
 /**
@@ -27,8 +28,8 @@ import org.switchyard.tools.ui.editor.util.ExampleUtil;
  */
 public class SCADiagramCreateCompositeFeature extends AbstractCreateFeature {
 
-    private static final String TITLE = "Create Composite";
-    private static final String USER_QUESTION = "Enter new composite name";
+    private static final String TITLE = Messages.title_createComposite;
+    private static final String USER_QUESTION = Messages.label_compositeName;
 
     private boolean _hasDoneChanges;
 
@@ -36,7 +37,7 @@ public class SCADiagramCreateCompositeFeature extends AbstractCreateFeature {
      * @param fp the feature provider
      */
     public SCADiagramCreateCompositeFeature(IFeatureProvider fp) {
-        super(fp, "Composite", "Create Composite");
+        super(fp, Messages.featureName_composite, Messages.featureDescription_composite);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class SCADiagramCreateCompositeFeature extends AbstractCreateFeature {
     @Override
     public Object[] create(ICreateContext context) {
         // ask user for EClass name
-        String newCompositeName = ExampleUtil.askString(TITLE, USER_QUESTION, "");
+        String newCompositeName = ExampleUtil.askString(TITLE, USER_QUESTION, ""); //$NON-NLS-1$
         if (newCompositeName == null || newCompositeName.trim().length() == 0) {
             _hasDoneChanges = false;
             return EMPTY;

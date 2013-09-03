@@ -63,10 +63,10 @@ public class FaultSignalIdObjectEditor extends ComboObjectEditor {
     @Override
     protected Hashtable<String, Object> getChoiceOfValues(EObject object, EStructuralFeature feature) {
         Hashtable<String, Object> values = new Hashtable<String, Object>();
-        for (EObject available : ModelUtil.collectAncestorObjects(object, "rootElements",
+        for (EObject available : ModelUtil.collectAncestorObjects(object, "rootElements", //$NON-NLS-1$
                 new Class[] {Definitions.class }, new Class[] {Signal.class })) {
             Signal signal = (Signal) available;
-            values.put("" + signal.getId() + " (" + signal.getName() + ")", signal.getId());
+            values.put("" + signal.getId() + " (" + signal.getName() + ")", signal.getId()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
         return values;
     }
@@ -86,7 +86,7 @@ public class FaultSignalIdObjectEditor extends ComboObjectEditor {
         if (dialog.open() == Window.OK) {
             return dialog.getNewObject();
         }
-        throw new OperationCanceledException("Dialog Cancelled");
+        throw new OperationCanceledException("Dialog Cancelled"); //$NON-NLS-1$
     }
     
 }

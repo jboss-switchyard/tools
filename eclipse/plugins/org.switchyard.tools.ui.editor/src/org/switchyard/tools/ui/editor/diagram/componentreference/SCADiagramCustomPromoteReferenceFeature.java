@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.componentreference;
 
+import java.text.MessageFormat;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
@@ -42,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.PromoteReferenceWizard;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -136,9 +138,9 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
                         } else if (!foundDupe && nameMatch) {
                             // invalid - name match but no interface match
                             _hasDoneChanges = false;
-                            MessageDialog dialog = new MessageDialog(shell, "Invalid Reference Promotion", 
-                                    null, "An existing promoted composite reference already exists with the name " + newReference.getName() + " and a different interface type.",
-                                    SWT.NULL, new String[] {"OK"}, 0);
+                            MessageDialog dialog = new MessageDialog(shell, Messages.title_invalidReferencePromotion, 
+                                    null, MessageFormat.format(Messages.error_compositeReferenceAlreadyExists, newReference.getName()),
+                                    SWT.NULL, new String[] {Messages.label_ok}, 0);
                             dialog.open();
                             return;
                         }
@@ -195,7 +197,7 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
 
     @Override
     public String getDescription() {
-        return "Promote the reference";
+        return Messages.featureDescription_promoteReference;
     }
 
     @Override
@@ -210,7 +212,7 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
 
     @Override
     public String getName() {
-        return "Promote Reference";
+        return Messages.featureName_promoteReference;
     }
 
     @Override

@@ -55,6 +55,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
@@ -104,12 +105,12 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "SOAP Binding Details";
+        return Messages.title_soapBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your SOAP Binding.";
+        return Messages.description_soapBindingDetails;
     }
 
     /**
@@ -129,11 +130,11 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
         _nameText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
 
         _newWSDLLink = new Link(composite, SWT.NONE);
-        String message = "<a>WSDL URI</a>";
+        String message = Messages.link_wsdlUri;
         _newWSDLLink.setText(message);
         _newWSDLLink.setEnabled(canEdit());
         _newWSDLLink.addSelectionListener(new SelectionAdapter() {
@@ -163,13 +164,13 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         _mWSDLURIText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
         _browseBtnWorkspace = new Button(composite, SWT.PUSH);
-        _browseBtnWorkspace.setText("Browse...");
+        _browseBtnWorkspace.setText(Messages.button_browse);
         _browseBtnWorkspace.setEnabled(canEdit());
         GridData btnGD = new GridData();
         _browseBtnWorkspace.setLayoutData(btnGD);
         _browseBtnWorkspace.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
-                String result = selectResourceFromWorkspace(_panel.getShell(), "*.wsdl");
+                String result = selectResourceFromWorkspace(_panel.getShell(), "*.wsdl"); //$NON-NLS-1$
                 if (result != null) {
                     _mWSDLURIText.setText(result);
                     setHasChanged(true);
@@ -179,20 +180,20 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             }
         });
 
-        _portNameText = createLabelAndText(composite, "WSDL Port");
+        _portNameText = createLabelAndText(composite, Messages.label_wsdlPort);
         _portNameText.setEnabled(canEdit());
         GridData pnGD = new GridData(GridData.FILL_HORIZONTAL);
         pnGD.horizontalSpan = 2;
         _portNameText.setLayoutData(pnGD);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
-            _contextPathText = createLabelAndText(composite, "Context Path");
+            _contextPathText = createLabelAndText(composite, Messages.label_contextPath);
             _contextPathText.setEnabled(canEdit());
             GridData cpGD = new GridData(GridData.FILL_HORIZONTAL);
             cpGD.horizontalSpan = 2;
             _contextPathText.setLayoutData(cpGD);
 
-            _mWSDLSocketText = createLabelAndText(composite, "Server Port");
+            _mWSDLSocketText = createLabelAndText(composite, Messages.label_serverPort);
             _mWSDLSocketText.setEnabled(canEdit());
 
             GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
@@ -200,12 +201,12 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             _mWSDLSocketText.setLayoutData(portGD);
         }
 
-        _unwrappedPayloadCheckbox = createCheckbox(composite, "Unwrapped Payload");
+        _unwrappedPayloadCheckbox = createCheckbox(composite, Messages.label_unwrappedPayload);
         GridData upChxGD = new GridData(GridData.FILL_HORIZONTAL);
         upChxGD.horizontalSpan = 3;
         _unwrappedPayloadCheckbox.setLayoutData(upChxGD);
 
-        _soapHeadersTypeCombo = createLabelAndCombo(composite, "SOAP Headers Type", true);
+        _soapHeadersTypeCombo = createLabelAndCombo(composite, Messages.label_soapHeadersType, true);
         GridData cmcGD = new GridData(GridData.FILL_HORIZONTAL);
         cmcGD.horizontalSpan = 2;
         _soapHeadersTypeCombo.setLayoutData(cmcGD);
@@ -216,7 +217,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
         
         Group endpointConfigGroup = new Group(composite, SWT.NONE);
-        endpointConfigGroup.setText("Endpoint Configuration");
+        endpointConfigGroup.setText(Messages.label_endpointConfiguration);
         GridData epGrpGD = new GridData(GridData.FILL_HORIZONTAL);
         epGrpGD.horizontalSpan = 3;
         endpointConfigGroup.setLayoutData(epGrpGD);
@@ -224,18 +225,18 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         groupGridLayout.marginLeft = -5;
         endpointConfigGroup.setLayout(groupGridLayout);
         
-        _configFileText = createLabelAndText(endpointConfigGroup,  "Config File");
+        _configFileText = createLabelAndText(endpointConfigGroup,  Messages.label_configFile);
         _configFileText.setEnabled(canEdit());
         _configFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
         _browseBtnConfigWorkspace = new Button(endpointConfigGroup, SWT.PUSH);
-        _browseBtnConfigWorkspace.setText("Browse...");
+        _browseBtnConfigWorkspace.setText(Messages.button_browse);
         _browseBtnConfigWorkspace.setEnabled(canEdit());
         GridData btnConfigGD = new GridData();
         _browseBtnConfigWorkspace.setLayoutData(btnConfigGD);
         _browseBtnConfigWorkspace.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
-                String result = selectResourceFromWorkspace(_panel.getShell(), "*.xml");
+                String result = selectResourceFromWorkspace(_panel.getShell(), "*.xml"); //$NON-NLS-1$
                 if (result != null) {
                     _configFileText.setText(result);
                     setHasChanged(true);
@@ -245,7 +246,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             }
         });
 
-        _configNameText = createLabelAndText(endpointConfigGroup,  "Config Name");
+        _configNameText = createLabelAndText(endpointConfigGroup,  Messages.label_configName);
         _configNameText.setEnabled(canEdit());
         GridData cnGD = new GridData(GridData.FILL_HORIZONTAL);
         cnGD.horizontalSpan = 2;
@@ -258,28 +259,28 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     
     private void addMtomControls(Composite composite) {
         Group mtomGroup = new Group(composite, SWT.NONE);
-        mtomGroup.setText("MTom");
+        mtomGroup.setText(Messages.label_mtom);
         mtomGroup.setLayout(new GridLayout(4, false));
         GridData epConfigGroupGD = new GridData(GridData.FILL_HORIZONTAL);
         epConfigGroupGD.horizontalSpan = 3;
         epConfigGroupGD.horizontalIndent = -5;
         mtomGroup.setLayoutData(epConfigGroupGD);
 
-        _enableMtomCheckbox = createCheckbox(mtomGroup, "Enable");
+        _enableMtomCheckbox = createCheckbox(mtomGroup, Messages.label_enable);
         GridData enableMtomChxGD = new GridData();
         enableMtomChxGD.horizontalSpan = 4;
         _enableMtomCheckbox.setLayoutData(enableMtomChxGD);
 
-        _disableMtomCheckbox = createCheckbox(mtomGroup, "Temporarily Disable");
+        _disableMtomCheckbox = createCheckbox(mtomGroup, Messages.label_temporarilyDisable);
         GridData disableMtomChxGD = new GridData();
         disableMtomChxGD.horizontalIndent = 10;
         _disableMtomCheckbox.setLayoutData(disableMtomChxGD);
 
-        _enableXopExpandCheckbox = createCheckbox(mtomGroup, "xopExpand");
+        _enableXopExpandCheckbox = createCheckbox(mtomGroup, Messages.label_xopExpand);
         GridData enableXopExpandChxGD = new GridData();
         _enableXopExpandCheckbox.setLayoutData(enableXopExpandChxGD);
         
-        _mtomThresholdText = createLabelAndText(mtomGroup, "Threshold");
+        _mtomThresholdText = createLabelAndText(mtomGroup, Messages.label_threshold);
         GridData mtomThresholdGD = new GridData(GridData.FILL_HORIZONTAL);
         _mtomThresholdText.setLayoutData(mtomThresholdGD);
     }
@@ -299,7 +300,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             if (control.equals(_mWSDLURIText)) {
                 _sWSDLURI = _mWSDLURIText.getText().trim();
                 String wsdlPort = _portNameText.getText().trim();
-                updateFeature(_binding, new String[] {"wsdl", "wsdlPort" }, new Object[] {_sWSDLURI, wsdlPort });
+                updateFeature(_binding, new String[] {"wsdl", "wsdlPort" }, new Object[] {_sWSDLURI, wsdlPort }); //$NON-NLS-1$ //$NON-NLS-2$
             } else if (control.equals(_mWSDLSocketText)) {
                 _bindingSocket = _mWSDLSocketText.getText().trim();
                 // for SWITCHYARD-1614 - check to make sure we have a colon and add one if missing
@@ -310,23 +311,23 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 } catch (NumberFormatException nfe) {
                     isJustPort = false;
                 }
-                if (isJustPort && !_bindingSocket.startsWith(":")) {
-                    _bindingSocket = ":" + _bindingSocket;
+                if (isJustPort && !_bindingSocket.startsWith(":")) { //$NON-NLS-1$
+                    _bindingSocket = ":" + _bindingSocket; //$NON-NLS-1$
                     _mWSDLSocketText.setText(_bindingSocket);
                 }
-                updateFeature(_binding, "socketAddr", _bindingSocket);
+                updateFeature(_binding, "socketAddr", _bindingSocket); //$NON-NLS-1$
             } else if (control.equals(_soapHeadersTypeCombo)) {
                 final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
-                _messageComposerComposite.updateContextMapperFeature("soapHeadersType", mapperValue);
+                _messageComposerComposite.updateContextMapperFeature("soapHeadersType", mapperValue); //$NON-NLS-1$
             } else if (control.equals(_unwrappedPayloadCheckbox)) {
-                _unwrappedPayloadCheckbox.setData("unwrapped");
+                _unwrappedPayloadCheckbox.setData("unwrapped"); //$NON-NLS-1$
                 _messageComposerComposite.updateMessageComposerFeature(_unwrappedPayloadCheckbox);
             } else if (control.equals(_contextPathText)) {
                 final String contextPath = _contextPathText.getText().trim();
-                updateFeature(_binding, "contextPath", contextPath);
+                updateFeature(_binding, "contextPath", contextPath); //$NON-NLS-1$
             } else if (control.equals(_portNameText)) {
                 final String wsdlPort = _portNameText.getText();
-                updateFeature(_binding, "wsdlPort", wsdlPort);
+                updateFeature(_binding, "wsdlPort", wsdlPort); //$NON-NLS-1$
             } else if (control.equals(_enableMtomCheckbox)) {
                 _disableMtomCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
                 _enableXopExpandCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
@@ -339,26 +340,26 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                     updateMTomFeature(null, null);
                 }
             } else if (control.equals(_disableMtomCheckbox)) {
-                updateMTomFeature("enabled", !_disableMtomCheckbox.getSelection());
+                updateMTomFeature("enabled", !_disableMtomCheckbox.getSelection()); //$NON-NLS-1$
             } else if (control.equals(_enableXopExpandCheckbox)) {
-                updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection());
+                updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection()); //$NON-NLS-1$
             } else if (control.equals(_configFileText)) {
                 if (_configFileText.getText().trim().isEmpty() && _configNameText.getText().trim().isEmpty()) {
                     removeEndpointConfigFeature();
                 } else {
-                    updateEndpointConfigFeature("configFile", _configFileText.getText().trim());
+                    updateEndpointConfigFeature("configFile", _configFileText.getText().trim()); //$NON-NLS-1$
                 }
             } else if (control.equals(_configNameText)) {
                 if (_configFileText.getText().trim().isEmpty() && _configNameText.getText().trim().isEmpty()) {
                     removeEndpointConfigFeature();
                 } else {
-                    updateEndpointConfigFeature("configName", _configNameText.getText().trim());
+                    updateEndpointConfigFeature("configName", _configNameText.getText().trim()); //$NON-NLS-1$
                 }
             } else if (control.equals(_nameText)) {
-                super.updateFeature(_binding, "name", _nameText.getText().trim());
+                super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
             } else if (control.equals(_mtomThresholdText)) {
                 final String threshold = _mtomThresholdText.getText();
-                updateMTomFeature("threshold", threshold);
+                updateMTomFeature("threshold", threshold); //$NON-NLS-1$
             } else {
                 super.handleModify(control);
             }
@@ -417,7 +418,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 if (_binding.getMtom() != null && _binding.getMtom().getThreshold() != null) {
                     _mtomThresholdText.setText(PropTypeUtil.getPropValueString(_binding.getMtom().getThreshold()));
                 } else {
-                    _mtomThresholdText.setText("");
+                    _mtomThresholdText.setText(""); //$NON-NLS-1$
                 }
             } else if (control.equals(_disableMtomCheckbox)) {
                 if (_binding.getMtom() != null) {
@@ -442,7 +443,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                     setTextValue(_configNameText, null);
                 }
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else {
                 super.handleUndo(control);
             }
@@ -455,9 +456,9 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         String uriString = _mWSDLURIText.getText();
 
         if (uriString == null || uriString.trim().length() == 0) {
-            setErrorMessage("No uri specified");
+            setErrorMessage(Messages.error_noUri);
         } else if (uriString.trim().length() < uriString.length()) {
-            setErrorMessage("No spaces allowed in uri");
+            setErrorMessage(Messages.error_spacesInUri);
 //        } else {
 //            try {
 //                URI.create(uriString);
@@ -523,7 +524,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 if (wsdlURI != null) {
                     _mWSDLURIText.setText(wsdlURI);
                 } else {
-                    _mWSDLURIText.setText("");
+                    _mWSDLURIText.setText(""); //$NON-NLS-1$
                 }
             }
             if (_portNameText != null && !_portNameText.isDisposed()) {
@@ -531,7 +532,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 if (portName != null) {
                     _portNameText.setText(portName);
                 } else {
-                    _portNameText.setText("");
+                    _portNameText.setText(""); //$NON-NLS-1$
                 }
             }
             if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
@@ -539,7 +540,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 if (_bindingSocket != null) {
                     _mWSDLSocketText.setText(_bindingSocket);
                 } else {
-                    _mWSDLSocketText.setText("");
+                    _mWSDLSocketText.setText(""); //$NON-NLS-1$
                 }
             }
             if (_contextPathText != null && !_contextPathText.isDisposed()) {
@@ -613,7 +614,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                     if (_binding.getMtom().getThreshold() != null) {
                         _mtomThresholdText.setText(PropTypeUtil.getPropValueString(_binding.getMtom().getThreshold()));
                     } else {
-                        _mtomThresholdText.setText("");
+                        _mtomThresholdText.setText(""); //$NON-NLS-1$
                     }
                 } else {
                     _enableXopExpandCheckbox.setEnabled(false);
@@ -622,7 +623,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 }
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -722,7 +723,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getMessageComposer() == null) {
                 MessageComposerType messageComposer = (MessageComposerType) createMessageComposer();
-                setFeatureValue(_binding, "messageComposer", messageComposer);
+                setFeatureValue(_binding, "messageComposer", messageComposer); //$NON-NLS-1$
             }
         }
     }
@@ -732,7 +733,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getMtom() == null) {
                 MtomType mtomType = SOAPFactory.eINSTANCE.createMtomType();
-                setFeatureValue(_binding, "mtom", mtomType);
+                setFeatureValue(_binding, "mtom", mtomType); //$NON-NLS-1$
             }
         }
     }
@@ -741,7 +742,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getMtom() != null) {
-                setFeatureValue(_binding, "mtom", null);
+                setFeatureValue(_binding, "mtom", null); //$NON-NLS-1$
             }
         }
     }
@@ -749,7 +750,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     protected void updateMessageComposerFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new MessageComposerOp());
-        ops.add(new BasicOperation("messageComposer", featureId, value));
+        ops.add(new BasicOperation("messageComposer", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
     
@@ -757,7 +758,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new AddMTomOp());
         if (featureId != null) {
-            ops.add(new BasicOperation("mtom", featureId, value));
+            ops.add(new BasicOperation("mtom", featureId, value)); //$NON-NLS-1$
         }
         wrapOperation(ops);
     }
@@ -783,7 +784,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getEndpointConfig() != null) {
-                setFeatureValue(_binding, "endpointConfig", null);
+                setFeatureValue(_binding, "endpointConfig", null); //$NON-NLS-1$
             }
         }
     }
@@ -796,16 +797,16 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             epName = _binding.getEndpointConfig().getConfigName();
             epFile = _binding.getEndpointConfig().getConfigFile();
         }
-        if (featureId.equalsIgnoreCase("configName")) {
+        if (featureId.equalsIgnoreCase("configName")) { //$NON-NLS-1$
             epName = (String) value;
-        } else if (featureId.equalsIgnoreCase("configFile")) {
+        } else if (featureId.equalsIgnoreCase("configFile")) { //$NON-NLS-1$
             epFile = (String) value;
         }
         ops.add(new RemoveEndpointConfigOp());
         if (epName != null || epFile != null) {
             ops.add(new AddEndpointConfigOp());
-            ops.add(new BasicOperation("endpointConfig", "configName", epName));
-            ops.add(new BasicOperation("endpointConfig", "configFile",  epFile));
+            ops.add(new BasicOperation("endpointConfig", "configName", epName)); //$NON-NLS-1$ //$NON-NLS-2$
+            ops.add(new BasicOperation("endpointConfig", "configFile",  epFile)); //$NON-NLS-1$ //$NON-NLS-2$
         }
         wrapOperation(ops);
     }

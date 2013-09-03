@@ -24,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -38,8 +39,8 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new HttpBindingFactory(), "HTTP",
-                "A HTTP based endpoint.", ImageProvider.IMG_16_HTTP) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new HttpBindingFactory(), Messages.label_http,
+                Messages.description_tool_http, ImageProvider.IMG_16_HTTP) };
     }
 
     @Override
@@ -59,12 +60,12 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-http");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-http"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "HTTP";
+        return Messages.label_http;
     }
 
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {

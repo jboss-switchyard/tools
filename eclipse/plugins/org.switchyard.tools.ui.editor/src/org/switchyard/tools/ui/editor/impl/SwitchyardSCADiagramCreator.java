@@ -33,6 +33,7 @@ import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -40,7 +41,7 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 public class SwitchyardSCADiagramCreator {
 
-    private final static String TEMPFILE_EXTENSION = "switchyard";
+    private final static String TEMPFILE_EXTENSION = "switchyard"; //$NON-NLS-1$
     private IFolder _diagramFolder;
     private IFile _diagramFile;
     private URI _uri;
@@ -62,7 +63,7 @@ public class SwitchyardSCADiagramCreator {
             _diagramFolder.create(false, true, null);
         }
 
-        final Diagram diagram = Graphiti.getPeCreateService().createDiagram("org.switchyard.tools.ui.editor.diagram",
+        final Diagram diagram = Graphiti.getPeCreateService().createDiagram("org.switchyard.tools.ui.editor.diagram", //$NON-NLS-1$
                 _diagramFile.getFullPath().removeFileExtension().lastSegment(), true);
         _uri = URI.createPlatformResourceURI(_diagramFile.getFullPath().toString(), true);
 
@@ -88,7 +89,7 @@ public class SwitchyardSCADiagramCreator {
                             .openEditor(editorInput, SwitchyardSCAEditor.EDITOR_ID);
 
                 } catch (PartInitException e) {
-                    String error = "Error while opening diagram editor";
+                    String error = Messages.error_errorOpeningDiagramEditor;
                     IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, error, e);
                     ErrorUtils.showErrorWithLogging(status);
                 }
@@ -145,9 +146,9 @@ public class SwitchyardSCADiagramCreator {
 
         String name = fullPath.getFileExtension();
         if (name == null || name.length() == 0) {
-            name = "xml";
+            name = "xml"; //$NON-NLS-1$
         }
-        IFolder folder = root.getProject(fullPath.segment(0)).getFolder("." + name);
+        IFolder folder = root.getProject(fullPath.segment(0)).getFolder("." + name); //$NON-NLS-1$
         if (!folder.exists()) {
             folder.create(true, true, null);
         }
@@ -214,7 +215,7 @@ public class SwitchyardSCADiagramCreator {
             // this is a tempFile - rebuild the BPMN2 model file name from its
             // path
             ext = fullPath.segment(matchingSegments);
-            if (ext.startsWith(".")) {
+            if (ext.startsWith(".")) { //$NON-NLS-1$
                 ext = ext.substring(1);
             }
             path = project.getFullPath();

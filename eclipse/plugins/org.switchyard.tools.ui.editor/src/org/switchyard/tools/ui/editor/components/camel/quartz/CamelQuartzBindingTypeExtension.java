@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
@@ -38,8 +39,8 @@ public class CamelQuartzBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelQuartzBindingFactory(), "Scheduling",
-                "A Camel Scheduling based endpoint.", ImageProvider.IMG_16_SCHEDULER) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelQuartzBindingFactory(), Messages.label_scheduling,
+                Messages.description_tool_scheduling, ImageProvider.IMG_16_SCHEDULER) };
     }
 
     @Override
@@ -59,12 +60,12 @@ public class CamelQuartzBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-quartz");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-quartz"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "Scheduling";
+        return Messages.label_scheduling;
     }
 
     protected static List<IBindingComposite> createComposites() {
@@ -79,6 +80,6 @@ public class CamelQuartzBindingTypeExtension implements IBindingTypeExtension {
     
     static {
         ADVANCED_PROPS = new ArrayList<String>();
-        ADVANCED_PROPS.add("stateful");
+        ADVANCED_PROPS.add("stateful"); //$NON-NLS-1$
     }
 }

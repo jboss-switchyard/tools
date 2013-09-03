@@ -112,7 +112,7 @@ public abstract class AbstractBindingWizard extends LinkedWizardBase implements 
          * @param composite the controls for the page.
          */
         protected BindingCompositeWizardPage(IBindingComposite composite) {
-            super("BindingWizard.page."+AbstractBindingWizard.this.getPageCount());
+            super("BindingWizard.page."+AbstractBindingWizard.this.getPageCount()); //$NON-NLS-1$
             setTitle(composite.getTitle());
             setDescription(composite.getDescription());
             _composite = composite;

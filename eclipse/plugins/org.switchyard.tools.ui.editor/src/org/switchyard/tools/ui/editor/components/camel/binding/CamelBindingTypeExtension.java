@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -37,8 +38,8 @@ public class CamelBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelBindingFactory(), "Camel",
-                "A Camel based endpoint.", ImageProvider.IMG_16_CAMEL) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelBindingFactory(), Messages.label_camel,
+                Messages.description_tool_camel, ImageProvider.IMG_16_CAMEL) };
     }
 
     @Override
@@ -58,12 +59,12 @@ public class CamelBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-core");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-core"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "Camel URI";
+        return Messages.label_camelUri;
     }
 
     protected static List<IBindingComposite> createComposites() {

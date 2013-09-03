@@ -30,6 +30,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.PartSite;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -58,7 +59,7 @@ public final class ErrorUtils {
     public static void showErrorWithLogging(IStatus status) {
         Platform.getLog(Activator.getDefault().getBundle()).log(status);
         ErrorDialog
-                .openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(), "An error occured", null, status);
+                .openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(), Messages.error_errorOccurred, null, status);
     }
 
     /**

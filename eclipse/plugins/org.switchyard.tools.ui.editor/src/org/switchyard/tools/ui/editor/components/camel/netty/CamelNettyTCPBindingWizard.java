@@ -32,7 +32,7 @@ public class CamelNettyTCPBindingWizard extends AbstractBindingWizard implements
     @Override
     protected Binding createBinding() {
         final CamelNettyTcpBindingType binding = NettyFactory.eINSTANCE.createCamelNettyTcpBindingType();
-        binding.setName(makeUniqueName("tcp"));
+        binding.setName(makeUniqueName("tcp")); //$NON-NLS-1$
         return binding;
     }
 

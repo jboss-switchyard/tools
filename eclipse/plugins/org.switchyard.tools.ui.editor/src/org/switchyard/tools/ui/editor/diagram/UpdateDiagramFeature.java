@@ -30,6 +30,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * UpdateDiagramFeature
@@ -106,7 +107,7 @@ public class UpdateDiagramFeature extends DefaultUpdateDiagramFeature {
         if (pe instanceof Diagram) {
             Diagram d = (Diagram) pe;
             if (d.getChildren().size() == 0) {
-                return Reason.createTrueReason("Add Composite to diagram.");
+                return Reason.createTrueReason(Messages.updateReason_addComposite);
             }
         }
         return Reason.createFalseReason();

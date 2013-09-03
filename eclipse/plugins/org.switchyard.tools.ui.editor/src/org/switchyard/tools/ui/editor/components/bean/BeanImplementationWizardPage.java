@@ -48,6 +48,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
@@ -76,8 +77,8 @@ public class BeanImplementationWizardPage extends WizardPage {
      */
     public BeanImplementationWizardPage(String pageName) {
         super(pageName);
-        setTitle("Bean Implementation Details");
-        setDescription("Select an implementation class.");
+        setTitle(Messages.title_beanImplementationDetails);
+        setDescription(Messages.description_beanImplementationDetails);
         setPageComplete(false);
     }
 
@@ -141,7 +142,7 @@ public class BeanImplementationWizardPage extends WizardPage {
         contents.setLayout(new GridLayout(3, false));
 
         _newBeanLink = new Link(contents, SWT.NONE);
-        _newBeanLink.setText("<a>Bean Class:</a>");
+        _newBeanLink.setText(Messages.link_beanClass);
         _newBeanLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -161,7 +162,7 @@ public class BeanImplementationWizardPage extends WizardPage {
         });
 
         _browseBeanButton = new Button(contents, SWT.PUSH);
-        _browseBeanButton.setText("Browse...");
+        _browseBeanButton.setText(Messages.button_browse);
         _browseBeanButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -176,7 +177,7 @@ public class BeanImplementationWizardPage extends WizardPage {
     private void validate() {
         setErrorMessage(null);
         if (_beanClass == null) {
-            setErrorMessage("Please select a bean class.");
+            setErrorMessage(Messages.error_pleaseSelectBeanClass);
         }
         setPageComplete(getErrorMessage() == null);
     }
@@ -200,7 +201,7 @@ public class BeanImplementationWizardPage extends WizardPage {
 
         try {
             SelectionDialog dialog = JavaUI.createTypeDialog(getShell(), getContainer(), scope,
-                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, "*Bean");
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, "*Bean"); //$NON-NLS-1$
             if (dialog.open() == SelectionDialog.OK) {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {

@@ -26,6 +26,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.wizards.WSDL2JavaWizard;
 
 /**
@@ -47,7 +48,7 @@ public class WSDL2JavaCustomFeature extends AbstractCustomFeature implements ICu
 
     @Override
     public String getDescription() {
-        return "Generate a Java interface from a WSDL file.";
+        return Messages.featureDescription_wsdlToJava;
     }
 
     @Override
@@ -70,7 +71,7 @@ public class WSDL2JavaCustomFeature extends AbstractCustomFeature implements ICu
 
     @Override
     public String getName() {
-        return "Generate Java Interface";
+        return Messages.featureName_wsdlToJava;
     }
 
     @Override

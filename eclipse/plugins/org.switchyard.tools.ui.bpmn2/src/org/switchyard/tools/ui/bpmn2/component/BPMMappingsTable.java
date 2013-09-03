@@ -46,6 +46,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -125,12 +126,12 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
     /**
      * Expression column.
      */
-    public static final String FROM_COLUMN = "from";
+    public static final String FROM_COLUMN = "from"; //$NON-NLS-1$
 
     /**
      * To column.
      */
-    public static final String TO_COLUMN = "to";
+    public static final String TO_COLUMN = "to"; //$NON-NLS-1$
 
 
     private static final String[] TREE_COLUMNS = new String[] {FROM_COLUMN, TO_COLUMN};
@@ -209,10 +210,10 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText("From");
+        nameColumn.setText(Messages.label_from);
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointColumn.setText("To");
+        entryPointColumn.setText(Messages.label_to);
         tableLayout.setColumnData(entryPointColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -229,7 +230,7 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -253,7 +254,7 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -466,13 +467,13 @@ public class BPMMappingsTable extends Composite implements ICellModifier {
             if (((MappingType) element).getFrom() != null) {
                 return ((MappingType) element).getFrom();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof MappingType && property.equalsIgnoreCase(TO_COLUMN)) {
             if (((MappingType) element).getTo() != null) {
                 return ((MappingType) element).getTo();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

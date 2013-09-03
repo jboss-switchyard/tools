@@ -47,6 +47,7 @@ import org.eclipse.wst.wsdl.Service;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * Allows user to select a port from available project WSDL files.
@@ -68,7 +69,7 @@ public class WSDLPortSelectionDialog extends ClasspathResourceSelectionDialog {
      */
     public WSDLPortSelectionDialog(Shell parentShell, IContainer container) {
         super(parentShell, container);
-        setTitle("Select WSDL file and port");
+        setTitle(Messages.title_selectWsdlFileAndPort);
     }
 
     /**
@@ -85,7 +86,7 @@ public class WSDLPortSelectionDialog extends ClasspathResourceSelectionDialog {
         contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
         Label label = new Label(contents, SWT.NONE);
-        label.setText("Select port:");
+        label.setText(Messages.label_selectPort);
 
         _portsList = new ListViewer(contents, SWT.SINGLE | SWT.BORDER);
         _portsList.setLabelProvider(new LabelProvider() {
@@ -172,7 +173,7 @@ public class WSDLPortSelectionDialog extends ClasspathResourceSelectionDialog {
         if (item instanceof Port) {
             return Status.OK_STATUS;
         }
-        return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please select a WSDL file and port.");
+        return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.error_selectWsdlFileAndPort);
     }
 
     @Override

@@ -45,6 +45,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
 import org.switchyard.tools.models.switchyard1_0.soap.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -69,20 +70,20 @@ public class InterceptorTypeInputDialog extends TitleAreaDialog {
 
     @Override
     protected Control createDialogArea(Composite parent) {
-        setTitle("New Interceptor Details");
-        setMessage("Specify a class and any properties for the new interceptor.");
-        getShell().setText("Add Interceptor");
+        setTitle(Messages.title_newInterceptorDetails);
+        setMessage(Messages.description_newInterceptorDetails);
+        getShell().setText(Messages.title_addInterceptor);
 
         Composite area = new Composite(parent, SWT.NULL);
         GridLayout gridLayout = new GridLayout(3, false);
         area.setLayout(gridLayout);
         area.setLayoutData(new GridData(GridData.FILL_BOTH));
-        _classNameText = createLabelAndText(area, "Class Name*");
+        _classNameText = createLabelAndText(area, Messages.label_classNameStar);
         if (_interceptor != null && _interceptor.getClass_() != null && !_interceptor.getClass_().trim().isEmpty()) {
             _classNameText.setText(_interceptor.getClass_());
-            getShell().setText("Edit Interceptor");
-            setTitle("Interceptor Details");
-            setMessage("Specify the class and any properties for this interceptor.");
+            getShell().setText(Messages.title_editInterceptor);
+            setTitle(Messages.title_interceptorDetails);
+            setMessage(Messages.description_interceptorDetails);
         }
         _classNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -91,7 +92,7 @@ public class InterceptorTypeInputDialog extends TitleAreaDialog {
             }
         });
         _browseButton = new Button(area, SWT.PUSH);
-        _browseButton.setText("Browse...");
+        _browseButton.setText(Messages.button_browse);
         _browseButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -102,7 +103,7 @@ public class InterceptorTypeInputDialog extends TitleAreaDialog {
         });
         
         Group propertyGroup = new Group(area, SWT.NONE);
-        propertyGroup.setText("Interceptor Properties");
+        propertyGroup.setText(Messages.label_interceptorProperties);
         propertyGroup.setLayout(new GridLayout(1, false));
         GridData grpGD = new GridData(GridData.FILL, GridData.FILL, true, false);
         grpGD.horizontalSpan = 3;
@@ -210,7 +211,7 @@ public class InterceptorTypeInputDialog extends TitleAreaDialog {
     protected boolean validate() {
         setErrorMessage(null);
         if (_classNameText.getText().trim().isEmpty()) {
-            setErrorMessage("Please specify a class name for the new interceptor.");
+            setErrorMessage(Messages.error_noInterceptorClass);
         }
         return (getErrorMessage() == null);
     }

@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -50,12 +51,12 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "TCP Binding Details";
+        return Messages.title_tcpBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your Netty TCP Binding.";
+        return Messages.description_tcpBindingDetails;
     }
 
     @Override
@@ -67,15 +68,15 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             } else {
-                _hostText.setText("");
+                _hostText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.isSetPort()) {
-                _portText.setText(""+this._binding.getPort());
+                _portText.setText(""+this._binding.getPort()); //$NON-NLS-1$
             } else {
-                _portText.setText("");
+                _portText.setText(""); //$NON-NLS-1$
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -107,11 +108,11 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_hostText.getText().trim().isEmpty()) {
-                setErrorMessage("Host may not be empty.");
+                setErrorMessage(Messages.error_emptyHost);
                 return false;
             }
             if (_portText.getText().trim().isEmpty()) {
-                setErrorMessage("Port may not be empty.");
+                setErrorMessage(Messages.error_emptyPort);
                 return false;
 //            } else {
 //                try {
@@ -144,10 +145,10 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _hostText = createLabelAndText(composite, "Host*");
-        _portText = createLabelAndText(composite, "Port*");
+        _hostText = createLabelAndText(composite, Messages.label_hostStar);
+        _portText = createLabelAndText(composite, Messages.label_portStar);
         
         if (getTargetObject() instanceof Service) {
             _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
@@ -173,21 +174,21 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType());
+                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()); //$NON-NLS-1$
             }
         }
     }
 
     protected void handleModify(final Control control) {
         if (control.equals(_hostText)) {
-            updateFeature(_binding, "host", _hostText.getText().trim());
+            updateFeature(_binding, "host", _hostText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_portText)) {
-            updateFeature(_binding, "port", _portText.getText().trim());
+            updateFeature(_binding, "port", _portText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -202,7 +203,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_portText)) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else {
                 super.handleUndo(control);
             }

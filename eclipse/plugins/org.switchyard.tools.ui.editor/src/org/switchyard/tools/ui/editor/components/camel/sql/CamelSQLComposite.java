@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -53,12 +54,12 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "SQL Binding Details";
+        return Messages.title_sqlBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your SQL Binding.";
+        return Messages.description_sqlBindingDetails;
     }
 
     @Override
@@ -70,30 +71,30 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             if (this._binding.getQuery() != null) {
                 _queryText.setText(this._binding.getQuery());
             } else {
-                _queryText.setText("");
+                _queryText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getDataSourceRef() != null) {
                 _dataSourceRefText.setText(this._binding.getDataSourceRef());
             } else {
-                _dataSourceRefText.setText("");
+                _dataSourceRefText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPlaceholder() != null && _placeholderText != null) {
                 _placeholderText.setText(this._binding.getPlaceholder());
             } else if (_placeholderText != null) {
-                _placeholderText.setText("");
+                _placeholderText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getInitialDelay() != null && _initialDelayText != null) {
                 setTextValue(_initialDelayText, PropTypeUtil.getPropValueString(this._binding.getInitialDelay()));
             } else if (_initialDelayText != null) {
-                _initialDelayText.setText("");
+                _initialDelayText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPeriod() != null && _periodText != null) {
                 _periodText.setText(this._binding.getPeriod());
             } else if (_periodText != null) {
-                _periodText.setText("");
+                _periodText.setText(""); //$NON-NLS-1$
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -125,11 +126,11 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_queryText.getText().trim().isEmpty()) {
-                setErrorMessage("Query may not be empty.");
+                setErrorMessage(Messages.error_emptyQuery);
                 return false;
             }
             if (_dataSourceRefText.getText().trim().isEmpty()) {
-                setErrorMessage("Data Source Reference may not be empty.");
+                setErrorMessage(Messages.error_emptyDataSourceReference);
                 return false;
             }
         }
@@ -155,13 +156,13 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _queryText = createLabelAndText(composite, "Query*");
-        _dataSourceRefText = createLabelAndText(composite, "Data Source*");
-        _periodText = createLabelAndText(composite, "Period");
+        _queryText = createLabelAndText(composite, Messages.label_queryStar);
+        _dataSourceRefText = createLabelAndText(composite, Messages.label_dataSourceStar);
+        _periodText = createLabelAndText(composite, Messages.label_period);
         if (getTargetObject() instanceof Service) {
-            _initialDelayText = createLabelAndText(composite, "Initial Delay (MS)");
+            _initialDelayText = createLabelAndText(composite, Messages.label_initialDelay);
         }
 
         if (getTargetObject() instanceof Service) {
@@ -188,27 +189,27 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType());
+                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()); //$NON-NLS-1$
             }
         }
     }
 
     protected void handleModify(final Control control) {
         if (control.equals(_queryText)) {
-            updateFeature(_binding, "query", _queryText.getText().trim());
+            updateFeature(_binding, "query", _queryText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_dataSourceRefText)) {
-            updateFeature(_binding, "dataSourceRef", _dataSourceRefText.getText().trim());
+            updateFeature(_binding, "dataSourceRef", _dataSourceRefText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_placeholderText)) {
-            updateFeature(_binding, "placeholder", _placeholderText.getText().trim());
+            updateFeature(_binding, "placeholder", _placeholderText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_periodText)) {
-            updateFeature(_binding, "period", _periodText.getText().trim());
+            updateFeature(_binding, "period", _periodText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_initialDelayText)) {
-            updateFeature(_binding, "initialDelay", _initialDelayText.getText().trim());
+            updateFeature(_binding, "initialDelay", _initialDelayText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         }
         super.handleModify(control);
         validate();
@@ -232,7 +233,7 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else {
                 super.handleUndo(control);
             }

@@ -67,6 +67,7 @@ import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.AutoLayoutFeature.RecreateDiagramFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.component.AbstractComponentFactory;
@@ -194,11 +195,11 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     /* package */List<ICreateFeature> getCreateGenericFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(3);
-        features.add(new CreateComponentFeature(this, new AbstractComponentFactory(), "Component",
-                "Create a simple component with no implementation, services or references."));
-        features.add(new CompositeCreateFeature(this, "Service", "Create a new service",
+        features.add(new CreateComponentFeature(this, new AbstractComponentFactory(), Messages.label_component,
+                Messages.description_tool_component));
+        features.add(new CompositeCreateFeature(this, Messages.label_service, Messages.description_tool_service,
                 new SCADiagramCreateServiceFeature(this), new SCADiagramCreateComponentServiceFeature(this)));
-        features.add(new CompositeCreateFeature(this, "Reference", "Create a new reference",
+        features.add(new CompositeCreateFeature(this, Messages.label_reference, Messages.description_tool_reference,
                 new SCADiagramCreateCompositeReferenceFeature(this),
                 new SCADiagramCreateComponentReferenceFeature(this)));
         return features;
@@ -225,8 +226,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     @Override
     public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-        return new ICreateConnectionFeature[] {new CompositeCreateConnectionFeature(this, "Promote",
-                "Promote a component service/reference", new SCADiagramCreateReferenceLinkFeature(this),
+        return new ICreateConnectionFeature[] {new CompositeCreateConnectionFeature(this, Messages.label_promote,
+                Messages.description_tool_promote, new SCADiagramCreateReferenceLinkFeature(this),
                 new SCADiagramCreateComponentServiceLinkFeature(this)) };
     }
 

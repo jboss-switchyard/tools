@@ -26,6 +26,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
 /**
@@ -47,12 +48,12 @@ public class ValidateModelFeature extends AbstractCustomFeature {
 
     @Override
     public String getDescription() {
-        return "Validate the configuration.";
+        return Messages.featureDescription_validate;
     }
 
     @Override
     public String getName() {
-        return "Validate";
+        return Messages.featureName_validate;
     }
 
     @Override

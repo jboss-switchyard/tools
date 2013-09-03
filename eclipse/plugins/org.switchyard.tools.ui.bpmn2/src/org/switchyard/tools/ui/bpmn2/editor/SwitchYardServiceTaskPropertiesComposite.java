@@ -53,6 +53,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.Section;
+import org.switchyard.tools.ui.bpmn2.Messages;
 
 /**
  * SwitchYardServiceTaskPropertiesComposite
@@ -124,7 +125,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
 
     @Override
     protected boolean isModelObjectEnabled(String className, String featureName) {
-        return "operationRef".equals(featureName) ? _operationNotBound : super.isModelObjectEnabled(className,
+        return "operationRef".equals(featureName) ? _operationNotBound : super.isModelObjectEnabled(className, //$NON-NLS-1$
                 featureName);
     }
 
@@ -139,7 +140,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
              * parameter mappings, create temporary objects for the editors
              * (these will go away if they are not touched by the user)
              */
-            List<Property> props = adapter.getProperties("ioSpecification/dataInputs/name");
+            List<Property> props = adapter.getProperties("ioSpecification/dataInputs/name"); //$NON-NLS-1$
             InputOutputSpecification ioSpec = task.getIoSpecification();
             if (ioSpec == null) {
                 ioSpec = copyCreateModelObject(InputOutputSpecification.class);
@@ -206,48 +207,48 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                     assignment = copyCreateModelObject(Assignment.class);
                     FormalExpression toExpression = copyCreateModelObject(FormalExpression.class);
                     toExpression.setBody(parameter.getId());
-                    toExpression.setLanguage("http://www.mvel.org/2.0");
+                    toExpression.setLanguage("http://www.mvel.org/2.0"); //$NON-NLS-1$
                     assignment.setTo(toExpression);
                     InsertionAdapter.add(association, PACKAGE.getDataAssociation_Assignment(), assignment);
                 }
                 if (fromExpression == null) {
                     fromExpression = copyCreateModelObject(FormalExpression.class);
-                    fromExpression.setLanguage("http://www.mvel.org/2.0");
+                    fromExpression.setLanguage("http://www.mvel.org/2.0"); //$NON-NLS-1$
                     InsertionAdapter.add(assignment, PACKAGE.getAssignment_From(), fromExpression);
                 }
 
-                if ("Parameter".equals(name)) {
+                if ("Parameter".equals(name)) { //$NON-NLS-1$
                     _parameter = parameter;
-                    Section inputSection = createSection(this, "Input");
+                    Section inputSection = createSection(this, Messages.label_input);
                     inputSection.setLayout(new FillLayout());
                     inputSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
                     InputOutputAssociationDetailComposite inputComposite = new InputOutputAssociationDetailComposite(
                             inputSection);
                     inputSection.setClient(inputComposite);
                     inputComposite.setBusinessObject(parameter);
-                    inputSection.setText("Parameter Mapping Details");
+                    inputSection.setText(Messages.label_parameterMappingDetails);
                 } else {
                     // create the Object Editor for the "From" expression body:
                     // the data type is obtained from the DataInput <property>
                     // element from plugin.xml
                     EAttribute attribute = PACKAGE.getFormalExpression_Body();
                     String dataType = property.type;
-                    if ("FaultAction".equals(name)) {
+                    if ("FaultAction".equals(name)) { //$NON-NLS-1$
                         ObjectEditor editor = new FaultActionObjectEditor(this, fromExpression);
-                        editor.createControl(getAttributesParent(), "Fault Action");
-                    } else if ("FaultName".equals(name)) {
+                        editor.createControl(getAttributesParent(), "Fault Action"); //$NON-NLS-1$
+                    } else if ("FaultName".equals(name)) { //$NON-NLS-1$
                         TextObjectEditor editor = new TextObjectEditor(this, fromExpression, attribute);
                         editor.setMultiLine(false);
-                        editor.createControl(getAttributesParent(), "Fault Name");
+                        editor.createControl(getAttributesParent(), "Fault Name"); //$NON-NLS-1$
                     } else {
                         ObjectEditor editor;
-                        if ("FaultEventId".equals(name)) {
+                        if ("FaultEventId".equals(name)) { //$NON-NLS-1$
                             editor = new FaultSignalIdObjectEditor(this, fromExpression);
-                        } else if ("EInt".equals(dataType)) {
+                        } else if ("EInt".equals(dataType)) { //$NON-NLS-1$
                             editor = new IntObjectEditor(this, fromExpression, attribute);
-                        } else if ("EBoolean".equals(dataType)) {
+                        } else if ("EBoolean".equals(dataType)) { //$NON-NLS-1$
                             editor = new BooleanObjectEditor(this, fromExpression, attribute);
-                        } else if ("ID".equals(dataType)) {
+                        } else if ("ID".equals(dataType)) { //$NON-NLS-1$
                             editor = new NCNameObjectEditor(this, fromExpression, attribute);
                         } else {
                             editor = new TextObjectEditor(this, fromExpression, attribute);
@@ -265,7 +266,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
         ModelExtensionAdapter adapter = ModelExtensionDescriptor.getModelExtensionAdapter(task);
         if (adapter != null) {
             Resource resource = task.eResource();
-            List<Property> props = adapter.getProperties("ioSpecification/dataOutputs/name");
+            List<Property> props = adapter.getProperties("ioSpecification/dataOutputs/name"); //$NON-NLS-1$
             InputOutputSpecification ioSpec = task.getIoSpecification();
             if (ioSpec == null) {
                 ioSpec = copyCreateModelObject(InputOutputSpecification.class);
@@ -318,26 +319,26 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                     InsertionAdapter.add(task, PACKAGE.getActivity_DataOutputAssociations(), association);
                 }
 
-                if ("Result".equals(name)) {
+                if ("Result".equals(name)) { //$NON-NLS-1$
                     _result = result;
-                    Section outputSection = createSection(this, "Output");
+                    Section outputSection = createSection(this, "Output"); //$NON-NLS-1$
                     outputSection.setLayout(new FillLayout());
                     outputSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
                     InputOutputAssociationDetailComposite outputComposite = new InputOutputAssociationDetailComposite(
                             outputSection);
                     outputSection.setClient(outputComposite);
                     outputComposite.setBusinessObject(result);
-                    outputSection.setText("Result Mapping Details");
+                    outputSection.setText(Messages.label_resultMappingDetails);
                     outputSection.setExpanded(false);
-                } else if ("Fault".equals(name)) {
-                    Section faultSection = createSection(this, "Fault");
+                } else if ("Fault".equals(name)) { //$NON-NLS-1$
+                    Section faultSection = createSection(this, "Fault"); //$NON-NLS-1$
                     faultSection.setLayout(new FillLayout());
                     faultSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
                     InputOutputAssociationDetailComposite faultComposite = new InputOutputAssociationDetailComposite(
                             faultSection);
                     faultSection.setClient(faultComposite);
                     faultComposite.setBusinessObject(result);
-                    faultSection.setText("Fault Mapping Details");
+                    faultSection.setText(Messages.label_faultMappingDetails);
                     faultSection.setExpanded(false);
                 }
             }

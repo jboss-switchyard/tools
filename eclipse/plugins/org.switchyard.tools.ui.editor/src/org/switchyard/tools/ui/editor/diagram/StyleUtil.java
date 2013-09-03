@@ -38,16 +38,16 @@ public final class StyleUtil {
      * text, dark gradient or base color (from hardest to softest appearance).
      */
     /** The color palette for references. */
-    public static final FigurePalette REFERENCE_PALETTE = new FigurePalette("291F33", "bf95ea", "a482c6", "bf95ea");
+    public static final FigurePalette REFERENCE_PALETTE = new FigurePalette("291F33", "bf95ea", "a482c6", "bf95ea"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     /** The color palette for services. */
-    public static final FigurePalette SERVICE_PALETTE = new FigurePalette("053305", "86ce86", "86c386", "86ce86");
+    public static final FigurePalette SERVICE_PALETTE = new FigurePalette("053305", "86ce86", "86c386", "86ce86"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     /** The color palette for components. */
-    public static final FigurePalette COMPONENT_PALETTE = new FigurePalette("1A1D33", "aab3fa", "9ba0fc", "aab3fa");
+    public static final FigurePalette COMPONENT_PALETTE = new FigurePalette("1A1D33", "aab3fa", "9ba0fc", "aab3fa"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     /** The color palette for composites. */
-    public static final FigurePalette COMPOSITE_PALETTE = new FigurePalette("1F2933", "a5d2ff", "a5d2ff", "a5d2ff");
+    public static final FigurePalette COMPOSITE_PALETTE = new FigurePalette("1F2933", "a5d2ff", "a5d2ff", "a5d2ff"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
     /** Color setting for connection lines. */
-    public static final String LINE_COLOR = "758695";
+    public static final String LINE_COLOR = "758695"; //$NON-NLS-1$
     
     /**
      * Points for the small right arrow.
@@ -180,7 +180,7 @@ public final class StyleUtil {
      * @return Style
      */
     public static Style getStyleForComposite(Diagram diagram) {
-        final String styleId = "Composite";
+        final String styleId = "Composite"; //$NON-NLS-1$
         Style style = findStyle(diagram, styleId);
         if (style == null) {
             // style not found - create new style
@@ -199,7 +199,7 @@ public final class StyleUtil {
      * @return Style
      */
     public static Style getStyleForComponent(Diagram diagram) {
-        final String styleId = "Component";
+        final String styleId = "Component"; //$NON-NLS-1$
         Style style = findStyle(diagram, styleId);
         if (style == null) {
             // style not found - create new style
@@ -218,7 +218,7 @@ public final class StyleUtil {
      * @return Style
      */
     public static Style getStyleForService(Diagram diagram) {
-        final String styleId = "Service";
+        final String styleId = "Service"; //$NON-NLS-1$
         Style style = findStyle(diagram, styleId);
         if (style == null) {
             // style not found - create new style
@@ -237,7 +237,7 @@ public final class StyleUtil {
      * @return Style
      */
     public static Style getStyleForCompositeReference(Diagram diagram) {
-        final String styleId = "CompositeReference";
+        final String styleId = "CompositeReference"; //$NON-NLS-1$
         Style style = findStyle(diagram, styleId);
         if (style == null) {
             // style not found - create new style

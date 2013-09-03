@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -119,12 +120,12 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
     /**
      * Name column.
      */
-    public static final String NAME_COLUMN = "name";
+    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
 
     /**
      * Value column.
      */
-    public static final String CLASS_COLUMN = "class";
+    public static final String CLASS_COLUMN = "class"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, CLASS_COLUMN };
 
@@ -181,10 +182,10 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText("Name");
+        nameColumn.setText(Messages.label_name);
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Class");
+        valueColumn.setText(Messages.label_class);
         tableLayout.setColumnData(valueColumn, new ColumnWeightData(200, 300, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -196,8 +197,8 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
                 new TextCellEditor(_propertyTreeTable.getTable()),
-                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.process.WorkItemHandler",
-                        "Work Item Handler", "Select work item handler class.") {
+                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.process.WorkItemHandler", //$NON-NLS-1$
+                        Messages.title_workItemHandler, Messages.description_workItemHandler) {
                     protected Resource getResource() {
                         return _targetObj == null ? null : _targetObj.eResource();
                     }
@@ -205,7 +206,7 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -229,7 +230,7 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -265,7 +266,7 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
                     @Override
                     protected void doExecute() {
                         WorkItemHandlerType newAction = BPMFactory.eINSTANCE.createWorkItemHandlerType();
-                        newAction.setClass("NewTaskHandler");
+                        newAction.setClass("NewTaskHandler"); //$NON-NLS-1$
                         if (impl.getWorkItemHandlers() == null) {
                             impl.setWorkItemHandlers(BPMFactory.eINSTANCE.createWorkItemHandlersType());
                         }
@@ -275,7 +276,7 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
                 });
             } else {
                 WorkItemHandlerType newAction = BPMFactory.eINSTANCE.createWorkItemHandlerType();
-                newAction.setClass("NewTaskHandler");
+                newAction.setClass("NewTaskHandler"); //$NON-NLS-1$
                 if (impl.getWorkItemHandlers() == null) {
                     impl.setWorkItemHandlers(BPMFactory.eINSTANCE.createWorkItemHandlersType());
                 }
@@ -417,13 +418,13 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
             if (((WorkItemHandlerType) element).getName() != null) {
                 return ((WorkItemHandlerType) element).getName();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof WorkItemHandlerType && property.equalsIgnoreCase(CLASS_COLUMN)) {
             if (((WorkItemHandlerType) element).getClass_() != null) {
                 return ((WorkItemHandlerType) element).getClass_();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
@@ -56,12 +57,12 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
 
     @Override
     public String getTitle() {
-        return "Mail Binding Details";
+        return Messages.title_mailBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your Mail Binding.";
+        return Messages.description_mailBindingDetails;
     }
 
     @Override
@@ -86,37 +87,37 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                     setTextValue(_fetchSizeText, PropTypeUtil.getPropValueString(this._binding.getConsume().getFetchSize()));
 //                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
                 } else {
-                    _fetchSizeText.setText("");
+                    _fetchSizeText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getConsume().getFolderName() != null) {
                     _folderNameText.setText(this._binding.getConsume().getFolderName());
                 } else {
-                    _folderNameText.setText("");
+                    _folderNameText.setText(""); //$NON-NLS-1$
                 }
             }
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             } else {
-                _hostText.setText("");
+                _hostText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.isSetPort()) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
 //                _portText.setText(Integer.toString(this._binding.getPort()));
             } else {
-                _portText.setText("");
+                _portText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
             } else {
-                _usernameText.setText("");
+                _usernameText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPassword() != null) {
                 _passwordText.setText(this._binding.getPassword());
             } else {
-                _passwordText.setText("");
+                _passwordText.setText(""); //$NON-NLS-1$
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -135,7 +136,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_hostText.getText().trim().isEmpty()) {
-                setErrorMessage("Host may not be empty.");
+                setErrorMessage(Messages.error_emptyHost);
 //            } else if (!_portText.getText().trim().isEmpty()) {
 //                try {
 //                    new Integer(_portText.getText().trim());
@@ -166,27 +167,27 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _hostText = createLabelAndText(composite, "Host*");
-        _portText = createLabelAndText(composite, "Port");
-        _usernameText = createLabelAndText(composite, "User Name");
-        _passwordText = createLabelAndText(composite, "Password");
+        _hostText = createLabelAndText(composite, Messages.label_hostStar);
+        _portText = createLabelAndText(composite, Messages.label_port);
+        _usernameText = createLabelAndText(composite, Messages.label_userName);
+        _passwordText = createLabelAndText(composite, Messages.label_password);
         _passwordText.setEchoChar('*');
-        _securedCheckbox = createCheckbox(composite, "Secured");
+        _securedCheckbox = createCheckbox(composite, Messages.label_secured);
 
         Group consumeGroup = new Group(composite, SWT.NONE);
         consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         consumeGroup.setLayout(new GridLayout(2, false));
-        consumeGroup.setText("Consumer Options");
+        consumeGroup.setText(Messages.label_consumerOptions);
         
-        _accountTypeCombo = createLabelAndCombo(consumeGroup, "Account Type", true);
+        _accountTypeCombo = createLabelAndCombo(consumeGroup, Messages.label_accountType, true);
         _accountTypeCombo.add(MailConsumerAccountType.IMAP.getLiteral());
         _accountTypeCombo.add(MailConsumerAccountType.POP3.getLiteral());
-        _folderNameText = createLabelAndText(consumeGroup, "Folder Name");
-        _fetchSizeText = createLabelAndText(consumeGroup, "Fetch Size");
-        _unseenCheckbox = createCheckbox(consumeGroup, "Unread Only");
-        _deleteCheckbox = createCheckbox(consumeGroup, "Delete");
+        _folderNameText = createLabelAndText(consumeGroup, Messages.label_folderName);
+        _fetchSizeText = createLabelAndText(consumeGroup, Messages.label_fetchSize);
+        _unseenCheckbox = createCheckbox(consumeGroup, Messages.label_unreadOnly);
+        _deleteCheckbox = createCheckbox(consumeGroup, Messages.label_delete);
 //        _copyToText = createLabelAndText(consumeGroup, "Copy To");
 //        _disconnectCheckbox = createCheckbox(consumeGroup, "Disconnect");
 
@@ -202,7 +203,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", MailFactory.eINSTANCE.createCamelMailConsumerType());
+                setFeatureValue(_binding, "consume", MailFactory.eINSTANCE.createCamelMailConsumerType()); //$NON-NLS-1$
             }
         }
     }
@@ -210,49 +211,49 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
     protected void updateConsumeFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ConsumeOp());
-        ops.add(new BasicOperation("consume", featureId, value));
+        ops.add(new BasicOperation("consume", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
     protected void handleModify(final Control control) {
         if (control.equals(_hostText)) {
-            updateFeature(_binding, "host", _hostText.getText().trim());
+            updateFeature(_binding, "host", _hostText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_portText)) {
             try {
                 Integer port = new Integer(_portText.getText().trim());
-                updateFeature(_binding, "port", port.intValue());
+                updateFeature(_binding, "port", port.intValue()); //$NON-NLS-1$
             } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "port", _portText.getText().trim());
+                updateFeature(_binding, "port", _portText.getText().trim()); //$NON-NLS-1$
             }
-            updateFeature(_binding, "port", _portText.getText().trim());
+            updateFeature(_binding, "port", _portText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_usernameText)) {
-            updateFeature(_binding, "username", _usernameText.getText().trim());
+            updateFeature(_binding, "username", _usernameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_passwordText)) {
-            updateFeature(_binding, "password", _passwordText.getText().trim());
+            updateFeature(_binding, "password", _passwordText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_folderNameText)) {
-            updateConsumeFeature("folderName", _folderNameText.getText().trim());
+            updateConsumeFeature("folderName", _folderNameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_fetchSizeText)) {
             try {
                 Integer fetchSize = new Integer(_fetchSizeText.getText().trim());
-                updateConsumeFeature("fetchSize", fetchSize);
+                updateConsumeFeature("fetchSize", fetchSize); //$NON-NLS-1$
             } catch (NumberFormatException nfe) {
-                updateConsumeFeature("fetchSize", _fetchSizeText.getText().trim());
+                updateConsumeFeature("fetchSize", _fetchSizeText.getText().trim()); //$NON-NLS-1$
             }
         } else if (control.equals(_unseenCheckbox)) {
-            updateConsumeFeature("unseen", new Boolean(_unseenCheckbox.getSelection()));
+            updateConsumeFeature("unseen", new Boolean(_unseenCheckbox.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_deleteCheckbox)) {
-            updateConsumeFeature("delete", new Boolean(_deleteCheckbox.getSelection()));
+            updateConsumeFeature("delete", new Boolean(_deleteCheckbox.getSelection())); //$NON-NLS-1$
 //        } else if (control.equals(_copyToText)) {
 //            updateConsumeFeature("copyTo", _copyToText.getText().trim());
 //        } else if (control.equals(_disconnectCheckbox)) {
 //            updateConsumeFeature("disconnect", new Boolean(_disconnectCheckbox.getSelection()));
         } else if (control.equals(_accountTypeCombo)) {
             MailConsumerAccountType acctType = MailConsumerAccountType.get(_accountTypeCombo.getSelectionIndex());
-            updateConsumeFeature("accountType", acctType);
+            updateConsumeFeature("accountType", acctType); //$NON-NLS-1$
         } else if (control.equals(_securedCheckbox)) {
-            updateFeature(_binding, "secure", _securedCheckbox.getSelection());
+            updateFeature(_binding, "secure", _securedCheckbox.getSelection()); //$NON-NLS-1$
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -292,7 +293,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             } else if (control.equals(_securedCheckbox)) {
                 _securedCheckbox.setSelection(this._binding.isSecure());
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else {
                 super.handleUndo(control);
             }

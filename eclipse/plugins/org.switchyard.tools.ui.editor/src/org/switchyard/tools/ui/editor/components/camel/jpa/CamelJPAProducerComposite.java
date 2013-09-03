@@ -44,6 +44,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -67,12 +68,12 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "JPA Binding Details";
+        return Messages.title_jpaBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your JPA Binding.";
+        return Messages.description_jpaBindingDetails;
     }
 
     @Override
@@ -88,20 +89,20 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getEntityClassName() != null) {
                 _entityClassNameText.setText(this._binding.getEntityClassName());
             } else {
-                _entityClassNameText.setText("");
+                _entityClassNameText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPersistenceUnit() != null) {
                 _persistenceUnitText.setText(this._binding.getPersistenceUnit().toString());
             } else {
-                _persistenceUnitText.setText("");
+                _persistenceUnitText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getTransactionManager() != null) {
                 _transcationManagerText.setText(this._binding.getTransactionManager());
             } else {
-                _transcationManagerText.setText("");
+                _transcationManagerText.setText(""); //$NON-NLS-1$
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -126,9 +127,9 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_entityClassNameText.getText().trim().isEmpty()) {
-                setErrorMessage("Entity Class Name may not be empty.");
+                setErrorMessage(Messages.error_emptyEntityClassName);
             } else if (_entityClassNameText.getText().trim().isEmpty()) {
-                setErrorMessage("Persistence Unit may not be empty.");
+                setErrorMessage(Messages.error_emptyPersistenceUnit);
             }
         }
         return (getErrorMessage() == null);
@@ -147,12 +148,12 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
         _nameText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
 
-        _entityClassNameText = createLabelAndText(composite, "Entity Class Name");
+        _entityClassNameText = createLabelAndText(composite, Messages.label_entityClassName);
         _browseEntityClassButton = new Button(composite, SWT.PUSH);
-        _browseEntityClassButton.setText("Browse...");
+        _browseEntityClassButton.setText(Messages.button_browse);
         GridData btnGD = new GridData();
         _browseEntityClassButton.setLayoutData(btnGD);
         _browseEntityClassButton.addSelectionListener(new SelectionAdapter() {
@@ -168,19 +169,19 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
             }
         });
 
-        _persistenceUnitText = createLabelAndText(composite, "Persistence Unit");
+        _persistenceUnitText = createLabelAndText(composite, Messages.label_persistenceUnit);
         addGridData(_persistenceUnitText, 2, GridData.FILL_HORIZONTAL);
         
-        _transcationManagerText = createLabelAndText(composite, "Transaction Manager");
+        _transcationManagerText = createLabelAndText(composite, Messages.label_transactionManager);
         addGridData(_transcationManagerText, 2, GridData.FILL_HORIZONTAL);
 
         Group producerGroup = new Group(composite, SWT.NONE);
         producerGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         producerGroup.setLayout(new GridLayout(2, false));
-        producerGroup.setText("Producer Options");
+        producerGroup.setText(Messages.label_producerOptions);
         
-        _flushOnSendCheckbox = createCheckbox(producerGroup, "Flush on Send");
-        _usePersistCheckbox = createCheckbox(producerGroup, "Use Persist");
+        _flushOnSendCheckbox = createCheckbox(producerGroup, Messages.label_flushOnSend);
+        _usePersistCheckbox = createCheckbox(producerGroup, Messages.label_usePersist);
 
         return composite;
     }
@@ -194,7 +195,7 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getProduce() == null) {
-                setFeatureValue(_binding, "produce", JpaFactory.eINSTANCE.createJpaProducerType());
+                setFeatureValue(_binding, "produce", JpaFactory.eINSTANCE.createJpaProducerType()); //$NON-NLS-1$
             }
         }
     }
@@ -202,23 +203,23 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
     protected void updateProduceFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ProduceOp());
-        ops.add(new BasicOperation("produce", featureId, value));
+        ops.add(new BasicOperation("produce", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
     protected void handleModify(final Control control) {
         if (control.equals(_entityClassNameText)) {
-            updateFeature(_binding, "entityClassName", _entityClassNameText.getText().trim());
+            updateFeature(_binding, "entityClassName", _entityClassNameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_persistenceUnitText)) {
-            updateFeature(_binding, "persistenceUnit", _persistenceUnitText.getText().trim());
+            updateFeature(_binding, "persistenceUnit", _persistenceUnitText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_transcationManagerText)) {
-            updateFeature(_binding, "transactionManager", _transcationManagerText.getText().trim());
+            updateFeature(_binding, "transactionManager", _transcationManagerText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_flushOnSendCheckbox)) {
-            updateProduceFeature("flushOnSend", _flushOnSendCheckbox.getSelection());
+            updateProduceFeature("flushOnSend", _flushOnSendCheckbox.getSelection()); //$NON-NLS-1$
         } else if (control.equals(_usePersistCheckbox)) {
-            updateProduceFeature("usePersist", _usePersistCheckbox.getSelection());
+            updateProduceFeature("usePersist", _usePersistCheckbox.getSelection()); //$NON-NLS-1$
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -241,7 +242,7 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                 } else if (control.equals(_usePersistCheckbox)) {
                     _usePersistCheckbox.setSelection(this._binding.getProduce().isUsePersist());
                 } else if (control.equals(_nameText)) {
-                    _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                    _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
                 } else {
                     super.handleUndo(control);
                 }
@@ -259,7 +260,7 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         }
         try {
             SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
-                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter);
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter); //$NON-NLS-1$
             if (dialog.open() == SelectionDialog.OK) {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {

@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui.editor.diagram.compositereference;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -39,6 +40,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.NewContractWizardPage;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.transform.NewTransformWizard;
@@ -68,8 +70,8 @@ public class PromoteReferenceWizardPage extends NewContractWizardPage {
      * Create a new PromoteReferenceWizardPage.
      */
     public PromoteReferenceWizardPage() {
-        super(PromoteReferenceWizardPage.class.getCanonicalName(), "Promote Component Reference",
-                "Specify details for the new composite reference.", ScaPackage.eINSTANCE.getReference());
+        super(PromoteReferenceWizardPage.class.getCanonicalName(), Messages.title_promoteComponentReference,
+                Messages.description_promoteComponentReference, ScaPackage.eINSTANCE.getReference());
         _transformWizard = new NewTransformWizard();
     }
 
@@ -105,7 +107,7 @@ public class PromoteReferenceWizardPage extends NewContractWizardPage {
             new Label(content, SWT.NONE);
         }
         _createTransformersCheck = new Button(content, SWT.CHECK);
-        _createTransformersCheck.setText("Create required transformers");
+        _createTransformersCheck.setText(Messages.label_createRequiredTransformers);
         _createTransformersCheck.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, nColumns - 1, 1));
         _createTransformersCheck.setSelection(true);
         _createTransformersCheck.addSelectionListener(new SelectionAdapter() {
@@ -137,7 +139,7 @@ public class PromoteReferenceWizardPage extends NewContractWizardPage {
         super.validate();
         boolean canPromote = validatePromotion();
         if (!canPromote) {
-            setErrorMessage("A composite reference already exists with the name '" + getContract().getName() + "' and a different interface type. Please provide a different name.");
+            setErrorMessage(MessageFormat.format(Messages.error_compositeReferenceExists, getContract().getName()));
         }
         
         final IFile newTargetResource = PlatformResourceAdapterFactory.getFileForObject(getContract(), _project);

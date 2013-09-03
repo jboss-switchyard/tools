@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Label;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.NewContractWizardPage;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.transform.NewTransformWizard;
@@ -63,8 +64,8 @@ public class PromoteServiceWizardPage extends NewContractWizardPage {
      * Create a new PromoteServiceWizardPage.
      */
     public PromoteServiceWizardPage() {
-        super(PromoteServiceWizardPage.class.getCanonicalName(), "Promote Component Service",
-                "Specify details for the new composite service.", ScaPackage.eINSTANCE.getService());
+        super(PromoteServiceWizardPage.class.getCanonicalName(), Messages.title_promoteComponentService,
+                Messages.description_promoteComponentService, ScaPackage.eINSTANCE.getService());
         _transformWizard = new NewTransformWizard();
     }
 
@@ -100,7 +101,7 @@ public class PromoteServiceWizardPage extends NewContractWizardPage {
             new Label(content, SWT.NONE);
         }
         _createTransformersCheck = new Button(content, SWT.CHECK);
-        _createTransformersCheck.setText("Create required transformers");
+        _createTransformersCheck.setText(Messages.label_createRequiredTransformers);
         _createTransformersCheck.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, nColumns - 1, 1));
         _createTransformersCheck.setSelection(true);
         _createTransformersCheck.addSelectionListener(new SelectionAdapter() {

@@ -69,7 +69,7 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         // CONTAINER SHAPE WITH ROUNDED RECTANGLE
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
-        Graphiti.getPeService().setPropertyValue(containerShape, "sca-type", "composite");
+        Graphiti.getPeService().setPropertyValue(containerShape, "sca-type", "composite"); //$NON-NLS-1$ //$NON-NLS-2$
 
         // define a default size for the shape
         IGaService gaService = Graphiti.getGaService();
@@ -104,7 +104,7 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         // getDiagram().eResource().getContents().add(addedClass);
         // }
 
-        Graphiti.getPeService().setPropertyValue(roundedRectangle, "sca-type", "composite");
+        Graphiti.getPeService().setPropertyValue(roundedRectangle, "sca-type", "composite"); //$NON-NLS-1$ //$NON-NLS-2$
 
         // create link and wire it
         link(containerShape, addedComposite);

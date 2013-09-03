@@ -28,6 +28,7 @@ import org.switchyard.tools.models.switchyard1_0.http.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.NTLMAuthenticationType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
@@ -49,12 +50,12 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "Authentication Details";
+        return Messages.title_httpAuthenticationDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify authentication details for your HTTP Binding.";
+        return Messages.description_httpAuthenticationDetals;
     }
 
     /**
@@ -74,21 +75,21 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
         
-        _authTypeCombo = createLabelAndCombo(composite, "Authentication Type", true);
-        _authTypeCombo.add("Basic");
-        _authTypeCombo.add("NTLM");
-        _authTypeCombo.setText("Basic");
+        _authTypeCombo = createLabelAndCombo(composite, Messages.label_authenticationType, true);
+        _authTypeCombo.add("Basic"); //$NON-NLS-1$
+        _authTypeCombo.add("NTLM"); //$NON-NLS-1$
+        _authTypeCombo.setText("Basic"); //$NON-NLS-1$
         _authTypeCombo.addSelectionListener(new SelectionListener() {
 
             @Override
             public void widgetSelected(SelectionEvent e) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
-                _authUserText.setText("");
-                _authPasswordText.setText("");
-                _authRealmText.setText("");
-                _authHostText.setText("");
-                _authPortText.setText("");
-                _authDomainText.setText("");
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
+                _authUserText.setText(""); //$NON-NLS-1$
+                _authPasswordText.setText(""); //$NON-NLS-1$
+                _authRealmText.setText(""); //$NON-NLS-1$
+                _authHostText.setText(""); //$NON-NLS-1$
+                _authPortText.setText(""); //$NON-NLS-1$
+                _authDomainText.setText(""); //$NON-NLS-1$
                 removeAuthFeatures();
             }
 
@@ -98,15 +99,15 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
             }
         });
         
-        _authUserText = createLabelAndText(composite, "User");
-        _authPasswordText = createLabelAndText(composite, "Password");
-        _authRealmText = createLabelAndText(composite, "Realm");
-        _authHostText = createLabelAndText(composite, "Host");
-        _authPortText = createLabelAndText(composite, "Port");
-        _authDomainText = createLabelAndText(composite, "Domain");
+        _authUserText = createLabelAndText(composite, Messages.label_user);
+        _authPasswordText = createLabelAndText(composite, Messages.label_password);
+        _authRealmText = createLabelAndText(composite, Messages.label_realm);
+        _authHostText = createLabelAndText(composite, Messages.label_host);
+        _authPortText = createLabelAndText(composite, Messages.label_port);
+        _authDomainText = createLabelAndText(composite, Messages.label_domain);
         
         _authTypeCombo.select(0);
-        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
         
         return composite;
     }
@@ -115,22 +116,22 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         if (_binding != null) {
             if (control.equals(_authUserText)) {
                 String user = _authUserText.getText().trim();
-                updateAuthFeature("user", user);
+                updateAuthFeature("user", user); //$NON-NLS-1$
             } else if (control.equals(_authPasswordText)) {
                 String password = _authPasswordText.getText().trim();
-                updateAuthFeature("password", password);
+                updateAuthFeature("password", password); //$NON-NLS-1$
             } else if (control.equals(_authPortText)) {
                 String port = _authPortText.getText().trim();
-                updateAuthFeature("port", port);
+                updateAuthFeature("port", port); //$NON-NLS-1$
             } else if (control.equals(_authRealmText)) {
                 String realm = _authRealmText.getText().trim();
-                updateAuthFeature("realm", realm);
+                updateAuthFeature("realm", realm); //$NON-NLS-1$
             } else if (control.equals(_authHostText)) {
                 String host = _authHostText.getText().trim();
-                updateAuthFeature("host", host);
+                updateAuthFeature("host", host); //$NON-NLS-1$
             } else if (control.equals(_authDomainText)) {
                 String domain = _authDomainText.getText().trim();
-                updateAuthFeature("domain", domain);
+                updateAuthFeature("domain", domain); //$NON-NLS-1$
             }
         }
         super.handleModify(control);
@@ -140,7 +141,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
     }
     
     private void updateAuthFeature(String featureId, Object value) {
-        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic");
+        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic"); //$NON-NLS-1$
         if (basicAuth) {
             updateBasicAuthFeature(featureId, value);
         } else {
@@ -180,7 +181,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                 if (this._binding.getBasic().getPort() != null) {
                     setTextValue(_authPortText, this._binding.getBasic().getPort().toString());
                 } else {
-                    setTextValue(_authPortText, "");
+                    setTextValue(_authPortText, ""); //$NON-NLS-1$
                 }
                 setTextValue(_authDomainText, null);
             } else if (this._binding.getNtlm() != null) {
@@ -193,7 +194,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                 if (this._binding.getNtlm().getPort() != null) {
                     setTextValue(_authPortText, this._binding.getNtlm().getPort().toString());
                 } else {
-                    setTextValue(_authPortText, "");
+                    setTextValue(_authPortText, ""); //$NON-NLS-1$
                 }
             } else {
                 if (_authTypeCombo != null) {
@@ -207,7 +208,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                 }
             }
             if (_authDomainText != null) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM"));
+                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
             }
             setInUpdate(false);
             validate();
@@ -226,7 +227,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getBasic() != null) {
-                setFeatureValue(_binding, "basic", null);
+                setFeatureValue(_binding, "basic", null); //$NON-NLS-1$
             }
         }
     }
@@ -235,7 +236,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getNtlm() != null) {
-                setFeatureValue(_binding, "ntlm", null);
+                setFeatureValue(_binding, "ntlm", null); //$NON-NLS-1$
             }
         }
     }
@@ -269,7 +270,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                         && _binding.getBasic().getPort() == null
                         && _binding.getBasic().getUser() == null
                         && _binding.getBasic().getRealm() == null) {
-                    setFeatureValue(_binding, "basic", null);
+                    setFeatureValue(_binding, "basic", null); //$NON-NLS-1$
                 }
             }
         }
@@ -284,7 +285,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                         && _binding.getNtlm().getPort() == null
                         && _binding.getNtlm().getUser() == null
                         && _binding.getNtlm().getRealm() == null) {
-                    setFeatureValue(_binding, "ntlm", null);
+                    setFeatureValue(_binding, "ntlm", null); //$NON-NLS-1$
                 }
             }
         }
@@ -294,7 +295,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new RemoveNtlmAuthenticationOp());
         ops.add(new AddBasicAuthenticatiOp());
-        ops.add(new BasicOperation("basic", featureId, value));
+        ops.add(new BasicOperation("basic", featureId, value)); //$NON-NLS-1$
         ops.add(new CleanupBasicAuthenticationOp());
         wrapOperation(ops);
     }
@@ -303,7 +304,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new RemoveBasicAuthenticationOp());
         ops.add(new AddNtlmAuthenticatiOp());
-        ops.add(new BasicOperation("ntlm", featureId, value));
+        ops.add(new BasicOperation("ntlm", featureId, value)); //$NON-NLS-1$
         ops.add(new CleanupNTLMAuthenticationOp());
         wrapOperation(ops);
     }

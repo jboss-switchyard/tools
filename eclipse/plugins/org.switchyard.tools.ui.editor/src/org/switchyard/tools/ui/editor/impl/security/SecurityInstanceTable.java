@@ -46,6 +46,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -140,7 +141,7 @@ public class SecurityInstanceTable extends Composite {
             if (element instanceof SecurityType && columnIndex == 0) {
                 SecurityType tp = (SecurityType) element;
                 if (tp.getName() == null) {
-                    return "default";
+                    return "default"; //$NON-NLS-1$
                 }
                 return ((SecurityType) element).getName();
             } else if (element instanceof SecurityType && columnIndex == 1) {
@@ -167,23 +168,23 @@ public class SecurityInstanceTable extends Composite {
     /**
      *  Name column.
      */
-    public static final String NAME_COLUMN = "name";
+    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
     /**
      * Callback Handler column.
      */
-    public static final String CALLBACK_HANDLER_COLUMN = "callbackHandler";
+    public static final String CALLBACK_HANDLER_COLUMN = "callbackHandler"; //$NON-NLS-1$
     /**
      * Roles Allowed column. 
      */
-    public static final String ROLES_ALLOWED_COLUMN = "rolesAllowed";
+    public static final String ROLES_ALLOWED_COLUMN = "rolesAllowed"; //$NON-NLS-1$
     /**
      * Run As column.
      */
-    public static final String RUN_AS_COLUMN = "runAs";
+    public static final String RUN_AS_COLUMN = "runAs"; //$NON-NLS-1$
     /**
      * Security domain column.
      */
-    public static final String SECURITY_DOMAIN_COLUMN = "securityDomain";
+    public static final String SECURITY_DOMAIN_COLUMN = "securityDomain"; //$NON-NLS-1$
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, CALLBACK_HANDLER_COLUMN, ROLES_ALLOWED_COLUMN, RUN_AS_COLUMN, SECURITY_DOMAIN_COLUMN };
 
     private Button _mAddButton;
@@ -255,15 +256,15 @@ public class SecurityInstanceTable extends Composite {
         gd11.heightHint = 100;
         _propertyTreeTable.getTree().setLayoutData(gd11);
         _propertyTreeTable.getTree().setHeaderVisible(true);
-        TreeColumn nameColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, "Name", 150);
+        TreeColumn nameColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, Messages.label_name, 150);
         nameColumn.setData(NAME_COLUMN);
-        TreeColumn callbackHandlerColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, "Callback Handler", 150);
+        TreeColumn callbackHandlerColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, Messages.label_callbackHandler, 150);
         callbackHandlerColumn.setData(CALLBACK_HANDLER_COLUMN);
-        TreeColumn rolesAllowedColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, "Roles Allowed", 150);
+        TreeColumn rolesAllowedColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, Messages.label_rolesAllowed, 150);
         rolesAllowedColumn.setData(ROLES_ALLOWED_COLUMN);
-        TreeColumn runAsColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, "Run As", 150);
+        TreeColumn runAsColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, Messages.label_runAs, 150);
         runAsColumn.setData(RUN_AS_COLUMN);
-        TreeColumn securityDomainColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, "Security Domain", 150);
+        TreeColumn securityDomainColumn = createColumn(_propertyTreeTable.getTree(), SWT.LEFT, Messages.label_securityDomain, 150);
         securityDomainColumn.setData(SECURITY_DOMAIN_COLUMN);
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -274,7 +275,7 @@ public class SecurityInstanceTable extends Composite {
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
+        this._mAddButton.setText(Messages.button_add);
         this._mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -295,7 +296,7 @@ public class SecurityInstanceTable extends Composite {
 
         this._mEditButton = new Button(this, SWT.NONE);
         this._mEditButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mEditButton.setText("Edit");
+        this._mEditButton.setText(Messages.button_edit);
         this._mEditButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -309,7 +310,7 @@ public class SecurityInstanceTable extends Composite {
 
         this._mRemoveButton = new Button(this, SWT.NONE);
         this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
+        this._mRemoveButton.setText(Messages.button_remove);
         this._mRemoveButton.setEnabled(false);
         this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
 

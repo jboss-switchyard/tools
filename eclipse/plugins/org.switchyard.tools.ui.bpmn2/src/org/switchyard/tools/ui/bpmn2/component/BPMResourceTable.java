@@ -46,6 +46,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceDetailType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 
 /**
@@ -120,11 +121,11 @@ public class BPMResourceTable extends Composite {
     /**
      * Value column.
      */
-    public static final String LOCATION_COLUMN = "location";
+    public static final String LOCATION_COLUMN = "location"; //$NON-NLS-1$
     /**
      * Entry point column.
      */
-    public static final String TYPE_COLUMN = "type";
+    public static final String TYPE_COLUMN = "type"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {LOCATION_COLUMN, TYPE_COLUMN };
 
@@ -137,8 +138,8 @@ public class BPMResourceTable extends Composite {
     private ListenerList _changeListeners;
 
     private String[] _resourceTypeList = 
-            new String[] {"BPMN", "BPMN2", "BRL", "CHANGE_SET", 
-            "DESCR", "DRF", "DRL", "DSL", "DSLR", "DTABLE", "PMML", "PKG", "WID", "XDRL"};
+            new String[] {"BPMN", "BPMN2", "BRL", "CHANGE_SET",  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+            "DESCR", "DRF", "DRL", "DSL", "DSLR", "DTABLE", "PMML", "PKG", "WID", "XDRL"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
     // "SCARD" removed for now per SWITCHYARD-1662
 
     /**
@@ -187,12 +188,12 @@ public class BPMResourceTable extends Composite {
         tableComposite.setLayout(tableLayout);
 
         TableViewerColumn locationColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
-        locationColumn.getColumn().setText("Resource");
+        locationColumn.getColumn().setText(Messages.label_resource);
         tableLayout.setColumnData(locationColumn.getColumn(), new ColumnWeightData(300, 150, true));
         locationColumn.setEditingSupport(new ResourceColumnEditingSupport(_propertyTreeTable));
         
         TableViewerColumn typeColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
-        typeColumn.getColumn().setText("Type");
+        typeColumn.getColumn().setText(Messages.label_type);
         typeColumn.setEditingSupport(new TypeColumnEditingSupport(_propertyTreeTable));
         tableLayout.setColumnData(typeColumn.getColumn(), new ColumnWeightData(100, 50, true));
 
@@ -204,7 +205,7 @@ public class BPMResourceTable extends Composite {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -228,7 +229,7 @@ public class BPMResourceTable extends Composite {
 
         _mAdvancedButton = new Button(this, SWT.NONE);
         _mAdvancedButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAdvancedButton.setText("Advanced...");
+        _mAdvancedButton.setText(Messages.button_advanced);
         _mAdvancedButton.setEnabled(false);
         _mAdvancedButton.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
@@ -243,7 +244,7 @@ public class BPMResourceTable extends Composite {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -274,8 +275,8 @@ public class BPMResourceTable extends Composite {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
             final ResourceType newAction = BPMFactory.eINSTANCE.createResourceType();
-            newAction.setLocation("process.bpmn2");
-            newAction.setType("BPMN2");
+            newAction.setLocation("process.bpmn2"); //$NON-NLS-1$
+            newAction.setType("BPMN2"); //$NON-NLS-1$
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = 
                         (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(impl);
@@ -473,7 +474,7 @@ public class BPMResourceTable extends Composite {
 
                 if (getTableSelection().getType() != null) {
                     String rType = getTableSelection().getType();
-                    if (rType.equalsIgnoreCase("DTABLE")) {
+                    if (rType.equalsIgnoreCase("DTABLE")) { //$NON-NLS-1$
 //                         || rType.equalsIgnoreCase("SCARD")) {
                         this._mAdvancedButton.setEnabled(true);
                     }

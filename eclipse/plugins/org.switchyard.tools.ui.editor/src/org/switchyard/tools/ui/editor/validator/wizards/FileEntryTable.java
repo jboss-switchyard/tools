@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.switchyard.tools.models.switchyard1_0.validate.FileEntryType;
 import org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType;
 import org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -146,7 +147,7 @@ public abstract class FileEntryTable extends Composite implements ICellModifier 
     /**
      *  Name column.
      */
-    public static final String FILE_COLUMN = "file";
+    public static final String FILE_COLUMN = "file"; //$NON-NLS-1$
     
     private static final String[] TREE_COLUMNS = new String[] {FILE_COLUMN };
 
@@ -198,7 +199,7 @@ public abstract class FileEntryTable extends Composite implements ICellModifier 
         _propertyTreeTable.getTree().setLayoutData(gd11);
         _propertyTreeTable.getTree().setHeaderVisible(true);
         TreeColumn nameColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
-        nameColumn.setText("File");
+        nameColumn.setText(Messages.label_file);
         nameColumn.setWidth(400);
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -209,7 +210,7 @@ public abstract class FileEntryTable extends Composite implements ICellModifier 
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
+        this._mAddButton.setText(Messages.button_add);
         this._mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -230,7 +231,7 @@ public abstract class FileEntryTable extends Composite implements ICellModifier 
 
         this._mRemoveButton = new Button(this, SWT.NONE);
         this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
+        this._mRemoveButton.setText(Messages.button_remove);
         this._mRemoveButton.setEnabled(false);
         this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -424,13 +425,13 @@ public abstract class FileEntryTable extends Composite implements ICellModifier 
                         @Override
                         protected void doExecute() {
                             FileEntryType parm = (FileEntryType) ti.getData();
-                            setFeatureValue(parm, "file", value);
+                            setFeatureValue(parm, "file", value); //$NON-NLS-1$
                             getTreeViewer().refresh(true);
                         }
                     });
                 } else {
                     FileEntryType parm = (FileEntryType) ti.getData();
-                    setFeatureValue(parm, "file", value);
+                    setFeatureValue(parm, "file", value); //$NON-NLS-1$
                     getTreeViewer().refresh(true);
                 }
             } else if (getTargetObject() instanceof SchemaCatalogsType) {
@@ -441,13 +442,13 @@ public abstract class FileEntryTable extends Composite implements ICellModifier 
                         @Override
                         protected void doExecute() {
                             FileEntryType parm = (FileEntryType) ti.getData();
-                            setFeatureValue(parm, "file", value);
+                            setFeatureValue(parm, "file", value); //$NON-NLS-1$
                             getTreeViewer().refresh(true);
                         }
                     });
                 } else {
                     FileEntryType parm = (FileEntryType) ti.getData();
-                    setFeatureValue(parm, "file", value);
+                    setFeatureValue(parm, "file", value); //$NON-NLS-1$
                     getTreeViewer().refresh(true);
                 }
             }

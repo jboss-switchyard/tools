@@ -38,7 +38,7 @@ public class CamelFTPBindingWizard extends AbstractBindingWizard implements IBin
         } else {
             binding.setProduce(FtpFactory.eINSTANCE.createRemoteFileProducerType());
         }
-        binding.setName(makeUniqueName("ftp"));
+        binding.setName(makeUniqueName("ftp")); //$NON-NLS-1$
         return binding;
     }
 

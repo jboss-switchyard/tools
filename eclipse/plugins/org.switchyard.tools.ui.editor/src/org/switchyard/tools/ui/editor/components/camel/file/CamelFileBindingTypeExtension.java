@@ -24,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
@@ -39,8 +40,8 @@ public class CamelFileBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelFileBindingFactory(), "File",
-                "A Camel File based endpoint.", ImageProvider.IMG_16_FILE) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelFileBindingFactory(), Messages.label_file,
+                Messages.description_tool_file, ImageProvider.IMG_16_FILE) };
     }
 
     @Override
@@ -60,12 +61,12 @@ public class CamelFileBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-file");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-file"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "File";
+        return Messages.label_file;
     }
     
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {
@@ -86,44 +87,44 @@ public class CamelFileBindingTypeExtension implements IBindingTypeExtension {
     
     static {
         PRODUCER_ADVANCED_PROPS = new ArrayList<String>();
-        PRODUCER_ADVANCED_PROPS.add("bufferSize");
-        PRODUCER_ADVANCED_PROPS.add("flatten");
-        PRODUCER_ADVANCED_PROPS.add("charset");
-        PRODUCER_ADVANCED_PROPS.add("tempPrefix");
-        PRODUCER_ADVANCED_PROPS.add("tempFileName");
-        PRODUCER_ADVANCED_PROPS.add("keepLastModified");
-        PRODUCER_ADVANCED_PROPS.add("eagerDeleteTargetFile");
-        PRODUCER_ADVANCED_PROPS.add("doneFileName");
+        PRODUCER_ADVANCED_PROPS.add("bufferSize"); //$NON-NLS-1$
+        PRODUCER_ADVANCED_PROPS.add("flatten"); //$NON-NLS-1$
+        PRODUCER_ADVANCED_PROPS.add("charset"); //$NON-NLS-1$
+        PRODUCER_ADVANCED_PROPS.add("tempPrefix"); //$NON-NLS-1$
+        PRODUCER_ADVANCED_PROPS.add("tempFileName"); //$NON-NLS-1$
+        PRODUCER_ADVANCED_PROPS.add("keepLastModified"); //$NON-NLS-1$
+        PRODUCER_ADVANCED_PROPS.add("eagerDeleteTargetFile"); //$NON-NLS-1$
+        PRODUCER_ADVANCED_PROPS.add("doneFileName"); //$NON-NLS-1$
     }
 
     private static final List<String> CONSUMER_ADVANCED_PROPS;
     
     static {
         CONSUMER_ADVANCED_PROPS = new ArrayList<String>();
-        CONSUMER_ADVANCED_PROPS.add("bufferSize");
-        CONSUMER_ADVANCED_PROPS.add("flatten");
-        CONSUMER_ADVANCED_PROPS.add("charset");
-        CONSUMER_ADVANCED_PROPS.add("delete");
-        CONSUMER_ADVANCED_PROPS.add("recursive");
-        CONSUMER_ADVANCED_PROPS.add("noop");
-        CONSUMER_ADVANCED_PROPS.add("idempotent");
-        CONSUMER_ADVANCED_PROPS.add("idempotentRepository");
-        CONSUMER_ADVANCED_PROPS.add("inProgressRepository");
-        CONSUMER_ADVANCED_PROPS.add("filter");
-        CONSUMER_ADVANCED_PROPS.add("sorter");
-        CONSUMER_ADVANCED_PROPS.add("sortBy");
-        CONSUMER_ADVANCED_PROPS.add("readLock");
-        CONSUMER_ADVANCED_PROPS.add("readLockTimeout");
-        CONSUMER_ADVANCED_PROPS.add("readLockCheckInterval");
-        CONSUMER_ADVANCED_PROPS.add("exclusiveReadLockStrategy");
-        CONSUMER_ADVANCED_PROPS.add("processStrategy");
-        CONSUMER_ADVANCED_PROPS.add("startingDirectoryMustExist");
-        CONSUMER_ADVANCED_PROPS.add("directoryMustExist");
-        CONSUMER_ADVANCED_PROPS.add("doneFileName");
-        CONSUMER_ADVANCED_PROPS.add("initialDelay");
-        CONSUMER_ADVANCED_PROPS.add("useFixedDelay");
-        CONSUMER_ADVANCED_PROPS.add("sendEmptyMessageWhenIdle");
-        CONSUMER_ADVANCED_PROPS.add("timeUnit");
+        CONSUMER_ADVANCED_PROPS.add("bufferSize"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("flatten"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("charset"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("delete"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("recursive"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("noop"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("idempotent"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("idempotentRepository"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("inProgressRepository"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("filter"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("sorter"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("sortBy"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("readLock"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("readLockTimeout"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("readLockCheckInterval"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("exclusiveReadLockStrategy"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("processStrategy"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("startingDirectoryMustExist"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("directoryMustExist"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("doneFileName"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("initialDelay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("useFixedDelay"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("sendEmptyMessageWhenIdle"); //$NON-NLS-1$
+        CONSUMER_ADVANCED_PROPS.add("timeUnit"); //$NON-NLS-1$
     }
 
 }

@@ -80,6 +80,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
@@ -177,9 +178,9 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         TabItem actions = new TabItem(folder, SWT.NONE);
         TabItem advanced = new TabItem(folder, SWT.NONE);
 
-        general.setText("General");
-        actions.setText("Operations");
-        advanced.setText("Advanced");
+        general.setText(Messages.title_general);
+        actions.setText(Messages.title_operations);
+        advanced.setText(Messages.title_advanced);
 
         createGeneralControls(folder, general);
         createActionsControls(folder, actions);
@@ -217,10 +218,10 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             _channelsTable.setTargetObject(_implementation);
             _userCallbackPropertiesTable.setTargetObject(_implementation);
             if (_implementation == null) {
-                _processIDText.setText("");
+                _processIDText.setText(""); //$NON-NLS-1$
                 _persistentButton.setSelection(false);
             } else {
-                _processIDText.setText(_implementation.getProcessId() == null ? "" : _implementation.getProcessId());
+                _processIDText.setText(_implementation.getProcessId() == null ? "" : _implementation.getProcessId()); //$NON-NLS-1$
                 _persistentButton.setSelection(_implementation.isPersistent());
             }
             if (_resources != null || _container == null) {
@@ -242,7 +243,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             if (_implementation.getUserGroupCallback() != null) {
                 String value = _implementation.getUserGroupCallback().getClass_();
                 if (value == null) {
-                    value = "";
+                    value = ""; //$NON-NLS-1$
                 }
                 _userGroupCallbackClassText.setText(value);
             }
@@ -257,8 +258,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         control.setLayout(new GridLayout(2, false));
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        factory.createLabel(control, "Process ID:");
-        _processIDText = factory.createText(control, "", SWT.BORDER);
+        factory.createLabel(control, Messages.label_processId);
+        _processIDText = factory.createText(control, "", SWT.BORDER); //$NON-NLS-1$
         _processIDText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _processIDText.addModifyListener(new ModifyListener() {
             @Override
@@ -276,7 +277,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _persistentButton = factory.createButton(control, "Persistent", SWT.CHECK);
+        _persistentButton = factory.createButton(control, Messages.label_persistent, SWT.CHECK);
         _persistentButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         _persistentButton.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -292,7 +293,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         Section resourcesSection = factory.createSection(control, Section.TITLE_BAR | Section.EXPANDED);
-        resourcesSection.setText("Manifest");
+        resourcesSection.setText(Messages.label_manifest);
         resourcesSection.setLayout(new GridLayout());
         resourcesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
@@ -341,9 +342,9 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 }
             }
         };
-        _resourcesRadio = factory.createButton(resourceButtonsComposite, "Defined Resources", SWT.RADIO);
+        _resourcesRadio = factory.createButton(resourceButtonsComposite, Messages.label_definedResources, SWT.RADIO);
         _resourcesRadio.addSelectionListener(radioListener);
-        _containerRadio = factory.createButton(resourceButtonsComposite, "Knowledge Container", SWT.RADIO);
+        _containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
         _containerRadio.addSelectionListener(radioListener);
 
         Composite resourceDetailsComposite = factory.createComposite(resourcesComposite);
@@ -374,7 +375,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section actionsSection = factory.createSection(actionsComposite, Section.TITLE_BAR | Section.EXPANDED);
-        actionsSection.setText("Operations");
+        actionsSection.setText(Messages.title_operations);
         actionsSection.setLayout(new GridLayout());
         actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -408,7 +409,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         mappingsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
-        globalsSection.setText("Globals");
+        globalsSection.setText(Messages.title_globals);
         globalsSection.setLayout(new GridLayout());
         globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         globalsSection.addExpansionListener(new ExpansionAdapter() {
@@ -418,7 +419,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE,"message.content", "", 
+        _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE,"message.content", "",  //$NON-NLS-1$ //$NON-NLS-2$
                 BPMPackage.eINSTANCE.getBPMOperationType_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global());
         _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_globalsTable);
@@ -426,7 +427,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section inputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        inputsSection.setText("Inputs");
+        inputsSection.setText(Messages.title_inputs);
         inputsSection.setLayout(new GridLayout());
         inputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         inputsSection.addExpansionListener(new ExpansionAdapter() {
@@ -436,7 +437,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _inputsTable = new BPMMappingsTable(inputsSection, SWT.NONE, "message.content", "Parameter",
+        _inputsTable = new BPMMappingsTable(inputsSection, SWT.NONE, "message.content", "Parameter", //$NON-NLS-1$ //$NON-NLS-2$
                 BPMPackage.eINSTANCE.getBPMOperationType_Inputs(), BPMPackage.eINSTANCE.getInputsType_Input());
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
@@ -444,7 +445,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section outputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        outputsSection.setText("Outputs");
+        outputsSection.setText(Messages.title_outputs);
         outputsSection.setLayout(new GridLayout());
         outputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         outputsSection.addExpansionListener(new ExpansionAdapter() {
@@ -454,7 +455,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _outputsTable = new BPMMappingsTable(outputsSection, SWT.NONE, "Result", "message.content",
+        _outputsTable = new BPMMappingsTable(outputsSection, SWT.NONE, "Result", "message.content", //$NON-NLS-1$ //$NON-NLS-2$
                 BPMPackage.eINSTANCE.getBPMOperationType_Outputs(), BPMPackage.eINSTANCE.getOutputsType_Output());
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_outputsTable);
@@ -462,7 +463,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section faultsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        faultsSection.setText("Faults");
+        faultsSection.setText(Messages.title_faults);
         faultsSection.setLayout(new GridLayout());
         faultsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         faultsSection.addExpansionListener(new ExpansionAdapter() {
@@ -472,7 +473,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _faultsTable = new BPMMappingsTable(faultsSection, SWT.NONE, "Fault", "message.content",
+        _faultsTable = new BPMMappingsTable(faultsSection, SWT.NONE, "Fault", "message.content", //$NON-NLS-1$ //$NON-NLS-2$
                 BPMPackage.eINSTANCE.getBPMOperationType_Faults(), BPMPackage.eINSTANCE.getFaultsType_Fault());
         _faultsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_faultsTable);
@@ -494,7 +495,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
-        channelsSection.setText("Channels");
+        channelsSection.setText(Messages.title_channels);
         channelsSection.setLayout(new GridLayout());
         channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         channelsSection.addExpansionListener(new ExpansionAdapter() {
@@ -510,7 +511,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         channelsSection.setClient(_channelsTable);
 
         Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        listenersSection.setText("Listeners");
+        listenersSection.setText(Messages.title_listeners);
         listenersSection.setLayout(new GridLayout());
         listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         listenersSection.addExpansionListener(new ExpansionAdapter() {
@@ -526,7 +527,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         listenersSection.setClient(_listenersTable);
 
         Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        loggersSection.setText("Loggers");
+        loggersSection.setText(Messages.title_loggers);
         loggersSection.setLayout(new GridLayout());
         loggersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         loggersSection.addExpansionListener(new ExpansionAdapter() {
@@ -542,7 +543,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         loggersSection.setClient(_loggersTable);
 
         Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        propertiesSection.setText("Properties");
+        propertiesSection.setText(Messages.title_properties);
         propertiesSection.setLayout(new GridLayout());
         propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         propertiesSection.addExpansionListener(new ExpansionAdapter() {
@@ -560,7 +561,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         addUserGroupCallBackSection(factory, control);
 
         final Section handlersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        handlersSection.setText("Work Item Handlers");
+        handlersSection.setText(Messages.title_workItemHandlers);
         handlersSection.setLayout(new GridLayout());
         handlersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         handlersSection.addExpansionListener(new ExpansionAdapter() {
@@ -580,7 +581,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
     
     private void addUserGroupCallBackSection(final FormToolkit factory, final Composite control) {
         Section userGroupCallbackSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
-        userGroupCallbackSection.setText("User Group Callback");
+        userGroupCallbackSection.setText(Messages.title_userGroupCallback);
         userGroupCallbackSection.setLayout(new GridLayout());
         userGroupCallbackSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         userGroupCallbackSection.addExpansionListener(new ExpansionAdapter() {
@@ -595,17 +596,17 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         userGroupCallbackControl.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         _callbackLinkLabel = new Link(userGroupCallbackControl, SWT.NONE);
-        String message = "<a>Class:</a>";
+        String message = Messages.link_class;
         _callbackLinkLabel.setText(message);
         _callbackLinkLabel.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 handleClassLink(_userGroupCallbackClassText, _callbackLinkLabel,
-                        "org.kie.internal.task.api.UserGroupCallback");
+                        "org.kie.internal.task.api.UserGroupCallback"); //$NON-NLS-1$
             }
         });
 
-        _userGroupCallbackClassText = factory.createText(userGroupCallbackControl, "", SWT.BORDER);
+        _userGroupCallbackClassText = factory.createText(userGroupCallbackControl, "", SWT.BORDER); //$NON-NLS-1$
         _userGroupCallbackClassText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         _userGroupCallbackClassText.addModifyListener(new ModifyListener() {
             @Override
@@ -629,7 +630,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 }
             }
         });
-        Button _userGroupCallbackClassBrowseBtn = factory.createButton(userGroupCallbackControl, "...", SWT.PUSH);
+        Button _userGroupCallbackClassBrowseBtn = factory.createButton(userGroupCallbackControl, Messages.button_dots, SWT.PUSH);
         _userGroupCallbackClassBrowseBtn.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
         _userGroupCallbackClassBrowseBtn.addSelectionListener(new SelectionListener() {
 
@@ -640,7 +641,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                     if (_implementation != null) {
                         project = PlatformResourceAdapterFactory.getContainingProject(_implementation);
                     }
-                    IType selected = selectType(_panel.getShell(), "org.kie.internal.task.api.UserGroupCallback", project);
+                    IType selected = selectType(_panel.getShell(), "org.kie.internal.task.api.UserGroupCallback", project); //$NON-NLS-1$
                     if (selected != null) {
                         _userGroupCallbackClassText.setText(selected.getFullyQualifiedName());
                     }
@@ -655,7 +656,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
         
-        Label callbackPropsLabel = factory.createLabel(userGroupCallbackControl, "Properties:");
+        Label callbackPropsLabel = factory.createLabel(userGroupCallbackControl, Messages.label_properties);
         callbackPropsLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1));
         
         _userCallbackPropertiesTable = new BPMUserGroupCallbackPropertyTable(userGroupCallbackControl, SWT.NONE);
@@ -699,8 +700,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         }
         SelectionDialog dialog = JavaUI.createTypeDialog(shell, new ProgressMonitorDialog(shell), searchScope,
                 IJavaElementSearchConstants.CONSIDER_CLASSES_AND_INTERFACES, false);
-        dialog.setTitle("Select entries");
-        dialog.setMessage("Matching items");
+        dialog.setTitle(Messages.title_selectEntries);
+        dialog.setMessage(Messages.description_matchingItems);
         if (dialog.open() == IDialogConstants.CANCEL_ID) {
             return null;
         }
@@ -731,7 +732,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         if (project != null) { //$NON-NLS-1$
             javaProject = JavaCore.create(project);
             if (!className.isEmpty()) {
-                if (className.contains(".")) {
+                if (className.contains(".")) { //$NON-NLS-1$
                     className = className.substring(className.lastIndexOf('.') + 1);
                 }
                 page.setTypeName(className, true);

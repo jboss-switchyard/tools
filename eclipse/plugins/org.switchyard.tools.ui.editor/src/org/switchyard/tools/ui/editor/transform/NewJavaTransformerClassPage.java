@@ -63,6 +63,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -76,10 +77,10 @@ import org.w3c.dom.Node;
  */
 public class NewJavaTransformerClassPage extends NewTypeWizardPage {
 
-    private static final String XML_ESB_TYPE = "XML_ESB_TYPE";
+    private static final String XML_ESB_TYPE = "XML_ESB_TYPE"; //$NON-NLS-1$
     private static final List<String> XML_ESB_TYPES = Arrays.asList(Element.class.getCanonicalName(),
             Document.class.getCanonicalName(), Node.class.getCanonicalName(), String.class.getCanonicalName(),
-            "org.switchyard.Message", Object.class.getCanonicalName());
+            "org.switchyard.Message", Object.class.getCanonicalName()); //$NON-NLS-1$
 
     private Collection<TransformType> _transforms;
     private IStatus _xmlESBTypeStatus = Status.OK_STATUS;
@@ -91,8 +92,8 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
      */
     public NewJavaTransformerClassPage() {
         super(true, NewTransformWizardPage.class.getCanonicalName());
-        setTitle("New Java Transformer Class");
-        setDescription("Create a new Java transformer class.");
+        setTitle(Messages.title_newJavaTransformerClass);
+        setDescription(Messages.description_newJavaTransformerClass);
     }
 
     /**
@@ -148,7 +149,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
 
     private void createXMLESBTypeControls(Composite composite, int nColumns) {
         final Label label = new Label(composite, SWT.NONE);
-        label.setText("For XML/ESB types use:");
+        label.setText(Messages.label_forXmlEsbTypesUse);
 
         _xmlESBTypeList = new XMLESBTypeComboViewer(composite);
         _xmlESBTypeList.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -167,7 +168,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
         });
 
         final Button button = new Button(composite, SWT.PUSH);
-        button.setText("Browse...");
+        button.setText(Messages.button_browse);
         button.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
         button.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -182,7 +183,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
         super.handleFieldChanged(fieldName);
 
         if (fieldName == XML_ESB_TYPE) {
-            _xmlESBType = _xmlESBTypeList.getSelection().isEmpty() ? "" : ((IStructuredSelection) _xmlESBTypeList
+            _xmlESBType = _xmlESBTypeList.getSelection().isEmpty() ? "" : ((IStructuredSelection) _xmlESBTypeList //$NON-NLS-1$
                     .getSelection()).getFirstElement().toString();
             validateXMLESBType();
         }
@@ -200,7 +201,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
     private void validateXMLESBType() {
         if (_xmlESBType == null || _xmlESBType.length() == 0) {
             _xmlESBTypeStatus = new Status(Status.ERROR, Activator.PLUGIN_ID,
-                    "Please select a Java type to use to represent XML/ESB types in the transform methods.");
+                    Messages.error_selectJavaTypeforXmlEsbTypes);
             return;
         }
         IJavaProject javaProject = getJavaProject();
@@ -219,7 +220,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
             }
         }
         _xmlESBTypeStatus = new Status(Status.WARNING, Activator.PLUGIN_ID,
-                "Could not locate specified type used to represent XML/ESB types on the project classpath.");
+                Messages.error_selectedXmlEsbTypeNotOnClasspath);
     }
 
     private void browseXMLESBType() {
@@ -231,11 +232,11 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
         try {
             IJavaElement[] elements = new IJavaElement[] {project };
             IJavaSearchScope scope = SearchEngine.createJavaSearchScope(elements);
-            String filter = _xmlESBType == null ? "" : _xmlESBType;
+            String filter = _xmlESBType == null ? "" : _xmlESBType; //$NON-NLS-1$
             SelectionDialog dialog = JavaUI.createTypeDialog(getShell(), getContainer(), scope,
                     IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter);
-            dialog.setTitle("Select XML/ESB Type");
-            dialog.setMessage("Select Java type used to represent XML/ESB types in the transform methods");
+            dialog.setTitle(Messages.title_selectXmlEsbType);
+            dialog.setMessage(Messages.description_selectXmlEsbType);
 
             if (dialog.open() == Window.OK) {
                 _xmlESBTypeList.setSelection(new StructuredSelection(((IType) dialog.getResult()[0])
@@ -306,7 +307,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
         final TypeHelper fromType = new TypeHelper(QName.valueOf(transform.getFrom()));
         final TypeHelper toType = new TypeHelper(QName.valueOf(transform.getTo()));
         final String methodName = createTransformMethodName(fromType, toType, methodNames);
-        final String body = "return null;";
+        final String body = "return null;"; //$NON-NLS-1$
         final StringBuffer methodText = new StringBuffer();
         createMethodAnnotation(methodText, fromType, toType, imports, lineDelimiter);
         createMethodSignature(methodText, methodName, fromType, toType, imports, lineDelimiter);
@@ -316,13 +317,13 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
         } catch (CoreException e) {
             methodText.append(body);
         }
-        methodText.append("}");
+        methodText.append("}"); //$NON-NLS-1$
 
         type.createMethod(methodText.toString(), null, false, new SubProgressMonitor(monitor, 1));
     }
 
     private String createTransformMethodName(TypeHelper fromType, TypeHelper toType, Collection<String> names) {
-        final String baseName = "transform" + getSimpleTypeName(fromType) + "To" + getSimpleTypeName(toType);
+        final String baseName = "transform" + getSimpleTypeName(fromType) + "To" + getSimpleTypeName(toType); //$NON-NLS-1$ //$NON-NLS-2$
         String name = baseName;
         int count = 1;
         while (names.contains(name)) {
@@ -345,7 +346,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
             name = QName.valueOf(type._annotationType).getLocalPart();
         }
         if (name.length() == 0) {
-            name = "_";
+            name = "_"; //$NON-NLS-1$
         } else if (Character.isLowerCase(name.charAt(0))) {
             name = Character.toUpperCase(name.charAt(0)) + name.substring(1);
         }
@@ -354,23 +355,23 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
 
     private void createMethodAnnotation(StringBuffer methodText, TypeHelper fromType, TypeHelper toType,
             ImportsManager imports, String lineDelimiter) {
-        methodText.append("@").append(imports.addImport("org.switchyard.annotations.Transformer"));
+        methodText.append("@").append(imports.addImport("org.switchyard.annotations.Transformer")); //$NON-NLS-1$ //$NON-NLS-2$
         if (fromType._annotationType != null) {
-            methodText.append("(from=\"").append(fromType._annotationType).append('"');
+            methodText.append("(from=\"").append(fromType._annotationType).append('"'); //$NON-NLS-1$
             if (toType._annotationType != null) {
-                methodText.append(", to=\"").append(toType._annotationType).append('"');
+                methodText.append(", to=\"").append(toType._annotationType).append('"'); //$NON-NLS-1$
             }
-            methodText.append(")");
+            methodText.append(")"); //$NON-NLS-1$
         } else if (toType._annotationType != null) {
-            methodText.append("(to=\"").append(toType._annotationType).append("\")");
+            methodText.append("(to=\"").append(toType._annotationType).append("\")"); //$NON-NLS-1$ //$NON-NLS-2$
         }
         methodText.append(lineDelimiter);
     }
 
     private void createMethodSignature(StringBuffer methodText, String methodName, TypeHelper fromType,
             TypeHelper toType, ImportsManager imports, String lineDelimiter) {
-        methodText.append("public ").append(imports.addImport(toType._methodType)).append(" ").append(methodName)
-                .append("(").append(imports.addImport(fromType._methodType)).append(" from) {").append(lineDelimiter);
+        methodText.append("public ").append(imports.addImport(toType._methodType)).append(" ").append(methodName) //$NON-NLS-1$ //$NON-NLS-2$
+                .append("(").append(imports.addImport(fromType._methodType)).append(" from) {").append(lineDelimiter); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     private final class TypeHelper {
@@ -378,7 +379,7 @@ public class NewJavaTransformerClassPage extends NewTypeWizardPage {
         private String _methodType;
 
         private TypeHelper(QName type) {
-            if (type.getLocalPart().startsWith("java:")) {
+            if (type.getLocalPart().startsWith("java:")) { //$NON-NLS-1$
                 _methodType = type.getLocalPart().substring(5);
                 _annotationType = null;
             } else {

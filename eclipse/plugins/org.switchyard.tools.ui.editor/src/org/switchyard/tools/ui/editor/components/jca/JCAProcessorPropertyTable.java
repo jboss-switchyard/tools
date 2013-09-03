@@ -58,12 +58,12 @@ public class JCAProcessorPropertyTable extends JCAPropertyTable {
                         @Override
                         protected void doExecute() {
                             boolean flag = processor.getProperty().remove(toRemove);
-                            System.out.println("Property " + toRemove.getName() + " was removed: " + flag);
+                            System.out.println("Property " + toRemove.getName() + " was removed: " + flag); //$NON-NLS-1$ //$NON-NLS-2$
                         }
                     });
                 } else {
                     boolean flag = processor.getProperty().remove(toRemove);
-                    System.out.println("Property " + toRemove.getName() + " was removed: " + flag);
+                    System.out.println("Property " + toRemove.getName() + " was removed: " + flag); //$NON-NLS-1$ //$NON-NLS-2$
                 }
             }
         }
@@ -89,11 +89,11 @@ public class JCAProcessorPropertyTable extends JCAPropertyTable {
                             
                             if (binding.getOutboundInteraction() == null) {
                                 JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                                setFeatureValue(binding, "outboundInteraction", outbound);
+                                setFeatureValue(binding, "outboundInteraction", outbound); //$NON-NLS-1$
                             }
                             if (binding.getOutboundInteraction().getProcessor() == null) {
                                 Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                                setFeatureValue(binding.getOutboundInteraction(), "processor", processor);
+                                setFeatureValue(binding.getOutboundInteraction(), "processor", processor); //$NON-NLS-1$
                             }
                             Processor processor = binding.getOutboundInteraction().getProcessor();
                             processor.getProperty().add(newProperty);
@@ -106,11 +106,11 @@ public class JCAProcessorPropertyTable extends JCAPropertyTable {
                     
                     if (binding.getOutboundInteraction() == null) {
                         JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                        setFeatureValue(binding, "inboundConnection", outbound);
+                        setFeatureValue(binding, "inboundConnection", outbound); //$NON-NLS-1$
                     }
                     if (binding.getOutboundInteraction().getProcessor() == null) {
                         Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                        setFeatureValue(binding.getOutboundInteraction(), "processor", processor);
+                        setFeatureValue(binding.getOutboundInteraction(), "processor", processor); //$NON-NLS-1$
                     }
                     Processor processor = binding.getOutboundInteraction().getProcessor();
                     processor.getProperty().add(newProperty);

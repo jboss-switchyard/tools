@@ -94,7 +94,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
 
         @Override
         public void run() throws Exception {
-            String[] path = parseString(_localObjectPath, "/");
+            String[] path = parseString(_localObjectPath, "/"); //$NON-NLS-1$
             EObject object = getBinding();
             for (int i = 0; i < path.length; i++) {
                 object = (EObject) getFeatureValue(object, path[i]);
@@ -112,7 +112,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     }
 
     protected boolean validChange(String objectpath, String featureId, Object value) {
-        String[] path = parseString(objectpath, "/");
+        String[] path = parseString(objectpath, "/"); //$NON-NLS-1$
         EObject object = _binding;
         for (int i = 0; i < path.length; i++) {
             object = (EObject) getFeatureValue(object, path[i]);

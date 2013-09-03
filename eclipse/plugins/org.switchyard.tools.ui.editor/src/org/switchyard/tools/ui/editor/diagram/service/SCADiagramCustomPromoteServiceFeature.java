@@ -34,6 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
@@ -115,7 +116,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
 
     @Override
     public String getDescription() {
-        return "Promote the service";
+        return Messages.featureDescription_promoteService;
     }
 
     @Override
@@ -130,7 +131,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
 
     @Override
     public String getName() {
-        return "Promote Service";
+        return Messages.featureName_promoteService;
     }
 
     @Override

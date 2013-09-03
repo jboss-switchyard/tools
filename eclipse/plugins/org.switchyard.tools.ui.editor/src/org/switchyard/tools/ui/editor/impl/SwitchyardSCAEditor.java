@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.impl;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -122,6 +123,7 @@ import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.PropertiesDialogFeature;
 import org.switchyard.tools.ui.editor.diagram.SynchronizeGeneratedModelFeature;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelAdapterFactory;
@@ -141,12 +143,12 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     /**
      * Editor ID.
      */
-    public static final String EDITOR_ID = "org.switchyard.tools.ui.editor.switchyard.editor";
+    public static final String EDITOR_ID = "org.switchyard.tools.ui.editor.switchyard.editor"; //$NON-NLS-1$
 
     /**
      * Property contributor id.
      */
-    public static final String CONTRIBUTOR_ID = "org.switchyard.tools.ui.editor.diagram.PropertyContributor";
+    public static final String CONTRIBUTOR_ID = "org.switchyard.tools.ui.editor.diagram.PropertyContributor"; //$NON-NLS-1$
 
     private URI _modelUri;
     private URI _diagramUri;
@@ -310,7 +312,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     }
 
     private IStatus convertMarker(IMarker marker, EObject target, MergedModelAdapterFactory mergeAdapter) {
-        final String message = marker.getAttribute(IMarker.MESSAGE, "");
+        final String message = marker.getAttribute(IMarker.MESSAGE, ""); //$NON-NLS-1$
         final String constraintId = marker.getAttribute(MarkerUtil.RULE_ATTRIBUTE, null);
         final IConstraintDescriptor icd = constraintId == null ? null : ConstraintRegistry.getInstance().getDescriptor(
                 constraintId);
@@ -347,8 +349,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     }
 
     private URI convertModelURIToDiagramURI(URI modelUri) {
-        IPath diagramFilePath = _modelFile.getProject().getFullPath().append(".xml")
-                .append(_modelFile.getFullPath().removeFirstSegments(1)).addFileExtension("diagram");
+        IPath diagramFilePath = _modelFile.getProject().getFullPath().append(".xml") //$NON-NLS-1$
+                .append(_modelFile.getFullPath().removeFirstSegments(1)).addFileExtension("diagram"); //$NON-NLS-1$
         _diagramFile = _modelFile.getWorkspace().getRoot().getFile(diagramFilePath);
         return URI.createPlatformResourceURI(diagramFilePath.toString(), true);
     }
@@ -370,7 +372,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         }
         final String relatedURIsAttribute = marker.getAttribute(EValidator.RELATED_URIS_ATTRIBUTE, null);
         if (relatedURIsAttribute != null) {
-            for (String relatedURI : relatedURIsAttribute.split(" ")) {
+            for (String relatedURI : relatedURIsAttribute.split(" ")) { //$NON-NLS-1$
                 final URI uri = URI.createURI(URI.decode(relatedURI));
                 final EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
                 if (eObject != null) {
@@ -464,7 +466,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
      */
     public IFile getTargetModelFile() {
         if (_targetModelFile == null) {
-            IPath targetPath = new Path("target/classes/META-INF/switchyard.xml");
+            IPath targetPath = new Path("target/classes/META-INF/switchyard.xml"); //$NON-NLS-1$
             try {
                 _modelFile.getProject().refreshLocal(IProject.DEPTH_INFINITE, null);
                 IFile target = _modelFile.getProject().getFile(targetPath);
@@ -633,7 +635,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 .getResourceSet());
         if (hasRemoved) {
             for (Resource resource : getEditingDomain().getResourceSet().getResources()) {
-                if ("switchyard".equals(resource.getURI().scheme())) {
+                if ("switchyard".equals(resource.getURI().scheme())) { //$NON-NLS-1$
                     for (Iterator<EObject> it = resource.getAllContents(); it.hasNext();) {
                         final ValidationStatusAdapter adapter;
                         final EObject touched;
@@ -714,8 +716,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             try {
                 switchYardResource.load(getEditingDomain().getResourceSet().getLoadOptions());
             } catch (IOException e) {
-                ErrorUtils.showErrorWithLogging(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error loading file: "
-                        + _modelFile.getName() + ".  " + e.getLocalizedMessage(), e));
+                ErrorUtils.showErrorWithLogging(new Status(Status.ERROR, Activator.PLUGIN_ID, MessageFormat.format(
+                        Messages.error_errorLoadingFile, _modelFile.getName(), e.getLocalizedMessage()), e));
             }
 
             _mergedModelAdapterFactory = new MergedModelAdapterFactory(switchYardResource);
@@ -735,14 +737,14 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             // make sure the correct resource type gets created (not sure if
             // this is necessary)
             final Resource diagramResource = getEditingDomain().getResourceSet().createResource(_diagramUri,
-                    "org.eclipse.graphiti.content.diagram");
+                    "org.eclipse.graphiti.content.diagram"); //$NON-NLS-1$
 
             // load the diagram
             Diagram diagram = super.loadDiagram(GraphitiUiInternal.getEmfService().mapDiagramFileUriToDiagramUri(
                     _diagramUri));
             if (diagram == null) {
                 // create the diagram
-                diagram = Graphiti.getPeCreateService().createDiagram("org.switchyard.tools.ui.editor.diagram",
+                diagram = Graphiti.getPeCreateService().createDiagram("org.switchyard.tools.ui.editor.diagram", //$NON-NLS-1$
                         _modelFile.getName(), true);
 
                 // link the switchyard model to the diagram
@@ -756,7 +758,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 getEditingDomain().getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
                     @Override
                     public String getLabel() {
-                        return "Create Diagram";
+                        return Messages.label_createDiagram;
                     }
 
                     @Override
@@ -771,7 +773,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 getEditingDomain().getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
                     @Override
                     public String getLabel() {
-                        return "Remove Dangling References";
+                        return Messages.label_removeDanglingReferences;
                     }
 
                     @Override
@@ -836,7 +838,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             }
 
             // nuke the URI
-            generatedResource.setURI(URI.createGenericURI("switchyard", "generated", null));
+            generatedResource.setURI(URI.createGenericURI("switchyard", "generated", null)); //$NON-NLS-1$ //$NON-NLS-2$
 
             // we don't want this resource being saved
             generatedResource.setTrackingModification(true);
@@ -857,7 +859,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         protected Set<Resource> save(TransactionalEditingDomain editingDomain, Map<Resource, Map<?, ?>> saveOptions,
                 IProgressMonitor monitor) {
             for (Resource resource : saveOptions.keySet()) {
-                if ("switchyard".equals(resource.getURI().scheme())) {
+                if ("switchyard".equals(resource.getURI().scheme())) { //$NON-NLS-1$
                     // prevent notifications
                     resource.eSetDeliver(false);
                     // prevent the "generated" resource from being saved
@@ -888,7 +890,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                             for (Map.Entry<EObject, EList<FeatureChange>> change : objectChanges) {
                                 if (change.getKey() == notifier) {
                                     throw new RollbackException(new Status(Status.CANCEL, Activator.PLUGIN_ID,
-                                            "Cannot modify generated configuration."));
+                                            Messages.error_cannotModifyGeneratedConfiguration));
                                 }
                             }
                         }
@@ -1052,16 +1054,16 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
      * @param resourceSet register all the EMF packages for the SY resource set
      */
     public static void registerPackages(ResourceSet resourceSet) {
-        resourceSet.getPackageRegistry().put("http://docs.oasis-open.org/ns/opencsa/sca/200912", ScaPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-config:switchyard:1.0", SwitchyardPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-config:transform:1.0", TransformPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-bean:config:1.0", BeanPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-config:validate:1.0", ValidatePackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-soap:config:1.0", SOAPPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-rules:config:1.0", RulesPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-clojure:config:1.0", ClojurePackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-camel:config:1.0", CamelPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-bpm:config:1.0", BPMPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("http://docs.oasis-open.org/ns/opencsa/sca/200912", ScaPackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-config:switchyard:1.0", SwitchyardPackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-config:transform:1.0", TransformPackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-bean:config:1.0", BeanPackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-config:validate:1.0", ValidatePackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-soap:config:1.0", SOAPPackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-rules:config:1.0", RulesPackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-clojure:config:1.0", ClojurePackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-camel:config:1.0", CamelPackage.eINSTANCE); //$NON-NLS-1$
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-bpm:config:1.0", BPMPackage.eINSTANCE); //$NON-NLS-1$
     }
 
 }

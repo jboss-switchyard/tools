@@ -17,6 +17,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.AbstractModelWizardPage;
 
@@ -32,8 +33,8 @@ public class CamelXMLRouteImplementationPage extends AbstractModelWizardPage<Com
 
     protected CamelXMLRouteImplementationPage(String pageName) {
         super(pageName);
-        setTitle("Camel XML Route Details");
-        setDescription("Specify the details for the Camel route.");
+        setTitle(Messages.title_camelRouteDetails);
+        setDescription(Messages.description_camelRouteDetails);
         // we don't validate until the control is created
         setPageComplete(false);
     }

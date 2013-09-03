@@ -37,6 +37,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.bpmn2.Messages;
 
 /**
  * NewBPMProcessDetailsWizardPage
@@ -79,8 +80,8 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
      */
     public NewBPMProcessDetailsWizardPage(String pageName) {
         super(pageName);
-        setTitle("Business Process Details");
-        setDescription("Please specify details about the business process.");
+        setTitle(Messages.title_businessProcessDetails);
+        setDescription(Messages.description_businessProcessDetails);
     }
 
     @Override
@@ -88,7 +89,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
         Composite contents = new Composite(parent, SWT.NONE);
         contents.setLayout(new GridLayout(2, false));
 
-        createLabel(contents, "Process Name:");
+        createLabel(contents, Messages.label_processName);
         _processNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
         _processNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _processNameText.addModifyListener(new ModifyListener() {
@@ -99,7 +100,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(contents, "Package Name:");
+        createLabel(contents, Messages.label_packageName);
         _packageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
         _packageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _packageNameText.addModifyListener(new ModifyListener() {
@@ -110,7 +111,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(contents, "Process ID:");
+        createLabel(contents, Messages.label_processId);
         _processIdText = new Text(contents, SWT.SINGLE | SWT.BORDER);
         _processIdText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _processIdText.addModifyListener(new ModifyListener() {
@@ -123,7 +124,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
 
         _persistentCheckbox = new Button(contents, SWT.CHECK);
         _persistentCheckbox.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-        _persistentCheckbox.setText("Persist process state in database");
+        _persistentCheckbox.setText(Messages.label_persistProcessStateInDatabase);
         _persistentCheckbox.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -160,12 +161,12 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
         Group processPropertiesGroup = new Group(contents, SWT.NONE);
         processPropertiesGroup.setLayout(new GridLayout(2, false));
         processPropertiesGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-        processPropertiesGroup.setText("Process Property Names");
+        processPropertiesGroup.setText(Messages.label_processPropertyNames);
 
-        createLabel(processPropertiesGroup, "Parameter:");
+        createLabel(processPropertiesGroup, Messages.label_parameter);
         _messageInNameText = new Text(processPropertiesGroup, SWT.SINGLE | SWT.BORDER);
         _messageInNameText
-                .setToolTipText("The name of the process variable in which the input message contents will be stored.  (default, \"Parameter\")");
+                .setToolTipText(Messages.tooltip_parameter);
         _messageInNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _messageInNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -175,10 +176,10 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(processPropertiesGroup, "Result:");
+        createLabel(processPropertiesGroup, Messages.label_result);
         _messageOutNameText = new Text(processPropertiesGroup, SWT.SINGLE | SWT.BORDER);
         _messageOutNameText
-                .setToolTipText("The name of the process variable in which the output message content will be retrieved.  (default, \"Result\")");
+                .setToolTipText(Messages.tooltip_result);
         _messageOutNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _messageOutNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -193,11 +194,11 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
         final Group auditSettingsGroup = new Group(contents, SWT.NONE);
         auditSettingsGroup.setLayout(new GridLayout(2, false));
         auditSettingsGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-        auditSettingsGroup.setText("Audit Settings");
+        auditSettingsGroup.setText(Messages.label_auditSettings);
 
         _auditingEnabledCheckbox = new Button(auditSettingsGroup, SWT.CHECK);
         _auditingEnabledCheckbox.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-        _auditingEnabledCheckbox.setText("Enable auditing");
+        _auditingEnabledCheckbox.setText(Messages.label_enableAuditing);
         _auditingEnabledCheckbox.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -207,7 +208,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(auditSettingsGroup, "Log Name:");
+        createLabel(auditSettingsGroup, Messages.label_logName);
         _auditLogText = new Text(auditSettingsGroup, SWT.SINGLE | SWT.BORDER);
         _auditLogText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _auditLogText.addModifyListener(new ModifyListener() {
@@ -218,7 +219,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(auditSettingsGroup, "Interval:");
+        createLabel(auditSettingsGroup, Messages.label_interval);
         _auditIntervalText = new Text(auditSettingsGroup, SWT.SINGLE | SWT.BORDER);
         _auditIntervalText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _auditIntervalText.addModifyListener(new ModifyListener() {
@@ -233,7 +234,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(auditSettingsGroup, "Log Type:");
+        createLabel(auditSettingsGroup, Messages.label_logType);
         _auditTypeList = new ComboViewer(auditSettingsGroup, SWT.DROP_DOWN);
         _auditTypeList.setLabelProvider(new LabelProvider() {
             @Override
@@ -418,7 +419,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             _auditSettings = auditSettings;
         } else {
             _auditLogText.setText(emptyForNull(auditSettings.getLog()));
-            _auditIntervalText.setText(auditSettings.getInterval() == null ? "" : auditSettings.getInterval()
+            _auditIntervalText.setText(auditSettings.getInterval() == null ? "" : auditSettings.getInterval() //$NON-NLS-1$
                     .toString());
             _auditTypeList.setSelection(new StructuredSelection(auditSettings.getType()), true);
         }
@@ -443,13 +444,13 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
 
         final String newPackageName;
         if (project == null) {
-            newPackageName = "";
+            newPackageName = ""; //$NON-NLS-1$
         } else {
             IJavaElement element = JavaUtil.getInitialPackageForProject(project);
             if (element.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
                 newPackageName = ((IPackageFragment) element).getElementName();
             } else {
-                newPackageName = "";
+                newPackageName = ""; //$NON-NLS-1$
             }
         }
         if (updateDefault(_oldPackageName, newPackageName, _packageNameText.getText())) {
@@ -465,7 +466,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
     }
 
     private String emptyForNull(String string) {
-        return string == null ? "" : string;
+        return string == null ? "" : string; //$NON-NLS-1$
     }
 
     private String nullForEmpty(String string) {
@@ -487,9 +488,9 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
         setErrorMessage(null);
         // TODO: we probably need to verify the content as well
         if (getProcessId() == null) {
-            setErrorMessage("Please specify a process ID.");
+            setErrorMessage(Messages.error_noProcessId);
         } else if (getProcessName() == null) {
-            setErrorMessage("Please specify a process name.");
+            setErrorMessage(Messages.error_noProcessName);
         } else if (isAuditingEnabled()) {
             final String intervalText = _auditIntervalText.getText();
             if (intervalText.length() != 0) {

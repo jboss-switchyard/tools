@@ -32,6 +32,7 @@ import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * NewJavaTransformerWizard
@@ -49,7 +50,7 @@ public class NewJavaTransformerWizard extends BasicNewResourceWizard implements 
      * Create a new NewJavaTransformerWizard.
      */
     public NewJavaTransformerWizard() {
-        setWindowTitle("New Java Transformer Class");
+        setWindowTitle(Messages.title_newJavaTransformerClass);
         setNeedsProgressMonitor(true);
         _page = new NewJavaTransformerClassPage();
     }
@@ -98,10 +99,10 @@ public class NewJavaTransformerWizard extends BasicNewResourceWizard implements 
                 Activator
                         .getDefault()
                         .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error creating bean service class.",
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.error_errorCreatingJavaTransformerClass,
                                 realException));
             }
-            MessageDialog.openError(getShell(), "Error Creating Bean Service", realException.getMessage());
+            MessageDialog.openError(getShell(), Messages.title_errorCreatingJavaTransformer, realException.getMessage());
             if (!_page.getModifiedResource().exists()) {
                 return false;
             }
@@ -131,7 +132,7 @@ public class NewJavaTransformerWizard extends BasicNewResourceWizard implements 
                                     .getDefault()
                                     .getLog()
                                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                            "Error opening new Java transformer source.", e));
+                                            Messages.error_errorOpeningNewJavaTransformer, e));
                         }
                     }
                 });

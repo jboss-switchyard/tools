@@ -22,6 +22,7 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -33,7 +34,7 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
      * @param fp the feature provider
      */
     public SCADiagramCreateComponentServiceLinkFeature(IFeatureProvider fp) {
-        super(fp, "Component Service reference (dotted)", "Create Component Service reference");
+        super(fp, Messages.featureName_componentServiceReference, Messages.featureDescription_componentServiceReference);
     }
 
     @Override

@@ -41,6 +41,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.Processor;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
@@ -64,12 +65,12 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "JCA Binding Details";
+        return Messages.title_jcaBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your JCA Binding. Resource adapters may require unique properties.";
+        return Messages.description_jcaBindingDetails;
     }
 
     @Override
@@ -84,13 +85,13 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                 if (outbound.getResourceAdapter() != null) {
                     this._resourceAdapterText.setText(outbound.getResourceAdapter().getName());
                 } else {
-                    _resourceAdapterText.setText("hornetq-ra.rar");
+                    _resourceAdapterText.setText("hornetq-ra.rar"); //$NON-NLS-1$
                     handleModify(_resourceAdapterText);
                 }
                 if (outbound.getConnection() != null) {
                     this._connectionJNDINameText.setText(outbound.getConnection().getJndiName());
                 } else {
-                    _connectionJNDINameText.setText("");
+                    _connectionJNDINameText.setText(""); //$NON-NLS-1$
                 }
 
                 if (_binding.getOutboundInteraction() != null) {
@@ -106,7 +107,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                 }
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -137,10 +138,10 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _resourceAdapterText = createLabelAndCombo(composite, "Resource Adapter Archive", false);
-        _resourceAdapterText.add("hornetq-ra.rar");
+        _resourceAdapterText = createLabelAndCombo(composite, Messages.label_resourceAdapterArchive, false);
+        _resourceAdapterText.add("hornetq-ra.rar"); //$NON-NLS-1$
 //        _browseResourceAdapterButton = new Button(outboundConnectionGroup, SWT.PUSH);
 //        _browseResourceAdapterButton.setText("Browse...");
 //        _browseResourceAdapterButton.addSelectionListener(new SelectionAdapter() {
@@ -161,21 +162,21 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 //            }
 //        });
 
-        _connectionJNDINameText = createLabelAndText(composite, "JNDI Name");
+        _connectionJNDINameText = createLabelAndText(composite, Messages.label_jndiName);
 
         Group outboundInteractionGroup = new Group(composite, SWT.NONE);
         outboundInteractionGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true, 2, 1));
         outboundInteractionGroup.setLayout(new GridLayout(2, false));
-        outboundInteractionGroup.setText("Outbound Interaction Options");
+        outboundInteractionGroup.setText(Messages.label_outboundInteractionOptions);
 
-        _processorMappingTypeCombo = createLabelAndCombo(outboundInteractionGroup, "Endpoint Mapping Type", true);
-        _processorMappingTypeCombo.add("JMSProcessor", ENDPOINT_MAPPING_TYPE.JMSPROCESSOR.ordinal());
-        _processorMappingTypeCombo.setData("JMSProcessor", ENDPOINT_MAPPING_TYPE.JMSPROCESSOR);
-        _processorMappingTypeCombo.add("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR.ordinal());
-        _processorMappingTypeCombo.setData("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR);
+        _processorMappingTypeCombo = createLabelAndCombo(outboundInteractionGroup, Messages.label_endpointMappingType, true);
+        _processorMappingTypeCombo.add("JMSProcessor", ENDPOINT_MAPPING_TYPE.JMSPROCESSOR.ordinal()); //$NON-NLS-1$
+        _processorMappingTypeCombo.setData("JMSProcessor", ENDPOINT_MAPPING_TYPE.JMSPROCESSOR); //$NON-NLS-1$
+        _processorMappingTypeCombo.add("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR.ordinal()); //$NON-NLS-1$
+        _processorMappingTypeCombo.setData("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR); //$NON-NLS-1$
 
         Group activationPropsGroup = new Group(outboundInteractionGroup, SWT.NONE);
-        activationPropsGroup.setText("Processor Properties");
+        activationPropsGroup.setText(Messages.label_processorProperties);
         activationPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true, 3, 1));
         activationPropsGroup.setLayout(new GridLayout(1, false));
 
@@ -205,7 +206,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getOutboundInteraction() == null) {
                 JCAOutboundInteraction interaction = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                setFeatureValue(_binding, "outboundInteraction", interaction);
+                setFeatureValue(_binding, "outboundInteraction", interaction); //$NON-NLS-1$
             }
         }
     }
@@ -215,7 +216,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getOutboundConnection() == null) {
                 JCAOutboundConnection outbound = JcaFactory.eINSTANCE.createJCAOutboundConnection();
-                setFeatureValue(_binding, "outboundConnection", outbound);
+                setFeatureValue(_binding, "outboundConnection", outbound); //$NON-NLS-1$
             }
         }
     }
@@ -227,7 +228,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                     && _binding.getOutboundConnection().getResourceAdapter() == null) {
                 ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
 //                resAdapter.setType("javax.resource.spi.ResourceAdapter");
-                setFeatureValue(_binding.getOutboundConnection(), "resourceAdapter", resAdapter);
+                setFeatureValue(_binding.getOutboundConnection(), "resourceAdapter", resAdapter); //$NON-NLS-1$
             }
         }
     }
@@ -238,7 +239,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             if (_binding != null && _binding.getOutboundConnection() != null
                     && _binding.getOutboundConnection().getConnection() == null) {
                 Connection outConnection = JcaFactory.eINSTANCE.createConnection();
-                setFeatureValue(_binding.getOutboundConnection(), "connection", outConnection);
+                setFeatureValue(_binding.getOutboundConnection(), "connection", outConnection); //$NON-NLS-1$
             }
         }
     }
@@ -253,11 +254,11 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             boolean foundProcessor = true;
             switch (type) {
                 case JMSPROCESSOR:
-                    destination = "TestQueue";
-                    processorClass = "org.switchyard.component.jca.processor.JMSProcessor";
+                    destination = "TestQueue"; //$NON-NLS-1$
+                    processorClass = "org.switchyard.component.jca.processor.JMSProcessor"; //$NON-NLS-1$
                     break;
                 case CCIPROCESSOR:
-                    processorClass = "org.switchyard.component.jca.processor.CCIProcessor";
+                    processorClass = "org.switchyard.component.jca.processor.CCIProcessor"; //$NON-NLS-1$
                     break;
                 default:
                     foundProcessor = false;
@@ -269,14 +270,14 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                     Processor processor = JcaFactory.eINSTANCE.createProcessor();
                     interaction.setProcessor(processor);
                 }
-                setFeatureValue(interaction.getProcessor(), "type", processorClass);
+                setFeatureValue(interaction.getProcessor(), "type", processorClass); //$NON-NLS-1$
                 
                 if (!interaction.getProcessor().getProperty().isEmpty()) {
                     interaction.getProcessor().getProperty().clear();
                 }
                 if (destination != null) {
                     Property prop = JcaFactory.eINSTANCE.createProperty();
-                    prop.setName("destination");
+                    prop.setName("destination"); //$NON-NLS-1$
                     prop.setValue(destination);
                     interaction.getProcessor().getProperty().add(prop);
                 }
@@ -291,7 +292,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new OutboundConnectionOp());
         ops.add(new ResourceAdapterOp());
-        ops.add(new BasicOperation("outboundConnection/resourceAdapter", featureId, value));
+        ops.add(new BasicOperation("outboundConnection/resourceAdapter", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
@@ -299,7 +300,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new OutboundConnectionOp());
         ops.add(new ConnectionOp());
-        ops.add(new BasicOperation("outboundConnection/connection", featureId, value));
+        ops.add(new BasicOperation("outboundConnection/connection", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
     
@@ -312,13 +313,13 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
     protected void handleModify(final Control control) {
         if (control.equals(_resourceAdapterText) /*|| control.equals(_browseResourceAdapterButton) */) {
-            updateOutboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim());
+            updateOutboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_connectionJNDINameText)) {
-            updateOutboundConnectionConnectionFeature("jndiName", _connectionJNDINameText.getText().trim());
+            updateOutboundConnectionConnectionFeature("jndiName", _connectionJNDINameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_processorMappingTypeCombo)) {
             updateProcessorFeature();
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -332,7 +333,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                  if (control.equals(_resourceAdapterText)) {
                      _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
                  } else if (control.equals(_nameText)) {
-                     _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                     _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
                 }
             } else {
                 super.handleUndo(control);
@@ -348,7 +349,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     public IResource browse(Shell shell, IJavaProject project) {
         ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(shell, project == null ? ResourcesPlugin
                 .getWorkspace().getRoot() : project.getProject());
-        dialog.setInitialPattern("*.jar,*.rar");
+        dialog.setInitialPattern("*.jar,*.rar"); //$NON-NLS-1$
         if (dialog.open() == ClasspathResourceSelectionDialog.OK) {
             IResource result = (IResource) dialog.getFirstResult();
             if (result != null) {

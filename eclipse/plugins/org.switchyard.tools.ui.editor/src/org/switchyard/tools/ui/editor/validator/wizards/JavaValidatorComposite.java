@@ -41,6 +41,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -64,7 +65,7 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
         new Label(getPanel(), SWT.NONE); // spacer
         
         Group inner = new Group(getPanel(), SWT.NONE);
-        inner.setText("Java Validator Type");
+        inner.setText(Messages.label_javaValidatorType);
         GridData innerGD = new GridData(SWT.FILL, SWT.NULL, true, false, 2, 1);
         innerGD.horizontalIndent = -5;
         innerGD.verticalIndent = -5;
@@ -83,13 +84,13 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
                 handleSelectedOption(_javaClassOption);
             }
         });
-        _javaClassOption.setText("Java Class");
+        _javaClassOption.setText(Messages.label_javaClass);
         addGridData(_javaClassOption, 3, SWT.NONE);
         
-        _classText = createLabelAndText(inner, "Class");
+        _classText = createLabelAndText(inner, Messages.label_class);
 
         _browseButton = new Button(inner, SWT.PUSH);
-        _browseButton.setText("Browse...");
+        _browseButton.setText(Messages.button_browse);
         _browseButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -112,10 +113,10 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
                 handleSelectedOption(_beanOption);
             }
         });
-        _beanOption.setText("Bean");
+        _beanOption.setText(Messages.label_bean);
         addGridData(_beanOption, 3, SWT.NONE);
 
-        _beanText = createLabelAndText(inner, "Name");
+        _beanText = createLabelAndText(inner, Messages.label_name);
         addGridData(_beanText, 2, GridData.FILL_HORIZONTAL);
 
 //        _browseBeanButton = new Button(inner, SWT.PUSH);
@@ -149,7 +150,7 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
 
             // check to see if class is valid
             if (className.isEmpty() && beanName.isEmpty()) {
-                setErrorMessage("Java validator class or bean name must be specified.");
+                setErrorMessage(Messages.error_specifyJavaValidatorClassOrBean);
 //            } else {
 //                try {
 //                    if (canFindClass(className) == null) {
@@ -208,9 +209,9 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
     protected void handleModify(final Control control) {
         super.handleModify(control);
         if (control.equals(_classText)) {
-            updateFeature((JavaValidateType) getValidator(), "class", _classText.getText().trim(), "bean");
+            updateFeature((JavaValidateType) getValidator(), "class", _classText.getText().trim(), "bean"); //$NON-NLS-1$ //$NON-NLS-2$
         } else if (control.equals(_beanText)) {
-                updateFeature((JavaValidateType) getValidator(), "bean", _beanText.getText().trim(), "class");
+                updateFeature((JavaValidateType) getValidator(), "bean", _beanText.getText().trim(), "class"); //$NON-NLS-1$ //$NON-NLS-2$
         } else {
             super.handleModify(control);
         }

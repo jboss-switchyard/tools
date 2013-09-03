@@ -49,7 +49,7 @@ public class SOAPBindingWizard extends AbstractBindingWizard implements IBinding
                 }
             }
         }
-        binding.setName(makeUniqueName("soap"));
+        binding.setName(makeUniqueName("soap")); //$NON-NLS-1$
         return binding;
     }
 

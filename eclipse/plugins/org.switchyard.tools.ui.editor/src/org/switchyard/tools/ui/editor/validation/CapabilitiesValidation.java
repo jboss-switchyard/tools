@@ -87,7 +87,7 @@ public class CapabilitiesValidation extends AbstractModelConstraint {
                 final ValidationProblem problem = ValidationProblem.RequiredCapabilityMissing;
                 // add the error to the container so it's visible in the diagram
                 statuses.add(ConstraintStatus.createStatus(ctx, binding.eContainer(), null, problem.getSeverity(),
-                        problem.ordinal(), problem.getMessage(), missing.getName(), "binding"));
+                        problem.ordinal(), problem.getMessage(), missing.getName(), "binding")); //$NON-NLS-1$
             }
         }
         for (Implementation implementation : implementations) {
@@ -100,7 +100,7 @@ public class CapabilitiesValidation extends AbstractModelConstraint {
                 // add the error to the container so it's visible in the diagram
                 statuses.add(ConstraintStatus.createStatus(ctx, implementation.eContainer(), null,
                         problem.getSeverity(), problem.ordinal(), problem.getMessage(), missing.getName(),
-                        "implementation"));
+                        "implementation")); //$NON-NLS-1$
             }
         }
 

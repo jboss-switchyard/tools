@@ -48,6 +48,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -113,7 +114,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
                 if (((LoggerType1) element).getLog() != null) {
                     return ((LoggerType1) element).getLog();
                 } else {
-                    return "";
+                    return ""; //$NON-NLS-1$
                 }
             } else if (element instanceof LoggerType1 && columnIndex == 0) {
                 return ((LoggerType1) element).getType().getLiteral();
@@ -121,7 +122,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
                 if (((LoggerType1) element).getInterval() != null) {
                     return ((LoggerType1) element).getInterval().toString();
                 } else {
-                    return "";
+                    return ""; //$NON-NLS-1$
                 }
             }
             return null;
@@ -130,9 +131,9 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
 
     private TableViewer _propertyTreeTable;
 
-    private static final String LOG_COLUMN = "log";
-    private static final String TYPE_COLUMN = "type";
-    private static final String INTERVAL_COLUMN = "interval";
+    private static final String LOG_COLUMN = "log"; //$NON-NLS-1$
+    private static final String TYPE_COLUMN = "type"; //$NON-NLS-1$
+    private static final String INTERVAL_COLUMN = "interval"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {TYPE_COLUMN, LOG_COLUMN, INTERVAL_COLUMN };
 
@@ -189,13 +190,13 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        typeColumn.setText("Type");
+        typeColumn.setText(Messages.label_type);
         tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
         TableColumn logColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        logColumn.setText("Log");
+        logColumn.setText(Messages.label_log);
         tableLayout.setColumnData(logColumn, new ColumnWeightData(100, 150, true));
         TableColumn intervalColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        intervalColumn.setText("Interval");
+        intervalColumn.setText(Messages.label_interval);
         tableLayout.setColumnData(intervalColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -214,7 +215,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -238,7 +239,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -269,7 +270,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
             final LoggerType1 newLogger = BPMFactory.eINSTANCE.createLoggerType1();
-            newLogger.setLog("NewLogger");
+            newLogger.setLog("NewLogger"); //$NON-NLS-1$
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -438,7 +439,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
             if (((LoggerType1) element).getLog() != null) {
                 return ((LoggerType1) element).getLog();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof LoggerType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
             return new Integer(((LoggerType1) element).getType().getValue());

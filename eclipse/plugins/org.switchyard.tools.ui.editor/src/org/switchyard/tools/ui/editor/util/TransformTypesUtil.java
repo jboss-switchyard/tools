@@ -252,7 +252,7 @@ public final class TransformTypesUtil {
 
         Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
         Map<String, Object> m = reg.getExtensionToFactoryMap();
-        m.put("xml", new SwitchyardResourceFactoryImpl());
+        m.put("xml", new SwitchyardResourceFactoryImpl()); //$NON-NLS-1$
 
         // Obtain a new resource set
         ResourceSet resourceSet = new ResourceSetImpl();
@@ -313,14 +313,14 @@ public final class TransformTypesUtil {
      */
     public static String getLabelForType(String typeString) {
         if (typeString == null || typeString.length() == 0) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         final QName qname = QName.valueOf(typeString);
         if (NewTransformWizard.isJavaType(typeString)) {
             final int lastDot = qname.getLocalPart().lastIndexOf('.');
             if (lastDot >= 0) {
-                return qname.getLocalPart().substring(lastDot + 1) + " {" + qname.getLocalPart().substring(5, lastDot)
-                        + "}";
+                return qname.getLocalPart().substring(lastDot + 1) + " {" + qname.getLocalPart().substring(5, lastDot) //$NON-NLS-1$
+                        + "}"; //$NON-NLS-1$
             }
             return qname.getLocalPart().substring(5);
         }
@@ -328,7 +328,7 @@ public final class TransformTypesUtil {
         if (namespaceURI == null || namespaceURI.isEmpty()) {
             return qname.getLocalPart();
         }
-        return qname.getLocalPart() + " {" + namespaceURI + "}";
+        return qname.getLocalPart() + " {" + namespaceURI + "}"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     private List<TransformType> loadTransformsFromTarget(SwitchYardType switchYard) {

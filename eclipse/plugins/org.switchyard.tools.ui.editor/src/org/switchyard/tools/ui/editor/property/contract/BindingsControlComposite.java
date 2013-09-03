@@ -59,6 +59,7 @@ import org.eclipse.ui.forms.widgets.ScrolledPageBook;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.BindingPropertyComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -212,7 +213,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         });
 
         if (showButtons) {
-            _removeButton = _toolkit.createButton(buttonsComposite, "Remove", SWT.PUSH);
+            _removeButton = _toolkit.createButton(buttonsComposite, Messages.button_remove, SWT.PUSH);
             _removeButton.setEnabled(false);
             _removeButton.addSelectionListener(new SelectionListener() {
 

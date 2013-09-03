@@ -44,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OperationType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -124,17 +125,17 @@ public class BPMActionTable extends Composite implements ICellModifier {
     /**
      * Type column.
      */
-    public static final String TYPE_COLUMN = "type";
+    public static final String TYPE_COLUMN = "type"; //$NON-NLS-1$
 
     /**
      * Operation column.
      */
-    public static final String OPERATION_COLUMN = "operation";
+    public static final String OPERATION_COLUMN = "operation"; //$NON-NLS-1$
 
     /**
      * Event ID column.
      */
-    public static final String EVENT_ID_COLUMN = "eventId";
+    public static final String EVENT_ID_COLUMN = "eventId"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {OPERATION_COLUMN, TYPE_COLUMN, EVENT_ID_COLUMN };
 
@@ -191,15 +192,15 @@ public class BPMActionTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn operationColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        operationColumn.setText("Operation");
+        operationColumn.setText(Messages.label_operation);
         tableLayout.setColumnData(operationColumn, new ColumnWeightData(100, 150, true));
 
         TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        typeColumn.setText("Type");
+        typeColumn.setText(Messages.label_type);
         tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
 
         TableColumn eventIdColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        eventIdColumn.setText("Event ID");
+        eventIdColumn.setText(Messages.label_eventId);
         tableLayout.setColumnData(eventIdColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -218,7 +219,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -242,7 +243,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -279,7 +280,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
                     protected void doExecute() {
                         BPMOperationType newAction = BPMFactory.eINSTANCE.createBPMOperationType();
                         newAction.setType(OperationType.STARTPROCESS);
-                        newAction.setName("NewOperation");
+                        newAction.setName("NewOperation"); //$NON-NLS-1$
                         if (impl.getOperations() == null) {
                             impl.setOperations(BPMFactory.eINSTANCE.createOperationsType());
                         }
@@ -290,7 +291,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
             } else {
                 BPMOperationType newAction = BPMFactory.eINSTANCE.createBPMOperationType();
                 newAction.setType(OperationType.STARTPROCESS);
-                newAction.setName("NewOperation");
+                newAction.setName("NewOperation"); //$NON-NLS-1$
                 if (impl.getOperations() == null) {
                     impl.setOperations(BPMFactory.eINSTANCE.createOperationsType());
                 }
@@ -434,13 +435,13 @@ public class BPMActionTable extends Composite implements ICellModifier {
             if (((BPMOperationType) element).getName() != null) {
                 return ((BPMOperationType) element).getName();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof BPMOperationType && property.equalsIgnoreCase(EVENT_ID_COLUMN)) {
             if (((BPMOperationType) element).getEventId() != null) {
                 return ((BPMOperationType) element).getEventId();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

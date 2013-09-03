@@ -47,6 +47,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -71,12 +72,12 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
 
     @Override
     public String getTitle() {
-        return "SCA Binding Details";
+        return Messages.title_scaBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your SCA Binding.";
+        return Messages.description_scaBindingDetails;
     }
 
     @Override
@@ -86,7 +87,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
             this._binding = (SCABinding) impl;
             setInUpdate(true);
             
-            Boolean clusteredValue = (Boolean) getFunkyAttributeValue("clustered");
+            Boolean clusteredValue = (Boolean) getFunkyAttributeValue("clustered"); //$NON-NLS-1$
             if (clusteredValue != null) {
                 _clusteredCheckbox.setSelection(clusteredValue.booleanValue());
             }
@@ -104,7 +105,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 }
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -121,33 +122,33 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         if (!_showConsumer) {
             _loadBalancingCombo.setEnabled(_clusteredCheckbox.getSelection());
 
-            String loadBalanceValue = (String) getFunkyAttributeValue("loadBalance");
-            if (loadBalanceValue != null && (!(loadBalanceValue.equalsIgnoreCase("RandomStrategy") 
-                    || loadBalanceValue.equalsIgnoreCase("RoundRobinStrategy") || loadBalanceValue.trim().length() == 0))) {
+            String loadBalanceValue = (String) getFunkyAttributeValue("loadBalance"); //$NON-NLS-1$
+            if (loadBalanceValue != null && (!(loadBalanceValue.equalsIgnoreCase("RandomStrategy")  //$NON-NLS-1$
+                    || loadBalanceValue.equalsIgnoreCase("RoundRobinStrategy") || loadBalanceValue.trim().length() == 0))) { //$NON-NLS-1$
                 // custom class
-                setTextValue(_loadBalancingCombo, "Custom Load Balance Strategy");
+                setTextValue(_loadBalancingCombo, Messages.constant_customLoadBalanceStrategy);
                 _loadBalancingCustomClassText.setEnabled(true);
                 _browseLoadBalancingClassButton.setEnabled(true);
                 setTextValue(_loadBalancingCustomClassText, loadBalanceValue);
             } else {
                 if (loadBalanceValue == null) {
                     _loadBalancingCombo.select(0);
-                    setTextValue(_loadBalancingCustomClassText, "");
+                    setTextValue(_loadBalancingCustomClassText, ""); //$NON-NLS-1$
                 } else {
                     setTextValue(_loadBalancingCombo, loadBalanceValue);
                     _loadBalancingCustomClassText.setEnabled(false);
                     _browseLoadBalancingClassButton.setEnabled(false);
-                    setTextValue(_loadBalancingCustomClassText, "");
+                    setTextValue(_loadBalancingCustomClassText, ""); //$NON-NLS-1$
                 }
             }
             
-            String targetValue = (String) getFunkyAttributeValue("target");
+            String targetValue = (String) getFunkyAttributeValue("target"); //$NON-NLS-1$
             setTextValue(_targetServiceText, targetValue);
-            String targetNamespaceValue = (String) getFunkyAttributeValue("targetNamespace");
+            String targetNamespaceValue = (String) getFunkyAttributeValue("targetNamespace"); //$NON-NLS-1$
             setTextValue(_targetNamespaceText, targetNamespaceValue);
 
             if (_clusteredCheckbox.getSelection() 
-                    && _loadBalancingCombo.getText().equalsIgnoreCase("Custom Load Balance Strategy")) {
+                    && _loadBalancingCombo.getText().equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy)) {
                 _loadBalancingCustomClassText.setEnabled(true);
                 _browseLoadBalancingClassButton.setEnabled(true);
                 
@@ -184,34 +185,34 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
         if (!_showConsumer) {
-            _targetServiceText = createLabelAndText(composite, "Target Service");
-            _targetNamespaceText = createLabelAndText(composite, "Target Namespace");
+            _targetServiceText = createLabelAndText(composite, Messages.label_targetService);
+            _targetNamespaceText = createLabelAndText(composite, Messages.label_targetNamespace);
         }
 
         Group clusteringGroup = new Group(composite, SWT.NONE);
         clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         clusteringGroup.setLayout(new GridLayout(3, false));
-        clusteringGroup.setText("Clustering");
+        clusteringGroup.setText(Messages.label_clustering);
         
-        _clusteredCheckbox = createCheckbox(clusteringGroup, "Clustered");
+        _clusteredCheckbox = createCheckbox(clusteringGroup, Messages.label_clustered);
         addGridData(_clusteredCheckbox, 3, GridData.FILL_HORIZONTAL);
         
         if (!_showConsumer) {
-            _loadBalancingCombo = createLabelAndCombo(clusteringGroup, "Load Balancing", true);
+            _loadBalancingCombo = createLabelAndCombo(clusteringGroup, Messages.label_loadBalancing, true);
             addGridData(_loadBalancingCombo, 2, GridData.FILL_HORIZONTAL);
             _loadBalancingCombo.removeAll();
-            _loadBalancingCombo.add("");
-            _loadBalancingCombo.add("RoundRobinStrategy");
-            _loadBalancingCombo.add("RandomStrategy");
-            _loadBalancingCombo.add("Custom Load Balance Strategy");
+            _loadBalancingCombo.add(""); //$NON-NLS-1$
+            _loadBalancingCombo.add("RoundRobinStrategy"); //$NON-NLS-1$
+            _loadBalancingCombo.add("RandomStrategy"); //$NON-NLS-1$
+            _loadBalancingCombo.add(Messages.constant_customLoadBalanceStrategy);
             
-            _loadBalancingCustomClassText = createLabelAndText(clusteringGroup, "Custom Class");
+            _loadBalancingCustomClassText = createLabelAndText(clusteringGroup, Messages.label_customClass);
 
             _browseLoadBalancingClassButton = new Button(clusteringGroup, SWT.PUSH);
-            _browseLoadBalancingClassButton.setText("Browse...");
+            _browseLoadBalancingClassButton.setText(Messages.button_browse);
             GridData btnGD = new GridData();
             _browseLoadBalancingClassButton.setLayoutData(btnGD);
             _browseLoadBalancingClassButton.addSelectionListener(new SelectionAdapter() {
@@ -287,24 +288,24 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         @Override
         public void run() throws Exception {
             
-            if (_localFeature.contentEquals("clustered")) {
+            if (_localFeature.contentEquals("clustered")) { //$NON-NLS-1$
                 boolean removeAll = false;
                 if (_localValue instanceof Boolean) {
                     // if clustered = false, remove all other properties
                     removeAll = !((Boolean)_localValue).booleanValue();
                 }
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Clustered(), "clustered", _localValue);
+                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Clustered(), "clustered", _localValue); //$NON-NLS-1$
                 if (removeAll) {
-                    removeFunkyAttributeValue("target");
-                    removeFunkyAttributeValue("targetNamespace");
-                    removeFunkyAttributeValue("loadBalance");
+                    removeFunkyAttributeValue("target"); //$NON-NLS-1$
+                    removeFunkyAttributeValue("targetNamespace"); //$NON-NLS-1$
+                    removeFunkyAttributeValue("loadBalance"); //$NON-NLS-1$
                 }
-            } else if (_localFeature.contentEquals("target")) {
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Target(), "target", _localValue);
-            } else if (_localFeature.contentEquals("targetNamespace")) {
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_TargetNamespace(), "targetNamespace", _localValue);
-            } else if (_localFeature.contentEquals("loadBalance")) {
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_LoadBalance(), "loadBalance", _localValue);
+            } else if (_localFeature.contentEquals("target")) { //$NON-NLS-1$
+                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Target(), "target", _localValue); //$NON-NLS-1$
+            } else if (_localFeature.contentEquals("targetNamespace")) { //$NON-NLS-1$
+                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_TargetNamespace(), "targetNamespace", _localValue); //$NON-NLS-1$
+            } else if (_localFeature.contentEquals("loadBalance")) { //$NON-NLS-1$
+                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_LoadBalance(), "loadBalance", _localValue); //$NON-NLS-1$
             }
         }
     }
@@ -317,28 +318,28 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
 
     protected void handleModify(final Control control) {
         if (control.equals(_clusteredCheckbox)) {
-            updateFeature(_binding, "clustered", _clusteredCheckbox.getSelection());
+            updateFeature(_binding, "clustered", _clusteredCheckbox.getSelection()); //$NON-NLS-1$
         } else if (control.equals(_targetServiceText)) {
-            updateFeature(_binding, "target", _targetServiceText.getText().trim());
+            updateFeature(_binding, "target", _targetServiceText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_targetNamespaceText)) {
-            updateFeature(_binding, "targetNamespace", _targetNamespaceText.getText().trim());
+            updateFeature(_binding, "targetNamespace", _targetNamespaceText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_loadBalancingCombo)) {
             String value = _loadBalancingCombo.getText().trim();
-            if (value.contentEquals("Custom Load Balance Strategy")) {
+            if (value.contentEquals(Messages.constant_customLoadBalanceStrategy)) {
                 value = _loadBalancingCustomClassText.getText().trim();
                 if (value.trim().isEmpty()) {
-                    value = "CustomLoadBalanceStrategyClass";
+                    value = "CustomLoadBalanceStrategyClass"; //$NON-NLS-1$
                 }
             }
-            updateFeature(_binding, "loadBalance", value);
+            updateFeature(_binding, "loadBalance", value); //$NON-NLS-1$
         } else if (control.equals(_loadBalancingCustomClassText)) {
             String value = _loadBalancingCombo.getText().trim();
-            if (value.contentEquals("Custom Load Balance Strategy")) {
+            if (value.contentEquals(Messages.constant_customLoadBalanceStrategy)) {
                 value = _loadBalancingCustomClassText.getText().trim();
             }
-            updateFeature(_binding, "loadBalance", value);
+            updateFeature(_binding, "loadBalance", value); //$NON-NLS-1$
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -354,16 +355,16 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
             Entry entry = iter.next();
             String name = entry.getEStructuralFeature().getName();
             if (name.contentEquals(propertyName)) {
-                if (name.equals("clustered")) {
+                if (name.equals("clustered")) { //$NON-NLS-1$
                     Boolean clusteredValue = (Boolean) entry.getValue();
                     return clusteredValue;
-                } else if (name.equals("loadBalance")) {
+                } else if (name.equals("loadBalance")) { //$NON-NLS-1$
                     String value = (String) entry.getValue();
                     return value;
-                } else if (name.equals("target")) {
+                } else if (name.equals("target")) { //$NON-NLS-1$
                     String value = (String) entry.getValue();
                     return value;
-                } else if (name.equals("targetNamespace")) {
+                } else if (name.equals("targetNamespace")) { //$NON-NLS-1$
                     String value = (String) entry.getValue();
                     return value;
                 }
@@ -375,28 +376,28 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
     protected void handleUndo(Control control) {
         if (_binding != null) {
             if (control.equals(_clusteredCheckbox)) {
-                Boolean value = (Boolean) getFunkyAttributeValue("clustered");
+                Boolean value = (Boolean) getFunkyAttributeValue("clustered"); //$NON-NLS-1$
                 _clusteredCheckbox.setSelection(value.booleanValue());
             } else if (control.equals(_targetServiceText)) {
-                String value = (String) getFunkyAttributeValue("target");
+                String value = (String) getFunkyAttributeValue("target"); //$NON-NLS-1$
                 _targetServiceText.setText(value);
             } else if (control.equals(_targetNamespaceText)) {
-                String value = (String) getFunkyAttributeValue("targetNamespace");
+                String value = (String) getFunkyAttributeValue("targetNamespace"); //$NON-NLS-1$
                 _targetNamespaceText.setText(value);
             } else if (control.equals(_loadBalancingCombo) || control.equals(_loadBalancingCustomClassText)) {
-                String value = (String) getFunkyAttributeValue("loadBalance");
-                if (!(value.equalsIgnoreCase("RoundRobinStrategy"))) {
+                String value = (String) getFunkyAttributeValue("loadBalance"); //$NON-NLS-1$
+                if (!(value.equalsIgnoreCase("RoundRobinStrategy"))) { //$NON-NLS-1$
                     // custom class
-                    setTextValue(_loadBalancingCombo, "Custom Load Balance Strategy");
+                    setTextValue(_loadBalancingCombo, Messages.constant_customLoadBalanceStrategy);
                     _loadBalancingCustomClassText.setEnabled(true);
                     setTextValue(_loadBalancingCustomClassText, value);
                 } else {
                     setTextValue(_loadBalancingCombo, value);
                     _loadBalancingCustomClassText.setEnabled(false);
-                    setTextValue(_loadBalancingCustomClassText, "");
+                    setTextValue(_loadBalancingCustomClassText, ""); //$NON-NLS-1$
                 }
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else {
                 super.handleUndo(control);
             }
@@ -424,7 +425,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         }
         try {
             SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
-                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter);
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter); //$NON-NLS-1$
             if (dialog.open() == SelectionDialog.OK) {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {

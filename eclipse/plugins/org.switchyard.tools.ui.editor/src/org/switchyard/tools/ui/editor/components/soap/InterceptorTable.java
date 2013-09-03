@@ -39,6 +39,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -134,7 +135,7 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
     /**
      *  Name column.
      */
-    public static final String NAME_COLUMN = "name";
+    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
     
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN };
 
@@ -187,7 +188,7 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
         _interceptorTreeTable.getTree().setLayoutData(gd11);
         _interceptorTreeTable.getTree().setHeaderVisible(true);
         TreeColumn nameColumn = new TreeColumn(_interceptorTreeTable.getTree(), SWT.LEFT);
-        nameColumn.setText("Class");
+        nameColumn.setText(Messages.label_class);
         nameColumn.setWidth(400);
 
         _interceptorTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -202,7 +203,7 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
+        this._mAddButton.setText(Messages.button_add);
         this._mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -223,7 +224,7 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
 
         this._mEditButton = new Button(this, SWT.NONE);
         this._mEditButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mEditButton.setText("Edit");
+        this._mEditButton.setText(Messages.button_edit);
         this._mEditButton.setEnabled(false);
         this._mEditButton.addSelectionListener(new SelectionAdapter() {
 
@@ -236,7 +237,7 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
 
         this._mRemoveButton = new Button(this, SWT.NONE);
         this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
+        this._mRemoveButton.setText(Messages.button_remove);
         this._mRemoveButton.setEnabled(false);
         this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
 

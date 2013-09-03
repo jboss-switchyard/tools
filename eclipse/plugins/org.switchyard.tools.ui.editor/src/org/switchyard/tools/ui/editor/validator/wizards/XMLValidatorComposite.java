@@ -44,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -72,13 +73,13 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         outer.setLayoutData(outerGD);
         outer.setLayout(new GridLayout(2, false));
 
-        _schemaTypeCombo = createLabelAndCombo(outer, "Schema Type", true);
-        _schemaTypeCombo.add("DTD", 0);
-        _schemaTypeCombo.setData("DTD", XmlSchemaType.DTD);
-        _schemaTypeCombo.add("XMLSCHEMA", 1);
-        _schemaTypeCombo.setData("XMLSCHEMA", XmlSchemaType.XMLSCHEMA);
-        _schemaTypeCombo.add("RELAX_NG",2);
-        _schemaTypeCombo.setData("RELAX_NG", XmlSchemaType.RELAXNG);
+        _schemaTypeCombo = createLabelAndCombo(outer, Messages.label_schemaType, true);
+        _schemaTypeCombo.add("DTD", 0); //$NON-NLS-1$
+        _schemaTypeCombo.setData("DTD", XmlSchemaType.DTD); //$NON-NLS-1$
+        _schemaTypeCombo.add("XMLSCHEMA", 1); //$NON-NLS-1$
+        _schemaTypeCombo.setData("XMLSCHEMA", XmlSchemaType.XMLSCHEMA); //$NON-NLS-1$
+        _schemaTypeCombo.add("RELAX_NG",2); //$NON-NLS-1$
+        _schemaTypeCombo.setData("RELAX_NG", XmlSchemaType.RELAXNG); //$NON-NLS-1$
         _schemaTypeCombo.select(XmlSchemaType.DTD_VALUE);
 
         Composite inner = new Composite(getPanel(), SWT.NONE);
@@ -88,7 +89,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         inner.setLayoutData(innerGD);
         inner.setLayout(new GridLayout(1, false));
         
-        new Label(inner, SWT.NULL).setText("Schema Files");
+        new Label(inner, SWT.NULL).setText(Messages.label_schemaFiles);
         
         _schemaFileTable = new FileEntryTable(inner, SWT.NONE) {
 
@@ -125,7 +126,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
 
         _schemaFileTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
         
-        new Label(inner, SWT.NULL).setText("Catalog Files");
+        new Label(inner, SWT.NULL).setText(Messages.label_catalogFiles);
         _catalogFileTable = new FileEntryTable(inner, SWT.NONE) {
 
             @Override
@@ -161,7 +162,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
 
         _catalogFileTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
  
-        _failOnWarningText = createCheckbox(getPanel(), "Fail on Warning");
+        _failOnWarningText = createCheckbox(getPanel(), Messages.label_failOnWarning);
         _failOnWarningText.addSelectionListener(new SelectionListener() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -177,7 +178,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
             }
         });
         
-        _namespaceAwareCheckbox = createCheckbox(getPanel(), "Namespace Aware");
+        _namespaceAwareCheckbox = createCheckbox(getPanel(), Messages.label_namespaceAware);
         _namespaceAwareCheckbox.addSelectionListener(new SelectionListener() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -258,7 +259,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
             if (_xsdFileText != null && !_xsdFileText.isDisposed()) {
                 String text = _xsdFileText.getText().trim();
                 if (text.length() == 0) {
-                    setErrorMessage("File name field may not be empty.");
+                    setErrorMessage(Messages.error_emptyFileName);
                 }
             }
         }
@@ -268,15 +269,15 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
     protected void handleModify(final Control control) {
         if (control.equals(_failOnWarningText)) {
             String value = Boolean.toString(_failOnWarningText.getSelection());                        
-            updateFeature((XmlValidateType) getValidator(), "failOnWarning", value);
+            updateFeature((XmlValidateType) getValidator(), "failOnWarning", value); //$NON-NLS-1$
         } else if (control.equals(_namespaceAwareCheckbox)) {
             String value = Boolean.toString(_namespaceAwareCheckbox.getSelection());                        
-            updateFeature((XmlValidateType) getValidator(), "namespaceAware", value);
+            updateFeature((XmlValidateType) getValidator(), "namespaceAware", value); //$NON-NLS-1$
         } else if (control.equals(_xsdFileText)) {
-            updateFeature((XmlValidateType) getValidator(), "schemaFile", _xsdFileText.getText().trim());
+            updateFeature((XmlValidateType) getValidator(), "schemaFile", _xsdFileText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_schemaTypeCombo)) {
             XmlSchemaType selectedType = (XmlSchemaType) _schemaTypeCombo.getData(_schemaTypeCombo.getText());
-            updateFeature((XmlValidateType) getValidator(), "schemaType", selectedType);
+            updateFeature((XmlValidateType) getValidator(), "schemaType", selectedType); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -361,7 +362,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
 
         @Override
         public void run() throws Exception {
-            String[] path = parseString(_localObjectPath, "/");
+            String[] path = parseString(_localObjectPath, "/"); //$NON-NLS-1$
             EObject object = getValidator();
             for (int i = 0; i < path.length; i++) {
                 object = (EObject) getFeatureValue(object, path[i]);
@@ -393,19 +394,19 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         } else {
             dialog = new ClasspathResourceSelectionDialog(Display.getCurrent().getActiveShell(), javaProject.getProject());
         }
-        String title = "Select XSD, DTD, or RNG file from Project";
-        String extension = "*.xsd,*.dtd,*.rng,*.rnc";
+        String title = Messages.title_selectXsdDtdRngFile;
+        String extension = "*.xsd,*.dtd,*.rng,*.rnc"; //$NON-NLS-1$
         if (type != null) {
             String value = type.trim();
-            if (value.contentEquals("DTD")) {
-                title = "Select DTD file from Project";
-                extension = "*.dtd";
-            } else if (value.contentEquals("XMLSCHEMA")) {
-                title = "Select XSD file from Project";
-                extension = "*.xsd";
-            } else if (value.contentEquals("RELAX_NG")) {
-                title = "Select RELAX_NG file from Project";
-                extension = "*.rng";
+            if (value.contentEquals("DTD")) { //$NON-NLS-1$
+                title = Messages.title_selectDtdFile;
+                extension = "*.dtd"; //$NON-NLS-1$
+            } else if (value.contentEquals("XMLSCHEMA")) { //$NON-NLS-1$
+                title = Messages.title_selectXsdFile;
+                extension = "*.xsd"; //$NON-NLS-1$
+            } else if (value.contentEquals("RELAX_NG")) { //$NON-NLS-1$
+                title = Messages.title_selectRelaxNgFile;
+                extension = "*.rng"; //$NON-NLS-1$
             }
         }
         dialog.setTitle(title);

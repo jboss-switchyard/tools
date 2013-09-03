@@ -19,6 +19,7 @@ import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.IRefreshablePage;
 
@@ -42,8 +43,8 @@ public class AddValidatorWizardXMLPage extends BaseWizardPage implements IRefres
 
     protected AddValidatorWizardXMLPage(String pageName) {
         super(pageName);
-        setTitle("Specify XML Validator Details");
-        setDescription("Specify pertinent details for your XML validator.");
+        setTitle(Messages.title_specifyXmlValidatorDetails);
+        setDescription(Messages.description_specifyXmlValidatorDetails);
     }
 
     @Override

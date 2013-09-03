@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 
 /**
  * @author bfitzpat
@@ -56,18 +57,18 @@ public class ResourceDetailInputDialog extends TitleAreaDialog {
 
     @Override
     protected Control createDialogArea(Composite parent) {
-        setTitle("Advanced Resource Details");
-        setMessage("Specify the input type and other available properties for the selected resource.");
-        getShell().setText("Resource Details");
+        setTitle(Messages.title_advanceResourceDetails);
+        setMessage(Messages.description_advancedResourceDetails);
+        getShell().setText(Messages.title_resourceDetails);
 
         Composite area = new Composite(parent, SWT.NULL);
         GridLayout gridLayout = new GridLayout(2, false);
         area.setLayout(gridLayout);
         area.setLayoutData(new GridData(GridData.FILL_BOTH));
-        _inputTypeCombo = createLabelAndCombo(area, "Input Type", true);
-        _worksheetNameText = createLabelAndText(area, "Worksheet Name");
+        _inputTypeCombo = createLabelAndCombo(area, Messages.label_inputType, true);
+        _worksheetNameText = createLabelAndText(area, Messages.label_worksheetName);
         _usingExternalTypesButton = new Button(area, SWT.CHECK);
-        _usingExternalTypesButton.setText("Uses External Types");
+        _usingExternalTypesButton.setText(Messages.label_usesExternalTypes);
         _usingExternalTypesButton.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false, 1, 2));
         
         updateOptionsBasedOnInput();
@@ -124,11 +125,11 @@ public class ResourceDetailInputDialog extends TitleAreaDialog {
     
     private void updateOptionsBasedOnInput() {
         if (_resourceType != null) {
-            if (_resourceType.getType().equalsIgnoreCase("DTABLE")) {
+            if (_resourceType.getType().equalsIgnoreCase("DTABLE")) { //$NON-NLS-1$
                 _inputTypeCombo.removeAll();
-                _inputTypeCombo.add("");
-                _inputTypeCombo.add("XLS");
-                _inputTypeCombo.add("CSV");
+                _inputTypeCombo.add(""); //$NON-NLS-1$
+                _inputTypeCombo.add("XLS"); //$NON-NLS-1$
+                _inputTypeCombo.add("CSV"); //$NON-NLS-1$
                 _usingExternalTypesButton.setVisible(false);
 //            } else if (_resourceType.getType().equalsIgnoreCase("SCARD")) {
 //                _inputTypeCombo.removeAll();

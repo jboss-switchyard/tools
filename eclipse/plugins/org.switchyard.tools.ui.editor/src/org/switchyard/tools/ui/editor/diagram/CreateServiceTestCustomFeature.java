@@ -25,6 +25,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizard;
 
 /**
@@ -48,7 +49,7 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
 
     @Override
     public String getDescription() {
-        return "Create a new service test class.";
+        return Messages.featureDescription_newServiceTest;
     }
 
     @Override
@@ -66,7 +67,7 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
 
     @Override
     public String getName() {
-        return "New Service Test Class";
+        return Messages.featureName_newServiceTest;
     }
 
     @Override

@@ -70,7 +70,7 @@ public class SCADiagramAddComponentReferenceFeature extends AbstractAddShapeFeat
         final List<ComponentReference> references = MergedModelUtil.getAdapter(component,
                 ComponentMergedModelAdapter.class).getReferences();
         if (!references.contains(reference)) {
-            System.err.println("Target component does not contain new reference!!!");
+            System.err.println("Target component does not contain new reference!!!"); //$NON-NLS-1$
             return null;
         }
 

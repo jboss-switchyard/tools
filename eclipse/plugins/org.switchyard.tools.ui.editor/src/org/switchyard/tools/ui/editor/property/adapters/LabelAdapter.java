@@ -13,24 +13,15 @@ package org.switchyard.tools.ui.editor.property.adapters;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.tb.ImageDecorator;
-import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
-import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
-import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelDirectBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
@@ -42,7 +33,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
@@ -54,7 +44,10 @@ import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
+import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -93,52 +86,7 @@ public final class LabelAdapter {
      * @return String label
      */
     private static String getLabelForBindingType(Binding binding) {
-        String bindingLabel = null;
-        if (binding instanceof SOAPBindingType) {
-            bindingLabel =  "SOAP";
-        } else if (binding instanceof CamelBindingType) {
-            bindingLabel =  "Camel";
-        } else if (binding instanceof CamelFileBindingType) {
-            bindingLabel =  "File";
-        } else if (binding instanceof CamelQuartzBindingType) {
-            bindingLabel =  "Scheduler";
-        } else if (binding instanceof CamelSftpBindingType) {
-            bindingLabel =  "SFTP";
-        } else if (binding instanceof CamelFtpsBindingType) {
-            bindingLabel =  "FTPS";
-        } else if (binding instanceof CamelFtpBindingType) {
-            bindingLabel =  "FTP";
-        } else if (binding instanceof CamelNettyTcpBindingType) {
-            bindingLabel =  "Netty TCP";
-        } else if (binding instanceof CamelNettyUdpBindingType) {
-            bindingLabel =  "Netty UDP";
-        } else if (binding instanceof CamelJmsBindingType) {
-            bindingLabel =  "JMS";
-        } else if (binding instanceof CamelAtomBindingType) {
-            bindingLabel =  "Atom";
-        } else if (binding instanceof CamelDirectBindingType) {
-            bindingLabel =  "Direct";
-        } else if (binding instanceof CamelSedaBindingType) {
-            bindingLabel =  "Seda";
-        } else if (binding instanceof CamelTimerBindingType) {
-            bindingLabel =  "Timer";
-        } else if (binding instanceof CamelSqlBindingType) {
-            bindingLabel =  "SQL";
-        } else if (binding instanceof JCABinding) {
-            bindingLabel =  "JCA";
-        } else if (binding instanceof RESTBindingType) {
-            bindingLabel =  "REST";
-        } else if (binding instanceof HTTPBindingType) {
-            bindingLabel =  "HTTP";
-        } else if (binding instanceof CamelMailBindingType) {
-            bindingLabel =  "Mail";
-        } else if (binding instanceof CamelJpaBindingType) {
-            bindingLabel =  "JPA";
-        } else if (binding instanceof SCABinding) {
-            bindingLabel =  "SCA";
-        } else {
-            bindingLabel =  "Unsupported (" + binding.eClass().getClass().getName() + ")";
-        }
+        String bindingLabel = BindingTypeExtensionManager.instance().getExtensionFor(binding.getClass()).getTypeName(binding);
         if (binding.getName() != null && !binding.getName().trim().isEmpty()) {
             bindingLabel = bindingLabel + " (" + binding.getName() + ")";
         }
@@ -146,35 +94,16 @@ public final class LabelAdapter {
     }
     
     private static String getLabelForImplementationType(Implementation impl) {
-        if (impl instanceof BeanImplementationType) {
-            return "Bean";
-        } else if (impl instanceof BPELImplementation) {
-            return "BPEL";
-        } else if (impl instanceof CamelImplementationType) {
-            CamelImplementationType camelimpl = (CamelImplementationType) impl;
-            if (camelimpl.getJava() != null) {
-                return "Camel (Java)";
-            } else if (camelimpl.getRoute() != null) {
-                return "Camel (XML)";
-            } else {
-                return "Camel";
-            }
-        } else if (impl instanceof BPMImplementationType) {
-            return "BPM";
-        } else if (impl instanceof RulesImplementationType) {
-            return "Rules";
-        } else {
-            return "Unsupported (" + impl.eClass().getClass().getName() + ")";
-        }
+        return ComponentTypeExtensionManager.instance().getExtensionFor(impl.getClass()).getTypeName(impl);
     }
 
     private static String getLabelForInterfaceType(Interface intfc) {
         if (intfc instanceof EsbInterface) {
-            return "ESB";
+            return Messages.constant_esb;
         } else if (intfc instanceof JavaInterface) {
-            return "Java";
+            return Messages.constant_java;
         } else if (intfc instanceof WSDLPortType) {
-            return "WSDL";
+            return Messages.constant_wsdl;
         } else {
             return "Unsupported (" + intfc.eClass().getClass().getName() + ")";
         }
@@ -248,15 +177,15 @@ public final class LabelAdapter {
     private static String getLabelForTransformType(TransformType transform) {
         String label = "Unsupported (" + transform.eClass().getClass().getName() + ")";
         if (transform instanceof JAXBTransformType) {
-            label = "JAXB";
+            label = Messages.constant_jaxb;
         } else if (transform instanceof XsltTransformType) {
-            label = "XSLT";
+            label = Messages.constant_xslt;
         } else if (transform instanceof JavaTransformType1) {
-            label = "Java";
+            label = Messages.constant_java;
         } else if (transform instanceof JsonTransformType) {
-            label = "JSON";
+            label = Messages.constant_json;
         } else if (transform instanceof SmooksTransformType1) {
-            label = "Smooks";
+            label = Messages.constant_smooks;
         }
         URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile()
                 .getFullPath().toString(), true);
@@ -273,9 +202,9 @@ public final class LabelAdapter {
     private static String getLabelForValidatorType(ValidateType validator) {
         String label = "Unsupported (" + validator.eClass().getClass().getName() + ")";
         if (validator instanceof XmlValidateType) {
-            label = "XML";
+            label = Messages.constant_xml;
         } else if (validator instanceof JavaValidateType) {
-            label = "Java";
+            label = Messages.constant_java;
         }
         URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile()
                 .getFullPath().toString(), true);

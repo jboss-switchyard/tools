@@ -284,7 +284,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null && !e.diff.getOldValue().equals(e.diff.getNewValue())) {
-                System.out.println("AbstractSwitchyardComposite:TextValueChanged: " + e.diff);
+                System.out.println("AbstractSwitchyardComposite:TextValueChanged: " + e.diff); //$NON-NLS-1$
                 SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
                 Control ctrl = (Control) decorator.getWidget();
                 if (!ctrl.isDisposed()) {
@@ -299,7 +299,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null) {
-                System.out.println("AbstractSwitchyardComposite:ComboValueChanged: " + e.diff);
+                System.out.println("AbstractSwitchyardComposite:ComboValueChanged: " + e.diff); //$NON-NLS-1$
                 SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
                 handleChange((Control) decorator.getWidget());
                 ErrorUtils.showErrorMessage(null);
@@ -312,7 +312,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null) {
                 if (!inUpdate() && e.diff != null) {
-                    System.out.println("AbstractSwitchyardComposite:ButtonValueChanged: " + e.diff);
+                    System.out.println("AbstractSwitchyardComposite:ButtonValueChanged: " + e.diff); //$NON-NLS-1$
                     SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
                     handleChange((Control) decorator.getWidget());
                 }
@@ -391,7 +391,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                         @Override
                         public void focusLost(FocusEvent e) {
                             if (AbstractSwitchyardComposite.this._comboTextChanged == (Control) e.getSource()) {
-                                System.out.println("AbstractSwitchyardComposite:New Combo Value (text entry): " + ((Combo) e.getSource()).getText());
+                                System.out.println("AbstractSwitchyardComposite:New Combo Value (text entry): " + ((Combo) e.getSource()).getText()); //$NON-NLS-1$
                                 handleChange((Control) e.getSource());
                                 AbstractSwitchyardComposite.this._comboTextChanged = null;
                             }
@@ -505,7 +505,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      */
     public void setTextValue(Text text, String value) {
         if (value == null) {
-            value = "";
+            value = ""; //$NON-NLS-1$
         }
         if (text != null && !text.isDisposed()) {
             text.setText(value);
@@ -518,7 +518,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      */
     public void setTextValue(Combo combo, String value) {
         if (value == null) {
-            value = "";
+            value = ""; //$NON-NLS-1$
         }
         if (combo != null && !combo.isDisposed()) {
             combo.setText(value);
@@ -542,9 +542,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                 }
             }
         }
-        System.out.println("AbstractSwitchyardComposite: Didn't find feature: " + featureId);
+        System.out.println("AbstractSwitchyardComposite: Didn't find feature: " + featureId); //$NON-NLS-1$
         showFeatures(eObject);
-        throw new Exception("AbstractSwitchyardComposite:Feature ID (" + featureId + ") not found.");
+        throw new Exception("AbstractSwitchyardComposite:Feature ID (" + featureId + ") not found."); //$NON-NLS-1$ //$NON-NLS-2$
     }
     
     private void showFeatures(EObject eObject) {
@@ -552,7 +552,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
             EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
             if (eStructuralFeature.isChangeable()) {
-                System.out.println("AbstractSwitchyardComposite:Feature: " + eStructuralFeature.getName());
+                System.out.println("AbstractSwitchyardComposite:Feature: " + eStructuralFeature.getName()); //$NON-NLS-1$
             }
         }
     }
@@ -572,7 +572,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                 }
             }
         }
-        System.out.println("AbstractSwitchyardComposite: Didn't find feature: " + featureId);
+        System.out.println("AbstractSwitchyardComposite: Didn't find feature: " + featureId); //$NON-NLS-1$
         showFeatures(eObject);
         return null;
     }

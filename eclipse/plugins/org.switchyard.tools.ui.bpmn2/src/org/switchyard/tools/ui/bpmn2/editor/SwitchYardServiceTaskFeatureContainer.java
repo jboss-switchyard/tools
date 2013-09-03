@@ -36,7 +36,7 @@ import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 public class SwitchYardServiceTaskFeatureContainer extends JbpmCustomTaskFeatureContainer {
 
     /** The ServiceTask.implementation for SwitchYard services. */
-    public static final String IMPLEMENTATION_SWITCHYARD = "##SwitchYard";
+    public static final String IMPLEMENTATION_SWITCHYARD = "##SwitchYard"; //$NON-NLS-1$
 
     @Override
     public boolean isAvailable(IFeatureProvider fp) {

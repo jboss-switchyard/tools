@@ -19,6 +19,7 @@ import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.IRefreshablePage;
 
@@ -42,8 +43,8 @@ public class AddValidatorWizardJavaPage extends BaseWizardPage implements IRefre
 
     protected AddValidatorWizardJavaPage(String pageName) {
         super(pageName);
-        setTitle("Specify Java Validator Details");
-        setDescription("Specify pertinent details for your Java validator.");
+        setTitle(Messages.title_specifyJavaValidatorDetails);
+        setDescription(Messages.description_specifyJavaValidatorDetails);
     }
 
     @Override

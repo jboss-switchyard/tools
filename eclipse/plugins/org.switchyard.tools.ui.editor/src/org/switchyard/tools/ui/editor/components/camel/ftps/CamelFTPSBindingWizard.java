@@ -38,7 +38,7 @@ public class CamelFTPSBindingWizard extends AbstractBindingWizard implements IBi
         } else {
             binding.setProduce(FtpFactory.eINSTANCE.createRemoteFileProducerType());
         }
-        binding.setName(makeUniqueName("ftps"));
+        binding.setName(makeUniqueName("ftps")); //$NON-NLS-1$
         return binding;
     }
 

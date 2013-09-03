@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
 
 /**
@@ -41,7 +42,7 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
      * @param fp the feature provider
      */
     public SCADiagramCreateComponentReferenceFeature(IFeatureProvider fp) {
-        super(fp, "Reference", "Create Component Reference");
+        super(fp, Messages.featureName_componentReference, Messages.featureDescription_componentReference);
     }
 
     @Override
@@ -61,8 +62,8 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
     public Object[] create(ICreateContext context) {
         ComponentReference newReference = null;
         Component component = (Component) getBusinessObjectForPictogramElement(context.getTargetContainer());
-        BaseNewContractWizard wizard = new BaseNewContractWizard("New Reference",
-                "Specify details for the new reference.", ScaPackage.eINSTANCE.getComponentReference(),
+        BaseNewContractWizard wizard = new BaseNewContractWizard(Messages.title_newReference,
+                Messages.description_newReference, ScaPackage.eINSTANCE.getComponentReference(),
                 ComponentTypeExtensionManager.getSupportedInterfaceTypes(component));
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);

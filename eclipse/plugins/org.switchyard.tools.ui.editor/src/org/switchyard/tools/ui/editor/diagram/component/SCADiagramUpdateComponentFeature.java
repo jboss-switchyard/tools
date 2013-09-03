@@ -37,6 +37,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 import org.switchyard.tools.ui.editor.model.merge.ComponentMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -73,7 +74,7 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
 
         // make sure the component still exists in the model
         if (!GraphitiInternal.getEmfService().isObjectAlive(component)) {
-            return Reason.createTrueReason(String.format("Component {0} has been removed.", component.getName()));
+            return Reason.createTrueReason(String.format(Messages.updateReason_componentRemoved, component.getName()));
         }
 
         // retrieve name from business model
@@ -89,11 +90,11 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
         // update needed, if names are different
         boolean updateNameNeeded = pictogramName == null ? businessName != null : !pictogramName.equals(businessName);
         if (updateNameNeeded) {
-            return Reason.createTrueReason("Component name is out of date");
+            return Reason.createTrueReason(Messages.updateReason_componentOutOfDate);
         }
 
         if (getMissingChildren(component, (ContainerShape) pictogramElement).size() > 0) {
-            return Reason.createTrueReason("Add missing services and references");
+            return Reason.createTrueReason(Messages.updateReason_addMissingServicesAndReferences);
         }
 
         return childrenNeedUpdating(component, (ContainerShape) pictogramElement);
@@ -224,7 +225,7 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
                     }
                 }
             } else {
-                return Reason.createTrueReason("Add missing children.");
+                return Reason.createTrueReason(Messages.updateReason_addMissingChildren);
             }
         }
         return Reason.createFalseReason();

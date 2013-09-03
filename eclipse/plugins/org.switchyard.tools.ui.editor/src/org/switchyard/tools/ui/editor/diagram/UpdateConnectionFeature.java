@@ -21,6 +21,7 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * UpdateConnectionFeature
@@ -48,7 +49,7 @@ public class UpdateConnectionFeature extends AbstractUpdateFeature implements IU
 
     @Override
     public IReason updateNeeded(IUpdateContext context) {
-        return canUpdate(context) ? Reason.createTrueReason("Add decorator to connection.") : Reason
+        return canUpdate(context) ? Reason.createTrueReason(Messages.updateReason_addDecoratorToConnection) : Reason
                 .createFalseReason();
     }
 

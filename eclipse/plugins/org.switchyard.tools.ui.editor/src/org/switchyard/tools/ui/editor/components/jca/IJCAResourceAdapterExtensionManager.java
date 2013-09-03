@@ -76,11 +76,11 @@ public final class IJCAResourceAdapterExtensionManager {
 
     private void loadExtensions() {
         IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(Activator.PLUGIN_ID,
-                "jcaResourceAdapterExtension");
+                "jcaResourceAdapterExtension"); //$NON-NLS-1$
         for (IExtension pluginExtension : extensionPoint.getExtensions()) {
             for (IConfigurationElement element : pluginExtension.getConfigurationElements()) {
                 try {
-                    _extensions.add((IJCAResourceAdapterExtension) element.createExecutableExtension("class"));
+                    _extensions.add((IJCAResourceAdapterExtension) element.createExecutableExtension("class")); //$NON-NLS-1$
                 } catch (CoreException e) {
                     Activator.getDefault().getLog().log(e.getStatus());
                 }

@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -123,10 +124,10 @@ public class BPMChannelTable extends Composite implements ICellModifier {
 
     private TableViewer _propertyTreeTable;
 
-    private static final String NAME_COLUMN = "name";
-    private static final String OPERATION_COLUMN = "operation";
-    private static final String REFERENCE_COLUMN = "reference";
-    private static final String CLASS_COLUMN = "class";
+    private static final String NAME_COLUMN = "name"; //$NON-NLS-1$
+    private static final String OPERATION_COLUMN = "operation"; //$NON-NLS-1$
+    private static final String REFERENCE_COLUMN = "reference"; //$NON-NLS-1$
+    private static final String CLASS_COLUMN = "class"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, OPERATION_COLUMN, REFERENCE_COLUMN,
             CLASS_COLUMN };
@@ -184,16 +185,16 @@ public class BPMChannelTable extends Composite implements ICellModifier {
         tableComposite.setLayout(tableLayout);
 
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText("Name");
+        nameColumn.setText(Messages.label_name);
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn operationColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        operationColumn.setText("Operation");
+        operationColumn.setText(Messages.label_operation);
         tableLayout.setColumnData(operationColumn, new ColumnWeightData(100, 150, true));
         TableColumn referenceColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        referenceColumn.setText("Reference");
+        referenceColumn.setText(Messages.label_reference);
         tableLayout.setColumnData(referenceColumn, new ColumnWeightData(100, 150, true));
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Class");
+        valueColumn.setText(Messages.label_class);
         tableLayout.setColumnData(valueColumn, new ColumnWeightData(200, 300, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -207,8 +208,8 @@ public class BPMChannelTable extends Composite implements ICellModifier {
                 new TextCellEditor(_propertyTreeTable.getTable()),
                 new TextCellEditor(_propertyTreeTable.getTable()),
                 new TextCellEditor(_propertyTreeTable.getTable()),
-                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.Channel", "Channel",
-                        "Select channel implementation.") {
+                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.Channel", Messages.title_channel, //$NON-NLS-1$
+                        Messages.description_channel) {
                     protected Resource getResource() {
                         return _targetObj == null ? null : _targetObj.eResource();
                     }
@@ -216,7 +217,7 @@ public class BPMChannelTable extends Composite implements ICellModifier {
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -240,7 +241,7 @@ public class BPMChannelTable extends Composite implements ICellModifier {
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -271,10 +272,10 @@ public class BPMChannelTable extends Composite implements ICellModifier {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
             final ChannelType newAction = BPMFactory.eINSTANCE.createChannelType();
-            newAction.setName("ChannelName");
-            newAction.setOperation("ChannelOperation");
-            newAction.setReference("ChannelReference");
-            newAction.setClass("NewChannel");
+            newAction.setName("ChannelName"); //$NON-NLS-1$
+            newAction.setOperation("ChannelOperation"); //$NON-NLS-1$
+            newAction.setReference("ChannelReference"); //$NON-NLS-1$
+            newAction.setClass("NewChannel"); //$NON-NLS-1$
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -429,25 +430,25 @@ public class BPMChannelTable extends Composite implements ICellModifier {
             if (((ChannelType) element).getName() != null) {
                 return ((ChannelType) element).getName();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof ChannelType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
             if (((ChannelType) element).getOperation() != null) {
                 return ((ChannelType) element).getOperation();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof ChannelType && property.equalsIgnoreCase(REFERENCE_COLUMN)) {
             if (((ChannelType) element).getReference() != null) {
                 return ((ChannelType) element).getReference();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof ChannelType && property.equalsIgnoreCase(CLASS_COLUMN)) {
             if (((ChannelType) element).getClass_() != null) {
                 return ((ChannelType) element).getClass_();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

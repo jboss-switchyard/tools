@@ -26,6 +26,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
 
 /**
@@ -40,7 +41,7 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
      * @param fp feature provider
      */
     public SCADiagramCreateCompositeReferenceFeature(IFeatureProvider fp) {
-        super(fp, "Reference", "Create Composite Reference");
+        super(fp, Messages.featureName_compositeReference, Messages.featureDescription_compositeReference);
     }
 
     @Override
@@ -61,8 +62,8 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
     public Object[] create(ICreateContext context) {
         Reference newReference = null;
         Composite composite = (Composite) getBusinessObjectForPictogramElement(context.getTargetContainer());
-        BaseNewContractWizard wizard = new BaseNewContractWizard("New Reference",
-                "Specify details for the new reference.", ScaPackage.eINSTANCE.getReference());
+        BaseNewContractWizard wizard = new BaseNewContractWizard(Messages.title_newCompositeReference,
+                Messages.description_newCompositeReference, ScaPackage.eINSTANCE.getReference());
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
         wizard.init(composite);

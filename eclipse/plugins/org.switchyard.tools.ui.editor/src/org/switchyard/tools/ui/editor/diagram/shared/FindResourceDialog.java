@@ -22,6 +22,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -33,7 +34,7 @@ class FindResourceDialog extends FilteredResourcesSelectionDialog {
     public FindResourceDialog(Shell parentShell, IContainer container) {
         super(parentShell, false, container, IResource.FILE | IResource.FOLDER | IResource.PROJECT);
         _fJavaModel = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot());
-        setTitle("Find Workspace File");
+        setTitle(Messages.title_findWorkspaceFile);
     }
 
     @Override

@@ -22,6 +22,7 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
@@ -39,12 +40,12 @@ public class BPMComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CompositeCreateFeature(fp, "Process (BPMN)",
-                "A BPMN process based component/implementation.", new CreateComponentFeature(fp,
-                        new BPMComponentFactory(), "Process (BPMN)",
-                        "Create a component implemented as a BPMN process.", ImageProvider.IMG_16_BPMN),
-                new CreateImplementationFeature(fp, new BPMImplementationFactory(), "Process (BPMN)",
-                        "An implementation using a BPMN process.")) };
+        return new ICreateFeature[] {new CompositeCreateFeature(fp, Messages.label_processBpmn,
+                Messages.description_tool_processBpmnComponentImplementation, new CreateComponentFeature(fp,
+                        new BPMComponentFactory(), Messages.label_processBpmn,
+                        Messages.description_tool_processBpmnComponent, ImageProvider.IMG_16_BPMN),
+                new CreateImplementationFeature(fp, new BPMImplementationFactory(), Messages.label_processBpmn,
+                        Messages.description_tool_processBpmnImplementation)) };
     }
 
     @Override
@@ -59,7 +60,7 @@ public class BPMComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Implementation object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-bpm");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-bpm"); //$NON-NLS-1$
     }
 
     @Override
@@ -69,6 +70,6 @@ public class BPMComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public String getTypeName(Implementation object) {
-        return "BPM";
+        return Messages.label_bpm;
     }
 }

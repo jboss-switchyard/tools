@@ -33,7 +33,7 @@ public class HttpBindingWizard extends AbstractBindingWizard implements IBinding
     @Override
     protected Binding createBinding() {
         final HTTPBindingType binding = HttpFactory.eINSTANCE.createHTTPBindingType();
-        binding.setName(makeUniqueName("http"));
+        binding.setName(makeUniqueName("http")); //$NON-NLS-1$
         return binding;
     }
 

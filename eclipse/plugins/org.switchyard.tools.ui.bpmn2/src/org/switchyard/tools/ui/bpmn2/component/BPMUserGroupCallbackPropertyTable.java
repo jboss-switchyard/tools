@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
+import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -117,11 +118,11 @@ public class BPMUserGroupCallbackPropertyTable extends Composite implements ICel
     /**
      * Value column.
      */
-    public static final String NAME_COLUMN = "name";
+    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
     /**
      * Entry point column.
      */
-    public static final String VALUE_COLUMN = "value";
+    public static final String VALUE_COLUMN = "value"; //$NON-NLS-1$
 
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN };
 
@@ -178,10 +179,10 @@ public class BPMUserGroupCallbackPropertyTable extends Composite implements ICel
         tableComposite.setLayout(tableLayout);
 
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText("Name");
+        nameColumn.setText(Messages.label_name);
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Value");
+        valueColumn.setText(Messages.label_value);
         tableLayout.setColumnData(valueColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -196,7 +197,7 @@ public class BPMUserGroupCallbackPropertyTable extends Composite implements ICel
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mAddButton.setText("Add");
+        _mAddButton.setText(Messages.button_add);
         _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -220,7 +221,7 @@ public class BPMUserGroupCallbackPropertyTable extends Composite implements ICel
 
         _mRemoveButton = new Button(this, SWT.NONE);
         _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setText(Messages.button_remove);
         _mRemoveButton.setEnabled(false);
         _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
@@ -251,8 +252,8 @@ public class BPMUserGroupCallbackPropertyTable extends Composite implements ICel
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
             final PropertyType newAction = BPMFactory.eINSTANCE.createPropertyType();
-            newAction.setName("property");
-            newAction.setValue("value");
+            newAction.setName("property"); //$NON-NLS-1$
+            newAction.setValue("value"); //$NON-NLS-1$
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -413,13 +414,13 @@ public class BPMUserGroupCallbackPropertyTable extends Composite implements ICel
             if (((PropertyType) element).getName() != null) {
                 return ((PropertyType) element).getName();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         } else if (element instanceof PropertyType && property.equalsIgnoreCase(VALUE_COLUMN)) {
             if (((PropertyType) element).getValue() != null) {
                 return ((PropertyType) element).getValue();
             } else {
-                return "";
+                return ""; //$NON-NLS-1$
             }
         }
         return null;

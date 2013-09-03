@@ -41,6 +41,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.switchyard.tools.ui.common.InterfaceControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -79,9 +80,9 @@ public class InterfaceChangeDialog extends TitleAreaDialog implements ISelection
 
     @Override
     protected Control createDialogArea(Composite parent) {
-        setTitle("Edit Interface");
-        setMessage("Edit details for the interface.");
-        getShell().setText("Edit Interface");
+        setTitle(Messages.title_editInterface);
+        setMessage(Messages.description_editInterface);
+        getShell().setText(Messages.title_editInterface);
         Composite composite = new Composite(parent, SWT.NONE);
         composite.setFont(parent.getFont());
         composite.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -191,12 +192,12 @@ public class InterfaceChangeDialog extends TitleAreaDialog implements ISelection
         }
 
         if (getErrorMessage() == null) {
-            setMessage("Specify details for the new interface.");
+            setMessage(Messages.info_specifyInterfaceDetails);
         }
 
         Interface intfc = _interfaceControl.getInterface();
         if (intfc.equals(_originalInterface)) {
-            setMessage("Specify details for the new interface. Original interface type selected.");
+            setMessage(Messages.info_specifyInterfaceDetailsDefaultSelected);
             getButton(OK).setEnabled(false);
         } else {
             getButton(OK).setEnabled(getErrorMessage() == null);

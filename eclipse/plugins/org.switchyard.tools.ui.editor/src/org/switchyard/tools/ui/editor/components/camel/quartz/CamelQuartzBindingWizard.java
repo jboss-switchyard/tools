@@ -33,7 +33,7 @@ public class CamelQuartzBindingWizard extends AbstractBindingWizard implements I
     protected Binding createBinding() {
         final CamelQuartzBindingType binding = QuartzFactory.eINSTANCE.createCamelQuartzBindingType();
         final String contractName = getTargetContainer().getName();
-        binding.setName(contractName == null ? makeUniqueName("scheduler") : contractName);
+        binding.setName(contractName == null ? makeUniqueName("scheduler") : contractName); //$NON-NLS-1$
         return binding;
     }
 

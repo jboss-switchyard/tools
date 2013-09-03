@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
@@ -39,7 +40,7 @@ import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 public class ImplementationPolicyComposite extends AbstractModelComposite<Component> implements
         ITabbedPropertyConstants {
     
-    private final String _noneString = "None";
+    private final String _noneString = "None"; //$NON-NLS-1$
 
     private class ComboSelectionListener implements SelectionListener {
         @Override
@@ -70,15 +71,15 @@ public class ImplementationPolicyComposite extends AbstractModelComposite<Compon
     public ImplementationPolicyComposite(ICompositeContainer container, Composite parent, int style) {
         super(Component.class, container, parent, style);
         _supportedImplementationPolicies = new ArrayList<String>();
-        _supportedImplementationPolicies.add("managedTransaction.Global");
-        _supportedImplementationPolicies.add("managedTransaction.Local");
-        _supportedImplementationPolicies.add("noManagedTransaction");
+        _supportedImplementationPolicies.add("managedTransaction.Global"); //$NON-NLS-1$
+        _supportedImplementationPolicies.add("managedTransaction.Local"); //$NON-NLS-1$
+        _supportedImplementationPolicies.add("noManagedTransaction"); //$NON-NLS-1$
 
         setLayout(new GridLayout(2, false));
 
         FormToolkit factory = getWidgetFactory();
 
-        factory.createLabel(this, "Transaction Policy:");
+        factory.createLabel(this, Messages.label_transactionPolicy);
 
         _implementationCombo = new Combo(this, SWT.DROP_DOWN | SWT.BORDER | SWT.READ_ONLY);
         factory.adapt(_implementationCombo, true, false);

@@ -57,12 +57,12 @@ public final class InterfaceOpsUtil {
      */
     private static String[] getOperationsForWSDLInterface(WSDLPortType intfc) {
         ArrayList<String> list = new ArrayList<String>();
-        list.add("");
+        list.add(""); //$NON-NLS-1$
         final IResource wsdlfile = (IResource) Platform.getAdapterManager().loadAdapter(intfc, 
                 IResource.class.getCanonicalName());
 
         String wsdlToFind = intfc.getInterface();
-        String portBreak = "#wsdl.porttype(";
+        String portBreak = "#wsdl.porttype("; //$NON-NLS-1$
         int portStart = wsdlToFind.indexOf(portBreak) + portBreak.length();
         int portEnd = wsdlToFind.lastIndexOf(')');
         String portTypeStr = wsdlToFind.substring(portStart, portEnd);
@@ -104,7 +104,7 @@ public final class InterfaceOpsUtil {
      */
     private static String[] getOperationsForJavaInterface(JavaInterface intfc) {
         ArrayList<String> list = new ArrayList<String>();
-        list.add("");
+        list.add(""); //$NON-NLS-1$
         final IResource javafile = (IResource) Platform.getAdapterManager().loadAdapter(intfc, 
                 IResource.class.getCanonicalName());
         if (javafile != null && javafile.getProject() != null) {
@@ -133,7 +133,7 @@ public final class InterfaceOpsUtil {
      */
     public static String[] gatherOperations(Contract contract) {
         ArrayList<String> list = new ArrayList<String>();
-        list.add("");
+        list.add(""); //$NON-NLS-1$
         Interface intfc = contract.getInterface();
         Service svc = null;
         if (contract instanceof Service) {
@@ -153,7 +153,7 @@ public final class InterfaceOpsUtil {
             String[] ops = getOperationsForWSDLInterface(wsdlIntfc);
             return ops;
         } else if (intfc != null && intfc instanceof EsbInterface) {
-            String[] ops = new String[]{""};
+            String[] ops = new String[]{""}; //$NON-NLS-1$
             return ops;
         }
         

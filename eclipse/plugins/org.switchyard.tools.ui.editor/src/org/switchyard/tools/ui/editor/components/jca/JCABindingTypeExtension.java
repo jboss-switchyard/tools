@@ -24,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.components.soap.SOAPMessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -38,8 +39,8 @@ public class JCABindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new JCABindingFactory(), "JCA",
-                "A JCA based endpoint.", ImageProvider.IMG_16_JCA) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new JCABindingFactory(), Messages.label_jca,
+                Messages.description_tool_jca, ImageProvider.IMG_16_JCA) };
     }
 
     @Override
@@ -59,12 +60,12 @@ public class JCABindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-jca");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-jca"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "JCA";
+        return Messages.label_jca;
     }
 
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {

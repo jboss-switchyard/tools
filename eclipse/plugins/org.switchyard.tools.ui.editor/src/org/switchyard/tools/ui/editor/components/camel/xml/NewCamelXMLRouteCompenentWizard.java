@@ -36,6 +36,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringFactory;
 import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
 import org.switchyard.tools.models.switchyard1_0.spring.util.SpringResourceFactoryImpl;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
 /**
@@ -56,8 +57,8 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
      *            creation.
      */
     public NewCamelXMLRouteCompenentWizard(boolean openAfterCreate) {
-        super(openAfterCreate, "xml");
-        setWindowTitle("New Camel XML Route File");
+        super(openAfterCreate, "xml"); //$NON-NLS-1$
+        setWindowTitle(Messages.title_newCamelXmlRouteFile);
     }
 
     @Override
@@ -65,12 +66,12 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
         super.addPages();
 
         WizardNewFileCreationPage page = getFileCreationPage();
-        page.setTitle("Route File");
-        page.setDescription("Create a new Camel Route file resource.");
+        page.setTitle(Messages.title_routeFile);
+        page.setDescription(Messages.description_routeFile);
         if (getService() == null) {
-            page.setFileName("route.xml");
+            page.setFileName("route.xml"); //$NON-NLS-1$
         } else {
-            page.setFileName("" + getService().getName() + "Route.xml");
+            page.setFileName("" + getService().getName() + "Route.xml"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -101,8 +102,8 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
             LogDefinition log = SpringFactory.eINSTANCE.createLogDefinition();
             String serviceName = getService().getName();
 
-            from.setUri("switchyard://" + serviceName);
-            log.setMessage("" + serviceName + " - message received: ${body}");
+            from.setUri("switchyard://" + serviceName); //$NON-NLS-1$
+            log.setMessage("" + serviceName + " - message received: ${body}"); //$NON-NLS-1$ //$NON-NLS-2$
 
             doc.setRoutes(routes);
             doc.setRoute(route);
@@ -110,10 +111,10 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
             route.getLog().add(log);
             routes.getRoute().add(route);
 
-            doc.getXMLNSPrefixMap().put("", SpringPackage.eNS_URI);
+            doc.getXMLNSPrefixMap().put("", SpringPackage.eNS_URI); //$NON-NLS-1$
 
-            Resource routeResource = new SpringResourceFactoryImpl().createResource(URI.createGenericURI("temp",
-                    "temp", null));
+            Resource routeResource = new SpringResourceFactoryImpl().createResource(URI.createGenericURI("temp", //$NON-NLS-1$
+                    "temp", null)); //$NON-NLS-1$
             routeResource.getContents().add(doc);
 
             baos = new ByteArrayOutputStream();

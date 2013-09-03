@@ -18,6 +18,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.implementation.IImplementationWizard;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 
@@ -40,7 +41,7 @@ public class CamelJavaImplementationWizard extends LinkedWizardBase implements I
 
     @Override
     public void addPages() {
-        setWindowTitle("Camel Implementation");
+        setWindowTitle(Messages.title_camelImplementation);
         _page = new CamelJavaRouteImplementationPage(CamelJavaRouteImplementationPage.class.getCanonicalName());
         _page.init(_implementation);
         _page.forceServiceInterfaceType(_service);

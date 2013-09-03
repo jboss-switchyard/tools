@@ -32,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
@@ -58,12 +59,12 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "Interaction Details";
+        return Messages.title_interactionDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent interaction details for your JCA Binding.";
+        return Messages.description_interactionDetails;
     }
 
     @Override
@@ -78,9 +79,9 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
                     if (interaction.getEndpoint() != null) {
                         String className = interaction.getEndpoint().getType();
                         className = className.substring(className.lastIndexOf('.') + 1);
-                        if (className.equalsIgnoreCase("jmsendpoint")) {
+                        if (className.equalsIgnoreCase("jmsendpoint")) { //$NON-NLS-1$
                             _endpointMappingTypeCombo.select(ENDPOINT_MAPPING_TYPE.JMSENDPOINT.ordinal());
-                        } else if (className.equalsIgnoreCase("cciendpoint")) {
+                        } else if (className.equalsIgnoreCase("cciendpoint")) { //$NON-NLS-1$
                             _endpointMappingTypeCombo.select(ENDPOINT_MAPPING_TYPE.CCIENDPOINT.ordinal());
                         }
                     }
@@ -109,7 +110,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (!_endpointMappingTypeCombo.isDisposed() && _endpointMappingTypeCombo.getSelectionIndex() == -1) {
-                setErrorMessage("You must select an endpoint mapping type.");
+                setErrorMessage(Messages.error_emptyMappingType);
             }
         }
         return (getErrorMessage() == null);
@@ -128,23 +129,23 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(1, false);
         composite.setLayout(gl);
         
-        _endpointMappingTypeCombo = createLabelAndCombo(composite, "Endpoint Mapping Type", true);
-        _endpointMappingTypeCombo.add("JMS Endpoint", ENDPOINT_MAPPING_TYPE.JMSENDPOINT.ordinal());
-        _endpointMappingTypeCombo.setData("JMS Endpoint", ENDPOINT_MAPPING_TYPE.JMSENDPOINT);
-        _endpointMappingTypeCombo.add("CCI Endpoint", ENDPOINT_MAPPING_TYPE.CCIENDPOINT.ordinal());
-        _endpointMappingTypeCombo.setData("CCI Endpoint", ENDPOINT_MAPPING_TYPE.CCIENDPOINT);
+        _endpointMappingTypeCombo = createLabelAndCombo(composite, Messages.label_endpointMappingType, true);
+        _endpointMappingTypeCombo.add(Messages.label_jmsEndpoint, ENDPOINT_MAPPING_TYPE.JMSENDPOINT.ordinal());
+        _endpointMappingTypeCombo.setData(Messages.label_jmsEndpoint, ENDPOINT_MAPPING_TYPE.JMSENDPOINT);
+        _endpointMappingTypeCombo.add(Messages.label_cciEndpoint, ENDPOINT_MAPPING_TYPE.CCIENDPOINT.ordinal());
+        _endpointMappingTypeCombo.setData(Messages.label_cciEndpoint, ENDPOINT_MAPPING_TYPE.CCIENDPOINT);
 
-        _transactedButton = createCheckbox(composite, "Transacted");
+        _transactedButton = createCheckbox(composite, Messages.label_transacted);
         
         _batchGroup = new Group(composite, SWT.NONE);
         GridData bgGridData = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
         _batchGroup.setLayoutData(bgGridData);
         _batchGroup.setLayout(new GridLayout(2, false));
-        _batchGroup.setText("Batch Commit Options");
+        _batchGroup.setText(Messages.label_batchCommitOptions);
         
-        _batchEnabledCheckbox = createCheckbox(_batchGroup, "Enable Batch Commit");
-        _batchSizeText = createLabelAndText(_batchGroup, "Batch Size");
-        _batchTimeoutText = createLabelAndText(_batchGroup, "Batch Timeout (in MS)");
+        _batchEnabledCheckbox = createCheckbox(_batchGroup, Messages.label_enableBatchCommit);
+        _batchSizeText = createLabelAndText(_batchGroup, Messages.label_batchSize);
+        _batchTimeoutText = createLabelAndText(_batchGroup, Messages.label_batchTimeout);
         _batchEnabledCheckbox.addSelectionListener(new SelectionListener(){
 
             @Override
@@ -172,7 +173,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getInboundInteraction() == null) {
                 JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
-                setFeatureValue(_binding, "inboundInteraction", interaction);
+                setFeatureValue(_binding, "inboundInteraction", interaction); //$NON-NLS-1$
             }
         }
     }
@@ -185,7 +186,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
                 BatchCommit batchCommit = interaction.getBatchCommit();
                 if (batchCommit == null) {
                     batchCommit = JcaFactory.eINSTANCE.createBatchCommit();
-                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", batchCommit);
+                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", batchCommit); //$NON-NLS-1$
                 }
             }
         }
@@ -198,7 +199,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
             if (interaction != null) {
                 BatchCommit batchCommit = interaction.getBatchCommit();
                 if (batchCommit != null) {
-                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", null);
+                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", null); //$NON-NLS-1$
                 }
             }
         }
@@ -216,14 +217,14 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
             boolean foundEndpoint = true;
             switch (type) {
             case JMSENDPOINT:
-                listener = "javax.jms.MessageListener";
+                listener = "javax.jms.MessageListener"; //$NON-NLS-1$
                 // inboundOpName = "onMessage";
-                endpointClass = "org.switchyard.component.jca.endpoint.JMSEndpoint";
+                endpointClass = "org.switchyard.component.jca.endpoint.JMSEndpoint"; //$NON-NLS-1$
                 break;
             case CCIENDPOINT:
-                listener = "javax.resource.cci.MessageListener";
+                listener = "javax.resource.cci.MessageListener"; //$NON-NLS-1$
                 // inboundOpName = "onMessage";
-                endpointClass = "org.switchyard.component.jca.endpoint.CCIEndpoint";
+                endpointClass = "org.switchyard.component.jca.endpoint.CCIEndpoint"; //$NON-NLS-1$
                 break;
             default:
                 foundEndpoint = false;
@@ -235,7 +236,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
                 if (interaction.getEndpoint() == null) {
                     Endpoint endpoint = JcaFactory.eINSTANCE.createEndpoint();
                     endpoint.setType(endpointClass);
-                    setFeatureValue(interaction, "endpoint", endpoint);
+                    setFeatureValue(interaction, "endpoint", endpoint); //$NON-NLS-1$
                 } else {
                     interaction.getEndpoint().setType(endpointClass);
                 }
@@ -246,7 +247,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
     protected void updateInboundInteractionFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new InboundInteractionOp());
-        ops.add(new BasicOperation("inboundInteraction", featureId, value));
+        ops.add(new BasicOperation("inboundInteraction", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
@@ -255,7 +256,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         ops.add(new InboundInteractionOp());
         ops.add(new BatchCommitOp());
         if (featureId != null) {
-            ops.add(new BasicOperation("inboundInteraction/batchCommit", featureId, value));
+            ops.add(new BasicOperation("inboundInteraction/batchCommit", featureId, value)); //$NON-NLS-1$
         }
         wrapOperation(ops);
     }
@@ -278,7 +279,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         if (control.equals(_endpointMappingTypeCombo)) {
             updateEndpoint();
         } else if (control.equals(_transactedButton)) {
-            updateInboundInteractionFeature("transacted", Boolean.valueOf(_transactedButton.getSelection()));
+            updateInboundInteractionFeature("transacted", Boolean.valueOf(_transactedButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_batchEnabledCheckbox)) {
             if (!_batchEnabledCheckbox.getSelection()) {
                 removeInboundInteractionBatchCommitFeature();
@@ -286,9 +287,9 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
                 updateInboundInteractionBatchCommitFeature(null,  null);
             }
         } else if (control.equals(_batchSizeText)) {
-            updateInboundInteractionBatchCommitFeature("batchSize", _batchSizeText.getText().trim());
+            updateInboundInteractionBatchCommitFeature("batchSize", _batchSizeText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_batchTimeoutText)) {
-            updateInboundInteractionBatchCommitFeature("batchTimeout", _batchTimeoutText.getText().trim());
+            updateInboundInteractionBatchCommitFeature("batchTimeout", _batchTimeoutText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }

@@ -53,6 +53,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
@@ -89,7 +90,7 @@ public class BeanImplementationComposite extends AbstractModelComposite<Componen
 
         _newBeanLink = new Link(_panel, SWT.NONE);
         factory.adapt(_newBeanLink, true, true);
-        _newBeanLink.setText("<a>Bean Class:</a>");
+        _newBeanLink.setText(Messages.link_beanClass);
         _newBeanLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -98,7 +99,7 @@ public class BeanImplementationComposite extends AbstractModelComposite<Componen
 
         });
 
-        _beanClassText = factory.createText(_panel, "");
+        _beanClassText = factory.createText(_panel, ""); //$NON-NLS-1$
         _beanClassText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _beanClassText.addModifyListener(new ModifyListener() {
             @Override
@@ -110,7 +111,7 @@ public class BeanImplementationComposite extends AbstractModelComposite<Componen
 
         });
 
-        _browseBeanButton = factory.createButton(_panel, "Browse...", SWT.PUSH);
+        _browseBeanButton = factory.createButton(_panel, Messages.button_browse, SWT.PUSH);
         _browseBeanButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -132,7 +133,7 @@ public class BeanImplementationComposite extends AbstractModelComposite<Componen
             if (_implementation.getClass_() != null) {
                 _beanClassText.setText(_implementation.getClass_());
             } else {
-                _beanClassText.setText("");
+                _beanClassText.setText(""); //$NON-NLS-1$
             }
             final boolean enabled = !MergedModelUtil.isReadOnly(_implementation);
             _browseBeanButton.setEnabled(enabled);
@@ -175,7 +176,7 @@ public class BeanImplementationComposite extends AbstractModelComposite<Componen
         try {
             String filter = _beanClassText.getText();
             SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
-                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter);
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter); //$NON-NLS-1$
             if (dialog.open() == SelectionDialog.OK) {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {

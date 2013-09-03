@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
@@ -52,12 +53,12 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "FTP Binding Details";
+        return Messages.title_ftpBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your FTP Binding.";
+        return Messages.description_fileBindingDetails;
     }
 
     @Override
@@ -70,47 +71,47 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
                 if (this._binding.getProduce().getFileExist() != null) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());
                 } else {
-                    _fileExistText.setText("");
+                    _fileExistText.setText(""); //$NON-NLS-1$
                 }
                 if (this._binding.getProduce().getTempPrefix() != null) {
                     _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
                 } else {
-                    _tempPrefixText.setText("");
+                    _tempPrefixText.setText(""); //$NON-NLS-1$
                 }
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
             } else {
-                _directoryText.setText("");
+                _directoryText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             } else {
-                _fileNameText.setText("");
+                _fileNameText.setText(""); //$NON-NLS-1$
             }
             _autoCreateButton.setSelection(this._binding.isAutoCreate());
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             } else {
-                _hostText.setText("");
+                _hostText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPort() != null) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
             } else {
-                _portText.setText("");
+                _portText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
             } else {
-                _usernameText.setText("");
+                _usernameText.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
             } else {
-                _pwdText.setText("");
+                _pwdText.setText(""); //$NON-NLS-1$
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -128,7 +129,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
-                setErrorMessage("Directory may not be empty.");
+                setErrorMessage(Messages.error_emptyDirectory);
             }
         }
         return (getErrorMessage() == null);
@@ -147,25 +148,25 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _hostText = createLabelAndText(composite, "Host");
-        _portText = createLabelAndText(composite, "Port (Default 21)");
-        _usernameText = createLabelAndText(composite, "User Name");
-        _pwdText = createLabelAndText(composite, "Password");
+        _hostText = createLabelAndText(composite, Messages.label_host);
+        _portText = createLabelAndText(composite, Messages.label_portDefault21);
+        _usernameText = createLabelAndText(composite, Messages.label_userName);
+        _pwdText = createLabelAndText(composite, Messages.label_password);
         _pwdText.setEchoChar('*');
-        _binaryButton = createCheckbox(composite, "Use Binary Transfer Mode");
+        _binaryButton = createCheckbox(composite, Messages.label_useBinaryTransferMode);
         
         Group fileGroup = new Group(composite, SWT.NONE);
         fileGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         fileGroup.setLayout(new GridLayout(2, false));
-        fileGroup.setText("File and Directory Options");
+        fileGroup.setText(Messages.label_fileAndDirectoryOptions);
 
-        _directoryText = createLabelAndText(fileGroup, "Directory*");
-        _fileNameText = createLabelAndText(fileGroup, "File Name");
-        _autoCreateButton = createCheckbox(fileGroup, "Auto Create Missing Directories in File Path");
-        _fileExistText = createLabelAndText(fileGroup, "File Exist");
-        _tempPrefixText = createLabelAndText(fileGroup, "Temp Prefix");
+        _directoryText = createLabelAndText(fileGroup, Messages.label_directoryStar);
+        _fileNameText = createLabelAndText(fileGroup, Messages.label_fileName);
+        _autoCreateButton = createCheckbox(fileGroup, Messages.label_autoCreateMissingDirectories);
+        _fileExistText = createLabelAndText(fileGroup, Messages.label_fileExist);
+        _tempPrefixText = createLabelAndText(fileGroup, Messages.label_tempPrefix);
         
         return composite;
     }
@@ -179,7 +180,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getProduce() == null) {
-                setFeatureValue(_binding, "produce", FtpFactory.eINSTANCE.createRemoteFileProducerType());
+                setFeatureValue(_binding, "produce", FtpFactory.eINSTANCE.createRemoteFileProducerType()); //$NON-NLS-1$
             }
         }
     }
@@ -187,33 +188,33 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
     protected void updateProduceFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ProduceOp());
-        ops.add(new BasicOperation("produce", featureId, value));
+        ops.add(new BasicOperation("produce", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
     
     protected void handleModify(final Control control) {
         if (control.equals(_directoryText)) {
-            updateFeature(_binding, "directory", _directoryText.getText().trim());
+            updateFeature(_binding, "directory", _directoryText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_fileNameText)) {
-            updateFeature(_binding, "fileName", _fileNameText.getText().trim());
+            updateFeature(_binding, "fileName", _fileNameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_autoCreateButton)) {
-            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection()));
+            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_hostText)) {
-            updateFeature(_binding, "host", _hostText.getText().trim());
+            updateFeature(_binding, "host", _hostText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_usernameText)) {
-            updateFeature(_binding, "username", _usernameText.getText().trim());
+            updateFeature(_binding, "username", _usernameText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_pwdText)) {
-            updateFeature(_binding, "password", _pwdText.getText().trim());
+            updateFeature(_binding, "password", _pwdText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_binaryButton)) {
-            updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection()));
+            updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_portText)) {
-            updateFeature(_binding, "port", _portText.getText().trim());
+            updateFeature(_binding, "port", _portText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_fileExistText)) {
-            updateProduceFeature("fileExist", _fileExistText.getText().trim());
+            updateProduceFeature("fileExist", _fileExistText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_tempPrefixText)) {
-            updateProduceFeature("tempPrefix", _tempPrefixText.getText().trim());
+            updateProduceFeature("tempPrefix", _tempPrefixText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -241,7 +242,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_binaryButton)) {
                 _binaryButton.setSelection(this._binding.isBinary());
             } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else if (this._binding.getProduce() != null) {
                 if (control.equals(_fileExistText)) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());

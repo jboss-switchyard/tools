@@ -32,7 +32,7 @@ public class CamelJmsBindingWizard extends AbstractBindingWizard implements IBin
     @Override
     protected Binding createBinding() {
         final CamelJmsBindingType binding = JmsFactory.eINSTANCE.createCamelJmsBindingType();
-        binding.setName(makeUniqueName("jms"));
+        binding.setName(makeUniqueName("jms")); //$NON-NLS-1$
         return binding;
     }
 

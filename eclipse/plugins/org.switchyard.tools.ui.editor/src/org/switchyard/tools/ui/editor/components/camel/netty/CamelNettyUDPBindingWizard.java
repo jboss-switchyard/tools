@@ -32,7 +32,7 @@ public class CamelNettyUDPBindingWizard extends AbstractBindingWizard implements
     @Override
     protected Binding createBinding() {
         final CamelNettyUdpBindingType binding = NettyFactory.eINSTANCE.createCamelNettyUdpBindingType();
-        binding.setName(makeUniqueName("udp"));
+        binding.setName(makeUniqueName("udp")); //$NON-NLS-1$
         return binding;
     }
 

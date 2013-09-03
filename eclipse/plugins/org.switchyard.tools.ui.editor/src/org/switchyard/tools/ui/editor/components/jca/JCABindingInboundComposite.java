@@ -42,6 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -89,7 +90,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             _resAdapterMap.put(extension, syComposite);
         }
         if (updateValues) {
-            updateInboundConnectionResourceAdapterFeature("name", _defaultJCAExtension.getResourceAdapter());
+            updateInboundConnectionResourceAdapterFeature("name", _defaultJCAExtension.getResourceAdapter()); //$NON-NLS-1$
             updatePropertiesFromPropertyArray(_defaultJCAExtension.getPropertyList());
         }
         _propsList.setSelection(_binding.getInboundConnection().getActivationSpec().getProperty());
@@ -102,12 +103,12 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
     
     @Override
     public String getTitle() {
-        return "JCA Binding Details";
+        return Messages.title_jcaBindingDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify pertinent details for your JCA Binding. Resource adapters may require unique properties.";
+        return Messages.description_jcaBindingDetails;
     }
 
     @Override
@@ -122,7 +123,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                 if (inbound.getResourceAdapter() != null) {
                     String raName = inbound.getResourceAdapter().getName();
                     String destinationType = 
-                            getResourceAdapterPropertyValue(inbound.getActivationSpec(), "destinationType");
+                            getResourceAdapterPropertyValue(inbound.getActivationSpec(), "destinationType"); //$NON-NLS-1$
                     IJCAResourceAdapterExtension extension = findJCAExtension(raName, destinationType, true, this._binding);
                     if (extension == null) {
                         extension = findJCAExtension(raName, destinationType, false, this._binding);
@@ -152,7 +153,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                 _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
             }
             if (_binding.getName() == null) {
-                _nameText.setText("");
+                _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
             }
@@ -207,7 +208,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             _resAdapterMap.put(extension, syComposite);
         }
         if (updateValues) {
-            updateInboundConnectionResourceAdapterFeature("name", extension.getResourceAdapter());
+            updateInboundConnectionResourceAdapterFeature("name", extension.getResourceAdapter()); //$NON-NLS-1$
             updatePropertiesFromPropertyArray(extension.getPropertyList());
             _propsList.setSelection(_binding.getInboundConnection().getActivationSpec().getProperty());
         }
@@ -255,11 +256,11 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
         
-        _nameText = createLabelAndText(composite, "Name");
+        _nameText = createLabelAndText(composite, Messages.label_name);
 
         Collection<IJCAResourceAdapterExtension> extensions =
                 IJCAResourceAdapterExtensionManager.instance().getExtensions();
-        _resourceAdapterTypeCombo = createLabelAndCombo(composite, "Resource Adapter Type:", true);
+        _resourceAdapterTypeCombo = createLabelAndCombo(composite, Messages.label_resourceAdapterType, true);
         _defaultJCAExtension = null;
         Iterator<IJCAResourceAdapterExtension> iter = extensions.iterator();
         while (iter.hasNext()) {
@@ -293,7 +294,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         });
 
         Group activationPropsGroup = new Group(composite, SWT.NONE);
-        activationPropsGroup.setText("Activation Properties");
+        activationPropsGroup.setText(Messages.label_activationProperties);
         activationPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
         activationPropsGroup.setLayout(new GridLayout(1, false));
 
@@ -341,7 +342,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getInboundConnection() == null) {
                 JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                setFeatureValue(_binding, "inboundConnection", inbound);
+                setFeatureValue(_binding, "inboundConnection", inbound); //$NON-NLS-1$
             }
         }
     }
@@ -351,11 +352,11 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         public void run() throws Exception {
             if (_binding != null && _binding.getInboundConnection() == null) {
                 JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                setFeatureValue(_binding, "inboundConnection", inbound);
+                setFeatureValue(_binding, "inboundConnection", inbound); //$NON-NLS-1$
             }
             if (_binding != null && _binding.getInboundConnection().getActivationSpec() == null) {
                 ActivationSpec activationSpec = JcaFactory.eINSTANCE.createActivationSpec();
-                setFeatureValue(_binding.getInboundConnection(), "activationSpec", activationSpec);
+                setFeatureValue(_binding.getInboundConnection(), "activationSpec", activationSpec); //$NON-NLS-1$
             }
         }
     }
@@ -366,7 +367,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             if (_binding != null && _binding.getInboundConnection() != null
                     && _binding.getInboundConnection().getResourceAdapter() == null) {
                 ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-                setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter);
+                setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter); //$NON-NLS-1$
             }
         }
     }
@@ -402,7 +403,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
     protected void updateInboundConnectionFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new InboundConnectionOp());
-        ops.add(new BasicOperation("inboundConnection", featureId, value));
+        ops.add(new BasicOperation("inboundConnection", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
 
@@ -410,7 +411,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new InboundConnectionOp());
         ops.add(new ResourceAdapterOp());
-        ops.add(new BasicOperation("inboundConnection/resourceAdapter", featureId, value));
+        ops.add(new BasicOperation("inboundConnection/resourceAdapter", featureId, value)); //$NON-NLS-1$
         wrapOperation(ops);
     }
     
@@ -432,7 +433,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim());
+            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }
@@ -444,7 +445,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
     protected void handleUndo(Control control) {
         if (_binding != null) {
             if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName());
+                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else {
                 super.handleUndo(control);
             }

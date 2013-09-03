@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 
 /**
@@ -37,12 +38,12 @@ public class CamelFTPSSecurityComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return "FTPS Security Details";
+        return Messages.title_ftpsSecurityDetails;
     }
 
     @Override
     public String getDescription() {
-        return "Specify security details for this FTPS Binding.";
+        return Messages.description_ftpsSecurityDetails;
     }
 
     @Override
@@ -55,12 +56,12 @@ public class CamelFTPSSecurityComposite extends AbstractSYBindingComposite {
             if (this._binding.getSecurityProtocol() != null) {
                 _securityProtocolCombo.setText(this._binding.getSecurityProtocol());
             } else {
-                _securityProtocolCombo.setText("");
+                _securityProtocolCombo.setText(""); //$NON-NLS-1$
             }
             if (this._binding.getExecProt() != null) {
                 _execProtCombo.setText(this._binding.getExecProt());
             } else {
-                _execProtCombo.setText("");
+                _execProtCombo.setText(""); //$NON-NLS-1$
             }
             setInUpdate(false);
             validate();
@@ -83,17 +84,17 @@ public class CamelFTPSSecurityComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
         
-        _securityProtocolCombo = createLabelAndCombo(composite, "Security Protocol", true);
-        _securityProtocolCombo.add("TLS");
-        _securityProtocolCombo.add("SSL");
+        _securityProtocolCombo = createLabelAndCombo(composite, Messages.label_securityProtocol, true);
+        _securityProtocolCombo.add(Messages.label_tls);
+        _securityProtocolCombo.add(Messages.label_ssl);
         
-        _isImplicitCheckbox = createCheckbox(composite, "Implicit");
+        _isImplicitCheckbox = createCheckbox(composite, Messages.label_implicit);
         
-        _execProtCombo = createLabelAndCombo(composite, "Execution Protocol", true);
-        _execProtCombo.add("C");
-        _execProtCombo.add("S");
-        _execProtCombo.add("E");
-        _execProtCombo.add("P");
+        _execProtCombo = createLabelAndCombo(composite, Messages.label_executionProtocol, true);
+        _execProtCombo.add("C"); //$NON-NLS-1$
+        _execProtCombo.add("S"); //$NON-NLS-1$
+        _execProtCombo.add("E"); //$NON-NLS-1$
+        _execProtCombo.add("P"); //$NON-NLS-1$
         
         return composite;
     }
@@ -111,11 +112,11 @@ public class CamelFTPSSecurityComposite extends AbstractSYBindingComposite {
 
     protected void handleModify(final Control control) {
         if (control.equals(_isImplicitCheckbox)) {
-            updateFeature(_binding, "isImplicit", new Boolean(_isImplicitCheckbox.getSelection()));
+            updateFeature(_binding, "isImplicit", new Boolean(_isImplicitCheckbox.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_securityProtocolCombo)) {
-            updateFeature(_binding, "securityProtocol", _securityProtocolCombo.getText().trim());
+            updateFeature(_binding, "securityProtocol", _securityProtocolCombo.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_execProtCombo)) {
-            updateFeature(_binding, "execProt", _execProtCombo.getText().trim());
+            updateFeature(_binding, "execProt", _execProtCombo.getText().trim()); //$NON-NLS-1$
         } else {
             super.handleModify(control);
         }

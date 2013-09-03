@@ -55,6 +55,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
 import freemarker.template.Configuration;
@@ -72,10 +73,10 @@ import freemarker.template.Template;
  */
 public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements INewWizard {
 
-    private static final String TEMPLATE = "RulesTemplate.ftl";
-    private static final String PACKAGE_NAME_PARAM = "packageName";
-    private static final String COMPONENT_NAME_PARAM = "componentName";
-    private static final String SERVICE_NAME_PARAM = "serviceName";
+    private static final String TEMPLATE = "RulesTemplate.ftl"; //$NON-NLS-1$
+    private static final String PACKAGE_NAME_PARAM = "packageName"; //$NON-NLS-1$
+    private static final String COMPONENT_NAME_PARAM = "componentName"; //$NON-NLS-1$
+    private static final String SERVICE_NAME_PARAM = "serviceName"; //$NON-NLS-1$
 
     private RulesImplementationType _implementation;
 //    private NewRulesDetailsWizardPage _processPage;
@@ -95,7 +96,7 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
     public static ResourceType createRulesResource(String location) {
         ResourceType rulesResource = RulesFactory.eINSTANCE.createResourceType();
         rulesResource.setLocation(location);
-        rulesResource.setType("DRL");
+        rulesResource.setType("DRL"); //$NON-NLS-1$
         return rulesResource;
     }
 
@@ -106,20 +107,20 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
      *            editor.
      */
     public NewRulesComponentWizard(boolean openAfterCreate) {
-        super(openAfterCreate, "drl");
+        super(openAfterCreate, "drl"); //$NON-NLS-1$
     }
 
     @Override
     public void addPages() {
 //        super.addPages();
 
-        _page = new RulesServiceImplementationFileCreationPage("newFilePage1", getSelection());
-        _page.setTitle("New SwitchYard Rules File");
-        _page.setDescription("Create a new SwitchYard Rules file.");
+        _page = new RulesServiceImplementationFileCreationPage("newFilePage1", getSelection()); //$NON-NLS-1$
+        _page.setTitle(Messages.title_newSwitchYardRulesFile);
+        _page.setDescription(Messages.description_newSwitchYardRulesFile);
         if (getService() == null) {
-            _page.setFileName("RulesComponent.drl");
+            _page.setFileName("RulesComponent.drl"); //$NON-NLS-1$
         } else {
-            _page.setFileName("" + getService().getName() + "Rules.drl");
+            _page.setFileName("" + getService().getName() + "Rules.drl"); //$NON-NLS-1$ //$NON-NLS-2$
         }
         if (getCreatedFilePath() != null) {
             _page.setFileName(getCreatedFilePath());
@@ -226,7 +227,7 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
             Configuration config = new Configuration();
-            config.setClassForTemplateLoading(getClass(), "");
+            config.setClassForTemplateLoading(getClass(), ""); //$NON-NLS-1$
             config.setObjectWrapper(new DefaultObjectWrapper());
 
             Template template = config.getTemplate(TEMPLATE);
@@ -240,7 +241,7 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
             return new ByteArrayInputStream(baos.toByteArray());
         } catch (Exception e) {
             Activator.getDefault().getLog()
-                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error occurred creating drl file.", e));
+                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.error_creatingDrlFile, e));
             return null;
         } finally {
             try {
@@ -311,7 +312,7 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
             separator.setLayoutData(lineGD);
             
             // now add the package field (used to be on detail page)
-            createLabel(contents, "Package Name:");
+            createLabel(contents, Messages.label_packageName);
             _packageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
             GridData gd = new GridData(GridData.FILL_HORIZONTAL);
             gd.horizontalSpan = 2;
@@ -332,7 +333,7 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
         }
 
         private String emptyForNull(String string) {
-            return string == null ? "" : string;
+            return string == null ? "" : string; //$NON-NLS-1$
         }
 
         /**
@@ -343,13 +344,13 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
         public void update(IJavaProject project) {
             final String newPackageName;
             if (project == null) {
-                newPackageName = "";
+                newPackageName = ""; //$NON-NLS-1$
             } else {
                 IJavaElement element = JavaUtil.getInitialPackageForProject(project);
                 if (element.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
                     newPackageName = ((IPackageFragment) element).getElementName();
                 } else {
-                    newPackageName = "";
+                    newPackageName = ""; //$NON-NLS-1$
                 }
             }
             if (updateDefault(_oldPackageName, newPackageName, _packageNameText.getText())) {

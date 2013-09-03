@@ -24,6 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -38,8 +39,8 @@ public class ResteasyBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new ResteasyBindingFactory(), "REST",
-                "A REST based endpoint.", ImageProvider.IMG_16_RESTEASY) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new ResteasyBindingFactory(), Messages.label_rest,
+                Messages.description_tool_rest, ImageProvider.IMG_16_RESTEASY) };
     }
 
     @Override
@@ -59,12 +60,12 @@ public class ResteasyBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-resteasy");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-resteasy"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "REST";
+        return Messages.label_rest;
     }
     protected static List<IBindingComposite> createComposites(boolean forConsumer) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);

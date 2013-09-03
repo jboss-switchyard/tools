@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * @author bfitzpat
@@ -59,9 +60,9 @@ public class ESBInterfaceSelectionComposite extends AbstractSwitchyardComposite 
         if (getRootGridData() != null) {
             _panel.setLayoutData(getRootGridData());
         }
-        _inputTypeText = createLabelAndText(_panel, "Input Type*");
-        _outputTypeText = createLabelAndText(_panel, "Output Type");
-        _faultTypeText = createLabelAndText(_panel, "Fault Type");
+        _inputTypeText = createLabelAndText(_panel, Messages.label_inputTypeStar);
+        _outputTypeText = createLabelAndText(_panel, Messages.label_outputTypeStar);
+        _faultTypeText = createLabelAndText(_panel, Messages.label_faultType);
     }
 
     /**
@@ -106,10 +107,10 @@ public class ESBInterfaceSelectionComposite extends AbstractSwitchyardComposite 
     @Override
     protected boolean validate() {
         if (_inputTypeText != null && !_inputTypeText.isDisposed() && _inputTypeText.getText().trim().isEmpty()) {
-            setErrorMessage("Please specify an input type for the ESB interface.");
+            setErrorMessage(Messages.error_noInputTypeForEsbInterface);
         } else if (_faultTypeText != null && !_faultTypeText.isDisposed() && !_faultTypeText.getText().trim().isEmpty()
                 && _outputTypeText != null && !_outputTypeText.isDisposed() && _outputTypeText.getText().trim().isEmpty()) {
-            setErrorMessage("Specifying a fault type also requires the output type for the ESB interface.");
+            setErrorMessage(Messages.error_noOutputTypeForEsbInterfaceWithFault);
         }
         return (getErrorMessage() == null);
     }
@@ -120,13 +121,13 @@ public class ESBInterfaceSelectionComposite extends AbstractSwitchyardComposite 
         if (_interface != null) {
             if (control.equals(_inputTypeText)) {
                 _inputType = _inputTypeText.getText().trim();
-                updateFeature(_interface, "inputType", _inputType);
+                updateFeature(_interface, "inputType", _inputType); //$NON-NLS-1$
             } else if (control.equals(_outputTypeText)) {
                 _outputType = _outputTypeText.getText().trim();
-                updateFeature(_interface, "outputType", _outputType);
+                updateFeature(_interface, "outputType", _outputType); //$NON-NLS-1$
             } else if (control.equals(_faultTypeText)) {
                 _faultType = _faultTypeText.getText().trim();
-                updateFeature(_interface, "faultType", _faultType);
+                updateFeature(_interface, "faultType", _faultType); //$NON-NLS-1$
             }
         }
     }

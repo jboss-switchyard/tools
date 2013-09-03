@@ -33,6 +33,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.transform.NewTransformWizard;
 import org.switchyard.tools.ui.editor.transform.TransformDetails;
@@ -81,13 +82,13 @@ public class CustomAddTransformFeature extends AbstractCustomFeature {
                 details = new TransformDetails(switchYardRoot);
             }
         } catch (Exception e) {
-            MessageDialog.openError(shell, "Error Resolving Transformers", "Could not resolve required transformers.\n"
+            MessageDialog.openError(shell, Messages.title_errorResolvingTransformers, Messages.description_errorResolvingTransformers
                     + e.getMessage());
             return;
         }
         if (details.getDeclaredTransforms().containsAll(details.getRequiredTransforms())) {
-            MessageDialog.openInformation(shell, "No New Transformers Required",
-                    "All required transformers have been created.");
+            MessageDialog.openInformation(shell, Messages.title_noTransformersRequired,
+                    Messages.description_noTransformersRequired);
             return;
         }
         final NewTransformWizard wizard = new NewTransformWizard();
@@ -114,7 +115,7 @@ public class CustomAddTransformFeature extends AbstractCustomFeature {
 
     @Override
     public String getDescription() {
-        return "Add a new transformer for the connected objects.";
+        return Messages.featureDescription_createRequiredTransformers;
     }
 
     @Override
@@ -129,7 +130,7 @@ public class CustomAddTransformFeature extends AbstractCustomFeature {
 
     @Override
     public String getName() {
-        return "Create Required Transformers";
+        return Messages.featureName_createRequiredTransformers;
     }
 
     @Override

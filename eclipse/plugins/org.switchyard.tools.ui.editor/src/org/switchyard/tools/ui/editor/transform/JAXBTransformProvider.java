@@ -44,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.Messages;
 
 /**
  * JAXBTransformProvider
@@ -70,7 +71,7 @@ public class JAXBTransformProvider implements ITransformProvider {
 
     @Override
     public String getName() {
-        return "JAXB Transformer";
+        return Messages.label_jaxbTransformer;
     }
 
     private static final class JAXBTransformControl implements ITransformControl {
@@ -89,7 +90,7 @@ public class JAXBTransformProvider implements ITransformProvider {
             _content.setLayout(new GridLayout(3, false));
 
             final Label label = new Label(_content, SWT.NONE);
-            label.setText("Context path:");
+            label.setText(Messages.label_contextPath);
             label.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 2));
 
             _packagesView = new ListViewer(_content, SWT.READ_ONLY | SWT.MULTI | SWT.BORDER | SWT.H_SCROLL
@@ -102,7 +103,7 @@ public class JAXBTransformProvider implements ITransformProvider {
             _packagesView.setInput(_packages);
 
             final Button addButton = new Button(_content, SWT.PUSH);
-            addButton.setText("Add Packages");
+            addButton.setText(Messages.button_addPackages);
             addButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
             addButton.addSelectionListener(new SelectionAdapter() {
                 @Override
@@ -115,7 +116,7 @@ public class JAXBTransformProvider implements ITransformProvider {
             });
 
             final Button removeButton = new Button(_content, SWT.PUSH);
-            removeButton.setText("Remove Packages");
+            removeButton.setText(Messages.button_removePackages);
             removeButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
             removeButton.addSelectionListener(new SelectionAdapter() {
                 @Override
@@ -152,11 +153,11 @@ public class JAXBTransformProvider implements ITransformProvider {
                     if (NewTransformWizard.isJavaType(transformer.getFrom())) {
                         if (NewTransformWizard.isJavaType(transformer.getTo())) {
                             return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                    "JAXB transformers only support Java->XML or XML->Java.");
+                                    Messages.error_jaxbOnlySupportsJavaToFromXml);
                         }
                     } else if (!NewTransformWizard.isJavaType(transformer.getTo())) {
                         return new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "JAXB transformers only support Java->XML or XML->Java.");
+                                Messages.error_jaxbOnlySupportsJavaToFromXml);
                     }
                 }
             }
@@ -188,7 +189,7 @@ public class JAXBTransformProvider implements ITransformProvider {
         private String createContextPath() {
             final StringBuffer buf = new StringBuffer();
             for (String pkg : _packages) {
-                buf.append(pkg).append(":");
+                buf.append(pkg).append(":"); //$NON-NLS-1$
             }
             if (buf.length() > 0) {
                 buf.deleteCharAt(buf.length() - 1);
@@ -208,9 +209,9 @@ public class JAXBTransformProvider implements ITransformProvider {
                 SelectionDialog dialog = JavaUI.createPackageDialog(_content.getShell(), _project,
                         IJavaElementSearchConstants.CONSIDER_REQUIRED_PROJECTS
                                 | IJavaElementSearchConstants.CONSIDER_BINARIES,
-                        filter instanceof IPackageFragment ? ((IPackageFragment) filter).getElementName() : "");
-                dialog.setTitle("Select Packages");
-                dialog.setMessage("Selected packages to include in JAXB context path.");
+                        filter instanceof IPackageFragment ? ((IPackageFragment) filter).getElementName() : ""); //$NON-NLS-1$
+                dialog.setTitle(Messages.title_selectJaxbPackages);
+                dialog.setMessage(Messages.description_selectJaxbPackages);
                 if (dialog.open() == SelectionDialog.OK) {
                     for (Object obj : dialog.getResult()) {
                         changed = _packages.add(((IPackageFragment) obj).getElementName()) || changed;

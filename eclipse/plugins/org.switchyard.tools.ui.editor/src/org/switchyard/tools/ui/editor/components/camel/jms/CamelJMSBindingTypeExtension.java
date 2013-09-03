@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
@@ -38,8 +39,8 @@ public class CamelJMSBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelJmsBindingFactory(), "JMS",
-                "A Camel JMS based endpoint.", ImageProvider.IMG_16_QUEUE) };
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new CamelJmsBindingFactory(), Messages.label_jms,
+                Messages.description_tool_jms, ImageProvider.IMG_16_QUEUE) };
     }
 
     @Override
@@ -59,12 +60,12 @@ public class CamelJMSBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Binding object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-jms");
+        return Collections.singletonList("org.switchyard.components:switchyard-component-camel-jms"); //$NON-NLS-1$
     }
 
     @Override
     public String getTypeName(Binding object) {
-        return "JMS";
+        return Messages.label_jms;
     }
 
     protected static List<IBindingComposite> createComposites() {
@@ -79,18 +80,18 @@ public class CamelJMSBindingTypeExtension implements IBindingTypeExtension {
     
     static {
         ADVANCED_PROPS = new ArrayList<String>();
-        ADVANCED_PROPS.add("username");
-        ADVANCED_PROPS.add("password");
-        ADVANCED_PROPS.add("clientId");
-        ADVANCED_PROPS.add("durableSubscriptionName");
-        ADVANCED_PROPS.add("disableReplyTo");
-        ADVANCED_PROPS.add("preserveMessageQos");
-        ADVANCED_PROPS.add("deliveryPersistent");
-        ADVANCED_PROPS.add("priority");
-        ADVANCED_PROPS.add("explicitQosEnabled");
-        ADVANCED_PROPS.add("replyToType");
-        ADVANCED_PROPS.add("requestTimeout");
-        ADVANCED_PROPS.add("selector");
-        ADVANCED_PROPS.add("timeToLive");
+        ADVANCED_PROPS.add("username"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("password"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("clientId"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("durableSubscriptionName"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("disableReplyTo"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("preserveMessageQos"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("deliveryPersistent"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("priority"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("explicitQosEnabled"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("replyToType"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("requestTimeout"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("selector"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("timeToLive"); //$NON-NLS-1$
     }
 }

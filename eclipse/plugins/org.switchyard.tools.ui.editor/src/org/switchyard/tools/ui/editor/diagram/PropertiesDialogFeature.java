@@ -29,6 +29,7 @@ import org.eclipse.jface.window.IShellProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -74,12 +75,12 @@ public class PropertiesDialogFeature extends AbstractCustomFeature {
 
     @Override
     public String getDescription() {
-        return "Open properties dialog.";
+        return Messages.featureDescription_openProperties;
     }
 
     @Override
     public String getName() {
-        return "Properties";
+        return Messages.featureName_properties;
     }
 
     @Override
@@ -111,7 +112,7 @@ public class PropertiesDialogFeature extends AbstractCustomFeature {
                 public boolean select(Viewer viewer, Object parentElement, Object element) {
                     String id = element == null ? null : ((IPreferenceNode) element).getId();
                     // filter out run/debug and svn info
-                    return id != null && !id.startsWith("org.eclipse.debug.ui.") && !id.startsWith("org.eclipse.team.");
+                    return id != null && !id.startsWith("org.eclipse.debug.ui.") && !id.startsWith("org.eclipse.team."); //$NON-NLS-1$ //$NON-NLS-2$
                 }
             });
             try {

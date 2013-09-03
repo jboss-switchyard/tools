@@ -106,14 +106,14 @@ public final class ComponentTypeExtensionManager {
 
     private void loadExtensions() {
         IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(Activator.PLUGIN_ID,
-                "editorExtension");
+                "editorExtension"); //$NON-NLS-1$
         for (IExtension pluginExtension : extensionPoint.getExtensions()) {
             for (IConfigurationElement element : pluginExtension.getConfigurationElements()) {
-                if (!"componentExtension".equals(element.getName())) {
+                if (!"componentExtension".equals(element.getName())) { //$NON-NLS-1$
                     continue;
                 }
                 try {
-                    _extensions.add((IComponentTypeExtension) element.createExecutableExtension("class"));
+                    _extensions.add((IComponentTypeExtension) element.createExecutableExtension("class")); //$NON-NLS-1$
                 } catch (CoreException e) {
                     Activator.getDefault().getLog().log(e.getStatus());
                 }
@@ -150,7 +150,7 @@ public final class ComponentTypeExtensionManager {
 
         @Override
         public String getTypeName(Implementation object) {
-            return "Unknown";
+            return Messages.constant_unknown;
         }
     }
 }
