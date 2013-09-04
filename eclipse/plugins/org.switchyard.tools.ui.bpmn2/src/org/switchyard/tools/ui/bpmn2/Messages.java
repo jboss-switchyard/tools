@@ -81,6 +81,7 @@ public class Messages extends NLS {
     public static String label_scanForUpdates;
     public static String label_scanInterval;
     public static String label_sessionName;
+    public static String label_skip;
     public static String label_throw;
     public static String label_to;
     public static String label_type;

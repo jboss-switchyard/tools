@@ -61,6 +61,7 @@ public class FaultActionObjectEditor extends ComboObjectEditor {
         values.put(Messages.label_abort, "ABORT"); //$NON-NLS-2$
         values.put(Messages.label_complete, "COMPLETE"); //$NON-NLS-2$
         values.put(Messages.label_throw, "THROW"); //$NON-NLS-2$
+        values.put(Messages.label_skip, "SKIP"); //$NON-NLS-2$
         return values;
     }
 }
