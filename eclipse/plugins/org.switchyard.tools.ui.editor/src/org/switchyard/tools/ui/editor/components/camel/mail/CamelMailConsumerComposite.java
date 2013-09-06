@@ -14,7 +14,12 @@ package org.switchyard.tools.ui.editor.components.camel.mail;
 
 import java.util.ArrayList;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -28,8 +33,11 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
@@ -54,6 +62,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
 //    private Text _copyToText;
 //    private Button _disconnectCheckbox;
     private Button _securedCheckbox;
+    private OperationSelectorComposite _opSelectorComposite;
 
     @Override
     public String getTitle() {
@@ -122,6 +131,9 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 _nameText.setText(_binding.getName());
             }
             _securedCheckbox.setSelection(this._binding.isSecure());
+            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+            _opSelectorComposite.setBinding(this._binding);
+            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
 
             setInUpdate(false);
             validate();
@@ -129,6 +141,14 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             this._binding = null;
         }
         addObservableListeners();
+    }
+
+    @Override
+    public void setTargetObject(EObject target) {
+        super.setTargetObject(target);
+        if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+            _opSelectorComposite.setTargetObject((EObject) target);
+        }
     }
 
     @Override
@@ -190,6 +210,18 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         _deleteCheckbox = createCheckbox(consumeGroup, Messages.label_delete);
 //        _copyToText = createLabelAndText(consumeGroup, "Copy To");
 //        _disconnectCheckbox = createCheckbox(consumeGroup, "Disconnect");
+
+        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+        GridData opSelectGD = new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1);
+        opSelectGD.horizontalIndent = -5;
+        _opSelectorComposite.setLayoutData(opSelectGD);
+        _opSelectorComposite.setLayout(new GridLayout(2, false));
+        _opSelectorComposite.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                handleModify(_opSelectorComposite);
+            }
+         });
 
         return composite;
     }
@@ -254,6 +286,9 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             updateFeature(_binding, "secure", _securedCheckbox.getSelection()); //$NON-NLS-1$
         } else if (control.equals(_nameText)) {
             super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
+        } else if (control.equals(_opSelectorComposite)) {
+            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
+            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         } else {
             super.handleModify(control);
         }
