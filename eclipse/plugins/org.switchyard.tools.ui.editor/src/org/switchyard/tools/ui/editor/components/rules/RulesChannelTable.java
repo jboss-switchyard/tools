@@ -206,12 +206,15 @@ public class RulesChannelTable extends Composite implements ICellModifier {
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
                 new TextCellEditor(_propertyTreeTable.getTable()),
+                new TextCellEditor(_propertyTreeTable.getTable()),
+                new TextCellEditor(_propertyTreeTable.getTable()),
                 new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.api.runtime.Channel", Messages.label_channel, //$NON-NLS-1$
                         Messages.tooltip_channel) {
                     protected Resource getResource() {
                         return _targetObj == null ? null : _targetObj.eResource();
                     }
-                } });
+                }
+        });
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
