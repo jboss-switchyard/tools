@@ -65,6 +65,7 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
     private Text _includeText;
     private Text _excludeText;
     private Text _delayText;
+    private Text _maxMessagesPerPollText;
     private OperationSelectorComposite _opSelectorComposite;
 
     @Override
@@ -152,6 +153,12 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
                 _nameText.setText(""); //$NON-NLS-1$
             } else {
                 _nameText.setText(_binding.getName());
+            }
+            if (this._binding.getConsume().getMaxMessagesPerPoll() != null) {
+                setTextValue(_maxMessagesPerPollText, 
+                        PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
+            } else {
+                _maxMessagesPerPollText.setText(""); //$NON-NLS-1$
             }
             _binaryButton.setSelection(this._binding.isBinary());
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
@@ -246,6 +253,7 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
         pollGroup.setText(Messages.label_pollOptions);
 
         _delayText = createLabelAndText(pollGroup, Messages.label_delayBetweenPollsDefault500);
+        _maxMessagesPerPollText = createLabelAndText(pollGroup, Messages.label_maxMessagesPerPollDefault0);
 
         return composite;
     }
@@ -295,6 +303,12 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        } else if (control.equals(_maxMessagesPerPollText)) {
+            try {
+                updateConsumeFeature("maxMessagesPerPoll", new BigInteger(_maxMessagesPerPollText.getText().trim())); //$NON-NLS-1$
+            } catch (NumberFormatException nfe) {
+                updateConsumeFeature("maxMessagesPerPoll", _maxMessagesPerPollText.getText().trim()); //$NON-NLS-1$
+            }
         }
     }
 
@@ -367,6 +381,8 @@ public class CamelSFTPConsumerComposite extends AbstractSYBindingComposite {
                     _deleteButton.setSelection(this._binding.getConsume().isDelete());
                 } else if (control.equals(_recursiveButton)) {
                     _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
+                } else if (control.equals(_maxMessagesPerPollText)) {
+                    setTextValue(_maxMessagesPerPollText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
                 }
             } else {
                 super.handleUndo(control);

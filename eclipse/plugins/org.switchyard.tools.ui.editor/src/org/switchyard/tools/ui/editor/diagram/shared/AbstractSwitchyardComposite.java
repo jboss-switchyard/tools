@@ -537,7 +537,11 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
             EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
             if (eStructuralFeature.isChangeable()) {
                 if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
+                    if (value != null) {
+                        eObject.eSet(eStructuralFeature, value);
+                    } else {
+                        eObject.eUnset(eStructuralFeature);
+                    }
                     return;
                 }
             }

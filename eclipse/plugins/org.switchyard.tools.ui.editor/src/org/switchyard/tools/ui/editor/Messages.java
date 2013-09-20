@@ -401,6 +401,7 @@ public class Messages extends NLS {
     public static String label_logName;
     public static String label_logType;
     public static String label_mail;
+    public static String Label_maxMessagesPerPoll;
     public static String label_manifest;
     public static String label_matchingItems;
     public static String label_maximumConcurrentConsumers;
