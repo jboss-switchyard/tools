@@ -250,6 +250,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
                 setTextValue(_excludesNSText, binding.getContextMapper().getExcludeNamespaces());
             }
         }
+        addObservableListeners();
     }
 
     private SwitchYardBindingType getSwitchYardBinding() {
@@ -369,6 +370,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ContextMapperOp());
         ops.add(new BasicOperation("contextMapper", featureId, value)); //$NON-NLS-1$
+        ops.add(getRemoveContextMapperOp());
         wrapOperation(ops);
     }
     
@@ -380,16 +382,90 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         ops.add(new BasicOperation("contextMapper", "includeNamespaces", null)); //$NON-NLS-1$ //$NON-NLS-2$
         ops.add(new BasicOperation("contextMapper", "excludes", null)); //$NON-NLS-1$ //$NON-NLS-2$
         ops.add(new BasicOperation("contextMapper", "excludeNamespaces", null)); //$NON-NLS-1$ //$NON-NLS-2$
+        ops.add(getRemoveContextMapperOp());
         wrapOperation(ops);
+    }
+
+    protected class RemoveContextMapperOp extends ModelOperation {
+        
+        protected boolean checkForEmpties(SwitchYardBindingType sybinding) throws Exception {
+            // to be overridden for any downstream implementations
+            return true;
+        }
+
+        @Override
+        public void run() throws Exception {
+            if (getBinding() != null && getBinding() instanceof SwitchYardBindingType) {
+                SwitchYardBindingType sybinding = (SwitchYardBindingType) getBinding();
+                boolean isEmpty = true;
+                if (!stringIsEmpty(sybinding.getContextMapper().getClass_())) {
+                    isEmpty = false; 
+                }
+                if (!stringIsEmpty(sybinding.getContextMapper().getExcludeNamespaces())) {
+                    isEmpty = false; 
+                }
+                if (!stringIsEmpty(sybinding.getContextMapper().getExcludes())) {
+                    isEmpty = false; 
+                }
+                if (!stringIsEmpty(sybinding.getContextMapper().getIncludeNamespaces())) {
+                    isEmpty = false; 
+                }
+                if (!stringIsEmpty(sybinding.getContextMapper().getIncludes())) {
+                    isEmpty = false; 
+                }
+                if (isEmpty) {
+                    isEmpty = checkForEmpties(sybinding);
+                }
+                if (isEmpty) {
+                    setFeatureValue(sybinding, "contextMapper", null); //$NON-NLS-1$
+                }
+            }
+        }
+    }
+    
+    protected ModelOperation getRemoveContextMapperOp() {
+        return new RemoveContextMapperOp();
     }
 
     protected void updateMessageComposerFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new MessageComposerOp());
         ops.add(new BasicOperation("messageComposer", featureId, value)); //$NON-NLS-1$
+        ops.add(getRemoveMessageComposerOp());
         wrapOperation(ops);
     }
+    
+    protected ModelOperation getRemoveMessageComposerOp() {
+        return new RemoveMessageComposerOp();
+    }
 
+    protected class RemoveMessageComposerOp extends ModelOperation {
+        
+        protected boolean checkForEmpties(SwitchYardBindingType sybinding) throws Exception {
+            // to be overridden for any downstream implementations
+            return true;
+        }
+        
+        @Override
+        public void run() throws Exception {
+            if (getBinding() != null && getBinding() instanceof SwitchYardBindingType) {
+                SwitchYardBindingType sybinding = (SwitchYardBindingType) getBinding();
+                MessageComposerType messageComposer = sybinding.getMessageComposer();
+                boolean isEmpty = true;
+                if (!stringIsEmpty(messageComposer.getClass_())) {
+                    isEmpty = false;
+                }
+                if (isEmpty) {
+                    isEmpty = checkForEmpties(sybinding);
+                }
+                if (isEmpty) {
+                    setFeatureValue(sybinding, "messageComposer", null); //$NON-NLS-1$
+                }
+            }
+        }
+    }
+    
+    
     protected void updateContextMapperFeature(Text control) {
         String value = control.getText().trim();
         boolean regexSupported = cmClassSupportsRegEx(value);
@@ -750,4 +826,10 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         return _excludesNSText;
     }
 
+    protected boolean stringIsEmpty(String toTest) {
+        if (toTest != null && !toTest.trim().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
 }
