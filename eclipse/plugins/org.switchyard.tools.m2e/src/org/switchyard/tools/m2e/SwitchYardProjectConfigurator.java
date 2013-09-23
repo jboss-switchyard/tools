@@ -10,6 +10,7 @@
  ************************************************************************************/
 package org.switchyard.tools.m2e;
 
+import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.MojoExecution;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -44,12 +45,15 @@ import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
 
     private static final IProjectFacet UTILITY_MODULE_FACET;
+    private static final String VERSION_SUFFIX_1_0 = "1_0"; //$NON-NLS-1$
+    private static final String VERSION_SUFFIX_1_1 = "1_1"; //$NON-NLS-1$
+    private static final String LATEST_VERSION_SUFFIX = VERSION_SUFFIX_1_1;
 
     @Override
     public void configure(ProjectConfigurationRequest request, IProgressMonitor monitor) throws CoreException {
         IFacetedProject facetedProject = ProjectFacetsManager.create(request.getProject(), true, monitor);
         IFacetedProjectWorkingCopy ifpwc = facetedProject.createWorkingCopy();
-        IPreset switchYardBasicPreset = getSwitchYardBasicPreset(ifpwc);
+        IPreset switchYardBasicPreset = getSwitchYardBasicPreset(ifpwc, request);
         if (switchYardBasicPreset == null) {
             return;
         }
@@ -58,6 +62,10 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
         for (IProjectFacetVersion facet : switchYardBasicPreset.getProjectFacets()) {
             if (!ifpwc.hasProjectFacet(facet.getProjectFacet())) {
                 ifpwc.addProjectFacet(facet);
+                modified = true;
+            } else if (!facet.getVersionString().equals(ifpwc.getProjectFacetVersion(facet.getProjectFacet()).getVersionString())) {
+                // different version
+                ifpwc.changeProjectFacetVersion(facet);
                 modified = true;
             }
         }
@@ -98,13 +106,44 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
         return new SwitchYardBuildParticipant(execution);
     }
 
-    private IPreset getSwitchYardBasicPreset(IFacetedProjectWorkingCopy ifpwc) {
+    private IPreset getSwitchYardBasicPreset(IFacetedProjectWorkingCopy ifpwc, ProjectConfigurationRequest request) {
+        String versionSuffix = LATEST_VERSION_SUFFIX;
+        for (Dependency dependency : request.getMavenProject().getDependencies()) {
+            if ("org.switchyard".equals(dependency.getGroupId()) && dependency.getVersion() != null) { //$NON-NLS-1$
+                try {
+                    versionSuffix = getFacetVersionSuffixFromDependencyVersion(dependency.getVersion());
+                    break;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        final String presetId = "preset.switchyard.basic." + versionSuffix; //$NON-NLS-1$
         for (IPreset preset : ifpwc.getAvailablePresets()) {
-            if ("preset.switchyard.basic".equals(preset.getId())) { //$NON-NLS-1$
+            if (presetId.equals(preset.getId())) {
                 return preset;
             }
         }
         return null;
+    }
+
+    private String getFacetVersionSuffixFromDependencyVersion(String version) {
+        final String[] segments = version.split("\\.", 3); //$NON-NLS-1$
+        final int majorVersion = Integer.valueOf(segments[0]);
+        switch (majorVersion) {
+        case 1:
+            if (segments.length > 1) {
+                final int minorVersion = Integer.valueOf(segments[1]);
+                switch (minorVersion) {
+                case 0:
+                    return VERSION_SUFFIX_1_0;
+                case 1:
+                    return VERSION_SUFFIX_1_1;
+                }
+            }
+        }
+        // we either don't know or it's newer, so use the best we've got
+        return LATEST_VERSION_SUFFIX;
     }
 
     @Override

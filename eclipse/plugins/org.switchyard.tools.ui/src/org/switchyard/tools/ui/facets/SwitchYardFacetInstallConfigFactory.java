@@ -24,6 +24,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.wst.common.componentcore.datamodel.FacetInstallDataModelProvider;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.sonatype.aether.util.version.GenericVersionScheme;
 import org.sonatype.aether.version.InvalidVersionSpecificationException;
 import org.sonatype.aether.version.Version;
@@ -44,6 +46,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
         ISwitchYardFacetConstants {
 
     private List<Version> _versions;
+    private Set<IRuntime> _originalRuntimes;
     private Version _defaultVersion;
     private ISwitchYardProject _switchYardProject;
 
@@ -68,6 +71,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
         names.add(RUNTIME_PROVIDED);
         names.add(RUNTIME_VERSION);
         names.add(RUNTIME_COMPONENTS);
+        names.add(RUNTIME_TARGET);
         names.add(SWITCHYARD_PROJECT);
         return names;
     }
@@ -102,6 +106,15 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
             }
         }
         getDataModel().setProperty(SWITCHYARD_PROJECT, _switchYardProject);
+        if (ifpwc.getPrimaryRuntime() != null) {
+            for (IRuntimeComponent component : ifpwc.getPrimaryRuntime().getRuntimeComponents()) {
+                if (SWITCHYARD_RUNTIME_ID.equals(component.getRuntimeComponentType().getId())
+                        || FSW_RUNTIME_ID.equals(component.getRuntimeComponentType().getId())) {
+                    getDataModel().setProperty(RUNTIME_TARGET, component);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -114,6 +127,9 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
             return _defaultVersion;
         } else if (RUNTIME_COMPONENTS.equals(propertyName)) {
             return Collections.emptySet();
+        } else if (RUNTIME_TARGET.equals(propertyName)) {
+            // TODO: maybe use preferences?
+            return null;
         } else if (SWITCHYARD_PROJECT.equals(propertyName)) {
             return null;
         }
@@ -130,6 +146,20 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
             return true;
         } else if (SWITCHYARD_PROJECT.equals(propertyName)) {
             return false;
+        } else if (RUNTIME_TARGET.equals(propertyName)) {
+            // update the primary runtime
+            final IFacetedProjectWorkingCopy ifpwc = (IFacetedProjectWorkingCopy)getProperty(FACETED_PROJECT_WORKING_COPY);
+            if (ifpwc != null) {
+                final IRuntime primaryRuntime = ifpwc.getPrimaryRuntime();
+                if (primaryRuntime != null && !_originalRuntimes.contains(primaryRuntime)) {
+                    ifpwc.removeTargetedRuntime(primaryRuntime);
+                }
+                if (propertyValue != null) {
+                    ifpwc.addTargetedRuntime(((IRuntimeComponent)propertyValue).getRuntime());
+                    ifpwc.setPrimaryRuntime(((IRuntimeComponent)propertyValue).getRuntime());
+                }
+            }
+            return true;
         } else if (FACETED_PROJECT_WORKING_COPY.equals(propertyName)) {
             // initialize defaults, et al.
             projectWorkingCopyUpdated((IFacetedProjectWorkingCopy) propertyValue);
@@ -171,6 +201,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
                 _versions = Collections.emptyList();
             }
         }
+        _originalRuntimes = ifpwc.getTargetedRuntimes();
     }
 
 }

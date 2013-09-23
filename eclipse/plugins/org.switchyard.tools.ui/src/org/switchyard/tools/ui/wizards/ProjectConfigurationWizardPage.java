@@ -19,7 +19,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.JavaConventions;
 import org.eclipse.jdt.internal.ui.dialogs.StatusUtil;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -31,6 +33,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.sonatype.aether.util.version.GenericVersionScheme;
 import org.sonatype.aether.version.InvalidVersionSpecificationException;
 import org.sonatype.aether.version.Version;
@@ -102,6 +105,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             return null;
         }
         return (Version) ((IStructuredSelection) runtimeVersionListSelection).getFirstElement();
+    }
+
+    /**
+     * @return the selected target runtime.
+     */
+    public IRuntimeComponent getTargetRuntime() {
+        return _settingsGroup.getSelectedTargetRuntime();
     }
 
     /**
@@ -177,6 +187,12 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         settingsContent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         _settingsGroup = new SwitchYardSettingsGroup(settingsContent, this, getContainer());
+        _settingsGroup.getRuntimeVersionsList().addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                validate();
+            }
+        });
 
         setControl(content);
         setPageComplete(false);
@@ -206,9 +222,11 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         try {
             // TODO: allow use of preferred version or allow association of
             // server runtime version.
-            _settingsGroup.getRuntimeVersionsList().setSelection(
-                    new StructuredSelection(new GenericVersionScheme()
-                            .parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION)));
+            if (getRuntimeVersion() == null) {
+                _settingsGroup.getRuntimeVersionsList().setSelection(
+                        new StructuredSelection(new GenericVersionScheme()
+                                .parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION)));
+            }
         } catch (InvalidVersionSpecificationException e) {
             e.printStackTrace();
             if (versions != null && versions.size() > 0) {
@@ -218,12 +236,25 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     }
 
     private void validate() {
+        setMessage(null);
+        setErrorMessage(null);
+
         IStatus packageNameStatus = JavaConventions.validatePackageName(_packageName, "1.6", "1.6"); //$NON-NLS-1$ //$NON-NLS-2$
-        if (packageNameStatus.isOK()) {
-            setMessage(null);
-            setErrorMessage(null);
-        } else {
+        if (!packageNameStatus.isOK()) {
             StatusUtil.applyToStatusLine(this, packageNameStatus);
+        } else if (getErrorMessage() == null) {
+            final Version version = getRuntimeVersion();
+            if (version == null) {
+                setErrorMessage(Messages.ProjectConfigurationWizardPage_errorMessage_pleaseSpecifySwitchYardVersion);
+            }
+            /*
+             * else {
+             * Don't validate artifact resolution here as this can cause a lot
+             * of junk to build up in the local repository. You basically get a
+             * resolution for every key stroke, which we really don't want. It
+             * might be better to put this into the wizard's performFinish()
+             * logic and fail there instead of here. }
+             */
         }
         setPageComplete(getErrorMessage() == null);
     }

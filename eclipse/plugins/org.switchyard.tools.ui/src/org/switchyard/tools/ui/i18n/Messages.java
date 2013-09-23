@@ -275,6 +275,8 @@ public final class Messages extends NLS {
 
     public static String CreateServiceTestOperation_wizardPageText_creatingNewSYServiceTest;
 
+    public static String CreateSwitchYardProjectOperation_errorMessage_errorAttachingTargetRuntimeToProject;
+
     public static String CreateSwitchYardProjectOperation_exceptionMessage_errorCreatingSYProject;
 
     public static String CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainResourceFolder;
@@ -300,6 +302,8 @@ public final class Messages extends NLS {
     public static String CreateSwitchYardProjectOperation_statusMessage_errorCreatingSYXML;
 
     public static String CreateSwitchYardProjectOperation_statusMessage_errorUpdatingMavenProjectConfig;
+
+    public static String CreateSwitchYardProjectOperation_taskLabel_attachingTargetRuntimeToProject;
 
     public static String CreateSwitchYardProjectOperation_taskLabel_creatingDefaultFolders;
 
@@ -437,7 +441,15 @@ public final class Messages extends NLS {
 
     public static String NewServiceTestClassWizardPage_wizardPageTitle;
 
+    public static String NewSwitchYardProjectWizard_confirmText_cannotResolveSwitchYardDependencies;
+
+    public static String NewSwitchYardProjectWizard_confirmTitle_cannotResolveSwitchYardDependencies;
+
     public static String NewSwitchYardProjectWizard_errorMessage_errorCreatingProject;
+
+    public static String NewSwitchYardProjectWizard_errorMessage_noSwitchYardVersionSpecified;
+
+    public static String NewSwitchYardProjectWizard_errorTitle_noVersionSpecified;
 
     public static String NewSwitchYardProjectWizard_logError_errorCreatingSYProject;
 
@@ -447,11 +459,15 @@ public final class Messages extends NLS {
 
     public static String NewSwitchYardProjectWizard_projectPageTitle;
 
+    public static String NewSwitchYardProjectWizard_taskLabel_resolvingSwitchYardArtifacts;
+
     public static String NewSwitchYardProjectWizard_windowTitle;
 
     public static String NewWSDLFileWizard_wizardTitle;
 
     public static String ProjectConfigurationWizardPage_18;
+
+    public static String ProjectConfigurationWizardPage_errorMessage_pleaseSpecifySwitchYardVersion;
 
     public static String ProjectConfigurationWizardPage_labelArtifactID;
 
@@ -515,6 +531,8 @@ public final class Messages extends NLS {
 
     public static String SwitchYardExplorerContentProvider_jobMessage_RefreshingSYProjectConfig;
 
+    public static String SwitchYardFacetInstallActionDelegate_errorMessage_notAMavenProject;
+
     public static String SwitchYardFacetInstallActionDelegate_exceptionMessage_cannotResolveSYProject;
 
     public static String SwitchYardFacetInstallActionDelegate_operationLabel_installingSYFacet;
@@ -569,6 +587,8 @@ public final class Messages extends NLS {
     public static String SwitchYardRootPropertySource_propertyDescriptorDescription_application;
 
     public static String SwitchYardRootPropertySource_propertyDescriptorDescription_configFile;
+
+    public static String SwitchYardRuntimeComponentProvider_label_runtimeComponentName;
 
     public static String SwitchYardSettingsAction_errorMessage_errorInstallingSYFacet;
 

@@ -9,6 +9,7 @@
   <!-- Specialized SwitchYard component schema. -->
   <public publicId="urn:switchyard-component-bean:config:1.0" uri="bean-v1.xsd" />
   <public publicId="urn:switchyard-component-bpm:config:1.0" uri="bpm-v1.xsd" />
+  <public publicId="urn:switchyard-component-bpm:config:1.1" uri="bpm-v1.1.xsd" />
   <public publicId="urn:switchyard-component-camel:config:1.0" uri="camel-component-v1.xsd" />
   <public publicId="urn:switchyard-component-camel-amqp:config:1.0" uri="camel-amqp-v1.xsd" />
   <public publicId="urn:switchyard-component-camel-atom:config:1.0" uri="camel-atom-v1.xsd" />
@@ -23,11 +24,14 @@
   <public publicId="urn:switchyard-component-camel-sql:config:1.0" uri="camel-sql-v1.xsd" />
   <public publicId="urn:switchyard-component-clojure:config:1.0" uri="clojure-v1.xsd" />
   <public publicId="urn:switchyard-component-rules:config:1.0" uri="rules-v1.xsd" />
+  <public publicId="urn:switchyard-component-rules:config:1.1" uri="rules-v1.1.xsd" />
   <public publicId="urn:switchyard-component-soap:config:1.0" uri="soap-v1.xsd" />
+  <public publicId="urn:switchyard-component-soap:config:1.1" uri="soap-v1.1.xsd" />
   <public publicId="urn:switchyard-component-jca:config:1.0" uri="jca-v1.xsd" />
   <public publicId="urn:switchyard-component-resteasy:config:1.0" uri="resteasy-v1.xsd" />
+  <public publicId="urn:switchyard-component-resteasy:config:1.1" uri="resteasy-v1.1.xsd" />
   <public publicId="urn:switchyard-component-http:config:1.0" uri="http-v1.xsd" />
-  <public publicId="urn:switchyard-component-remote:config:1.0" uri="remote-v1.xsd" />
+  <public publicId="urn:switchyard-component-http:config:1.1" uri="http-v1.1.xsd" />
 
   <!-- Other dependencies -->
   <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200912" uri="sca-1.1-cd06.xsd" />

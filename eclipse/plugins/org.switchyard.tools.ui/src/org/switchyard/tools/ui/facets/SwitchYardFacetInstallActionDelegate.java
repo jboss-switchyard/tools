@@ -25,6 +25,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.m2e.core.MavenPlugin;
+import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.wtp.WTPProjectsUtil;
 import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetDataModelProperties;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
@@ -96,6 +98,10 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
             protected void execute(IProgressMonitor monitor) throws CoreException {
                 // make sure test folders get removed, save initiating a maven
                 // project update
+                IMavenProjectFacade projectFacade = MavenPlugin.getMavenProjectRegistry().getProject(getProject());
+                if (projectFacade == null || projectFacade.getMavenProject() == null) {
+                    throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.SwitchYardFacetInstallActionDelegate_errorMessage_notAMavenProject));
+                }
                 WTPProjectsUtil.removeTestFolderLinks(getProject(), workingCopy.getMavenProject(), monitor, "/"); //$NON-NLS-1$
             }
 
@@ -106,6 +112,8 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
 
         }.run(monitor);
         
+        workingCopy.dispose();
+
         if (isOpenShiftProject(project)) {
             handleOpenShiftStandaloneUpdates(project);
         }

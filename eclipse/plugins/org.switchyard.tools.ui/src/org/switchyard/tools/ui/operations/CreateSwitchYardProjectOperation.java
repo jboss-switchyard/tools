@@ -52,6 +52,10 @@ import org.eclipse.m2e.core.project.IProjectConfigurationManager;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
 import org.eclipse.ui.ide.undo.CreateFolderOperation;
 import org.eclipse.ui.ide.undo.CreateProjectOperation;
+import org.eclipse.wst.common.project.facet.core.IFacetedProject;
+import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
+import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.switchyard.config.OutputKey;
 import org.switchyard.config.model.composite.CompositeModel;
 import org.switchyard.config.model.composite.v1.V1CompositeModel;
@@ -86,6 +90,22 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         private String _groupId;
         private String _projectVersion;
         private String _runtimeVersion;
+        private IRuntimeComponent _targetRuntime;
+
+        /**
+         * @return the target runtime.
+         */
+        public IRuntimeComponent getTargetRuntime() {
+            return _targetRuntime;
+        }
+
+        /**
+         * @param targetRuntime The target runtime to set.
+         */
+        public void setTargetRuntime(IRuntimeComponent targetRuntime) {
+            _targetRuntime = targetRuntime;
+        }
+
         private Collection<ISwitchYardComponentExtension> _components;
 
         /**
@@ -225,9 +245,10 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
     @Override
     public void run(IProgressMonitor monitor) throws CoreException {
-        MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 15, Messages.CreateSwitchYardProjectOperation_statusLabel_errorsCreatingProject, null);
+        MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 15,
+                Messages.CreateSwitchYardProjectOperation_statusLabel_errorsCreatingProject, null);
 
-        monitor.beginTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingSYProject, 600);
+        monitor.beginTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingSYProject, 700);
         try {
             // create the project
             IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 100,
@@ -237,7 +258,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 final IProjectDescription description = workspace.newProjectDescription(_projectMetatData
                         .getNewProjectHandle().getName());
                 description.setLocationURI(_projectMetatData.getProjectLocation());
-                CreateProjectOperation op = new CreateProjectOperation(description, Messages.CreateSwitchYardProjectOperation_operationLabel_newSYProject);
+                CreateProjectOperation op = new CreateProjectOperation(description,
+                        Messages.CreateSwitchYardProjectOperation_operationLabel_newSYProject);
                 op.execute(subMonitor, _uiInfo);
             } catch (ExecutionException e) {
                 if (e.getCause() instanceof CoreException) {
@@ -264,7 +286,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 subMonitor.setTaskName(""); //$NON-NLS-1$
 
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH);
-                op = new CreateFolderOperation(folder, null, Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainResourceFolder);
+                op = new CreateFolderOperation(folder, null,
+                        Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainResourceFolder);
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
@@ -272,18 +295,21 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_JAVA_PATH)
                         .getFolder(packageFolder);
-                op = new CreateFolderOperation(folder, null, Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainTestSourceFolder);
+                op = new CreateFolderOperation(folder, null,
+                        Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainTestSourceFolder);
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
                 subMonitor.setTaskName(""); //$NON-NLS-1$
 
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_RESOURCES_PATH);
-                op = new CreateFolderOperation(folder, null, Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultTestResourceFolder);
+                op = new CreateFolderOperation(folder, null,
+                        Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultTestResourceFolder);
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
             } catch (Exception e) {
-                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingDefaultFolders, e);
+                mergeStatus(status,
+                        Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingDefaultFolders, e);
             } finally {
                 subMonitor.done();
                 subMonitor.setTaskName(""); //$NON-NLS-1$
@@ -341,15 +367,17 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                         mavenProjectConfigurationManager.getResolverConfiguration(_projectMetatData
                                 .getNewProjectHandle()), subMonitor);
             } catch (Exception e) {
-                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorUpdatingMavenProjectConfig, e);
+                mergeStatus(status,
+                        Messages.CreateSwitchYardProjectOperation_statusMessage_errorUpdatingMavenProjectConfig, e);
             } finally {
                 subMonitor.done();
                 subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
-            // attach project facets
-            // no longer necessary as maven configurator for switchyard will add
-            // facets
+            // attach target runtime
+            if (_projectMetatData.getTargetRuntime() != null) {
+                attachTargetRuntime(monitor, status);
+            }
 
             if (!status.isOK()) {
                 throw new CoreException(status);
@@ -366,6 +394,32 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             status.merge(((CoreException) e.getCause()).getStatus());
         } else {
             status.merge(new Status(Status.ERROR, Activator.PLUGIN_ID, message, e));
+        }
+    }
+
+    private void attachTargetRuntime(IProgressMonitor monitor, MultiStatus status) {
+        monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_attachingTargetRuntimeToProject);
+
+        IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+        IFacetedProjectWorkingCopy ifpwc = null;
+        try {
+            IFacetedProject ifp = ProjectFacetsManager.create(_projectMetatData.getNewProjectHandle(), true,
+                    subMonitor);
+
+            subMonitor.done();
+
+            ifpwc = ifp.createWorkingCopy();
+            ifpwc.addTargetedRuntime(_projectMetatData.getTargetRuntime().getRuntime());
+            subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+            ifpwc.commitChanges(subMonitor);
+        } catch (Exception e) {
+            mergeStatus(status, Messages.CreateSwitchYardProjectOperation_errorMessage_errorAttachingTargetRuntimeToProject, e);
+        } finally {
+            if (ifpwc != null) {
+                ifpwc.dispose();
+            }
+            subMonitor.done();
+            subMonitor.setTaskName(""); //$NON-NLS-1$
         }
     }
 

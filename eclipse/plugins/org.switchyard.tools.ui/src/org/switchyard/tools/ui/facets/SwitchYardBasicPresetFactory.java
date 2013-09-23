@@ -54,8 +54,10 @@ public class SwitchYardBasicPresetFactory implements IPresetFactory, ISwitchYard
             facets.addAll(defaultPreset.getProjectFacets());
         }
 
+        String version = getVersionFromPresetId(presetId);
+
         // SwitchYard facet
-        facets.add(ProjectFacetsManager.getProjectFacet(SWITCHYARD_FACET_ID).getDefaultVersion());
+        facets.add(SWITCHYARD_FACET.getVersion(version));
 
         // Java facet; prefer 1.6 or later
         IProjectFacet javaFacet = ProjectFacetsManager.getProjectFacet(JAVA_FACET_ID);
@@ -74,6 +76,11 @@ public class SwitchYardBasicPresetFactory implements IPresetFactory, ISwitchYard
 
         return new PresetDefinition(Messages.SwitchYardBasicPresetFactory_presetTitle_basicSYApplication,
                 Messages.SwitchYardBasicPresetFactory_presetDescription_basicSYApplication, facets);
+    }
+
+    private String getVersionFromPresetId(String presetId) {
+        final String[] segments = presetId.split("\\."); //$NON-NLS-1$
+        return segments[segments.length-1].replace('_', '.');
     }
 
 }

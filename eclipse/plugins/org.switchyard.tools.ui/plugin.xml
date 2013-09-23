@@ -77,20 +77,42 @@
    -->
    <extension
          point="org.eclipse.wst.common.project.facet.core.presets">
+      <!-- 1.0 applications -->
       <dynamic-preset
-            id="preset.switchyard.basic">
+            id="preset.switchyard.basic.1_0">
          <factory
                class="org.switchyard.tools.ui.facets.SwitchYardBasicPresetFactory">
          </factory>
       </dynamic-preset>
       <static-preset
-            extends="preset.switchyard.basic"
-            id="preset.switchyard.jar">
+            extends="preset.switchyard.basic.1_0"
+            id="preset.switchyard.jar.1_0">
          <description>
-            Project facet set for SwitchYard JAR applications.
+            Project facet set for SwitchYard 1.0 JAR applications.
          </description>
          <label>
-            SwitchYard Java Application
+            SwitchYard 1.0 Java Application
+         </label>
+         <facet
+               id="jst.utility"
+               version="1.0">
+         </facet>
+      </static-preset>
+      <!-- 1.1 applications -->
+      <dynamic-preset
+            id="preset.switchyard.basic.1_1">
+         <factory
+               class="org.switchyard.tools.ui.facets.SwitchYardBasicPresetFactory">
+         </factory>
+      </dynamic-preset>
+      <static-preset
+            extends="preset.switchyard.basic.1_1"
+            id="preset.switchyard.jar.1_1">
+         <description>
+            Project facet set for SwitchYard 1.1 JAR applications.
+         </description>
+         <label>
+            SwitchYard 1.1 Java Application
          </label>
          <facet
                id="jst.utility"
@@ -104,7 +126,7 @@
       <project-facet
             id="switchyard.core">
          <default-version
-               version="1.0">
+               version="1.1">
          </default-version>
     	 <property name="hide.version" value="true"/>
          <description>
@@ -132,11 +154,29 @@
             </and>
          </constraint>
       </project-facet-version>
+      <project-facet-version
+            facet="switchyard.core"
+            version="1.1">
+         <constraint>
+         	<and>
+	            <requires
+	                  facet="jst.java"
+	                  version="[6.0">
+	            </requires>
+	            <!-- currently only support maven builds -->
+	            <requires
+                   facet="jboss.m2"
+                   soft="true"
+                   version="*">
+	            </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
       <action
             facet="switchyard.core"
             id="switchyard.core.install"
             type="install"
-            version="1.0">
+            version="[1.0-1.1]">
          <delegate
                class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallActionDelegate">
          </delegate>
@@ -146,9 +186,15 @@
       </action>
       <action
             facet="switchyard.core"
+            id="switchyard.core.version"
+            type="version-change"
+            version="[1.0-1.1]">
+      </action>
+      <action
+            facet="switchyard.core"
             id="switchyard.core.uninstall"
             type="uninstall"
-            version="1.0">
+            version="[1.0-1.1]">
          <delegate
                class="org.switchyard.tools.ui.facets.SwitchYardFacetUnInstallActionDelegate">
          </delegate>
@@ -156,9 +202,15 @@
    </extension>
 
   <extension point="org.eclipse.wst.common.project.facet.ui.images">
-    <image 
-      facet="switchyard.core" 
-      path="icons/switchyard_icon_16px.png"/>
+    <image
+          facet="switchyard.core"
+          path="icons/switchyard_icon_16px.png"
+          runtime-component-type="switchyard.runtime"/>
+    <!-- TODO: get image for FSW. -->
+    <image
+          path="icons/switchyard_icon_16px.png"
+          runtime-component-type="fuseServiceWorks.runtime">
+    </image>
   </extension>
 
   <extension point="org.eclipse.wst.common.project.facet.ui.wizardPages">
@@ -168,15 +220,82 @@
   </extension>
   <extension
         point="org.eclipse.wst.common.project.facet.core.runtimes">
+     <runtime-component-type
+           id="switchyard.runtime">
+     </runtime-component-type>
+     <runtime-component-version
+           type="switchyard.runtime"
+           version="1.0">
+     </runtime-component-version>
+     <runtime-component-version
+           type="switchyard.runtime"
+           version="1.1">
+     </runtime-component-version>
+     <runtime-component-type
+           id="fuseServiceWorks.runtime">
+     </runtime-component-type>
+     <runtime-component-version
+           type="fuseServiceWorks.runtime"
+           version="6.0">
+     </runtime-component-version>
      <supported>
         <facet
               id="switchyard.core"
               version="1.0">
         </facet>
         <runtime-component
-              any="true">
+              id="switchyard.runtime"
+              version="[1.0-1.1]">
+        </runtime-component>
+        <runtime-component
+              id="fuseServiceWorks.runtime"
+              version="6.0">
+        </runtime-component>
+        <runtime-component
+              id="org.jboss.ide.eclipse.as.runtime.stripped.component"
+              version="1.0">
         </runtime-component>
      </supported>
+     <supported>
+        <facet
+              id="switchyard.core"
+              version="1.1">
+        </facet>
+        <runtime-component
+              id="switchyard.runtime"
+              version="1.1">
+        </runtime-component>
+        <runtime-component
+              id="fuseServiceWorks.runtime"
+              version="6.0">
+        </runtime-component>
+        <runtime-component
+              id="org.jboss.ide.eclipse.as.runtime.stripped.component"
+              version="1.0">
+        </runtime-component>
+     </supported>
+     <adapter>
+        <runtime-component
+              id="switchyard.runtime">
+        </runtime-component>
+        <factory
+              class="org.switchyard.tools.ui.facets.SwitchYardFacetsAdapterFactory">
+        </factory>
+        <type
+              class="org.eclipse.wst.common.project.facet.ui.IRuntimeComponentLabelProvider">
+        </type>
+     </adapter>
+     <adapter>
+        <runtime-component
+              id="fuseServiceWorks.runtime">
+        </runtime-component>
+        <factory
+              class="org.switchyard.tools.ui.facets.SwitchYardFacetsAdapterFactory">
+        </factory>
+        <type
+              class="org.eclipse.wst.common.project.facet.ui.IRuntimeComponentLabelProvider">
+        </type>
+     </adapter>
   </extension>
   <!--
   <extension
@@ -193,6 +312,14 @@
      </default-facets>
   </extension>
   -->
+ <extension
+       point="org.eclipse.wst.server.core.runtimeFacetComponentProviders">
+    <runtimeComponentProvider
+          class="org.switchyard.tools.ui.facets.SwitchYardRuntimeComponentProvider"
+          id="org.switchyard.tools.ui.runtimeComponentProvider2"
+          runtimeTypeIds="org.jboss.ide.eclipse.as.runtime.eap.61">
+    </runtimeComponentProvider>
+ </extension>
 
   <extension
         point="org.eclipse.wst.server.core.moduleTypes">
@@ -217,7 +344,7 @@
            projects="true">
         <moduleType
               types="switchyard.core"
-              versions="1.0">
+              versions="1.0,1.1">
         </moduleType>
      </moduleFactory>
   </extension>

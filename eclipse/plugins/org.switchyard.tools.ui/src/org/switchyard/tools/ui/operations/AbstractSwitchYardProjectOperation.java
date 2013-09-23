@@ -65,6 +65,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
     private String _label;
     private boolean _addingServices;
     private IAdaptable _uiInfo;
+    private boolean _cleanupWorkingCopy;
 
     /**
      * Create a new CreateBeanServiceOperation. If the extended operation is
@@ -129,6 +130,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
 
             // make sure the working copy is setup
             if (_workingCopy == null) {
+                _cleanupWorkingCopy = true;
                 _workingCopy = SwitchYardProjectManager.instance().getSwitchYardProject(getProject()).createWorkingCopy();
                 if (_components != null) {
                     _workingCopy.addComponents(_components);
@@ -193,6 +195,9 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 throw new CoreException(status);
             }
         } finally {
+            if (_cleanupWorkingCopy) {
+                _workingCopy.dispose();
+            }
             monitor.subTask(""); //$NON-NLS-1$
             monitor.done();
         }
