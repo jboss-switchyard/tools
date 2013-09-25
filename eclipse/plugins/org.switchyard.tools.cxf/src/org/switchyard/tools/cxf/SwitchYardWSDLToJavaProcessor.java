@@ -28,6 +28,7 @@ import org.apache.cxf.tools.common.model.JavaModel;
 import org.apache.cxf.tools.wsdlto.frontend.jaxws.processor.WSDLToJavaProcessor;
 import org.apache.cxf.tools.wsdlto.frontend.jaxws.processor.internal.OperationProcessor;
 import org.apache.cxf.tools.wsdlto.frontend.jaxws.processor.internal.PortTypeProcessor;
+import org.apache.cxf.tools.wsdlto.frontend.jaxws.processor.internal.ProcessorUtil;
 
 /**
  * SwitchYardWSDLToJavaProcessor
@@ -79,10 +80,13 @@ public class SwitchYardWSDLToJavaProcessor extends WSDLToJavaProcessor {
             
             // patch up the method name (need to preserve case)
             String trueMethodName = operation.getName().getLocalPart();
-            int trueMethodNameLength = trueMethodName.length();
             for (JavaMethod method : dummyInterface.getMethods()) {
+                
+                // make sure we get the right length for the name (SWITCHYARD-1736)
+                int length = ProcessorUtil.mangleNameToVariableName(trueMethodName).length();
+
                 // need to loop in the event the method is asynchronous
-                method.setName(trueMethodName + method.getName().substring(trueMethodNameLength));
+                method.setName(trueMethodName + method.getName().substring(length));
                 method.setInterface(intf);
                 intf.addMethod(method);
             }
