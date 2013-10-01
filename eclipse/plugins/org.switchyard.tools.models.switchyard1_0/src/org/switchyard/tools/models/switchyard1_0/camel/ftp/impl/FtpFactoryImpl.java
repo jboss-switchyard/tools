@@ -28,7 +28,7 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
      */
     public static FtpFactory init() {
         try {
-            FtpFactory theFtpFactory = (FtpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-ftp:config:1.0"); 
+            FtpFactory theFtpFactory = (FtpFactory)EPackage.Registry.INSTANCE.getEFactory(FtpPackage.eNS_URI);
             if (theFtpFactory != null) {
                 return theFtpFactory;
             }
@@ -57,11 +57,13 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case FtpPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case FtpPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case FtpPackage.CAMEL_FTP_BINDING_TYPE: return createCamelFtpBindingType();
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE: return createCamelFtpsBindingType();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE: return createCamelSftpBindingType();
             case FtpPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case FtpPackage.PARAMETER_TYPE: return createParameterType();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE: return createRemoteFileConsumerType();
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE: return createRemoteFileProducerType();
             default:
@@ -101,6 +103,16 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
     }
 
     /**
@@ -209,6 +221,16 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

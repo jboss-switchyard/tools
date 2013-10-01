@@ -21,10 +21,11 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AdvancedCamelBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -72,7 +73,10 @@ public class CamelSQLBindingTypeExtension implements IBindingTypeExtension {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
         composites.add(new CamelSQLComposite());
         composites.add(new MessageComposerComposite());
-        composites.add(new AdvancedBindingDetailsComposite(ADVANCED_PROPS));
+        composites.add(new AdvancedCamelBindingDetailsComposite(ADVANCED_PROPS,
+                SqlPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                SqlPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                SqlPackage.eINSTANCE.getParameterType()));
         return composites;
     }
 

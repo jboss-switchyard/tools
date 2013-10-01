@@ -62,6 +62,7 @@ public class CamelQuartzBindingTypeItemProvider
             addStatefulPropertyDescriptor(object);
             addTriggerStartTimePropertyDescriptor(object);
             addTriggerEndTimePropertyDescriptor(object);
+            addTriggerTimeZonePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -177,6 +178,28 @@ public class CamelQuartzBindingTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Trigger Time Zone feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTriggerTimeZonePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelQuartzBindingType_triggerTimeZone_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelQuartzBindingType_triggerTimeZone_feature", "_UI_CamelQuartzBindingType_type"),
+                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This returns CamelQuartzBindingType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -218,6 +241,7 @@ public class CamelQuartzBindingTypeItemProvider
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME:
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME:
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

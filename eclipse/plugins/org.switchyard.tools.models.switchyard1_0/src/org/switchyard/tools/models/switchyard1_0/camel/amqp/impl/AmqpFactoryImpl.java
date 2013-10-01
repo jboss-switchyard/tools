@@ -27,7 +27,7 @@ public class AmqpFactoryImpl extends EFactoryImpl implements AmqpFactory {
      */
     public static AmqpFactory init() {
         try {
-            AmqpFactory theAmqpFactory = (AmqpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-amqp:config:1.0"); 
+            AmqpFactory theAmqpFactory = (AmqpFactory)EPackage.Registry.INSTANCE.getEFactory(AmqpPackage.eNS_URI);
             if (theAmqpFactory != null) {
                 return theAmqpFactory;
             }
@@ -56,12 +56,24 @@ public class AmqpFactoryImpl extends EFactoryImpl implements AmqpFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case AmqpPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case AmqpPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE: return createCamelAmqpBindingType();
             case AmqpPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case AmqpPackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
     }
 
     /**
@@ -92,6 +104,16 @@ public class AmqpFactoryImpl extends EFactoryImpl implements AmqpFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

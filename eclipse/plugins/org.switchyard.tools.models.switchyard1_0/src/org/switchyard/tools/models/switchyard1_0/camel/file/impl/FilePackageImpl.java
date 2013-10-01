@@ -37,6 +37,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.file.AdditionalUriParametersType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
@@ -46,6 +47,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
 
+import org.switchyard.tools.models.switchyard1_0.camel.file.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnitType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
@@ -114,6 +116,13 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass additionalUriParametersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass baseCamelBindingEClass = null;
 
     /**
@@ -136,6 +145,13 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * @generated
      */
     private EClass fileProducerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass parameterTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -306,6 +322,24 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAdditionalUriParametersType() {
+        return additionalUriParametersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAdditionalUriParametersType_Parameter() {
+        return (EReference)additionalUriParametersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBaseCamelBinding() {
         return baseCamelBindingEClass;
     }
@@ -326,6 +360,15 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      */
     public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_AdditionalUriParameters() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -738,6 +781,33 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getParameterType() {
+        return parameterTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Name() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Value() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getTimeUnitType() {
         return timeUnitTypeEEnum;
     }
@@ -824,9 +894,13 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         isCreated = true;
 
         // Create classes and their features
+        additionalUriParametersTypeEClass = createEClass(ADDITIONAL_URI_PARAMETERS_TYPE);
+        createEReference(additionalUriParametersTypeEClass, ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER);
+
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
         camelFileBindingTypeEClass = createEClass(CAMEL_FILE_BINDING_TYPE);
         createEAttribute(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__DIRECTORY);
@@ -882,6 +956,10 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         createEAttribute(fileProducerTypeEClass, FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE);
         createEAttribute(fileProducerTypeEClass, FILE_PRODUCER_TYPE__DONE_FILE_NAME);
 
+        parameterTypeEClass = createEClass(PARAMETER_TYPE);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__VALUE);
+
         // Create enums
         timeUnitTypeEEnum = createEEnum(TIME_UNIT_TYPE);
 
@@ -925,9 +1003,13 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         camelFileBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAdditionalUriParametersType_Parameter(), this.getParameterType(), null, "parameter", null, 0, -1, AdditionalUriParametersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelFileBindingTypeEClass, CamelFileBindingType.class, "CamelFileBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelFileBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 1, 1, CamelFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -983,6 +1065,10 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         initEAttribute(getFileProducerType_EagerDeleteTargetFile(), theXMLTypePackage.getBoolean(), "eagerDeleteTargetFile", "true", 0, 1, FileProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFileProducerType_DoneFileName(), theXMLTypePackage.getString(), "doneFileName", null, 0, 1, FileProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getParameterType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         // Initialize enums and add enum literals
         initEEnum(timeUnitTypeEEnum, TimeUnitType.class, "TimeUnitType");
         addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.NANOSECONDS);
@@ -1013,6 +1099,21 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
+          (additionalUriParametersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "additionalUriParameters_._type",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getAdditionalUriParametersType_Parameter(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "parameter",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (baseCamelBindingEClass, 
            source, 
            new String[] {
@@ -1033,6 +1134,14 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
            new String[] {
              "kind", "element",
              "name", "messageComposer",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_AdditionalUriParameters(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "additionalUriParameters",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -1428,6 +1537,27 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
              "kind", "element",
              "name", "doneFileName",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (parameterTypeEClass, 
+           source, 
+           new String[] {
+             "name", "parameter_._type",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getParameterType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getParameterType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
            });		
         addAnnotation
           (timeUnitTypeEEnum, 

@@ -28,7 +28,7 @@ public class AtomFactoryImpl extends EFactoryImpl implements AtomFactory {
      */
     public static AtomFactory init() {
         try {
-            AtomFactory theAtomFactory = (AtomFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-atom:config:1.0"); 
+            AtomFactory theAtomFactory = (AtomFactory)EPackage.Registry.INSTANCE.getEFactory(AtomPackage.eNS_URI);
             if (theAtomFactory != null) {
                 return theAtomFactory;
             }
@@ -57,10 +57,12 @@ public class AtomFactoryImpl extends EFactoryImpl implements AtomFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case AtomPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE: return createAtomScheduledPollConsumerType();
             case AtomPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE: return createCamelAtomBindingType();
             case AtomPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case AtomPackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -105,6 +107,16 @@ public class AtomFactoryImpl extends EFactoryImpl implements AtomFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public BaseCamelBinding createBaseCamelBinding() {
         BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
         return baseCamelBinding;
@@ -138,6 +150,16 @@ public class AtomFactoryImpl extends EFactoryImpl implements AtomFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

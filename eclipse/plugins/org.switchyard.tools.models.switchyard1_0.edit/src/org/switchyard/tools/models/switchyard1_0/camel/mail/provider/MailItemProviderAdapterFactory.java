@@ -72,6 +72,29 @@ public class MailItemProviderAdapterFactory extends MailAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.mail.AdditionalUriParametersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AdditionalUriParametersTypeItemProvider additionalUriParametersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.mail.AdditionalUriParametersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        if (additionalUriParametersTypeItemProvider == null) {
+            additionalUriParametersTypeItemProvider = new AdditionalUriParametersTypeItemProvider(this);
+        }
+
+        return additionalUriParametersTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -115,6 +138,29 @@ public class MailItemProviderAdapterFactory extends MailAdapterFactory implement
         }
 
         return documentRootItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.mail.ParameterType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ParameterTypeItemProvider parameterTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.mail.ParameterType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createParameterTypeAdapter() {
+        if (parameterTypeItemProvider == null) {
+            parameterTypeItemProvider = new ParameterTypeItemProvider(this);
+        }
+
+        return parameterTypeItemProvider;
     }
 
     /**
@@ -285,11 +331,13 @@ public class MailItemProviderAdapterFactory extends MailAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (additionalUriParametersTypeItemProvider != null) additionalUriParametersTypeItemProvider.dispose();
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelMailBindingTypeItemProvider != null) camelMailBindingTypeItemProvider.dispose();
         if (camelMailConsumerTypeItemProvider != null) camelMailConsumerTypeItemProvider.dispose();
         if (camelMailProducerTypeItemProvider != null) camelMailProducerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (parameterTypeItemProvider != null) parameterTypeItemProvider.dispose();
     }
 
 }

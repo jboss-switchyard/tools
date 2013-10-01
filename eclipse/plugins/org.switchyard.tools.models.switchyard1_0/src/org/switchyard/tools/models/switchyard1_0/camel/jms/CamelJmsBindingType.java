@@ -31,6 +31,8 @@ package org.switchyard.tools.models.switchyard1_0.camel.jms;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getTimeToLive <em>Time To Live</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getTransactionManager <em>Transaction Manager</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getAcknowledgementModeName <em>Acknowledgement Mode Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getAcknowledgementMode <em>Acknowledgement Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -885,4 +887,58 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @generated
      */
     void setTransactionManager(String value);
+
+    /**
+     * Returns the value of the '<em><b>Acknowledgement Mode Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Acknowledgement Mode Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Acknowledgement Mode Name</em>' attribute.
+     * @see #setAcknowledgementModeName(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getCamelJmsBindingType_AcknowledgementModeName()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='acknowledgementModeName' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getAcknowledgementModeName();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getAcknowledgementModeName <em>Acknowledgement Mode Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Acknowledgement Mode Name</em>' attribute.
+     * @see #getAcknowledgementModeName()
+     * @generated
+     */
+    void setAcknowledgementModeName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Acknowledgement Mode</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Acknowledgement Mode</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Acknowledgement Mode</em>' attribute.
+     * @see #setAcknowledgementMode(Object)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getCamelJmsBindingType_AcknowledgementMode()
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
+     *        extendedMetaData="kind='element' name='acknowledgementMode' namespace='##targetNamespace'"
+     * @generated
+     */
+    Object getAcknowledgementMode();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getAcknowledgementMode <em>Acknowledgement Mode</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Acknowledgement Mode</em>' attribute.
+     * @see #getAcknowledgementMode()
+     * @generated
+     */
+    void setAcknowledgementMode(Object value);
 } // CamelJmsBindingType

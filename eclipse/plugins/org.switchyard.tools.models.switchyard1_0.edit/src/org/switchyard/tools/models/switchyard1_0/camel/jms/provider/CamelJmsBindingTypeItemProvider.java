@@ -80,6 +80,8 @@ public class CamelJmsBindingTypeItemProvider
             addTimeToLivePropertyDescriptor(object);
             addTransactedPropertyDescriptor(object);
             addTransactionManagerPropertyDescriptor(object);
+            addAcknowledgementModeNamePropertyDescriptor(object);
+            addAcknowledgementModePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -547,6 +549,50 @@ public class CamelJmsBindingTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Acknowledgement Mode Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addAcknowledgementModeNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelJmsBindingType_acknowledgementModeName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelJmsBindingType_acknowledgementModeName_feature", "_UI_CamelJmsBindingType_type"),
+                 JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Acknowledgement Mode feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addAcknowledgementModePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelJmsBindingType_acknowledgementMode_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelJmsBindingType_acknowledgementMode_feature", "_UI_CamelJmsBindingType_type"),
+                 JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__ACKNOWLEDGEMENT_MODE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This returns CamelJmsBindingType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -604,6 +650,8 @@ public class CamelJmsBindingTypeItemProvider
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE:
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED:
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER:
+            case JmsPackage.CAMEL_JMS_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME:
+            case JmsPackage.CAMEL_JMS_BINDING_TYPE__ACKNOWLEDGEMENT_MODE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

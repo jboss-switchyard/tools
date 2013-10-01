@@ -22,10 +22,11 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AdvancedCamelBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -74,11 +75,17 @@ public class CamelMailBindingTypeExtension implements IBindingTypeExtension {
         if (forConsumer) {
             composites.add(new CamelMailConsumerComposite());
             composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedBindingDetailsComposite(CONSUMER_ADVANCED_PROPS));
+            composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
+                    MailPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                    MailPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                    MailPackage.eINSTANCE.getParameterType()));
         } else {
             composites.add(new CamelMailProducerComposite());
             composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedBindingDetailsComposite(PRODUCER_ADVANCED_PROPS));
+            composites.add(new AdvancedCamelBindingDetailsComposite(PRODUCER_ADVANCED_PROPS,
+                    MailPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                    MailPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                    MailPackage.eINSTANCE.getParameterType()));
         }
         return composites;
     }

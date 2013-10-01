@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
+import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding;
 
@@ -82,6 +83,7 @@ public class BaseCamelBindingItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(AtomPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER);
             childrenFeatures.add(AtomPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+            childrenFeatures.add(AtomPackage.Literals.BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
         }
         return childrenFeatures;
     }
@@ -127,6 +129,7 @@ public class BaseCamelBindingItemProvider
         switch (notification.getFeatureID(BaseCamelBinding.class)) {
             case AtomPackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
             case AtomPackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
+            case AtomPackage.BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -163,6 +166,11 @@ public class BaseCamelBindingItemProvider
             (createChildParameter
                 (AtomPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
                  SOAPFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (AtomPackage.Literals.BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS,
+                 AtomFactory.eINSTANCE.createAdditionalUriParametersType()));
     }
 
     /**

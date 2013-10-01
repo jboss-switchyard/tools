@@ -22,6 +22,15 @@ public interface FtpFactory extends EFactory {
     FtpFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Additional Uri Parameters Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Additional Uri Parameters Type</em>'.
+     * @generated
+     */
+    AdditionalUriParametersType createAdditionalUriParametersType();
+
+    /**
      * Returns a new object of class '<em>Base Camel Binding</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -83,6 +92,15 @@ public interface FtpFactory extends EFactory {
      * @generated
      */
     DocumentRoot createDocumentRoot();
+
+    /**
+     * Returns a new object of class '<em>Parameter Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Parameter Type</em>'.
+     * @generated
+     */
+    ParameterType createParameterType();
 
     /**
      * Returns the package supported by this factory.

@@ -73,6 +73,10 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
     protected JpaSwitch<Adapter> modelSwitch =
         new JpaSwitch<Adapter>() {
             @Override
+            public Adapter caseAdditionalUriParametersType(AdditionalUriParametersType object) {
+                return createAdditionalUriParametersTypeAdapter();
+            }
+            @Override
             public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
                 return createBaseCamelBindingAdapter();
             }
@@ -91,6 +95,10 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseJpaProducerType(JpaProducerType object) {
                 return createJpaProducerTypeAdapter();
+            }
+            @Override
+            public Adapter caseParameterType(ParameterType object) {
+                return createParameterTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -125,6 +133,20 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
 
 
     /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.AdditionalUriParametersType <em>Additional Uri Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.AdditionalUriParametersType
+     * @generated
+     */
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -149,6 +171,20 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createJpaProducerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.ParameterType <em>Parameter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.ParameterType
+     * @generated
+     */
+    public Adapter createParameterTypeAdapter() {
         return null;
     }
 

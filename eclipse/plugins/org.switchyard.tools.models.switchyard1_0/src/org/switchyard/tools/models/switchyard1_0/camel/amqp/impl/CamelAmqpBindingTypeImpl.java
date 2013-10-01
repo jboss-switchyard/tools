@@ -39,6 +39,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getTimeToLive <em>Time To Live</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#isTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getTransactionManager <em>Transaction Manager</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getAcknowledgementModeName <em>Acknowledgement Mode Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getAcknowledgementMode <em>Acknowledgement Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -495,6 +497,43 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @ordered
      */
     protected String transactionManager = TRANSACTION_MANAGER_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getAcknowledgementModeName() <em>Acknowledgement Mode Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAcknowledgementModeName()
+     * @generated
+     * @ordered
+     */
+    protected static final String ACKNOWLEDGEMENT_MODE_NAME_EDEFAULT = null;
+    /**
+     * The cached value of the '{@link #getAcknowledgementModeName() <em>Acknowledgement Mode Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAcknowledgementModeName()
+     * @generated
+     * @ordered
+     */
+    protected String acknowledgementModeName = ACKNOWLEDGEMENT_MODE_NAME_EDEFAULT;
+    /**
+     * The default value of the '{@link #getAcknowledgementMode() <em>Acknowledgement Mode</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAcknowledgementMode()
+     * @generated
+     * @ordered
+     */
+    protected static final Object ACKNOWLEDGEMENT_MODE_EDEFAULT = null;
+    /**
+     * The cached value of the '{@link #getAcknowledgementMode() <em>Acknowledgement Mode</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAcknowledgementMode()
+     * @generated
+     * @ordered
+     */
+    protected Object acknowledgementMode = ACKNOWLEDGEMENT_MODE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -1186,6 +1225,48 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getAcknowledgementModeName() {
+        return acknowledgementModeName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAcknowledgementModeName(String newAcknowledgementModeName) {
+        String oldAcknowledgementModeName = acknowledgementModeName;
+        acknowledgementModeName = newAcknowledgementModeName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME, oldAcknowledgementModeName, acknowledgementModeName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Object getAcknowledgementMode() {
+        return acknowledgementMode;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAcknowledgementMode(Object newAcknowledgementMode) {
+        Object oldAcknowledgementMode = acknowledgementMode;
+        acknowledgementMode = newAcknowledgementMode;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE, oldAcknowledgementMode, acknowledgementMode));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -1231,6 +1312,10 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 return isTransacted();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTION_MANAGER:
                 return getTransactionManager();
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME:
+                return getAcknowledgementModeName();
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE:
+                return getAcknowledgementMode();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1305,6 +1390,12 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTION_MANAGER:
                 setTransactionManager((String)newValue);
+                return;
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME:
+                setAcknowledgementModeName((String)newValue);
+                return;
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE:
+                setAcknowledgementMode(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -1381,6 +1472,12 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTION_MANAGER:
                 setTransactionManager(TRANSACTION_MANAGER_EDEFAULT);
                 return;
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME:
+                setAcknowledgementModeName(ACKNOWLEDGEMENT_MODE_NAME_EDEFAULT);
+                return;
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE:
+                setAcknowledgementMode(ACKNOWLEDGEMENT_MODE_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1435,6 +1532,10 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 return isSetTransacted();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTION_MANAGER:
                 return TRANSACTION_MANAGER_EDEFAULT == null ? transactionManager != null : !TRANSACTION_MANAGER_EDEFAULT.equals(transactionManager);
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME:
+                return ACKNOWLEDGEMENT_MODE_NAME_EDEFAULT == null ? acknowledgementModeName != null : !ACKNOWLEDGEMENT_MODE_NAME_EDEFAULT.equals(acknowledgementModeName);
+            case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE:
+                return ACKNOWLEDGEMENT_MODE_EDEFAULT == null ? acknowledgementMode != null : !ACKNOWLEDGEMENT_MODE_EDEFAULT.equals(acknowledgementMode);
         }
         return super.eIsSet(featureID);
     }
@@ -1491,6 +1592,10 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         if (transactedESet) result.append(transacted); else result.append("<unset>");
         result.append(", transactionManager: ");
         result.append(transactionManager);
+        result.append(", acknowledgementModeName: ");
+        result.append(acknowledgementModeName);
+        result.append(", acknowledgementMode: ");
+        result.append(acknowledgementMode);
         result.append(')');
         return result.toString();
     }

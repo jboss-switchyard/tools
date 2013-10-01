@@ -28,7 +28,7 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
      */
     public static MailFactory init() {
         try {
-            MailFactory theMailFactory = (MailFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-mail:config:1.0"); 
+            MailFactory theMailFactory = (MailFactory)EPackage.Registry.INSTANCE.getEFactory(MailPackage.eNS_URI);
             if (theMailFactory != null) {
                 return theMailFactory;
             }
@@ -57,11 +57,13 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case MailPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case MailPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case MailPackage.CAMEL_MAIL_BINDING_TYPE: return createCamelMailBindingType();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE: return createCamelMailConsumerType();
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE: return createCamelMailProducerType();
             case MailPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case MailPackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -114,6 +116,16 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public BaseCamelBinding createBaseCamelBinding() {
         BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
         return baseCamelBinding;
@@ -127,6 +139,16 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

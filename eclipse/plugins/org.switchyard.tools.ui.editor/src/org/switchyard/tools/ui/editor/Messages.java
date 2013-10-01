@@ -18,6 +18,8 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
     private static final String BUNDLE_NAME = "org.switchyard.tools.ui.editor.messages"; //$NON-NLS-1$
+    public static String AdvancedCamelBindingDetailsComposite_labelTextAdditionalURIParameters;
+    public static String AdvancedCamelBindingDetailsComposite_labelTextAdvancedProperties;
     public static String buton_dots;
     public static String button_add;
     public static String button_addBinding;

@@ -28,7 +28,7 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
      */
     public static JpaFactory init() {
         try {
-            JpaFactory theJpaFactory = (JpaFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-jpa:config:1.0"); 
+            JpaFactory theJpaFactory = (JpaFactory)EPackage.Registry.INSTANCE.getEFactory(JpaPackage.eNS_URI);
             if (theJpaFactory != null) {
                 return theJpaFactory;
             }
@@ -57,11 +57,13 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case JpaPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case JpaPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case JpaPackage.CAMEL_JPA_BINDING_TYPE: return createCamelJpaBindingType();
             case JpaPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case JpaPackage.JPA_CONSUMER_TYPE: return createJpaConsumerType();
             case JpaPackage.JPA_PRODUCER_TYPE: return createJpaProducerType();
+            case JpaPackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -106,6 +108,16 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public BaseCamelBinding createBaseCamelBinding() {
         BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
         return baseCamelBinding;
@@ -139,6 +151,16 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
     public JpaProducerType createJpaProducerType() {
         JpaProducerTypeImpl jpaProducerType = new JpaProducerTypeImpl();
         return jpaProducerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

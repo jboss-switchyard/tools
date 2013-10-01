@@ -27,7 +27,7 @@ public class QuartzFactoryImpl extends EFactoryImpl implements QuartzFactory {
      */
     public static QuartzFactory init() {
         try {
-            QuartzFactory theQuartzFactory = (QuartzFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-quartz:config:1.0"); 
+            QuartzFactory theQuartzFactory = (QuartzFactory)EPackage.Registry.INSTANCE.getEFactory(QuartzPackage.eNS_URI);
             if (theQuartzFactory != null) {
                 return theQuartzFactory;
             }
@@ -56,12 +56,24 @@ public class QuartzFactoryImpl extends EFactoryImpl implements QuartzFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case QuartzPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case QuartzPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE: return createCamelQuartzBindingType();
             case QuartzPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case QuartzPackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
     }
 
     /**
@@ -92,6 +104,16 @@ public class QuartzFactoryImpl extends EFactoryImpl implements QuartzFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

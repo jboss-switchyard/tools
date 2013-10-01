@@ -16,6 +16,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding#getMessageComposer <em>Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding#getAdditionalUriParameters <em>Additional Uri Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,4 +79,31 @@ public interface BaseCamelBinding extends SwitchYardBindingType {
      * @generated
      */
     void setMessageComposer(MessageComposerType value);
+
+    /**
+     * Returns the value of the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Additional Uri Parameters</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Additional Uri Parameters</em>' containment reference.
+     * @see #setAdditionalUriParameters(AdditionalUriParametersType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getBaseCamelBinding_AdditionalUriParameters()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='additionalUriParameters' namespace='##targetNamespace'"
+     * @generated
+     */
+    AdditionalUriParametersType getAdditionalUriParameters();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding#getAdditionalUriParameters <em>Additional Uri Parameters</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Additional Uri Parameters</em>' containment reference.
+     * @see #getAdditionalUriParameters()
+     * @generated
+     */
+    void setAdditionalUriParameters(AdditionalUriParametersType value);
 } // BaseCamelBinding

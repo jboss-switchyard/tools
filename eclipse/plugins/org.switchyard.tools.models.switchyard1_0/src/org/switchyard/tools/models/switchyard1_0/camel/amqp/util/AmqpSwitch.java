@@ -71,6 +71,12 @@ public class AmqpSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case AmqpPackage.ADDITIONAL_URI_PARAMETERS_TYPE: {
+                AdditionalUriParametersType additionalUriParametersType = (AdditionalUriParametersType)theEObject;
+                T result = caseAdditionalUriParametersType(additionalUriParametersType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case AmqpPackage.BASE_CAMEL_BINDING: {
                 BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
                 T result = caseBaseCamelBinding(baseCamelBinding);
@@ -96,8 +102,29 @@ public class AmqpSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case AmqpPackage.PARAMETER_TYPE: {
+                ParameterType parameterType = (ParameterType)theEObject;
+                T result = caseParameterType(parameterType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Additional Uri Parameters Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Additional Uri Parameters Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseAdditionalUriParametersType(AdditionalUriParametersType object) {
+        return null;
     }
 
     /**
@@ -127,6 +154,21 @@ public class AmqpSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseDocumentRoot(DocumentRoot object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Parameter Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Parameter Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseParameterType(ParameterType object) {
         return null;
     }
 

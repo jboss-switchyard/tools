@@ -215,6 +215,34 @@ public interface QuartzPackage extends EPackage {
     QuartzPackage eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl.init();
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.AdditionalUriParametersTypeImpl <em>Additional Uri Parameters Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.AdditionalUriParametersTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl#getAdditionalUriParametersType()
+     * @generated
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE = 0;
+
+    /**
+     * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER = 0;
+
+    /**
+     * The number of structural features of the '<em>Additional Uri Parameters Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -222,7 +250,7 @@ public interface QuartzPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl#getBaseCamelBinding()
      * @generated
      */
-    int BASE_CAMEL_BINDING = 0;
+    int BASE_CAMEL_BINDING = 1;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -333,13 +361,22 @@ public interface QuartzPackage extends EPackage {
     int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Base Camel Binding</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl <em>Camel Quartz Binding Type</em>}' class.
@@ -349,7 +386,7 @@ public interface QuartzPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl#getCamelQuartzBindingType()
      * @generated
      */
-    int CAMEL_QUARTZ_BINDING_TYPE = 1;
+    int CAMEL_QUARTZ_BINDING_TYPE = 2;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -460,6 +497,15 @@ public interface QuartzPackage extends EPackage {
     int CAMEL_QUARTZ_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+
+    /**
      * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -505,13 +551,22 @@ public interface QuartzPackage extends EPackage {
     int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
 
     /**
+     * The feature id for the '<em><b>Trigger Time Zone</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
      * The number of structural features of the '<em>Camel Quartz Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_QUARTZ_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+    int CAMEL_QUARTZ_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -521,7 +576,7 @@ public interface QuartzPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 2;
+    int DOCUMENT_ROOT = 3;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -570,6 +625,65 @@ public interface QuartzPackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.ParameterTypeImpl <em>Parameter Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.ParameterTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl#getParameterType()
+     * @generated
+     */
+    int PARAMETER_TYPE = 4;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE__NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE__VALUE = 1;
+
+    /**
+     * The number of structural features of the '<em>Parameter Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE_FEATURE_COUNT = 2;
+
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.AdditionalUriParametersType <em>Additional Uri Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Additional Uri Parameters Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.AdditionalUriParametersType
+     * @generated
+     */
+    EClass getAdditionalUriParametersType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.AdditionalUriParametersType#getParameter <em>Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Parameter</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.AdditionalUriParametersType#getParameter()
+     * @see #getAdditionalUriParametersType()
+     * @generated
+     */
+    EReference getAdditionalUriParametersType_Parameter();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding <em>Base Camel Binding</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -600,6 +714,17 @@ public interface QuartzPackage extends EPackage {
      * @generated
      */
     EReference getBaseCamelBinding_MessageComposer();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding#getAdditionalUriParameters <em>Additional Uri Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Additional Uri Parameters</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding#getAdditionalUriParameters()
+     * @see #getBaseCamelBinding()
+     * @generated
+     */
+    EReference getBaseCamelBinding_AdditionalUriParameters();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType <em>Camel Quartz Binding Type</em>}'.
@@ -667,6 +792,17 @@ public interface QuartzPackage extends EPackage {
     EAttribute getCamelQuartzBindingType_TriggerEndTime();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerTimeZone <em>Trigger Time Zone</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Trigger Time Zone</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerTimeZone()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_TriggerTimeZone();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -721,6 +857,38 @@ public interface QuartzPackage extends EPackage {
     EReference getDocumentRoot_BindingQuartz();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType <em>Parameter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Parameter Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType
+     * @generated
+     */
+    EClass getParameterType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType#getName()
+     * @see #getParameterType()
+     * @generated
+     */
+    EAttribute getParameterType_Name();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType#getValue <em>Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Value</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType#getValue()
+     * @see #getParameterType()
+     * @generated
+     */
+    EAttribute getParameterType_Value();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -742,6 +910,24 @@ public interface QuartzPackage extends EPackage {
      * @generated
      */
     interface Literals {
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.AdditionalUriParametersTypeImpl <em>Additional Uri Parameters Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.AdditionalUriParametersTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl#getAdditionalUriParametersType()
+         * @generated
+         */
+        EClass ADDITIONAL_URI_PARAMETERS_TYPE = eINSTANCE.getAdditionalUriParametersType();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER = eINSTANCE.getAdditionalUriParametersType_Parameter();
+
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
          * <!-- begin-user-doc -->
@@ -767,6 +953,14 @@ public interface QuartzPackage extends EPackage {
          * @generated
          */
         EReference BASE_CAMEL_BINDING__MESSAGE_COMPOSER = eINSTANCE.getBaseCamelBinding_MessageComposer();
+
+        /**
+         * The meta object literal for the '<em><b>Additional Uri Parameters</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS = eINSTANCE.getBaseCamelBinding_AdditionalUriParameters();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl <em>Camel Quartz Binding Type</em>}' class.
@@ -819,6 +1013,14 @@ public interface QuartzPackage extends EPackage {
         EAttribute CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME = eINSTANCE.getCamelQuartzBindingType_TriggerEndTime();
 
         /**
+         * The meta object literal for the '<em><b>Trigger Time Zone</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE = eINSTANCE.getCamelQuartzBindingType_TriggerTimeZone();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.DocumentRootImpl <em>Document Root</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -859,6 +1061,32 @@ public interface QuartzPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_QUARTZ = eINSTANCE.getDocumentRoot_BindingQuartz();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.ParameterTypeImpl <em>Parameter Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.ParameterTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl#getParameterType()
+         * @generated
+         */
+        EClass PARAMETER_TYPE = eINSTANCE.getParameterType();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER_TYPE__NAME = eINSTANCE.getParameterType_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER_TYPE__VALUE = eINSTANCE.getParameterType_Value();
 
     }
 

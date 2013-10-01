@@ -216,6 +216,34 @@ public interface CorePackage extends EPackage {
     CorePackage eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl.init();
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.AdditionalUriParametersTypeImpl <em>Additional Uri Parameters Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.AdditionalUriParametersTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getAdditionalUriParametersType()
+     * @generated
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE = 0;
+
+    /**
+     * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER = 0;
+
+    /**
+     * The number of structural features of the '<em>Additional Uri Parameters Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -223,7 +251,7 @@ public interface CorePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getBaseCamelBinding()
      * @generated
      */
-    int BASE_CAMEL_BINDING = 0;
+    int BASE_CAMEL_BINDING = 1;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -334,13 +362,22 @@ public interface CorePackage extends EPackage {
     int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Base Camel Binding</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelBindingTypeImpl <em>Camel Binding Type</em>}' class.
@@ -350,7 +387,7 @@ public interface CorePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getCamelBindingType()
      * @generated
      */
-    int CAMEL_BINDING_TYPE = 1;
+    int CAMEL_BINDING_TYPE = 2;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -461,6 +498,15 @@ public interface CorePackage extends EPackage {
     int CAMEL_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+
+    /**
      * The feature id for the '<em><b>Config URI</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -486,7 +532,7 @@ public interface CorePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getCamelDirectBindingType()
      * @generated
      */
-    int CAMEL_DIRECT_BINDING_TYPE = 2;
+    int CAMEL_DIRECT_BINDING_TYPE = 3;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -597,6 +643,15 @@ public interface CorePackage extends EPackage {
     int CAMEL_DIRECT_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_DIRECT_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+
+    /**
      * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -622,7 +677,7 @@ public interface CorePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getCamelTimerBindingType()
      * @generated
      */
-    int CAMEL_TIMER_BINDING_TYPE = 5;
+    int CAMEL_TIMER_BINDING_TYPE = 6;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl <em>Camel Seda Binding Type</em>}' class.
@@ -632,7 +687,7 @@ public interface CorePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getCamelSedaBindingType()
      * @generated
      */
-    int CAMEL_SEDA_BINDING_TYPE = 4;
+    int CAMEL_SEDA_BINDING_TYPE = 5;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelMockBindingTypeImpl <em>Camel Mock Binding Type</em>}' class.
@@ -642,7 +697,7 @@ public interface CorePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getCamelMockBindingType()
      * @generated
      */
-    int CAMEL_MOCK_BINDING_TYPE = 3;
+    int CAMEL_MOCK_BINDING_TYPE = 4;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -751,6 +806,15 @@ public interface CorePackage extends EPackage {
      * @ordered
      */
     int CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MOCK_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
 
     /**
      * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
@@ -886,6 +950,15 @@ public interface CorePackage extends EPackage {
      * @ordered
      */
     int CAMEL_SEDA_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SEDA_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
 
     /**
      * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
@@ -1068,6 +1141,15 @@ public interface CorePackage extends EPackage {
     int CAMEL_TIMER_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_TIMER_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+
+    /**
      * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1147,7 +1229,7 @@ public interface CorePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 6;
+    int DOCUMENT_ROOT = 7;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -1231,6 +1313,64 @@ public interface CorePackage extends EPackage {
     int DOCUMENT_ROOT_FEATURE_COUNT = 8;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.ParameterTypeImpl <em>Parameter Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.ParameterTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getParameterType()
+     * @generated
+     */
+    int PARAMETER_TYPE = 8;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE__NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE__VALUE = 1;
+
+    /**
+     * The number of structural features of the '<em>Parameter Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE_FEATURE_COUNT = 2;
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.AdditionalUriParametersType <em>Additional Uri Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Additional Uri Parameters Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.AdditionalUriParametersType
+     * @generated
+     */
+    EClass getAdditionalUriParametersType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.camel.core.AdditionalUriParametersType#getParameter <em>Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Parameter</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.AdditionalUriParametersType#getParameter()
+     * @see #getAdditionalUriParametersType()
+     * @generated
+     */
+    EReference getAdditionalUriParametersType_Parameter();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding <em>Base Camel Binding</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1261,6 +1401,17 @@ public interface CorePackage extends EPackage {
      * @generated
      */
     EReference getBaseCamelBinding_MessageComposer();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding#getAdditionalUriParameters <em>Additional Uri Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Additional Uri Parameters</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding#getAdditionalUriParameters()
+     * @see #getBaseCamelBinding()
+     * @generated
+     */
+    EReference getBaseCamelBinding_AdditionalUriParameters();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType <em>Camel Binding Type</em>}'.
@@ -1609,6 +1760,38 @@ public interface CorePackage extends EPackage {
     EReference getDocumentRoot_BindingUri();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.ParameterType <em>Parameter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Parameter Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.ParameterType
+     * @generated
+     */
+    EClass getParameterType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.ParameterType#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.ParameterType#getName()
+     * @see #getParameterType()
+     * @generated
+     */
+    EAttribute getParameterType_Name();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.ParameterType#getValue <em>Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Value</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.ParameterType#getValue()
+     * @see #getParameterType()
+     * @generated
+     */
+    EAttribute getParameterType_Value();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1630,6 +1813,24 @@ public interface CorePackage extends EPackage {
      * @generated
      */
     interface Literals {
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.AdditionalUriParametersTypeImpl <em>Additional Uri Parameters Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.AdditionalUriParametersTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getAdditionalUriParametersType()
+         * @generated
+         */
+        EClass ADDITIONAL_URI_PARAMETERS_TYPE = eINSTANCE.getAdditionalUriParametersType();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER = eINSTANCE.getAdditionalUriParametersType_Parameter();
+
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
          * <!-- begin-user-doc -->
@@ -1655,6 +1856,14 @@ public interface CorePackage extends EPackage {
          * @generated
          */
         EReference BASE_CAMEL_BINDING__MESSAGE_COMPOSER = eINSTANCE.getBaseCamelBinding_MessageComposer();
+
+        /**
+         * The meta object literal for the '<em><b>Additional Uri Parameters</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS = eINSTANCE.getBaseCamelBinding_AdditionalUriParameters();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelBindingTypeImpl <em>Camel Binding Type</em>}' class.
@@ -1923,6 +2132,32 @@ public interface CorePackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_URI = eINSTANCE.getDocumentRoot_BindingUri();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.ParameterTypeImpl <em>Parameter Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.ParameterTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl#getParameterType()
+         * @generated
+         */
+        EClass PARAMETER_TYPE = eINSTANCE.getParameterType();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER_TYPE__NAME = eINSTANCE.getParameterType_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER_TYPE__VALUE = eINSTANCE.getParameterType_Value();
 
     }
 

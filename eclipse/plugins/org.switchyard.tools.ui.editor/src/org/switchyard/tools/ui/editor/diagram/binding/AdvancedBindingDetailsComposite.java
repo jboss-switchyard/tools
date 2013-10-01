@@ -65,7 +65,11 @@ public class AdvancedBindingDetailsComposite extends AbstractSYBindingComposite 
         GridLayout gl = new GridLayout(1, false);
         _panel.setLayout(gl);
 
-        _advPropsTable = new AdvancedBindingPropertyTable(_panel, SWT.NONE);        
+        addAdvancedPropertiesTable(_panel);
+    }
+    
+    protected void addAdvancedPropertiesTable(Composite parent) {
+        _advPropsTable = new AdvancedBindingPropertyTable(parent, SWT.NONE);        
         GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
         _advPropsTable.setLayoutData(gd);
     }
@@ -75,7 +79,7 @@ public class AdvancedBindingDetailsComposite extends AbstractSYBindingComposite 
         return _panel;
     }
 
-    private List<PropertyObject> processFeatures(EObject eobj) {
+    protected List<PropertyObject> processFeatures(EObject eobj) {
         List<PropertyObject> properties = new ArrayList<PropertyObject>();
         
         EList<EStructuralFeature> features = eobj.eClass().getEAllStructuralFeatures();
@@ -116,6 +120,10 @@ public class AdvancedBindingDetailsComposite extends AbstractSYBindingComposite 
     @Override
     protected boolean validate() {
         return (getErrorMessage() == null);
+    }
+    
+    protected List<String> getAdvancedPropertiesList() {
+        return _advancedProperties;
     }
 
 }

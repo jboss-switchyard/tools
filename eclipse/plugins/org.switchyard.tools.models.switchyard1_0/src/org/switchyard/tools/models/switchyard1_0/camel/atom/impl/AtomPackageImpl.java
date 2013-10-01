@@ -32,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.atom.AdditionalUriParametersType;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType;
@@ -39,6 +40,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.DocumentRoot;
 
+import org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
@@ -114,6 +116,13 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass additionalUriParametersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass baseCamelBindingEClass = null;
 
     /**
@@ -136,6 +145,13 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass parameterTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -299,6 +315,24 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAdditionalUriParametersType() {
+        return additionalUriParametersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAdditionalUriParametersType_Parameter() {
+        return (EReference)additionalUriParametersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBaseCamelBinding() {
         return baseCamelBindingEClass;
     }
@@ -319,6 +353,15 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      */
     public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_AdditionalUriParameters() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -506,6 +549,33 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getParameterType() {
+        return parameterTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Name() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Value() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getTimeUnitType() {
         return timeUnitTypeEEnum;
     }
@@ -547,6 +617,9 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         isCreated = true;
 
         // Create classes and their features
+        additionalUriParametersTypeEClass = createEClass(ADDITIONAL_URI_PARAMETERS_TYPE);
+        createEReference(additionalUriParametersTypeEClass, ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER);
+
         atomScheduledPollConsumerTypeEClass = createEClass(ATOM_SCHEDULED_POLL_CONSUMER_TYPE);
         createEAttribute(atomScheduledPollConsumerTypeEClass, ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY);
         createEAttribute(atomScheduledPollConsumerTypeEClass, ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY);
@@ -557,6 +630,7 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
         camelAtomBindingTypeEClass = createEClass(CAMEL_ATOM_BINDING_TYPE);
         createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__FEED_URI);
@@ -573,6 +647,10 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_ATOM);
+
+        parameterTypeEClass = createEClass(PARAMETER_TYPE);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__VALUE);
 
         // Create enums
         timeUnitTypeEEnum = createEEnum(TIME_UNIT_TYPE);
@@ -617,6 +695,9 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         camelAtomBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAdditionalUriParametersType_Parameter(), this.getParameterType(), null, "parameter", null, 0, -1, AdditionalUriParametersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(atomScheduledPollConsumerTypeEClass, AtomScheduledPollConsumerType.class, "AtomScheduledPollConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAtomScheduledPollConsumerType_InitialDelay(), theSwitchyardPackage.getPropInteger(), "initialDelay", "1000", 0, 1, AtomScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getAtomScheduledPollConsumerType_Delay(), theSwitchyardPackage.getPropInteger(), "delay", "60000", 0, 1, AtomScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -627,6 +708,7 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelAtomBindingTypeEClass, CamelAtomBindingType.class, "CamelAtomBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelAtomBindingType_FeedURI(), theXMLTypePackage.getAnyURI(), "feedURI", null, 1, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -643,6 +725,10 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingAtom(), this.getCamelAtomBindingType(), null, "bindingAtom", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getParameterType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(timeUnitTypeEEnum, TimeUnitType.class, "TimeUnitType");
@@ -673,6 +759,21 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      */
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
+        addAnnotation
+          (additionalUriParametersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "additionalUriParameters_._type",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getAdditionalUriParametersType_Parameter(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "parameter",
+             "namespace", "##targetNamespace"
+           });		
         addAnnotation
           (atomScheduledPollConsumerTypeEClass, 
            source, 
@@ -741,6 +842,14 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
            new String[] {
              "kind", "element",
              "name", "messageComposer",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_AdditionalUriParameters(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "additionalUriParameters",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -850,6 +959,27 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
              "name", "binding.atom",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (parameterTypeEClass, 
+           source, 
+           new String[] {
+             "name", "parameter_._type",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getParameterType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getParameterType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
            });		
         addAnnotation
           (timeUnitTypeEEnum, 

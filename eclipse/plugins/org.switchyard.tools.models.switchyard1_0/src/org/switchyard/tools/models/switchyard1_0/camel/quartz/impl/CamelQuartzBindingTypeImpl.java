@@ -25,6 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerStartTime <em>Trigger Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerEndTime <em>Trigger End Time</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerTimeZone <em>Trigger Time Zone</em>}</li>
  * </ul>
  * </p>
  *
@@ -139,6 +140,26 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * @ordered
      */
     protected XMLGregorianCalendar triggerEndTime = TRIGGER_END_TIME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTriggerTimeZone() <em>Trigger Time Zone</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTriggerTimeZone()
+     * @generated
+     * @ordered
+     */
+    protected static final String TRIGGER_TIME_ZONE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTriggerTimeZone() <em>Trigger Time Zone</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTriggerTimeZone()
+     * @generated
+     * @ordered
+     */
+    protected String triggerTimeZone = TRIGGER_TIME_ZONE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -294,6 +315,27 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getTriggerTimeZone() {
+        return triggerTimeZone;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTriggerTimeZone(String newTriggerTimeZone) {
+        String oldTriggerTimeZone = triggerTimeZone;
+        triggerTimeZone = newTriggerTimeZone;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE, oldTriggerTimeZone, triggerTimeZone));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -307,6 +349,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
                 return getTriggerStartTime();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME:
                 return getTriggerEndTime();
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE:
+                return getTriggerTimeZone();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -333,6 +377,9 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
                 return;
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME:
                 setTriggerEndTime((XMLGregorianCalendar)newValue);
+                return;
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE:
+                setTriggerTimeZone((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -361,6 +408,9 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME:
                 setTriggerEndTime(TRIGGER_END_TIME_EDEFAULT);
                 return;
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE:
+                setTriggerTimeZone(TRIGGER_TIME_ZONE_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -383,6 +433,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
                 return TRIGGER_START_TIME_EDEFAULT == null ? triggerStartTime != null : !TRIGGER_START_TIME_EDEFAULT.equals(triggerStartTime);
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME:
                 return TRIGGER_END_TIME_EDEFAULT == null ? triggerEndTime != null : !TRIGGER_END_TIME_EDEFAULT.equals(triggerEndTime);
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE:
+                return TRIGGER_TIME_ZONE_EDEFAULT == null ? triggerTimeZone != null : !TRIGGER_TIME_ZONE_EDEFAULT.equals(triggerTimeZone);
         }
         return super.eIsSet(featureID);
     }
@@ -407,6 +459,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
         result.append(triggerStartTime);
         result.append(", triggerEndTime: ");
         result.append(triggerEndTime);
+        result.append(", triggerTimeZone: ");
+        result.append(triggerTimeZone);
         result.append(')');
         return result.toString();
     }

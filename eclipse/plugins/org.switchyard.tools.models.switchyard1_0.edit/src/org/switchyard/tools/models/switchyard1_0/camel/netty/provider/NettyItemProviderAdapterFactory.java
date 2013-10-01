@@ -72,6 +72,29 @@ public class NettyItemProviderAdapterFactory extends NettyAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.netty.AdditionalUriParametersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AdditionalUriParametersTypeItemProvider additionalUriParametersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.netty.AdditionalUriParametersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        if (additionalUriParametersTypeItemProvider == null) {
+            additionalUriParametersTypeItemProvider = new AdditionalUriParametersTypeItemProvider(this);
+        }
+
+        return additionalUriParametersTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.netty.BaseCamelBinding} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -161,6 +184,29 @@ public class NettyItemProviderAdapterFactory extends NettyAdapterFactory impleme
         }
 
         return documentRootItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.netty.ParameterType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ParameterTypeItemProvider parameterTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.netty.ParameterType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createParameterTypeAdapter() {
+        if (parameterTypeItemProvider == null) {
+            parameterTypeItemProvider = new ParameterTypeItemProvider(this);
+        }
+
+        return parameterTypeItemProvider;
     }
 
     /**
@@ -262,10 +308,12 @@ public class NettyItemProviderAdapterFactory extends NettyAdapterFactory impleme
      * @generated
      */
     public void dispose() {
+        if (additionalUriParametersTypeItemProvider != null) additionalUriParametersTypeItemProvider.dispose();
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelNettyTcpBindingTypeItemProvider != null) camelNettyTcpBindingTypeItemProvider.dispose();
         if (camelNettyUdpBindingTypeItemProvider != null) camelNettyUdpBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (parameterTypeItemProvider != null) parameterTypeItemProvider.dispose();
     }
 
 }

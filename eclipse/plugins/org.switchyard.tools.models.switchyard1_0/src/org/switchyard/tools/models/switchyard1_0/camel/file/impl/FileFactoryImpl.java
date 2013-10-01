@@ -28,7 +28,7 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      */
     public static FileFactory init() {
         try {
-            FileFactory theFileFactory = (FileFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-file:config:1.0"); 
+            FileFactory theFileFactory = (FileFactory)EPackage.Registry.INSTANCE.getEFactory(FilePackage.eNS_URI);
             if (theFileFactory != null) {
                 return theFileFactory;
             }
@@ -57,11 +57,13 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case FilePackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case FilePackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case FilePackage.CAMEL_FILE_BINDING_TYPE: return createCamelFileBindingType();
             case FilePackage.DOCUMENT_ROOT: return createDocumentRoot();
             case FilePackage.FILE_CONSUMER_TYPE: return createFileConsumerType();
             case FilePackage.FILE_PRODUCER_TYPE: return createFileProducerType();
+            case FilePackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -106,6 +108,16 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public BaseCamelBinding createBaseCamelBinding() {
         BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
         return baseCamelBinding;
@@ -139,6 +151,16 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
     public FileProducerType createFileProducerType() {
         FileProducerTypeImpl fileProducerType = new FileProducerTypeImpl();
         return fileProducerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

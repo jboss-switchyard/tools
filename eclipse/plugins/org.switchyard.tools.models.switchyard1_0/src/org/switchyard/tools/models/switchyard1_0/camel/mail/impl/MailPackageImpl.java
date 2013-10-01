@@ -56,6 +56,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.mail.AdditionalUriParametersType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType;
@@ -65,6 +66,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountT
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 
+import org.switchyard.tools.models.switchyard1_0.camel.mail.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 
@@ -130,6 +132,13 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass additionalUriParametersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass baseCamelBindingEClass = null;
 
     /**
@@ -138,6 +147,13 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass parameterTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -336,6 +352,24 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAdditionalUriParametersType() {
+        return additionalUriParametersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAdditionalUriParametersType_Parameter() {
+        return (EReference)additionalUriParametersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBaseCamelBinding() {
         return baseCamelBindingEClass;
     }
@@ -356,6 +390,15 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      */
     public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_AdditionalUriParameters() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -401,6 +444,33 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
      */
     public EReference getDocumentRoot_BindingMail() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getParameterType() {
+        return parameterTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Name() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Value() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -737,9 +807,13 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         isCreated = true;
 
         // Create classes and their features
+        additionalUriParametersTypeEClass = createEClass(ADDITIONAL_URI_PARAMETERS_TYPE);
+        createEReference(additionalUriParametersTypeEClass, ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER);
+
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
         camelMailBindingTypeEClass = createEClass(CAMEL_MAIL_BINDING_TYPE);
         createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__HOST);
@@ -779,6 +853,10 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MAIL);
+
+        parameterTypeEClass = createEClass(PARAMETER_TYPE);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__VALUE);
 
         // Create enums
         mailConsumerAccountTypeEEnum = createEEnum(MAIL_CONSUMER_ACCOUNT_TYPE);
@@ -825,9 +903,13 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         camelMailBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAdditionalUriParametersType_Parameter(), this.getParameterType(), null, "parameter", null, 0, -1, AdditionalUriParametersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelMailBindingTypeEClass, CamelMailBindingType.class, "CamelMailBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelMailBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -868,6 +950,10 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingMail(), this.getCamelMailBindingType(), null, "bindingMail", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
+        initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getParameterType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         // Initialize enums and add enum literals
         initEEnum(mailConsumerAccountTypeEEnum, MailConsumerAccountType.class, "MailConsumerAccountType");
         addEEnumLiteral(mailConsumerAccountTypeEEnum, MailConsumerAccountType.IMAP);
@@ -903,6 +989,21 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
+          (additionalUriParametersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "additionalUriParameters_._type",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getAdditionalUriParametersType_Parameter(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "parameter",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (baseCamelBindingEClass, 
            source, 
            new String[] {
@@ -923,6 +1024,14 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
            new String[] {
              "kind", "element",
              "name", "messageComposer",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_AdditionalUriParameters(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "additionalUriParameters",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -1209,6 +1318,27 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
            new String[] {
              "name", "MailConsumerAccountType:Object",
              "baseType", "MailConsumerAccountType"
+           });		
+        addAnnotation
+          (parameterTypeEClass, 
+           source, 
+           new String[] {
+             "name", "parameter_._type",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getParameterType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getParameterType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
            });		
         addAnnotation
           (timeUnitTypeEEnum, 

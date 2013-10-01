@@ -72,6 +72,29 @@ public class FileItemProviderAdapterFactory extends FileAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.file.AdditionalUriParametersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AdditionalUriParametersTypeItemProvider additionalUriParametersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.file.AdditionalUriParametersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        if (additionalUriParametersTypeItemProvider == null) {
+            additionalUriParametersTypeItemProvider = new AdditionalUriParametersTypeItemProvider(this);
+        }
+
+        return additionalUriParametersTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -161,6 +184,29 @@ public class FileItemProviderAdapterFactory extends FileAdapterFactory implement
         }
 
         return fileProducerTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.file.ParameterType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ParameterTypeItemProvider parameterTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.file.ParameterType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createParameterTypeAdapter() {
+        if (parameterTypeItemProvider == null) {
+            parameterTypeItemProvider = new ParameterTypeItemProvider(this);
+        }
+
+        return parameterTypeItemProvider;
     }
 
     /**
@@ -285,11 +331,13 @@ public class FileItemProviderAdapterFactory extends FileAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (additionalUriParametersTypeItemProvider != null) additionalUriParametersTypeItemProvider.dispose();
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelFileBindingTypeItemProvider != null) camelFileBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (fileConsumerTypeItemProvider != null) fileConsumerTypeItemProvider.dispose();
         if (fileProducerTypeItemProvider != null) fileProducerTypeItemProvider.dispose();
+        if (parameterTypeItemProvider != null) parameterTypeItemProvider.dispose();
     }
 
 }

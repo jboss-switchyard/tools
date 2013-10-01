@@ -2578,9 +2578,13 @@
   </genPackages>
   <genPackages prefix="Core" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.core.ecore#/">
+    <genClasses ecoreClass="component.camel.core.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.core.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.core.ecore#//CamelBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//CamelBindingType/configURI"/>
@@ -2620,12 +2624,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingTimer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.core.ecore#//DocumentRoot/bindingUri"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.core.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.core.ecore#//ParameterType/value"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Amqp" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.amqp.ecore#/">
+    <genClasses ecoreClass="component.camel.amqp.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.amqp.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.amqp.ecore#//CamelAmqpBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//CamelAmqpBindingType/queue"/>
@@ -2649,12 +2661,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//CamelAmqpBindingType/timeToLive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//CamelAmqpBindingType/transacted"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//CamelAmqpBindingType/transactionManager"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//CamelAmqpBindingType/acknowledgementModeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//CamelAmqpBindingType/acknowledgementMode"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.amqp.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.amqp.ecore#//DocumentRoot/bindingAmqp"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.amqp.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.amqp.ecore#//ParameterType/value"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Atom" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
@@ -2669,6 +2687,9 @@
       <genEnumLiterals ecoreEnumLiteral="component.camel.atom.ecore#//TimeUnitType/DAYS"/>
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.atom.ecore#//TimeUnitTypeObject"/>
+    <genClasses ecoreClass="component.camel.atom.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses ecoreClass="component.camel.atom.ecore#//AtomScheduledPollConsumerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/initialDelay"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//AtomScheduledPollConsumerType/delay"/>
@@ -2679,6 +2700,7 @@
     <genClasses image="false" ecoreClass="component.camel.atom.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.atom.ecore#//CamelAtomBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//CamelAtomBindingType/feedURI"/>
@@ -2696,6 +2718,10 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.atom.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.atom.ecore#//DocumentRoot/bindingAtom"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.atom.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.atom.ecore#//ParameterType/value"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="File" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.file.ecore#/">
@@ -2709,9 +2735,13 @@
       <genEnumLiterals ecoreEnumLiteral="component.camel.file.ecore#//TimeUnitType/DAYS"/>
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.file.ecore#//TimeUnitTypeObject"/>
+    <genClasses ecoreClass="component.camel.file.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.file.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.file.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.file.ecore#//CamelFileBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//CamelFileBindingType/directory"/>
@@ -2767,6 +2797,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//FileProducerType/eagerDeleteTargetFile"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//FileProducerType/doneFileName"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.file.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.file.ecore#//ParameterType/value"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Ftp" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.ftp.ecore#/">
@@ -2780,9 +2814,13 @@
       <genEnumLiterals ecoreEnumLiteral="component.camel.ftp.ecore#//TimeUnitType/DAYS"/>
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.ftp.ecore#//TimeUnitTypeObject"/>
+    <genClasses ecoreClass="component.camel.ftp.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.ftp.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.ftp.ecore#//CamelFtpBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/directory"/>
@@ -2850,6 +2888,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//DocumentRoot/bindingFtps"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//DocumentRoot/bindingSftp"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.ftp.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//ParameterType/value"/>
+    </genClasses>
     <genClasses ecoreClass="component.camel.ftp.ecore#//RemoteFileConsumerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//RemoteFileConsumerType/delete"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//RemoteFileConsumerType/recursive"/>
@@ -2891,9 +2933,13 @@
   </genPackages>
   <genPackages prefix="Jms" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.jms.ecore#/">
+    <genClasses ecoreClass="component.camel.jms.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.jms.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.jms.ecore#//CamelJmsBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//CamelJmsBindingType/queue"/>
@@ -2917,12 +2963,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//CamelJmsBindingType/timeToLive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//CamelJmsBindingType/transacted"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//CamelJmsBindingType/transactionManager"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//CamelJmsBindingType/acknowledgementModeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//CamelJmsBindingType/acknowledgementMode"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.jms.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.jms.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.jms.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jms.ecore#//DocumentRoot/bindingJms"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.jms.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jms.ecore#//ParameterType/value"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Jpa" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
@@ -2937,9 +2989,13 @@
       <genEnumLiterals ecoreEnumLiteral="component.camel.jpa.ecore#//TimeUnitType/DAYS"/>
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.jpa.ecore#//TimeUnitTypeObject"/>
+    <genClasses ecoreClass="component.camel.jpa.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.jpa.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.jpa.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.jpa.ecore#//CamelJpaBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//CamelJpaBindingType/entityClassName"/>
@@ -2976,6 +3032,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//JpaProducerType/flushOnSend"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//JpaProducerType/usePersist"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.jpa.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.jpa.ecore#//ParameterType/value"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Mail" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.mail.ecore#/">
@@ -2994,9 +3054,13 @@
     </genEnums>
     <genDataTypes ecoreDataType="component.camel.mail.ecore#//MailConsumerAccountTypeObject"/>
     <genDataTypes ecoreDataType="component.camel.mail.ecore#//TimeUnitTypeObject"/>
+    <genClasses ecoreClass="component.camel.mail.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.mail.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.mail.ecore#//CamelMailBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//CamelMailBindingType/host"/>
@@ -3037,12 +3101,20 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mail.ecore#//DocumentRoot/bindingMail"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.mail.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mail.ecore#//ParameterType/value"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Netty" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.netty.ecore#/">
+    <genClasses ecoreClass="component.camel.netty.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.netty.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses image="false" ecoreClass="component.camel.netty.ecore#//CamelNettyBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/host"/>
@@ -3080,12 +3152,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/bindingTcp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.netty.ecore#//DocumentRoot/bindingUdp"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.netty.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//ParameterType/value"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Quartz" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.quartz.ecore#/">
+    <genClasses ecoreClass="component.camel.quartz.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.quartz.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.quartz.ecore#//CamelQuartzBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/camelBindingName"/>
@@ -3093,6 +3173,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/stateful"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/triggerStartTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/triggerEndTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/triggerTimeZone"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.quartz.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//DocumentRoot/mixed"/>
@@ -3100,12 +3181,20 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.quartz.ecore#//DocumentRoot/bindingQuartz"/>
     </genClasses>
+    <genClasses ecoreClass="component.camel.quartz.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//ParameterType/value"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Sql" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.sql.ecore#/">
+    <genClasses ecoreClass="component.camel.sql.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="component.camel.sql.ecore#//BaseCamelBinding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//BaseCamelBinding/contextMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.sql.ecore#//CamelSqlBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/query"/>
@@ -3121,6 +3210,10 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.sql.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.sql.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sql.ecore#//DocumentRoot/bindingSql"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sql.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//ParameterType/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

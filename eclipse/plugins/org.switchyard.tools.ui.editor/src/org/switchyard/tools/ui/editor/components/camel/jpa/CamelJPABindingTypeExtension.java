@@ -22,10 +22,11 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AdvancedCamelBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -74,10 +75,17 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
         if (forConsumer) {
             composites.add(new CamelJPAConsumerComposite());
             composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedBindingDetailsComposite(CONSUMER_ADVANCED_PROPS));
+            composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
+                    JpaPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                    JpaPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                    JpaPackage.eINSTANCE.getParameterType()));
         } else {
             composites.add(new CamelJPAProducerComposite());
             composites.add(new MessageComposerComposite());
+            composites.add(new AdvancedCamelBindingDetailsComposite(new ArrayList<String>(),
+                    JpaPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                    JpaPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                    JpaPackage.eINSTANCE.getParameterType()));
         }
         return composites;
     }

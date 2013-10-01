@@ -27,7 +27,7 @@ public class NettyFactoryImpl extends EFactoryImpl implements NettyFactory {
      */
     public static NettyFactory init() {
         try {
-            NettyFactory theNettyFactory = (NettyFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-netty:config:1.0"); 
+            NettyFactory theNettyFactory = (NettyFactory)EPackage.Registry.INSTANCE.getEFactory(NettyPackage.eNS_URI);
             if (theNettyFactory != null) {
                 return theNettyFactory;
             }
@@ -56,13 +56,25 @@ public class NettyFactoryImpl extends EFactoryImpl implements NettyFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case NettyPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case NettyPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE: return createCamelNettyTcpBindingType();
             case NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE: return createCamelNettyUdpBindingType();
             case NettyPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case NettyPackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
     }
 
     /**
@@ -103,6 +115,16 @@ public class NettyFactoryImpl extends EFactoryImpl implements NettyFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

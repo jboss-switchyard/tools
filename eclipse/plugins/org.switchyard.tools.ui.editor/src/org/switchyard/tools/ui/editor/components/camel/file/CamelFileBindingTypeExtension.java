@@ -22,10 +22,11 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AdvancedCamelBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -74,11 +75,17 @@ public class CamelFileBindingTypeExtension implements IBindingTypeExtension {
         if (forConsumer) {
             composites.add(new CamelFileConsumerComposite());
             composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedBindingDetailsComposite(CONSUMER_ADVANCED_PROPS));
+            composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
+                    FilePackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                    FilePackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                    FilePackage.eINSTANCE.getParameterType()));
         } else {
             composites.add(new CamelFileProducerComposite());
             composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedBindingDetailsComposite(PRODUCER_ADVANCED_PROPS));
+            composites.add(new AdvancedCamelBindingDetailsComposite(PRODUCER_ADVANCED_PROPS,
+                FilePackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                FilePackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                FilePackage.eINSTANCE.getParameterType()));
         }
         return composites;
     }

@@ -217,6 +217,34 @@ public interface AtomPackage extends EPackage {
     AtomPackage eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl.init();
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AdditionalUriParametersTypeImpl <em>Additional Uri Parameters Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AdditionalUriParametersTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getAdditionalUriParametersType()
+     * @generated
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE = 0;
+
+    /**
+     * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER = 0;
+
+    /**
+     * The number of structural features of the '<em>Additional Uri Parameters Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ADDITIONAL_URI_PARAMETERS_TYPE_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -224,7 +252,7 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getBaseCamelBinding()
      * @generated
      */
-    int BASE_CAMEL_BINDING = 1;
+    int BASE_CAMEL_BINDING = 2;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl <em>Camel Atom Binding Type</em>}' class.
@@ -234,7 +262,7 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getCamelAtomBindingType()
      * @generated
      */
-    int CAMEL_ATOM_BINDING_TYPE = 2;
+    int CAMEL_ATOM_BINDING_TYPE = 3;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl <em>Scheduled Poll Consumer Type</em>}' class.
@@ -244,7 +272,7 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getAtomScheduledPollConsumerType()
      * @generated
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE = 0;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE = 1;
 
     /**
      * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
@@ -409,13 +437,22 @@ public interface AtomPackage extends EPackage {
     int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Base Camel Binding</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -526,6 +563,15 @@ public interface AtomPackage extends EPackage {
     int CAMEL_ATOM_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+
+    /**
      * The feature id for the '<em><b>Feed URI</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -614,7 +660,7 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 3;
+    int DOCUMENT_ROOT = 4;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -663,6 +709,43 @@ public interface AtomPackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.ParameterTypeImpl <em>Parameter Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.ParameterTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getParameterType()
+     * @generated
+     */
+    int PARAMETER_TYPE = 5;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE__NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE__VALUE = 1;
+
+    /**
+     * The number of structural features of the '<em>Parameter Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER_TYPE_FEATURE_COUNT = 2;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType <em>Time Unit Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -670,7 +753,7 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getTimeUnitType()
      * @generated
      */
-    int TIME_UNIT_TYPE = 4;
+    int TIME_UNIT_TYPE = 6;
 
     /**
      * The meta object id for the '<em>Time Unit Type Object</em>' data type.
@@ -680,8 +763,29 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getTimeUnitTypeObject()
      * @generated
      */
-    int TIME_UNIT_TYPE_OBJECT = 5;
+    int TIME_UNIT_TYPE_OBJECT = 7;
 
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AdditionalUriParametersType <em>Additional Uri Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Additional Uri Parameters Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AdditionalUriParametersType
+     * @generated
+     */
+    EClass getAdditionalUriParametersType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AdditionalUriParametersType#getParameter <em>Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Parameter</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AdditionalUriParametersType#getParameter()
+     * @see #getAdditionalUriParametersType()
+     * @generated
+     */
+    EReference getAdditionalUriParametersType_Parameter();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding <em>Base Camel Binding</em>}'.
@@ -714,6 +818,17 @@ public interface AtomPackage extends EPackage {
      * @generated
      */
     EReference getBaseCamelBinding_MessageComposer();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding#getAdditionalUriParameters <em>Additional Uri Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Additional Uri Parameters</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding#getAdditionalUriParameters()
+     * @see #getBaseCamelBinding()
+     * @generated
+     */
+    EReference getBaseCamelBinding_AdditionalUriParameters();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType <em>Camel Atom Binding Type</em>}'.
@@ -933,6 +1048,38 @@ public interface AtomPackage extends EPackage {
     EReference getDocumentRoot_BindingAtom();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType <em>Parameter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Parameter Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType
+     * @generated
+     */
+    EClass getParameterType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType#getName()
+     * @see #getParameterType()
+     * @generated
+     */
+    EAttribute getParameterType_Name();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType#getValue <em>Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Value</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType#getValue()
+     * @see #getParameterType()
+     * @generated
+     */
+    EAttribute getParameterType_Value();
+
+    /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType <em>Time Unit Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -977,6 +1124,24 @@ public interface AtomPackage extends EPackage {
      */
     interface Literals {
         /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AdditionalUriParametersTypeImpl <em>Additional Uri Parameters Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AdditionalUriParametersTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getAdditionalUriParametersType()
+         * @generated
+         */
+        EClass ADDITIONAL_URI_PARAMETERS_TYPE = eINSTANCE.getAdditionalUriParametersType();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER = eINSTANCE.getAdditionalUriParametersType_Parameter();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1001,6 +1166,14 @@ public interface AtomPackage extends EPackage {
          * @generated
          */
         EReference BASE_CAMEL_BINDING__MESSAGE_COMPOSER = eINSTANCE.getBaseCamelBinding_MessageComposer();
+
+        /**
+         * The meta object literal for the '<em><b>Additional Uri Parameters</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS = eINSTANCE.getBaseCamelBinding_AdditionalUriParameters();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl <em>Camel Atom Binding Type</em>}' class.
@@ -1167,6 +1340,32 @@ public interface AtomPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_ATOM = eINSTANCE.getDocumentRoot_BindingAtom();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.ParameterTypeImpl <em>Parameter Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.ParameterTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getParameterType()
+         * @generated
+         */
+        EClass PARAMETER_TYPE = eINSTANCE.getParameterType();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER_TYPE__NAME = eINSTANCE.getParameterType_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER_TYPE__VALUE = eINSTANCE.getParameterType_Value();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType <em>Time Unit Type</em>}' enum.

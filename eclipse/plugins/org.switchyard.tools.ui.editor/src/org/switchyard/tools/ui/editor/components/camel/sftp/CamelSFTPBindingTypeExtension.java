@@ -22,10 +22,11 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.binding.AdvancedBindingDetailsComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AdvancedCamelBindingDetailsComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.MessageComposerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -75,12 +76,18 @@ public class CamelSFTPBindingTypeExtension implements IBindingTypeExtension {
             composites.add(new CamelSFTPConsumerComposite());
             composites.add(new CamelSFTPSecurityComposite());
             composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedBindingDetailsComposite(CONSUMER_ADVANCED_PROPS));
+            composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
+                    FtpPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                    FtpPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                    FtpPackage.eINSTANCE.getParameterType()));
         } else {
             composites.add(new CamelSFTPProducerComposite());
             composites.add(new CamelSFTPSecurityComposite());
             composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedBindingDetailsComposite(PRODUCER_ADVANCED_PROPS));
+            composites.add(new AdvancedCamelBindingDetailsComposite(PRODUCER_ADVANCED_PROPS,
+                    FtpPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
+                    FtpPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
+                    FtpPackage.eINSTANCE.getParameterType()));
         }
         return composites;
     }

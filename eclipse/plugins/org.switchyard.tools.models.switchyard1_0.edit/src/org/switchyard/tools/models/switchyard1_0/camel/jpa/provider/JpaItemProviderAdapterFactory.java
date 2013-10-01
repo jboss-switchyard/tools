@@ -72,6 +72,29 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.AdditionalUriParametersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AdditionalUriParametersTypeItemProvider additionalUriParametersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.AdditionalUriParametersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        if (additionalUriParametersTypeItemProvider == null) {
+            additionalUriParametersTypeItemProvider = new AdditionalUriParametersTypeItemProvider(this);
+        }
+
+        return additionalUriParametersTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.BaseCamelBinding} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -161,6 +184,29 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
         }
 
         return jpaProducerTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.ParameterType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ParameterTypeItemProvider parameterTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.ParameterType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createParameterTypeAdapter() {
+        if (parameterTypeItemProvider == null) {
+            parameterTypeItemProvider = new ParameterTypeItemProvider(this);
+        }
+
+        return parameterTypeItemProvider;
     }
 
     /**
@@ -285,11 +331,13 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
      * @generated
      */
     public void dispose() {
+        if (additionalUriParametersTypeItemProvider != null) additionalUriParametersTypeItemProvider.dispose();
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelJpaBindingTypeItemProvider != null) camelJpaBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (jpaConsumerTypeItemProvider != null) jpaConsumerTypeItemProvider.dispose();
         if (jpaProducerTypeItemProvider != null) jpaProducerTypeItemProvider.dispose();
+        if (parameterTypeItemProvider != null) parameterTypeItemProvider.dispose();
     }
 
 }

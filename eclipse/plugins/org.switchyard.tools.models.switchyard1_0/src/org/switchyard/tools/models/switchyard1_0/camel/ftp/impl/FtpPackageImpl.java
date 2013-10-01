@@ -43,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.AdditionalUriParametersType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
@@ -50,6 +51,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType;
 
@@ -131,6 +133,13 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass additionalUriParametersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass baseCamelBindingEClass = null;
 
     /**
@@ -188,6 +197,13 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass parameterTypeEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -337,6 +353,24 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAdditionalUriParametersType() {
+        return additionalUriParametersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAdditionalUriParametersType_Parameter() {
+        return (EReference)additionalUriParametersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBaseCamelBinding() {
         return baseCamelBindingEClass;
     }
@@ -357,6 +391,15 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      */
     public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_AdditionalUriParameters() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -1264,6 +1307,33 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getParameterType() {
+        return parameterTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Name() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Value() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public FtpFactory getFtpFactory() {
         return (FtpFactory)getEFactoryInstance();
     }
@@ -1287,9 +1357,13 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         isCreated = true;
 
         // Create classes and their features
+        additionalUriParametersTypeEClass = createEClass(ADDITIONAL_URI_PARAMETERS_TYPE);
+        createEReference(additionalUriParametersTypeEClass, ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER);
+
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
         camelFtpBindingTypeEClass = createEClass(CAMEL_FTP_BINDING_TYPE);
         createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__DIRECTORY);
@@ -1356,6 +1430,10 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FTP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FTPS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SFTP);
+
+        parameterTypeEClass = createEClass(PARAMETER_TYPE);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__VALUE);
 
         remoteFileConsumerTypeEClass = createEClass(REMOTE_FILE_CONSUMER_TYPE);
         createEAttribute(remoteFileConsumerTypeEClass, REMOTE_FILE_CONSUMER_TYPE__DELETE);
@@ -1440,9 +1518,13 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         camelSftpBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAdditionalUriParametersType_Parameter(), this.getParameterType(), null, "parameter", null, 0, -1, AdditionalUriParametersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelFtpBindingTypeEClass, CamelFtpBindingType.class, "CamelFtpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelFtpBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 1, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1509,6 +1591,10 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         initEReference(getDocumentRoot_BindingFtp(), this.getCamelFtpBindingType(), null, "bindingFtp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingFtps(), this.getCamelFtpsBindingType(), null, "bindingFtps", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingSftp(), this.getCamelSftpBindingType(), null, "bindingSftp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getParameterType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(remoteFileConsumerTypeEClass, RemoteFileConsumerType.class, "RemoteFileConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getRemoteFileConsumerType_Delete(), theXMLTypePackage.getBoolean(), "delete", "false", 0, 1, RemoteFileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1578,6 +1664,21 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
         addAnnotation
+          (additionalUriParametersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "additionalUriParameters_._type",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getAdditionalUriParametersType_Parameter(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "parameter",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (baseCamelBindingEClass, 
            source, 
            new String[] {
@@ -1598,6 +1699,14 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
            new String[] {
              "kind", "element",
              "name", "messageComposer",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_AdditionalUriParameters(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "additionalUriParameters",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -2091,6 +2200,27 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "name", "binding.sftp",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (parameterTypeEClass, 
+           source, 
+           new String[] {
+             "name", "parameter_._type",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getParameterType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getParameterType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
            });		
         addAnnotation
           (remoteFileConsumerTypeEClass, 

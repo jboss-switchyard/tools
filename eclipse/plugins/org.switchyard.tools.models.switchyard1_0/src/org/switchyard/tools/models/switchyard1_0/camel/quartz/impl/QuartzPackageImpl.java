@@ -62,9 +62,11 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.AdditionalUriParametersType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 
@@ -124,6 +126,13 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass additionalUriParametersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass baseCamelBindingEClass = null;
 
     /**
@@ -139,6 +148,13 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass parameterTypeEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -288,6 +304,24 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAdditionalUriParametersType() {
+        return additionalUriParametersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAdditionalUriParametersType_Parameter() {
+        return (EReference)additionalUriParametersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBaseCamelBinding() {
         return baseCamelBindingEClass;
     }
@@ -308,6 +342,15 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      */
     public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_AdditionalUriParameters() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -369,6 +412,15 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getCamelQuartzBindingType_TriggerTimeZone() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDocumentRoot() {
         return documentRootEClass;
     }
@@ -414,6 +466,33 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getParameterType() {
+        return parameterTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Name() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Value() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public QuartzFactory getQuartzFactory() {
         return (QuartzFactory)getEFactoryInstance();
     }
@@ -437,9 +516,13 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         isCreated = true;
 
         // Create classes and their features
+        additionalUriParametersTypeEClass = createEClass(ADDITIONAL_URI_PARAMETERS_TYPE);
+        createEReference(additionalUriParametersTypeEClass, ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER);
+
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
         camelQuartzBindingTypeEClass = createEClass(CAMEL_QUARTZ_BINDING_TYPE);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME);
@@ -447,12 +530,17 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__STATEFUL);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_QUARTZ);
+
+        parameterTypeEClass = createEClass(PARAMETER_TYPE);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__VALUE);
     }
 
     /**
@@ -491,9 +579,13 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         camelQuartzBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAdditionalUriParametersType_Parameter(), this.getParameterType(), null, "parameter", null, 0, -1, AdditionalUriParametersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelQuartzBindingTypeEClass, CamelQuartzBindingType.class, "CamelQuartzBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelQuartzBindingType_CamelBindingName(), theXMLTypePackage.getString(), "camelBindingName", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -501,12 +593,17 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         initEAttribute(getCamelQuartzBindingType_Stateful(), theXMLTypePackage.getBoolean(), "stateful", "false", 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_TriggerStartTime(), theXMLTypePackage.getDateTime(), "triggerStartTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_TriggerEndTime(), theXMLTypePackage.getDateTime(), "triggerEndTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_TriggerTimeZone(), theXMLTypePackage.getString(), "triggerTimeZone", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingQuartz(), this.getCamelQuartzBindingType(), null, "bindingQuartz", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getParameterType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -524,6 +621,21 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      */
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
+        addAnnotation
+          (additionalUriParametersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "additionalUriParameters_._type",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getAdditionalUriParametersType_Parameter(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "parameter",
+             "namespace", "##targetNamespace"
+           });		
         addAnnotation
           (baseCamelBindingEClass, 
            source, 
@@ -545,6 +657,14 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
            new String[] {
              "kind", "element",
              "name", "messageComposer",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_AdditionalUriParameters(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "additionalUriParameters",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -595,6 +715,14 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getCamelQuartzBindingType_TriggerTimeZone(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "trigger.timeZone",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (documentRootEClass, 
            source, 
            new String[] {
@@ -630,6 +758,27 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
              "name", "binding.quartz",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (parameterTypeEClass, 
+           source, 
+           new String[] {
+             "name", "parameter_._type",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getParameterType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getParameterType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
            });
     }
 

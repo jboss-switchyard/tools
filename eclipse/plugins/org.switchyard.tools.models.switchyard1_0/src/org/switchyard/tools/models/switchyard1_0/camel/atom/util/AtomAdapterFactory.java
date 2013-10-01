@@ -73,6 +73,10 @@ public class AtomAdapterFactory extends AdapterFactoryImpl {
     protected AtomSwitch<Adapter> modelSwitch =
         new AtomSwitch<Adapter>() {
             @Override
+            public Adapter caseAdditionalUriParametersType(AdditionalUriParametersType object) {
+                return createAdditionalUriParametersTypeAdapter();
+            }
+            @Override
             public Adapter caseAtomScheduledPollConsumerType(AtomScheduledPollConsumerType object) {
                 return createAtomScheduledPollConsumerTypeAdapter();
             }
@@ -87,6 +91,10 @@ public class AtomAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
+            }
+            @Override
+            public Adapter caseParameterType(ParameterType object) {
+                return createParameterTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -119,6 +127,20 @@ public class AtomAdapterFactory extends AdapterFactoryImpl {
         return modelSwitch.doSwitch((EObject)target);
     }
 
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AdditionalUriParametersType <em>Additional Uri Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AdditionalUriParametersType
+     * @generated
+     */
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        return null;
+    }
 
     /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType <em>Camel Atom Binding Type</em>}'.
@@ -159,6 +181,20 @@ public class AtomAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createDocumentRootAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType <em>Parameter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.ParameterType
+     * @generated
+     */
+    public Adapter createParameterTypeAdapter() {
         return null;
     }
 

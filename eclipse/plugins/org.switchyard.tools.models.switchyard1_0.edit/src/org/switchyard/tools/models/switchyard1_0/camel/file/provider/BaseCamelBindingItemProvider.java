@@ -24,6 +24,7 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditP
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding;
 
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
@@ -82,6 +83,7 @@ public class BaseCamelBindingItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(FilePackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER);
             childrenFeatures.add(FilePackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+            childrenFeatures.add(FilePackage.Literals.BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
         }
         return childrenFeatures;
     }
@@ -127,6 +129,7 @@ public class BaseCamelBindingItemProvider
         switch (notification.getFeatureID(BaseCamelBinding.class)) {
             case FilePackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER:
             case FilePackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER:
+            case FilePackage.BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -163,6 +166,11 @@ public class BaseCamelBindingItemProvider
             (createChildParameter
                 (FilePackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
                  SOAPFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (FilePackage.Literals.BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS,
+                 FileFactory.eINSTANCE.createAdditionalUriParametersType()));
     }
 
     /**

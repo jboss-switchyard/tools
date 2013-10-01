@@ -73,6 +73,10 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
     protected MailSwitch<Adapter> modelSwitch =
         new MailSwitch<Adapter>() {
             @Override
+            public Adapter caseAdditionalUriParametersType(AdditionalUriParametersType object) {
+                return createAdditionalUriParametersTypeAdapter();
+            }
+            @Override
             public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
                 return createBaseCamelBindingAdapter();
             }
@@ -91,6 +95,10 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
+            }
+            @Override
+            public Adapter caseParameterType(ParameterType object) {
+                return createParameterTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -125,6 +133,20 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
 
 
     /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.AdditionalUriParametersType <em>Additional Uri Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.AdditionalUriParametersType
+     * @generated
+     */
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -135,6 +157,20 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createDocumentRootAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.ParameterType <em>Parameter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.ParameterType
+     * @generated
+     */
+    public Adapter createParameterTypeAdapter() {
         return null;
     }
 

@@ -72,6 +72,29 @@ public class FtpItemProviderAdapterFactory extends FtpAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.AdditionalUriParametersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AdditionalUriParametersTypeItemProvider additionalUriParametersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.AdditionalUriParametersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        if (additionalUriParametersTypeItemProvider == null) {
+            additionalUriParametersTypeItemProvider = new AdditionalUriParametersTypeItemProvider(this);
+        }
+
+        return additionalUriParametersTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.BaseCamelBinding} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -233,6 +256,29 @@ public class FtpItemProviderAdapterFactory extends FtpAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.ParameterType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ParameterTypeItemProvider parameterTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.ParameterType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createParameterTypeAdapter() {
+        if (parameterTypeItemProvider == null) {
+            parameterTypeItemProvider = new ParameterTypeItemProvider(this);
+        }
+
+        return parameterTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -331,11 +377,13 @@ public class FtpItemProviderAdapterFactory extends FtpAdapterFactory implements 
      * @generated
      */
     public void dispose() {
+        if (additionalUriParametersTypeItemProvider != null) additionalUriParametersTypeItemProvider.dispose();
         if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelFtpBindingTypeItemProvider != null) camelFtpBindingTypeItemProvider.dispose();
         if (camelFtpsBindingTypeItemProvider != null) camelFtpsBindingTypeItemProvider.dispose();
         if (camelSftpBindingTypeItemProvider != null) camelSftpBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (parameterTypeItemProvider != null) parameterTypeItemProvider.dispose();
         if (remoteFileConsumerTypeItemProvider != null) remoteFileConsumerTypeItemProvider.dispose();
         if (remoteFileProducerTypeItemProvider != null) remoteFileProducerTypeItemProvider.dispose();
     }

@@ -73,6 +73,10 @@ public class FileAdapterFactory extends AdapterFactoryImpl {
     protected FileSwitch<Adapter> modelSwitch =
         new FileSwitch<Adapter>() {
             @Override
+            public Adapter caseAdditionalUriParametersType(AdditionalUriParametersType object) {
+                return createAdditionalUriParametersTypeAdapter();
+            }
+            @Override
             public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
                 return createBaseCamelBindingAdapter();
             }
@@ -91,6 +95,10 @@ public class FileAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseFileProducerType(FileProducerType object) {
                 return createFileProducerTypeAdapter();
+            }
+            @Override
+            public Adapter caseParameterType(ParameterType object) {
+                return createParameterTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -123,6 +131,20 @@ public class FileAdapterFactory extends AdapterFactoryImpl {
         return modelSwitch.doSwitch((EObject)target);
     }
 
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.file.AdditionalUriParametersType <em>Additional Uri Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.AdditionalUriParametersType
+     * @generated
+     */
+    public Adapter createAdditionalUriParametersTypeAdapter() {
+        return null;
+    }
 
     /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType <em>Camel File Binding Type</em>}'.
@@ -163,6 +185,20 @@ public class FileAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createFileProducerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.file.ParameterType <em>Parameter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.ParameterType
+     * @generated
+     */
+    public Adapter createParameterTypeAdapter() {
         return null;
     }
 

@@ -22,6 +22,15 @@ public interface FileFactory extends EFactory {
     FileFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Additional Uri Parameters Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Additional Uri Parameters Type</em>'.
+     * @generated
+     */
+    AdditionalUriParametersType createAdditionalUriParametersType();
+
+    /**
      * Returns a new object of class '<em>Base Camel Binding</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -56,6 +65,15 @@ public interface FileFactory extends EFactory {
      * @generated
      */
     FileProducerType createFileProducerType();
+
+    /**
+     * Returns a new object of class '<em>Parameter Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Parameter Type</em>'.
+     * @generated
+     */
+    ParameterType createParameterType();
 
     /**
      * Returns a new object of class '<em>Document Root</em>'.

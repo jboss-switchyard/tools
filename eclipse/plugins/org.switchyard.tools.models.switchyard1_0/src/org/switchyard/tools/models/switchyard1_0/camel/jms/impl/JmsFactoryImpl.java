@@ -27,7 +27,7 @@ public class JmsFactoryImpl extends EFactoryImpl implements JmsFactory {
      */
     public static JmsFactory init() {
         try {
-            JmsFactory theJmsFactory = (JmsFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-jms:config:1.0"); 
+            JmsFactory theJmsFactory = (JmsFactory)EPackage.Registry.INSTANCE.getEFactory(JmsPackage.eNS_URI);
             if (theJmsFactory != null) {
                 return theJmsFactory;
             }
@@ -56,12 +56,24 @@ public class JmsFactoryImpl extends EFactoryImpl implements JmsFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case JmsPackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case JmsPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case JmsPackage.CAMEL_JMS_BINDING_TYPE: return createCamelJmsBindingType();
             case JmsPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case JmsPackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
     }
 
     /**
@@ -92,6 +104,16 @@ public class JmsFactoryImpl extends EFactoryImpl implements JmsFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**

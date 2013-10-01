@@ -25,12 +25,14 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.amqp.AdditionalUriParametersType;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.DocumentRoot;
 
+import org.switchyard.tools.models.switchyard1_0.camel.amqp.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
@@ -109,6 +111,13 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass additionalUriParametersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass baseCamelBindingEClass = null;
 
     /**
@@ -124,6 +133,13 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass parameterTypeEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -273,6 +289,24 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAdditionalUriParametersType() {
+        return additionalUriParametersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAdditionalUriParametersType_Parameter() {
+        return (EReference)additionalUriParametersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBaseCamelBinding() {
         return baseCamelBindingEClass;
     }
@@ -293,6 +327,15 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      */
     public EReference getBaseCamelBinding_MessageComposer() {
         return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_AdditionalUriParameters() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -498,6 +541,24 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getCamelAmqpBindingType_AcknowledgementModeName() {
+        return (EAttribute)camelAmqpBindingTypeEClass.getEStructuralFeatures().get(21);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelAmqpBindingType_AcknowledgementMode() {
+        return (EAttribute)camelAmqpBindingTypeEClass.getEStructuralFeatures().get(22);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDocumentRoot() {
         return documentRootEClass;
     }
@@ -543,6 +604,33 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getParameterType() {
+        return parameterTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Name() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameterType_Value() {
+        return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public AmqpFactory getAmqpFactory() {
         return (AmqpFactory)getEFactoryInstance();
     }
@@ -566,9 +654,13 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
         isCreated = true;
 
         // Create classes and their features
+        additionalUriParametersTypeEClass = createEClass(ADDITIONAL_URI_PARAMETERS_TYPE);
+        createEReference(additionalUriParametersTypeEClass, ADDITIONAL_URI_PARAMETERS_TYPE__PARAMETER);
+
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
         camelAmqpBindingTypeEClass = createEClass(CAMEL_AMQP_BINDING_TYPE);
         createEAttribute(camelAmqpBindingTypeEClass, CAMEL_AMQP_BINDING_TYPE__QUEUE);
@@ -592,12 +684,18 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
         createEAttribute(camelAmqpBindingTypeEClass, CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE);
         createEAttribute(camelAmqpBindingTypeEClass, CAMEL_AMQP_BINDING_TYPE__TRANSACTED);
         createEAttribute(camelAmqpBindingTypeEClass, CAMEL_AMQP_BINDING_TYPE__TRANSACTION_MANAGER);
+        createEAttribute(camelAmqpBindingTypeEClass, CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE_NAME);
+        createEAttribute(camelAmqpBindingTypeEClass, CAMEL_AMQP_BINDING_TYPE__ACKNOWLEDGEMENT_MODE);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_AMQP);
+
+        parameterTypeEClass = createEClass(PARAMETER_TYPE);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
+        createEAttribute(parameterTypeEClass, PARAMETER_TYPE__VALUE);
     }
 
     /**
@@ -636,9 +734,13 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
         camelAmqpBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAdditionalUriParametersType_Parameter(), this.getParameterType(), null, "parameter", null, 0, -1, AdditionalUriParametersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelAmqpBindingTypeEClass, CamelAmqpBindingType.class, "CamelAmqpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelAmqpBindingType_Queue(), theXMLTypePackage.getString(), "queue", null, 0, 1, CamelAmqpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -662,12 +764,18 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
         initEAttribute(getCamelAmqpBindingType_TimeToLive(), theSwitchyardPackage.getPropInteger(), "timeToLive", null, 0, 1, CamelAmqpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelAmqpBindingType_Transacted(), theXMLTypePackage.getBoolean(), "transacted", "false", 0, 1, CamelAmqpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelAmqpBindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelAmqpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelAmqpBindingType_AcknowledgementModeName(), theXMLTypePackage.getString(), "acknowledgementModeName", null, 0, 1, CamelAmqpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelAmqpBindingType_AcknowledgementMode(), theSwitchyardPackage.getPropInteger(), "acknowledgementMode", null, 0, 1, CamelAmqpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingAmqp(), this.getCamelAmqpBindingType(), null, "bindingAmqp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getParameterType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -685,6 +793,21 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      */
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
+        addAnnotation
+          (additionalUriParametersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "additionalUriParameters_._type",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getAdditionalUriParametersType_Parameter(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "parameter",
+             "namespace", "##targetNamespace"
+           });		
         addAnnotation
           (baseCamelBindingEClass, 
            source, 
@@ -706,6 +829,14 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
            new String[] {
              "kind", "element",
              "name", "messageComposer",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_AdditionalUriParameters(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "additionalUriParameters",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -884,6 +1015,22 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getCamelAmqpBindingType_AcknowledgementModeName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "acknowledgementModeName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelAmqpBindingType_AcknowledgementMode(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "acknowledgementMode",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (documentRootEClass, 
            source, 
            new String[] {
@@ -919,6 +1066,27 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
              "name", "binding.amqp",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (parameterTypeEClass, 
+           source, 
+           new String[] {
+             "name", "parameter_._type",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getParameterType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getParameterType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
            });
     }
 

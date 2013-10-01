@@ -17,6 +17,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerStartTime <em>Trigger Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerEndTime <em>Trigger End Time</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerTimeZone <em>Trigger Time Zone</em>}</li>
  * </ul>
  * </p>
  *
@@ -187,5 +188,32 @@ public interface CamelQuartzBindingType extends BaseCamelBinding {
      * @generated
      */
     void setTriggerEndTime(XMLGregorianCalendar value);
+
+    /**
+     * Returns the value of the '<em><b>Trigger Time Zone</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Trigger Time Zone</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Trigger Time Zone</em>' attribute.
+     * @see #setTriggerTimeZone(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_TriggerTimeZone()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='trigger.timeZone' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getTriggerTimeZone();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerTimeZone <em>Trigger Time Zone</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Trigger Time Zone</em>' attribute.
+     * @see #getTriggerTimeZone()
+     * @generated
+     */
+    void setTriggerTimeZone(String value);
 
 } // CamelQuartzBindingType

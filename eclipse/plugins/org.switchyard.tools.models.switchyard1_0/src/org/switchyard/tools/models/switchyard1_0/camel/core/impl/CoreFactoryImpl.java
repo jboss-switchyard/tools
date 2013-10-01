@@ -27,7 +27,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
      */
     public static CoreFactory init() {
         try {
-            CoreFactory theCoreFactory = (CoreFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-core:config:1.0"); 
+            CoreFactory theCoreFactory = (CoreFactory)EPackage.Registry.INSTANCE.getEFactory(CorePackage.eNS_URI);
             if (theCoreFactory != null) {
                 return theCoreFactory;
             }
@@ -56,6 +56,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case CorePackage.ADDITIONAL_URI_PARAMETERS_TYPE: return createAdditionalUriParametersType();
             case CorePackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case CorePackage.CAMEL_BINDING_TYPE: return createCamelBindingType();
             case CorePackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
@@ -63,9 +64,20 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
             case CorePackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
             case CorePackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
             case CorePackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case CorePackage.PARAMETER_TYPE: return createParameterType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AdditionalUriParametersType createAdditionalUriParametersType() {
+        AdditionalUriParametersTypeImpl additionalUriParametersType = new AdditionalUriParametersTypeImpl();
+        return additionalUriParametersType;
     }
 
     /**
@@ -136,6 +148,16 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterType createParameterType() {
+        ParameterTypeImpl parameterType = new ParameterTypeImpl();
+        return parameterType;
     }
 
     /**
