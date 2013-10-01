@@ -152,12 +152,19 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
                     transaction.pause();
                 }
                 try {
-                    new BatchMerger(EMFCompareRCPPlugin.getDefault().getMergerRegistry(), new Predicate<Diff>() {
-                        public boolean apply(Diff object) {
-                            return object.getKind() != DifferenceKind.MOVE;
+                    if (_generated.getContents().size() == 0) {
+                        if (generatedResource.getContents().size() > 0) {
+                            _generated.getContents().addAll(generatedResource.getContents());
+                            generatedResource.getContents().clear();
                         }
-                    }).copyAllLeftToRight(generatedDifferences, BasicMonitor.toMonitor(new NullProgressMonitor()));
-                    pruneMissingReferences();
+                    } else {
+                        new BatchMerger(EMFCompareRCPPlugin.getDefault().getMergerRegistry(), new Predicate<Diff>() {
+                            public boolean apply(Diff object) {
+                                return object.getKind() != DifferenceKind.MOVE;
+                            }
+                        }).copyAllLeftToRight(generatedDifferences, BasicMonitor.toMonitor(new NullProgressMonitor()));
+                        pruneMissingReferences();
+                    }
                 } finally {
                     if (transaction != null) {
                         transaction.resume(null);

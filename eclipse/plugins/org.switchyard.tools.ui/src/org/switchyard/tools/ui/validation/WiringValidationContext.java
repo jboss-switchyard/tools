@@ -23,6 +23,7 @@ import java.util.Set;
 
 import javax.xml.namespace.QName;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
@@ -46,8 +47,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.i18n.Messages;
+import org.switchyard.tools.ui.validation.SwitchYardProjectValidator.ValidationAdapter;
 
 /**
  * WiringValidationContext
@@ -64,8 +67,11 @@ final class WiringValidationContext {
     private Map<Contract, Set<Contract>> _wires = new HashMap<Contract, Set<Contract>>();
     private IStatus _contextStatus;
     private List<IStatus> _problems = new ArrayList<IStatus>();
+    private ValidationAdapter _validationAdapter;
 
     WiringValidationContext(IValidationContext ctx, SwitchYardType switchyard) {
+        _validationAdapter = (ValidationAdapter) EcoreUtil.getAdapter(switchyard.eResource().eAdapters(),
+                ValidationAdapter.class);
         collectNamesAndWires(switchyard);
         collectServiceInterfaces(switchyard);
         collectTransformers(switchyard);
@@ -118,8 +124,17 @@ final class WiringValidationContext {
             EObject nextObject = it.next();
             if (SwitchyardPackage.eINSTANCE.getTransformType().isInstance(nextObject)) {
                 addTransformer((TransformType) nextObject);
-
+                addDependency(nextObject);
             }
+        }
+    }
+
+    private void addDependency(Object object) {
+        // add dependency so we revalidate if something changes
+        IResource resource = PlatformResourceAdapterFactory.getFileForObject(object,
+                _validationAdapter.getProject());
+        if (resource != null) {
+            _validationAdapter.addDependency(resource);
         }
     }
 
@@ -144,12 +159,14 @@ final class WiringValidationContext {
         Composite composite = switchyard.getComposite();
         for (Service service : composite.getService()) {
             addWires(service);
+            addDependency(service);
             if (service.getName() == null) {
                 continue;
             }
         }
         for (Reference reference : composite.getReference()) {
             addWires(reference);
+            addDependency(reference);
             if (reference.getName() == null) {
                 continue;
             }
@@ -161,7 +178,9 @@ final class WiringValidationContext {
             contracts.add(reference);
         }
         for (Component component : composite.getComponent()) {
+            addDependency(component);
             for (ComponentService service : component.getService()) {
+                addDependency(service);
                 if (service.getName() == null) {
                     break;
                 }
@@ -176,6 +195,7 @@ final class WiringValidationContext {
         }
         for (Component component : composite.getComponent()) {
             for (ComponentReference reference : component.getReference()) {
+                addDependency(reference);
                 if (reference.getName() == null || !_names.containsKey(reference.getName())) {
                     continue;
                 }

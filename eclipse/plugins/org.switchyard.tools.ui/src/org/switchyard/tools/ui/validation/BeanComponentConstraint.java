@@ -76,7 +76,7 @@ public class BeanComponentConstraint extends AbstractModelConstraint {
                 ValidationAdapter.class);
         final IJavaProject javaProject = adapter.getJavaProject();
         try {
-            final IType javaClass = javaProject.findType(className);
+            final IType javaClass = javaProject == null ? null : javaProject.findType(className);
             if (javaClass == null) {
                 return ConstraintStatus.createStatus(ctx, component, null, BeanUnresolvableClass.getSeverity(),
                         BeanUnresolvableClass.ordinal(), BeanUnresolvableClass.getMessage(), className,

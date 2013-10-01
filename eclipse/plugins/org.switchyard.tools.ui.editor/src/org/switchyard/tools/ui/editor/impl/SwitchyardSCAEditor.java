@@ -572,7 +572,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             _switchYardProjectListener = new ISwitchYardProjectListener() {
                 @Override
                 public void projectUpdated(final ISwitchYardProject project, Set<Type> types) {
-                    if (getGraphicalControl().isDisposed() || !types.contains(Type.CONFIG)) {
+                    if ((getGraphicalControl() != null && getGraphicalControl().isDisposed()) || !types.contains(Type.CONFIG)) {
                         return;
                     } else if (_modelFile.equals(project.getSwitchYardConfigurationFile())) {
                         _needsSynchronization = true;

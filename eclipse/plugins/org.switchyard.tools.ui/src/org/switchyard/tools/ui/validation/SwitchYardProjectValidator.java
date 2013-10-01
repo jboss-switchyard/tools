@@ -109,7 +109,9 @@ public class SwitchYardProjectValidator extends AbstractValidator {
                 result.setDependsOn(new IResource[] {switchYardOutput });
                 if (!switchYardOutput.exists()
                         || switchYardOutput.getModificationStamp() < event.getResource().getModificationStamp()
-                        || (event.getDependsOn() != null && (event.getDependsOn().getKind() & IResourceDelta.REMOVED) != 0)) {
+                        || (event.getDependsOn() != null
+                                && (event.getDependsOn().getKind() & IResourceDelta.REMOVED) != 0 && event
+                                .getDependsOn().findMember(switchYardOutput.getFullPath()) != null)) {
                     // prevent a build until the output file is updated
                     return result;
                 }
@@ -215,14 +217,32 @@ public class SwitchYardProjectValidator extends AbstractValidator {
      */
     public static final class ValidationAdapter extends AdapterImpl {
         private final Set<IResource> _dependencies = new LinkedHashSet<IResource>();
-        private final IResource _switchYardFile;
+        private final IProject _project;
         private IJavaProject _javaProject;
 
+        /**
+         * @param project containing project
+         */
+        public ValidationAdapter(IProject project) {
+            this(project, null);
+        }
+
         private ValidationAdapter(IResource switchYardFile, IResource[] dependencies) {
-            _switchYardFile = switchYardFile;
+            this(switchYardFile.getProject(), dependencies);
+        }
+        
+        private ValidationAdapter(IProject project, IResource[] dependencies) {
+            _project = project;
             if (dependencies != null) {
                 _dependencies.addAll(Arrays.asList(dependencies));
             }
+        }
+
+        /**
+         * @return the project within which the switchyard.xml file is contained.
+         */
+        public IProject getProject() {
+            return _project;
         }
 
         /**
@@ -231,7 +251,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
          */
         public synchronized IJavaProject getJavaProject() {
             if (_javaProject == null) {
-                _javaProject = JavaCore.create(_switchYardFile.getProject());
+                _javaProject = JavaCore.create(_project);
             }
             return _javaProject;
         }

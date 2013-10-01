@@ -10,24 +10,18 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.validation.model.EvaluationMode;
-import org.eclipse.emf.validation.model.IConstraintStatus;
-import org.eclipse.emf.validation.service.IBatchValidator;
-import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.wst.validation.ValidationFramework;
+import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
 /**
  * ValidateModelFeature
@@ -35,6 +29,7 @@ import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
  * <p/>
  * Custom feature used for validating the current state of the model.
  */
+@SuppressWarnings("restriction")
 public class ValidateModelFeature extends AbstractCustomFeature {
 
     /**
@@ -63,35 +58,16 @@ public class ValidateModelFeature extends AbstractCustomFeature {
 
     @Override
     public void execute(ICustomContext context) {
-        Set<EObject> selectedBOs = new LinkedHashSet<EObject>();
-        List<? extends PictogramElement> elements = Collections.singletonList(getDiagram());
-        // if (context.getPictogramElements() != null &&
-        // context.getPictogramElements().length > 0) {
-        // elements = Arrays.asList(context.getPictogramElements());
-        // }
-
-        for (PictogramElement element : elements) {
-            Object bo = getBusinessObjectForPictogramElement(element);
-            if (bo instanceof EObject) {
-                selectedBOs.add((EObject) bo);
-            }
-        }
-
-        if (selectedBOs.isEmpty()) {
+        final Object bo = getBusinessObjectForPictogramElement(getDiagram());
+        if (!(bo instanceof EObject)) {
             return;
         }
-
-        IBatchValidator validator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
-        validator.setOption(IBatchValidator.OPTION_REPORT_SUCCESSES, true);
-
-        Set<EObject> seenTargets = new LinkedHashSet<EObject>();
-        updateValidationStatus(validator.validate(selectedBOs), seenTargets);
-
-        for (EObject target : seenTargets) {
-            PictogramElement pe = getFeatureProvider().getPictogramElementForBusinessObject(target);
-            if (pe != null) {
-                getDiagramBehavior().refreshRenderingDecorators(pe);
-            }
+        final IFile switchYardFile = ResourcesPlugin.getWorkspace().getRoot()
+                .getFile(new Path(((EObject) bo).eResource().getURI().toPlatformString(true)));
+        try {
+            ValidationFramework.getDefault().validate(switchYardFile, new NullProgressMonitor());
+        } catch (CoreException e) {
+            Activator.logStatus(e.getStatus());
         }
     }
 
@@ -101,22 +77,4 @@ public class ValidateModelFeature extends AbstractCustomFeature {
         return false;
     }
 
-    private void updateValidationStatus(IStatus status, Set<EObject> seenTargets) {
-        if (status.isMultiStatus()) {
-            for (IStatus child : status.getChildren()) {
-                updateValidationStatus(child, seenTargets);
-            }
-        } else if (status instanceof IConstraintStatus) {
-            EObject target = ((IConstraintStatus) status).getTarget();
-            ValidationStatusAdapter statusAdapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter(target,
-                    ValidationStatusAdapter.class);
-            if (statusAdapter == null) {
-                return;
-            }
-            if (seenTargets.add(target)) {
-                statusAdapter.clearValidationStatus();
-            }
-            statusAdapter.addValidationStatus(status);
-        }
-    }
 }

@@ -67,7 +67,7 @@ public class ContractControl implements ISelectionProvider {
             throw new IllegalArgumentException(Messages.ContractControl_errorContractTypeMustExtendContract + contractType.getName());
         }
         _service = (Contract) contractType.getEPackage().getEFactoryInstance().create(contractType);
-        _interfaceControl = new InterfaceControl(null, supportedTypes);
+        _interfaceControl = new InterfaceControl(project, supportedTypes);
         _interfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {

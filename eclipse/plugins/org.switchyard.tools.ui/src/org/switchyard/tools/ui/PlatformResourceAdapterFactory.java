@@ -35,6 +35,9 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojureImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
+import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
+import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 
 /**
  * PlatformResourceAdapterFactory
@@ -157,6 +160,12 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
         } else if (adaptableObject instanceof WSDLPortType) {
             return (IFile) SwitchYardModelUtils.getJavaResource(project,
                     ((WSDLPortType) adaptableObject).getInterface());
+        } else if (adaptableObject instanceof JavaTransformType1) {
+            return (IFile) SwitchYardModelUtils.getJavaType(project, ((JavaTransformType1) adaptableObject).getClass_());
+        } else if (adaptableObject instanceof SmooksTransformType1) {
+            return (IFile) SwitchYardModelUtils.getJavaResource(project, ((SmooksTransformType1) adaptableObject).getConfig());
+        } else if (adaptableObject instanceof XsltTransformType) {
+            return (IFile) SwitchYardModelUtils.getJavaResource(project, ((XsltTransformType) adaptableObject).getXsltFile());
         }
         return null;
     }

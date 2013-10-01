@@ -1192,6 +1192,27 @@
               type="org.eclipse.core.resources.IResource">
         </adapter>
      </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
      <!-- Model child adapters -->
      <factory
            adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Component"
@@ -1240,6 +1261,7 @@
         name="%projectValidator.switchyardConfiguration"
         point="org.eclipse.wst.validation.validatorV2">
      <validator
+           build="false"
            class="org.switchyard.tools.ui.validation.SwitchYardProjectValidator"
            markerId="org.switchyard.tools.ui.problemMarker">
         <include>
