@@ -251,12 +251,12 @@ public final class SwitchYardModelUtils {
         } else if (intf instanceof EsbInterface) {
             EsbInterface esbIntfc = (EsbInterface) intf;
             if (esbIntfc.getOutputType() == null) {
-                return new InOnlyService(new InOnlyOperation(ServiceInterface.DEFAULT_OPERATION, new QName(
+                return new InOnlyService(new InOnlyOperation(ServiceInterface.DEFAULT_OPERATION, QName.valueOf(
                         esbIntfc.getInputType())));
             } else {
-                return new InOutService(new InOutOperation(ServiceInterface.DEFAULT_OPERATION, new QName(
-                        esbIntfc.getInputType()), new QName(esbIntfc.getOutputType()),
-                        esbIntfc.getFaultType() == null ? null : new QName(esbIntfc.getFaultType())));
+                return new InOutService(new InOutOperation(ServiceInterface.DEFAULT_OPERATION, QName.valueOf(
+                        esbIntfc.getInputType()), QName.valueOf(esbIntfc.getOutputType()),
+                        esbIntfc.getFaultType() == null ? null : QName.valueOf(esbIntfc.getFaultType())));
             }
         }
         throw new IllegalArgumentException(Messages.SwitchYardModelUtils_InterfaceTypeUnsupportedException
