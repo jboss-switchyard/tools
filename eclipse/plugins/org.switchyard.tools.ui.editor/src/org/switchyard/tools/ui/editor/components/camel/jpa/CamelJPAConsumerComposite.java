@@ -157,7 +157,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
         if (getBinding() != null) {
             if (_entityClassNameText.getText().trim().isEmpty()) {
                 setErrorMessage(Messages.error_emptyEntityClassName);
-            } else if (_entityClassNameText.getText().trim().isEmpty()) {
+            } else if (_persistenceUnitText.getText().trim().isEmpty()) {
                 setErrorMessage(Messages.error_emptyPersistenceUnit);
 //            } else if (!_maximumResultsText.getText().trim().isEmpty()) {
 //                try {
