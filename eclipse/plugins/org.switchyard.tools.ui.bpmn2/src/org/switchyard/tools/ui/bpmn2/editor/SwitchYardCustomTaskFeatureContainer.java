@@ -18,10 +18,11 @@ import org.eclipse.bpmn2.DataInput;
 import org.eclipse.bpmn2.DataInputAssociation;
 import org.eclipse.bpmn2.FormalExpression;
 import org.eclipse.bpmn2.Task;
-import org.eclipse.bpmn2.modeler.core.features.FeatureContainer;
+import org.eclipse.bpmn2.modeler.core.features.IShapeFeatureContainer;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.features.JbpmCustomTaskFeatureContainer;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.features.JbpmTaskFeatureContainer.JbpmAddTaskFeature;
+import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.util.JbpmModelUtil;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
 import org.eclipse.bpmn2.modeler.ui.features.activity.task.TaskFeatureContainer;
 import org.eclipse.core.runtime.CoreException;
@@ -52,7 +53,7 @@ public class SwitchYardCustomTaskFeatureContainer extends JbpmCustomTaskFeatureC
     }
 
     @Override
-    protected FeatureContainer createFeatureContainer(IFeatureProvider fp) {
+    protected IShapeFeatureContainer createFeatureContainer(IFeatureProvider fp) {
 
         return new TaskFeatureContainer() {
             @Override
@@ -104,6 +105,7 @@ public class SwitchYardCustomTaskFeatureContainer extends JbpmCustomTaskFeatureC
                 if ("ParameterName".equals(input.getName()) || "ResultName".equals(input.getName())) { //$NON-NLS-1$ //$NON-NLS-2$
                     addInputAssignment(resource, inputAssociation.getAssignment(), input);
                 }
+                input.setItemSubjectRef(JbpmModelUtil.getDataType(context.getTargetContainer(), "String"));
             }
 
             return task;

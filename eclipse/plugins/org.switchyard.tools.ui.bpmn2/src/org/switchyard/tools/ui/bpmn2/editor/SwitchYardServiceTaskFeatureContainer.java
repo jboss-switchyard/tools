@@ -11,7 +11,7 @@
 package org.switchyard.tools.ui.bpmn2.editor;
 
 import org.eclipse.bpmn2.ServiceTask;
-import org.eclipse.bpmn2.modeler.core.features.FeatureContainer;
+import org.eclipse.bpmn2.modeler.core.features.IShapeFeatureContainer;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.features.JbpmCustomTaskFeatureContainer;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.features.JbpmServiceTaskFeatureContainer;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
@@ -44,7 +44,7 @@ public class SwitchYardServiceTaskFeatureContainer extends JbpmCustomTaskFeature
     }
 
     @Override
-    protected FeatureContainer createFeatureContainer(IFeatureProvider fp) {
+    protected IShapeFeatureContainer createFeatureContainer(IFeatureProvider fp) {
         return new JbpmServiceTaskFeatureContainer() {
             @Override
             public ICreateFeature getCreateFeature(final IFeatureProvider fp) {
