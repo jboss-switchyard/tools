@@ -101,10 +101,6 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
         if (status != null) {
             statuses.add(status);
         }
-        status = validateReferencePromotion(ctx, contract);
-        if (status != null) {
-            statuses.add(status);
-        }
         if (statuses.isEmpty()) {
             return ctx.createSuccessStatus();
         }
@@ -267,26 +263,6 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
                     problem.getMessage(), reference.getName());
         }
         return validateInterfaces(ctx, reference, targets.iterator().next());
-    }
-
-    private IStatus validateReferencePromotion(IValidationContext ctx, Contract contract) {
-        if (!(contract instanceof Reference) || contract.getName() == null) {
-            return null;
-        }
-        final Reference reference = (Reference) contract;
-        final List<IStatus> errors = new ArrayList<IStatus>(reference.getPromote().size());
-        final ValidationProblem problem = ValidationProblem.PromotedReferenceNameMismatch;
-        for (ComponentReference promoted : reference.getPromote()) {
-            if (!contract.getName().equals(promoted.getName())) {
-                errors.add(ConstraintStatus.createStatus(ctx, promoted,
-                        Arrays.asList(new EObject[] {promoted, reference }), problem.getSeverity(), problem.ordinal(),
-                        problem.getMessage(), reference.getName()));
-            }
-        }
-        if (errors.isEmpty()) {
-            return null;
-        }
-        return ConstraintStatus.createMultiStatus(ctx, errors);
     }
 
     private IStatus validateUniqueName(IValidationContext ctx, Contract contract) {
