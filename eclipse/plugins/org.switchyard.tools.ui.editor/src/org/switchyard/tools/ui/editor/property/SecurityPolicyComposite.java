@@ -60,6 +60,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
     private Combo _securityCombo;
     private Contract _contract;
     private ArrayList<String> _supportedSecurityPolicies;
+    private static String _defaultValue = "default"; //$NON-NLS-1$
     
     /**
      * Create a new SecurityPolicyComposite.
@@ -211,6 +212,8 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                 if (getFunkyAttributeValue(contract, "securityAttr") != null) { //$NON-NLS-1$
                     hasSecurityAttr = true;
                     securityName = (String) getFunkyAttributeValue(contract,  "securityAttr"); //$NON-NLS-1$
+                } else {
+                    securityName = "default"; //$NON-NLS-1$
                 }
             }
 
@@ -302,6 +305,21 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                     }
                 }
             }
+            if (_securityCombo.getItemCount() > 0) {
+                boolean foundDefault = false;
+                for (int i = 0; i < _securityCombo.getItems().length; i++) {
+                    String array_element = _securityCombo.getItems()[i];
+                    if (array_element.contentEquals(_defaultValue)) {
+                        foundDefault = true;
+                        break;
+                    }
+                }
+                if (!foundDefault) {
+                    _securityCombo.add(_defaultValue);
+                }
+            }
+        } else {
+            _securityCombo.add(_defaultValue);
         }
         if (_securityCombo.getItemCount() > 1) {
             _securityCombo.setEnabled(true);
@@ -334,8 +352,12 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                 Entry entry = iter.next();
                 String name = entry.getEStructuralFeature().getName();
                 if (name.contentEquals(propertyName)) {
-                    _localObject.getAnyAttribute().add(
-                            attribute, propertyValue);
+                    if (propertyValue != null) {
+                        _localObject.getAnyAttribute().add(
+                                attribute, propertyValue);
+                    } else {
+                        _localObject.getAnyAttribute().set(attribute, null);
+                    }
                     foundIt = true;
                     break;
                 }
@@ -349,7 +371,11 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         @Override
         public void run() throws Exception {
             if (_localFeature.contentEquals("securityAttr")) { //$NON-NLS-1$
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_SecurityAttr(), "securityAttr", _localValue); //$NON-NLS-1$
+                if (_localValue instanceof String && !((String)_localValue).contentEquals(_defaultValue)) {
+                    setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_SecurityAttr(), "securityAttr", _localValue); //$NON-NLS-1$
+                } else {
+                    setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_SecurityAttr(), "securityAttr", null); //$NON-NLS-1$
+                }
             }
         }
     }

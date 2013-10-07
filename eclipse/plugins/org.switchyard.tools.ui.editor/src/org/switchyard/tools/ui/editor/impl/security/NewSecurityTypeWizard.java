@@ -113,7 +113,7 @@ public class NewSecurityTypeWizard extends Wizard {
             editDomain.getCommandStack().execute(new RecordingCommand(editDomain) {
                 
                 private void setIt(String value, String feature) throws Exception {
-                    if (value != null && value.trim().length() > 0) {
+                    if ((value != null && value.trim().length() > 0) || value == null) {
                         setFeatureValue(object, feature, value);
                     }
                 }
