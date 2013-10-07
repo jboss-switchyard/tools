@@ -303,7 +303,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                     if (bindings != null && _listViewer != null && !_listViewer.getList().isDisposed()) {
                         _listViewer.setInput(bindings);
                         if (bindings.size() > 0) {
-                            if (_binding != null) {
+                            if (_binding != null && bindings.contains(_binding)) {
                                 _listViewer.setSelection(new StructuredSelection(_binding), true);
                             } else {
                                 _listViewer.setSelection(new StructuredSelection(bindings.get(0)));
