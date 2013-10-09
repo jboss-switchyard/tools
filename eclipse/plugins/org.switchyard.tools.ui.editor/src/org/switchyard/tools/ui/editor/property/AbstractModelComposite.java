@@ -91,7 +91,7 @@ public abstract class AbstractModelComposite<T extends EObject> extends Composit
     /**
      * @return the container.
      */
-    protected ICompositeContainer getContainer() {
+    public ICompositeContainer getContainer() {
         return _container;
     }
 

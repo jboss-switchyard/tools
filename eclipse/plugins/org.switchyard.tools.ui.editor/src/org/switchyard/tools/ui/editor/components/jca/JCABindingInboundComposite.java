@@ -432,6 +432,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+            fireChangedEvent(_opSelectorComposite);
         } else if (control.equals(_nameText)) {
             super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         } else {

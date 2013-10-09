@@ -33,6 +33,7 @@ import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.internal.databinding.swt.SWTObservableValueDecorator;
 import org.eclipse.jface.internal.databinding.swt.SWTVetoableValueDecorator;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -40,6 +41,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.events.TraverseEvent;
@@ -50,7 +52,9 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.internal.dialogs.PropertyDialog;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -346,6 +350,20 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         if (_buttonValueChangeListener == null) {
             _buttonValueChangeListener = new ButtonValueChangeListener();
         }
+        
+        int styleBit = 0;
+        Composite parent = this.getPanel().getParent();
+        System.out.println(parent);
+        while (parent != null && !(parent instanceof Shell)) {
+            parent = parent.getParent();
+        }
+        if (parent != null && parent instanceof Shell) {
+            Shell shell = (Shell) parent;
+            if (shell.getData() instanceof WizardDialog || shell.getData() instanceof PropertyDialog) {
+                styleBit = SWT.Modify;
+            }
+        }
+        
         Iterator<Control> iter = _observableControls.iterator();
         while (iter.hasNext()) {
             Control ctrl = iter.next();
@@ -354,8 +372,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
             }
             if (ctrl instanceof Text) {
                 Text newText = (Text) ctrl;
-
-                ISWTObservableValue focusObserver = SWTObservables.observeText(newText, SWT.FocusOut);
+                ISWTObservableValue focusObserver = SWTObservables.observeText(newText, SWT.FocusOut | styleBit);
                 _observables.add(focusObserver);
                 // focusObserver.removeValueChangeListener(_textValueChangeListener);
                 focusObserver.addValueChangeListener(_textValueChangeListener);
@@ -372,7 +389,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                             if ((e.keyCode >= 97 && e.keyCode <= 122) || // characters
                                     (e.keyCode >= 48 && e.keyCode <= 57) || // digits
                                     (e.keyCode == 32) || // spacebar
-                                    (e.keyCode == SWT.BS)) { // backspace
+                                    (e.keyCode == SWT.BS) || // backspace
+                                    (e.keyCode == SWT.ARROW_UP) || // up arrow
+                                    (e.keyCode == SWT.ARROW_DOWN)) {
                                 AbstractSwitchyardComposite.this._comboTextChanged = (Control) e.widget;
                             }
                         }
@@ -383,6 +402,18 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                             AbstractSwitchyardComposite.this._comboTextChanged = (Control) arg0.widget;
                         }
                     });
+                    if (styleBit != 0) {
+                        newCombo.addSelectionListener(new SelectionAdapter() {
+                            @Override
+                            public void widgetSelected(SelectionEvent e) {
+                                if (AbstractSwitchyardComposite.this._comboTextChanged == (Control) e.getSource()) {
+                                    System.out.println("AbstractSwitchyardComposite:New Combo Selection (text entry): " + ((Combo) e.getSource()).getText()); //$NON-NLS-1$
+                                    handleChange((Control) e.getSource());
+                                    AbstractSwitchyardComposite.this._comboTextChanged = null;
+                                }
+                            }
+                        });
+                    }
                     newCombo.addFocusListener(new FocusListener() {
                         @Override
                         public void focusGained(FocusEvent e) {

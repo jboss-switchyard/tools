@@ -40,6 +40,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.events.TraverseEvent;
@@ -62,6 +63,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractPropertyPage;
 import org.switchyard.tools.ui.editor.util.ErrorUtils;
 import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
@@ -122,6 +125,7 @@ public class OperationSelectorComposite extends Composite {
     private ComboValueChangeListener _comboValueChangeListener = null;
     private Control _comboTextChanged = null;
     private boolean _inUpdate = false;
+    private Composite _panel;
 
     /**
      * Constructor.
@@ -142,6 +146,7 @@ public class OperationSelectorComposite extends Composite {
      */
     public OperationSelectorComposite(Composite parent, int style, boolean isReadOnly) {
         super(parent, style);
+        _panel = parent;
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
 
@@ -583,13 +588,26 @@ public class OperationSelectorComposite extends Composite {
         if (_comboValueChangeListener == null) {
             _comboValueChangeListener = new ComboValueChangeListener();
         }
+
+        int styleBit = 0;
+        Composite parent = _panel.getParent();
+        while (parent != null && !(parent instanceof AbstractModelComposite<?>)) {
+            parent = parent.getParent();
+        }
+        if (parent != null && parent instanceof AbstractModelComposite<?>) {
+            AbstractModelComposite<?> modelComposite = (AbstractModelComposite<?>) parent;
+            if (modelComposite.getContainer() instanceof AbstractPropertyPage) {
+                styleBit = SWT.Modify;
+            }
+        }
+
         Iterator<Control> iter = _observableControls.iterator();
         while (iter.hasNext()) {
             Control ctrl = iter.next();
             if (ctrl instanceof Text) {
                 Text newText = (Text) ctrl;
 
-                ISWTObservableValue focusObserver = SWTObservables.observeText(newText, SWT.FocusOut);
+                ISWTObservableValue focusObserver = SWTObservables.observeText(newText, SWT.FocusOut | styleBit);
                 _observables.add(focusObserver);
                 focusObserver.addValueChangeListener(_textValueChangeListener);
             } else if (ctrl instanceof Combo) {
@@ -605,7 +623,9 @@ public class OperationSelectorComposite extends Composite {
                             if ((e.keyCode >= 97 && e.keyCode <= 122) || // characters
                                     (e.keyCode >= 48 && e.keyCode <= 57) || // digits
                                     (e.keyCode == 32) || // spacebar
-                                    (e.keyCode == SWT.BS)) { // backspace
+                                    (e.keyCode == SWT.BS) || // backspace
+                                    (e.keyCode == SWT.ARROW_UP) || // up arrow
+                                    (e.keyCode == SWT.ARROW_DOWN)) {
                                 _comboTextChanged = (Control) e.widget;
                             }
                         }
@@ -616,6 +636,18 @@ public class OperationSelectorComposite extends Composite {
                             _comboTextChanged = (Control) arg0.widget;
                         }
                     });
+                    if (styleBit != 0) {
+                        newCombo.addSelectionListener(new SelectionAdapter() {
+                            @Override
+                            public void widgetSelected(SelectionEvent e) {
+                                if (_comboTextChanged != null && _comboTextChanged.equals((Control) e.getSource())) {
+                                    System.out.println("OperationSelectorComposite: New Combo Selection (text entry): " + ((Combo) _comboTextChanged).getText()); //$NON-NLS-1$
+                                    fireChangedEvent(_comboTextChanged);
+                                    _comboTextChanged = null;
+                                }
+                            }
+                        });
+                    }
                     newCombo.addFocusListener(new FocusListener() {
                         @Override
                         public void focusGained(FocusEvent e) {

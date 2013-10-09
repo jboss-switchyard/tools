@@ -142,6 +142,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_opSelectorComposite)) {
                 int opType = _opSelectorComposite.getSelectedOperationSelectorType();
                 updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+                fireChangedEvent(_opSelectorComposite);
             } else if (control.equals(_methodCombo)) {
                 String methodName = _methodCombo.getText().trim();
                 updateFeature(_binding, "method", methodName); //$NON-NLS-1$

@@ -232,6 +232,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+            fireChangedEvent(_opSelectorComposite);
         }
         super.handleModify(control);
         setHasChanged(false);

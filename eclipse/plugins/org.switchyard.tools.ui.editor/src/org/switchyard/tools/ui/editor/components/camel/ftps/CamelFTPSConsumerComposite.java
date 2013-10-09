@@ -303,6 +303,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+            fireChangedEvent(_opSelectorComposite);
         } else if (control.equals(_maxMessagesPerPollText)) {
             try {
                 updateConsumeFeature("maxMessagesPerPoll", new BigInteger(_maxMessagesPerPollText.getText().trim())); //$NON-NLS-1$

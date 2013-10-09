@@ -166,4 +166,11 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
             e.printStackTrace();
         }
     }
+    
+    /**
+     * @return the composite for the property page
+     */
+    protected Composite getComposite() {
+        return this._composite;
+    }
 }
