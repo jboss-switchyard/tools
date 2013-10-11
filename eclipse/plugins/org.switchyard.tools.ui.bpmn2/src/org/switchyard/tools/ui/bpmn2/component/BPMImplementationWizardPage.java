@@ -10,6 +10,9 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.bpmn2.component;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -236,7 +239,8 @@ public class BPMImplementationWizardPage extends WizardPage {
         } else {
             container = _project.getProject();
         }
-        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "bpmn"); //$NON-NLS-1$
+        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), 
+                container, new HashSet<String>(Arrays.asList("bpmn", "bpmn2"))); //$NON-NLS-1$
         dialog.setInitialPattern("*.bpmn"); //$NON-NLS-1$
         if (dialog.open() == SelectionDialog.OK) {
             Object[] result = dialog.getResult();
