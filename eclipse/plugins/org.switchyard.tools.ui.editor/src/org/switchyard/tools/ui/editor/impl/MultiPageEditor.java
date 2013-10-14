@@ -12,7 +12,13 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
@@ -78,7 +84,7 @@ import org.w3c.dom.Node;
  * @author bfitzpat
  * 
  */
-public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener {
+public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener, IResourceChangeListener, IResourceDeltaVisitor {
 
     private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled"; //$NON-NLS-1$
 
@@ -94,7 +100,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private SwitchYardType _syRoot = null;
     private DomainPropertyTable _domainProperties = null;
     private SecurityInstanceTable _securityInstanceTable;
-
+    
     /**
      * Creates a multi-page editor example.
      */
@@ -110,7 +116,9 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     @Override
     public void dispose() {
         removeDomainListener();
-        super.dispose();
+        ((IFileEditorInput) getEditorInput()).getFile().getWorkspace()
+            .removeResourceChangeListener(this);
+       super.dispose();
     }
 
     private void addDomainListener() {
@@ -153,7 +161,17 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         if (!(editorInput instanceof IFileEditorInput)) {
             throw new PartInitException(Messages.error_notIFileEditorInput);
         }
+        if (getEditorInput() != null) {
+            IFile file = ((IFileEditorInput) getEditorInput()).getFile();
+            file.getWorkspace().removeResourceChangeListener(this);
+        }
         super.init(site, editorInput);
+        if (getEditorInput() != null) {
+            IFile file = ((IFileEditorInput) getEditorInput()).getFile();
+            file.getWorkspace().addResourceChangeListener(this);
+            setPartName(file.getName());
+        }
+
     }
 
     private SwitchYardType getSwitchYardRoot() {
@@ -819,6 +837,46 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     @Override
     public boolean isPostcommitOnly() {
         return false;
+    }
+
+    @Override
+    public boolean visit(IResourceDelta delta) throws CoreException {
+        if (delta == null
+                || !delta.getResource().equals(
+                        ((IFileEditorInput) getEditorInput()).getFile())) {
+            return true;
+        }
+
+        if (delta.getKind() == IResourceDelta.REMOVED) {
+            Display display = getSite().getShell().getDisplay();
+            if ((IResourceDelta.MOVED_TO & delta.getFlags()) == 0) { // if
+                // the file was deleted
+                display.asyncExec(new Runnable() {
+                    public void run() {
+                        closeEditor(false);
+                    }
+                });
+            }
+        }
+        return false;
+
+    }
+
+    @Override
+    public void resourceChanged(IResourceChangeEvent event) {
+        IResourceDelta delta = event.getDelta();
+        try {
+            if (delta != null) {
+                delta.accept(this);
+            }
+        } catch (CoreException exception) {
+            exception.fillInStackTrace();
+        }
+
+    }
+    
+    protected void closeEditor(boolean save) {
+        getSite().getPage().closeEditor(MultiPageEditor.this, save);
     }
 
 }
