@@ -251,5 +251,33 @@
             </adapt>
          </enabledWhen>
       </page>
+      <page
+            category="org.switchyard.tools.ui.bpmn2.propertyPage"
+            class="org.switchyard.tools.ui.editor.property.implementation.ImplementationPolicyPropertyPage"
+            id="org.switchyard.tools.ui.implementation.bpmn2.policy.transaction.propertyPage"
+            name="%property.page.name.transactionPolicy">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+               <instanceof
+                     value="org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType">
+               </instanceof>
+            </adapt>
+         </enabledWhen>
+      </page>
+      <page
+            category="org.switchyard.tools.ui.bpmn2.propertyPage"
+            class="org.switchyard.tools.ui.editor.property.component.ComponentSecurityPolicyPropertyPage"
+            id="org.switchyard.tools.ui.implementation.bpmn2.security.propertyPage"
+            name="%property.page.name.securityPolicy">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.soa.sca.sca1_1.model.sca.Implementation">
+               <instanceof
+                     value="org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType">
+               </instanceof>
+            </adapt>
+         </enabledWhen>
+      </page>
    </extension>
 </plugin>

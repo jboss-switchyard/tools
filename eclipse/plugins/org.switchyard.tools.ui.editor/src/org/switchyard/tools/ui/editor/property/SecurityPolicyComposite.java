@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -52,11 +53,9 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
 
     private static final String CONFIDENTIALITY = "confidentiality"; //$NON-NLS-1$
     private static final String CLIENT_AUTHENTICATION = "clientAuthentication"; //$NON-NLS-1$
-    private static final String AUTHORIZATION = "authorization"; //$NON-NLS-1$
     private boolean _inUpdate = false;
     private Button _clientAuthCheckbox;
     private Button _confidentialityCheckbox;
-    private Button _authorizationCheckbox;
     private Combo _securityCombo;
     private Contract _contract;
     private ArrayList<String> _supportedSecurityPolicies;
@@ -75,7 +74,6 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         _supportedSecurityPolicies = new ArrayList<String>();
         _supportedSecurityPolicies.add(CONFIDENTIALITY);
         _supportedSecurityPolicies.add(CLIENT_AUTHENTICATION);
-        _supportedSecurityPolicies.add(AUTHORIZATION);
 
         FormLayout layout = new FormLayout();
         layout.marginBottom = ITabbedPropertyConstants.VMARGIN;
@@ -86,20 +84,11 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
 
         FormToolkit factory = getWidgetFactory();
 
-        _authorizationCheckbox = factory.createButton(this, Messages.label_authorization, SWT.CHECK);
+        _clientAuthCheckbox = factory.createButton(this, Messages.label_clientAuthentication, SWT.CHECK);
         FormData data = new FormData();
         data.left = new FormAttachment(1, 0);
         data.right = new FormAttachment(100, 0);
         data.top = new FormAttachment(0, 0);
-        _authorizationCheckbox.setLayoutData(data);
-        _authorizationCheckbox.addSelectionListener(new CheckboxSelectionListener());
-        _authorizationCheckbox.setData(AUTHORIZATION);
-
-        _clientAuthCheckbox = factory.createButton(this, Messages.label_clientAuthentication, SWT.CHECK);
-        data = new FormData();
-        data.left = new FormAttachment(1, 0);
-        data.right = new FormAttachment(100, 0);
-        data.top = new FormAttachment(_authorizationCheckbox, 5, 0);
         _clientAuthCheckbox.setLayoutData(data);
         _clientAuthCheckbox.addSelectionListener(new CheckboxSelectionListener());
         _clientAuthCheckbox.setData(CLIENT_AUTHENTICATION);
@@ -140,35 +129,65 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         
     }
 
-    private void updatePolicy(final Contract contract, final Button control) {
+    private void updatePolicy(final EObject target, final Button control) {
         final String securityPolicy = (String) control.getData();
         wrapOperation(new Runnable() {
             @Override
             public void run() {
-                List<QName> requires = contract.getRequires();
-                ArrayList<String> existing = new ArrayList<String>();
-                
-                if (requires != null) {
-                    for (QName requiresItem : requires) {
-                        String localPart = requiresItem.getLocalPart();
-                        existing.add(localPart);
+                if (target instanceof Contract) {
+                    Contract contract = (Contract) target;
+                    List<QName> requires = contract.getRequires();
+                    ArrayList<String> existing = new ArrayList<String>();
+                    
+                    if (requires != null) {
+                        for (QName requiresItem : requires) {
+                            String localPart = requiresItem.getLocalPart();
+                            existing.add(localPart);
+                        }
+                        if (existing.contains(securityPolicy)) {
+                            existing.remove(securityPolicy);
+                        }
                     }
-                    if (existing.contains(securityPolicy)) {
-                        existing.remove(securityPolicy);
+                    contract.setRequires(null);
+                    requires = new ArrayList<QName>();
+                    for (String existingItem : existing) {
+                        QName newQName = new QName(existingItem);
+                        requires.add(newQName);
                     }
-                }
-                contract.setRequires(null);
-                requires = new ArrayList<QName>();
-                for (String existingItem : existing) {
-                    QName newQName = new QName(existingItem);
-                    requires.add(newQName);
-                }
-                if (control.getSelection()) {
-                    QName newQName = new QName(securityPolicy);
-                    requires.add(newQName);
-                }
-                if (!requires.isEmpty()) {
-                    contract.setRequires(requires);
+                    if (control.getSelection()) {
+                        QName newQName = new QName(securityPolicy);
+                        requires.add(newQName);
+                    }
+                    if (!requires.isEmpty()) {
+                        contract.setRequires(requires);
+                    }
+                } else if (target instanceof Implementation) {
+                    Implementation impl = (Implementation) target;
+                    List<QName> requires = impl.getRequires();
+                    ArrayList<String> existing = new ArrayList<String>();
+                    
+                    if (requires != null) {
+                        for (QName requiresItem : requires) {
+                            String localPart = requiresItem.getLocalPart();
+                            existing.add(localPart);
+                        }
+                        if (existing.contains(securityPolicy)) {
+                            existing.remove(securityPolicy);
+                        }
+                    }
+                    impl.setRequires(null);
+                    requires = new ArrayList<QName>();
+                    for (String existingItem : existing) {
+                        QName newQName = new QName(existingItem);
+                        requires.add(newQName);
+                    }
+                    if (control.getSelection()) {
+                        QName newQName = new QName(securityPolicy);
+                        requires.add(newQName);
+                    }
+                    if (!requires.isEmpty()) {
+                        impl.setRequires(requires);
+                    }
                 }
             }
         });
@@ -180,9 +199,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         try {
             boolean clientAuthentication = false;
             boolean confidentiality = false;
-            boolean authorization = false;
             boolean showClientAuthCheckbox = true;
-            boolean showAuthorizationCheckbox = true;
             boolean hasSecurityAttr = false;
             String securityName = null;
             Contract contract = getTargetObject();
@@ -198,16 +215,10 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                         if (CONFIDENTIALITY.contentEquals(localPart)) {
                             confidentiality = true;
                         }
-                        if (AUTHORIZATION.contentEquals(localPart)) {
-                            authorization = true;
-                        }
                     }
                 }
                 if (contract.eContainer() instanceof Component && contract instanceof ComponentReference) {
                     showClientAuthCheckbox = false;
-                }
-                if (contract.eContainer() instanceof Component && contract instanceof ComponentReference) {
-                    showAuthorizationCheckbox = false;
                 }
                 if (getFunkyAttributeValue(contract, "securityAttr") != null) { //$NON-NLS-1$
                     hasSecurityAttr = true;
@@ -227,14 +238,6 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
 
             if (confidentiality && !_confidentialityCheckbox.isDisposed()) {
                 _confidentialityCheckbox.setSelection(confidentiality);
-            }
-
-            if (!_authorizationCheckbox.isDisposed()) {
-                _authorizationCheckbox.setEnabled(showAuthorizationCheckbox);
-            }
-
-            if (authorization && _authorizationCheckbox != null && !_authorizationCheckbox.isDisposed()) {
-                _authorizationCheckbox.setSelection(authorization);
             }
             
             if (!_securityCombo.isDisposed()) {
