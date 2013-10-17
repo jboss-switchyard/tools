@@ -54,7 +54,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
@@ -238,16 +237,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 }
             };
             registry.registerAction(action);
-        }
-
-        @Override
-        public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-            super.selectionChanged(part, selection);
-            // GraphicalEditor doesn't seem to account for multi page editors.
-            if (!this.equals(getSite().getPage().getActiveEditor())
-                    && this.equals(MultiPageEditor.this.getActiveEditor())) {
-                updateActions(getSelectionActions());
-            }
         }
     }
 
