@@ -1262,8 +1262,7 @@
         point="org.eclipse.wst.validation.validatorV2">
      <validator
            build="false"
-           class="org.switchyard.tools.ui.validation.SwitchYardProjectValidator"
-           markerId="org.switchyard.tools.ui.problemMarker">
+           class="org.switchyard.tools.ui.validation.SwitchYardProjectValidator">
         <include>
            <rules>
               <facet

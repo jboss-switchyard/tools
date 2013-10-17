@@ -14,6 +14,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.m2e.tests.common.WorkspaceHelpers;
 import org.switchyard.tools.ui.validation.SwitchYardProjectValidator;
@@ -72,6 +73,29 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
         assertEquals("Expecting 0 infos: " + WorkspaceHelpers.toString(markers), 0, infoCount);
         assertEquals("Unexpected marker severity (not info, warning, error): " + WorkspaceHelpers.toString(markers), 0,
                 unknownCount);
+
+        project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = project.findMarkers(null, true, IFile.DEPTH_INFINITE);
+        assertEquals(WorkspaceHelpers.toString(markers), 0, markers.length);
+
+        project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
+                IFile.DEPTH_ZERO);
+        assertEquals(WorkspaceHelpers.toString(markers), 23, markers.length);
+        
+        MavenPlugin.getProjectConfigurationManager().updateProjectConfiguration(project, monitor);
+        project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = project.findMarkers(null, true, IFile.DEPTH_INFINITE);
+        assertEquals(WorkspaceHelpers.toString(markers), 0, markers.length);
+
+        project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
+                IFile.DEPTH_ZERO);
+        assertEquals(WorkspaceHelpers.toString(markers), 23, markers.length);
     }
 
 }

@@ -120,6 +120,13 @@ public class SwitchYardProjectValidator extends AbstractValidator {
             switchYardOutput = event.getResource();
         }
 
+        try {
+            // remove switchyard markers
+            event.getResource().deleteMarkers(SWITCHYARD_MARKER_ID, true, IResource.DEPTH_ZERO);
+        } catch (CoreException e) {
+            Activator.getDefault().getLog().log(e.getStatus());
+        }
+
         ResourceSet rs = new ResourceSetImpl();
         Resource resource = rs.createResource(
                 URI.createPlatformResourceURI(switchYardOutput.getFullPath().toString(), false),
