@@ -41,6 +41,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolder2Listener;
 import org.eclipse.swt.custom.CTabFolderEvent;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -527,13 +528,23 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         if (_domainPage == null) {
 
             FormToolkit toolkit = new FormToolkit(getContainer().getDisplay());
-            _domainPage = toolkit.createComposite(getContainer());
+
+            final ScrolledComposite sc1 = new ScrolledComposite(getContainer(), SWT.H_SCROLL | SWT.V_SCROLL);
+            sc1.setAlwaysShowScrollBars(false);
+            sc1.setExpandHorizontal(true);
+            sc1.setExpandVertical(true);
+            sc1.setLayoutData(new GridData(GridData.FILL_BOTH));
+            
+            _domainPage = toolkit.createComposite(sc1);
             _domainPage.setLayout(new GridLayout(1, false));
 
             createDomainSettingsSection(toolkit, _domainPage);
             createDomainSecuritySettingsSection(toolkit, _domainPage);
 
-            int index = addPage(_domainPage);
+            sc1.setContent(_domainPage);
+            sc1.setMinSize(_domainPage.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+
+            int index = addPage(sc1);
             setPageText(index, Messages.title_domain);
             refresh();
         }
