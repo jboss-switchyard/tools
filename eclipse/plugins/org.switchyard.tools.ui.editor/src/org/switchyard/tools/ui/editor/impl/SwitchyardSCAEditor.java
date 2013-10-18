@@ -74,6 +74,7 @@ import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer.Delegate;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
@@ -96,6 +97,8 @@ import org.eclipse.graphiti.ui.editor.DefaultUpdateBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.editor.IDiagramContainerUI;
+import org.eclipse.graphiti.ui.editor.IDiagramEditorInput;
+import org.eclipse.graphiti.ui.internal.editor.DomainModelWorkspaceSynchronizerDelegate;
 import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
@@ -685,6 +688,14 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     private ResourceSet getResourceSet() {
         return getEditingDomain().getResourceSet();
     }
+    
+    /**
+     * Hook for use from workspace model synchronizer.
+     * 
+     * @param modelFile the file, after the move has been processed.
+     */
+    protected void resourceMoved(IFile modelFile) {
+    }
 
     private final class SwitchYardPersistencyBehavior extends DefaultPersistencyBehavior {
         private SwitchYardPersistencyBehavior(DiagramBehavior editor) {
@@ -813,9 +824,6 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             if (switchYardProject.needsLoading()) {
                 switchYardProject.load(new NullProgressMonitor());
             }
-            if (!sourceFile.equals(switchYardProject.getSwitchYardConfigurationFile())) {
-                return null;
-            }
             IFile generatedFile = switchYardProject.getOutputSwitchYardConfigurationFile();
             if (generatedFile == null) {
                 return null;
@@ -907,6 +915,30 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
         private SwitchYardUpdateBehavior(DiagramBehavior diagramEditor) {
             super(diagramEditor);
+        }
+
+        @Override
+        protected Delegate createWorkspaceSynchronizerDelegate() {
+            return new DomainModelWorkspaceSynchronizerDelegate(diagramBehavior) {
+                @Override
+                public boolean handleResourceMoved(Resource resource, URI newURI) {
+                    IDiagramEditorInput editorInput = diagramBehavior.getDiagramContainer().getDiagramEditorInput();
+                    if (!resource.getURI().equals(editorInput.getUri().trimFragment())) {
+                        // ignore changes to anything other than the model file
+                        resource.setURI(newURI);
+                        return true;
+                    }
+                    resource.setURI(newURI);
+                    _modelUri = newURI;
+                    _modelFile = WorkspaceSynchronizer.getFile(resource);
+                    // update the editor input on the multipage editor
+                    resourceMoved(_modelFile);
+                    // update the diagram uri
+                    _diagramUri = convertModelURIToDiagramURI(newURI);
+                    super.handleResourceMoved(resource, newURI);
+                    return true;
+                }
+            };
         }
 
         @Override

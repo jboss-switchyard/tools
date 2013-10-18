@@ -640,4 +640,89 @@
             raDisplayName="HornetQ Resource Adapter - Topic">
       </jcaRAExtension>
    </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.deleteParticipants">
+      <deleteParticipant
+            class="org.switchyard.tools.ui.editor.refactoring.SwitchYardDeleteParticipant"
+            id="org.switchyard.tools.ui.editor.deleteParticipant"
+            name="SwitchYard Delete Participant">
+         <enablement>
+            <with
+                  variable="element">
+               <and>
+                  <instanceof
+                        value="org.eclipse.core.resources.IFile">
+                  </instanceof>
+                  <test
+                        property="org.eclipse.core.resources.contentTypeId"
+                        value="org.switchyard.tools.ui.editor.content-type.xml">
+                  </test>
+               </and>
+            </with></enablement>
+      </deleteParticipant>
+   </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.renameParticipants">
+      <renameParticipant
+            class="org.switchyard.tools.ui.editor.refactoring.SwitchYardRenameParticipant"
+            id="org.switchyard.tools.ui.editor.renameParticipant"
+            name="SwitchYard Rename Participant">
+         <enablement>
+            <with
+                  variable="element">
+               <and>
+                  <instanceof
+                        value="org.eclipse.core.resources.IFile">
+                  </instanceof>
+                  <test
+                        property="org.eclipse.core.resources.contentTypeId"
+                        value="org.switchyard.tools.ui.editor.content-type.xml">
+                  </test>
+               </and>
+            </with></enablement>
+      </renameParticipant>
+   </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.moveParticipants">
+      <moveParticipant
+            class="org.switchyard.tools.ui.editor.refactoring.SwitchYardMoveParticipant"
+            id="org.switchyard.tools.ui.editor.moveParticipant"
+            name="SwitchYard Move Participant">
+         <enablement>
+            <with
+                  variable="element">
+               <and>
+                  <instanceof
+                        value="org.eclipse.core.resources.IFile">
+                  </instanceof>
+                  <test
+                        property="org.eclipse.core.resources.contentTypeId"
+                        value="org.switchyard.tools.ui.editor.content-type.xml">
+                  </test>
+               </and>
+            </with></enablement>
+      </moveParticipant>
+   </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.copyParticipants">
+      <copyParticipant
+            class="org.switchyard.tools.ui.editor.refactoring.SwitchYardCopyParticipant"
+            id="org.switchyard.tools.ui.editor.copyParticipant"
+            name="SwitchYard Copy Participant"
+            processOnCancel="false">
+         <enablement>
+            <with
+                  variable="element">
+               <and>
+                  <instanceof
+                        value="org.eclipse.core.resources.IFile">
+                  </instanceof>
+                  <test
+                        property="org.eclipse.core.resources.contentTypeId"
+                        value="org.switchyard.tools.ui.editor.content-type.xml">
+                  </test>
+               </and>
+            </with></enablement>
+      </copyParticipant>
+   </extension>
 </plugin>

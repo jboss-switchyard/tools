@@ -14,12 +14,9 @@ package org.switchyard.tools.ui.editor.impl;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.IResourceDelta;
-import org.eclipse.core.resources.IResourceDeltaVisitor;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.NotificationFilter;
@@ -84,7 +81,7 @@ import org.w3c.dom.Node;
  * @author bfitzpat
  * 
  */
-public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener, IResourceChangeListener, IResourceDeltaVisitor {
+public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener {
 
     private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled"; //$NON-NLS-1$
 
@@ -116,8 +113,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     @Override
     public void dispose() {
         removeDomainListener();
-        ((IFileEditorInput) getEditorInput()).getFile().getWorkspace()
-            .removeResourceChangeListener(this);
        super.dispose();
     }
 
@@ -161,14 +156,9 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         if (!(editorInput instanceof IFileEditorInput)) {
             throw new PartInitException(Messages.error_notIFileEditorInput);
         }
-        if (getEditorInput() != null) {
-            IFile file = ((IFileEditorInput) getEditorInput()).getFile();
-            file.getWorkspace().removeResourceChangeListener(this);
-        }
         super.init(site, editorInput);
         if (getEditorInput() != null) {
             IFile file = ((IFileEditorInput) getEditorInput()).getFile();
-            file.getWorkspace().addResourceChangeListener(this);
             setPartName(file.getName());
         }
 
@@ -238,6 +228,23 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 }
             };
             registry.registerAction(action);
+        }
+
+        @Override
+        public void close() {
+            MultiPageEditor.this.getSite().getPage().closeEditor(MultiPageEditor.this, false);
+        }
+
+        @Override
+        public void refreshTitle() {
+            final IPath resourcePath = new Path(getDiagramEditorInput().getUri().toPlatformString(true));
+            MultiPageEditor.this.setPartName(resourcePath.lastSegment());
+        }
+
+        @Override
+        protected void resourceMoved(IFile modelFile) {
+            // update the file associated with the multipage editor
+            MultiPageEditor.this.setInput(new FileEditorInput(modelFile));
         }
     }
 
@@ -722,22 +729,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     }
 
     @Override
-    public String getTitle() {
-        if (_diagramEditor != null) {
-            return _diagramEditor.getTitle();
-        }
-        return super.getTitle();
-    }
-
-    @Override
-    public String getPartName() {
-        if (_diagramEditor != null) {
-            return _diagramEditor.getPartName();
-        }
-        return super.getPartName();
-    }
-
-    @Override
     protected void pageChange(int newPageIndex) {
         super.pageChange(newPageIndex);
         // if (newPageIndex > 0 && newPageIndex == _tabFolder.getItemCount() -
@@ -838,45 +829,5 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     public boolean isPostcommitOnly() {
         return false;
     }
-
-    @Override
-    public boolean visit(IResourceDelta delta) throws CoreException {
-        if (delta == null
-                || !delta.getResource().equals(
-                        ((IFileEditorInput) getEditorInput()).getFile())) {
-            return true;
-        }
-
-        if (delta.getKind() == IResourceDelta.REMOVED) {
-            Display display = getSite().getShell().getDisplay();
-            if ((IResourceDelta.MOVED_TO & delta.getFlags()) == 0) { // if
-                // the file was deleted
-                display.asyncExec(new Runnable() {
-                    public void run() {
-                        closeEditor(false);
-                    }
-                });
-            }
-        }
-        return false;
-
-    }
-
-    @Override
-    public void resourceChanged(IResourceChangeEvent event) {
-        IResourceDelta delta = event.getDelta();
-        try {
-            if (delta != null) {
-                delta.accept(this);
-            }
-        } catch (CoreException exception) {
-            exception.fillInStackTrace();
-        }
-
-    }
     
-    protected void closeEditor(boolean save) {
-        getSite().getPage().closeEditor(MultiPageEditor.this, save);
-    }
-
 }
