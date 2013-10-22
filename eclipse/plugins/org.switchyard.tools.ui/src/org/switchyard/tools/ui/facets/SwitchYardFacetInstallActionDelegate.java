@@ -21,10 +21,16 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.preferences.DefaultScope;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IScopeContext;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.wtp.WTPProjectsUtil;
@@ -33,6 +39,8 @@ import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.eclipse.wst.xml.core.internal.XMLCorePlugin;
+import org.eclipse.wst.xml.core.internal.preferences.XMLCorePreferenceNames;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -118,6 +126,26 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
             handleOpenShiftStandaloneUpdates(project);
         }
 
+        // Turn off "Honor All Schema Locations" in XML validation for SY projects at the
+        // project preference level, not the workbench level.
+        IScopeContext[] contexts = createPreferenceScopes(project);
+        Boolean honorAllSchemaLocationsBoolean = 
+                Platform.getPreferencesService().getBoolean(
+                        XMLCorePlugin.getDefault().getBundle().getSymbolicName(), 
+                        XMLCorePreferenceNames.HONOUR_ALL_SCHEMA_LOCATIONS, true, contexts);
+        if (honorAllSchemaLocationsBoolean.booleanValue()) {
+            IEclipsePreferences node = contexts[0].getNode(XMLCorePlugin.getDefault().getBundle().getSymbolicName());
+            node.putBoolean(XMLCorePreferenceNames.HONOUR_ALL_SCHEMA_LOCATIONS, false);
+            node.putBoolean(XMLCorePreferenceNames.USE_PROJECT_SETTINGS, true);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    protected IScopeContext[] createPreferenceScopes(IProject project) {
+        if (project != null) {
+            return new IScopeContext[]{new ProjectScope(project), new InstanceScope(), new DefaultScope()};
+        }
+        return new IScopeContext[]{new InstanceScope(), new DefaultScope()};
     }
 
     private Element createModule(Namespace ns, String identifier, String implClass) {
