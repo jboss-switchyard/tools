@@ -67,7 +67,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.PreferencesUtil;
-import org.eclipse.wst.common.project.facet.core.IFacetedProjectBase;
+import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectEvent;
 import org.eclipse.wst.common.project.facet.core.events.IFacetedProjectListener;
@@ -80,6 +80,7 @@ import org.sonatype.aether.version.InvalidVersionSpecificationException;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
+import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
 
 /**
@@ -98,29 +99,46 @@ public class SwitchYardSettingsGroup {
     private IRunnableContext _context;
     private ComboViewer _runtimesList;
     private ComboViewer _runtimeVersionsList;
+    private ComboViewer _configVersionsList;
     private Button _runtimeProvidedCheckbox;
     private CheckboxTreeViewer _componentsTable;
     private Text _descriptionText;
     private IRuntimeComponent _initialComponent;
     private List<Object> _compatibleRuntimes;
     private List<Version> _availableVersions;
-    private IFacetedProjectBase _project;
+    private IFacetedProjectWorkingCopy _project;
     private IFacetedProjectListener _projectListener = new IFacetedProjectListener() {
         @Override
         public void handleEvent(IFacetedProjectEvent event) {
-            repopulateRuntimesList();
+            switch (event.getType()) {
+            case PROJECT_FACETS_CHANGED:
+                _configVersionsList.setSelection(
+                        new StructuredSelection(_project
+                                .getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
+                // filter out any invalid runtimes
+            case TARGETABLE_RUNTIMES_CHANGED:
+                repopulateRuntimesList();
+                break;
+            default:
+                break;
+            }
         }
     };
     private ViewerFilter _runtimesFilter = new ViewerFilter() {
         @Override
         public boolean select(Viewer viewer, Object parentElement, Object element) {
-            if (_project == null || element == NULL_RUNTIME) {
+            if (element == NULL_RUNTIME) {
                 return true;
             }
-            final IRuntime runtime = ((IRuntimeComponent) element).getRuntime();
-            for (IProjectFacetVersion ipfv : _project.getProjectFacets()) {
-                if (!runtime.supports(ipfv)) {
-                    return false;
+            if (_project == null) {
+                final IRuntime runtime = ((IRuntimeComponent) element).getRuntime();
+                return runtime.supports(getSelectedConfigurationVersion());
+            } else {
+                final IRuntime runtime = ((IRuntimeComponent) element).getRuntime();
+                for (IProjectFacetVersion ipfv : _project.getProjectFacets()) {
+                    if (!runtime.supports(ipfv)) {
+                        return false;
+                    }
                 }
             }
             return true;
@@ -142,11 +160,43 @@ public class SwitchYardSettingsGroup {
         content.setLayout(new GridLayout());
         content.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        Composite runtimeControls = new Composite(content, SWT.NONE);
+        createRuntimeControls(content);
+
+        createComponentControls(content);
+
+        initControls();
+    }
+
+    private void createRuntimeControls(Composite content) {
+        Group runtimeControls = new Group(content, SWT.NONE);
         runtimeControls.setLayout(new GridLayout(3, false));
         runtimeControls.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        runtimeControls.setText("SwitchYard Version Details");
 
         Label label = new Label(runtimeControls, SWT.NONE);
+        label.setText("Configuration Version:");
+
+        _configVersionsList = new ComboViewer(runtimeControls);
+        _configVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+        _configVersionsList.setLabelProvider(new LabelProvider() {
+            @Override
+            public String getText(Object element) {
+                return ((IProjectFacetVersion) element).getVersionString();
+            }
+        });
+        _configVersionsList.setContentProvider(ArrayContentProvider.getInstance());
+        _configVersionsList.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                handleConfigVersionSelected();
+            }
+        });
+        _configVersionsList.setInput(ISwitchYardFacetConstants.SWITCHYARD_FACET.getVersions());
+        
+        // spacer
+        new Label(runtimeControls, SWT.NONE);
+
+        label = new Label(runtimeControls, SWT.NONE);
         label.setText("Target Runtime:");
 
         _runtimesList = new ComboViewer(runtimeControls);
@@ -200,20 +250,22 @@ public class SwitchYardSettingsGroup {
         });
 
         label = new Label(runtimeControls, SWT.NONE);
-        label.setText("SwitchYard Version:");
+        label.setText("Libary Version:");
 
         _runtimeVersionsList = new VersionComboViewer(runtimeControls);
-        _runtimeVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
+        _runtimeVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _runtimeVersionsList.setLabelProvider(new LabelProvider());
         _runtimeVersionsList.setContentProvider(ArrayContentProvider.getInstance());
 
-        Composite componentControls = new Composite(content, SWT.NONE);
+        // spacer
+        new Label(runtimeControls, SWT.NONE);
+    }
+
+    private void createComponentControls(Composite content) {
+        Group componentControls = new Group(content, SWT.NONE);
         componentControls.setLayout(new GridLayout());
         componentControls.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-        label = new Label(componentControls, SWT.NONE);
-        label.setText("Components:");
-        label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
+        componentControls.setText("SwitchYard Components");
 
         _componentsTable = new CheckboxTreeViewer(componentControls, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
                 | SWT.V_SCROLL);
@@ -260,7 +312,7 @@ public class SwitchYardSettingsGroup {
         });
 
         Group detailsGroup = new Group(componentControls, SWT.NONE);
-        detailsGroup.setText("Component Description");
+        detailsGroup.setText("Description");
         detailsGroup.setLayout(new GridLayout());
         detailsGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
@@ -268,21 +320,24 @@ public class SwitchYardSettingsGroup {
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.heightHint = _descriptionText.getLineHeight() * 3;
         _descriptionText.setLayoutData(gd);
-
-        initControls();
     }
 
     /**
      * @param project the project associated with these controls.
      */
-    public void setProject(IFacetedProjectBase project) {
+    public void setProject(IFacetedProjectWorkingCopy project) {
         if (_project != null) {
             _project.removeListener(_projectListener);
         }
         _project = project;
         _runtimesList.refresh();
         if (_project != null) {
-            _project.addListener(_projectListener, IFacetedProjectEvent.Type.TARGETABLE_RUNTIMES_CHANGED);
+            _configVersionsList
+                    .setSelection(
+                            new StructuredSelection(_project
+                                    .getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
+            _project.addListener(_projectListener, IFacetedProjectEvent.Type.TARGETABLE_RUNTIMES_CHANGED,
+                    IFacetedProjectEvent.Type.PROJECT_FACETS_CHANGED);
         }
     }
 
@@ -295,6 +350,17 @@ public class SwitchYardSettingsGroup {
             return null;
         }
         return (IRuntimeComponent) selection.getFirstElement();
+    }
+
+    /**
+     * @return the selected configuration version.
+     */
+    public IProjectFacetVersion getSelectedConfigurationVersion() {
+        final IStructuredSelection selection = (IStructuredSelection) _configVersionsList.getSelection();
+        if (selection == null || selection.isEmpty() || selection.getFirstElement() == NULL_RUNTIME) {
+            return null;
+        }
+        return (IProjectFacetVersion) selection.getFirstElement();
     }
 
     /**
@@ -360,6 +426,18 @@ public class SwitchYardSettingsGroup {
         }
     }
 
+    private void handleConfigVersionSelected() {
+        IStructuredSelection selection = (IStructuredSelection) _configVersionsList.getSelection();
+        if (selection == null || selection.isEmpty()) {
+            return;
+        }
+        if (_project != null) {
+            _project.changeProjectFacetVersion((IProjectFacetVersion) selection.getFirstElement());
+        }
+        // update in the event the selected runtime is no longer compatible
+        repopulateRuntimesList();
+    }
+
     private void handleRuntimeSelected() {
         IStructuredSelection selection = (IStructuredSelection) _runtimesList.getSelection();
         if (selection == null || selection.isEmpty() || selection.getFirstElement() == NULL_RUNTIME) {
@@ -378,6 +456,15 @@ public class SwitchYardSettingsGroup {
     }
 
     private void initControls() {
+        if (_project == null) {
+            _configVersionsList.setSelection(
+                    new StructuredSelection(ISwitchYardFacetConstants.SWITCHYARD_FACET.getDefaultVersion()), true);
+        } else {
+            _configVersionsList
+                    .setSelection(
+                            new StructuredSelection(_project
+                                    .getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
+        }
         try {
             _context.run(false, true, new IRunnableWithProgress() {
                 @Override

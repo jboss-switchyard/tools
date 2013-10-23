@@ -189,6 +189,12 @@
             id="switchyard.core.version"
             type="version-change"
             version="[1.0-1.1]">
+         <delegate
+               class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallActionDelegate">
+         </delegate>
+         <config-factory
+               class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallConfigFactory">
+         </config-factory>
       </action>
       <action
             facet="switchyard.core"
@@ -1274,7 +1280,7 @@
            <rules>
               <contentType
                     exactMatch="true"
-                    id="org.switchyard.tools.ui.editor.content-type.xml">
+                    id="org.switchyard.content-type.1.x">
               </contentType>
               <file
                     caseSensitive="true"

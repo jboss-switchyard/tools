@@ -439,7 +439,7 @@ public class SwitchyardValidator extends EObjectValidator {
     public static final  PatternMatcher [][] PROPERTY_VALUE__PATTERN__VALUES =
         new PatternMatcher [][] {
             new PatternMatcher [] {
-                XMLTypeUtil.createPatternMatcher("\\$\\{([a-zA-Z0-9])*(:([a-zA-Z0-9])*)?\\}")
+                XMLTypeUtil.createPatternMatcher("\\$\\{([a-zA-Z0-9\\.-_])*(:([a-zA-Z0-9])*)?\\}")
             }
         };
 

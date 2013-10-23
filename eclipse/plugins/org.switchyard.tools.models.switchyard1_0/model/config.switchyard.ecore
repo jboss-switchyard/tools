@@ -473,7 +473,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="propertyValue"/>
       <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#string"/>
-      <details key="pattern" value="\$\{([a-zA-Z0-9])*(:([a-zA-Z0-9])*)?\}"/>
+      <details key="pattern" value="\$\{([a-zA-Z0-9\.-_])*(:([a-zA-Z0-9])*)?\}"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="PropInteger" instanceClassName="java.lang.Object">

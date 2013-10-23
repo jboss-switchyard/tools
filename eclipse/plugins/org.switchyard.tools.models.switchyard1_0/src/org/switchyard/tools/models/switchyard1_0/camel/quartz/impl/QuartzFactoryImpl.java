@@ -27,7 +27,7 @@ public class QuartzFactoryImpl extends EFactoryImpl implements QuartzFactory {
      */
     public static QuartzFactory init() {
         try {
-            QuartzFactory theQuartzFactory = (QuartzFactory)EPackage.Registry.INSTANCE.getEFactory(QuartzPackage.eNS_URI);
+            QuartzFactory theQuartzFactory = (QuartzFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-quartz:config:1.0"); 
             if (theQuartzFactory != null) {
                 return theQuartzFactory;
             }

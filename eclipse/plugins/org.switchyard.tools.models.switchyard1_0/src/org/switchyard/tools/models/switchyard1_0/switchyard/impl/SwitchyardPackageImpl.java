@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
-
-import org.open.oasis.docs.ns.opencsa.sca.bpel.impl.BPELPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bean.impl.BeanPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
@@ -351,7 +348,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         // Obtain or create and register interdependencies
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
-        BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
         RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
@@ -381,7 +377,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         // Create package meta-data objects
         theSwitchyardPackage.createPackageContents();
         theBeanPackage.createPackageContents();
-        theBPELPackage.createPackageContents();
         theBPMPackage.createPackageContents();
         theClojurePackage.createPackageContents();
         theRulesPackage.createPackageContents();
@@ -407,7 +402,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         // Initialize created meta-data
         theSwitchyardPackage.initializePackageContents();
         theBeanPackage.initializePackageContents();
-        theBPELPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
         theRulesPackage.initializePackageContents();
@@ -2227,7 +2221,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "name", "propertyValue",
              "baseType", "http://www.eclipse.org/emf/2003/XMLType#string",
-             "pattern", "\\$\\{([a-zA-Z0-9])*(:([a-zA-Z0-9])*)?\\}"
+             "pattern", "\\$\\{([a-zA-Z0-9\\.-_])*(:([a-zA-Z0-9])*)?\\}"
            });		
         addAnnotation
           (propIntegerEDataType, 

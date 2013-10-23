@@ -32,7 +32,7 @@ import org.switchyard.config.model.switchyard.ArtifactModel;
 import org.switchyard.config.model.switchyard.ArtifactsModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
-import org.switchyard.tools.ui.common.ISwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProject;
 import org.switchyard.tools.ui.i18n.Messages;
 
 /**
@@ -45,7 +45,7 @@ import org.switchyard.tools.ui.i18n.Messages;
  */
 public class CreateArtifactReferenceOperation implements IWorkspaceRunnable {
 
-    private ISwitchYardProject _switchYardProject;
+    private SwitchYardProject _switchYardProject;
     private String _name;
     private String _url;
     private IWorkspaceRunnable _downloadOperation;
@@ -62,7 +62,7 @@ public class CreateArtifactReferenceOperation implements IWorkspaceRunnable {
      *            be null.
      * @param uiInfo adaptable for UI Shell, may be null.
      */
-    public CreateArtifactReferenceOperation(ISwitchYardProject switchYardProject, String name, String url,
+    public CreateArtifactReferenceOperation(SwitchYardProject switchYardProject, String name, String url,
             IWorkspaceRunnable downloadOperation, IAdaptable uiInfo) {
         _switchYardProject = switchYardProject;
         _name = name;
@@ -117,11 +117,11 @@ public class CreateArtifactReferenceOperation implements IWorkspaceRunnable {
         IFile switchYardFile = _switchYardProject.getSwitchYardConfigurationFile();
         ArtifactsModel artifacts = switchYardModel.getArtifacts();
         if (artifacts == null) {
-            artifacts = new ModelPuller<ArtifactsModel>().pull(new QName(SwitchYardModel.DEFAULT_NAMESPACE,
+            artifacts = new ModelPuller<ArtifactsModel>().pull(new QName(_switchYardProject.getSwitchYardNamespaceUri(),
                     ArtifactsModel.ARTIFACTS));
             switchYardModel.setArtifacts(artifacts);
         }
-        ArtifactModel artifact = new ModelPuller<ArtifactModel>().pull(new QName(SwitchYardModel.DEFAULT_NAMESPACE,
+        ArtifactModel artifact = new ModelPuller<ArtifactModel>().pull(new QName(_switchYardProject.getSwitchYardNamespaceUri(),
                 ArtifactModel.ARTIFACT));
         artifact.setName(_name);
         artifact.setURL(_url);

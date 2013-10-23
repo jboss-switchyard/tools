@@ -111,7 +111,7 @@ public class SOAPSwitch<T> extends Switch<T> {
                 return result;
             }
             case SOAPPackage.MESSAGE_COMPOSER_TYPE: {
-                org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType messageComposerType = (org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType)theEObject;
+                MessageComposerType messageComposerType = (MessageComposerType)theEObject;
                 T result = caseMessageComposerType(messageComposerType);
                 if (result == null) result = caseSwitchyard_MessageComposerType(messageComposerType);
                 if (result == null) result = defaultCase(theEObject);
@@ -274,7 +274,7 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseMessageComposerType(org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType object) {
+    public T caseMessageComposerType(MessageComposerType object) {
         return null;
     }
 
@@ -409,7 +409,7 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseSwitchyard_MessageComposerType(MessageComposerType object) {
+    public T caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
         return null;
     }
 

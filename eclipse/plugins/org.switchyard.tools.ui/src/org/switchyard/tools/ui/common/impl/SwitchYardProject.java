@@ -61,14 +61,19 @@ import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.project.MavenProjectChangedEvent;
 import org.eclipse.m2e.core.project.MavenProjectUtils;
 import org.eclipse.m2e.core.project.MavenUpdateRequest;
+import org.eclipse.wst.common.project.facet.core.IFacetedProject;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.switchyard.config.model.ModelPuller;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
+import org.switchyard.config.model.switchyard.SwitchYardNamespace;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener.Type;
+import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.i18n.Messages;
 
 /**
@@ -182,8 +187,31 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                                 Messages.SwitchYardProject_errorMessage_exceptionWhileLodingSYFile, e));
             }
         }
-        return new ModelPuller<SwitchYardModel>().pull(new QName(SwitchYardModel.DEFAULT_NAMESPACE,
+        return new ModelPuller<SwitchYardModel>().pull(new QName(getSwitchYardNamespaceUri(),
                 SwitchYardModel.SWITCHYARD));
+    }
+
+    /**
+     * @return the switchyard namespace uri that corresponds with this project.
+     * @deprecated
+     */
+    public String getSwitchYardNamespaceUri() {
+        if (_project != null) {
+            try {
+                IFacetedProject ifp = ProjectFacetsManager.create(_project);
+                IProjectFacetVersion facetVersion = ifp == null ? null : ifp.getInstalledVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET);
+                if (facetVersion != null) {
+                    if ("1.0".equals(facetVersion.getVersionString())) {
+                        return SwitchYardNamespace.V_1_0.uri();
+                    } else if ("1.1".equals(facetVersion.getVersionString())) {
+                        return SwitchYardNamespace.V_1_1.uri();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return SwitchYardNamespace.DEFAULT.uri();
     }
 
     @Override

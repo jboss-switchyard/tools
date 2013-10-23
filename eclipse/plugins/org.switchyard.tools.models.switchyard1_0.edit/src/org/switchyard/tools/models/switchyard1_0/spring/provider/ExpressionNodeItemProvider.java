@@ -32,7 +32,6 @@ import org.eclipse.soa.sca.core.model.addressing.AddressingFactory;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELFactory;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
@@ -1245,11 +1244,6 @@ public class ExpressionNodeItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  BeanFactory.eINSTANCE.createBeanImplementationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 BPELFactory.eINSTANCE.createBPELImplementation()));
 
         newChildDescriptors.add
             (createChildParameter

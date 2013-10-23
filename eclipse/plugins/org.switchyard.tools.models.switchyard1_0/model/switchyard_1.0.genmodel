@@ -45,19 +45,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bean.ecore#//DocumentRoot/implementationBean"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="BPEL" basePackage="org.open.oasis.docs.ns.opencsa.sca" disposableProviderFactory="true"
-      fileExtensions="" ecorePackage="component.bpel.ecore#/">
-    <genClasses ecoreClass="component.bpel.ecore#//BPELImplementation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpel.ecore#//BPELImplementation/process"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.bpel.ecore#//BPELImplementation/anyAttribute1"/>
-    </genClasses>
-    <genClasses ecoreClass="component.bpel.ecore#//DocumentRoot">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.bpel.ecore#//DocumentRoot/mixed"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpel.ecore#//DocumentRoot/xMLNSPrefixMap"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpel.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference component.bpel.ecore#//DocumentRoot/implementationBpel"/>
-    </genClasses>
-  </genPackages>
   <genPackages prefix="BPM" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" fileExtensions="" ecorePackage="component.bpm.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//LoggerType">

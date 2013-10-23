@@ -33,7 +33,7 @@ import org.switchyard.config.model.ModelPuller;
 import org.switchyard.config.model.switchyard.ArtifactsModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
-import org.switchyard.tools.ui.common.ISwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateArtifactReferenceOperation;
@@ -53,7 +53,7 @@ public abstract class NewArtifactReferenceWizard extends Wizard implements IWork
     private boolean _supportsDownload;
     private IWorkbench _workbench;
     private IProject _project;
-    private ISwitchYardProject _switchYardProject;
+    private SwitchYardProject _switchYardProject;
     private SwitchYardModel _switchYardModel;
     private ArtifactDetailsWizardPage _artifactDetailsPage;
 
@@ -229,7 +229,7 @@ public abstract class NewArtifactReferenceWizard extends Wizard implements IWork
     }
 
     private void loadSwitchYardModel() {
-        _switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(_project);
+        _switchYardProject = (SwitchYardProject) SwitchYardProjectManager.instance().getSwitchYardProject(_project);
         try {
             getContainer().run(false, true, new IRunnableWithProgress() {
                 @Override
@@ -245,7 +245,7 @@ public abstract class NewArtifactReferenceWizard extends Wizard implements IWork
             e.fillInStackTrace();
         }
         if (_switchYardModel == null) {
-            _switchYardModel = new ModelPuller<SwitchYardModel>().pull(new QName(SwitchYardModel.DEFAULT_NAMESPACE,
+            _switchYardModel = new ModelPuller<SwitchYardModel>().pull(new QName(_switchYardProject.getSwitchYardNamespaceUri(),
                     SwitchYardModel.SWITCHYARD));
         }
     }

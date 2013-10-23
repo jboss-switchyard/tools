@@ -253,6 +253,7 @@
  </extension>
  <extension
        point="org.eclipse.ui.editors">
+    <!--
     <editor
           class="org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor"
           contributorClass="org.eclipse.graphiti.ui.editor.DiagramEditorActionBarContributor"
@@ -262,9 +263,10 @@
           id="org.switchyard.tools.ui.editor.switchyard.editor"
           name="%editor.name.switchYardVisualEditor">
        <contentTypeBinding
-             contentTypeId="org.switchyard.tools.ui.editor.content-type.xml">
+             contentTypeId="org.switchyard.content-type.1.x">
        </contentTypeBinding>
     </editor>
+    -->
     <editor
           class="org.switchyard.tools.ui.editor.impl.MultiPageEditor"
           contributorClass="org.switchyard.tools.ui.editor.impl.MultiPageEditorContributor"
@@ -274,7 +276,7 @@
           id="org.switchyard.tools.ui.editor.switchyard.editor.multi"
           name="%editor.name.switchYardVisualMultipageEditor">
        <contentTypeBinding
-             contentTypeId="org.switchyard.tools.ui.editor.content-type.xml">
+             contentTypeId="org.switchyard.content-type.1.x">
        </contentTypeBinding>
     </editor>
  </extension>

@@ -122,6 +122,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         projectMetaData.setRuntimeVersion(runtimeVersion == null ? DEFAULT_RUNTIME_VERSION : runtimeVersion.toString());
         projectMetaData.setComponents(_configurationPage.getSelectedComponents());
         projectMetaData.setTargetRuntime(_configurationPage.getTargetRuntime());
+        projectMetaData.setConfigurationVersion(_configurationPage.getConfigurationVersion());
 
         // create the new project operation
         final CreateSwitchYardProjectOperation op = new CreateSwitchYardProjectOperation(projectMetaData,

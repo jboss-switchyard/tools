@@ -22,7 +22,7 @@
   <properties>
     <tycho-version>0.16.0</tycho-version>
     <!-- Just in case the Eclipse project version does not match the parent. -->
-    <version.switchyard.runtime>1.1.0.M4</version.switchyard.runtime>
+    <version.switchyard.runtime>1.1.0-SNAPSHOT</version.switchyard.runtime>
     <version.jbtis.target-platform>4.1.5.Beta2</version.jbtis.target-platform>
   </properties>
 
@@ -82,7 +82,7 @@
     -->
     <repository>
       <id>bpmn2-editor-update-site</id>
-      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.0M1.201310151945_0.7.0.201308220617_kepler/</url>
+      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.0.0.201311042148_0.7.0.201308220617_kepler/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>

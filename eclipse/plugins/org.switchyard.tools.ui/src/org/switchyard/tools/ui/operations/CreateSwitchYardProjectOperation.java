@@ -22,6 +22,7 @@ import static org.switchyard.tools.ui.SwitchYardModelUtils.createTargetnamespace
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -47,22 +48,29 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IProjectConfigurationManager;
+import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
 import org.eclipse.ui.ide.undo.CreateFolderOperation;
 import org.eclipse.ui.ide.undo.CreateProjectOperation;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
-import org.switchyard.config.OutputKey;
-import org.switchyard.config.model.composite.CompositeModel;
-import org.switchyard.config.model.composite.v1.V1CompositeModel;
-import org.switchyard.config.model.switchyard.SwitchYardModel;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl.NamespaceVersionConverter;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.i18n.Messages;
 
 /**
@@ -90,7 +98,22 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         private String _groupId;
         private String _projectVersion;
         private String _runtimeVersion;
+        private IProjectFacetVersion _configurationVersion;
         private IRuntimeComponent _targetRuntime;
+
+        /**
+         * @return the switchYardFacet.
+         */
+        public IProjectFacetVersion getConfigurationVersion() {
+            return _configurationVersion;
+        }
+
+        /**
+         * @param switchYardFacet The switchYardFacet to set.
+         */
+        public void setConfigurationVersion(IProjectFacetVersion switchYardFacet) {
+            _configurationVersion = switchYardFacet;
+        }
 
         /**
          * @return the target runtime.
@@ -336,20 +359,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             // create switchyard.xml
             try {
                 monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingSYXMLFile);
-                final String namespace = _projectMetatData.getNamespace();
-                SwitchYardModel switchYardModel = newSwitchYardModel(
-                        _projectMetatData.getNewProjectHandle().getName(),
-                        namespace == null || namespace.length() == 0 ? createTargetnamespace(
-                                _projectMetatData.getGroupId(), _projectMetatData.getNewProjectHandle().getName(),
-                                _projectMetatData.getProjectVersion()) : namespace);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                switchYardModel.getModelConfiguration().write(baos, new OutputKey[] {OutputKey.PRETTY_PRINT });
-                _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
-                        .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
-                CreateFileOperation op = new CreateFileOperation(_switchYardFile, null, new ByteArrayInputStream(
-                        baos.toByteArray()), Messages.CreateSwitchYardProjectOperation_operationLabel_creatingSYXML);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                op.execute(subMonitor, _uiInfo);
+                createSwitchYardConfig(subMonitor);
             } catch (Exception e) {
                 mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingSYXML, e);
             } finally {
@@ -384,6 +395,35 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             }
         } finally {
             monitor.done();
+        }
+    }
+
+    private void createSwitchYardConfig(IProgressMonitor monitor) throws IOException {
+        ResourceSet rs = new ResourceSetImpl();
+        try {
+            _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
+                    .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
+            XMLResource switchYardResource = (XMLResource) rs.createResource(org.eclipse.emf.common.util.URI.createPlatformResourceURI(_switchYardFile.getFullPath().toPortableString(), true), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
+            final String namespace = _projectMetatData.getNamespace();
+            SwitchYardType switchYardModel = newSwitchYardModel(
+                    _projectMetatData.getNewProjectHandle().getName(),
+                    namespace == null || namespace.length() == 0 ? createTargetnamespace(
+                            _projectMetatData.getGroupId(), _projectMetatData.getNewProjectHandle().getName(),
+                            _projectMetatData.getProjectVersion()) : namespace);
+            switchYardResource.getContents().add(switchYardModel);
+            IProjectFacetVersion configVersion = _projectMetatData.getConfigurationVersion();
+            NamespaceVersionConverter converter = (NamespaceVersionConverter) switchYardResource.getDefaultSaveOptions().get(XMLResource.OPTION_EXTENDED_META_DATA);
+            converter.setVersion(configVersion == null ? ISwitchYardFacetConstants.SWITCHYARD_FACET
+                    .getDefaultVersion().getVersionString() : configVersion.getVersionString());
+            switchYardResource.save(null);
+        } finally {
+            for (Resource resource : rs.getResources()) {
+                try {
+                    resource.unload();
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+            }
         }
     }
 
@@ -423,9 +463,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
     }
 
-    private SwitchYardModel newSwitchYardModel(String name, String targetNamespace) {
-        SwitchYardModel switchYardModel = createSwitchYardModel(name, targetNamespace);
-        CompositeModel composite = new V1CompositeModel();
+    private SwitchYardType newSwitchYardModel(String name, String targetNamespace) {
+        SwitchYardType switchYardModel = createSwitchYardModel(name, targetNamespace);
+        Composite composite = ScaFactory.eINSTANCE.createComposite();
         composite.setName(name);
         composite.setTargetNamespace(targetNamespace);
         switchYardModel.setComposite(composite);

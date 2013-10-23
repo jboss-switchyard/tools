@@ -2751,7 +2751,7 @@ public interface SwitchyardPackage extends EPackage {
      * @return the meta object for data type '<em>Property Value</em>'.
      * @see java.lang.String
      * @model instanceClass="java.lang.String"
-     *        extendedMetaData="name='propertyValue' baseType='http://www.eclipse.org/emf/2003/XMLType#string' pattern='\\$\\{([a-zA-Z0-9])*(:([a-zA-Z0-9])*)?\\}'"
+     *        extendedMetaData="name='propertyValue' baseType='http://www.eclipse.org/emf/2003/XMLType#string' pattern='\\$\\{([a-zA-Z0-9\\.-_])*(:([a-zA-Z0-9])*)?\\}'"
      * @generated
      */
     EDataType getPropertyValue();

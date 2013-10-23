@@ -18,7 +18,6 @@
     <module>org.switchyard.tools.models.sca.sca1_1</module>
     <module>org.switchyard.tools.models.sca.sca1_1.edit</module>
     <module>org.switchyard.tools.models.switchyard1_0</module>
-    <module>org.switchyard.tools.models.switchyard1_0.edit</module>
     <module>org.switchyard.tools</module>
     <module>org.switchyard.tools.cxf</module>
     <module>org.switchyard.tools.xsd</module>

@@ -32,7 +32,6 @@ import org.eclipse.soa.sca.core.model.addressing.AddressingFactory;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELFactory;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
@@ -1781,11 +1780,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  BeanFactory.eINSTANCE.createBeanImplementationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 BPELFactory.eINSTANCE.createBPELImplementation()));
 
         newChildDescriptors.add
             (createChildParameter

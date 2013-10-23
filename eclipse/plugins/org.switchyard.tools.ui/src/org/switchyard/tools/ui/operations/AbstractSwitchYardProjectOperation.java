@@ -14,8 +14,6 @@ import static org.switchyard.tools.ui.SwitchYardModelUtils.createSwitchYardModel
 import static org.switchyard.tools.ui.SwitchYardModelUtils.createTargetnamespace;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.Collection;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -29,18 +27,28 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.m2e.core.embedder.ArtifactKey;
 import org.eclipse.m2e.core.project.MavenProjectUtils;
+import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
-import org.switchyard.config.OutputKey;
-import org.switchyard.config.model.ModelPuller;
-import org.switchyard.config.model.composite.CompositeModel;
-import org.switchyard.config.model.composite.v1.V1CompositeModel;
-import org.switchyard.config.model.switchyard.SwitchYardModel;
+import org.eclipse.wst.common.project.facet.core.IFacetedProjectBase;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl.NamespaceVersionConverter;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
+import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.i18n.Messages;
 
 /**
@@ -60,6 +68,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             + "</beans>\n"; //$NON-NLS-1$
     private final static byte[] BEANS_XML_BYTES;
     private ISwitchYardProjectWorkingCopy _workingCopy;
+    private IFacetedProjectBase _facetedProject;
     private String _switchYardVersion;
     private Collection<ISwitchYardComponentExtension> _components;
     private String _label;
@@ -73,14 +82,16 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
      * composite element exists.
      * 
      * @param workingCopy the working copy containing any settings changes.
+     * @param facetedProject the faceted project
      * @param addingServices true if this operation is adding a service to the
      *            project.
      * @param label monitor task label.
      * @param uiInfo adaptable for UI Shell, may be null.
      */
-    public AbstractSwitchYardProjectOperation(ISwitchYardProjectWorkingCopy workingCopy, boolean addingServices,
-            String label, IAdaptable uiInfo) {
+    public AbstractSwitchYardProjectOperation(ISwitchYardProjectWorkingCopy workingCopy,
+            IFacetedProjectBase facetedProject, boolean addingServices, String label, IAdaptable uiInfo) {
         _workingCopy = workingCopy;
+        _facetedProject = facetedProject;
         _addingServices = addingServices;
         _label = label;
         _uiInfo = uiInfo;
@@ -237,33 +248,63 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void updateSwitchYardFile(IProgressMonitor monitor) throws CoreException {
         monitor.beginTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_updatingSYXML, 100);
+        ResourceSet rs = new ResourceSetImpl();
         try {
             monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_readingSYXML);
             IFile switchYardFile = _workingCopy.getSwitchYardConfigurationFile();
 
             boolean modelUpdated = false;
-            SwitchYardModel switchYardModel;
+            XMLResource switchYardResource = (XMLResource) rs.createResource(URI.createPlatformResourceURI(switchYardFile.getFullPath().toPortableString(), true), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
+            SwitchYardType switchYardModel = null;
             if (!switchYardFile.exists()) {
                 ArtifactKey key = new ArtifactKey(_workingCopy.getMavenProject().getArtifact());
                 switchYardModel = createSwitchYardModel(key.getArtifactId(),
                         createTargetnamespace(key.getGroupId(), key.getArtifactId(), key.getVersion()));
+                switchYardResource.getContents().add(switchYardModel);
                 modelUpdated = true;
             } else {
-                InputStream is = switchYardFile.getContents(true);
-                try {
-                    switchYardModel = new ModelPuller<SwitchYardModel>().pull(is);
-                } finally {
-                    is.close();
+                switchYardResource.load(null);
+                if (switchYardResource.getContents().isEmpty()) {
+                    ArtifactKey key = new ArtifactKey(_workingCopy.getMavenProject().getArtifact());
+                    switchYardModel = createSwitchYardModel(key.getArtifactId(),
+                            createTargetnamespace(key.getGroupId(), key.getArtifactId(), key.getVersion()));
+                    switchYardResource.getContents().add(switchYardModel);
+                    modelUpdated = true;
+                } else {
+                    for (EObject content : switchYardResource.getContents()) {
+                        if (content instanceof DocumentRoot) {
+                            switchYardModel = ((DocumentRoot) content).getSwitchyard();
+                            if (switchYardModel == null) {
+                                ArtifactKey key = new ArtifactKey(_workingCopy.getMavenProject().getArtifact());
+                                switchYardModel = createSwitchYardModel(key.getArtifactId(),
+                                        createTargetnamespace(key.getGroupId(), key.getArtifactId(), key.getVersion()));
+                                ((DocumentRoot) content).setSwitchyard(switchYardModel);
+                                modelUpdated = true;
+                            }
+                            break;
+                        } else if (content instanceof SwitchYardType) {
+                            switchYardModel = (SwitchYardType) content;
+                            break;
+                        }
+                    }
+                    if (switchYardModel == null) {
+                        ArtifactKey key = new ArtifactKey(_workingCopy.getMavenProject().getArtifact());
+                        switchYardModel = createSwitchYardModel(key.getArtifactId(),
+                                createTargetnamespace(key.getGroupId(), key.getArtifactId(), key.getVersion()));
+                        switchYardResource.getContents().add(switchYardModel);
+                        modelUpdated = true;
+                    }
                 }
             }
             monitor.worked(50);
 
             if (_addingServices) {
-                CompositeModel composite = switchYardModel.getComposite();
+                Composite composite = switchYardModel.getComposite();
                 if (composite == null) {
-                    composite = new V1CompositeModel();
+                    composite = ScaFactory.eINSTANCE.createComposite();
                     composite.setName(switchYardModel.getName());
                     composite.setTargetNamespace(switchYardModel.getTargetNamespace());
                     switchYardModel.setComposite(composite);
@@ -272,10 +313,30 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                     if (composite.getName() == null || composite.getName().length() == 0) {
                         composite.setName(switchYardModel.getName());
                         modelUpdated = true;
-                    } else if (composite.getTargetNamespace() == null || composite.getTargetNamespace().length() == 0) {
+                    }
+                    if (composite.getTargetNamespace() == null || composite.getTargetNamespace().length() == 0) {
                         composite.setTargetNamespace(switchYardModel.getTargetNamespace());
                         modelUpdated = true;
                     }
+                }
+            }
+
+            if (_facetedProject != null) {
+                try {
+                    // check switchyard version
+                    final NamespaceVersionConverter converter = (NamespaceVersionConverter) switchYardResource
+                            .getDefaultSaveOptions().get(XMLResource.OPTION_EXTENDED_META_DATA);
+                    final IProjectFacetVersion configVersion = ISwitchYardFacetConstants.SWITCHYARD_FACET
+                            .getVersion(converter.getVersion());
+                    final IProjectFacetVersion projectVersion = _facetedProject
+                            .getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET);
+                    if (projectVersion != null
+                            && (configVersion == null || configVersion.compareTo(projectVersion) != 0)) {
+                        converter.setVersion(projectVersion.getVersionString());
+                        modelUpdated = true;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -284,25 +345,17 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             }
 
             monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_writingUpdatedSYXML);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            switchYardModel.getModelConfiguration().write(baos, new OutputKey[0]);
-            if (switchYardFile.exists()) {
-                switchYardFile.setContents(new ByteArrayInputStream(baos.toByteArray()), true, true,
-                        new SubProgressMonitor(monitor, 50));
-            } else {
-                try {
-                    new CreateFileOperation(switchYardFile, null, new ByteArrayInputStream(baos.toByteArray()),
-                            Messages.AbstractSwitchYardProjectOperation_operationLabel_creatingSYXMLFile).execute(monitor, _uiInfo);
-                } catch (ExecutionException e) {
-                    if (e.getCause() instanceof CoreException) {
-                        throw (CoreException) e.getCause();
-                    }
-                    throw e;
-                }
-            }
+            switchYardResource.save(null);
         } catch (Exception e) {
             throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.AbstractSwitchYardProjectOperation_exceptionMessage_errorUpdatingSYXML, e));
         } finally {
+            for (Resource resource : rs.getResources()) {
+                try {
+                    resource.unload();
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+            }
             monitor.done();
         }
     }

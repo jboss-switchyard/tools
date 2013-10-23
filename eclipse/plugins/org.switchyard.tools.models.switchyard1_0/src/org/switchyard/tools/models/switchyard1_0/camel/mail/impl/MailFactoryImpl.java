@@ -28,7 +28,7 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
      */
     public static MailFactory init() {
         try {
-            MailFactory theMailFactory = (MailFactory)EPackage.Registry.INSTANCE.getEFactory(MailPackage.eNS_URI);
+            MailFactory theMailFactory = (MailFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-mail:config:1.0"); 
             if (theMailFactory != null) {
                 return theMailFactory;
             }

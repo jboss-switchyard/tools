@@ -74,12 +74,12 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
         IDataModel dataModel = (IDataModel) config;
 
         // TODO: get selected components
+        final IFacetedProjectWorkingCopy ifpwc = (IFacetedProjectWorkingCopy) dataModel
+                .getProperty(IFacetDataModelProperties.FACETED_PROJECT_WORKING_COPY);
         final ISwitchYardProjectWorkingCopy workingCopy;
         ISwitchYardProject switchYardProject = (ISwitchYardProject) dataModel
                 .getProperty(ISwitchYardFacetConstants.SWITCHYARD_PROJECT);
         if (switchYardProject == null) {
-            IFacetedProjectWorkingCopy ifpwc = (IFacetedProjectWorkingCopy) dataModel
-                    .getProperty(IFacetDataModelProperties.FACETED_PROJECT_WORKING_COPY);
             if (ifpwc != null) {
                 switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(ifpwc.getProject());
             }
@@ -101,7 +101,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
                 .getProperty(ISwitchYardFacetConstants.RUNTIME_COMPONENTS));
 
         // make sure the sy stuff is in the pom
-        new AbstractSwitchYardProjectOperation(workingCopy, false, Messages.SwitchYardFacetInstallActionDelegate_operationLabel_installingSYFacet, null) {
+        new AbstractSwitchYardProjectOperation(workingCopy, ifpwc, false, Messages.SwitchYardFacetInstallActionDelegate_operationLabel_installingSYFacet, null) {
             @Override
             protected void execute(IProgressMonitor monitor) throws CoreException {
                 // make sure test folders get removed, save initiating a maven

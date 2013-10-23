@@ -35,8 +35,6 @@ import org.switchyard.component.rules.config.model.RulesComponentImplementationM
 import org.switchyard.config.model.composite.ComponentImplementationModel;
 import org.switchyard.config.model.composite.InterfaceModel;
 import org.switchyard.config.model.implementation.bpel.BPELComponentImplementationModel;
-import org.switchyard.config.model.switchyard.SwitchYardModel;
-import org.switchyard.config.model.switchyard.v1.V1SwitchYardModel;
 import org.switchyard.extensions.java.JavaService;
 import org.switchyard.extensions.wsdl.WSDLService;
 import org.switchyard.metadata.InOnlyOperation;
@@ -45,6 +43,8 @@ import org.switchyard.metadata.InOutOperation;
 import org.switchyard.metadata.InOutService;
 import org.switchyard.metadata.ServiceInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.i18n.Messages;
@@ -65,11 +65,10 @@ public final class SwitchYardModelUtils {
      * @param targetNamespace the application's targetNamespace.
      * @return a new SwitchYardModel.
      */
-    public static SwitchYardModel createSwitchYardModel(String name, String targetNamespace) {
-        SwitchYardModel switchYardModel = new V1SwitchYardModel();
+    public static SwitchYardType createSwitchYardModel(String name, String targetNamespace) {
+        SwitchYardType switchYardModel = SwitchyardFactory.eINSTANCE.createSwitchYardType();
         switchYardModel.setName(name);
-        // switchYardModel.setTargetNamespace(_targetNamespace);
-        switchYardModel.getModelConfiguration().setAttribute("targetNamespace", targetNamespace); //$NON-NLS-1$
+        switchYardModel.setTargetNamespace(targetNamespace);
         return switchYardModel;
     }
 

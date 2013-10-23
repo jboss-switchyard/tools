@@ -18,24 +18,9 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated switchyard_1.0 -->
-      <package
-            uri="http://docs.oasis-open.org/ns/opencsa/sca/200903"
-            class="org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage"
-            genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="urn:switchyard-component-bpm:config:1.0"
             class="org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage"
-            genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="urn:switchyard-component-common-rules:config:1.0"
-            class="org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
@@ -50,13 +35,6 @@
       <package
             uri="urn:switchyard-component-clojure:config:1.0"
             class="org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage"
-            genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="urn:switchyard-component-hornetq:config:1.0"
-            class="org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
@@ -314,18 +292,11 @@
             class="org.switchyard.tools.models.switchyard1_0.camel.sql.util.SqlResourceFactoryImpl"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="urn:switchyard-component-remote:config:1.0"
-            class="org.switchyard.tools.models.switchyard1_0.remote.RemotePackage"
-            genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
    <extension
          point="org.eclipse.emf.ecore.content_parser">
       <parser
             class="org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl"
-            contentTypeIdentifier="org.switchyard.tools.ui.editor.content-type.xml">
+            contentTypeIdentifier="org.switchyard.content-type.1.x">
       </parser>
    </extension>
 
@@ -333,15 +304,19 @@
          point="org.eclipse.core.contenttype.contentTypes">
       <content-type
             base-type="org.eclipse.core.runtime.xml"
-            id="org.switchyard.tools.ui.editor.content-type.xml"
-            name="SwitchYard 1.0 XML File"
+            id="org.switchyard.content-type.1.x"
+            name="SwitchYard 1.x XML File"
             priority="normal">
          <describer
                class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber2"
-               plugin="org.eclipse.emf.ecore.xmi">
+               plugin="org.eclipse.core.contenttype">
             <parameter
                   name="element"
-                  value="{urn:switchyard-config:switchyard:1.0}*">
+                  value="{urn:switchyard-config:switchyard:1.0}switchyard">
+            </parameter>
+            <parameter
+                  name="element"
+                  value="{urn:switchyard-config:switchyard:1.1}switchyard">
             </parameter>
          </describer>
       </content-type>

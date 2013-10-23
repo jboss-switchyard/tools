@@ -31,7 +31,7 @@ public class ResteasyFactoryImpl extends EFactoryImpl implements ResteasyFactory
      */
     public static ResteasyFactory init() {
         try {
-            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory(ResteasyPackage.eNS_URI);
+            ResteasyFactory theResteasyFactory = (ResteasyFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-resteasy:config:1.0"); 
             if (theResteasyFactory != null) {
                 return theResteasyFactory;
             }

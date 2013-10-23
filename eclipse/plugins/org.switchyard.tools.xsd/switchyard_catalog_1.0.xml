@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public"
+  xml:base="schema/">
+  <!-- Core SwitchYard schema. -->
+  <public publicId="urn:switchyard-config:switchyard:1.0" uri="switchyard_1_0.xsd" />
+  <public publicId="urn:switchyard-config:transform:1.0" uri="transform_1_0.xsd" />
+  <public publicId="urn:switchyard-config:validate:1.0" uri="validate_1_0.xsd" />
+
+  <!-- Specialized SwitchYard component schema. -->
+  <public publicId="urn:switchyard-component-bean:config:1.0" uri="bean_1_0.xsd" />
+  <public publicId="urn:switchyard-component-bpm:config:1.0" uri="bpm_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel:config:1.0" uri="camel-component_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-amqp:config:1.0" uri="camel-amqp_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-atom:config:1.0" uri="camel-atom_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-core:config:1.0" uri="camel-core_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-file:config:1.0" uri="camel-file_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-ftp:config:1.0" uri="camel-ftp_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-jms:config:1.0" uri="camel-jms_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-jpa:config:1.0" uri="camel-jpa_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-mail:config:1.0" uri="camel-mail_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-netty:config:1.0" uri="camel-netty_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-quartz:config:1.0" uri="camel-quartz_1_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-sql:config:1.0" uri="camel-sql_1_0.xsd" />
+  <public publicId="urn:switchyard-component-clojure:config:1.0" uri="clojure_1_0.xsd" />
+  <public publicId="urn:switchyard-component-rules:config:1.0" uri="rules_1_0.xsd" />
+  <public publicId="urn:switchyard-component-soap:config:1.0" uri="soap_1_0.xsd" />
+  <public publicId="urn:switchyard-component-jca:config:1.0" uri="jca_1_0.xsd" />
+  <public publicId="urn:switchyard-component-resteasy:config:1.0" uri="resteasy_1_0.xsd" />
+  <public publicId="urn:switchyard-component-http:config:1.0" uri="http_1_0.xsd" />
+
+</catalog>

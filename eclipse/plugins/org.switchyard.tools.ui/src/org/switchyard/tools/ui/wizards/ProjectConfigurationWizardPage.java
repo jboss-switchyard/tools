@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.sonatype.aether.util.version.GenericVersionScheme;
 import org.sonatype.aether.version.InvalidVersionSpecificationException;
@@ -112,6 +113,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
      */
     public IRuntimeComponent getTargetRuntime() {
         return _settingsGroup.getSelectedTargetRuntime();
+    }
+
+    /**
+     * @return the selected configuration version.
+     */
+    public IProjectFacetVersion getConfigurationVersion() {
+        return _settingsGroup.getSelectedConfigurationVersion();
     }
 
     /**

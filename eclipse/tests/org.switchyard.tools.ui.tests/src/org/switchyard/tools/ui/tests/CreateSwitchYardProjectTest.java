@@ -201,8 +201,10 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
             testReader = new InputStreamReader(testFile.getContents());
             expectedReader = new InputStreamReader(CreateSwitchYardProjectTest.class.getClassLoader()
                     .getResourceAsStream(expectedFileLocation));
+            XMLUnit.setIgnoreWhitespace(true);
+            XMLUnit.setIgnoreAttributeOrder(true);
             Diff diff = XMLUnit.compareXML(testReader, expectedReader);
-            assertTrue(label + ": " + diff.toString(), diff.identical());
+            assertTrue(label + ": " + diff.toString(), diff.similar());
         } finally {
             if (testReader != null) {
                 try {

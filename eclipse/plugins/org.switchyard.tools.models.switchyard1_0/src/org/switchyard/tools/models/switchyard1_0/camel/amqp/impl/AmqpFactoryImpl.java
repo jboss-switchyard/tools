@@ -27,7 +27,7 @@ public class AmqpFactoryImpl extends EFactoryImpl implements AmqpFactory {
      */
     public static AmqpFactory init() {
         try {
-            AmqpFactory theAmqpFactory = (AmqpFactory)EPackage.Registry.INSTANCE.getEFactory(AmqpPackage.eNS_URI);
+            AmqpFactory theAmqpFactory = (AmqpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-amqp:config:1.0"); 
             if (theAmqpFactory != null) {
                 return theAmqpFactory;
             }

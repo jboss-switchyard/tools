@@ -16,20 +16,11 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
-
-import org.open.oasis.docs.ns.opencsa.sca.bpel.impl.BPELPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
-
 import org.switchyard.tools.models.switchyard1_0.bean.impl.BeanPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
-
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
@@ -41,7 +32,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
@@ -55,15 +45,11 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackage
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
-
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
-
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType;
@@ -71,29 +57,17 @@ import org.switchyard.tools.models.switchyard1_0.resteasy.ProxyType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
-
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
-
 import org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
-
 import org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
-
 import org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
-
 import org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
-
 import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl;
 
 /**
@@ -190,7 +164,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
 
         // Obtain or create and register interdependencies
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
-        BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
@@ -220,7 +193,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         // Create package meta-data objects
         theResteasyPackage.createPackageContents();
         theBeanPackage.createPackageContents();
-        theBPELPackage.createPackageContents();
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
@@ -246,7 +218,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         // Initialize created meta-data
         theResteasyPackage.initializePackageContents();
         theBeanPackage.initializePackageContents();
-        theBPELPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();

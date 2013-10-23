@@ -10,12 +10,21 @@
  ************************************************************************************/
 package org.switchyard.tools.m2e;
 
+import java.io.IOException;
+
 import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.MojoExecution;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.m2e.core.lifecyclemapping.model.IPluginExecutionMetadata;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.project.configurator.AbstractBuildParticipant;
@@ -31,6 +40,8 @@ import org.eclipse.wst.common.project.facet.core.IPreset;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl.NamespaceVersionConverter;
 
 /**
  * SwitchYardProjectConfigurator
@@ -107,17 +118,7 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
     }
 
     private IPreset getSwitchYardBasicPreset(IFacetedProjectWorkingCopy ifpwc, ProjectConfigurationRequest request) {
-        String versionSuffix = LATEST_VERSION_SUFFIX;
-        for (Dependency dependency : request.getMavenProject().getDependencies()) {
-            if ("org.switchyard".equals(dependency.getGroupId()) && dependency.getVersion() != null) { //$NON-NLS-1$
-                try {
-                    versionSuffix = getFacetVersionSuffixFromDependencyVersion(dependency.getVersion());
-                    break;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        final String versionSuffix = getFacetVersionFromConfiguration(request);
         final String presetId = "preset.switchyard.basic." + versionSuffix; //$NON-NLS-1$
         for (IPreset preset : ifpwc.getAvailablePresets()) {
             if (presetId.equals(preset.getId())) {
@@ -127,7 +128,50 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
         return null;
     }
 
-    private String getFacetVersionSuffixFromDependencyVersion(String version) {
+    private String getFacetVersionFromConfiguration(ProjectConfigurationRequest request) {
+        final IProject project = request.getProject();
+        for (IPath resourceFolder : request.getMavenProjectFacade().getResourceLocations()) {
+            IFile switchYardXML = project.getFile(resourceFolder.append("META-INF/switchyard.xml"));
+            if (switchYardXML.exists()) {
+                ResourceSet rs = new ResourceSetImpl();
+                try {
+                    XMLResource r = (XMLResource) rs.createResource(URI.createPlatformResourceURI(switchYardXML.getFullPath().toPortableString(), true), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
+                    try {
+                        r.load(null);
+                        NamespaceVersionConverter converter = (NamespaceVersionConverter) r.getDefaultLoadOptions().get(XMLResource.OPTION_EXTENDED_META_DATA);
+                        return getFacetVersionSuffixVersionString(converter.getVersion());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } finally {
+                    for (Resource resource : rs.getResources()) {
+                        try {
+                            resource.unload();
+                        } catch (Exception e) {
+                            e.fillInStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        // try getting the version from the dependencies
+        return getFacetVersionFromDependencies(request);
+    }
+
+    private String getFacetVersionFromDependencies(ProjectConfigurationRequest request) {
+        for (Dependency dependency : request.getMavenProject().getDependencies()) {
+            if ("org.switchyard".equals(dependency.getGroupId()) && dependency.getVersion() != null) { //$NON-NLS-1$
+                try {
+                    return getFacetVersionSuffixVersionString(dependency.getVersion());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return LATEST_VERSION_SUFFIX;
+    }
+
+    private String getFacetVersionSuffixVersionString(String version) {
         final String[] segments = version.split("\\.", 3); //$NON-NLS-1$
         final int majorVersion = Integer.valueOf(segments[0]);
         switch (majorVersion) {
