@@ -97,5 +97,7 @@ public class CamelJMSBindingTypeExtension implements IBindingTypeExtension {
         ADVANCED_PROPS.add("requestTimeout"); //$NON-NLS-1$
         ADVANCED_PROPS.add("selector"); //$NON-NLS-1$
         ADVANCED_PROPS.add("timeToLive"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("acknowledgementModeName"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("acknowledgementMode"); //$NON-NLS-1$
     }
 }

@@ -509,6 +509,7 @@ public class Messages extends NLS {
     public static String label_tempPrefix;
     public static String label_threshold;
     public static String label_timePeriod;
+    public static String label_timeZone;
     public static String label_tls;
     public static String label_to;
     public static String label_topic;
