@@ -841,4 +841,20 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#isShowMarqueeTool()
+     */
+    @Override
+    public boolean isShowMarqueeTool() {
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#isShowSelectionTool()
+     */
+    @Override
+    public boolean isShowSelectionTool() {
+        return false;
+    }
+
 }
