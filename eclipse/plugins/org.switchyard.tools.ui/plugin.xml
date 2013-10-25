@@ -995,7 +995,7 @@
            <scope>test</scope>
         </dependency>
      </component>
-     <component
+<!--     <component
            category="test"
            id="org.switchyard.components:switchyard-component-test-mixin-jca"
            name="JCA Mixin">
@@ -1007,7 +1007,7 @@
            <artifactId>switchyard-component-test-mixin-jca</artifactId>
            <scope>test</scope>
         </dependency>
-     </component>
+     </component> -->
      <component
            category="test"
            id="org.switchyard.components:switchyard-component-test-mixin-naming"
@@ -1061,12 +1061,12 @@
            mixInClass="org.switchyard.component.test.mixins.transaction.TransactionMixIn"
            name="%mixin.transaction.name">
      </switchYardTestMixIn>
-     <switchYardTestMixIn
+<!--     <switchYardTestMixIn
            componentId="org.switchyard.components:switchyard-component-test-mixin-jca"
            description="%mixin.jca.description"
            mixInClass="org.switchyard.component.test.mixins.jca.JCAMixIn"
            name="%mixin.jca.name">
-     </switchYardTestMixIn>
+     </switchYardTestMixIn> -->
      <switchYardTestMixIn
            componentId="org.switchyard.components:switchyard-component-test-mixin-naming"
            description="%mixin.naming.description"
