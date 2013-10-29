@@ -10,7 +10,7 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.wizards;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -226,7 +226,7 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     }
 
     private void initRuntimeVersionsList() {
-        List<Version> versions = _settingsGroup.getAvailableVersions();
+        Collection<Version> versions = _settingsGroup.getAvailableVersions();
         try {
             // TODO: allow use of preferred version or allow association of
             // server runtime version.
@@ -238,7 +238,7 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         } catch (InvalidVersionSpecificationException e) {
             e.printStackTrace();
             if (versions != null && versions.size() > 0) {
-                _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(versions.get(0)), true);
+                _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(versions.iterator().next()), true);
             }
         }
     }

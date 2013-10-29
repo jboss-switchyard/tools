@@ -24,6 +24,7 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
@@ -105,7 +106,7 @@ public class SwitchYardSettingsGroup {
     private Text _descriptionText;
     private IRuntimeComponent _initialComponent;
     private List<Object> _compatibleRuntimes;
-    private List<Version> _availableVersions;
+    private Set<Version> _availableVersions;
     private IFacetedProjectWorkingCopy _project;
     private IFacetedProjectListener _projectListener = new IFacetedProjectListener() {
         @Override
@@ -366,7 +367,7 @@ public class SwitchYardSettingsGroup {
     /**
      * @return the available SwitchYard runtime versions.
      */
-    public List<Version> getAvailableVersions() {
+    public Set<Version> getAvailableVersions() {
         return _availableVersions;
     }
 
@@ -478,7 +479,7 @@ public class SwitchYardSettingsGroup {
                         populateRuntimeVersionsList(new SubProgressMonitor(monitor, 50));
                         if (_initialComponent == null) {
                             _runtimesList.setSelection(new StructuredSelection(NULL_RUNTIME), true);
-                            _runtimeVersionsList.setSelection(new StructuredSelection(_availableVersions.get(0)));
+                            _runtimeVersionsList.setSelection(new StructuredSelection(_availableVersions.iterator().next()));
                         } else {
                             // TODO: use preferences
                             _runtimesList.setSelection(new StructuredSelection(_initialComponent), true);
@@ -540,7 +541,7 @@ public class SwitchYardSettingsGroup {
 
     @SuppressWarnings("unchecked")
     private void populateRuntimeVersionsList(IProgressMonitor monitor) throws CoreException {
-        _availableVersions = resolveSwitchYardVersionRange(monitor).getVersions();
+        _availableVersions = filterSwitchYardVersions(resolveSwitchYardVersionRange(monitor).getVersions());
         // add default version
         final Version defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
         _availableVersions.add(defaultVersion);
@@ -555,14 +556,49 @@ public class SwitchYardSettingsGroup {
                 _availableVersions.add(version);
             }
         }
-        Collections.sort(_availableVersions, new Comparator<Version>() {
-            @Override
-            public int compare(Version o1, Version o2) {
-                // list the highest version first, default higher than all
-                return o1 == defaultVersion ? -1 : o2 == defaultVersion ? 1 : -o1.compareTo(o2);
-            }
-        });
         _runtimeVersionsList.setInput(_availableVersions);
+    }
+
+    private Set<Version> filterSwitchYardVersions(List<Version> versions) {
+        final String onePointZero = "1.0";
+        final Set<Version> filtered = new LinkedHashSet<Version>();
+        String previousMajorMinor = null;
+        /* assumes list is sorted lowest to highest. */
+        for (ListIterator<Version> it = versions.listIterator(versions.size()); it.hasPrevious();) {
+            Version next = it.previous();
+            String version = next.toString();
+            String majorMinor = getMajorMinor(version);
+            try {
+                if (previousMajorMinor == null) {
+                    filtered.add(next);
+                } else if (version.endsWith("-SNAPSHOT")) {
+                    // skip snapshots
+                    continue;
+                } else if (previousMajorMinor.equals(majorMinor)) {
+                    // we already have this version
+                    continue;
+                } else {
+                    // don't have this one yet
+                    filtered.add(next);
+                    if (onePointZero.equals(majorMinor)) {
+                        // nothing before 1.0
+                        break;
+                    }
+                }
+            } finally {
+                previousMajorMinor = majorMinor;
+            }
+        }
+        return filtered;
+    }
+
+    private String getMajorMinor(final String version) {
+        final int firstDot = version.indexOf('.');
+        final int secondDot = firstDot < 0 ? -1 : version.indexOf('.', firstDot + 1);
+        if (secondDot < 0) {
+            return version;
+        }
+        return version.substring(0, secondDot);
     }
 
     private void populateComponentsTable() {
