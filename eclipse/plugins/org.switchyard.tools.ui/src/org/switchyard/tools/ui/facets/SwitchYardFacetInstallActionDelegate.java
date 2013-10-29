@@ -128,7 +128,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
 
         // Turn off "Honor All Schema Locations" in XML validation for SY projects at the
         // project preference level, not the workbench level.
-        IScopeContext[] contexts = createPreferenceScopes(project);
+        IScopeContext[] contexts = createPreferenceScopes(null); //project); overridden for SWITCHYARD-1779 fix
         Boolean honorAllSchemaLocationsBoolean = 
                 Platform.getPreferencesService().getBoolean(
                         XMLCorePlugin.getDefault().getBundle().getSymbolicName(), 
@@ -136,7 +136,9 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
         if (honorAllSchemaLocationsBoolean.booleanValue()) {
             IEclipsePreferences node = contexts[0].getNode(XMLCorePlugin.getDefault().getBundle().getSymbolicName());
             node.putBoolean(XMLCorePreferenceNames.HONOUR_ALL_SCHEMA_LOCATIONS, false);
-            node.putBoolean(XMLCorePreferenceNames.USE_PROJECT_SETTINGS, true);
+            if (contexts[0] instanceof ProjectScope) {
+                node.putBoolean(XMLCorePreferenceNames.USE_PROJECT_SETTINGS, true);
+            }
         }
     }
 
