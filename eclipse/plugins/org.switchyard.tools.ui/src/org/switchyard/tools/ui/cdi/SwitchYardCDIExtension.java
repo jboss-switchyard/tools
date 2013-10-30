@@ -32,8 +32,10 @@ public class SwitchYardCDIExtension implements ICDIExtension, IInjectionPointVal
     public static final String SWITCHYARD_CONTEXT_TYPE = "org.switchyard.Context"; //$NON-NLS-1$
     /** The fully qualified type name for SwitchYard's exchange Message. */
     public static final String SWITCHYARD_MESSAGE_TYPE = "org.switchyard.Message"; //$NON-NLS-1$
-    /** The fully qualified type name for SwitchYard's BeanBag. */
-    public static final String SWITCHYARD_BEANBAG_TYPE = "org.switchyard.component.bean.BeanBag"; //$NON-NLS-1$
+    /** The fully qualified type name for SwitchYard's exchange Context. */
+    public static final String SWITCHYARD_EXCHANGE_TYPE = "org.switchyard.Exchange"; //$NON-NLS-1$
+    /** The fully qualified type name for SwitchYard's exchange Message. */
+    public static final String SWITCHYARD_REFERENCE_INVOKER_TYPE = "org.switchyard.component.bean.ReferenceInvoker"; //$NON-NLS-1$
 
     /**
      * Create a new SwitchYardCDIExtension.
@@ -47,7 +49,7 @@ public class SwitchYardCDIExtension implements ICDIExtension, IInjectionPointVal
         return injection.isAnnotationPresent(SWITCHYARD_REFERENCE_ANNOTATION)
                 || injection.isAnnotationPresent(SWITCHYARD_PROPERTY_ANNOTATION)
                 || SWITCHYARD_CONTEXT_TYPE.equals(typeName) || SWITCHYARD_MESSAGE_TYPE.equals(typeName)
-                || SWITCHYARD_BEANBAG_TYPE.equals(typeName);
+                || SWITCHYARD_EXCHANGE_TYPE.equals(typeName) || SWITCHYARD_REFERENCE_INVOKER_TYPE.equals(typeName);
     }
 
 }
