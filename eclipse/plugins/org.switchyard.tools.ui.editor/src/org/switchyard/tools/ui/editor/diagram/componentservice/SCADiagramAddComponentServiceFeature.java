@@ -17,9 +17,11 @@ import java.util.List;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.FixPointAnchor;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
@@ -90,11 +92,21 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         image.setStretchV(true);
         image.setProportional(true); 
         // the anchor (note, box relative supports drag/drop for connections)
-        final ChopboxAnchor anchor = peCreateService.createChopboxAnchor(container);
+        final FixPointAnchor anchor = peCreateService.createFixPointAnchor(container);
+        GraphicsAlgorithm anchorGa = gaService.createRectangle(anchor);
+        anchorGa.setFilled(false);
+        anchorGa.setLineVisible(false);
+        gaService.setLocationAndSize(anchorGa, -1, -9, 10, 20);
+        anchor.setLocation(gaService.createPoint(1, 9));
+        anchor.setUseAnchorLocationAsConnectionEndpoint(true);
+
+        // make the whole figure accessible as a landing point for connections
+        final ChopboxAnchor chopboxAnchor = peCreateService.createChopboxAnchor(container);
 
         // link 'em up
         link(container, service);
         link(anchor, service);
+        link(chopboxAnchor, service);
 
         // call the layout feature
         layoutPictogramElement(container);

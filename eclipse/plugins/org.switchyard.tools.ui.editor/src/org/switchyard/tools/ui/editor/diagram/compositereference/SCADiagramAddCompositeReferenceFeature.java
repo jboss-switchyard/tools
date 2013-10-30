@@ -15,6 +15,7 @@ package org.switchyard.tools.ui.editor.diagram.compositereference;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -22,6 +23,7 @@ import org.eclipse.graphiti.mm.algorithms.styles.Font;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.FixPointAnchor;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
@@ -97,9 +99,19 @@ public class SCADiagramAddCompositeReferenceFeature extends AbstractAddShapeFeat
         // create link and wire it
         link(containerShape, addedReference);
 
-        ChopboxAnchor anchor = peCreateService.createChopboxAnchor(containerShape);
-        anchor.setActive(true);
+        final FixPointAnchor anchor = peCreateService.createFixPointAnchor(containerShape);
+        GraphicsAlgorithm anchorGa = gaService.createEllipse(anchor);
+        //anchorGa.setFilled(false);
+        anchorGa.setTransparency(.9);
+        anchorGa.setLineVisible(false);
+        gaService.setLocationAndSize(anchorGa, 0, -6, 12, 12);
+        anchor.setLocation(gaService.createPoint(14, p.getHeight()/2));
+        anchor.setUseAnchorLocationAsConnectionEndpoint(true);
         link(anchor, addedReference);
+
+        // make the whole figure accessible as a landing point for connections
+        final ChopboxAnchor chopboxAnchor = peCreateService.createChopboxAnchor(containerShape);
+        link(chopboxAnchor, addedReference);
 
         // SHAPE WITH TEXT
 

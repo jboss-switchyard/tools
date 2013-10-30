@@ -26,17 +26,21 @@ import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.internal.services.GraphitiInternal;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.FixPointAnchor;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 import org.switchyard.tools.ui.editor.model.merge.CompositeMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.ContractMergedModelAdapter;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -117,7 +121,7 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
             }
         }
 
-        if (existingConnections.size() > 0) {
+        if (existingConnections.size() > 0 || cs.getAnchors().size() != 2) {
             return Reason.createTrueReason(Messages.updateReason_updateConnections);
         }
 
@@ -170,6 +174,25 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
                         promotedReferences.add(componentReference);
                     }
                 }
+            }
+        }
+
+        if (cs.getAnchors().size() != 2) {
+            // add new anchor point for connections
+            final FixPointAnchor anchor = Graphiti.getPeCreateService().createFixPointAnchor(cs);
+            GraphicsAlgorithm anchorGa = Graphiti.getGaCreateService().createEllipse(anchor);
+            GraphicsAlgorithm containerGa = cs.getGraphicsAlgorithm();
+            anchorGa.setTransparency(.9);
+            anchorGa.setLineVisible(false);
+            Graphiti.getGaLayoutService().setLocationAndSize(anchorGa, 0, -6, 12, 12);
+            anchor.setLocation(Graphiti.getGaService().createPoint(
+                    (int) (14d * containerGa.getWidth() / StyleUtil.COMPOSITE_REFERENCE_WIDTH),
+                    containerGa.getHeight() / 2));
+            anchor.setUseAnchorLocationAsConnectionEndpoint(true);
+            link(anchor, reference);
+            cs.getAnchors().move(0, anchor);
+            for (Connection connection : new ArrayList<Connection>(cs.getAnchors().get(1).getIncomingConnections())) {
+                connection.setEnd(anchor);
             }
         }
         final Set<Contract> existingConnections = getExistingConnections(cs);

@@ -18,8 +18,11 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
+import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.FixPointAnchor;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
@@ -69,6 +72,13 @@ public class SCADiagramLayoutCompositeReferenceFeature extends AbstractLayoutFea
             anythingChanged = true;
         }
 
+        for (final Anchor anchor : containerShape.getAnchors()) {
+            if (anchor instanceof FixPointAnchor) {
+                ((FixPointAnchor) anchor).setLocation(Graphiti.getGaService().createPoint(
+                        (int) (14d * containerGa.getWidth() / StyleUtil.COMPOSITE_REFERENCE_WIDTH),
+                        containerGa.getHeight() / 2));
+            }
+        }
         // IGaService gaService = Graphiti.getGaService();
         // Text text = StyleUtil.findChildGA(containerGa, Text.class);
         // Polygon polygon = StyleUtil.findChildGA(containerGa, Polygon.class);

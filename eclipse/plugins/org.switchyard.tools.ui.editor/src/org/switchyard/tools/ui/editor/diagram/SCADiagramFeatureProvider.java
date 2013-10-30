@@ -28,6 +28,7 @@ import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.IFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IMoveShapeFeature;
+import org.eclipse.graphiti.features.IReconnectionFeature;
 import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
@@ -38,11 +39,13 @@ import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IMoveShapeContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
+import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.LayoutContext;
+import org.eclipse.graphiti.features.context.impl.ReconnectionContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -97,6 +100,10 @@ import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramMoveC
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramResizeCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramUpdateCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.CustomAddTransformFeature;
+import org.switchyard.tools.ui.editor.diagram.connections.ReconnectComponentReferenceFeature;
+import org.switchyard.tools.ui.editor.diagram.connections.ReconnectComponentServiceFeature;
+import org.switchyard.tools.ui.editor.diagram.connections.ReconnectCompositeReferenceFeature;
+import org.switchyard.tools.ui.editor.diagram.connections.ReconnectCompositeServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddComponentServiceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
@@ -426,6 +433,33 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             }
         }
         return super.getRemoveFeature(context);
+    }
+
+    @Override
+    public IReconnectionFeature getReconnectionFeature(IReconnectionContext context) {
+        final Object boBeingReconnected;
+        if (ReconnectionContext.RECONNECT_SOURCE.equals(context.getReconnectType())) {
+            boBeingReconnected = getBusinessObjectForPictogramElement(context.getConnection().getEnd());
+        } else {
+            boBeingReconnected = getBusinessObjectForPictogramElement(context.getConnection().getStart());
+        }
+        if (boBeingReconnected instanceof Service) {
+            return new ReconnectCompositeServiceFeature(this, (Service) boBeingReconnected);
+        } else if (boBeingReconnected instanceof ComponentService) {
+            if (getBusinessObjectForPictogramElement(context.getOldAnchor()) instanceof Service) {
+                return new ReconnectComponentServiceFeature(this, (ComponentService) boBeingReconnected);
+            }
+            /*
+             * don't allow reconnection of reference end of service<->reference
+             * connections.
+             */
+            return null;
+        } else if (boBeingReconnected instanceof Reference) {
+            return new ReconnectCompositeReferenceFeature(this, (Reference) boBeingReconnected);
+        } else if (boBeingReconnected instanceof ComponentReference) {
+            return new ReconnectComponentReferenceFeature(this, (ComponentReference) boBeingReconnected);
+        }
+        return null;
     }
 
 }

@@ -26,12 +26,15 @@ import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.internal.services.GraphitiInternal;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
+import org.eclipse.graphiti.mm.pictograms.BoxRelativeAnchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
@@ -98,7 +101,7 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
             return Reason.createTrueReason(Messages.updateReason_updateConnections);
         }
 
-        if (existingConnections.size() > 0) {
+        if (existingConnections.size() > 0 || cs.getAnchors().size() != 2) {
             return Reason.createTrueReason(Messages.updateReason_updateConnections);
         }
 
@@ -139,6 +142,23 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
         }
 
         // update the wires
+        if (cs.getAnchors().size() != 2) {
+            // add new anchor point for connections
+            final BoxRelativeAnchor anchor = Graphiti.getPeCreateService().createBoxRelativeAnchor(cs);
+            GraphicsAlgorithm anchorGa = Graphiti.getGaCreateService().createEllipse(anchor);
+            // anchorGa.setFilled(false);
+            anchorGa.setTransparency(.9);
+            anchorGa.setLineVisible(false);
+            Graphiti.getGaLayoutService().setLocationAndSize(anchorGa, -14, -6, 12, 12);
+            anchor.setRelativeHeight(.5);
+            anchor.setRelativeWidth(1);
+            anchor.setUseAnchorLocationAsConnectionEndpoint(true);
+            link(anchor, service);
+            cs.getAnchors().move(0, anchor);
+            for (Connection connection : new ArrayList<Connection>(cs.getAnchors().get(1).getOutgoingConnections())) {
+                connection.setStart(anchor);
+            }
+        }
         final Set<Contract> existingConnections = getExistingConnections(cs);
         final Anchor anchor = cs.getAnchors().get(0);
         final ComponentService promotedService = service.getPromote();

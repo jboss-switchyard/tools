@@ -24,11 +24,14 @@ import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.internal.services.GraphitiInternal;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.FixPointAnchor;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
@@ -106,8 +109,8 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
             }
         }
 
-        return existingConnections.isEmpty() ? Reason.createFalseReason() : Reason
-                .createTrueReason(Messages.updateReason_updateConnections);
+        return existingConnections.isEmpty() && container.getAnchors().size() == 2 ? Reason.createFalseReason()
+                : Reason.createTrueReason(Messages.updateReason_updateConnections);
     }
 
     @Override
@@ -128,12 +131,29 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
         }
 
         final ContainerShape container = (ContainerShape) context.getPictogramElement();
-        final Anchor anchor = container.getAnchors().get(0);
         final Set<Contract> existingConnections = getExistingConnections(container);
         final ContractMergedModelAdapter mergeAdapter = MergedModelUtil.getAdapter(service,
                 ContractMergedModelAdapter.class);
         final CompositeMergedModelAdapter composite = MergedModelUtil.getAdapter(mergeAdapter.getSwitchYard()
                 .getComposite(), CompositeMergedModelAdapter.class);
+
+        if (container.getAnchors().size() != 2) {
+            // add new anchor point for connections
+            final FixPointAnchor anchor = Graphiti.getPeCreateService().createFixPointAnchor(container);
+            GraphicsAlgorithm anchorGa = Graphiti.getGaCreateService().createEllipse(anchor);
+            anchorGa.setFilled(false);
+            anchorGa.setLineVisible(false);
+            Graphiti.getGaLayoutService().setLocationAndSize(anchorGa, -1, -9, 10, 20);
+            anchor.setLocation(Graphiti.getGaCreateService().createPoint(1, 9));
+            anchor.setUseAnchorLocationAsConnectionEndpoint(true);
+            link(anchor, service);
+            container.getAnchors().move(0, anchor);
+            for (Connection connection : new ArrayList<Connection>(container.getAnchors().get(1)
+                    .getIncomingConnections())) {
+                connection.setEnd(anchor);
+            }
+        }
+        final Anchor anchor = container.getAnchors().get(0);
 
         for (Service compositeService : composite.getServices()) {
             if (compositeService.getPromote() == service) {

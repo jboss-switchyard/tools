@@ -45,11 +45,17 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
             if (source != null && target != null) {
                 if (source instanceof Service && target instanceof ComponentService
                         && !getDiagramBehavior().getEditingDomain().isReadOnly(((Service) source).eResource())) {
-                    return true;
+                    Service service = (Service) source;
+                    ComponentService component = (ComponentService) target;
+                    // if not already connected
+                    return service.getPromote() == null || !service.getPromote().equals(component);
                 }
                 if (source instanceof ComponentService && target instanceof Service
                         && !getDiagramBehavior().getEditingDomain().isReadOnly(((Service) target).eResource())) {
-                    return true;
+                    Service service = (Service) target;
+                    ComponentService component = (ComponentService) source;
+                    // if not already connected
+                    return service.getPromote() == null || !service.getPromote().equals(component);
                 }
             }
         }
@@ -84,8 +90,9 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
     public Connection create(ICreateConnectionContext context) {
         Connection newConnection = null;
 
-        Anchor targetAnchor = context.getTargetAnchor();
-        Anchor sourceAnchor = context.getSourceAnchor();
+        // get the actual anchors that we will be connecting
+        Anchor targetAnchor = context.getTargetAnchor().getParent().getAnchors().get(0);
+        Anchor sourceAnchor = context.getSourceAnchor().getParent().getAnchors().get(0);
         Object source = getAnchorObject(sourceAnchor);
         Object target = getAnchorObject(targetAnchor);
 
@@ -98,7 +105,7 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
                 service = (Service) target;
                 // always draw from service to component
                 sourceAnchor = targetAnchor;
-                targetAnchor = context.getSourceAnchor();
+                targetAnchor = sourceAnchor;
             } else {
                 componentService = (ComponentService) target;
                 service = (Service) source;

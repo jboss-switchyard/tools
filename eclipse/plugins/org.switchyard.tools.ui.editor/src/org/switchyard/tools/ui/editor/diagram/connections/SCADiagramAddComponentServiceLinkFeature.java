@@ -57,8 +57,9 @@ public class SCADiagramAddComponentServiceLinkFeature extends AbstractAddFeature
 
         // CONNECTION WITH POLYLINE
         Connection connection = peCreateService.createFreeFormConnection(getDiagram());
-        connection.setStart(addConnContext.getSourceAnchor());
-        connection.setEnd(addConnContext.getTargetAnchor());
+        // get the actual anchors we will be connecting
+        connection.setStart(addConnContext.getSourceAnchor().getParent().getAnchors().get(0));
+        connection.setEnd(addConnContext.getTargetAnchor().getParent().getAnchors().get(0));
 
         IGaService gaService = Graphiti.getGaService();
         Polyline polyline = gaService.createPolyline(connection);
