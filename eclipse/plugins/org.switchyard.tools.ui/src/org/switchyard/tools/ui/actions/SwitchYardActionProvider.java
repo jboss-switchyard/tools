@@ -31,6 +31,7 @@ import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.OpenFileAction;
 import org.eclipse.ui.actions.RefreshAction;
+import org.eclipse.ui.internal.navigator.resources.plugin.WorkbenchNavigatorMessages;
 import org.eclipse.ui.navigator.CommonActionProvider;
 import org.eclipse.ui.navigator.ICommonActionConstants;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
@@ -56,6 +57,7 @@ import org.switchyard.tools.ui.explorer.impl.ServiceNode;
  * 
  * @author Rob Cernich
  */
+@SuppressWarnings("restriction")
 public class SwitchYardActionProvider extends CommonActionProvider {
 
     private static final String SWITCHYARD_NAVIGATOR_EXTENSION = "org.switchyard.tools.ui.explorer.content"; //$NON-NLS-1$ 
@@ -117,7 +119,7 @@ public class SwitchYardActionProvider extends CommonActionProvider {
     public void fillContextMenu(IMenuManager menu) {
         menu.insertAfter(ICommonMenuConstants.GROUP_OPEN, new Separator(SWITCHYARD_MENU));
         if (_contribute) {
-            IMenuManager submenu = new MenuManager("", NEW_MENU); //$NON-NLS-1$
+            IMenuManager submenu = new MenuManager(WorkbenchNavigatorMessages.NewActionProvider_NewMenu_label, NEW_MENU); //$NON-NLS-1$
 
             _newWizardActionGroup.setContext(getContext());
             _newWizardActionGroup.fillContextMenu(submenu);
