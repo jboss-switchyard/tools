@@ -16,7 +16,7 @@
   </bpmn2:process>
   <bpmn2:itemDefinition id="ItemDefinition_1" itemKind="Physical" structureRef="java.lang.Object"/>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="${packageName}.${processID}">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="${processID}">
       <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
         <dc:Bounds height="36.0" width="36.0" x="50.0" y="52.0"/>
       </bpmndi:BPMNShape>
