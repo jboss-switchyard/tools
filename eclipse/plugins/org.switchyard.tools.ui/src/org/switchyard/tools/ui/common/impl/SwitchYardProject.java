@@ -46,6 +46,7 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -53,6 +54,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IMavenProjectChangedListener;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
@@ -198,19 +200,29 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
 
     @Override
     public void load(IProgressMonitor monitor) {
-        if (!needsLoading()) {
-            if (getOutputSwitchYardConfigurationFile() == null) {
-                return;
-            }
-            _lastOutputTimestamp = getOutputSwitchYardConfigurationFile().getModificationStamp();
-            return;
-        }
-        monitor.beginTask(Messages.SwitchYardProject_taskMessage_loadingMavenConfig, 100);
-        monitor.worked(10);
-        SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 75);
-        Set<Type> types;
-        if (_loadLock.writeLock().tryLock()) {
+        final boolean releaseRule = Job.getJobManager().currentRule() == null;
+        try {
+            if (releaseRule) {
+                // prevent deadlocks with validation builder
+                Job.getJobManager().beginRule(ResourcesPlugin.getWorkspace().getRoot(), monitor);
+            } /*
+               * else: the assumption is that the current lock is the workspace
+               * lock. we could run into problems if the maven project needs to
+               * be refreshed, as m2e will try to grab the workspace rule.
+               */
+            _loadLock.writeLock().lock();
             try {
+                if (!needsLoading()) {
+                    if (getOutputSwitchYardConfigurationFile() == null) {
+                        return;
+                    }
+                    _lastOutputTimestamp = getOutputSwitchYardConfigurationFile().getModificationStamp();
+                    return;
+                }
+                monitor.beginTask(Messages.SwitchYardProject_taskMessage_loadingMavenConfig, 100);
+                monitor.worked(10);
+                SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 75);
+                Set<Type> types;
                 try {
                     final IFile oldOutputFile = getOutputSwitchYardConfigurationFile();
 
@@ -220,7 +232,8 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                             MavenPlugin.getMavenProjectRegistry().refresh(
                                     new MavenUpdateRequest(_project, MavenPlugin.getMavenConfiguration().isOffline(),
                                             false), subMonitor);
-                            // we'll get loaded through mavenProjectChanged()
+                            // we'll get loaded through
+                            // mavenProjectChanged()
                             return;
                         }
                     }
@@ -251,16 +264,16 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                 }
 
                 _manager.notify(this, types);
+
+                monitor.done();
             } finally {
                 _loadLock.writeLock().unlock();
             }
-        } else {
-            // somebody else is loading, so just wait for them to finish
-            _loadLock.writeLock().lock();
-            _loadLock.writeLock().unlock();
+        } finally {
+            if (releaseRule) {
+                Job.getJobManager().endRule(ResourcesPlugin.getWorkspace().getRoot());
+            }
         }
-
-        monitor.done();
     }
 
     @Override

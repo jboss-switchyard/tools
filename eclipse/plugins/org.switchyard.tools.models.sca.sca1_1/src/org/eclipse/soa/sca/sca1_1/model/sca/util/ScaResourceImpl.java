@@ -107,6 +107,9 @@ public class ScaResourceImpl extends XMLResourceImpl {
                     @Override
                     protected void processObject(EObject object) {
                         super.processObject(object);
+                        if (object == null) {
+                            return;
+                        }
                         final EClass objectClass = object.eClass();
                         if (objectClass == ScaPackage.eINSTANCE.getComponentService()
                                 || objectClass == ScaPackage.eINSTANCE.getComponentReference()) {
