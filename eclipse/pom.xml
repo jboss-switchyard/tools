@@ -22,7 +22,7 @@
   <properties>
     <tycho-version>0.16.0</tycho-version>
     <!-- Just in case the Eclipse project version does not match the parent. -->
-    <version.switchyard.runtime>1.1.0-SNAPSHOT</version.switchyard.runtime>
+    <version.switchyard.runtime>1.1.0.M4</version.switchyard.runtime>
     <version.jbtis.target-platform>4.1.5.Beta2</version.jbtis.target-platform>
   </properties>
 
