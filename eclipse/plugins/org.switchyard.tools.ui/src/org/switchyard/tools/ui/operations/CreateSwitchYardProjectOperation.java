@@ -10,13 +10,11 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.operations;
 
-import static org.switchyard.tools.ui.M2EUtils.JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID;
 import static org.switchyard.tools.ui.M2EUtils.MAVEN_MAIN_JAVA_PATH;
 import static org.switchyard.tools.ui.M2EUtils.MAVEN_MAIN_RESOURCES_PATH;
 import static org.switchyard.tools.ui.M2EUtils.MAVEN_TEST_JAVA_PATH;
 import static org.switchyard.tools.ui.M2EUtils.MAVEN_TEST_RESOURCES_PATH;
 import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_VERSION;
-import static org.switchyard.tools.ui.M2EUtils.createJBossPublicRepository;
 import static org.switchyard.tools.ui.SwitchYardModelUtils.createSwitchYardModel;
 import static org.switchyard.tools.ui.SwitchYardModelUtils.createTargetnamespace;
 
@@ -32,7 +30,6 @@ import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Plugin;
-import org.apache.maven.model.Repository;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -504,9 +501,10 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         model.setBuild(createBuildSection(versionString, scanners));
 
         // add repository
-        Repository repository = createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID);
-        model.addRepository(repository);
-        model.addPluginRepository(repository);
+        // Repository repository =
+        // createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID);
+        // model.addRepository(repository);
+        // model.addPluginRepository(repository);
 
         return model;
     }

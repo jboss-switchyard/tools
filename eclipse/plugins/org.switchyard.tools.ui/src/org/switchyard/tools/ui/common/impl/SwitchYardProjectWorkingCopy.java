@@ -10,10 +10,6 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.common.impl;
 
-import static org.switchyard.tools.ui.M2EUtils.JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID;
-import static org.switchyard.tools.ui.M2EUtils.JBOSS_PUBLIC_REPOSITORY_URL;
-import static org.switchyard.tools.ui.M2EUtils.createJBossPublicRepository;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -26,7 +22,6 @@ import java.util.Set;
 
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
-import org.apache.maven.model.Repository;
 import org.apache.maven.project.MavenProject;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -368,29 +363,29 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         }
         monitor.worked(10);
 
-        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingRepoSettings);
-        boolean foundRepo = false;
-        for (Repository repo : getMavenProject().getRepositories()) {
-            if (JBOSS_PUBLIC_REPOSITORY_URL.equals(repo.getUrl())) {
-                foundRepo = true;
-                break;
-            }
-        }
-        if (!foundRepo) {
-            model.addRepository(createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID));
-            modelUpdated = true;
-        }
-        foundRepo = false;
-        for (Repository repo : getMavenProject().getPluginRepositories()) {
-            if (JBOSS_PUBLIC_REPOSITORY_URL.equals(repo.getUrl())) {
-                foundRepo = true;
-                break;
-            }
-        }
-        if (!foundRepo) {
-            model.addPluginRepository(createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID));
-            modelUpdated = true;
-        }
+        // monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingRepoSettings);
+        // boolean foundRepo = false;
+        // for (Repository repo : getMavenProject().getRepositories()) {
+        // if (JBOSS_PUBLIC_REPOSITORY_URL.equals(repo.getUrl())) {
+        // foundRepo = true;
+        // break;
+        // }
+        // }
+        // if (!foundRepo) {
+        // model.addRepository(createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID));
+        // modelUpdated = true;
+        // }
+        // foundRepo = false;
+        // for (Repository repo : getMavenProject().getPluginRepositories()) {
+        // if (JBOSS_PUBLIC_REPOSITORY_URL.equals(repo.getUrl())) {
+        // foundRepo = true;
+        // break;
+        // }
+        // }
+        // if (!foundRepo) {
+        // model.addPluginRepository(createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID));
+        // modelUpdated = true;
+        // }
 
         monitor.done();
 
