@@ -52,6 +52,8 @@ public class ConnectionDeleteFeature extends DefaultDeleteFeature {
                 return ((EObject) endBO).eResource() == null
                         || !getFeatureProvider().getDiagramTypeProvider().getDiagramBehavior().getEditingDomain()
                                 .isReadOnly(((EObject) endBO).eResource());
+            } else { 
+                return startBO == null && endBO == null; 
             }
         }
         // can't delete connections between component references and component
