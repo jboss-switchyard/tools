@@ -97,7 +97,7 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
         });
 
         factory.createLabel(this, Messages.label_timePeriod);
-        _timePeriodText = factory.createText(this, "1000", SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
+        _timePeriodText = factory.createText(this, "1000", SWT.BORDER); //$NON-NLS-1$
         _timePeriodText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _timePeriodText.addModifyListener(new ModifyListener() {
             @Override
@@ -106,14 +106,18 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
                 if (_timePeriodText.getText().length() == 0) {
                     newValue = null;
                 } else {
-                    newValue = _maximumRequestsText.getText();
+                    newValue = _timePeriodText.getText();
                 }
                 if (!_updating
                         && ((newValue == null && _throttlingType.getTimePeriod() != null) || (newValue != null && !newValue
                                 .equals(_throttlingType.getTimePeriod())))) {
                     wrapOperation(new Runnable() {
                         public void run() {
-                            _throttlingType.setTimePeriod(newValue);
+                            if (newValue == null) {
+                                _throttlingType.unsetTimePeriod();
+                            } else {
+                                _throttlingType.setTimePeriod(newValue);
+                            }
                         }
                     });
                 }
