@@ -76,7 +76,9 @@ public class JavaTypeScanner {
                                 intf.setInterface(interfaceName);
                                 service.getInterfaceGroup().add(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(),
                                         intf);
-                                service.setName(getSimpleNameFromQualifiedName(interfaceName));
+                                if (service.getName() == null) {
+                                    service.setName(getSimpleNameFromQualifiedName(interfaceName));
+                                }
                             }
                         } catch (Exception e) {
                             e.fillInStackTrace();
