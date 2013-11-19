@@ -80,6 +80,7 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public void init(Interface intf) {
         final String typeString = intf == null ? null : ((WSDLPortType) intf).getInterface();
+        _interface = ScaFactory.eINSTANCE.createWSDLPortType();
         _interface.setInterface(typeString);
     }
 

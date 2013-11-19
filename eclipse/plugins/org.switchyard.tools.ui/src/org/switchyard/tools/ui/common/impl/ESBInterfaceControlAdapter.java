@@ -55,6 +55,7 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     @Override
     public void init(Interface intf) {
+        _interface = SwitchyardFactory.eINSTANCE.createEsbInterface();
         if (intf instanceof EsbInterface) {
             final EsbInterface esbIntfc = (EsbInterface) intf;
             _interface.setFaultType(esbIntfc.getFaultType());

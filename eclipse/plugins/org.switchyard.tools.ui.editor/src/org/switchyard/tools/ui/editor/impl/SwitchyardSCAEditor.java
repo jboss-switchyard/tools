@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.impl;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +42,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -100,6 +103,8 @@ import org.eclipse.graphiti.ui.editor.IDiagramContainerUI;
 import org.eclipse.graphiti.ui.editor.IDiagramEditorInput;
 import org.eclipse.graphiti.ui.internal.editor.DomainModelWorkspaceSynchronizerDelegate;
 import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.operation.IThreadListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.ui.IEditorInput;
@@ -697,12 +702,47 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     protected void resourceMoved(IFile modelFile) {
     }
 
+    private static final class RuleTransferDelegatingRunnable implements IRunnableWithProgress, IThreadListener {
+        
+        private final IRunnableWithProgress _delegate;
+
+        private RuleTransferDelegatingRunnable(IRunnableWithProgress delegate) {
+            super();
+            _delegate = delegate;
+        }
+
+        /*
+         * Transfer the rule from the calling thread to the callee. This should
+         * be invoked before executing the callee and after the callee has
+         * executed, thus transfering the rule back to the calling thread.
+         */
+        @Override
+        public void threadChange(Thread thread) {
+            final ISchedulingRule rule = Job.getJobManager().currentRule();
+            if (rule != null) {
+                Job.getJobManager().transferRule(rule, thread);
+            }
+        }
+
+        @Override
+        public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+            _delegate.run(monitor);
+        }
+        
+    }
+
     private final class SwitchYardPersistencyBehavior extends DefaultPersistencyBehavior {
         private SwitchYardPersistencyBehavior(DiagramBehavior editor) {
             super(editor);
         }
 
         private MergedModelAdapterFactory _mergedModelAdapterFactory;
+
+        @Override
+        protected IRunnableWithProgress createOperation(Set<Resource> savedResources,
+                Map<Resource, Map<?, ?>> saveOptions) {
+            return new RuleTransferDelegatingRunnable(super.createOperation(savedResources, saveOptions));
+        }
 
         @Override
         public Diagram loadDiagram(URI modelUri) {

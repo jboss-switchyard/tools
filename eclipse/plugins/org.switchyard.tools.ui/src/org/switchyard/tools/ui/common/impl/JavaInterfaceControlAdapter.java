@@ -76,6 +76,7 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public void init(Interface intf) {
         final String typeString = intf == null ? null : ((JavaInterface) intf).getInterface();
+        _interface = ScaFactory.eINSTANCE.createJavaInterface();
         _interface.setInterface(typeString);
     }
 

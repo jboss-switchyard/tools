@@ -162,7 +162,14 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
 
     @Override
     public void resourceSetChanged(ResourceSetChangeEvent arg0) {
-        refresh();
+        if (_page != null && _page.getControl() != null && !_page.getControl().isDisposed()) {
+            _page.getControl().getDisplay().asyncExec(new Runnable() {
+                @Override
+                public void run() {
+                    refresh();
+                }
+            });
+        }
     }
 
     @Override
