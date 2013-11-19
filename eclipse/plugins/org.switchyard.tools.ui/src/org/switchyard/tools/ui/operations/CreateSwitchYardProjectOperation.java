@@ -47,7 +47,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IProjectConfigurationManager;
@@ -66,6 +65,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResou
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl.NamespaceVersionConverter;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.i18n.Messages;
@@ -396,10 +396,15 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     }
 
     private void createSwitchYardConfig(IProgressMonitor monitor) throws IOException {
-        ResourceSet rs = new ResourceSetImpl();
+        ResourceSet rs = SwitchYardModelUtils.newResourceSet();
         try {
             _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
                     .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
+
+            // force the right content factory in case it gets changed elsewhere unexpectedly
+            rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().
+                put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
+            
             XMLResource switchYardResource = (XMLResource) rs.createResource(org.eclipse.emf.common.util.URI.createPlatformResourceURI(_switchYardFile.getFullPath().toPortableString(), true), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
             final String namespace = _projectMetatData.getNamespace();
             SwitchYardType switchYardModel = newSwitchYardModel(

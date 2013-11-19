@@ -945,6 +945,10 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         protected void initializeEditingDomain(TransactionalEditingDomain domain) {
             ResourceSet resourceSet = domain.getResourceSet();
 
+            // force the right content factory in case it gets changed elsewhere unexpectedly
+            resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().
+                put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
+
             // add the adapter factory for tracking validation status
             resourceSet.getAdapterFactories().add(new ValidationStatusAdapterFactory());
 

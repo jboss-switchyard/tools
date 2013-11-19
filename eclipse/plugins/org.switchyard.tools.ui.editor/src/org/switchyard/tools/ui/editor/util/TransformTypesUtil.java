@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.xml.namespace.QName;
@@ -28,7 +27,6 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
@@ -43,7 +41,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
@@ -250,12 +247,8 @@ public final class TransformTypesUtil {
     private SwitchYardType loadModelFile(IFile file) throws IOException {
         SwitchyardPackage.eINSTANCE.eClass();
 
-        Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-        Map<String, Object> m = reg.getExtensionToFactoryMap();
-        m.put("xml", new SwitchyardResourceFactoryImpl()); //$NON-NLS-1$
-
         // Obtain a new resource set
-        ResourceSet resourceSet = new ResourceSetImpl();
+        ResourceSet resourceSet = SwitchYardModelUtils.newResourceSet();
         SwitchyardSCAEditor.registerPackages(resourceSet);
 
         URI modelUri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);

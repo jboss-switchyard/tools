@@ -135,6 +135,10 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
             if (switchYardXML.exists()) {
                 ResourceSet rs = new ResourceSetImpl();
                 try {
+                    // force the right content factory in case it gets changed elsewhere unexpectedly
+                    rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().
+                        put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
+
                     XMLResource r = (XMLResource) rs.createResource(URI.createPlatformResourceURI(switchYardXML.getFullPath().toPortableString(), true), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
                     try {
                         r.load(null);

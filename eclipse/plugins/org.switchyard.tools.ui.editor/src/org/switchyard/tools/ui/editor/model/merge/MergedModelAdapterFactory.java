@@ -45,7 +45,6 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -63,6 +62,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
 
 import com.google.common.base.Predicate;
 
@@ -122,7 +122,8 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         }
 
         // load the new version of the generated file
-        final ResourceSet rs = new ResourceSetImpl();
+        final ResourceSet rs = SwitchYardModelUtils.newResourceSet();
+        
         final Resource generatedResource = rs.createResource(
                 URI.createPlatformResourceURI(generatedFile.getFullPath().toString(), true),
                 SwitchyardResourceFactoryImpl.CONTENT_TYPE);

@@ -39,7 +39,7 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
     private Composite _panel;
     private ValidateType _validator;
     private Combo _nameText;
-    private static ValidatorTypesUtil _typesUtil = null;
+    private ValidatorTypesUtil _typesUtil = null;
     private String _warningMessage = null;
     private WizardPage _wizPage = null;
     
@@ -85,11 +85,11 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
 
     @Override
     public void createContents(Composite parent, int style) {
-        _panel = new Composite(parent, SWT.NONE);
+        setPanel(new Composite(parent, SWT.NONE));
         GridLayout gl = new GridLayout(2, false);
-        _panel.setLayout(gl);
+        getPanel().setLayout(gl);
         if (getRootGridData() != null) {
-            _panel.setLayoutData(getRootGridData());
+            getPanel().setLayoutData(getRootGridData());
         }
         _nameText = createLabelAndCombo(_panel, Messages.label_name);
     }
@@ -97,6 +97,10 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
     @Override
     public Composite getPanel() {
         return _panel;
+    }
+    
+    protected void setPanel(Composite parent) {
+        this._panel = parent;
     }
 
     /**
@@ -125,7 +129,7 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
     }
 
     protected void handleModify(final Control control) {
-        if (control.equals(_nameText)) {
+        if (control.equals(_nameText) && control.getParent().isVisible()) {
             updateFeature(_validator, "name", _nameText.getText().trim()); //$NON-NLS-1$
         }
         validate();

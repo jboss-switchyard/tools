@@ -18,6 +18,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
@@ -45,6 +47,7 @@ import org.switchyard.metadata.ServiceInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.i18n.Messages;
@@ -262,7 +265,21 @@ public final class SwitchYardModelUtils {
                 + (intf == null ? "null" : intf.eClass().getInstanceTypeName())); //$NON-NLS-1$
 
     }
+    
+    /**
+     * Creates a new resource set with the content factory preset.
+     * @return ResourceSet
+     */
+    public static ResourceSet newResourceSet() {
+        ResourceSet rs = new ResourceSetImpl();
 
+        // force the right content factory in case it gets changed elsewhere unexpectedly
+        rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().
+            put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
+        
+        return rs;
+    }
+    
     private static IFile getSwitchYardConfigurationFile(IProject project) {
         ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(project);
         if (switchYardProject == null) {

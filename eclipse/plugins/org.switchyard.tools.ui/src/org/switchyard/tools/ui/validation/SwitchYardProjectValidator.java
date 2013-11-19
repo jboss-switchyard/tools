@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.marker.MarkerUtil;
 import org.eclipse.emf.validation.model.EvaluationMode;
@@ -47,6 +46,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.i18n.Messages;
@@ -127,7 +127,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
             Activator.getDefault().getLog().log(e.getStatus());
         }
 
-        ResourceSet rs = new ResourceSetImpl();
+        ResourceSet rs = SwitchYardModelUtils.newResourceSet();
         Resource resource = rs.createResource(
                 URI.createPlatformResourceURI(switchYardOutput.getFullPath().toString(), false),
                 SwitchyardResourceFactoryImpl.CONTENT_TYPE);

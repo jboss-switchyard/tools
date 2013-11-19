@@ -31,7 +31,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.m2e.core.embedder.ArtifactKey;
 import org.eclipse.m2e.core.project.MavenProjectUtils;
@@ -45,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl.NamespaceVersionConverter;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
@@ -251,12 +251,13 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
     @SuppressWarnings("unchecked")
     private void updateSwitchYardFile(IProgressMonitor monitor) throws CoreException {
         monitor.beginTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_updatingSYXML, 100);
-        ResourceSet rs = new ResourceSetImpl();
+        ResourceSet rs = SwitchYardModelUtils.newResourceSet();
         try {
             monitor.subTask(Messages.AbstractSwitchYardProjectOperation_taskLabel_readingSYXML);
             IFile switchYardFile = _workingCopy.getSwitchYardConfigurationFile();
 
             boolean modelUpdated = false;
+
             XMLResource switchYardResource = (XMLResource) rs.createResource(URI.createPlatformResourceURI(switchYardFile.getFullPath().toPortableString(), true), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
             SwitchYardType switchYardModel = null;
             if (!switchYardFile.exists()) {
