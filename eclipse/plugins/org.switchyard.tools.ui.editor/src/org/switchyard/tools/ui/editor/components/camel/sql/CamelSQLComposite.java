@@ -160,8 +160,8 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
 
         _queryText = createLabelAndText(composite, Messages.label_queryStar);
         _dataSourceRefText = createLabelAndText(composite, Messages.label_dataSourceStar);
-        _periodText = createLabelAndText(composite, Messages.label_period);
         if (getTargetObject() instanceof Service) {
+            _periodText = createLabelAndText(composite, Messages.label_periodStar);
             _initialDelayText = createLabelAndText(composite, Messages.label_initialDelay);
         }
 

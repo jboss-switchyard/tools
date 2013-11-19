@@ -435,7 +435,7 @@ public class Messages extends NLS {
     public static String label_outputTypeStar;
     public static String label_packageName;
     public static String label_password;
-    public static String label_period;
+    public static String label_periodStar;
     public static String label_persistenceUnit;
     public static String label_pollOptions;
     public static String label_port;
