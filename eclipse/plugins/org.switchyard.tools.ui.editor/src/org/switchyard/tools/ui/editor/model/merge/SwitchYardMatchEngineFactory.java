@@ -78,6 +78,10 @@ public class SwitchYardMatchEngineFactory implements Factory {
                             return 8;
                         } else if (feature == RulesPackage.eINSTANCE.getRulesImplementationType_Manifest()) {
                             return 8;
+                        } else if (feature == SwitchyardPackage.eINSTANCE.getTransformType_From()) {
+                            return 8;
+                        } else if (feature == SwitchyardPackage.eINSTANCE.getTransformType_To()) {
+                            return 8;
                         }
                         return super.getWeight(feature);
                     }
