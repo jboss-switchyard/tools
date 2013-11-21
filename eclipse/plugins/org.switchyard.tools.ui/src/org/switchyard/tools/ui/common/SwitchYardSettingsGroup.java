@@ -563,6 +563,7 @@ public class SwitchYardSettingsGroup {
         final String onePointZero = "1.0";
         final Set<Version> filtered = new LinkedHashSet<Version>();
         String previousMajorMinor = null;
+        boolean previousWasSnapshot = false;
         /* assumes list is sorted lowest to highest. */
         for (ListIterator<Version> it = versions.listIterator(versions.size()); it.hasPrevious();) {
             Version next = it.previous();
@@ -571,15 +572,17 @@ public class SwitchYardSettingsGroup {
             try {
                 if (previousMajorMinor == null) {
                     filtered.add(next);
+                    previousWasSnapshot = version.endsWith("-SNAPSHOT");
                 } else if (version.endsWith("-SNAPSHOT")) {
                     // skip snapshots
                     continue;
-                } else if (previousMajorMinor.equals(majorMinor)) {
+                } else if (previousMajorMinor.equals(majorMinor) && !previousWasSnapshot) {
                     // we already have this version
                     continue;
                 } else {
                     // don't have this one yet
                     filtered.add(next);
+                    previousWasSnapshot = false;
                     if (onePointZero.equals(majorMinor)) {
                         // nothing before 1.0
                         break;
