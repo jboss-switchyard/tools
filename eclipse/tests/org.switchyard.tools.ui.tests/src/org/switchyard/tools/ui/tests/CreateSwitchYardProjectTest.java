@@ -38,6 +38,7 @@ import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation.NewSwitchYardProjectMetaData;
 import org.switchyard.tools.ui.wizards.NewBeanServiceClassWizardPage;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
+import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
 
 /**
  * CreateSwitchYardProjectTest
@@ -71,7 +72,7 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         String packageName = "test.package_name";
         String groupId = "test.project.group";
         String version = "0.0.1-SNAPSHOT";
-        String runtimeVersion = "1.1.0.CR1"; //NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION;
+        String runtimeVersion = NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION;
 
         assertTrue("Project already exists.", !newProjectHandle.exists());
 
