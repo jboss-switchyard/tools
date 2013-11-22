@@ -448,6 +448,13 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                 return dependency.getVersion();
             }
         }
+        Build build = mavenProject.getOriginalModel().getBuild();
+        if (build != null) {
+            Plugin switchYardPlugin = build.getPluginsAsMap().get(SWITCHYARD_PLUGIN_KEY);
+            if (switchYardPlugin != null) {
+                return switchYardPlugin.getVersion();
+            }
+        }
         return UNKNOWN_VERSION_STRING;
     }
 
@@ -710,12 +717,8 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
             if (mavenProject == null) {
                 return;
             }
-            _outputFile = _project
-                    .getWorkspace()
-                    .getRoot()
-                    .getFileForLocation(
-                            new Path(mavenProject.getBuild().getOutputDirectory()).append(META_INF).append(
-                                    SWITCHYARD_XML));
+            _outputFile = _project.getWorkspace().getRoot()
+                    .getFile(_mavenProjectFacade.getOutputLocation().append(META_INF).append(SWITCHYARD_XML));
         }
     }
 }

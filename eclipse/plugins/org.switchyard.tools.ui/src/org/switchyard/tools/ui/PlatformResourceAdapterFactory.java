@@ -201,6 +201,7 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
                 }
                 return file.getProject();
             } else if (uri.isFile()) {
+                // XXX: this may fail if there are nested projects.
                 IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(uri.toFileString()));
                 if (file == null) {
                     return null;
