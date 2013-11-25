@@ -194,6 +194,7 @@ public class Messages extends NLS {
     public static String error_invalidUri;
     public static String error_invalidXslFilePath;
     public static String error_jaxbOnlySupportsJavaToFromXml;
+    public static String error_jndiNameRequired;
     public static String error_jsonTransformerOnlySupportsJsonToFromJava;
     public static String error_moreThanOneDefaultSecurityConfiguration;
     public static String error_noClassSpecified;

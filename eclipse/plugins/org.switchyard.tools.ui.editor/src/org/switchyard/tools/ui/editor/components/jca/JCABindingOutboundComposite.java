@@ -122,6 +122,11 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     @Override
     protected boolean validate() {
         setErrorMessage(null);
+        if (getBinding() != null) {
+            if (_connectionJNDINameText.getText().trim().isEmpty()) {
+                setErrorMessage(Messages.error_jndiNameRequired);
+            }
+        }
         return (getErrorMessage() == null);
     }
 
