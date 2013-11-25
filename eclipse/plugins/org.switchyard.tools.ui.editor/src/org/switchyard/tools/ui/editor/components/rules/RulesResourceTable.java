@@ -137,7 +137,7 @@ public class RulesResourceTable extends Composite {
     private ListenerList _changeListeners;
 
     private String[] _resourceTypeList = 
-            new String[] {"BPMN", "BPMN2", "BRL", "CHANGE_SET",  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+            new String[] {"BPMN", "BPMN2", "BRL",  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             "DESCR", "DRF", "DRL", "DSL", "DSLR", "DTABLE", "PMML", "PKG", "WID", "XDRL" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
     // "SCARD" removed for now per SWITCHYARD-1662
 
