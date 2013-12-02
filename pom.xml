@@ -12,6 +12,11 @@
   <name>SwitchYard: Tools Parent</name>
   <description>Parent project for SwitchYard tooling</description>
 
+  <properties>
+    <!-- Just in case the Eclipse project version does not match the parent. -->
+    <version.switchyard.runtime>1.1.0.Final</version.switchyard.runtime>
+  </properties>
+
   <modules>
     <module>eclipse</module>
   </modules>
@@ -32,4 +37,20 @@
       </snapshots>
     </repository>
   </repositories>
+
+  <build>
+    <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.switchyard</groupId>
+                        <artifactId>switchyard-build</artifactId>
+                        <version>${version.switchyard.runtime}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+    </plugins>
+  </build>
 </project>

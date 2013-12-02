@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.switchyard.tools.models.sca.sca1_1.edit;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.1.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.soa.sca.sca1_1.model.sca.provider.ScaEditPlugin$Implementation
 Bundle-Vendor: %providerName
