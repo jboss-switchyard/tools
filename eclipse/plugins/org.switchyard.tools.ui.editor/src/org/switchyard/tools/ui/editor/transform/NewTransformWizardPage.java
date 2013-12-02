@@ -211,6 +211,8 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
                             _activeControl.setSelectedTransforms(getSelectedTransforms());
                             _activeControl.setVisible(true);
                         }
+                    } else {
+                        _activeControl = null;
                     }
                 }
                 validate(null);
