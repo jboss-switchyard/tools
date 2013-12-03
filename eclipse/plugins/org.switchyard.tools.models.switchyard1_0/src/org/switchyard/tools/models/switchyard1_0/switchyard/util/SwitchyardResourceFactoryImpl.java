@@ -73,6 +73,7 @@ public class SwitchyardResourceFactoryImpl extends ResourceFactoryImpl {
 
         result.getDefaultSaveOptions().put(XMLResource.OPTION_ELEMENT_HANDLER, new ElementHandlerImpl(true));
         result.getDefaultSaveOptions().put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.FALSE);
+        result.getDefaultSaveOptions().put(XMLResource.OPTION_ENCODING, "UTF-8");
 
         return result;
     }
