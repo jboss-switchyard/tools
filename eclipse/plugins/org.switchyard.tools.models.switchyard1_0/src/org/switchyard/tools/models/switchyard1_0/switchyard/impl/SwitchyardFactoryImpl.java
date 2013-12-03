@@ -446,7 +446,7 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertPropIntegerToString(EDataType eDataType, Object instanceValue) {
+    public String convertPropIntegerToStringGen(EDataType eDataType, Object instanceValue) {
         if (instanceValue == null) return null;
         if (XMLTypePackage.Literals.INTEGER.isInstance(instanceValue)) {
             try {
@@ -469,6 +469,10 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
         throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
     }
 
+    public String convertPropIntegerToString(EDataType eDataType, Object instanceValue) {
+        if (instanceValue == null) return null;
+        return instanceValue.toString();
+    }
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

@@ -796,7 +796,7 @@ public interface JpaPackage extends EPackage {
     int JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE = 0;
 
     /**
-     * The feature id for the '<em><b>Initial Delay</b></em>' attribute list.
+     * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -805,7 +805,7 @@ public interface JpaPackage extends EPackage {
     int JPA_CONSUMER_TYPE__INITIAL_DELAY = 1;
 
     /**
-     * The feature id for the '<em><b>Delay</b></em>' attribute list.
+     * The feature id for the '<em><b>Delay</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -814,7 +814,7 @@ public interface JpaPackage extends EPackage {
     int JPA_CONSUMER_TYPE__DELAY = 2;
 
     /**
-     * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute list.
+     * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -823,7 +823,7 @@ public interface JpaPackage extends EPackage {
     int JPA_CONSUMER_TYPE__USE_FIXED_DELAY = 3;
 
     /**
-     * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute list.
+     * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -832,7 +832,7 @@ public interface JpaPackage extends EPackage {
     int JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = 4;
 
     /**
-     * The feature id for the '<em><b>Time Unit</b></em>' attribute list.
+     * The feature id for the '<em><b>Time Unit</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -850,7 +850,7 @@ public interface JpaPackage extends EPackage {
     int JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE = 6;
 
     /**
-     * The feature id for the '<em><b>Max Messages Per Poll</b></em>' attribute list.
+     * The feature id for the '<em><b>Max Messages Per Poll</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1167,10 +1167,10 @@ public interface JpaPackage extends EPackage {
     EAttribute getJpaConsumerType_ScheduledPollConsumerType();
 
     /**
-     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute list '<em>Initial Delay</em>'.
+     * @return the meta object for the attribute '<em>Initial Delay</em>'.
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay()
      * @see #getJpaConsumerType()
      * @generated
@@ -1178,10 +1178,10 @@ public interface JpaPackage extends EPackage {
     EAttribute getJpaConsumerType_InitialDelay();
 
     /**
-     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute list '<em>Delay</em>'.
+     * @return the meta object for the attribute '<em>Delay</em>'.
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay()
      * @see #getJpaConsumerType()
      * @generated
@@ -1189,32 +1189,32 @@ public interface JpaPackage extends EPackage {
     EAttribute getJpaConsumerType_Delay();
 
     /**
-     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute list '<em>Use Fixed Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getUseFixedDelay()
+     * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isUseFixedDelay()
      * @see #getJpaConsumerType()
      * @generated
      */
     EAttribute getJpaConsumerType_UseFixedDelay();
 
     /**
-     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute list '<em>Send Empty Message When Idle</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getSendEmptyMessageWhenIdle()
+     * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isSendEmptyMessageWhenIdle()
      * @see #getJpaConsumerType()
      * @generated
      */
     EAttribute getJpaConsumerType_SendEmptyMessageWhenIdle();
 
     /**
-     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getTimeUnit <em>Time Unit</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getTimeUnit <em>Time Unit</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute list '<em>Time Unit</em>'.
+     * @return the meta object for the attribute '<em>Time Unit</em>'.
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getTimeUnit()
      * @see #getJpaConsumerType()
      * @generated
@@ -1233,10 +1233,10 @@ public interface JpaPackage extends EPackage {
     EAttribute getJpaConsumerType_ScheduledBatchPollConsumerType();
 
     /**
-     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute list '<em>Max Messages Per Poll</em>'.
+     * @return the meta object for the attribute '<em>Max Messages Per Poll</em>'.
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll()
      * @see #getJpaConsumerType()
      * @generated
@@ -1538,7 +1538,7 @@ public interface JpaPackage extends EPackage {
         EAttribute JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE = eINSTANCE.getJpaConsumerType_ScheduledPollConsumerType();
 
         /**
-         * The meta object literal for the '<em><b>Initial Delay</b></em>' attribute list feature.
+         * The meta object literal for the '<em><b>Initial Delay</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -1546,7 +1546,7 @@ public interface JpaPackage extends EPackage {
         EAttribute JPA_CONSUMER_TYPE__INITIAL_DELAY = eINSTANCE.getJpaConsumerType_InitialDelay();
 
         /**
-         * The meta object literal for the '<em><b>Delay</b></em>' attribute list feature.
+         * The meta object literal for the '<em><b>Delay</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -1554,7 +1554,7 @@ public interface JpaPackage extends EPackage {
         EAttribute JPA_CONSUMER_TYPE__DELAY = eINSTANCE.getJpaConsumerType_Delay();
 
         /**
-         * The meta object literal for the '<em><b>Use Fixed Delay</b></em>' attribute list feature.
+         * The meta object literal for the '<em><b>Use Fixed Delay</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -1562,7 +1562,7 @@ public interface JpaPackage extends EPackage {
         EAttribute JPA_CONSUMER_TYPE__USE_FIXED_DELAY = eINSTANCE.getJpaConsumerType_UseFixedDelay();
 
         /**
-         * The meta object literal for the '<em><b>Send Empty Message When Idle</b></em>' attribute list feature.
+         * The meta object literal for the '<em><b>Send Empty Message When Idle</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -1570,7 +1570,7 @@ public interface JpaPackage extends EPackage {
         EAttribute JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = eINSTANCE.getJpaConsumerType_SendEmptyMessageWhenIdle();
 
         /**
-         * The meta object literal for the '<em><b>Time Unit</b></em>' attribute list feature.
+         * The meta object literal for the '<em><b>Time Unit</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -1586,7 +1586,7 @@ public interface JpaPackage extends EPackage {
         EAttribute JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE = eINSTANCE.getJpaConsumerType_ScheduledBatchPollConsumerType();
 
         /**
-         * The meta object literal for the '<em><b>Max Messages Per Poll</b></em>' attribute list feature.
+         * The meta object literal for the '<em><b>Max Messages Per Poll</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated

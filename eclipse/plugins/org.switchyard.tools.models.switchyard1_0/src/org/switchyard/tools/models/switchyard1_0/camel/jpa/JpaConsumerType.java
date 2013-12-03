@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getScheduledPollConsumerType <em>Scheduled Poll Consumer Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getTimeUnit <em>Time Unit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getScheduledBatchPollConsumerType <em>Scheduled Batch Poll Consumer Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
@@ -56,168 +56,228 @@ public interface JpaConsumerType extends EObject {
     FeatureMap getScheduledPollConsumerType();
 
     /**
-     * Returns the value of the '<em><b>Initial Delay</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Object}.
+     * Returns the value of the '<em><b>Initial Delay</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Initial Delay</em>' attribute list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Initial Delay</em>' attribute list.
+     * @return the value of the '<em>Initial Delay</em>' attribute.
      * @see #isSetInitialDelay()
      * @see #unsetInitialDelay()
+     * @see #setInitialDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_InitialDelay()
      * @model default="1000" unique="false" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
      * @generated
      */
-    EList<Object> getInitialDelay();
+    Object getInitialDelay();
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute list.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Initial Delay</em>' attribute.
+     * @see #isSetInitialDelay()
+     * @see #unsetInitialDelay()
+     * @see #getInitialDelay()
+     * @generated
+     */
+    void setInitialDelay(Object value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetInitialDelay()
      * @see #getInitialDelay()
+     * @see #setInitialDelay(Object)
      * @generated
      */
     void unsetInitialDelay();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute list is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Initial Delay</em>' attribute list is set.
+     * @return whether the value of the '<em>Initial Delay</em>' attribute is set.
      * @see #unsetInitialDelay()
      * @see #getInitialDelay()
+     * @see #setInitialDelay(Object)
      * @generated
      */
     boolean isSetInitialDelay();
 
     /**
-     * Returns the value of the '<em><b>Delay</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Object}.
+     * Returns the value of the '<em><b>Delay</b></em>' attribute.
+     * The default value is <code>"500"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delay</em>' attribute list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Delay</em>' attribute list.
+     * @return the value of the '<em>Delay</em>' attribute.
      * @see #isSetDelay()
      * @see #unsetDelay()
+     * @see #setDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_Delay()
      * @model default="500" unique="false" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
      * @generated
      */
-    EList<Object> getDelay();
+    Object getDelay();
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}' attribute list.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Delay</em>' attribute.
+     * @see #isSetDelay()
+     * @see #unsetDelay()
+     * @see #getDelay()
+     * @generated
+     */
+    void setDelay(Object value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDelay()
      * @see #getDelay()
+     * @see #setDelay(Object)
      * @generated
      */
     void unsetDelay();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}' attribute list is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Delay</em>' attribute list is set.
+     * @return whether the value of the '<em>Delay</em>' attribute is set.
      * @see #unsetDelay()
      * @see #getDelay()
+     * @see #setDelay(Object)
      * @generated
      */
     boolean isSetDelay();
 
     /**
-     * Returns the value of the '<em><b>Use Fixed Delay</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Boolean}.
+     * Returns the value of the '<em><b>Use Fixed Delay</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Use Fixed Delay</em>' attribute list isn't clear,
+     * If the meaning of the '<em>Use Fixed Delay</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Use Fixed Delay</em>' attribute list.
+     * @return the value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_UseFixedDelay()
      * @model default="false" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='useFixedDelay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
      * @generated
      */
-    EList<Boolean> getUseFixedDelay();
+    boolean isUseFixedDelay();
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute list.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Use Fixed Delay</em>' attribute.
+     * @see #isSetUseFixedDelay()
+     * @see #unsetUseFixedDelay()
+     * @see #isUseFixedDelay()
+     * @generated
+     */
+    void setUseFixedDelay(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetUseFixedDelay()
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     void unsetUseFixedDelay();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute list is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Use Fixed Delay</em>' attribute list is set.
+     * @return whether the value of the '<em>Use Fixed Delay</em>' attribute is set.
      * @see #unsetUseFixedDelay()
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     boolean isSetUseFixedDelay();
 
     /**
-     * Returns the value of the '<em><b>Send Empty Message When Idle</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Boolean}.
+     * Returns the value of the '<em><b>Send Empty Message When Idle</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Send Empty Message When Idle</em>' attribute list isn't clear,
+     * If the meaning of the '<em>Send Empty Message When Idle</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Send Empty Message When Idle</em>' attribute list.
+     * @return the value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_SendEmptyMessageWhenIdle()
      * @model default="false" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='sendEmptyMessageWhenIdle' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
      * @generated
      */
-    EList<Boolean> getSendEmptyMessageWhenIdle();
+    boolean isSendEmptyMessageWhenIdle();
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute list.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Send Empty Message When Idle</em>' attribute.
+     * @see #isSetSendEmptyMessageWhenIdle()
+     * @see #unsetSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
+     * @generated
+     */
+    void setSendEmptyMessageWhenIdle(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     void unsetSendEmptyMessageWhenIdle();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute list is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Send Empty Message When Idle</em>' attribute list is set.
+     * @return whether the value of the '<em>Send Empty Message When Idle</em>' attribute is set.
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     boolean isSetSendEmptyMessageWhenIdle();
 
     /**
-     * Returns the value of the '<em><b>Time Unit</b></em>' attribute list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType}.
+     * Returns the value of the '<em><b>Time Unit</b></em>' attribute.
+     * The default value is <code>"MILLISECONDS"</code>.
      * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType}.
      * <!-- begin-user-doc -->
      * <p>
@@ -225,14 +285,26 @@ public interface JpaConsumerType extends EObject {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Time Unit</em>' attribute list.
+     * @return the value of the '<em>Time Unit</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType
+     * @see #setTimeUnit(TimeUnitType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_TimeUnit()
      * @model default="MILLISECONDS" unique="false" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='timeUnit' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
      * @generated
      */
-    EList<TimeUnitType> getTimeUnit();
+    TimeUnitType getTimeUnit();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getTimeUnit <em>Time Unit</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Time Unit</em>' attribute.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType
+     * @see #getTimeUnit()
+     * @generated
+     */
+    void setTimeUnit(TimeUnitType value);
 
     /**
      * Returns the value of the '<em><b>Scheduled Batch Poll Consumer Type</b></em>' attribute list.
@@ -252,41 +324,56 @@ public interface JpaConsumerType extends EObject {
     FeatureMap getScheduledBatchPollConsumerType();
 
     /**
-     * Returns the value of the '<em><b>Max Messages Per Poll</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Object}.
+     * Returns the value of the '<em><b>Max Messages Per Poll</b></em>' attribute.
+     * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Max Messages Per Poll</em>' attribute list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Max Messages Per Poll</em>' attribute list.
+     * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
      * @see #isSetMaxMessagesPerPoll()
      * @see #unsetMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_MaxMessagesPerPoll()
      * @model default="0" unique="false" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace' group='#ScheduledBatchPollConsumerType:6'"
      * @generated
      */
-    EList<Object> getMaxMessagesPerPoll();
+    Object getMaxMessagesPerPoll();
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute list.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Max Messages Per Poll</em>' attribute.
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #unsetMaxMessagesPerPoll()
+     * @see #getMaxMessagesPerPoll()
+     * @generated
+     */
+    void setMaxMessagesPerPoll(Object value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(Object)
      * @generated
      */
     void unsetMaxMessagesPerPoll();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute list is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Max Messages Per Poll</em>' attribute list is set.
+     * @return whether the value of the '<em>Max Messages Per Poll</em>' attribute is set.
      * @see #unsetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(Object)
      * @generated
      */
     boolean isSetMaxMessagesPerPoll();

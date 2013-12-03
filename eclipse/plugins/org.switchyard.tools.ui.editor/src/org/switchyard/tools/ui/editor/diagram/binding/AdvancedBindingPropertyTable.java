@@ -220,8 +220,12 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                         Long longValue = (Long) value;
                         return longValue.toString();
                     } else if (feature.getEType().getInstanceClass().isAssignableFrom(BigInteger.class)) {
-                        BigInteger bigIntValue = (BigInteger) value;
-                        return bigIntValue.toString();
+                        if (value instanceof String) {
+                            return (String) value;
+                        } else {
+                            BigInteger bigIntValue = (BigInteger) value;
+                            return bigIntValue.toString();
+                        }
                     } else if (isEnum) {
                         Object[] enums = feature.getEType().getInstanceClass().getEnumConstants();
                         for (int i = 0; i < enums.length; i++) {

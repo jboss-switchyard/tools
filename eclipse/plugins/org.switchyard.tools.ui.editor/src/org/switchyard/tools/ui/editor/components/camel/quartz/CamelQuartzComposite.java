@@ -228,7 +228,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                     String dateStr = sdf.format(date);
                     calendar = XMLTypeFactory.eINSTANCE.createDateTime(dateStr);
                 }
-                updateFeature(_binding, "startTime", calendar); //$NON-NLS-1$
+                updateFeature(_binding, "triggerStartTime", calendar); //$NON-NLS-1$
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -241,7 +241,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                     String dateStr = sdf.format(date);
                     calendar = XMLTypeFactory.eINSTANCE.createDateTime(dateStr);
                 }
-                updateFeature(_binding, "endTime", calendar); //$NON-NLS-1$
+                updateFeature(_binding, "triggerEndTime", calendar); //$NON-NLS-1$
             } catch (ParseException e) {
                 e.printStackTrace();
             }

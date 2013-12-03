@@ -28,7 +28,7 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
      */
     public static JpaFactory init() {
         try {
-            JpaFactory theJpaFactory = (JpaFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-jpa:config:1.0"); 
+            JpaFactory theJpaFactory = (JpaFactory)EPackage.Registry.INSTANCE.getEFactory(JpaPackage.eNS_URI);
             if (theJpaFactory != null) {
                 return theJpaFactory;
             }

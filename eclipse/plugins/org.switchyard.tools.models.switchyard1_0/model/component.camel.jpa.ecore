@@ -145,9 +145,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialDelay" unique="false"
-        upperBound="-1" eType="ecore:EDataType config.switchyard.ecore#//PropInteger"
-        volatile="true" transient="true" defaultValueLiteral="1000" unsettable="true"
-        derived="true">
+        eType="ecore:EDataType config.switchyard.ecore#//PropInteger" volatile="true"
+        transient="true" defaultValueLiteral="1000" unsettable="true" derived="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="initialDelay"/>
@@ -155,9 +154,9 @@
         <details key="group" value="#ScheduledPollConsumerType:0"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="delay" unique="false" upperBound="-1"
-        eType="ecore:EDataType config.switchyard.ecore#//PropInteger" volatile="true"
-        transient="true" defaultValueLiteral="500" unsettable="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="delay" unique="false" eType="ecore:EDataType config.switchyard.ecore#//PropInteger"
+        volatile="true" transient="true" defaultValueLiteral="500" unsettable="true"
+        derived="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="delay"/>
@@ -166,7 +165,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="useFixedDelay" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
         volatile="true" transient="true" defaultValueLiteral="false" unsettable="true"
         derived="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -177,7 +176,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sendEmptyMessageWhenIdle"
-        unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
         volatile="true" transient="true" defaultValueLiteral="false" unsettable="true"
         derived="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -188,7 +187,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeUnit" unique="false"
-        upperBound="-1" eType="#//TimeUnitType" volatile="true" transient="true" defaultValueLiteral="MILLISECONDS"
+        eType="#//TimeUnitType" volatile="true" transient="true" defaultValueLiteral="MILLISECONDS"
         derived="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -205,9 +204,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxMessagesPerPoll" unique="false"
-        upperBound="-1" eType="ecore:EDataType config.switchyard.ecore#//PropInteger"
-        volatile="true" transient="true" defaultValueLiteral="0" unsettable="true"
-        derived="true">
+        eType="ecore:EDataType config.switchyard.ecore#//PropInteger" volatile="true"
+        transient="true" defaultValueLiteral="0" unsettable="true" derived="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="maxMessagesPerPoll"/>
