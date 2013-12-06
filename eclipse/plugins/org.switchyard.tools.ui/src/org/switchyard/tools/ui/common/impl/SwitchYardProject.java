@@ -343,6 +343,10 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
         return _plugin;
     }
 
+    protected IMavenProjectFacade getMavenProjectFacade() {
+        return _mavenProjectFacade;
+    }
+
     /* package */
     void dispose() {
         MavenPlugin.getMavenProjectRegistry().removeMavenProjectChangedListener(this);
