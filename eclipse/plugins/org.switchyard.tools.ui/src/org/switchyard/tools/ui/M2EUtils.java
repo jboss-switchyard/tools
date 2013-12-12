@@ -30,6 +30,7 @@ import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.embedder.IMaven;
@@ -181,7 +182,8 @@ public final class M2EUtils {
             MavenRepositorySystemSession session = new MavenRepositorySystemSession();
             session.setLocalRepositoryManager(repoSystem.newLocalRepositoryManager(new LocalRepository(localRepository
                     .getBasedir())));
-            session.setTransferListener(((MavenImpl) maven).createArtifactTransferListener(monitor));
+            // use null progress to prevent SWTException: invalid thread access
+            session.setTransferListener(((MavenImpl) maven).createArtifactTransferListener(new NullProgressMonitor()));
             VersionRangeRequest rangeRequest = new VersionRangeRequest(artifact, getRemoteRepositories(), null);
             return repoSystem.resolveVersionRange(session, rangeRequest);
         } catch (Exception e) {

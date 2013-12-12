@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.facets;
 import static org.switchyard.tools.ui.M2EUtils.resolveSwitchYardVersionRange;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
@@ -192,13 +193,13 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
             try {
                 _versions = resolveSwitchYardVersionRange(new NullProgressMonitor()).getVersions();
             } catch (CoreException e) {
-                _versions = Collections.emptyList();
+                _versions = new ArrayList<Version>();
             }
         } else {
             try {
                 _versions = resolveSwitchYardVersionRange(new NullProgressMonitor()).getVersions();
             } catch (CoreException e) {
-                _versions = Collections.emptyList();
+                _versions = new ArrayList<Version>();
             }
         }
         _originalRuntimes = ifpwc.getTargetedRuntimes();

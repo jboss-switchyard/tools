@@ -484,8 +484,6 @@ public class SwitchYardSettingsGroup {
                             // TODO: use preferences
                             _runtimesList.setSelection(new StructuredSelection(_initialComponent), true);
                         }
-                    } catch (CoreException e) {
-                        throw new InvocationTargetException(e);
                     } finally {
                         monitor.done();
                     }
@@ -540,8 +538,12 @@ public class SwitchYardSettingsGroup {
     }
 
     @SuppressWarnings("unchecked")
-    private void populateRuntimeVersionsList(IProgressMonitor monitor) throws CoreException {
-        _availableVersions = filterSwitchYardVersions(resolveSwitchYardVersionRange(monitor).getVersions());
+    private void populateRuntimeVersionsList(IProgressMonitor monitor) {
+        try {
+            _availableVersions = filterSwitchYardVersions(resolveSwitchYardVersionRange(monitor).getVersions());
+        } catch (Exception e) {
+            _availableVersions = new LinkedHashSet<Version>();
+        }
         // add default version
         final Version defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
         _availableVersions.add(defaultVersion);
