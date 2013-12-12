@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.property.composite;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -125,7 +126,11 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
             @Override
             public void widgetSelected(SelectionEvent e) {
                 IStructuredSelection ssel = (IStructuredSelection) _tableViewer.getSelection();
-                removeTransform((TransformType) ssel.getFirstElement());
+                if (ssel.size() == 1) {
+                    removeTransform((TransformType) ssel.getFirstElement());
+                } else {
+                    removeTransforms(ssel);
+                }
             }
 
             @Override
@@ -137,7 +142,7 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
         TableColumnLayout tableLayout = new TableColumnLayout();
         Composite tableComposite = _toolkit.createComposite(this);
         tableComposite.setLayout(tableLayout);
-        _tableViewer = new TableViewer(tableComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
+        _tableViewer = new TableViewer(tableComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
                 | SWT.FULL_SELECTION);
         
         Label legend = new Label(this, SWT.NONE);
@@ -319,6 +324,26 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
             return null;
         }
         return null;
+    }
+
+    private void removeTransforms(final IStructuredSelection ssel) {
+        if (ssel != null && _domain != null) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                @Override
+                protected void doExecute() {
+                    SwitchYardType switchYardRoot = getSwitchYardRoot(_composite);
+                    TransformsType transforms = switchYardRoot.getTransforms();
+                    Iterator<?> transformIter = ssel.iterator();
+                    while (transformIter.hasNext()) {
+                        TransformType transform = (TransformType) transformIter.next();
+                        int index = transforms.getTransform().indexOf(transform);
+                        EStructuralFeature feature = transforms.eClass().getEStructuralFeature("transform"); //$NON-NLS-1$
+                        removeListItem(transforms, feature, index);
+                    }
+                }
+            });
+            refresh();
+        }
     }
 
     private void removeTransform(final TransformType selected) {
