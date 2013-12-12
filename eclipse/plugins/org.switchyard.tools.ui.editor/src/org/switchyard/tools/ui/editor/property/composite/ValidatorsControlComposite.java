@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property.composite;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -141,7 +142,11 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
             @Override
             public void widgetSelected(SelectionEvent e) {
                 IStructuredSelection ssel = (IStructuredSelection) _tableViewer.getSelection();
-                removeValidator((ValidateType) ssel.getFirstElement());
+                if (ssel.size() == 1) {
+                    removeValidator((ValidateType) ssel.getFirstElement());
+                } else {
+                    removeValidators(ssel);
+                }
             }
 
             @Override
@@ -153,7 +158,7 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
         TableColumnLayout tableLayout = new TableColumnLayout();
         Composite tableComposite = _toolkit.createComposite(this);
         tableComposite.setLayout(tableLayout);
-        _tableViewer = new TableViewer(tableComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
+        _tableViewer = new TableViewer(tableComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
                 | SWT.FULL_SELECTION);
         
         Label legend = new Label(this, SWT.NONE);
@@ -261,12 +266,17 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
     }
 
     private void handleSelectListItem() {
+        IStructuredSelection ssel = (IStructuredSelection) _tableViewer.getSelection();
+        boolean singleSelect = false;
+        if (ssel != null && ssel.size() == 1) {
+            singleSelect = true;
+        }
         if (_removeButton != null && !_removeButton.isDisposed() && _editButton != null && !_editButton.isDisposed()) {
             URI _modelUri = URI.createPlatformResourceURI(
                 SwitchyardSCAEditor.getActiveEditor().getModelFile().getFullPath().toString(), true);
             if (_validator.eResource().getURI().equals(_modelUri)) {
                 _removeButton.setEnabled(_validator != null);
-                _editButton.setEnabled(_validator != null);
+                _editButton.setEnabled(_validator != null && singleSelect);
             } else {
                 _removeButton.setEnabled(false);
                 _editButton.setEnabled(false);
@@ -353,6 +363,34 @@ public class ValidatorsControlComposite extends AbstractModelComposite<org.eclip
             }
         }
         return null;
+    }
+
+    private void removeValidators(final IStructuredSelection ssel) {
+        if (ssel != null && _domain != null) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                @Override
+                protected void doExecute() {
+                    SwitchYardType switchYardRoot = getSwitchYardRoot(_composite);
+                    ValidatesType validators = switchYardRoot.getValidates();
+                    Iterator<?> validatorIter = ssel.iterator();
+                    while (validatorIter.hasNext()) {
+                        Object next = validatorIter.next();
+                        if (next instanceof XmlValidateType) {
+                            XmlValidateType validator = (XmlValidateType) next;
+                            int index = validators.getValidate().indexOf(validator);
+                            EStructuralFeature feature = validators.eClass().getEStructuralFeature("validate"); //$NON-NLS-1$
+                            removeListItem(validators, feature, index);
+                        } else if (next instanceof JavaValidateType) {
+                            JavaValidateType validator = (JavaValidateType) next;
+                            int index = validators.getValidate().indexOf(validator);
+                            EStructuralFeature feature = validators.eClass().getEStructuralFeature("validate"); //$NON-NLS-1$
+                            removeListItem(validators, feature, index);
+                        }
+                    }
+                }
+            });
+            refresh();
+        }
     }
 
     private void removeValidator(final ValidateType selected) {
