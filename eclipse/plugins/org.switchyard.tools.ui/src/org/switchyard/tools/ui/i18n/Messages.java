@@ -805,6 +805,8 @@ public final class Messages extends NLS {
     public static String WSDLPortTypeSelectionDialog_labelSelectPortType;
 
     public static String WSDLPortTypeSelectionDialog_validateMessage_SelectWSDLFileAndPortType;
+    
+    public static String InterfaceControl_DefaultESBInterface_ServiceName;
 
     static {
         // initialize resource bundle

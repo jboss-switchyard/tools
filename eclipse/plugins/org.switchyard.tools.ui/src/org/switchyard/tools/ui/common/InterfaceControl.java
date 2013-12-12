@@ -48,6 +48,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.impl.ESBInterfaceControlAdapter;
@@ -209,6 +210,8 @@ public class InterfaceControl implements ISelectionProvider {
                 return matcher.group(1);
             }
             return ""; //$NON-NLS-1$
+        } else if (intf instanceof EsbInterface) {
+            return Messages.InterfaceControl_DefaultESBInterface_ServiceName;
         }
         return ""; //$NON-NLS-1$
     }
