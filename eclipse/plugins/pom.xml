@@ -24,6 +24,7 @@
     <module>org.switchyard.tools.m2e</module>
     <module>org.switchyard.tools.core</module>
     <module>org.switchyard.tools.ui</module>
+    <module>org.switchyard.tools.ui.debug</module>
     <module>org.switchyard.tools.ui.editor</module>
     <module>org.switchyard.tools.ui.bpmn2</module>
     <module>org.switchyard.tools.ui.bpel</module>

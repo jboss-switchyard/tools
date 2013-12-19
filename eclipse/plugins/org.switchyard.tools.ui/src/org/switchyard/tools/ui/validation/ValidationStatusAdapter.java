@@ -11,9 +11,12 @@
 package org.switchyard.tools.ui.validation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
@@ -32,11 +35,53 @@ import org.switchyard.tools.ui.Activator;
 public class ValidationStatusAdapter extends AdapterImpl {
 
     private List<IStatus> _validationStatus = new ArrayList<IStatus>();
+    private Set<String> _breakpoints = new HashSet<String>();
     private Map<EObject, List<IStatus>> _connectionStatus = new HashMap<EObject, List<IStatus>>();
 
     @Override
     public boolean isAdapterForType(Object type) {
         return type instanceof Class && ((Class<?>) type).isAssignableFrom(getClass());
+    }
+
+    /**
+     * @return the breakpoint types associated with this object.
+     */
+    public Set<String> getBreakpoints() {
+        return Collections.unmodifiableSet(_breakpoints);
+    }
+
+    /**
+     * @param type the ID of the breakpoint type
+     * @return true if there is a breakpoint of the specified type associated
+     *         with this object.
+     */
+    public boolean hasBreakpoints(String type) {
+        return _breakpoints.contains(type);
+    }
+
+    /**
+     * @return true if there are breakpoints associated with this object.
+     */
+    public boolean hasBreakpoints() {
+        return _breakpoints.size() > 0;
+    }
+
+    /**
+     * The related object has breakpoints.
+     * 
+     * @param type the ID of the breakpoint type
+     */
+    public void addBreakpoint(String type) {
+        _breakpoints.add(type);
+    }
+
+    /**
+     * The related object has no breakpoints.
+     * 
+     * @param type the ID of the breakpoint type
+     */
+    public void removeBreakpoint(String type) {
+        _breakpoints.remove(type);
     }
 
     /**

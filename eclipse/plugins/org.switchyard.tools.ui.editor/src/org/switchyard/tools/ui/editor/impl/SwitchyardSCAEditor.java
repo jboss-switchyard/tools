@@ -44,6 +44,9 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.IBreakpointsListener;
+import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -130,6 +133,10 @@ import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener;
+import org.switchyard.tools.ui.debug.DelegatingJavaBreakpoint;
+import org.switchyard.tools.ui.debug.IInteractionConfiguration;
+import org.switchyard.tools.ui.debug.InteractionConfigurationBuilder;
+import org.switchyard.tools.ui.debug.SwitchYardDebugUtil;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.PropertiesDialogFeature;
@@ -165,6 +172,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     private IFile _targetModelFile;
     private IFile _diagramFile;
     private IResourceChangeListener _workspaceListener;
+    private IBreakpointsListener _breakpointsListener;
     private ISwitchYardProjectListener _switchYardProjectListener;
     private boolean _needsSynchronization;
 
@@ -289,7 +297,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         final MergedModelAdapterFactory mergeAdapter = MergedModelUtil.getAdapterFactory(getResourceSet());
         Set<EObject> touched = new LinkedHashSet<EObject>();
         for (IMarker marker : markers) {
-            EObject markedObject = getTargetObject(marker, mergeAdapter);
+            EObject markedObject = getTargetObject(marker.getAttribute(EValidator.URI_ATTRIBUTE, null), mergeAdapter);
             if (markedObject == null) {
                 continue;
             }
@@ -303,8 +311,48 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         return touched;
     }
 
-    private EObject getTargetObject(IMarker marker, MergedModelAdapterFactory mergeAdapter) {
-        final String uriString = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
+    private Set<EObject> loadBreakpointStatus(IBreakpoint[] breakpoints) {
+        if (breakpoints == null) {
+            return Collections.emptySet();
+        }
+        final IProject project = _modelFile == null ? null : _modelFile.getProject();
+        if (project == null) {
+            return Collections.emptySet();
+        }
+        final MergedModelAdapterFactory mergeAdapter = MergedModelUtil.getAdapterFactory(getResourceSet());
+        final Set<EObject> touched = new LinkedHashSet<EObject>();
+        for (IBreakpoint breakpoint : breakpoints) {
+            try {
+                if (breakpoint == null || !project.equals(breakpoint.getMarker().getResource().getProject())) {
+                    continue;
+                }
+                final IMarker marker = breakpoint.getMarker();
+                String uri = marker.getAttribute(InteractionConfigurationBuilder.CONSUMER_URI_KEY, null);
+                if (uri == null) {
+                    uri = marker.getAttribute(InteractionConfigurationBuilder.PROVIDER_URI_KEY, null);
+                }
+                if (uri == null) {
+                    // we'll associate it with the composite
+                    uri = "switchyard:generated#//@switchyard/@composite";
+                }
+                final EObject markedObject = getTargetObject(uri, mergeAdapter);
+                if (markedObject == null) {
+                    continue;
+                }
+                final ValidationStatusAdapter statusAdapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter(
+                        markedObject, ValidationStatusAdapter.class);
+                if (statusAdapter != null) {
+                    statusAdapter.addBreakpoint(marker.getType());
+                    touched.add(markedObject);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return touched;
+    }
+
+    private EObject getTargetObject(String uriString, MergedModelAdapterFactory mergeAdapter) {
         final URI uri = uriString == null ? null : URI.createURI(uriString);
         if (uri == null) {
             return null;
@@ -431,7 +479,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
     @Override
     public void gotoMarker(IMarker marker) {
-        final EObject target = getTargetObject(marker, MergedModelUtil.getAdapterFactory(getResourceSet()));
+        final EObject target = getTargetObject(marker.getAttribute(EValidator.URI_ATTRIBUTE, null), MergedModelUtil.getAdapterFactory(getResourceSet()));
         if (target == null) {
             return;
         }
@@ -565,13 +613,50 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                     });
                 }
             };
+            _breakpointsListener = new IBreakpointsListener() {
+                @Override
+                public void breakpointsRemoved(final IBreakpoint[] breakpoints, final IMarkerDelta[] deltas) {
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                        public void run() {
+                            if (breakpoints == null || getGraphicalControl() == null || getGraphicalControl().isDisposed()) {
+                                return;
+                            }
+                            removeBreakpoints(breakpoints);
+                        };
+                    });
+                }
+                
+                @Override
+                public void breakpointsChanged(final IBreakpoint[] breakpoints, final IMarkerDelta[] deltas) {
+                }
+                
+                @Override
+                public void breakpointsAdded(final IBreakpoint[] breakpoints) {
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                        public void run() {
+                            if (breakpoints == null || getGraphicalControl() == null || getGraphicalControl().isDisposed()) {
+                                return;
+                            }
+                            final IFeatureProvider featureProvider = getDiagramTypeProvider().getFeatureProvider();
+                            for (EObject eobject : loadBreakpointStatus(breakpoints)) {
+                                PictogramElement pe = featureProvider.getPictogramElementForBusinessObject(eobject);
+                                if (pe != null) {
+                                    getDiagramBehavior().getRefreshBehavior().refreshRenderingDecorators(pe);
+                                }
+                            }
+                        };
+                    });
+                }
+            };
         }
         _modelFile.getWorkspace().addResourceChangeListener(_workspaceListener, IResourceChangeEvent.POST_BUILD);
+        DebugPlugin.getDefault().getBreakpointManager().addBreakpointListener(_breakpointsListener);
     }
 
     private void removeWorkspaceListener() {
         if (_workspaceListener != null) {
             _modelFile.getWorkspace().removeResourceChangeListener(_workspaceListener);
+            DebugPlugin.getDefault().getBreakpointManager().removeBreakpointListener(_breakpointsListener);
         }
     }
 
@@ -667,7 +752,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             }
         } else {
             for (IMarker marker : deletedMarkers) {
-                final EObject eobject = getTargetObject(marker, mergeAdapter);
+                final EObject eobject = getTargetObject(marker.getAttribute(EValidator.URI_ATTRIBUTE, null), mergeAdapter);
                 if (eobject == null) {
                     continue;
                 }
@@ -681,6 +766,52 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             }
         }
         updatedObjects.addAll(loadValidationStatus(newMarkers));
+        final IFeatureProvider featureProvider = getDiagramTypeProvider().getFeatureProvider();
+        for (EObject eobject : updatedObjects) {
+            PictogramElement pe = featureProvider.getPictogramElementForBusinessObject(eobject);
+            if (pe != null) {
+                getDiagramBehavior().getRefreshBehavior().refreshRenderingDecorators(pe);
+            }
+        }
+    }
+
+    private void removeBreakpoints(final IBreakpoint[] breakpoints) {
+        if (breakpoints == null || getGraphicalControl().isDisposed()) {
+            return;
+        }
+
+        final Set<EObject> updatedObjects = new LinkedHashSet<EObject>();
+        final MergedModelAdapterFactory mergeAdapter = MergedModelUtil.getAdapterFactory(getEditingDomain()
+                .getResourceSet());
+        for (IBreakpoint breakpoint : breakpoints) {
+            if (!(breakpoint instanceof DelegatingJavaBreakpoint)) {
+                continue;
+            }
+            final IInteractionConfiguration config = ((DelegatingJavaBreakpoint<?>) breakpoint)
+                    .getInteractionConfiguration();
+            if (config == null) {
+                continue;
+            }
+            String uri = config.getConsumerUri();
+            if (uri == null) {
+                uri = config.getProviderUri();
+            }
+            if (uri == null) {
+                // we'll associate it with the composite
+                uri = "switchyard:generated#//@switchyard/@composite";
+            }
+            EObject eobject = getTargetObject(uri, mergeAdapter);
+            if (eobject == null) {
+                continue;
+            }
+            final ValidationStatusAdapter adapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter(eobject,
+                    ValidationStatusAdapter.class);
+            if (adapter == null) {
+                continue;
+            }
+            adapter.removeBreakpoint(((DelegatingJavaBreakpoint<?>) breakpoint).getMarkerId());
+            updatedObjects.add(eobject);
+        }
         final IFeatureProvider featureProvider = getDiagramTypeProvider().getFeatureProvider();
         for (EObject eobject : updatedObjects) {
             PictogramElement pe = featureProvider.getPictogramElementForBusinessObject(eobject);
@@ -782,6 +913,15 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             try {
                 loadValidationStatus(Arrays.asList(_modelFile.findMarkers(
                         SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true, IResource.DEPTH_ZERO)));
+                final List<IBreakpoint> breakpoints = new ArrayList<IBreakpoint>();
+                for (IMarker marker : _modelFile.getProject().findMarkers(
+                        SwitchYardDebugUtil.BASE_BREAKPOINT_MARKER_ID, true, IResource.DEPTH_ZERO)) {
+                    final IBreakpoint breakpoint = DebugPlugin.getDefault().getBreakpointManager().getBreakpoint(marker);
+                    if (marker != null) {
+                        breakpoints.add(breakpoint);
+                    }
+                }
+                loadBreakpointStatus(breakpoints.toArray(new IBreakpoint[breakpoints.size()]));
             } catch (CoreException e) {
                 Activator.logStatus(e.getStatus());
             }

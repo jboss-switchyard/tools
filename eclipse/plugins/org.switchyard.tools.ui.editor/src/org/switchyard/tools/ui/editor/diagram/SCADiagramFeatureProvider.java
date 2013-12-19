@@ -192,10 +192,10 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
         Collections.sort(features, new Comparator<ICreateFeature>() {
             @Override
-             public int compare(ICreateFeature o1, ICreateFeature o2) {
-                 return o1.getName().compareTo(o2.getName());
-             } 
-         });
+            public int compare(ICreateFeature o1, ICreateFeature o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
 
         return features;
     }
@@ -218,10 +218,10 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             features.addAll(Arrays.asList(extension.newCreateFeatures(this)));
         }
         Collections.sort(features, new Comparator<ICreateFeature>() {
-           @Override
+            @Override
             public int compare(ICreateFeature o1, ICreateFeature o2) {
                 return o1.getName().compareTo(o2.getName());
-            } 
+            }
         });
 
         return features;
@@ -361,10 +361,13 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             } else if (bo instanceof Composite) {
                 features.add(new RecreateDiagramFeature(this));
                 features.add(new CustomAddTransformFeature(this));
+                features.add(new ToggleTransformBreakpointFeature(this, context));
+                features.add(new ToggleValidateBreakpointFeature(this, context));
             }
             if (bo instanceof Contract) {
                 final Interface intf = ((Contract) bo).getInterface();
                 features.add(new CreateServiceTestCustomFeature(this));
+                features.add(new ToggleServiceBreakpointFeature(this, context));
                 if (intf instanceof JavaInterface) {
                     features.add(new Java2WSDLCustomFeature(this));
                 } else if (intf instanceof WSDLPortType) {
@@ -376,6 +379,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             // }
             if (pes[0] instanceof Connection) {
                 features.add(new CustomAddTransformFeature(this));
+                features.add(new ToggleServiceBreakpointFeature(this, context));
             }
         }
         features.add(new SynchronizeGeneratedModelFeature(this));

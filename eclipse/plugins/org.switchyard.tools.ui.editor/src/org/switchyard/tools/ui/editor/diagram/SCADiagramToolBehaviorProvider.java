@@ -73,6 +73,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.ui.debug.SwitchYardDebugUtil;
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
@@ -350,12 +351,12 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         ValidationStatusAdapter statusAdapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter((EObject) bo,
                 ValidationStatusAdapter.class);
         if (statusAdapter != null) {
-            final IImageDecorator decorator = createDecorator(statusAdapter.getValidationStatus());
+            IImageDecorator decorator = createDecorator(statusAdapter.getValidationStatus());
+            GraphicsAlgorithm ga = getSelectionBorder(pe);
+            if (ga == null) {
+                ga = pe.getGraphicsAlgorithm();
+            }
             if (decorator != null) {
-                GraphicsAlgorithm ga = getSelectionBorder(pe);
-                if (ga == null) {
-                    ga = pe.getGraphicsAlgorithm();
-                }
                 if (bo instanceof Composite) {
                     decorator.setX(ga.getX()+5);
                     decorator.setY(ga.getY()+5);
@@ -364,6 +365,25 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     decorator.setY(ga.getHeight() - 10 - (needsOffset ? 8 : 0));
                 }
                 decorators.add(decorator);
+            }
+            // breakpoints
+            int additionalOffset = 0;
+            for (String type : statusAdapter.getBreakpoints()) {
+                final String imageId;
+                if (type.equals(SwitchYardDebugUtil.SERVICE_INTERACTION_BREAKPOINT_MARKER_ID)) {
+                    imageId = ImageProvider.IMG_16_SERVICE_WATCH;
+                } else if (type.equals(SwitchYardDebugUtil.TRANSFORM_BREAKPOINT_MARKER_ID)) {
+                    imageId = ImageProvider.IMG_16_TRANSFORM_WATCH;
+                } else if (type.equals(SwitchYardDebugUtil.VALIDATE_BREAKPOINT_MARKER_ID)) {
+                    imageId = ImageProvider.IMG_16_VALIDATE_WATCH;
+                } else {
+                    continue;
+                }
+                decorator = new ImageDecorator(imageId);
+                decorator.setX(-5 + (bo instanceof Composite ? ga.getWidth() - 20 : needsOffset ? pe.getGraphicsAlgorithm().getWidth() - 40 : 0) + additionalOffset);
+                decorator.setY(-8 + (bo instanceof Composite ? StyleUtil.COMPOSITE_OUTER_EDGE + 13 : needsOffset ? pe.getGraphicsAlgorithm().getHeight() - 10 : 0));
+                decorators.add(decorator);
+                additionalOffset += 25;
             }
         }
 
@@ -651,6 +671,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateComponentFeatures()) {
                 addCreateFeatureAsContextButtonToPad(cf, createContext, addComponentButton);
             }
+            addBreakpointButtons(data, customContext);
         } else {
             if (bo instanceof ComponentService) {
                 SCADiagramCustomPromoteServiceFeature promote = new SCADiagramCustomPromoteServiceFeature(getFeatureProvider());
@@ -743,11 +764,22 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                         data.getDomainSpecificContextButtons().add(new ContextButtonEntry(wsdl2Java, customContext));
                     }
                 }
+                ToggleServiceBreakpointFeature toggleBreakpoint = new ToggleServiceBreakpointFeature(getFeatureProvider(), customContext);
+                data.getDomainSpecificContextButtons().add(new ContextButtonEntry(toggleBreakpoint, customContext));
             }
             setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
         }
         
         return data;
+    }
+
+    private void addBreakpointButtons(IContextButtonPadData data, ICustomContext customContext) {
+        ContextButtonEntry toggleBreakpoints = new ContextButtonEntry(null, customContext);
+        toggleBreakpoints.setIconId(ImageProvider.IMG_16_SERVICE_WATCH);
+        toggleBreakpoints.setText("Breakpoints");
+        toggleBreakpoints.addContextButtonMenuEntry(new ContextButtonEntry(new ToggleTransformBreakpointFeature(getFeatureProvider(), customContext), customContext));
+        toggleBreakpoints.addContextButtonMenuEntry(new ContextButtonEntry(new ToggleValidateBreakpointFeature(getFeatureProvider(), customContext), customContext));
+        data.getDomainSpecificContextButtons().add(toggleBreakpoints);
     }
 
     @Override
