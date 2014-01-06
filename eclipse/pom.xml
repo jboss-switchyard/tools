@@ -21,7 +21,7 @@
 
   <properties>
     <tycho-version>0.16.0</tycho-version>
-    <version.jbtis.target-platform>4.1.5.Beta2</version.jbtis.target-platform>
+    <version.jbtis.target-platform>4.1.5.Final</version.jbtis.target-platform>
   </properties>
 
   <modules>
