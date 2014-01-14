@@ -116,7 +116,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             @Override
             public void widgetSelected(SelectionEvent e) {
                 handleClassLink(_composerClassText, _newComposerClassLink,
-                        "org.switchyard.component.common.composer.MessageComposer"); //$NON-NLS-1$
+                        "org.switchyard.component.common.composer.MessageComposer<T>"); //$NON-NLS-1$
             }
         });
 
@@ -144,7 +144,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             @Override
             public void widgetSelected(SelectionEvent e) {
                 handleClassLink(_mapperClassText, _newMapperClassLink,
-                        "org.switchyard.component.common.composer.ContextMapper"); //$NON-NLS-1$
+                        "org.switchyard.component.common.composer.ContextMapper<T>"); //$NON-NLS-1$
             }
         });
 
@@ -617,7 +617,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         ArrayList<String> interfaces = new ArrayList<String>();
         if (interfaceName != null && interfaceName.trim().length() > 0) {
             interfaces.add(interfaceName);
-            page.setSuperInterfaces(interfaces, false);
+            page.setSuperInterfaces(interfaces, true);
         }
         IPackageFragmentRoot packRoot = null;
         if (project != null) { //$NON-NLS-1$
