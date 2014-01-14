@@ -45,6 +45,7 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
@@ -55,6 +56,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
@@ -236,7 +238,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         _browseBtnConfigWorkspace.setLayoutData(btnConfigGD);
         _browseBtnConfigWorkspace.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
-                String result = selectResourceFromWorkspace(_panel.getShell(), "*.xml"); //$NON-NLS-1$
+                String result = selectConfigFileWorkspace(_panel.getShell(), "*.xml"); //$NON-NLS-1$
                 if (result != null) {
                     _configFileText.setText(result);
                     setHasChanged(true);
@@ -675,6 +677,22 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             IResource resource = javaProject.getProject().getWorkspace().getRoot().getFile(filePath);
             filePath = JavaUtil.getJavaPathForResource(resource);
             return filePath.toString();
+        }
+        return null;
+    }
+
+    private String selectConfigFileWorkspace(Shell shell, final String extension) {
+        IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
+        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(shell,
+                modelFile == null ? ResourcesPlugin.getWorkspace().getRoot() : modelFile.getProject());
+        dialog.setInitialPattern(extension);
+        if (dialog.open() == SelectionDialog.OK) {
+            Object[] result = dialog.getResult();
+            if (result.length > 0 && result[0] instanceof IFile) {
+                IFile file = (IFile) result[0];
+                String filePath = JavaUtil.getJavaPathForResource(file).toString();
+                return filePath.toString();
+            }
         }
         return null;
     }
