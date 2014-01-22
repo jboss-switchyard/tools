@@ -95,6 +95,7 @@ public class CamelNettyUDPBindingTypeExtension implements IBindingTypeExtension 
         ADVANCED_PROPS.add("sendBufferSize"); //$NON-NLS-1$
         ADVANCED_PROPS.add("ssl"); //$NON-NLS-1$
         ADVANCED_PROPS.add("sslHandler"); //$NON-NLS-1$
+        ADVANCED_PROPS.add("needClientAuth"); //$NON-NLS-1$
         ADVANCED_PROPS.add("passphrase"); //$NON-NLS-1$
         ADVANCED_PROPS.add("securityProvider"); //$NON-NLS-1$
         ADVANCED_PROPS.add("keyStoreFormat"); //$NON-NLS-1$

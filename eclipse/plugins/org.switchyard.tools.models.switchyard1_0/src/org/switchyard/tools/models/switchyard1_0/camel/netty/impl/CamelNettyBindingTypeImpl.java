@@ -26,6 +26,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSendBufferSize <em>Send Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isSsl <em>Ssl</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSslHandler <em>Ssl Handler</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isNeedClientAuth <em>Need Client Auth</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getPassphrase <em>Passphrase</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSecurityProvider <em>Security Provider</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getKeyStoreFormat <em>Key Store Format</em>}</li>
@@ -200,6 +201,35 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @ordered
      */
     protected String sslHandler = SSL_HANDLER_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isNeedClientAuth() <em>Need Client Auth</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isNeedClientAuth()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean NEED_CLIENT_AUTH_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isNeedClientAuth() <em>Need Client Auth</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isNeedClientAuth()
+     * @generated
+     * @ordered
+     */
+    protected boolean needClientAuth = NEED_CLIENT_AUTH_EDEFAULT;
+
+    /**
+     * This is true if the Need Client Auth attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean needClientAuthESet;
 
     /**
      * The default value of the '{@link #getPassphrase() <em>Passphrase</em>}' attribute.
@@ -756,6 +786,52 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isNeedClientAuth() {
+        return needClientAuth;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setNeedClientAuth(boolean newNeedClientAuth) {
+        boolean oldNeedClientAuth = needClientAuth;
+        needClientAuth = newNeedClientAuth;
+        boolean oldNeedClientAuthESet = needClientAuthESet;
+        needClientAuthESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__NEED_CLIENT_AUTH, oldNeedClientAuth, needClientAuth, !oldNeedClientAuthESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetNeedClientAuth() {
+        boolean oldNeedClientAuth = needClientAuth;
+        boolean oldNeedClientAuthESet = needClientAuthESet;
+        needClientAuth = NEED_CLIENT_AUTH_EDEFAULT;
+        needClientAuthESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__NEED_CLIENT_AUTH, oldNeedClientAuth, NEED_CLIENT_AUTH_EDEFAULT, oldNeedClientAuthESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetNeedClientAuth() {
+        return needClientAuthESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getPassphrase() {
         return passphrase;
     }
@@ -1169,6 +1245,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 return isSsl();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
                 return getSslHandler();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__NEED_CLIENT_AUTH:
+                return isNeedClientAuth();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
                 return getPassphrase();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER:
@@ -1224,6 +1302,9 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
                 setSslHandler((String)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__NEED_CLIENT_AUTH:
+                setNeedClientAuth((Boolean)newValue);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
                 setPassphrase((String)newValue);
@@ -1294,6 +1375,9 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
                 setSslHandler(SSL_HANDLER_EDEFAULT);
                 return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__NEED_CLIENT_AUTH:
+                unsetNeedClientAuth();
+                return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
                 setPassphrase(PASSPHRASE_EDEFAULT);
                 return;
@@ -1357,6 +1441,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 return isSetSsl();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
                 return SSL_HANDLER_EDEFAULT == null ? sslHandler != null : !SSL_HANDLER_EDEFAULT.equals(sslHandler);
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__NEED_CLIENT_AUTH:
+                return isSetNeedClientAuth();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
                 return PASSPHRASE_EDEFAULT == null ? passphrase != null : !PASSPHRASE_EDEFAULT.equals(passphrase);
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER:
@@ -1409,6 +1495,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
         if (sslESet) result.append(ssl); else result.append("<unset>");
         result.append(", sslHandler: ");
         result.append(sslHandler);
+        result.append(", needClientAuth: ");
+        if (needClientAuthESet) result.append(needClientAuth); else result.append("<unset>");
         result.append(", passphrase: ");
         result.append(passphrase);
         result.append(", securityProvider: ");

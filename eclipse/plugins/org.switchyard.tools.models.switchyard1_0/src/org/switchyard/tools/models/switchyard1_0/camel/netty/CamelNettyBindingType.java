@@ -16,6 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.netty;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSsl <em>Ssl</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslHandler <em>Ssl Handler</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isNeedClientAuth <em>Need Client Auth</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPassphrase <em>Passphrase</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSecurityProvider <em>Security Provider</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFormat <em>Key Store Format</em>}</li>
@@ -309,6 +310,60 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @generated
      */
     void setSslHandler(String value);
+
+    /**
+     * Returns the value of the '<em><b>Need Client Auth</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Need Client Auth</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Need Client Auth</em>' attribute.
+     * @see #isSetNeedClientAuth()
+     * @see #unsetNeedClientAuth()
+     * @see #setNeedClientAuth(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_NeedClientAuth()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='needClientAuth' namespace='##targetNamespace'"
+     * @generated
+     */
+    boolean isNeedClientAuth();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isNeedClientAuth <em>Need Client Auth</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Need Client Auth</em>' attribute.
+     * @see #isSetNeedClientAuth()
+     * @see #unsetNeedClientAuth()
+     * @see #isNeedClientAuth()
+     * @generated
+     */
+    void setNeedClientAuth(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isNeedClientAuth <em>Need Client Auth</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetNeedClientAuth()
+     * @see #isNeedClientAuth()
+     * @see #setNeedClientAuth(boolean)
+     * @generated
+     */
+    void unsetNeedClientAuth();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isNeedClientAuth <em>Need Client Auth</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Need Client Auth</em>' attribute is set.
+     * @see #unsetNeedClientAuth()
+     * @see #isNeedClientAuth()
+     * @see #setNeedClientAuth(boolean)
+     * @generated
+     */
+    boolean isSetNeedClientAuth();
 
     /**
      * Returns the value of the '<em><b>Passphrase</b></em>' attribute.

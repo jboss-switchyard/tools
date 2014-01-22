@@ -771,6 +771,10 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                         Messages.error_errorLoadingFile, _modelFile.getName(), e.getLocalizedMessage()), e));
             }
 
+            // support reloading
+            if (_mergedModelAdapterFactory != null) {
+                getEditingDomain().getResourceSet().getAdapterFactories().remove(_mergedModelAdapterFactory);
+            }
             _mergedModelAdapterFactory = new MergedModelAdapterFactory(switchYardResource);
             getEditingDomain().getResourceSet().getAdapterFactories().add(_mergedModelAdapterFactory);
 

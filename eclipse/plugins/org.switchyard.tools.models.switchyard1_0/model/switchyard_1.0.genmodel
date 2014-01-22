@@ -3110,6 +3110,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/sendBufferSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/ssl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/sslHandler"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/needClientAuth"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/passphrase"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/securityProvider"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.netty.ecore#//CamelNettyBindingType/keyStoreFormat"/>
