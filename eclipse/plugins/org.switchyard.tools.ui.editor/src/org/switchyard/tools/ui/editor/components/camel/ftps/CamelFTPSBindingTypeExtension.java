@@ -74,6 +74,7 @@ public class CamelFTPSBindingTypeExtension implements IBindingTypeExtension {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
         if (forConsumer) {
             composites.add(new CamelFTPSConsumerComposite());
+            composites.add(new CamelFTPSConsumerMoveAndPollComposite());
             composites.add(new CamelFTPSSecurityComposite());
             composites.add(new MessageComposerComposite());
             composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,

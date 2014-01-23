@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -21,19 +21,34 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.ui.IJavaElementSearchConstants;
+import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.internal.databinding.swt.SWTObservableValueDecorator;
 import org.eclipse.jface.internal.databinding.swt.SWTVetoableValueDecorator;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
@@ -53,7 +68,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType;
@@ -74,17 +92,6 @@ import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
  */
 @SuppressWarnings("restriction")
 public class OperationSelectorComposite extends Composite {
-
-    private class RadioListener implements SelectionListener {
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-            selectOptionButton((Control) e.widget);
-        }
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
-    }
 
     /**
      * Static operation selector type.
@@ -113,10 +120,10 @@ public class OperationSelectorComposite extends Composite {
     private Text _xpathText;
     private Text _regexText;
     private Text _javaText;
-    private Button _opNameRadio;
-    private Button _xpathRadio;
-    private Button _regexRadio;
-    private Button _javaRadio;
+    private Composite _operationSelectionComposite;
+    private Composite _xpathComposite;
+    private Composite _regexComposite;
+    private Composite _javaComposite;
     private SwitchYardOperationSelectorType _opSelector = null;
     private ArrayList<Control> _observableControls = new ArrayList<Control>();
     private ArrayList<IObservable> _observables = null;
@@ -126,6 +133,10 @@ public class OperationSelectorComposite extends Composite {
     private Control _comboTextChanged = null;
     private boolean _inUpdate = false;
     private Composite _panel;
+    private Combo _typeCombo;
+    private Composite _contentPanel = null;
+    private StackLayout _stackLayout = null;
+    private Button _browseClassBtn = null;
 
     /**
      * Constructor.
@@ -163,27 +174,84 @@ public class OperationSelectorComposite extends Composite {
 
         Group opGroup = new Group(this, additionalStyles);
         opGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        opGroup.setLayout(new GridLayout(2, false));
-        opGroup.setText(Messages.label_operationOptions);
+        GridLayout layout = new GridLayout(2, false);
+        opGroup.setLayout(layout);
+        opGroup.setText(Messages.OperationSelectorComposite_OperationSelectorGroup_label);
+        
+        _typeCombo = createCombo(opGroup, null, true);
+        _typeCombo.add(Messages.label_operationName, STATIC_TYPE);
+        _typeCombo.add(Messages.label_xpath, XPATH_TYPE);
+        _typeCombo.add(Messages.label_regex, REGEX_TYPE);
+        _typeCombo.add(Messages.label_javaClass, JAVA_TYPE);
+        _typeCombo.select(STATIC_TYPE);
+        _typeCombo.setLayoutData(new GridData());
+        
+        _typeCombo.addSelectionListener(new SelectionListener() {
+            
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                String selected = _typeCombo.getText();
+                if (selected.contentEquals(Messages.label_operationName)) {
+                    selectOperationTypeInDropdown(Messages.label_operationName);
+                } else if (selected.contentEquals(Messages.label_xpath)) {
+                    selectOperationTypeInDropdown(Messages.label_xpath);
+                } else if (selected.contentEquals(Messages.label_regex)) {
+                    selectOperationTypeInDropdown(Messages.label_regex);
+                } else if (selected.contentEquals(Messages.label_javaClass)) {
+                    selectOperationTypeInDropdown(Messages.label_javaClass);
+                }
+                fireChangedEvent(_typeCombo);
+            }
+            
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+        
+        _contentPanel = new Composite(opGroup, SWT.NONE);
+        _stackLayout = new StackLayout();
+        _contentPanel.setLayout(_stackLayout);
+        _contentPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        
+        _operationSelectionComposite = new Composite(_contentPanel, SWT.NONE);
+        _operationSelectionCombo = createCombo(_operationSelectionComposite, Messages.label_operationName, false);
+        _operationSelectionComposite.setLayout(new GridLayout());
+        _operationSelectionCombo.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
+        
+        _xpathComposite = new Composite(_contentPanel, SWT.NONE);
+        _xpathText = createText(_xpathComposite);
+        _xpathComposite.setLayout(new GridLayout());
+        _xpathText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
 
-        RadioListener radioListener = new RadioListener();
-        _opNameRadio = createRadio(opGroup, Messages.label_operationName, false);
-        _opNameRadio.addSelectionListener(radioListener);
-        _operationSelectionCombo = createCombo(opGroup, Messages.label_operationName, this._isReadOnly);
+        _regexComposite = new Composite(_contentPanel, SWT.NONE);
+        _regexText = createText(_regexComposite);
+        _regexComposite.setLayout(new GridLayout());
+        _regexText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
 
-        _xpathRadio = createRadio(opGroup, Messages.label_xpath, false);
-        _xpathRadio.addSelectionListener(radioListener);
-        _xpathText = createText(opGroup, this._isReadOnly);
+        _javaComposite = new Composite(_contentPanel, SWT.NONE);
+        _javaText = createText(_javaComposite);
+        _javaComposite.setLayout(new GridLayout(2, false));
+        _browseClassBtn = new Button(_javaComposite, SWT.PUSH);
+        _browseClassBtn.setText("...");
+        _browseClassBtn.setEnabled(this._isReadOnly);
+        _javaText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
+        _browseClassBtn.setLayoutData(new GridData(SWT.FILL, SWT.NULL, false, false));
 
-        _regexRadio = createRadio(opGroup, Messages.label_regex, false);
-        _regexRadio.addSelectionListener(radioListener);
-        _regexText = createText(opGroup, this._isReadOnly);
+        _browseClassBtn.addSelectionListener(new SelectionAdapter() {
+            public void widgetSelected(final SelectionEvent e) {
+                try {
+                    IType selected = selectType(_panel.getShell(), "org.switchyard.selector.OperationSelector", null); //$NON-NLS-1$
+                    if (selected != null) {
+                        _javaText.setText(selected.getFullyQualifiedName());
+                        fireChangedEvent(_javaText);
+                    }
+                } catch (JavaModelException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
-        _javaRadio = createRadio(opGroup, Messages.label_javaClass, false);
-        _javaRadio.addSelectionListener(radioListener);
-        _javaText = createText(opGroup, this._isReadOnly);
-
-        selectOptionButton(_opNameRadio);
+        selectOperationTypeInDropdown(Messages.label_operationName);
     }
 
     /**
@@ -231,7 +299,6 @@ public class OperationSelectorComposite extends Composite {
     public void setTargetObject(EObject target) {
         this._targetObj = target;
         populateOperationCombo();
-        addObservableListeners();
     }
 
     protected EObject getTargetObject() {
@@ -292,15 +359,6 @@ public class OperationSelectorComposite extends Composite {
         return combo;
     }
 
-    protected Button createRadio(Composite parent, String label, boolean selected) {
-        Button radio = new Button(parent, SWT.RADIO);
-        radio.setText(label);
-        radio.setSelection(selected);
-        TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
-        factory.adapt(radio, false, false);
-        return radio;
-    }
-
     protected Combo createCombo(Composite parent, String label, boolean readOnly) {
         int styles = SWT.BORDER | SWT.DROP_DOWN;
         if (readOnly) {
@@ -308,23 +366,16 @@ public class OperationSelectorComposite extends Composite {
         }
         Combo combo = new Combo(parent, styles);
         combo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
-        if (!readOnly) {
             addEnterNextListener(combo);
-        }
         _observableControls.add(combo);
         return combo;
     }
 
-    protected Text createText(Composite parent, boolean readOnly) {
+    protected Text createText(Composite parent) {
         int styles = SWT.BORDER;
-        if (readOnly) {
-            styles = SWT.BORDER | SWT.READ_ONLY;
-        }
         Text textfield = new Text(parent, styles);
         textfield.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
-        if (!readOnly) {
-            addEnterNextListener(textfield);
-        }
+        addEnterNextListener(textfield);
         _observableControls.add(textfield);
         return textfield;
     }
@@ -348,15 +399,14 @@ public class OperationSelectorComposite extends Composite {
         if (_operationSelectionCombo != null && !_operationSelectionCombo.isDisposed()) {
 
             EObject target = null;
-            if (getTargetObject() == null) {
-                PictogramElement[] pes = SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
-                if (pes.length > 0) {
-                    Object bo = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
-                            .getBusinessObjectForPictogramElement(pes[0]);
-                    if (bo instanceof Contract) {
-                        target = (EObject) bo;
-                        setTargetObject(target);
-                    }
+            if (getBinding() != null && getTargetObject() == null) {
+                EObject parent = getBinding().eContainer();
+                if (parent != null && !(parent instanceof Contract)) {
+                    parent = parent.eContainer();
+                }
+                if (parent instanceof Contract) {
+                    target = (EObject) parent;
+                    setTargetObject(target);
                 }
             }
             _operationSelectionCombo.removeAll();
@@ -383,19 +433,20 @@ public class OperationSelectorComposite extends Composite {
         
         String value = getValueOfExistingOpSelector(opSelector);
         if (_opSelector instanceof StaticOperationSelectorType) {
-            selectOptionButton(_opNameRadio);
+            selectOperationTypeInDropdown(Messages.label_operationName);
             _operationSelectionCombo.setText(value);
         } else if (_opSelector instanceof XPathOperationSelectorType) {
-            selectOptionButton(_xpathRadio);
+            selectOperationTypeInDropdown(Messages.label_xpath);
             _xpathText.setText(value);
         } else if (_opSelector instanceof RegexOperationSelectorType) {
-            selectOptionButton(_regexRadio);
+            selectOperationTypeInDropdown(Messages.label_regex);
             _regexText.setText(value);
         } else if (_opSelector instanceof JavaOperationSelectorType) {
-            selectOptionButton(_javaRadio);
+            selectOperationTypeInDropdown(Messages.label_javaClass);
             _javaText.setText(value);
         }
         _inUpdate = false;
+        addObservableListeners(true);
     }
     
     /**
@@ -532,37 +583,39 @@ public class OperationSelectorComposite extends Composite {
         return null;
     }
     
-    private void selectOptionButton(Control radio) {
-        _opNameRadio.setSelection(false);
+    private void selectOperationTypeInDropdown(Object typeToSelect) {
+        
+        _typeCombo.select(0);
         _operationSelectionCombo.setEnabled(false);
-        
-        _xpathRadio.setSelection(false);
         _xpathText.setEnabled(false);
-        
-        _regexRadio.setSelection(false);
         _regexText.setEnabled(false);
-
-        _javaRadio.setSelection(false);
         _javaText.setEnabled(false);
+        _browseClassBtn.setEnabled(false);
         
-        if (radio.equals(_opNameRadio)) {
-            _opNameRadio.setSelection(true);
+        if (typeToSelect.equals(Messages.label_operationName)) {
+            _typeCombo.select(STATIC_TYPE);
             _operationSelectionCombo.setEnabled(true);
             populateOperationCombo();
             _selectedType = STATIC_TYPE;
-        } else if (radio.equals(_xpathRadio)) {
-            _xpathRadio.setSelection(true);
+            _stackLayout.topControl = _operationSelectionComposite;
+        } else if (typeToSelect.equals(Messages.label_xpath)) {
+            _typeCombo.select(XPATH_TYPE);
             _xpathText.setEnabled(true);
             _selectedType = XPATH_TYPE;
-        } else if (radio.equals(_regexRadio)) {
-            _regexRadio.setSelection(true);
+            _stackLayout.topControl = _xpathComposite;
+        } else if (typeToSelect.equals(Messages.label_regex)) {
+            _typeCombo.select(REGEX_TYPE);
             _regexText.setEnabled(true);
             _selectedType = REGEX_TYPE;
-        } else if (radio.equals(_javaRadio)) {
-            _javaRadio.setSelection(true);
+            _stackLayout.topControl = _regexComposite;
+        } else if (typeToSelect.equals(Messages.label_javaClass)) {
+            _typeCombo.select(JAVA_TYPE);
             _javaText.setEnabled(true);
+            _browseClassBtn.setEnabled(true);
             _selectedType = JAVA_TYPE;
+            _stackLayout.topControl = _javaComposite;
         }
+        _contentPanel.layout();
     }
 
     protected void addObservableListeners() {
@@ -692,4 +745,51 @@ public class OperationSelectorComposite extends Composite {
             }
         }
     }
+
+    /**
+     * @param shell Shell for the window
+     * @param superTypeName supertype to search for
+     * @param project project to look in
+     * @return IType the type created
+     * @throws JavaModelException exception thrown
+     */
+    public IType selectType(Shell shell, String superTypeName, IProject project) throws JavaModelException {
+        IJavaSearchScope searchScope = null;
+        if (project == null) {
+            ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+                    .getSelection();
+            IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
+            if (selection instanceof IStructuredSelection) {
+                selectionToPass = (IStructuredSelection) selection;
+                if (selectionToPass.getFirstElement() instanceof IFile) {
+                    project = ((IFile) selectionToPass.getFirstElement()).getProject();
+                }
+            }
+        }
+        if (superTypeName != null) {
+            if (project == null) {
+                project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+            }
+            IJavaProject javaProject = JavaCore.create(project);
+            IType superType = javaProject.findType(superTypeName);
+            if (superType != null) {
+                searchScope = SearchEngine.createStrictHierarchyScope(javaProject, superType, true, false, null);
+            }
+        } else {
+            searchScope = SearchEngine.createWorkspaceScope();
+        }
+        SelectionDialog dialog = JavaUI.createTypeDialog(shell, new ProgressMonitorDialog(shell), searchScope,
+                IJavaElementSearchConstants.CONSIDER_CLASSES_AND_INTERFACES, false);
+        dialog.setTitle(Messages.label_selectEntries);
+        dialog.setMessage(Messages.label_matchingItems);
+        if (dialog.open() == IDialogConstants.CANCEL_ID) {
+            return null;
+        }
+        Object[] types = dialog.getResult();
+        if (types == null || types.length == 0) {
+            return null;
+        }
+        return (IType) types[0];
+    }
+
 }

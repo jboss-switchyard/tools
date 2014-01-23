@@ -12,7 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.ftps;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 import javax.swing.event.ChangeEvent;
@@ -59,13 +58,8 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
     private Text _fileNameText;
     private Button _deleteButton;
     private Button _recursiveButton;
-    private Text _preMoveText;
-    private Text _moveText;
-    private Text _moveFailedText;
     private Text _includeText;
     private Text _excludeText;
-    private Text _delayText;
-    private Text _maxMessagesPerPollText;
     private OperationSelectorComposite _opSelectorComposite;
 
     @Override
@@ -85,11 +79,6 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
             this._binding = (CamelFtpsBindingType) impl;
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
-                if (this._binding.getConsume().isSetDelay()) {
-                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
-                } else {
-                    _delayText.setText(""); //$NON-NLS-1$
-                }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else {
@@ -99,27 +88,6 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
                     _includeText.setText(this._binding.getConsume().getInclude());
                 } else {
                     _includeText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getMoveFailed() != null) {
-                    _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
-                } else {
-                    _moveFailedText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getMove() != null) {
-                    _moveText.setText(this._binding.getConsume().getMove());
-                } else {
-                    _moveText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getPreMove() != null) {
-                    _preMoveText.setText(this._binding.getConsume().getPreMove());
-                } else {
-                    _preMoveText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getMaxMessagesPerPoll() != null) {
-                    setTextValue(_maxMessagesPerPollText, 
-                            PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
-                } else {
-                    _maxMessagesPerPollText.setText(""); //$NON-NLS-1$
                 }
                 _deleteButton.setSelection(this._binding.getConsume().isDelete());
                 _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
@@ -238,23 +206,6 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
             }
          });
 
-        Group moveGroup = new Group(composite, SWT.NONE);
-        moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
-        moveGroup.setLayout(new GridLayout(2, false));
-        moveGroup.setText(Messages.label_moveOptions);
-
-        _preMoveText = createLabelAndText(moveGroup, Messages.label_preMove);
-        _moveText = createLabelAndText(moveGroup, Messages.label_moveDefaultDotCamel);
-        _moveFailedText = createLabelAndText(moveGroup, Messages.label_moveFailed);
-
-        Group pollGroup = new Group(composite, SWT.NONE);
-        pollGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
-        pollGroup.setLayout(new GridLayout(2, false));
-        pollGroup.setText(Messages.label_pollOptions);
-
-        _delayText = createLabelAndText(pollGroup, Messages.label_delayBetweenPollsDefault500);
-        _maxMessagesPerPollText = createLabelAndText(pollGroup, Messages.label_maxMessagesPerPollDefault0);
-
         return composite;
     }
 
@@ -280,13 +231,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
     }
 
     private void handleConsumer(Control control) {
-        if (control.equals(_delayText)) {
-            try {
-                updateConsumeFeature("delay", new BigInteger(_delayText.getText().trim())); //$NON-NLS-1$
-            } catch (NumberFormatException nfe) {
-                updateConsumeFeature("delay", _delayText.getText().trim()); //$NON-NLS-1$
-            }
-        } else if (control.equals(_deleteButton)) {
+        if (control.equals(_deleteButton)) {
             updateConsumeFeature("delete", new Boolean(_deleteButton.getSelection())); //$NON-NLS-1$
         } else if (control.equals(_recursiveButton)) {
             updateConsumeFeature("recursive", new Boolean(_recursiveButton.getSelection())); //$NON-NLS-1$
@@ -294,22 +239,10 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
             updateConsumeFeature("exclude", _excludeText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_includeText)) {
             updateConsumeFeature("include", _includeText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_moveFailedText)) {
-            updateConsumeFeature("moveFailed", _moveFailedText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_moveText)) {
-            updateConsumeFeature("move", _moveText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_preMoveText)) {
-            updateConsumeFeature("preMove", _preMoveText.getText().trim()); //$NON-NLS-1$
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
             fireChangedEvent(_opSelectorComposite);
-        } else if (control.equals(_maxMessagesPerPollText)) {
-            try {
-                updateConsumeFeature("maxMessagesPerPoll", new BigInteger(_maxMessagesPerPollText.getText().trim())); //$NON-NLS-1$
-            } catch (NumberFormatException nfe) {
-                updateConsumeFeature("maxMessagesPerPoll", _maxMessagesPerPollText.getText().trim()); //$NON-NLS-1$
-            }
         }
     }
 
@@ -366,24 +299,14 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_nameText)) {
                 _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
             } else if (this._binding.getConsume() != null) {
-                if (control.equals(_delayText)) {
-                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
-                } else if (control.equals(_excludeText)) {
+                if (control.equals(_excludeText)) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else if (control.equals(_includeText)) {
                     _includeText.setText(this._binding.getConsume().getInclude());
-                } else if (control.equals(_moveFailedText)) {
-                    _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
-                } else if (control.equals(_moveText)) {
-                    _moveText.setText(this._binding.getConsume().getMove());
-                } else if (control.equals(_preMoveText)) {
-                    _preMoveText.setText(this._binding.getConsume().getPreMove());
                 } else if (control.equals(_deleteButton)) {
                     _deleteButton.setSelection(this._binding.getConsume().isDelete());
                 } else if (control.equals(_recursiveButton)) {
                     _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
-                } else if (control.equals(_maxMessagesPerPollText)) {
-                    setTextValue(_maxMessagesPerPollText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
                 }
             } else {
                 super.handleUndo(control);
