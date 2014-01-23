@@ -316,6 +316,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 if (isJustPort && !_bindingSocket.startsWith(":")) { //$NON-NLS-1$
                     _bindingSocket = ":" + _bindingSocket; //$NON-NLS-1$
                     _mWSDLSocketText.setText(_bindingSocket);
+                    _mWSDLSocketText.setSelection(_mWSDLSocketText.getText().length());
                 }
                 updateFeature(_binding, "socketAddr", _bindingSocket); //$NON-NLS-1$
             } else if (control.equals(_soapHeadersTypeCombo)) {
