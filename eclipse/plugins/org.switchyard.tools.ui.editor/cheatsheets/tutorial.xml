@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<cheatsheet title="SwitchYard Tutorial">
+    <intro>
+        <description>
+Welcome to the SwitchYard editor tutorial. We will start from an empty SwitchYard application and create a fully running example by the end.
+Before beginning you will need the SwitchYard tooling and a SwitchYard runtime.
+Let&apos;s get started!
+        </description>
+</intro>
+    <item
+          title="Create a Server">
+       <description>
+          This step describes how to create a server definition for your SwitchYard runtime.  You will deploy your project to this server in a later step.  The server references a runtime definition which will be used when creating your SwitchYard project.
+       </description>
+       <subitem
+             label="Open the Servers view in Eclipse.">
+          <command
+                required="false"
+                serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.wst.server.ui.ServersView)"/>
+       </subitem>
+       <subitem
+             label="Create a new server (right-click, New-&gt;Server).">
+          <command
+                required="false"
+                serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.wst.server.ui.new.server)"/>
+       </subitem>
+    </item>
+    <item
+          title="Create a Project">
+       <description>
+          This step describes how to create a project for the application.
+       </description>
+       <subitem
+             label="From the new menu, select SwitchYard Project."
+             skip="true">
+          <command
+                required="true"
+                serialization="org.eclipse.ui.newWizard(newWizardId=org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard)"/>
+       </subitem>
+       <subitem
+             label="The Palette view may not be immediately visible. If it is missing from your workbench, it can be displayed using the Window→Show View→Other... menu"
+             skip="true">
+          <command
+                required="false"
+                serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.gef.ui.palette_view)"/>
+       </subitem>
+    </item>
+    <item
+          title="Create a Bean Component">
+       <description>
+          This step describes how to create a bean component using the SwitchYard editor.  Upon completion of this step, you will have a component, providing a service (described by a Java interface), implemented by a bean.
+       </description>
+       <subitem
+             label="In the SwitchYard editor, drag the Bean tool from the Components section of the palette onto the canvas.  This opens a wizard prompting for details about the component.">
+       </subitem>
+       <subitem
+             label="Create a new interface by clicking the Interface link.  This opens the standard Eclipse New Interface wizard.  Specify a name for the interface (e.g. ExampleService), any other details and press Finish.">
+       </subitem>
+    </item>
+    <item
+          title="Flesh Out the Service Interface">
+       <description>
+          The Java interface created in the previous step contained no methods, so you will add them here.  You will have a complete interface describing the service at the end of this step.
+       </description>
+       <subitem
+            label="In the SwitchYard editor, double-click the service icon on the component (the green arrow on the left side of the component).  This opens the file describing the interface.">
+       </subitem>
+       <subitem
+            label="Add a method to the interface, for example: public String sayHello(String name);">
+       </subitem>
+    </item>
+    <item
+          title="Implement the Bean">
+       <description>
+          This step implements the service logic in the bean class.  There are compiler errors in the bean class because it does not implement the method you added to the interface in the previous step.  The errors are resolved by creating the missing methods in the bean class.  The project should have no errors at the end of this step.
+       </description>
+       <subitem
+             label="In the SwitchYard editor, double-click the component (ExampleServiceBean) in the diagram.  This opens the file used to implement the component. Note that the file contains errors, since it does not implement required methods.">
+       </subitem>
+       <subitem
+             label="Add an implementation for the missing method. (Using quick-fix, click the error icon and select, Add unimplemented methods.) Then update the implementation of the sayHello() method to match: return &quot;Hello, &quot; + name;">
+       </subitem>
+    </item>
+   <item
+         title="Create a Unit Test for the Service">
+      <description>
+         This step describes how to create a unit test to verify the implementation of the service.  At the end of this step, you will have a unit test which sends a message to the service and verifies its output.  You will also execute the test using the native Eclipse JUnit support.
+      </description>
+      <subitem
+            label="In the SwitchYard editor, right-click the service icon on the component (the green arrow on the left side of the component) and select New Service Test Class.  This will open a wizard, which should be defaulted appropriately.  Look the fields over and press Finish.">
+      </subitem>
+      <subitem
+            label="Modify the testSayHello() method to properly exercise the service.  Initialize the message variable to &quot;Bob&quot; and update the Assert statement to verify the return value from the service is, &quot;Hello, Bob&quot;">
+      </subitem>
+   </item>
+   <item
+         title="Promote the Service">
+      <description>
+         This step describes how to promote a component service to a composite service so the service can be accessed by external clients.  The promoted composite service will be described using a WSDL interface.  You will create the WSDL file using the Java-to-WSDL capabilities in the tooling.  Because the composite service exposes a different interface than the component service, you will need to create a couple of transformers to convert the between the different types (i.e. between the Java and WSDL types).
+      </description>
+      <subitem
+            label="In the SwitchYard editor, right-click the service icon on the component and select Promote Component Service.  This opens a wizard allowing you to specify the interface that will be exposed by the promoted service.  By default, the interface specified matches the interface used to describe the component service.">
+      </subitem>
+      <subitem
+            label="Change the interface type from Java to WSDL.  This blanks out the interface and name fields.">
+      </subitem>
+      <subitem
+            label="Press the Interface link to create a new WSDL file.  This opens the Java2WSDL wizard.">
+      </subitem>
+      <subitem
+            label="The first page of the Java2WSDL wizard is used for specifying the name and location for the WSDL file.  The default values should be appropriate.  Look them over and press Next.">
+      </subitem>
+      <subitem
+            label="The next page is used for specifying details about the generated WSDL.  The default values should be appropriate  Look the values over and press Finish.">
+      </subitem>
+      <subitem
+            label="The WSDL file is created and you are back on the Promote Component Service wizard.  The fields have been updated with details from the new WSDL file.  Notice that the Create required transformers button is checked and press Next.">
+      </subitem>
+      <subitem
+            label="The next page is the New Transformers page allowing you to create the required transformers.  Notice the two transformer type pairs checked in the table correspond to the input and output types declared on the two interfaces.  Ensure both pairs are checked and Java Transformer is selected as the Transformer Type and press Next.">
+      </subitem>
+      <subitem
+            label="The next page collects information for a new Java class that will be used to implement the transformers.  Specify ExampleServiceTransformers for the name and leave org.w3c.dom.Element selected as the Java type to be used to represent XML/ESB types in the transformer class.  Press Finish.">
+      </subitem>
+      <subitem
+            label="A new composite service promoting the component service should have been added to the SwitchYard configuration.  Save the editor.">
+      </subitem>
+      <subitem
+            label="Select the main shape in the SwitchYard editor and review the contents of the Transforms tab in the Properties view.  The newly added transformers should be listed.">
+      </subitem>
+   </item>
+   <item
+         title="Add a Unit Test For the Tranformers">
+      <description>
+         This step describes how to add a unit test to verify the transformer logic.
+      </description>
+      <subitem
+            label="Open ExampleServiceTest.java and add the following method, which will test the transformers...">
+      </subitem>
+   </item>
+   <item
+         title="Implement the Transformers">
+      <description>
+         The step describes how to implement transformer class created earlier.  At the end of this step, you will run the unit tests to verify they pass.
+      </description>
+      <subitem
+            label="Open ExampleServiceTransformers.java and implement the transformStringToSayHelloResponse() as follows...">
+      </subitem>
+      <subitem
+            label="And implement transformSayHelloToString() as follows...">
+      </subitem>
+      <subitem
+            label="Run the unit tests to verify they pass.">
+      </subitem>
+   </item>
+   <item
+         title="Add a SOAP Gateway Binding">
+      <description>
+         This step describes how to add a SOAP gateway binding to the composite service.  This will allow external clients to access your service using SOAP HTTP.
+      </description>
+      <subitem
+            label="Add a SOAP endpoint to the service by dragging the SOAP tool under the Bindings section of the tool palette onto the new service.  This will open the new binding wizard.  Specify switchyard-example for the Context Path and press Finish.">
+      </subitem>
+      <subitem
+            label="Save the changes made to the switchyard.xml file. Your application is configured with a single service, implemented using a Java bean, and exposed to clients as a SOAP HTTP service.  You also have unit tests for the service and transformation logic.">
+      </subitem>
+   </item>
+   <item
+         title="Deploy the Project">
+      <description>
+         This step describes how to deploy your project to a server using Eclipse.  You will use the server you configured in one of the previous steps.
+      </description>
+      <subitem
+            label="Open the Servers view.">
+      </subitem>
+      <subitem
+            label="Make sure the server is started (right-click, Start).">
+      </subitem>
+      <subitem
+            label="Right-click the project, Run As→Run On Server.  Select the server and press Finish.">
+      </subitem>
+   </item>
+   <item
+         title="Test the Deployed Service">
+      <description>
+         This step describes how to test the service using a SOAP HTTP clients.  You will use the web services tester that ships with Eclipse, but you could use the web services test/debug tool you are most familiar with.
+      </description>
+      <subitem
+            label="Right-click the WSDL file (ExampleService.wsdl) and select Web Services -&gt;Test with Web Services Explorer.  Exercise the service using the tester.">
+      </subitem>
+   </item>
+   <item
+         title="View Details in the Management Console">
+      <description>
+         Right-click the server in the Servers view and select Show In -&gt; Web Management Console.  Refer to the SwitchYard management console documentation for details.
+      </description>
+   </item>
+</cheatsheet>

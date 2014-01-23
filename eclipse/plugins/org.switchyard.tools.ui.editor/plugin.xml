@@ -872,4 +872,21 @@
             </with></enablement>
       </copyParticipant>
    </extension>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <cheatsheet
+            category="org.switchyard.tools.ui.editor.category"
+            composite="false"
+            contentFile="cheatsheets/tutorial.xml"
+            id="org.switchyard.tools.ui.editor.cheatsheet1"
+            name="SwitchYard Editor Cheatsheet">
+         <description>
+            This cheat sheet introduces the basic building blocks of SwitchYard applications from an empty application to a complete example.
+         </description>
+      </cheatsheet>
+      <category
+            id="org.switchyard.tools.ui.editor.category"
+            name="SwitchYard">
+      </category>
+   </extension>
 </plugin>

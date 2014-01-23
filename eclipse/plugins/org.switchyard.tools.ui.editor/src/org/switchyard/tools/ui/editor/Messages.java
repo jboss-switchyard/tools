@@ -37,6 +37,8 @@ public class Messages extends NLS {
     public static String button_selectAll;
     public static String button_up;
     public static String button_workspace;
+    public static String CamelFTPConsumerMoveAndPollComposite_MoveAndPoll_wizard_page_description;
+    public static String CamelFTPConsumerMoveAndPollComposite_MoveAndPoll_wizard_page_title;
     public static String category_menu_binding;
     public static String category_menu_component;
     public static String category_menu_implementation;
@@ -551,6 +553,7 @@ public class Messages extends NLS {
     public static String message_creatingJavaTransformerClass;
     public static String message_creatingNewJavaTransformerClass;
     public static String message_creatingXslTransformerFile;
+    public static String OperationSelectorComposite_OperationSelectorGroup_label;
     public static String title_addInterceptor;
     public static String title_advancedBindingDetails;
     public static String title_advancedResourceDetails;

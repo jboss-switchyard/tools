@@ -74,6 +74,7 @@ public class CamelSFTPBindingTypeExtension implements IBindingTypeExtension {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);
         if (forConsumer) {
             composites.add(new CamelSFTPConsumerComposite());
+            composites.add(new CamelSFTPConsumerMoveAndPollComposite());
             composites.add(new CamelSFTPSecurityComposite());
             composites.add(new MessageComposerComposite());
             composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
