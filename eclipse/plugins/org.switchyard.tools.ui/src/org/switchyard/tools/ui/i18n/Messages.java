@@ -339,6 +339,36 @@ public final class Messages extends NLS {
 
     public static String ESBInterfaceControlAdapter_statusMessage_specifyInputType;
 
+    public static String ESBInterfaceInputDialog_FaultTypeLabel;
+
+    public static String ESBInterfaceInputDialog_FaultTypeRequiresOutputTypeMessage;
+
+    public static String ESBInterfaceInputDialog_InputTypeLabel;
+
+    public static String ESBInterfaceInputDialog_InputTypeRequiredMessage;
+
+    public static String ESBInterfaceInputDialog_Message;
+
+    public static String ESBInterfaceInputDialog_OutputTypeLabel;
+
+    public static String ESBInterfaceInputDialog_Title;
+
+    public static String ESBInterfaceInputDialog_WindowTitle;
+
+    public static String InterfaceControl_BrowseButtonLabel;
+
+    public static String InterfaceControl_ESBRadioLabel;
+
+    public static String InterfaceControl_InterfaceLinkLabel;
+
+    public static String InterfaceControl_InterfaceTypeRequiredMessage;
+
+    public static String InterfaceControl_JavaRadioLabel;
+
+    public static String InterfaceControl_Label;
+
+    public static String InterfaceControl_WSDLRadioLabel;
+
     public static String InterfaceModelPropertySource_propertyDescriptor_interface;
 
     public static String InterfaceModelPropertySource_propertyDescriptorDescription_interface;
@@ -529,7 +559,51 @@ public final class Messages extends NLS {
 
     public static String SwitchYardBasicPresetFactory_presetTitle_basicSYApplication;
 
+    public static String SwitchYardComponentExtensionManager_DuplicateIDStatus;
+
+    public static String SwitchYardComponentExtensionManager_InvalidCategoryStatus;
+
+    public static String SwitchYardComponentExtensionManager_InvalidDependencyStatus;
+
+    public static String SwitchYardComponentExtensionManager_InvalidElementStatus;
+
+    public static String SwitchYardComponentExtensionManager_InvalidIDStatus;
+
+    public static String SwitchYardComponentExtensionManager_MultipleArtifactIDsStatus;
+
+    public static String SwitchYardComponentExtensionManager_MultipleGroupIDsFoundStatus;
+
+    public static String SwitchYardComponentExtensionManager_MultipleScopesStatus;
+
     public static String SwitchYardExplorerContentProvider_jobMessage_RefreshingSYProjectConfig;
+
+    public static String SwitchYardExplorerLabelProvider_AppArtifactsNode;
+
+    public static String SwitchYardExplorerLabelProvider_AppComponentsNode;
+
+    public static String SwitchYardExplorerLabelProvider_ApplicationNode;
+
+    public static String SwitchYardExplorerLabelProvider_AppReferencesNode;
+
+    public static String SwitchYardExplorerLabelProvider_AppServicesNode;
+
+    public static String SwitchYardExplorerLabelProvider_ArtifactReferenceNode;
+
+    public static String SwitchYardExplorerLabelProvider_BindingNode;
+
+    public static String SwitchYardExplorerLabelProvider_ComponentNode;
+
+    public static String SwitchYardExplorerLabelProvider_ComponentReferenceNode;
+
+    public static String SwitchYardExplorerLabelProvider_ComponentServiceNode;
+
+    public static String SwitchYardExplorerLabelProvider_ReferenceNode;
+
+    public static String SwitchYardExplorerLabelProvider_ServiceNode;
+
+    public static String SwitchYardExplorerLabelProvider_SwitchYardRootNode;
+
+    public static String SwitchYardExplorerLabelProvider_UnnamedNode;
 
     public static String SwitchYardFacetInstallActionDelegate_errorMessage_notAMavenProject;
 
@@ -561,6 +635,12 @@ public final class Messages extends NLS {
     public static String SwitchYardProject_errorMessage_exceptionWhileLodingSYFile;
 
     public static String SwitchYardProject_taskMessage_loadingMavenConfig;
+
+    public static String SwitchYardProjectManager_ErrorLoadingMetadataMessage;
+
+    public static String SwitchYardProjectManager_UpdatingProjectMetadataJob;
+
+    public static String SwitchYardProjectManager_UpdatingProjectMetadataJob2;
 
     public static String SwitchYardProjectValidator_validatorMessage_InvalidSYXMLFile;
 
@@ -604,9 +684,91 @@ public final class Messages extends NLS {
 
     public static String SwitchYardSettingsAction_messageDialog_title_addSYCapabilitiesAndFacet;
 
+    public static String SwitchYardSettingsGroup_ComponentUnavailableLabel;
+
+    public static String SwitchYardSettingsGroup_ConfigurationVersionLabel;
+
+    public static String SwitchYardSettingsGroup_DetailsGroup;
+
+    public static String SwitchYardSettingsGroup_EmptyRuntimeComponentLabel;
+
+    public static String SwitchYardSettingsGroup_ErrorLoadingCapabilitiesMessage;
+
+    public static String SwitchYardSettingsGroup_GatewayBindingsLabel;
+
+    public static String SwitchYardSettingsGroup_ImplementationSupportLabel;
+
+    public static String SwitchYardSettingsGroup_LibraryVersionLabel;
+
+    public static String SwitchYardSettingsGroup_LoadingAvailableCapabilitiesMessage;
+
+    public static String SwitchYardSettingsGroup_RuntimeLinkLabel;
+
+    public static String SwitchYardSettingsGroup_SYComponentsGroupLabel;
+
+    public static String SwitchYardSettingsGroup_TargetRuntimeLabel;
+
+    public static String SwitchYardSettingsGroup_TestMixinsLabel;
+
+    public static String SwitchYardSettingsGroup_UnknownCategoryLabel;
+
+    public static String SwitchYardSettingsGroup_VersionDetailsGroup;
+
     public static String SwitchYardTestMixInExtensionManager_logMessageDuplicateNameForSYMixIn;
 
     public static String SwitchYardTestMixInExtensionManager_logMessageMissingNameForSYMixIn;
+
+    public static String ValidationProblem_AmbiguousReference;
+
+    public static String ValidationProblem_DuplicateName;
+
+    public static String ValidationProblem_IncompatibleInterfaceType;
+
+    public static String ValidationProblem_IncompatibleMessageExchangePattern;
+
+    public static String ValidationProblem_MissingComponentReference;
+
+    public static String ValidationProblem_MissingComponentService;
+
+    public static String ValidationProblem_NoProblem;
+
+    public static String ValidationProblem_PromotedReferenceNameMismatch;
+
+    public static String ValidationProblem_ReferenceInterfaceMismatch;
+
+    public static String ValidationProblem_RequiredCapabilityMissing;
+
+    public static String ValidationProblem_RequiredTransformMissing;
+
+    public static String ValidationProblem_ServiceInterfaceMismatch;
+
+    public static String ValidationProblem_UnableToValidateTransformers;
+
+    public static String ValidationProblem_UnboundOperation;
+
+    public static String ValidationProblem_UnboundService;
+
+    public static String ValidationProblem_UnhandledFault;
+
+    public static String ValidationProblem_UnimplementedServiceDeclaration;
+
+    public static String ValidationProblem_UnresolvableBeanClass;
+
+    public static String ValidationProblem_UnresolvableServiceInterface;
+
+    public static String ValidationProblem_UnresolvedReference;
+
+    public static String ValidationProblem_UnspecifiedBeanClass;
+
+    public static String ValidationProblem_UnusedCapability;
+
+    public static String ValidationProblem_UnusedComponentReference;
+
+    public static String ValidationProblem_UnusedReference;
+
+    public static String ValidationProblem_UnusedReturnValue;
+
+    public static String ValidationProblem_ValidateProblem;
 
     public static String WiringValidationContext_statusMessage_errorLoadingServiceInterfaceMetadata;
 

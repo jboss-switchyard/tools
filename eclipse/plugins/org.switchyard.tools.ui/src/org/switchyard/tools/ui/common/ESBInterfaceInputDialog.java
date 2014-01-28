@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * @author bfitzpat
@@ -52,15 +53,15 @@ public class ESBInterfaceInputDialog extends TitleAreaDialog {
 
     @Override
     protected Control createDialogArea(Composite parent) {
-        setTitle("ESB Interface Details");
-        setMessage("Specify input, output, and fault details for the ESB interface.");
-        getShell().setText("Interface Details");
+        setTitle(Messages.ESBInterfaceInputDialog_Title);
+        setMessage(Messages.ESBInterfaceInputDialog_Message);
+        getShell().setText(Messages.ESBInterfaceInputDialog_WindowTitle);
 
         Composite area = new Composite(parent, SWT.NULL);
         GridLayout gridLayout = new GridLayout(2, false);
         area.setLayout(gridLayout);
         area.setLayoutData(new GridData(GridData.FILL_BOTH));
-        _inputTypeText = createLabelAndText(area, "Input Type*");
+        _inputTypeText = createLabelAndText(area, Messages.ESBInterfaceInputDialog_InputTypeLabel);
         if (_inputType != null && !_inputType.trim().isEmpty()) {
             _inputTypeText.setText(_inputType);
         }
@@ -70,7 +71,7 @@ public class ESBInterfaceInputDialog extends TitleAreaDialog {
                 _inputType = _inputTypeText.getText().trim();
             }
         });
-        _outputTypeText = createLabelAndText(area, "Output Type");
+        _outputTypeText = createLabelAndText(area, Messages.ESBInterfaceInputDialog_OutputTypeLabel);
         if (_outputType != null && !_outputType.trim().isEmpty()) {
             _outputTypeText.setText(_outputType);
         }
@@ -80,7 +81,7 @@ public class ESBInterfaceInputDialog extends TitleAreaDialog {
                 _outputType = _outputTypeText.getText().trim();
             }
         });
-        _faultTypeText = createLabelAndText(area, "Fault Type");
+        _faultTypeText = createLabelAndText(area, Messages.ESBInterfaceInputDialog_FaultTypeLabel);
         if (_faultType != null && !_faultType.trim().isEmpty()) {
             _faultTypeText.setText(_faultType);
         }
@@ -138,9 +139,9 @@ public class ESBInterfaceInputDialog extends TitleAreaDialog {
     protected boolean validate() {
         setErrorMessage(null);
         if (_inputTypeText.getText().trim().isEmpty()) {
-            setErrorMessage("Please specify an input type for the ESB interface.");
+            setErrorMessage(Messages.ESBInterfaceInputDialog_InputTypeRequiredMessage);
         } else if (!_faultTypeText.getText().isEmpty() && _outputTypeText.getText().isEmpty()) {
-            setErrorMessage("Specifying a fault type also requires the output type for the ESB interface.");
+            setErrorMessage(Messages.ESBInterfaceInputDialog_FaultTypeRequiresOutputTypeMessage);
         }
         return (getErrorMessage() == null);
     }

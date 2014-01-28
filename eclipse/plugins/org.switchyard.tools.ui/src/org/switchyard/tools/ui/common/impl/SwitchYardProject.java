@@ -201,9 +201,9 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                 IFacetedProject ifp = ProjectFacetsManager.create(_project);
                 IProjectFacetVersion facetVersion = ifp == null ? null : ifp.getInstalledVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET);
                 if (facetVersion != null) {
-                    if ("1.0".equals(facetVersion.getVersionString())) {
+                    if ("1.0".equals(facetVersion.getVersionString())) { //$NON-NLS-1$
                         return SwitchYardNamespace.V_1_0.uri();
-                    } else if ("1.1".equals(facetVersion.getVersionString())) {
+                    } else if ("1.1".equals(facetVersion.getVersionString())) { //$NON-NLS-1$
                         return SwitchYardNamespace.V_1_1.uri();
                     }
                 }

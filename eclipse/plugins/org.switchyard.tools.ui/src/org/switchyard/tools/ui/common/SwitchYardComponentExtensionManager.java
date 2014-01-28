@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.Status;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardComponentExtensionManager
@@ -39,7 +40,7 @@ import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
 public final class SwitchYardComponentExtensionManager {
 
     /** The ID of the core SwitchYard runtime component. */
-    public static final String RUNTIME_COMPONENT_EXTENSION_ID = "org.switchyard:switchyard-runtime";
+    public static final String RUNTIME_COMPONENT_EXTENSION_ID = "org.switchyard:switchyard-runtime"; //$NON-NLS-1$
 
     private static final SwitchYardComponentExtensionManager INSTANCE = new SwitchYardComponentExtensionManager();
 
@@ -59,7 +60,7 @@ public final class SwitchYardComponentExtensionManager {
             _extensionsByCategory.put(category, new ArrayList<ISwitchYardComponentExtension>());
         }
         IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(Activator.PLUGIN_ID,
-                "switchYardComponent");
+                "switchYardComponent"); //$NON-NLS-1$
         for (IExtension extension : extensionPoint.getExtensions()) {
             for (IConfigurationElement element : extension.getConfigurationElements()) {
                 processComponent(element);
@@ -106,17 +107,17 @@ public final class SwitchYardComponentExtensionManager {
     }
 
     private void processComponent(IConfigurationElement element) {
-        if (!"component".equals(element.getName())) {
+        if (!"component".equals(element.getName())) { //$NON-NLS-1$
             Activator
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Invalid element in switchYardComponent extension: element=" + element.getName()
-                                    + ", plugin=" + element.getContributor().getName()));
+                            Messages.SwitchYardComponentExtensionManager_InvalidElementStatus + element.getName()
+                                    + ", plugin=" + element.getContributor().getName())); //$NON-NLS-1$
             return;
         }
-        String id = element.getAttribute("id");
-        String name = element.getAttribute("name");
+        String id = element.getAttribute("id"); //$NON-NLS-1$
+        String name = element.getAttribute("name"); //$NON-NLS-1$
         Category category = parseCategory(element);
         String description = parseDescription(element);
         List<Dependency> dependencies = parseDependencies(element);
@@ -125,7 +126,7 @@ public final class SwitchYardComponentExtensionManager {
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Invalid \"id\" must be specified in switchYardComponent extension: plugin="
+                            Messages.SwitchYardComponentExtensionManager_InvalidIDStatus
                                     + element.getContributor().getName()));
             return;
         } else if (_extensions.containsKey(id)) {
@@ -133,20 +134,20 @@ public final class SwitchYardComponentExtensionManager {
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Duplicate \"id\" specified in switchYardComponent extension: plugin="
+                            Messages.SwitchYardComponentExtensionManager_DuplicateIDStatus
                                     + element.getContributor().getName()));
             return;
         } else if (name == null || name.length() == 0) {
             name = id;
         }
         ISwitchYardComponentExtension extension = new SwitchYardComponentExtension(id, name, category,
-                element.getAttribute("scannerClass"), description, dependencies);
+                element.getAttribute("scannerClass"), description, dependencies); //$NON-NLS-1$
         _extensions.put(id, extension);
         _extensionsByCategory.get(category).add(extension);
     }
 
     private Category parseCategory(IConfigurationElement element) {
-        String categoryString = element.getAttribute("category");
+        String categoryString = element.getAttribute("category"); //$NON-NLS-1$
         if (categoryString == null || categoryString.length() == 0) {
             return Category.UNKNOWN;
         }
@@ -157,14 +158,14 @@ public final class SwitchYardComponentExtensionManager {
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Invalid \"category\" specified in switchYardComponent extension: plugin="
-                                    + element.getContributor().getName() + ", id=" + element.getAttribute("id")));
+                            Messages.SwitchYardComponentExtensionManager_InvalidCategoryStatus
+                                    + element.getContributor().getName() + ", id=" + element.getAttribute("id"))); //$NON-NLS-1$ //$NON-NLS-2$
         }
         return Category.UNKNOWN;
     }
 
     private String parseDescription(IConfigurationElement element) {
-        IConfigurationElement[] descriptions = element.getChildren("description");
+        IConfigurationElement[] descriptions = element.getChildren("description"); //$NON-NLS-1$
         if (descriptions.length == 0) {
             return null;
         }
@@ -172,7 +173,7 @@ public final class SwitchYardComponentExtensionManager {
     }
 
     private List<Dependency> parseDependencies(IConfigurationElement element) {
-        IConfigurationElement[] dependencyElements = element.getChildren("dependency");
+        IConfigurationElement[] dependencyElements = element.getChildren("dependency"); //$NON-NLS-1$
         if (dependencyElements == null) {
             return Collections.emptyList();
         }
@@ -186,7 +187,7 @@ public final class SwitchYardComponentExtensionManager {
                         .getDefault()
                         .getLog()
                         .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "Invalid dependency in switchYardComponent extension: plugin="
+                                Messages.SwitchYardComponentExtensionManager_InvalidDependencyStatus
                                         + element.getContributor().getName()));
                 continue;
             }
@@ -196,13 +197,13 @@ public final class SwitchYardComponentExtensionManager {
     }
 
     private String parseGroupId(IConfigurationElement element) {
-        IConfigurationElement[] groupIds = element.getChildren("groupId");
+        IConfigurationElement[] groupIds = element.getChildren("groupId"); //$NON-NLS-1$
         if (groupIds.length != 1) {
             Activator
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Only one \"groupId\" element may be specified in a \"dependency\" for a switchYardComponent extension: plugin="
+                            Messages.SwitchYardComponentExtensionManager_MultipleGroupIDsFoundStatus
                                     + element.getContributor().getName()));
             return null;
         }
@@ -210,13 +211,13 @@ public final class SwitchYardComponentExtensionManager {
     }
 
     private String parseArtifactId(IConfigurationElement element) {
-        IConfigurationElement[] artifactIds = element.getChildren("artifactId");
+        IConfigurationElement[] artifactIds = element.getChildren("artifactId"); //$NON-NLS-1$
         if (artifactIds.length != 1) {
             Activator
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Only one \"artifactId\" element may be specified in a \"dependency\" for a switchYardComponent extension: plugin="
+                            Messages.SwitchYardComponentExtensionManager_MultipleArtifactIDsStatus
                                     + element.getContributor().getName()));
             return null;
         }
@@ -224,7 +225,7 @@ public final class SwitchYardComponentExtensionManager {
     }
 
     private String parseScope(IConfigurationElement element) {
-        IConfigurationElement[] scopes = element.getChildren("scope");
+        IConfigurationElement[] scopes = element.getChildren("scope"); //$NON-NLS-1$
         if (scopes.length == 0) {
             return null;
         } else if (scopes.length != 1) {
@@ -232,7 +233,7 @@ public final class SwitchYardComponentExtensionManager {
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Only one \"scope\" element may be specified in a \"dependency\" for a switchYardComponent extension: plugin="
+                            Messages.SwitchYardComponentExtensionManager_MultipleScopesStatus
                                     + element.getContributor().getName()));
             // we'll fall through and return the first element's value
         }

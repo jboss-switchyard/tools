@@ -38,7 +38,7 @@ public class RepositoryArtifactReferenceWizard extends Wizard implements INewWiz
     private class WizardSelectionPage extends WorkbenchWizardListSelectionPage {
 
         public WizardSelectionPage() {
-            super(_workbench, _selection, _wizardsList, Messages.RepositoryArtifactReferenceWizard_pageTitle, "org.switchyard.tools.ui.repositorySupport"); //$NON-NLS-2$
+            super(_workbench, _selection, _wizardsList, Messages.RepositoryArtifactReferenceWizard_pageTitle, "org.switchyard.tools.ui.repositorySupport"); //$NON-NLS-2$ //$NON-NLS-1$
             setTitle(Messages.RepositoryArtifactReferenceWizard_wizardPageTitle);
         }
 
