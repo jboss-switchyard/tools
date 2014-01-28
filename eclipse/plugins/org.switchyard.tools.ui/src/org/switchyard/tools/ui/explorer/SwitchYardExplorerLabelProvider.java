@@ -18,6 +18,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.IDescriptionProvider;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.IImageDescriptors;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardExplorerLabelProvider
@@ -53,7 +54,7 @@ public class SwitchYardExplorerLabelProvider extends LabelProvider implements IL
     @Override
     public String getText(Object element) {
         if (element instanceof ISwitchYardRootNode) {
-            return "SwitchYard";
+            return Messages.SwitchYardExplorerLabelProvider_SwitchYardRootNode;
         } else if (element instanceof ISwitchYardNode) {
             return named(((ISwitchYardNode) element).getName());
         }
@@ -64,40 +65,40 @@ public class SwitchYardExplorerLabelProvider extends LabelProvider implements IL
     public String getDescription(Object element) {
         if (element instanceof ISwitchYardRootNode) {
             ISwitchYardRootNode root = (ISwitchYardRootNode) element;
-            return named(root.getName()) + " Application - " + root.getProject().getName();
+            return named(root.getName()) + Messages.SwitchYardExplorerLabelProvider_ApplicationNode + root.getProject().getName();
         } else if (element instanceof IServicesNode) {
             ISwitchYardRootNode root = ((IServicesNode) element).getRoot();
-            return named(root.getName()) + " Application Services - " + root.getProject().getName();
+            return named(root.getName()) + Messages.SwitchYardExplorerLabelProvider_AppServicesNode + root.getProject().getName();
         } else if (element instanceof IReferencesNode) {
             ISwitchYardRootNode root = ((IReferencesNode) element).getRoot();
-            return named(root.getName()) + " Application References - " + root.getProject().getName();
+            return named(root.getName()) + Messages.SwitchYardExplorerLabelProvider_AppReferencesNode + root.getProject().getName();
         } else if (element instanceof IComponentsNode) {
             ISwitchYardRootNode root = ((IComponentsNode) element).getRoot();
-            return named(root.getName()) + " Application Components - " + root.getProject().getName();
+            return named(root.getName()) + Messages.SwitchYardExplorerLabelProvider_AppComponentsNode + root.getProject().getName();
         } else if (element instanceof IArtifactsNode) {
             ISwitchYardRootNode root = ((IArtifactsNode) element).getRoot();
-            return named(root.getName()) + " Application Artifacts - " + root.getProject().getName();
+            return named(root.getName()) + Messages.SwitchYardExplorerLabelProvider_AppArtifactsNode + root.getProject().getName();
         } else if (element instanceof IServiceNode) {
-            return getText(element) + " Service";
+            return getText(element) + Messages.SwitchYardExplorerLabelProvider_ServiceNode;
         } else if (element instanceof IReferenceNode) {
-            return getText(element) + " Reference";
+            return getText(element) + Messages.SwitchYardExplorerLabelProvider_ReferenceNode;
         } else if (element instanceof IComponentNode) {
-            return getText(element) + " Component";
+            return getText(element) + Messages.SwitchYardExplorerLabelProvider_ComponentNode;
         } else if (element instanceof IComponentService) {
-            return getText(element) + " Component Service";
+            return getText(element) + Messages.SwitchYardExplorerLabelProvider_ComponentServiceNode;
         } else if (element instanceof IComponentReference) {
-            return getText(element) + " Component Reference";
+            return getText(element) + Messages.SwitchYardExplorerLabelProvider_ComponentReferenceNode;
         } else if (element instanceof IArtifactNode) {
-            return getText(element) + " Artifact Reference";
+            return getText(element) + Messages.SwitchYardExplorerLabelProvider_ArtifactReferenceNode;
         } else if (element instanceof IServiceGateway) {
-            return getText(element) + " Binding";
+            return getText(element) + Messages.SwitchYardExplorerLabelProvider_BindingNode;
         }
         return super.getText(element);
     }
 
     private String named(String name) {
         if (name == null || name.length() == 0) {
-            return "<unnamed>";
+            return Messages.SwitchYardExplorerLabelProvider_UnnamedNode;
         }
         return name;
     }

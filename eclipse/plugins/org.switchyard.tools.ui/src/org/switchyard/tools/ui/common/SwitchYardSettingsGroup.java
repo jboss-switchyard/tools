@@ -82,6 +82,7 @@ import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
+import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
 
 /**
@@ -172,10 +173,10 @@ public class SwitchYardSettingsGroup {
         Group runtimeControls = new Group(content, SWT.NONE);
         runtimeControls.setLayout(new GridLayout(3, false));
         runtimeControls.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        runtimeControls.setText("SwitchYard Version Details");
+        runtimeControls.setText(Messages.SwitchYardSettingsGroup_VersionDetailsGroup);
 
         Label label = new Label(runtimeControls, SWT.NONE);
-        label.setText("Configuration Version:");
+        label.setText(Messages.SwitchYardSettingsGroup_ConfigurationVersionLabel);
 
         _configVersionsList = new ComboViewer(runtimeControls);
         _configVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
@@ -198,7 +199,7 @@ public class SwitchYardSettingsGroup {
         new Label(runtimeControls, SWT.NONE);
 
         label = new Label(runtimeControls, SWT.NONE);
-        label.setText("Target Runtime:");
+        label.setText(Messages.SwitchYardSettingsGroup_TargetRuntimeLabel);
 
         _runtimesList = new ComboViewer(runtimeControls);
         _runtimesList.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -209,10 +210,10 @@ public class SwitchYardSettingsGroup {
                     final IRuntimeComponent component = (IRuntimeComponent) element;
                     final StringBuffer text = new StringBuffer(IRuntimeComponentLabelProvider.class.cast(
                             component.getAdapter(IRuntimeComponentLabelProvider.class)).getLabel());
-                    text.append(" [").append(component.getRuntime().getName()).append("]");
+                    text.append(" [").append(component.getRuntime().getName()).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
                     return text.toString();
                 }
-                return "<None>";
+                return Messages.SwitchYardSettingsGroup_EmptyRuntimeComponentLabel;
             }
         });
         _runtimesList.setContentProvider(ArrayContentProvider.getInstance());
@@ -234,14 +235,14 @@ public class SwitchYardSettingsGroup {
         });
 
         final Link newRuntimeLink = new Link(runtimeControls, SWT.NONE);
-        newRuntimeLink.setText("<a>Configure runtimes...</a>");
+        newRuntimeLink.setText(Messages.SwitchYardSettingsGroup_RuntimeLinkLabel);
         newRuntimeLink.setEnabled(true);
         newRuntimeLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                String id = "org.eclipse.wst.server.ui.preferencePage";
-                String id2 = "org.eclipse.wst.server.ui.runtime.preferencePage";
-                String id3 = "org.jboss.tools.runtime.preferences.RuntimePreferencePage";
+                String id = "org.eclipse.wst.server.ui.preferencePage"; //$NON-NLS-1$
+                String id2 = "org.eclipse.wst.server.ui.runtime.preferencePage"; //$NON-NLS-1$
+                String id3 = "org.jboss.tools.runtime.preferences.RuntimePreferencePage"; //$NON-NLS-1$
                 final PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(newRuntimeLink.getShell(),
                         id2, new String[] {id, id2, id3 }, null);
                 if (dialog.open() == PreferenceDialog.OK) {
@@ -251,7 +252,7 @@ public class SwitchYardSettingsGroup {
         });
 
         label = new Label(runtimeControls, SWT.NONE);
-        label.setText("Libary Version:");
+        label.setText(Messages.SwitchYardSettingsGroup_LibraryVersionLabel);
 
         _runtimeVersionsList = new VersionComboViewer(runtimeControls);
         _runtimeVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
@@ -266,7 +267,7 @@ public class SwitchYardSettingsGroup {
         Group componentControls = new Group(content, SWT.NONE);
         componentControls.setLayout(new GridLayout());
         componentControls.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        componentControls.setText("SwitchYard Components");
+        componentControls.setText(Messages.SwitchYardSettingsGroup_SYComponentsGroupLabel);
 
         _componentsTable = new CheckboxTreeViewer(componentControls, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
                 | SWT.V_SCROLL);
@@ -282,14 +283,14 @@ public class SwitchYardSettingsGroup {
                     if (selected instanceof ISwitchYardComponentExtension) {
                         String description = ((ISwitchYardComponentExtension) selected).getDescription();
                         if (description == null || description.length() == 0) {
-                            description = "unavailable";
+                            description = Messages.SwitchYardSettingsGroup_ComponentUnavailableLabel;
                         }
                         _descriptionText.setText(description);
                     } else {
-                        _descriptionText.setText("");
+                        _descriptionText.setText(""); //$NON-NLS-1$
                     }
                 } else {
-                    _descriptionText.setText("");
+                    _descriptionText.setText(""); //$NON-NLS-1$
                 }
             }
         });
@@ -313,7 +314,7 @@ public class SwitchYardSettingsGroup {
         });
 
         Group detailsGroup = new Group(componentControls, SWT.NONE);
-        detailsGroup.setText("Description");
+        detailsGroup.setText(Messages.SwitchYardSettingsGroup_DetailsGroup);
         detailsGroup.setLayout(new GridLayout());
         detailsGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
@@ -470,7 +471,7 @@ public class SwitchYardSettingsGroup {
             _context.run(false, true, new IRunnableWithProgress() {
                 @Override
                 public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-                    monitor.beginTask("Loading available SwitchYard capabilities.", 100);
+                    monitor.beginTask(Messages.SwitchYardSettingsGroup_LoadingAvailableCapabilitiesMessage, 100);
                     try {
                         populateComponentsTable();
                         monitor.worked(25);
@@ -496,13 +497,13 @@ public class SwitchYardSettingsGroup {
                         .getDefault()
                         .getLog()
                         .log(new MultiStatus(Activator.PLUGIN_ID, -1, new IStatus[] {((CoreException) e.getCause())
-                                .getStatus() }, "Error loading available SwitchYard capabilities.", e));
+                                .getStatus() }, Messages.SwitchYardSettingsGroup_ErrorLoadingCapabilitiesMessage, e));
             } else {
                 Activator
                         .getDefault()
                         .getLog()
                         .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                "Error loading available SwitchYard capabilities.", e));
+                                Messages.SwitchYardSettingsGroup_ErrorLoadingCapabilitiesMessage, e));
             }
         }
     }
@@ -562,7 +563,7 @@ public class SwitchYardSettingsGroup {
     }
 
     private Set<Version> filterSwitchYardVersions(List<Version> versions) {
-        final String onePointZero = "1.0";
+        final String onePointZero = "1.0"; //$NON-NLS-1$
         final Set<Version> filtered = new LinkedHashSet<Version>();
         String previousMajorMinor = null;
         boolean previousWasSnapshot = false;
@@ -574,8 +575,8 @@ public class SwitchYardSettingsGroup {
             try {
                 if (previousMajorMinor == null) {
                     filtered.add(next);
-                    previousWasSnapshot = version.endsWith("-SNAPSHOT");
-                } else if (version.endsWith("-SNAPSHOT")) {
+                    previousWasSnapshot = version.endsWith("-SNAPSHOT"); //$NON-NLS-1$
+                } else if (version.endsWith("-SNAPSHOT")) { //$NON-NLS-1$
                     // skip snapshots
                     continue;
                 } else if (previousMajorMinor.equals(majorMinor) && !previousWasSnapshot) {
@@ -709,13 +710,13 @@ public class SwitchYardSettingsGroup {
             if (element instanceof Category) {
                 switch ((Category) element) {
                 case UNKNOWN:
-                    return "Unknown";
+                    return Messages.SwitchYardSettingsGroup_UnknownCategoryLabel;
                 case IMPLEMENTATION:
-                    return "Implementation Support";
+                    return Messages.SwitchYardSettingsGroup_ImplementationSupportLabel;
                 case GATEWAY:
-                    return "Gateway Bindings";
+                    return Messages.SwitchYardSettingsGroup_GatewayBindingsLabel;
                 case TEST:
-                    return "Test Mixins";
+                    return Messages.SwitchYardSettingsGroup_TestMixinsLabel;
                 }
             } else if (element instanceof ISwitchYardComponentExtension) {
                 return ((ISwitchYardComponentExtension) element).getName();

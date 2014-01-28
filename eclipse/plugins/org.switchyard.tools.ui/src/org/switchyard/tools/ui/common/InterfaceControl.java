@@ -53,6 +53,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.impl.ESBInterfaceControlAdapter;
 import org.switchyard.tools.ui.common.impl.JavaInterfaceControlAdapter;
 import org.switchyard.tools.ui.common.impl.WSDLInterfaceControlAdapter;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * InterfaceControl
@@ -185,12 +186,12 @@ public class InterfaceControl implements ISelectionProvider {
      */
     public static String getSimpleServiceInterfaceName(Interface intf) {
         if (intf == null) {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         if (intf instanceof JavaInterface) {
             String serviceInterfaceName = ((JavaInterface) intf).getInterface();
             if (serviceInterfaceName == null) {
-                return "";
+                return ""; //$NON-NLS-1$
             }
             int lastDotIndex = serviceInterfaceName.lastIndexOf('.');
             if (lastDotIndex > 0) {
@@ -200,16 +201,16 @@ public class InterfaceControl implements ISelectionProvider {
         } else if (intf instanceof WSDLPortType) {
             String serviceInterfaceName = ((WSDLPortType) intf).getInterface();
             if (serviceInterfaceName == null) {
-                return "";
+                return ""; //$NON-NLS-1$
             }
-            Pattern pattern = Pattern.compile(".*#wsdl\\.porttype\\(([^\\)]*)\\)");
+            Pattern pattern = Pattern.compile(".*#wsdl\\.porttype\\(([^\\)]*)\\)"); //$NON-NLS-1$
             Matcher matcher = pattern.matcher(serviceInterfaceName);
             if (matcher.matches()) {
                 return matcher.group(1);
             }
-            return "";
+            return ""; //$NON-NLS-1$
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     /**
@@ -244,14 +245,14 @@ public class InterfaceControl implements ISelectionProvider {
      */
     public void createControl(Composite parent, int numColumns) {
         Label label = new Label(parent, SWT.NONE);
-        label.setText("Interface Type:");
+        label.setText(Messages.InterfaceControl_Label);
 
         Composite group = new Composite(parent, SWT.SHADOW_NONE);
         group.setLayout(new GridLayout(3, false));
         group.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, numColumns - 2, 1));
 
         _javaRadio = new Button(group, SWT.RADIO);
-        _javaRadio.setText("Java");
+        _javaRadio.setText(Messages.InterfaceControl_JavaRadioLabel);
         _javaRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -260,7 +261,7 @@ public class InterfaceControl implements ISelectionProvider {
         });
 
         _wsdlRadio = new Button(group, SWT.RADIO);
-        _wsdlRadio.setText("WSDL");
+        _wsdlRadio.setText(Messages.InterfaceControl_WSDLRadioLabel);
         _wsdlRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -269,7 +270,7 @@ public class InterfaceControl implements ISelectionProvider {
         });
 
         _esbRadio = new Button(group, SWT.RADIO);
-        _esbRadio.setText("ESB");
+        _esbRadio.setText(Messages.InterfaceControl_ESBRadioLabel);
         _esbRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -281,7 +282,7 @@ public class InterfaceControl implements ISelectionProvider {
         label = new Label(parent, SWT.NONE);
 
         _newLink = new Link(parent, SWT.NONE);
-        _newLink.setText("<a>Interface:</a>");
+        _newLink.setText(Messages.InterfaceControl_InterfaceLinkLabel);
         _newLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -301,7 +302,7 @@ public class InterfaceControl implements ISelectionProvider {
         });
 
         _browseButton = new Button(parent, SWT.PUSH);
-        _browseButton.setText("Browse...");
+        _browseButton.setText(Messages.InterfaceControl_BrowseButtonLabel);
         _browseButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
         _browseButton.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -351,7 +352,7 @@ public class InterfaceControl implements ISelectionProvider {
      */
     public IStatus getStatus() {
         if (_adapter == null) {
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please select an interface type.");
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.InterfaceControl_InterfaceTypeRequiredMessage);
         }
         return _adapter.validate(_project);
     }
@@ -435,7 +436,7 @@ public class InterfaceControl implements ISelectionProvider {
             radio = null;
         }
         if (radio == null) {
-            _text.setText("");
+            _text.setText(""); //$NON-NLS-1$
             return;
         } else {
             _javaRadio.setSelection(radio.equals(_javaRadio));

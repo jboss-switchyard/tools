@@ -336,7 +336,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         type.createField(
                 "@" + imports.addImport("org.switchyard.test.ServiceOperation") + "(\"" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                         + getSimpleServiceInterfaceName() + "\")" + lineDelimiter + "private " //$NON-NLS-1$ //$NON-NLS-2$
-                        + imports.addImport(Messages.NewServiceTestClassWizardPage_16) + " service;", null, false, //$NON-NLS-2$
+                        + imports.addImport(Messages.NewServiceTestClassWizardPage_16) + " service;", null, false, //$NON-NLS-2$ //$NON-NLS-1$
                 new SubProgressMonitor(monitor, 1));
 
         ServiceInterface serviceTypeBinding = resolveServiceType();

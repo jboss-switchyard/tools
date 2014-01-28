@@ -39,6 +39,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener.Type;
+import org.switchyard.tools.ui.i18n.Messages;
 
 /**
  * SwitchYardProjectManager
@@ -199,7 +200,7 @@ public final class SwitchYardProjectManager {
 
     private final class UpdateMetadataJob extends Job {
         private UpdateMetadataJob() {
-            super("Updating SwitchYard project meta-data.");
+            super(Messages.SwitchYardProjectManager_UpdatingProjectMetadataJob);
             // we want this to be lower priority, in the hopes the maven
             // subsystem will do all the work, making this a short runner.
             setPriority(BUILD);
@@ -207,7 +208,7 @@ public final class SwitchYardProjectManager {
 
         @Override
         protected IStatus run(IProgressMonitor monitor) {
-            monitor.beginTask("Updating SwitchYard project meta-data: ", IProgressMonitor.UNKNOWN);
+            monitor.beginTask(Messages.SwitchYardProjectManager_UpdatingProjectMetadataJob2, IProgressMonitor.UNKNOWN);
             try {
                 do {
                     for (Iterator<Entry<SwitchYardProject, Set<Type>>> it = _pendingUpdates.entrySet().iterator(); it
@@ -229,7 +230,7 @@ public final class SwitchYardProjectManager {
                                     .getDefault()
                                     .getLog()
                                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                                            "Error loading SwitchYard project meta-data: "
+                                            Messages.SwitchYardProjectManager_ErrorLoadingMetadataMessage
                                                     + switchYardProject.getProject(), e));
                         } finally {
                             subMontior.done();
