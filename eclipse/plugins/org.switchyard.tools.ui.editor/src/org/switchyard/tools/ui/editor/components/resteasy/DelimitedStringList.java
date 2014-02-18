@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2004-2005, 2008 Sybase, Inc; 2012 Red Hat, Inc. 
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc; 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -83,20 +83,10 @@ public class DelimitedStringList extends Composite {
     // change listeners
     private ListenerList _changeListeners;
 
-//    private class AddTextModifyListener implements ModifyListener {
-//
-//        private DelimitedStringList _parent;
-//
-//        public AddTextModifyListener(DelimitedStringList parent) {
-//            this._parent = parent;
-//        }
-//
-//        public void modifyText(ModifyEvent e) {
-//            updatePropertyButtons();
-//            fireChangedEvent(_parent);
-//        }
-//    }
-
+    protected Text getHiddenText() {
+        return this._mHiddenText;
+    }
+    
     /**
      * Constructor.
      * 
@@ -119,40 +109,11 @@ public class DelimitedStringList extends Composite {
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
 
-//        int additionalStyles = SWT.NONE;
-//        if (isReadOnly) {
-//            additionalStyles = SWT.READ_ONLY;
-//        }
-
         final GridLayout gridLayout = new GridLayout();
         gridLayout.marginWidth = 0;
         gridLayout.marginHeight = 0;
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
-
-//        this._mAddText = new Text(this, SWT.BORDER | additionalStyles);
-//        this._mAddText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//        this._mAddText.addModifyListener(new AddTextModifyListener(this));
-
-//        this._mAddButton = new Button(this, SWT.NONE);
-//        this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-//        this._mAddButton.setText("Add");
-//        this._mAddButton.addSelectionListener(new SelectionAdapter() {
-//
-//            public void widgetSelected(SelectionEvent e) {
-//                addStringToList();
-//                fireChangedEvent(e.getSource());
-//            }
-//        });
-//
-//        this._mAddButton.setEnabled(false);
-
-//        Composite mSpacerComposite = new Composite(this, SWT.NONE);
-//        GridData gridData = new GridData();
-//        gridData.heightHint = 10;
-//        gridData.horizontalSpan = 2;
-//        mSpacerComposite.setLayoutData(gridData);
-//        mSpacerComposite.setLayout(new GridLayout());
 
         this._mPropsList = new List(this, SWT.BORDER);
         GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, false);
@@ -225,6 +186,7 @@ public class DelimitedStringList extends Composite {
             public void widgetSelected(SelectionEvent e) {
                 DelimitedStringList.this._mPropsList.removeAll();
                 DelimitedStringList.this._mHiddenText.setText(DelimitedStringList.this.getSelection().trim());
+                notifyListeners();
                 updatePropertyButtons();
             }
         });
@@ -268,22 +230,13 @@ public class DelimitedStringList extends Composite {
         // empty
     }
 
-//    /**
-//     * Add a new string to the list
-//     */
-//    private void addStringToList() {
-//        if (this._mAddText.getText().length() > 0) {
-//            this._mPropsList.add(this._mAddText.getText().trim());
-//            if (!_isReadOnly) {
-//                this._mClearAllButton.setEnabled(true);
-//            }
-//            String selected = getSelection();
-//            this._mHiddenText.setText(selected.trim());
-//            this._mAddText.setSelection(0, this._mAddText.getText().length());
-//            this._mAddText.setFocus();
-//        }
-//    }
-
+    private void notifyListeners() {
+        // make sure a notify event gets sent, to update the binding
+        _mHiddenText.notifyListeners(SWT.Modify, null);
+        // simulate "ENTER" to commit the change
+        _mHiddenText.notifyListeners(SWT.DefaultSelection, null);
+    }
+    
     /**
      * Add a new string to the list
      */
@@ -295,6 +248,7 @@ public class DelimitedStringList extends Composite {
             }
             String selected = getSelection();
             this._mHiddenText.setText(selected.trim());
+            notifyListeners();
         }
     }
 
@@ -307,6 +261,7 @@ public class DelimitedStringList extends Composite {
             this._mPropsList.remove(index);
             String selected = getSelection();
             this._mHiddenText.setText(selected.trim());
+            notifyListeners();
 
             try {
                 if (this._mPropsList.getItem(index) != null) {
@@ -352,6 +307,7 @@ public class DelimitedStringList extends Composite {
 
                 String selected = getSelection();
                 this._mHiddenText.setText(selected.trim());
+                notifyListeners();
                 this._mPropsList.setSelection(destination);
             }
         }
@@ -392,6 +348,7 @@ public class DelimitedStringList extends Composite {
 
                 String selected = getSelection();
                 this._mHiddenText.setText(selected.trim());
+                notifyListeners();
                 this._mPropsList.setSelection(destination);
 
             }
@@ -443,24 +400,9 @@ public class DelimitedStringList extends Composite {
                     }
                 }
             }
-
-//            String value = ""; //$NON-NLS-1$
-//            value = this._mAddText.getText();
-//            boolean flag = value != null && value.trim().length() > 0;
-//            boolean valid = validateText(value);
-//            this._mAddButton.setEnabled(flag && valid);
         }
     }
 
-//    private boolean validateText(String text) {
-//        if (text != null && text.trim().length() > 0 && text.indexOf(",") > -1) { //$NON-NLS-1$
-//            this._mWarning = "Commas may not be used in list items";
-//            return false;
-//        }
-//        this._mWarning = null;
-//        return true;
-//    }
-//
     /**
      * Set focus to the add text box.
      * @return true/false 

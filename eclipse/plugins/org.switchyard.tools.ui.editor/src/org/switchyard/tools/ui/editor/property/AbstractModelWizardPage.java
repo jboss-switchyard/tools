@@ -11,7 +11,10 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.ObservablesManager;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -32,6 +35,8 @@ public abstract class AbstractModelWizardPage<T extends EObject> extends WizardP
 
     private FormToolkit _toolkit;
     private AbstractModelComposite<T> _composite;
+    private DataBindingContext _context;
+    private ObservablesManager _observablesManager;
 
     /**
      * Create a new AbstractModelWizardPage.
@@ -40,6 +45,9 @@ public abstract class AbstractModelWizardPage<T extends EObject> extends WizardP
      */
     public AbstractModelWizardPage(String name) {
         super(name);
+        _context = new EMFDataBindingContext();
+        _observablesManager = new ObservablesManager();
+        _observablesManager.addObservablesFromContext(_context, true, true);
     }
 
     @Override
@@ -79,10 +87,12 @@ public abstract class AbstractModelWizardPage<T extends EObject> extends WizardP
 
     @Override
     public void createControl(Composite parent) {
-        final FormColors colors = new FormColors(Display.getCurrent());
-        colors.setBackground(null);
-        colors.setForeground(null);
-        _toolkit = new FormToolkit(colors);
+        if (_toolkit == null) {
+            final FormColors colors = new FormColors(Display.getCurrent());
+            colors.setBackground(null);
+            colors.setForeground(null);
+            _toolkit = new FormToolkit(colors);
+        }
 
         _composite = createComposite(parent, SWT.NONE);
 
@@ -99,6 +109,27 @@ public abstract class AbstractModelWizardPage<T extends EObject> extends WizardP
      * @return the new composite.
      */
     protected abstract AbstractModelComposite<T> createComposite(Composite parent, int style);
+
+    @Override
+    public void dispose() {
+        if (_toolkit != null) {
+            _toolkit.dispose();
+            _toolkit = null;
+        }
+        _observablesManager.dispose();
+        _context.dispose();
+        super.dispose();
+    }
+
+    @Override
+    public DataBindingContext getDataBindingContext() {
+        return _context;
+    }
+
+    @Override
+    public ObservablesManager getObservablesManager() {
+        return _observablesManager;
+    }
 
 }
 

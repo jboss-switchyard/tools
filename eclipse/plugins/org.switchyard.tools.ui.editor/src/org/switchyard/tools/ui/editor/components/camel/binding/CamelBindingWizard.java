@@ -38,7 +38,7 @@ public class CamelBindingWizard extends AbstractBindingWizard implements IBindin
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelBindingTypeExtension.createComposites();
+        return CamelBindingTypeExtension.createComposites(getToolkit());
     }
 
 }

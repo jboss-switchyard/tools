@@ -44,7 +44,7 @@ public class CameJPABindingWizard extends AbstractBindingWizard implements IBind
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelJPABindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return CamelJPABindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

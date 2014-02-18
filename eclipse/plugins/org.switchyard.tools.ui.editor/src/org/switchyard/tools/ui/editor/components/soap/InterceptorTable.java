@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2013 Red Hat, Inc. 
+ * Copyright (c) 2013-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,149 +12,85 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.soap;
 
+import java.util.Collection;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.observable.ObservableTracker;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.databinding.property.value.IValueProperty;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.databinding.EMFProperties;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ICellModifier;
-import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.viewers.CellEditorProperties;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.databinding.viewers.ObservableMapCellLabelProvider;
+import org.eclipse.jface.databinding.viewers.ObservableValueEditingSupport;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TreeColumn;
+import org.eclipse.swt.widgets.Display;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
+import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
  * 
  */
-public abstract class InterceptorTable extends Composite implements ICellModifier {
+public class InterceptorTable extends Composite {
 
-    private class InterceptorTypeTreeContentProvider implements ITreeContentProvider {
-        private EList<InterceptorType> _properties;
-
-        @Override
-        public void dispose() {
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-            if (newInput instanceof EList<?>) {
-                _properties = (EList<InterceptorType>) newInput;
-            }
-        }
-
-        @Override
-        public Object[] getElements(Object inputElement) {
-            if (inputElement instanceof EList<?>) {
-                return _properties.toArray();
-            }
-            return null;
-        }
-
-        @Override
-        public Object[] getChildren(Object parentElement) {
-            if (parentElement instanceof InterceptorType[]) {
-                return new Object[] {_properties.toArray() };
-            }
-            return null;
-        }
-
-        @Override
-        public Object getParent(Object element) {
-            if (element instanceof InterceptorType) {
-                return ((InterceptorType) element).eContainer();
-            }
-            return null;
-        }
-
-        @Override
-        public boolean hasChildren(Object element) {
-            if (element instanceof EList<?>) {
-                return ((EList<?>) element).size() > 0;
-            }
-            return false;
-        }
-    }
-
-    private class InterceptorTypeTreeLabelProvider implements ITableLabelProvider {
-        @Override
-        public void addListener(ILabelProviderListener listener) {
-        }
-
-        @Override
-        public void dispose() {
-        }
-
-        @Override
-        public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof InterceptorType && property.equalsIgnoreCase(NAME_COLUMN)) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public void removeListener(ILabelProviderListener listener) {
-        }
-
-        @Override
-        public Image getColumnImage(Object element, int columnIndex) {
-            return null;
-        }
-
-        @Override
-        public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof InterceptorType && columnIndex == 0) {
-                return ((InterceptorType) element).getClass_();
-            }
-            return null;
-        }
-    }
-
-    private TreeViewer _interceptorTreeTable;
-    
-    /**
-     *  Name column.
-     */
-    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
-    
-    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN };
-
+    private TableViewer _interceptorTable;
     private Button _mAddButton;
     private Button _mRemoveButton;
     private Button _mEditButton;
     private boolean _isReadOnly = false;
     private EObject _targetObj = null;
-    private String _mWarning = null;
     private ListenerList _changeListeners;
+    private final EReference _interceptorsFeature;
+    private final EReference _interceptorsListFeature;
+    private final EClass _interceptorType;
+    private WritableValue _bindingValue;
 
     /**
      * Constructor.
      * 
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
+     * @param interceptorsListFeature list we're editing
+     * @param interceptorsFeature actual interceptor list feature
+     * @param interceptorType actual class for the interceptor type
+     * @param context DataBindingContext to use 
      */
-    public InterceptorTable(Composite parent, int style) {
-        this(parent, style, false);
+    public InterceptorTable(Composite parent, int style, EReference interceptorsListFeature,
+            EReference interceptorsFeature, EClass interceptorType, DataBindingContext context) {
+        this(parent, style, false, interceptorsListFeature, interceptorsFeature, interceptorType, context);
     }
 
     /**
@@ -163,11 +99,24 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
      * @param parent composite parent
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
+     * @param interceptorsListFeature list we're editing
+     * @param interceptorsFeature actual interceptor list feature
+     * @param interceptorType actual class for the interceptor type
+     * @param context DataBindingContext to use 
      */
-    public InterceptorTable(Composite parent, int style, boolean isReadOnly) {
+    public InterceptorTable(Composite parent, int style, boolean isReadOnly,
+            EReference interceptorsListFeature, EReference interceptorsFeature, 
+            EClass interceptorType,
+            DataBindingContext context) {
         super(parent, style);
+
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
+        _interceptorsListFeature = interceptorsListFeature;
+        _interceptorsFeature = interceptorsFeature;
+        _interceptorType = interceptorType;
 
         int additionalStyles = SWT.NONE;
         if (isReadOnly) {
@@ -180,26 +129,40 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
 
-        _interceptorTreeTable = new TreeViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
-                | additionalStyles);
-        this._interceptorTreeTable.setAutoExpandLevel(TreeViewer.ALL_LEVELS);
-        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 5);
+        Composite tableComposite = new Composite(this, additionalStyles);
+        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 3);
         gd11.heightHint = 100;
-        _interceptorTreeTable.getTree().setLayoutData(gd11);
-        _interceptorTreeTable.getTree().setHeaderVisible(true);
-        TreeColumn nameColumn = new TreeColumn(_interceptorTreeTable.getTree(), SWT.LEFT);
-        nameColumn.setText(Messages.label_class);
-        nameColumn.setWidth(400);
+        tableComposite.setLayoutData(gd11);
 
-        _interceptorTreeTable.setColumnProperties(TREE_COLUMNS);
+        _interceptorTable = new TableViewer(tableComposite, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
+                | additionalStyles);
+        this._interceptorTable.getTable().setHeaderVisible(true);
 
-        _interceptorTreeTable.setLabelProvider(new InterceptorTypeTreeLabelProvider());
+        TableColumnLayout tableLayout = new TableColumnLayout();
+        tableComposite.setLayout(tableLayout);
 
-        _interceptorTreeTable.setContentProvider(new InterceptorTypeTreeContentProvider());
+        TableViewerColumn nameColumn = new TableViewerColumn(_interceptorTable, SWT.LEFT);
+        nameColumn.getColumn().setText(Messages.label_name);
+        tableLayout.setColumnData(nameColumn.getColumn(), new ColumnWeightData(100, 150, true));
 
-        _interceptorTreeTable.setCellModifier(this);
-        _interceptorTreeTable.setCellEditors(new CellEditor[] {null, new TextCellEditor(_interceptorTreeTable.getTree()),
-                null });
+        IValueProperty nameProperty = domain == null ? EMFProperties
+                .value(_interceptorType.getEStructuralFeature("class")) : EMFEditProperties.value(domain,
+                _interceptorType.getEStructuralFeature("class"));
+        IValueProperty cellEditorTextProperty = CellEditorProperties.control().value(WidgetProperties.text(SWT.Modify));
+        
+        final ObservableListContentProvider contentProvider;
+        ObservableTracker.setIgnore(true);
+        try {
+            // ignore any observers created internally
+            contentProvider = new ObservableListContentProvider();
+        } finally {
+            ObservableTracker.setIgnore(false);
+        }
+
+        nameColumn.setEditingSupport(ObservableValueEditingSupport.create(_interceptorTable, context, new TextCellEditor(_interceptorTable.getTable()), cellEditorTextProperty, nameProperty));
+        nameColumn.setLabelProvider(new ObservableMapCellLabelProvider(nameProperty.observeDetail(contentProvider.getKnownElements())));
+
+        _interceptorTable.setContentProvider(contentProvider);
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
@@ -208,14 +171,13 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
 
             public void widgetSelected(SelectionEvent e) {
                 addInterceptorTypeToList();
-                _interceptorTreeTable.refresh();
                 fireChangedEvent(e.getSource());
             }
         });
 
         this._mAddButton.setEnabled(false);
 
-        _interceptorTreeTable.getTree().addSelectionListener(new SelectionAdapter() {
+        _interceptorTable.getTable().addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 updateInterceptorTypeButtons();
@@ -230,7 +192,6 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
 
             public void widgetSelected(SelectionEvent e) {
                 editInterceptorType();
-                _interceptorTreeTable.refresh();
                 fireChangedEvent(e.getSource());
             }
         });
@@ -243,38 +204,152 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
 
             public void widgetSelected(SelectionEvent e) {
                 removeFromList();
-                _interceptorTreeTable.refresh();
                 fireChangedEvent(e.getSource());
             }
         });
 
+        // set the input. we're observing a list on the binding value
+        _bindingValue = new WritableValue(SWTObservables.getRealm(getDisplay()), null, SOAPBindingType.class);
+        _interceptorTable.setInput(EMFProperties.list(
+                FeaturePath.fromList(_interceptorsListFeature, _interceptorsFeature)).observeDetail(_bindingValue));
+
         updateInterceptorTypeButtons();
     }
 
-    @Override
-    public void dispose() {
-        super.dispose();
-    }
-
-    @Override
-    protected void checkSubclass() {
-        // empty
-    }
-
     /**
-     * Add a new property to the list
+     * Add a new interceptor to the list
      */
-    protected abstract void addInterceptorTypeToList();
+    @SuppressWarnings({"unchecked", "rawtypes" })
+    protected void addInterceptorTypeToList() {
+        final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
+                .getActiveShell());
+        final InterceptorType interceptor = SOAPFactory.eINSTANCE.createInterceptorType();
+        dialog.setInterceptor(interceptor);
+        int rtn_value = dialog.open();
+        if (rtn_value == InterceptorTypeInputDialog.OK) {
+            final SOAPBindingType soapBinding = (SOAPBindingType) _targetObj;
+            final EObject mapping = interceptor; 
+
+            if (_targetObj.eContainer() != null) {
+                TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                domain.getCommandStack().execute(new RecordingCommand(domain) {
+                    @Override
+                    protected void doExecute() {
+                        Object variableContainer = soapBinding.eGet(_interceptorsListFeature);
+                        if (variableContainer == null) {
+                            final EClass variableContainerClass = _interceptorsListFeature.getEReferenceType();
+                            variableContainer = variableContainerClass.getEPackage().getEFactoryInstance().create(variableContainerClass);
+                            soapBinding.eSet(_interceptorsListFeature, variableContainer);
+                        }
+                        if (variableContainer instanceof EObject) {
+                            final Object mappings = ((EObject) variableContainer).eGet(_interceptorsFeature);
+                            if (mappings instanceof Collection) {
+                                ((Collection) mappings).add(mapping);
+                            }
+                        }
+                    }
+                });
+            } else {
+                Object variableContainer = soapBinding.eGet(_interceptorsListFeature);
+                if (variableContainer == null) {
+                    final EClass variableContainerClass = _interceptorsListFeature.getEReferenceType();
+                    variableContainer = variableContainerClass.getEPackage().getEFactoryInstance().create(variableContainerClass);
+                    soapBinding.eSet(_interceptorsListFeature, variableContainer);
+                }
+                if (variableContainer instanceof EObject) {
+                    final Object mappings = ((EObject) variableContainer).eGet(_interceptorsFeature);
+                    if (mappings instanceof Collection) {
+                        ((Collection) mappings).add(mapping);
+                    }
+                }
+            }
+            fireChangedEvent(this);
+        }
+    };
 
     /**
      * Remove a property from the list
      */
-    protected abstract void removeFromList();
+    @SuppressWarnings({"rawtypes"})
+    protected void removeFromList() {
+        if (getTargetObject() instanceof SwitchYardBindingType) {
+            final SwitchYardBindingType baseCamel = (SwitchYardBindingType) getTargetObject();
+            final EObject actionToRemove = getTableSelection();
+            if (baseCamel.eContainer() != null) {
+                TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                domain.getCommandStack().execute(new RecordingCommand(domain) {
+                    @Override
+                    protected void doExecute() {
+                        final Object variableContainer = baseCamel.eGet(_interceptorsListFeature);
+                        if (variableContainer instanceof EObject) {
+                            final Object mappings = ((EObject) variableContainer).eGet(_interceptorsFeature);
+                            if (mappings instanceof Collection) {
+                                ((Collection) mappings).remove(actionToRemove);
+                            }
+                            if (((Collection)mappings).isEmpty()) {
+                                baseCamel.eSet(_interceptorsListFeature, null);
+                            }
+                        }
+                    }
+                });
+            } else {
+                final Object variableContainer = baseCamel.eGet(_interceptorsListFeature);
+                if (variableContainer instanceof EObject) {
+                    final Object mappings = ((EObject) variableContainer).eGet(_interceptorsFeature);
+                    if (mappings instanceof Collection) {
+                        ((Collection) mappings).remove(actionToRemove);
+                    }
+                    if (((Collection)mappings).isEmpty()) {
+                        baseCamel.eSet(_interceptorsListFeature, null);
+                    }
+                }
+            }
+            fireChangedEvent(this);
+        }
+    };
     
     /**
      * Edit the selected interceptor type.
      */
-    protected abstract void editInterceptorType();
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    protected void editInterceptorType() {
+        if (getTargetObject() instanceof SwitchYardBindingType) {
+            final SwitchYardBindingType baseCamel = (SwitchYardBindingType) getTargetObject();
+            final EObject actionToRemove = getTableSelection();
+            final InterceptorTypeInputDialog dialog = new InterceptorTypeInputDialog(Display.getCurrent()
+                    .getActiveShell());
+            dialog.setInterceptor((InterceptorType)actionToRemove);
+            int rtn_value = dialog.open();
+            if (rtn_value == InterceptorTypeInputDialog.OK) {
+                if (baseCamel.eContainer() != null) {
+                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            final Object variableContainer = baseCamel.eGet(_interceptorsListFeature);
+                            if (variableContainer instanceof EObject) {
+                                final Object mappings = ((EObject) variableContainer).eGet(_interceptorsFeature);
+                                if (mappings instanceof Collection) {
+                                    ((Collection) mappings).remove(actionToRemove);
+                                    ((Collection) mappings).add(dialog.getInterceptor());
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    final Object variableContainer = baseCamel.eGet(_interceptorsListFeature);
+                    if (variableContainer instanceof EObject) {
+                        final Object mappings = ((EObject) variableContainer).eGet(_interceptorsFeature);
+                        if (mappings instanceof Collection) {
+                            ((Collection) mappings).remove(actionToRemove);
+                            ((Collection) mappings).add(dialog.getInterceptor());
+                        }
+                    }
+                }
+                fireChangedEvent(this);
+            }
+        }
+    };
 
     /**
      * Return the current selection.
@@ -283,18 +358,18 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
      */
     @SuppressWarnings("unchecked")
     public EList<InterceptorType> getSelection() {
-        if (_interceptorTreeTable != null && _interceptorTreeTable.getInput() != null) {
-            return (EList<InterceptorType>) _interceptorTreeTable.getInput();
+        if (_interceptorTable != null && _interceptorTable.getInput() != null) {
+            return (EList<InterceptorType>) _interceptorTable.getInput();
         }
         return null;
     }
     
     /**
-     * @return the currently selected PropertyType
+     * @return the currently selected InterceptorType
      */
     public InterceptorType getTableSelection() {
-        if (_interceptorTreeTable != null && !_interceptorTreeTable.getSelection().isEmpty()) {
-            IStructuredSelection ssel = (IStructuredSelection) _interceptorTreeTable.getSelection();
+        if (_interceptorTable != null && !_interceptorTable.getSelection().isEmpty()) {
+            IStructuredSelection ssel = (IStructuredSelection) _interceptorTable.getSelection();
             if (ssel.getFirstElement() instanceof InterceptorType) {
                 return (InterceptorType) ssel.getFirstElement();
             }
@@ -312,7 +387,8 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
             this._mEditButton.setEnabled(false);
         } else {
             this._mAddButton.setEnabled(true);
-            if (getSelection() != null) {
+            IStructuredSelection ssel = (IStructuredSelection) _interceptorTable.getSelection();
+            if (ssel != null && ssel.getFirstElement() != null) {
                 _mEditButton.setEnabled(true);
                 _mRemoveButton.setEnabled(true);
             }
@@ -323,15 +399,8 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
      * @param properties incoming property list
      */
     public void setSelection(EList<InterceptorType> properties) {
-        _interceptorTreeTable.setInput(properties);
+        _interceptorTable.setInput(properties);
         updateInterceptorTypeButtons();
-    }
-
-    /**
-     * @return warning string
-     */
-    public String getWarning() {
-        return this._mWarning;
     }
 
     /**
@@ -371,60 +440,15 @@ public abstract class InterceptorTable extends Composite implements ICellModifie
      */
     public void setTargetObject(EObject target) {
         this._targetObj = target;
+        _bindingValue.setValue(target);
+        updateInterceptorTypeButtons();
     }
 
     protected EObject getTargetObject() {
         return this._targetObj;
     }
-    
-    protected void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
-            }
-        }
-    }
 
-    /**
-     * @param element Object being modified
-     * @param property PropertyType being modified
-     * @return boolean flag
-     * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object, java.lang.String)
-     */
-    public boolean canModify(Object element, String property) {
-        return false;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property PropertyType being modified
-     * @return value of element property
-     * @see
-     * org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object ,
-     * java.lang.String)
-     */
-    public Object getValue(Object element, String property) {
-        return null;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property PropertyType being modified
-     * @param value New property value
-     *
-     * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
-     * java.lang.String, java.lang.Object)
-     */
-    public void modify(Object element, String property, final Object value) {
-        return;
-    }
-
-    protected TreeViewer getTreeViewer() {
-        return this._interceptorTreeTable;
+    protected TableViewer getTableViewer() {
+        return this._interceptorTable;
     }
 }

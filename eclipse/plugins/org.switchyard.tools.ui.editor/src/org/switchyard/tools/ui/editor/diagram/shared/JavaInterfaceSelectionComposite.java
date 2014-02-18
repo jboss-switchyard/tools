@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -47,12 +48,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.forms.events.HyperlinkAdapter;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -65,24 +69,24 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
 
     private Composite _panel;
     private Interface _interface = null;
-    private Link _newClassLink;
+    private Hyperlink _newClassLink;
     private Text _mClassText;
     private Button _browseClassBtn;
 
     /**
      * Constructor.
+     * 
+     * @param toolkit the toolkit to use for creating controls
      */
-    public JavaInterfaceSelectionComposite() {
+    public JavaInterfaceSelectionComposite(FormToolkit toolkit) {
+        super(toolkit);
         // empty
     }
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
-    public void createContents(Composite parent, int style) {
+    @Override
+    public void createContents(Composite parent, int style, DataBindingContext context) {
 
-        _panel = new Composite(parent, SWT.NONE);
+        _panel = getToolkit().createComposite(parent, SWT.NONE);
         GridLayout gl = new GridLayout();
         gl.numColumns = 3;
         _panel.setLayout(gl);
@@ -90,12 +94,10 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
             _panel.setLayoutData(getRootGridData());
         }
 
-        _newClassLink = new Link(_panel, SWT.NONE);
-        String message = Messages.link_javaInterface;
-        _newClassLink.setText(message);
-        _newClassLink.addSelectionListener(new SelectionAdapter() {
+        _newClassLink = getToolkit().createHyperlink(_panel, Messages.link_javaInterface, SWT.NONE);
+        _newClassLink.addHyperlinkListener(new HyperlinkAdapter() {
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void linkActivated(HyperlinkEvent event) {
                 if (_mClassText != null && !_mClassText.isDisposed()) {
                     String classname = _mClassText.getText();
                     try {
@@ -117,7 +119,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
                 }
             }
         });
-        _mClassText = new Text(_panel, SWT.BORDER);
+        _mClassText = getToolkit().createText(_panel, null, SWT.BORDER);
         _mClassText.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -136,8 +138,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
         _mClassText.setLayoutData(uriGD);
 
-        _browseClassBtn = new Button(_panel, SWT.PUSH);
-        _browseClassBtn.setText(Messages.button_browse);
+        _browseClassBtn = getToolkit().createButton(_panel, Messages.button_browse, SWT.PUSH);
         GridData btnGD = new GridData();
         _browseClassBtn.setLayoutData(btnGD);
         _browseClassBtn.addSelectionListener(new SelectionAdapter() {

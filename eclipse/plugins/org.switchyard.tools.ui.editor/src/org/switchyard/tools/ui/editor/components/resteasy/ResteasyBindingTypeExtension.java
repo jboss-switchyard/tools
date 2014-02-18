@@ -21,7 +21,9 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.Messages;
@@ -54,8 +56,8 @@ public class ResteasyBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public List<IBindingComposite> createComposites(Binding binding) {
-        return createComposites(binding.eContainer() instanceof Service);
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+        return createComposites(toolkit, binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -67,16 +69,20 @@ public class ResteasyBindingTypeExtension implements IBindingTypeExtension {
     public String getTypeName(Binding object) {
         return Messages.label_rest;
     }
-    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit, boolean forConsumer) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);
         if (forConsumer) {
-            composites.add(new ResteasyBindingComposite());
-            composites.add(new MessageComposerComposite());
+            composites.add(new ResteasyBindingComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    ResteasyPackage.Literals.REST_BINDING_TYPE__MESSAGE_COMPOSER,
+                    ResteasyPackage.Literals.REST_BINDING_TYPE__CONTEXT_MAPPER));
         } else {
-            composites.add(new ResteasyBindingComposite());
-            composites.add(new ResteasyAuthenticationComposite());
-            composites.add(new ResteasyProxyComposite());
-            composites.add(new MessageComposerComposite());
+            composites.add(new ResteasyBindingComposite(toolkit));
+            composites.add(new ResteasyAuthenticationComposite(toolkit));
+            composites.add(new ResteasyProxyComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    ResteasyPackage.Literals.REST_BINDING_TYPE__MESSAGE_COMPOSER,
+                    ResteasyPackage.Literals.REST_BINDING_TYPE__CONTEXT_MAPPER));
         }
         return composites;
     }

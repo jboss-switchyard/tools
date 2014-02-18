@@ -38,7 +38,7 @@ public class CamelNettyTCPBindingWizard extends AbstractBindingWizard implements
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelNettyTCPBindingTypeExtension.createComposites();
+        return CamelNettyTCPBindingTypeExtension.createComposites(getToolkit());
     }
 
 }

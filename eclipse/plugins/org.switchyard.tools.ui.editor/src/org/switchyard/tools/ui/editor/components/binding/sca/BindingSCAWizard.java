@@ -36,7 +36,7 @@ public class BindingSCAWizard extends AbstractBindingWizard {
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return BindingSCATypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return BindingSCATypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

@@ -39,7 +39,7 @@ public class HttpBindingWizard extends AbstractBindingWizard implements IBinding
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return HttpBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return HttpBindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2013 Red Hat, Inc. 
+ * Copyright (c) 2013-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -15,9 +15,18 @@ package org.switchyard.tools.ui.editor.components.camel.binding;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -26,12 +35,18 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.CompoundValidator;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
+import org.switchyard.tools.ui.editor.databinding.URLValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 
 /**
  * @author bfitzpat
@@ -44,6 +59,11 @@ public class CamelComposite extends AbstractSYBindingComposite {
     private Text _nameText;
     private Text _configURIText;
     private OperationSelectorComposite _opSelectorComposite;
+    private WritableValue _bindingValue;
+
+    CamelComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -60,30 +80,17 @@ public class CamelComposite extends AbstractSYBindingComposite {
         super.setBinding(impl);
         if (impl instanceof CamelBindingType) {
             this._binding = (CamelBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getConfigURI() != null) {
-                _configURIText.setText(this._binding.getConfigURI());
-            } else {
-                _configURIText.setText(""); //$NON-NLS-1$
+            _bindingValue.setValue(_binding);
+
+            // refresh the operation selector control
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed() && getTargetObject() != null) {
+                _opSelectorComposite.setTargetObject(getTargetObject());
+                _opSelectorComposite.setBinding(_binding);
             }
 
-            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
-                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-                _opSelectorComposite.setBinding(this._binding);
-                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-
-            setInUpdate(false);
-            validate();
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
@@ -95,35 +102,25 @@ public class CamelComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_configURIText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_configUriMayNotBeEmpty);
-            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
         if (getRootGridData() != null) {
             _panel.setLayoutData(getRootGridData());
         }
 
-        getSchedulerTabControl(_panel);
+        getCamelTabControl(_panel);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
                 _opSelectorComposite.setTargetObject((EObject) getTargetObject());
             }
         }
+        bindControls(context);
     }
 
-    private Control getSchedulerTabControl(Composite tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
+    private Control getCamelTabControl(Composite tabFolder) {
+        Composite composite = getToolkit().createComposite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
@@ -132,7 +129,7 @@ public class CamelComposite extends AbstractSYBindingComposite {
         _configURIText = createLabelAndText(composite, Messages.label_configUriStar);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
-            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);
             _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
             _opSelectorComposite.setLayout(new GridLayout(2, false));
             _opSelectorComposite.addChangeListener(new ChangeListener() {
@@ -152,31 +149,76 @@ public class CamelComposite extends AbstractSYBindingComposite {
     }
 
     protected void handleModify(final Control control) {
-        if (control.equals(_configURIText)) {
-            updateFeature(_binding, "configURI", _configURIText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_opSelectorComposite)) {
-            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
-            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        // at this point, this is the only control we can't do with strict
+        // databinding
+        if (control.equals(_opSelectorComposite)) {
             fireChangedEvent(_opSelectorComposite);
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         }
-        super.handleModify(control);
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_configURIText)) {
-                _configURIText.setText(this._binding.getConfigURI());
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
 
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "Camel binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "Camel binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final IObservableValue configURIValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                CorePackage.Literals.CAMEL_BINDING_TYPE__CONFIG_URI);
+
+        CompoundValidator uriValidator = new CompoundValidator(
+                new StringEmptyValidator(Messages.error_configUriMayNotBeEmpty),
+                new URLValidator("Potential problem with Camel URI")); 
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_configURIText, new int[] {SWT.Modify }),
+                        configURIValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(uriValidator), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        if (_opSelectorComposite != null) {
+            _opSelectorComposite.bindControls(domain, context);
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
+    }
 }

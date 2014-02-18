@@ -20,6 +20,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.BatchCommit;
 import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
@@ -42,6 +43,15 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
 
     private enum ENDPOINT_MAPPING_TYPE {
         JMSENDPOINT, CCIENDPOINT
+    }
+
+    /**
+     * Create a new AbstractJCABindingComposite.
+     * 
+     * @param toolkit used for creating controls
+     */
+    public AbstractJCABindingComposite(FormToolkit toolkit) {
+        super(toolkit);
     }
 
     @Override

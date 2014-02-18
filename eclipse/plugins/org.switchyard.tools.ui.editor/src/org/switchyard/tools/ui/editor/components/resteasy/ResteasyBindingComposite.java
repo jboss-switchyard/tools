@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,12 +12,17 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.resteasy;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -26,11 +31,16 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -45,6 +55,11 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
     private DelimitedStringList _interfacesList = null;
     private RESTBindingType _binding = null;
     private Text _requestTimeoutText = null;
+    private WritableValue _bindingValue;
+
+    ResteasyBindingComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -56,16 +71,14 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         return Messages.description_restBindingDetails;
     }
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
     @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getResteasyControl(_panel);
+
+        bindControls(context);
     }
 
     private Control getResteasyControl(Composite tabFolder) {
@@ -94,63 +107,16 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         GridData ilGD = new GridData(GridData.FILL_HORIZONTAL);
         ilGD.horizontalSpan = 2;
         _interfacesList.setLayoutData(ilGD);
-        _interfacesList.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (_binding != null) {
-                    validate();
-                    handleModify(_interfacesList);
-                    fireChangedEvent(_interfacesList);
-                }
-            }
-        });
 
         return composite;
     }
 
     protected void handleModify(Control control) {
-        if (_binding != null) {
-            if (control.equals(_mAddressURLText)) {
-                String _sURL = _mAddressURLText.getText().trim();
-                updateFeature(_binding, "address", _sURL); //$NON-NLS-1$
-            } else if (control.equals(_contextPathText)) {
-                String contextPath = _contextPathText.getText().trim();
-                updateFeature(_binding, "contextPath", contextPath); //$NON-NLS-1$
-            } else if (control.equals(_interfacesList)) {
-                String interfacesString = _interfacesList.getSelection();
-                updateFeature(_binding, "interfaces", interfacesString); //$NON-NLS-1$
-            } else if (control.equals(_requestTimeoutText)) {
-                final String requestTimeout = _requestTimeoutText.getText();
-                updateFeature(_binding, "timeout", requestTimeout); //$NON-NLS-1$
-            } else if (control.equals(_nameText)) {
-                super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-            }
-        }
-        super.handleModify(control);
-        validate();
+//        if (control.equals(_interfacesList)) {
+//            fireChangedEvent(_interfacesList);
+//        }
         setHasChanged(false);
         setDidSomething(true);
-    }
-
-    protected boolean validate() {
-        setErrorMessage(null);
-        String urlString = null;
-        if (_mAddressURLText != null && !_mAddressURLText.isDisposed()) {
-            urlString = _mAddressURLText.getText();
-
-            if (urlString != null && urlString.trim().length() > 0) {
-                if (urlString.trim().length() < urlString.length()) {
-                    setErrorMessage(Messages.error_spacesInName);
-                }
-            }
-        }
-
-        String delimited = _interfacesList.getSelection();
-        if (delimited.trim().length() == 0) {
-            setErrorMessage(Messages.error_noRestInterfaceOrClass);
-        }
-
-        return (getErrorMessage() == null);
     }
 
     /**
@@ -168,92 +134,102 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         if (switchYardBindingType instanceof RESTBindingType) {
             setTargetObject(switchYardBindingType.eContainer());
             this._binding = (RESTBindingType) switchYardBindingType;
-            setInUpdate(true);
-            String addressUrl = _binding.getAddress();
-            if (_mAddressURLText != null && !_mAddressURLText.isDisposed() && addressUrl != null
-                    && addressUrl.trim().length() > 0) {
-                _mAddressURLText.setText(addressUrl);
-            } else if (_mAddressURLText != null) {
-                _mAddressURLText.setText(""); //$NON-NLS-1$
-            }
-            if (_contextPathText != null && !_contextPathText.isDisposed()) {
-                if (_binding.getContextPath() != null) {
-                    this._contextPathText.setText(_binding.getContextPath());
-                } else {
-                    if (getTargetObject() != null && getTargetObject() instanceof Contract) {
-                        Contract contract = (Contract) getTargetObject();
-                        if (contract.eContainer() != null
-                                && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
-                            org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract
-                                    .eContainer();
-                            if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
-                                SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
-                                this._contextPathText.setText(rootSwitchYard.getName());
-                                handleModify(_contextPathText);
-                            }
-                        }
-                    }
-                }
-            }
+            _bindingValue.setValue(_binding);
             if (_interfacesList != null && !_interfacesList.isDisposed()) {
                 if (_binding.getInterfaces() != null) {
                     this._interfacesList.setSelection(_binding.getInterfaces());
                 }
             }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-            if (_requestTimeoutText != null && !_requestTimeoutText.isDisposed()) {
-                if (_binding.getTimeout() == null) {
-                    _requestTimeoutText.setText(""); //$NON-NLS-1$
-                } else {
-                    _requestTimeoutText.setText(PropTypeUtil.getPropValueString(_binding.getTimeout()));
-                }
-            }
-            setInUpdate(false);
-            validate();
         } else {
-            this._binding = null;
-        }
-        addObservableListeners();
-    }
-
-    /**
-     * @param canEdit flag
-     */
-    public void setCanEdit(boolean canEdit) {
-        super.setCanEdit(canEdit);
-        if (this._mAddressURLText != null && !this._mAddressURLText.isDisposed()) {
-            this._mAddressURLText.setEnabled(canEdit());
-        }
-        if (this._contextPathText != null && !this._contextPathText.isDisposed()) {
-            this._contextPathText.setEnabled(canEdit());
-        }
-        if (this._interfacesList != null && !this._interfacesList.isDisposed()) {
-            this._interfacesList.setEnabled(canEdit());
-        }
-        if (this._requestTimeoutText != null && !this._requestTimeoutText.isDisposed()) {
-            this._requestTimeoutText.setEnabled(canEdit());
+            _bindingValue.setValue(null);
         }
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_contextPathText)) {
-                _contextPathText.setText(_binding.getContextPath());
-            } else if (control.equals(_mAddressURLText)) {
-                _mAddressURLText.setText(_binding.getAddress());
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else if (control.equals(_requestTimeoutText)) {
-                _requestTimeoutText.setText(_binding.getTimeout() == null ? "" : PropTypeUtil.getPropValueString(_binding.getTimeout())); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
 
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, RESTBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "REST binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "REST binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        if (getTargetObject() instanceof Reference) {
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_mAddressURLText , new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    ResteasyPackage.Literals.REST_BINDING_TYPE__ADDRESS),
+                            new EMFUpdateValueStrategyNullForEmptyString(
+                                    "", UpdateValueStrategy.POLICY_CONVERT), null);
+            // TODO: Need to validate to make sure no spaces before/after address
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_requestTimeoutText , new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    ResteasyPackage.Literals.REST_BINDING_TYPE__TIMEOUT),
+                            new EMFUpdateValueStrategyNullForEmptyString("", 
+                                    UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                            new EscapedPropertyIntegerValidator("Request Timeout must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                            , null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        } else {
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_contextPathText , new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    ResteasyPackage.Literals.REST_BINDING_TYPE__CONTEXT_PATH),
+                            new EMFUpdateValueStrategyNullForEmptyString(
+                                    "", UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        }
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_interfacesList.getHiddenText() , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                ResteasyPackage.Literals.REST_BINDING_TYPE__INTERFACES),
+                        new EMFUpdateValueStrategyNullForEmptyString("", UpdateValueStrategy.POLICY_CONVERT).
+                            setAfterConvertValidator(new StringEmptyValidator(Messages.error_noRestInterfaceOrClass)), 
+                            null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+    }    
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
+    }
 }

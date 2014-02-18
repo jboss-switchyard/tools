@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.validator.wizards;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -32,8 +33,8 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.FileEntryType;
 import org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType;
@@ -62,11 +63,15 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
     private FileEntryTable _catalogFileTable;
     private Button _namespaceAwareCheckbox;
 
-    @Override
-    public void createContents(Composite parent, int style) {
-        super.createContents(parent, style);
+    XMLValidatorComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
-        Composite outer = new Composite(getPanel(), SWT.NONE);
+    @Override
+    public void createContents(Composite parent, int style, DataBindingContext context) {
+        super.createContents(parent, style, context);
+
+        Composite outer = getToolkit().createComposite(getPanel(), SWT.NONE);
         GridData outerGD = new GridData(SWT.FILL, SWT.NULL, true, true, 2, 1);
         outerGD.horizontalIndent = -5;
         outerGD.verticalIndent = -5;
@@ -82,14 +87,14 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         _schemaTypeCombo.setData("RELAX_NG", XmlSchemaType.RELAXNG); //$NON-NLS-1$
         _schemaTypeCombo.select(XmlSchemaType.DTD_VALUE);
 
-        Composite inner = new Composite(getPanel(), SWT.NONE);
+        Composite inner = getToolkit().createComposite(getPanel(), SWT.NONE);
         GridData innerGD = new GridData(SWT.FILL, SWT.NULL, true, true, 2, 1);
         innerGD.horizontalIndent = -5;
         innerGD.verticalIndent = -5;
         inner.setLayoutData(innerGD);
         inner.setLayout(new GridLayout(1, false));
         
-        new Label(inner, SWT.NULL).setText(Messages.label_schemaFiles);
+        getToolkit().createLabel(inner, Messages.label_schemaFiles, SWT.NULL);
         
         _schemaFileTable = new FileEntryTable(inner, SWT.NONE) {
 
@@ -126,7 +131,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
 
         _schemaFileTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
         
-        new Label(inner, SWT.NULL).setText(Messages.label_catalogFiles);
+        getToolkit().createLabel(inner, Messages.label_catalogFiles, SWT.NULL);
         _catalogFileTable = new FileEntryTable(inner, SWT.NONE) {
 
             @Override

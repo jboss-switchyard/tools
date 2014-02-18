@@ -11,6 +11,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.ObservablesManager;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -48,4 +50,14 @@ public interface ICompositeContainer {
      * @return the selected object.
      */
     EObject getSelectedBusinessObject();
+    
+    /**
+     * @return the data binding context managed by this container
+     */
+    DataBindingContext getDataBindingContext();
+    
+    /**
+     * @return the observables manager used by this container
+     */
+    ObservablesManager getObservablesManager();
 }

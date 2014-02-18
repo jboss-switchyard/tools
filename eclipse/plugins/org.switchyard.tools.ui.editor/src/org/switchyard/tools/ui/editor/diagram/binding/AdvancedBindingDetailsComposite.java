@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,6 +26,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
@@ -42,10 +44,11 @@ public class AdvancedBindingDetailsComposite extends AbstractSYBindingComposite 
     /**
      * Create a new AdvancedBindingDetailsComposite.
      * 
+     * @param toolkit to be used for creating controls
      * @param advancedProperties list of properties
      */
-    public AdvancedBindingDetailsComposite(List<String> advancedProperties) {
-        super();
+    public AdvancedBindingDetailsComposite(FormToolkit toolkit, List<String> advancedProperties) {
+        super(toolkit);
         _advancedProperties = advancedProperties == null ? Collections.<String> emptyList() : advancedProperties;
     }
 
@@ -60,16 +63,16 @@ public class AdvancedBindingDetailsComposite extends AbstractSYBindingComposite 
     }
 
     @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, SWT.NONE);
         GridLayout gl = new GridLayout(1, false);
         _panel.setLayout(gl);
 
-        addAdvancedPropertiesTable(_panel);
+        addAdvancedPropertiesTable(_panel, context);
     }
     
-    protected void addAdvancedPropertiesTable(Composite parent) {
-        _advPropsTable = new AdvancedBindingPropertyTable(parent, SWT.NONE);        
+    protected void addAdvancedPropertiesTable(Composite parent, DataBindingContext context) {
+        _advPropsTable = new AdvancedBindingPropertyTable(parent, SWT.NONE, context);        
         GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
         _advPropsTable.setLayoutData(gd);
     }

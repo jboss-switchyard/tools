@@ -12,14 +12,19 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -29,21 +34,32 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  */
 public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
 
+    private static final FeaturePath ACTIVATION_PROPERTIES = FeaturePath.fromList(
+            JcaPackage.Literals.JCA_BINDING__INBOUND_CONNECTION,
+            JcaPackage.Literals.JCA_INBOUND_CONNECTION__ACTIVATION_SPEC, JcaPackage.Literals.ACTIVATION_SPEC__PROPERTY);
+
     /**
      * @param parent Composite
      * @param style any additional style bits
+     * @param toolkit Form toolkit to use when creating controls
+     * @param context the data binding context
+     * @param domain the editing domain
      */
-    public JCAActivationSpecPropertyTable(Composite parent, int style) {
-        super(parent, style, false);
+    public JCAActivationSpecPropertyTable(Composite parent, int style, FormToolkit toolkit, DataBindingContext context, EditingDomain domain) {
+        super(parent, style, false, toolkit, context, ACTIVATION_PROPERTIES, domain);
     }
-    
+
     /**
      * @param parent Composite
      * @param style any additional style bits
      * @param isReadOnly flag
+     * @param toolkit Form toolkit to use when creating controls
+     * @param context the data binding context
+     * @param domain the editing domain
      */
-    public JCAActivationSpecPropertyTable(Composite parent, int style, boolean isReadOnly) {
-        super(parent, style, isReadOnly);
+    public JCAActivationSpecPropertyTable(Composite parent, int style, boolean isReadOnly, FormToolkit toolkit,
+            DataBindingContext context, EditingDomain domain) {
+        super(parent, style, isReadOnly, toolkit, context, ACTIVATION_PROPERTIES, domain);
     }
 
     protected void removeFromList() {
@@ -88,14 +104,11 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                             newProperty.setValue(dialog.getPropertyValue());
                             
                             if (binding.getInboundConnection() == null) {
-                                if (binding.getInboundConnection() == null) {
-                                    JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                                    setFeatureValue(binding, "inboundConnection", inbound); //$NON-NLS-1$
-                                }
-                            }
-                            if (binding.getInboundConnection().getActivationSpec() == null) {
-                                ActivationSpec newspec = JcaFactory.eINSTANCE.createActivationSpec();
-                                setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec); //$NON-NLS-1$
+                                JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
+                                inbound.setActivationSpec(JcaFactory.eINSTANCE.createActivationSpec());
+                                binding.setInboundConnection(inbound);
+                            } else if (binding.getInboundConnection().getActivationSpec() == null) {
+                                binding.getInboundConnection().setActivationSpec(JcaFactory.eINSTANCE.createActivationSpec());
                             }
                             ActivationSpec actSpec = binding.getInboundConnection().getActivationSpec();
                             actSpec.getProperty().add(newProperty);
@@ -107,14 +120,11 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                     newProperty.setValue(dialog.getPropertyValue());
                     
                     if (binding.getInboundConnection() == null) {
-                        if (binding.getInboundConnection() == null) {
-                            JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                            setFeatureValue(binding, "inboundConnection", inbound); //$NON-NLS-1$
-                        }
-                    }
-                    if (binding.getInboundConnection().getActivationSpec() == null) {
-                        ActivationSpec newspec = JcaFactory.eINSTANCE.createActivationSpec();
-                        setFeatureValue(binding.getInboundConnection(), "activationSpec", newspec); //$NON-NLS-1$
+                        JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
+                        inbound.setActivationSpec(JcaFactory.eINSTANCE.createActivationSpec());
+                        binding.setInboundConnection(inbound);
+                    } else if (binding.getInboundConnection().getActivationSpec() == null) {
+                        binding.getInboundConnection().setActivationSpec(JcaFactory.eINSTANCE.createActivationSpec());
                     }
                     ActivationSpec actSpec = binding.getInboundConnection().getActivationSpec();
                     actSpec.getProperty().add(newProperty);

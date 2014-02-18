@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -21,6 +22,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.ui.editor.Messages;
 
@@ -42,18 +44,18 @@ public class ESBInterfaceSelectionComposite extends AbstractSwitchyardComposite 
 
     /**
      * Constructor.
+     * 
+     * @param toolkit the toolkit to use for creating controls
      */
-    public ESBInterfaceSelectionComposite() {
+    public ESBInterfaceSelectionComposite(FormToolkit toolkit) {
+        super(toolkit);
         // empty
     }
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
-    public void createContents(Composite parent, int style) {
+    @Override
+    public void createContents(Composite parent, int style, DataBindingContext context) {
 
-        _panel = new Composite(parent, SWT.NONE);
+        _panel = getToolkit().createComposite(parent, SWT.NONE);
         GridLayout gl = new GridLayout();
         gl.numColumns = 2;
         _panel.setLayout(gl);

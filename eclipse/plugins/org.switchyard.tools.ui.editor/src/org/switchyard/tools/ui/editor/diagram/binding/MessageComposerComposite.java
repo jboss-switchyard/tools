@@ -14,19 +14,35 @@ package org.switchyard.tools.ui.editor.diagram.binding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.observable.ObservableTracker;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.databinding.validation.MultiValidator;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.databinding.EMFProperties;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.IJavaSearchScope;
@@ -36,6 +52,8 @@ import org.eclipse.jdt.ui.IJavaElementSearchConstants;
 import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jdt.ui.actions.OpenNewClassWizardAction;
 import org.eclipse.jdt.ui.wizards.NewClassWizardPage;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -49,19 +67,23 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.eclipse.ui.forms.events.HyperlinkAdapter;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Hyperlink;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.AccessibleClassValidator;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.RegexListValidator;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -84,8 +106,43 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
     private Text _includesNSText;
     private Text _excludesText;
     private Text _excludesNSText;
-    private Link _newComposerClassLink;
-    private Link _newMapperClassLink;
+    private Hyperlink _newComposerClassLink;
+    private Hyperlink _newMapperClassLink;
+    private final EClass _messageComposerType;
+    private final EStructuralFeature _messageComposerFeature;
+    private final EClass _contextMapperType;
+    private final EStructuralFeature _contextMapperFeature;
+    private IObservableValue _bindingValue;
+
+    /**
+     * Create a new MessageComposerComposite.
+     * 
+     * @param toolkit to be used for creating controls
+     * @param messageComposerFeature the feature for accessing the message composer
+     * @param contextMapperFeature the feature for accessing the context mapper
+     */
+    public MessageComposerComposite(FormToolkit toolkit, EStructuralFeature messageComposerFeature,
+            EStructuralFeature contextMapperFeature) {
+        this(toolkit, SwitchyardPackage.Literals.MESSAGE_COMPOSER_TYPE, messageComposerFeature, SwitchyardPackage.Literals.CONTEXT_MAPPER_TYPE, contextMapperFeature);
+    }
+    
+    /**
+     * Create a new MessageComposerComposite.
+     * 
+     * @param toolkit to be used for creating controls
+     * @param messageComposerType the type of message composer
+     * @param messageComposerFeature the feature for accessing the message composer
+     * @param contextMapperType the type of context mapper
+     * @param contextMapperFeature the feature for accessing the context mapper
+     */
+    public MessageComposerComposite(FormToolkit toolkit, EClass messageComposerType, EStructuralFeature messageComposerFeature,
+            EClass contextMapperType, EStructuralFeature contextMapperFeature) {
+        super(toolkit);
+        _messageComposerType = messageComposerType;
+        _messageComposerFeature = messageComposerFeature;
+        _contextMapperType = contextMapperType;
+        _contextMapperFeature = contextMapperFeature;
+    }
 
     @Override
     public Composite getPanel() {
@@ -103,18 +160,16 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
     }
 
     @Override
-    public void createContents(Composite parent, int style) {
-        _panel = new Composite(parent, SWT.NONE);
+    public void createContents(Composite parent, int style, DataBindingContext context) {
+        _panel = getToolkit().createComposite(parent, SWT.NONE);
         GridLayout gl = new GridLayout(3, false);
         _panel.setLayout(gl);
 
-        _newComposerClassLink = new Link(_panel, SWT.NONE);
-        String message = Messages.link_customMessageComposerClass;
-        _newComposerClassLink.setText(message);
+        _newComposerClassLink = getToolkit().createHyperlink(_panel, Messages.link_customMessageComposerClass, SWT.NONE);
         _newComposerClassLink.setEnabled(canEdit());
-        _newComposerClassLink.addSelectionListener(new SelectionAdapter() {
+        _newComposerClassLink.addHyperlinkListener(new HyperlinkAdapter() {
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void linkActivated(HyperlinkEvent e) {
                 handleClassLink(_composerClassText, _newComposerClassLink,
                         "org.switchyard.component.common.composer.MessageComposer<T>"); //$NON-NLS-1$
             }
@@ -124,8 +179,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         _composerClassText.setEnabled(canEdit());
         _composerClassText.setData("class"); //$NON-NLS-1$
 
-        _browseComposerClassBtn = new Button(_panel, SWT.PUSH);
-        _browseComposerClassBtn.setText(Messages.button_browse);
+        _browseComposerClassBtn = getToolkit().createButton(_panel, Messages.button_browse, SWT.PUSH);
         _browseComposerClassBtn.setEnabled(canEdit());
         GridData btnGD = new GridData();
         _browseComposerClassBtn.setLayoutData(btnGD);
@@ -136,13 +190,11 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             }
         });
 
-        _newMapperClassLink = new Link(_panel, SWT.NONE);
-        message = Messages.link_customContextMapperClass;
-        _newMapperClassLink.setText(message);
+        _newMapperClassLink = getToolkit().createHyperlink(_panel, Messages.link_customContextMapperClass, SWT.NONE);
         _newMapperClassLink.setEnabled(canEdit());
-        _newMapperClassLink.addSelectionListener(new SelectionAdapter() {
+        _newMapperClassLink.addHyperlinkListener(new HyperlinkAdapter() {
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void linkActivated(HyperlinkEvent e) {
                 handleClassLink(_mapperClassText, _newMapperClassLink,
                         "org.switchyard.component.common.composer.ContextMapper<T>"); //$NON-NLS-1$
             }
@@ -152,8 +204,7 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         _mapperClassText.setEnabled(canEdit());
         _mapperClassText.setData("class"); //$NON-NLS-1$
 
-        _browseMapperClassBtn = new Button(_panel, SWT.PUSH);
-        _browseMapperClassBtn.setText(Messages.button_browse);
+        _browseMapperClassBtn = getToolkit().createButton(_panel, Messages.button_browse, SWT.PUSH);
         _browseMapperClassBtn.setEnabled(canEdit());
         GridData btnGD2 = new GridData();
         _browseMapperClassBtn.setLayoutData(btnGD2);
@@ -184,6 +235,124 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         _excludesNSText = createLabelAndText(regExGroup, Messages.label_excludeNamespaces);
         _excludesNSText.setEnabled(canEdit());
         _excludesNSText.setData("excludeNamespaces"); //$NON-NLS-1$
+        
+        bindControls(context);
+    }
+
+    private void bindControls(DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_panel.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, Binding.class);
+
+        // bind the controls
+        final FeaturePath messageComposerClassFeature = FeaturePath.fromList(_messageComposerFeature,
+                SwitchyardPackage.Literals.MESSAGE_COMPOSER_TYPE__CLASS);
+        final IObservableValue composerClassValue = EMFProperties.value(messageComposerClassFeature).observeDetail(
+                _bindingValue);
+        org.eclipse.core.databinding.Binding binding = context.bindValue(SWTObservables.observeText(_composerClassText,
+                new int[] {SWT.Modify }), composerClassValue, new EMFUpdateValueStrategyNullForEmptyString(null,
+                UpdateValueStrategy.POLICY_CONVERT, domain, _bindingValue, messageComposerClassFeature, true)
+                .setAfterConvertValidator(new AccessibleClassValidator(BeanProperties.value("targetObject").observe(
+                        this))), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final FeaturePath contextMapperClassFeature = FeaturePath.fromList(_contextMapperFeature,
+                SwitchyardPackage.Literals.CONTEXT_MAPPER_TYPE__CLASS);
+        final IObservableValue mapperClassTextValue = SWTObservables.observeText(_mapperClassText,
+                new int[] {SWT.Modify });
+        final IObservableValue mapperClassValue = EMFProperties.value(contextMapperClassFeature).observeDetail(
+                _bindingValue);
+        final org.eclipse.core.databinding.Binding mapperClassBinding = context.bindValue(mapperClassTextValue,
+                mapperClassValue, new EMFUpdateValueStrategyNullForEmptyString(null,
+                        UpdateValueStrategy.POLICY_CONVERT, domain, _bindingValue, contextMapperClassFeature, true)
+                        .setAfterConvertValidator(new AccessibleClassValidator(BeanProperties.value("targetObject")
+                                .observe(this))), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(mapperClassBinding), SWT.TOP | SWT.LEFT);
+
+        final FeaturePath contextMapperIncludesFeature = FeaturePath.fromList(_contextMapperFeature,
+                SwitchyardPackage.Literals.CONTEXT_MAPPER_TYPE__INCLUDES);
+        final IObservableValue includesTextValue = SWTObservables.observeText(_includesText, new int[] {SWT.Modify });
+        final IObservableValue includesValue = EMFProperties.value(contextMapperIncludesFeature).observeDetail(
+                _bindingValue);
+        binding = context.bindValue(includesTextValue, includesValue, new EMFUpdateValueStrategyNullForEmptyString(
+                null, UpdateValueStrategy.POLICY_CONVERT, domain, _bindingValue, contextMapperIncludesFeature, true)
+                .setAfterConvertValidator(new RegexListValidator()), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final FeaturePath contextMapperExcludesFeature = FeaturePath.fromList(_contextMapperFeature,
+                SwitchyardPackage.Literals.CONTEXT_MAPPER_TYPE__EXCLUDES);
+        final IObservableValue excludesTextValue = SWTObservables.observeText(_excludesText, new int[] {SWT.Modify });
+        final IObservableValue excludesValue = EMFProperties.value(contextMapperExcludesFeature).observeDetail(
+                _bindingValue);
+        binding = context.bindValue(excludesTextValue, excludesValue, new EMFUpdateValueStrategyNullForEmptyString(
+                null, UpdateValueStrategy.POLICY_CONVERT, domain, _bindingValue, contextMapperExcludesFeature, true)
+                .setAfterConvertValidator(new RegexListValidator()), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final FeaturePath contextMapperIncludesNSFeature = FeaturePath.fromList(_contextMapperFeature,
+                SwitchyardPackage.Literals.CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES);
+        final IObservableValue includesNSTextValue = SWTObservables.observeText(_includesNSText,
+                new int[] {SWT.Modify });
+        final IObservableValue includesNSValue = EMFProperties.value(contextMapperIncludesNSFeature).observeDetail(
+                _bindingValue);
+        binding = context.bindValue(includesNSTextValue, includesNSValue, new EMFUpdateValueStrategyNullForEmptyString(
+                null, UpdateValueStrategy.POLICY_CONVERT, domain, _bindingValue, contextMapperIncludesNSFeature, true)
+                .setAfterConvertValidator(new RegexListValidator()), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final FeaturePath contextMapperExcludesNSFeature = FeaturePath.fromList(_contextMapperFeature,
+                SwitchyardPackage.Literals.CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES);
+        final IObservableValue excludesNSTextValue = SWTObservables.observeText(_excludesNSText,
+                new int[] {SWT.Modify });
+        final IObservableValue excludesNSValue = EMFProperties.value(contextMapperExcludesNSFeature).observeDetail(
+                _bindingValue);
+        binding = context.bindValue(excludesNSTextValue, excludesNSValue, new EMFUpdateValueStrategyNullForEmptyString(
+                null, UpdateValueStrategy.POLICY_CONVERT, domain, _bindingValue, contextMapperExcludesNSFeature, true)
+                .setAfterConvertValidator(new RegexListValidator()), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * add a warning if there are regex patterns set, but the specified
+         * context mapper class doesn't support them
+         */
+        context.addValidationStatusProvider(new MultiValidator() {
+            @Override
+            protected IStatus validate() {
+                final IStatus mapperClassStatus;
+                ObservableTracker.setIgnore(true);
+                try {
+                    // we don't want to track status updates
+                    mapperClassStatus = (IStatus) mapperClassBinding.getValidationStatus().getValue();
+                } finally {
+                    ObservableTracker.setIgnore(false);
+                }
+                /*
+                 * read from everything we require (ensures we get called when
+                 * any of these get updated)
+                 */
+                final String mapperClass = (String) mapperClassTextValue.getValue();
+                final String includes = (String) includesTextValue.getValue();
+                final String excludes = (String) excludesTextValue.getValue();
+                final String includesNS = (String) includesNSTextValue.getValue();
+                final String excludesNS = (String) excludesNSTextValue.getValue();
+
+                // do the actual validation
+                if ((mapperClassStatus != null && !mapperClassStatus.isOK()) || cmClassSupportsRegEx(mapperClass)) {
+                    return Status.OK_STATUS;
+                }
+                if (isNullOrEmpty(mapperClass)
+                        || (isNullOrEmpty(includes) && isNullOrEmpty(excludes) && isNullOrEmpty(includesNS) && isNullOrEmpty(excludesNS))) {
+                    return Status.OK_STATUS;
+                }
+                return new Status(Status.WARNING, Activator.PLUGIN_ID,
+                        "Selected context mapper class does not support regular expressions.");
+            }
+        });
+    }
+
+    private boolean isNullOrEmpty(final String value) {
+        return value == null || value.trim().isEmpty();
     }
 
     private void handleClassBrowse(Button classBrowseBtn, Text classText, String interfaceName) {
@@ -198,15 +367,18 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
             IType selected = selectType(getPanel().getShell(), interfaceName, project);
             if (selected != null) {
                 classText.setText(selected.getFullyQualifiedName());
-                handleModify(classText);
-                fireChangedEvent(this);
+                // make sure a notify event gets sent, to update the binding
+                classText.notifyListeners(SWT.Modify, null);
+                // simulate "ENTER" to commit the change
+                classText.notifyListeners(SWT.DefaultSelection, null);
+                classText.setFocus();
             }
         } catch (JavaModelException e1) {
             e1.printStackTrace();
         }
     }
 
-    private void handleClassLink(Text classText, Link classLink, String interfaceName) {
+    private void handleClassLink(Text classText, Hyperlink classLink, String interfaceName) {
         if (classText != null && !classText.isDisposed()) {
             String classname = classText.getText();
             try {
@@ -215,8 +387,11 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
                     String className = handleCreateJavaClass(classname, interfaceName);
                     if (className != null) {
                         classText.setText(className);
-                        handleModify(classText);
-                        fireChangedEvent(this);
+                        // make sure a notify event gets sent, to update the binding
+                        classText.notifyListeners(SWT.Modify, null);
+                        // simulate "ENTER" to commit the change
+                        classText.notifyListeners(SWT.DefaultSelection, null);
+                        classText.setFocus();
                     }
                     return;
                 } else {
@@ -231,329 +406,18 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
     @Override
     public void setBinding(Binding switchYardBindingType) {
         super.setBinding(switchYardBindingType);
-        if (switchYardBindingType instanceof SwitchYardBindingType) {
-            SwitchYardBindingType binding = (SwitchYardBindingType) getBinding();
-            if (binding.getContextMapper() == null) {
-                setTextValue(_mapperClassText, null);
-            } else {
-                setTextValue(_mapperClassText, binding.getContextMapper().getClass_());
-            }
-            if (binding.getMessageComposer() == null) {
-                setTextValue(_composerClassText, null);
-            } else {
-                setTextValue(_composerClassText, binding.getMessageComposer().getClass_());
-            }
-            if (binding.getContextMapper() != null) {
-                setTextValue(_includesText, binding.getContextMapper().getIncludes());
-                setTextValue(_includesNSText, binding.getContextMapper().getIncludeNamespaces());
-                setTextValue(_excludesText, binding.getContextMapper().getExcludes());
-                setTextValue(_excludesNSText, binding.getContextMapper().getExcludeNamespaces());
-            }
-        }
-        addObservableListeners();
-    }
-
-    private SwitchYardBindingType getSwitchYardBinding() {
-        return (SwitchYardBindingType) getBinding();
-    }
-    @Override
-    protected boolean validate() {
-        if (_mapperClassText != null && !_mapperClassText.isDisposed()) {
-            String cmClass = _mapperClassText.getText().trim();
-            boolean regexEnabled = true;
-            if (cmClass != null && cmClass.length() > 0) {
-                regexEnabled = cmClassSupportsRegEx(cmClass);
-            }
-            
-            _includesText.setEnabled(regexEnabled);
-            _includesNSText.setEnabled(regexEnabled);
-            _excludesText.setEnabled(regexEnabled);
-            _excludesNSText.setEnabled(regexEnabled);
-
-            String includesMsg = validateRegExField(_includesText);
-            if (includesMsg != null) {
-                setErrorMessage(includesMsg);
-                return false;
-            }
-
-            String includesNSMsg = validateRegExField(_includesNSText);
-            if (includesNSMsg != null) {
-                setErrorMessage(includesNSMsg);
-                return false;
-            }
-
-            String excludesMsg = validateRegExField(_excludesText);
-            if (excludesMsg != null) {
-                setErrorMessage(excludesMsg);
-                return false;
-            }
-
-            String excludesNSMsg = validateRegExField(_excludesNSText);
-            if (excludesNSMsg != null) {
-                setErrorMessage(excludesNSMsg);
-                return false;
-            }
-        }
-
-        return (getErrorMessage() == null);
-    }
-
-    private String validateRegExField(Text text) {
-        if (text != null && !text.isDisposed()) {
-            if (text.getText() != null && text.getText().trim().length() > 0) {
-                String pattern = text.getText().trim();
-                PatternSyntaxException result = validateRegEx(pattern);
-                if (result != null) {
-                    return result.getLocalizedMessage();
-                }
-            }
-        }
-        return null;
-    }
-
-    private PatternSyntaxException validateRegEx(String userInputPattern) {
-        try {
-            Pattern.compile(userInputPattern);
-        } catch (PatternSyntaxException exception) {
-            return exception;
-        }
-        return null;
-    }
-
-    protected void updateFeature(final EObject eObject, final String featureId, final Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new ContextMapperOp());
-        ops.add(new BasicEObjectOperation(eObject, featureId, value));
-        wrapOperation(ops);
-    }
-
-    protected void updateFeature(EObject eObject, String[] featureId, Object[] value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-
-        if (featureId != null && featureId.length > 0 && value != null && value.length > 0
-                && featureId.length == value.length) {
-            for (int i = 0; i < featureId.length; i++) {
-                ops.add(new BasicEObjectOperation(eObject, featureId[i], value[i]));
-            }
-        }
-
-        wrapOperation(ops);
-    }
-
-    protected ContextMapperType createContextMapper() {
-        return SwitchyardFactory.eINSTANCE.createContextMapperType();
-    }
-
-    class ContextMapperOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            SwitchYardBindingType binding = getSwitchYardBinding();
-            if (binding != null && binding.getContextMapper() == null) {
-                ContextMapperType contextMapper = createContextMapper();
-                setFeatureValue(binding, "contextMapper", contextMapper); //$NON-NLS-1$
-            }
-        }
-    }
-
-    class MessageComposerOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            SwitchYardBindingType binding = getSwitchYardBinding();
-            if (binding != null && binding.getMessageComposer() == null) {
-                MessageComposerType messageComposer = createMessageComposer();
-                setFeatureValue(binding, "messageComposer", messageComposer); //$NON-NLS-1$
-            }
-        }
-    }
-
-    protected void updateContextMapperFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new ContextMapperOp());
-        ops.add(new BasicOperation("contextMapper", featureId, value)); //$NON-NLS-1$
-        ops.add(getRemoveContextMapperOp());
-        wrapOperation(ops);
-    }
-    
-    protected void updateContextMapperFeatureClearRegex(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new ContextMapperOp());
-        ops.add(new BasicOperation("contextMapper", featureId, value)); //$NON-NLS-1$
-        ops.add(new BasicOperation("contextMapper", "includes", null)); //$NON-NLS-1$ //$NON-NLS-2$
-        ops.add(new BasicOperation("contextMapper", "includeNamespaces", null)); //$NON-NLS-1$ //$NON-NLS-2$
-        ops.add(new BasicOperation("contextMapper", "excludes", null)); //$NON-NLS-1$ //$NON-NLS-2$
-        ops.add(new BasicOperation("contextMapper", "excludeNamespaces", null)); //$NON-NLS-1$ //$NON-NLS-2$
-        ops.add(getRemoveContextMapperOp());
-        wrapOperation(ops);
-    }
-
-    protected class RemoveContextMapperOp extends ModelOperation {
+        _bindingValue.setValue(switchYardBindingType);
         
-        protected boolean checkForEmpties(SwitchYardBindingType sybinding) throws Exception {
-            // to be overridden for any downstream implementations
-            return true;
-        }
-
-        @Override
-        public void run() throws Exception {
-            if (getBinding() != null && getBinding() instanceof SwitchYardBindingType) {
-                SwitchYardBindingType sybinding = (SwitchYardBindingType) getBinding();
-                boolean isEmpty = true;
-                if (!stringIsEmpty(sybinding.getContextMapper().getClass_())) {
-                    isEmpty = false; 
-                }
-                if (!stringIsEmpty(sybinding.getContextMapper().getExcludeNamespaces())) {
-                    isEmpty = false; 
-                }
-                if (!stringIsEmpty(sybinding.getContextMapper().getExcludes())) {
-                    isEmpty = false; 
-                }
-                if (!stringIsEmpty(sybinding.getContextMapper().getIncludeNamespaces())) {
-                    isEmpty = false; 
-                }
-                if (!stringIsEmpty(sybinding.getContextMapper().getIncludes())) {
-                    isEmpty = false; 
-                }
-                if (isEmpty) {
-                    isEmpty = checkForEmpties(sybinding);
-                }
-                if (isEmpty) {
-                    setFeatureValue(sybinding, "contextMapper", null); //$NON-NLS-1$
-                }
-            }
-        }
-    }
-    
-    protected ModelOperation getRemoveContextMapperOp() {
-        return new RemoveContextMapperOp();
-    }
-
-    protected void updateMessageComposerFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new MessageComposerOp());
-        ops.add(new BasicOperation("messageComposer", featureId, value)); //$NON-NLS-1$
-        ops.add(getRemoveMessageComposerOp());
-        wrapOperation(ops);
-    }
-    
-    protected ModelOperation getRemoveMessageComposerOp() {
-        return new RemoveMessageComposerOp();
-    }
-
-    protected class RemoveMessageComposerOp extends ModelOperation {
-        
-        protected boolean checkForEmpties(SwitchYardBindingType sybinding) throws Exception {
-            // to be overridden for any downstream implementations
-            return true;
-        }
-        
-        @Override
-        public void run() throws Exception {
-            if (getBinding() != null && getBinding() instanceof SwitchYardBindingType) {
-                SwitchYardBindingType sybinding = (SwitchYardBindingType) getBinding();
-                MessageComposerType messageComposer = sybinding.getMessageComposer();
-                boolean isEmpty = true;
-                if (!stringIsEmpty(messageComposer.getClass_())) {
-                    isEmpty = false;
-                }
-                if (isEmpty) {
-                    isEmpty = checkForEmpties(sybinding);
-                }
-                if (isEmpty) {
-                    setFeatureValue(sybinding, "messageComposer", null); //$NON-NLS-1$
-                }
-            }
-        }
-    }
-    
-    
-    protected void updateContextMapperFeature(Text control) {
-        String value = control.getText().trim();
-        boolean regexSupported = cmClassSupportsRegEx(value);
-        if (!regexSupported && control == _mapperClassText) {
-            updateContextMapperFeatureClearRegex((String) control.getData(), value);
-            setInUpdate(true);
-            _includesText.setText(""); //$NON-NLS-1$
-            _excludesText.setText(""); //$NON-NLS-1$
-            _includesNSText.setText(""); //$NON-NLS-1$
-            _excludesNSText.setText(""); //$NON-NLS-1$
-            setInUpdate(false);
-        } else {
-            updateContextMapperFeature((String) control.getData(), value);
-        }
-    }
-
-    protected void undoContextMapperFeature(Text control) {
-        SwitchYardBindingType binding = getSwitchYardBinding();
-        String feature = (String) control.getData();
-        Object value = null;
-        if (binding.getContextMapper() != null) {
-            value = getFeatureValue(binding.getContextMapper(), feature);
-        }
-        if (value == null) {
-            control.setText(""); //$NON-NLS-1$
-        } else if (value instanceof String) {
-            control.setText((String) value);
-        }
-    }
-
-    protected void updateMessageComposerFeature(Button control) {
-        boolean value = control.getSelection();
-        updateMessageComposerFeature((String) control.getData(), value);
-    }
-
-    protected MessageComposerType createMessageComposer() {
-        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
-    }
-
-    protected void updateMessageComposerFeature(final Text control) {
-        String value = control.getText().trim();
-        updateMessageComposerFeature((String) control.getData(), value);
-    }
-
-    protected void undoMessageComposerFeature(Text control) {
-        SwitchYardBindingType binding = getSwitchYardBinding();
-        String feature = (String) control.getData();
-        Object value = null;
-        if (binding.getMessageComposer() != null) {
-            value = getFeatureValue(binding.getMessageComposer(), feature);
-        }
-        if (value == null) {
-            control.setText(""); //$NON-NLS-1$
-        } else if (value instanceof String) {
-            control.setText((String) value);
-        }
-    }
-
-    /**
-     * @param control Control to modify value for
-     */
-    protected void handleModify(Control control) {
-        SwitchYardBindingType binding = getSwitchYardBinding();
-        if (binding != null) {
-            if (control.equals(_mapperClassText)) {
-                updateContextMapperFeature(_mapperClassText);
-            } else if (control.equals(_composerClassText)) {
-                updateMessageComposerFeature(_composerClassText);
-            } else if (control.equals(_includesText)) {
-                updateContextMapperFeature(_includesText);
-            } else if (control.equals(_excludesText)) {
-                updateContextMapperFeature(_excludesText);
-            } else if (control.equals(_includesNSText)) {
-                updateContextMapperFeature(_includesNSText);
-            } else if (control.equals(_excludesNSText)) {
-                updateContextMapperFeature(_excludesNSText);
-            }
-        }
     }
 
     private boolean cmClassSupportsRegEx(String classname) {
         try {
             IType cmClassType = canFindClass(classname);
             if (cmClassType != null) {
-                String[] interfaces = cmClassType.getSuperInterfaceNames();
-                if (interfaces != null) {
-                    for (int i = 0; i < interfaces.length; i++) {
-                        if (interfaces[i].contains("RegexContextMapper")) { //$NON-NLS-1$
+                ITypeHierarchy hierarchy = cmClassType.newSupertypeHierarchy(new NullProgressMonitor());
+                if (hierarchy != null) {
+                    for (IType intf : hierarchy.getAllInterfaces()) {
+                        if ("RegexContextMapper".equals(intf.getElementName())) { //$NON-NLS-1$
                             return true;
                         }
                     }
@@ -745,63 +609,6 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         }
     }
 
-    protected boolean validChange(String objectpath, String featureId, Object value) {
-        SwitchYardBindingType binding = getSwitchYardBinding();
-        String[] path = parseString(objectpath, "/"); //$NON-NLS-1$
-        EObject object = binding;
-        for (int i = 0; i < path.length; i++) {
-            object = (EObject) getFeatureValue(object, path[i]);
-        }
-        if (object == null) {
-            return false;
-        }
-        Object oldvalue = getFeatureValue(object, featureId);
-        if (oldvalue == value) {
-            return false;
-        }
-        return true;
-    }
-
-    protected void handleUndo(Control control) {
-        SwitchYardBindingType binding = getSwitchYardBinding();
-        if (binding != null) {
-            setInUpdate(true);
-            if (control.equals(_mapperClassText)) {
-                undoContextMapperFeature(_mapperClassText);
-            } else if (control.equals(_composerClassText)) {
-                undoMessageComposerFeature(_composerClassText);
-            } else if (control.equals(_includesText)) {
-                undoContextMapperFeature(_includesText);
-            } else if (control.equals(_excludesText)) {
-                undoContextMapperFeature(_excludesText);
-            } else if (control.equals(_includesNSText)) {
-                undoContextMapperFeature(_includesNSText);
-            } else if (control.equals(_excludesNSText)) {
-                undoContextMapperFeature(_excludesNSText);
-            }
-            setInUpdate(false);
-        }
-    }
-
-    protected void updateControlEditable(Control control) {
-        if (control != null && !control.isDisposed()) {
-            control.setEnabled(canEdit());
-        }
-    }
-
-    /**
-     * @param canEdit flag
-     */
-    public void setCanEdit(boolean canEdit) {
-        super.setCanEdit(canEdit);
-        updateControlEditable(_mapperClassText);
-        updateControlEditable(_composerClassText);
-        updateControlEditable(_includesText);
-        updateControlEditable(_excludesText);
-        updateControlEditable(_includesNSText);
-        updateControlEditable(_excludesNSText);
-    }
-
     protected Text getComposerClassText() {
         return _composerClassText;
     }
@@ -826,10 +633,4 @@ public class MessageComposerComposite extends AbstractSYBindingComposite impleme
         return _excludesNSText;
     }
 
-    protected boolean stringIsEmpty(String toTest) {
-        if (toTest != null && !toTest.trim().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
 }

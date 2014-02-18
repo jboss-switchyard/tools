@@ -17,6 +17,7 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -24,6 +25,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
@@ -45,9 +47,10 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
     
     /**
      * Basic constructor.
+     * @param toolkit the toolkit to use for creating controls
      */
-    public BaseValidatorComposite() {
-        super();
+    public BaseValidatorComposite(FormToolkit toolkit) {
+        super(toolkit);
         if (_typesUtil == null) {
             _typesUtil = new ValidatorTypesUtil();
         }
@@ -84,8 +87,8 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
     }
 
     @Override
-    public void createContents(Composite parent, int style) {
-        setPanel(new Composite(parent, SWT.NONE));
+    public void createContents(Composite parent, int style, DataBindingContext context) {
+        setPanel(getToolkit().createComposite(parent, SWT.NONE));
         GridLayout gl = new GridLayout(2, false);
         getPanel().setLayout(gl);
         if (getRootGridData() != null) {

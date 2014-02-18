@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,23 +12,39 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.soap;
 
-import java.util.ArrayList;
+import java.math.BigInteger;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.ComputedValue;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,7 +53,6 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -46,24 +61,27 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.wst.wsdl.Port;
-import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType;
-import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.MtomType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
-import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 
 /**
@@ -75,16 +93,13 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     private Composite _panel;
     private Text _nameText;
     private Text _mWSDLURIText;
-    private String _sWSDLURI = null;
     private SOAPBindingType _binding = null;
     private Text _mWSDLSocketText;
-    private String _bindingSocket = null;
-    private Combo _soapHeadersTypeCombo = null;
+    private ComboViewer _soapHeadersTypeCombo = null;
     private Text _contextPathText = null;
     private Button _unwrappedPayloadCheckbox = null;
     private Text _portNameText = null;
     private Button _browseBtnWorkspace;
-    private Button _browseBtnFile;
     private Button _browseBtnConfigWorkspace;
     private Link _newWSDLLink;
     private Button _enableMtomCheckbox = null;
@@ -92,17 +107,16 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     private Button _disableMtomCheckbox =  null;
     private Text _configFileText;
     private Text _configNameText;
-    private final SOAPMessageComposerComposite _messageComposerComposite;
     private Text _mtomThresholdText = null;
+    private WritableValue _bindingValue;
 
     /**
      * Create a new SOAPBindingServiceComposite.
      * 
-     * @param messageComposerComposite the associated composite for editing
-     *            message composer/context mapper settings.
+     * @param toolkit the associated form toolkit to use.
      */
-    public SOAPBindingServiceComposite(SOAPMessageComposerComposite messageComposerComposite) {
-        _messageComposerComposite = messageComposerComposite;
+    public SOAPBindingServiceComposite(FormToolkit toolkit) {
+        super(toolkit);
     }
 
     @Override
@@ -115,16 +129,14 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         return Messages.description_soapBindingDetails;
     }
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
     @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getSOAPTabControl(_panel);
+
+        bindControls(context);
     }
 
     private Control getSOAPTabControl(Composite tabFolder) {
@@ -153,10 +165,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 } else {
                     String result = getPathToNewWSDL(_panel.getShell(), wsdlPath, openOnCreate());
                     if (result != null) {
-                        _mWSDLURIText.setText(result);
-                        setHasChanged(true);
-                        handleModify(_mWSDLURIText);
-                        fireChangedEvent(_mWSDLURIText);
+                        setTextValueAndNotify(_mWSDLURIText, result, false);
                     }
                 }
             }
@@ -174,10 +183,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             public void widgetSelected(final SelectionEvent e) {
                 String result = selectResourceFromWorkspace(_panel.getShell(), "*.wsdl"); //$NON-NLS-1$
                 if (result != null) {
-                    _mWSDLURIText.setText(result);
-                    setHasChanged(true);
-                    handleModify(_mWSDLURIText);
-                    fireChangedEvent(_mWSDLURIText);
+                    setTextValueAndNotify(_mWSDLURIText, result, false);
                 }
             }
         });
@@ -208,15 +214,13 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         upChxGD.horizontalSpan = 3;
         _unwrappedPayloadCheckbox.setLayoutData(upChxGD);
 
-        _soapHeadersTypeCombo = createLabelAndCombo(composite, Messages.label_soapHeadersType, true);
+        _soapHeadersTypeCombo = createLabelAndComboViewer(composite, Messages.label_soapHeadersType, true);
         GridData cmcGD = new GridData(GridData.FILL_HORIZONTAL);
         cmcGD.horizontalSpan = 2;
-        _soapHeadersTypeCombo.setLayoutData(cmcGD);
-
-        for (int i = 0; i < SoapHeadersType.values().length; i++) {
-            _soapHeadersTypeCombo.add(SoapHeadersType.get(i).getLiteral(), i);
-        }
-        _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
+        _soapHeadersTypeCombo.getCombo().setLayoutData(cmcGD);
+        _soapHeadersTypeCombo.setContentProvider(ArrayContentProvider.getInstance());
+        _soapHeadersTypeCombo.setLabelProvider(new LabelProvider());
+        _soapHeadersTypeCombo.setInput(SoapHeadersType.values());
         
         Group endpointConfigGroup = new Group(composite, SWT.NONE);
         endpointConfigGroup.setText(Messages.label_endpointConfiguration);
@@ -240,10 +244,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             public void widgetSelected(final SelectionEvent e) {
                 String result = selectConfigFileWorkspace(_panel.getShell(), "*.xml"); //$NON-NLS-1$
                 if (result != null) {
-                    _configFileText.setText(result);
-                    setHasChanged(true);
-                    handleModify(_configFileText);
-                    fireChangedEvent(_configFileText);
+                    setTextValueAndNotify(_configFileText, result, false);
                 }
             }
         });
@@ -287,221 +288,15 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         _mtomThresholdText.setLayoutData(mtomThresholdGD);
     }
 
-    protected MessageComposerType createMessageComposer() {
-        MessageComposerType messageComposer = SOAPFactory.eINSTANCE.createMessageComposerType();
-        return messageComposer;
-    }
-
-    protected ContextMapperType createContextMapper() {
-        ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-        return contextMapper;
-    }
-
     protected void handleModify(Control control) {
-        if (_binding != null) {
-            if (control.equals(_mWSDLURIText)) {
-                _sWSDLURI = _mWSDLURIText.getText().trim();
-                String wsdlPort = _portNameText.getText().trim();
-                updateFeature(_binding, new String[] {"wsdl", "wsdlPort" }, new Object[] {_sWSDLURI, wsdlPort }); //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (control.equals(_mWSDLSocketText)) {
-                _bindingSocket = _mWSDLSocketText.getText().trim();
-                // for SWITCHYARD-1614 - check to make sure we have a colon and add one if missing
-                boolean isJustPort = false;
-                try {
-                    Integer.valueOf(_bindingSocket);
-                    isJustPort = true;
-                } catch (NumberFormatException nfe) {
-                    isJustPort = false;
-                }
-                if (isJustPort && !_bindingSocket.startsWith(":")) { //$NON-NLS-1$
-                    _bindingSocket = ":" + _bindingSocket; //$NON-NLS-1$
-                    _mWSDLSocketText.setText(_bindingSocket);
-                    _mWSDLSocketText.setSelection(_mWSDLSocketText.getText().length());
-                }
-                updateFeature(_binding, "socketAddr", _bindingSocket); //$NON-NLS-1$
-            } else if (control.equals(_soapHeadersTypeCombo)) {
-                final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
-                _messageComposerComposite.updateContextMapperFeature("soapHeadersType", mapperValue); //$NON-NLS-1$
-            } else if (control.equals(_unwrappedPayloadCheckbox)) {
-                _unwrappedPayloadCheckbox.setData("unwrapped"); //$NON-NLS-1$
-                _messageComposerComposite.updateMessageComposerFeature(_unwrappedPayloadCheckbox);
-            } else if (control.equals(_contextPathText)) {
-                final String contextPath = _contextPathText.getText().trim();
-                updateFeature(_binding, "contextPath", contextPath); //$NON-NLS-1$
-            } else if (control.equals(_portNameText)) {
-                final String wsdlPort = _portNameText.getText();
-                updateFeature(_binding, "wsdlPort", wsdlPort); //$NON-NLS-1$
-            } else if (control.equals(_enableMtomCheckbox)) {
-                _disableMtomCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
-                _enableXopExpandCheckbox.setEnabled(_enableMtomCheckbox.getSelection());
-                _mtomThresholdText.setEnabled(_enableMtomCheckbox.getSelection());
-                if (!_enableMtomCheckbox.getSelection()) {
-                    _disableMtomCheckbox.setSelection(false);
-                    _enableXopExpandCheckbox.setSelection(false);
-                    removeMTomFeature();
-                } else {
-                    updateMTomFeature(null, null);
-                }
-            } else if (control.equals(_disableMtomCheckbox)) {
-                updateMTomFeature("enabled", !_disableMtomCheckbox.getSelection()); //$NON-NLS-1$
-            } else if (control.equals(_enableXopExpandCheckbox)) {
-                updateMTomFeature("xopExpand", _enableXopExpandCheckbox.getSelection()); //$NON-NLS-1$
-            } else if (control.equals(_configFileText)) {
-                if (_configFileText.getText().trim().isEmpty() && _configNameText.getText().trim().isEmpty()) {
-                    removeEndpointConfigFeature();
-                } else {
-                    updateEndpointConfigFeature("configFile", _configFileText.getText().trim()); //$NON-NLS-1$
-                }
-            } else if (control.equals(_configNameText)) {
-                if (_configFileText.getText().trim().isEmpty() && _configNameText.getText().trim().isEmpty()) {
-                    removeEndpointConfigFeature();
-                } else {
-                    updateEndpointConfigFeature("configName", _configNameText.getText().trim()); //$NON-NLS-1$
-                }
-            } else if (control.equals(_nameText)) {
-                super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-            } else if (control.equals(_mtomThresholdText)) {
-                final String threshold = _mtomThresholdText.getText();
-                updateMTomFeature("threshold", threshold); //$NON-NLS-1$
-            } else {
-                super.handleModify(control);
-            }
-        }
-        validate();
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_contextPathText)) {
-                _contextPathText.setText(_binding.getContextPath());
-            } else if (control.equals(_mWSDLSocketText)) {
-                _bindingSocket = _binding.getSocketAddr();
-                if (_bindingSocket != null) {
-                    _mWSDLSocketText.setText(_bindingSocket);
-                }
-            } else if (control.equals(_mWSDLURIText)) {
-                _mWSDLURIText.setText(_binding.getWsdl());
-            } else if (control.equals(_portNameText)) {
-                String portName = _binding.getWsdlPort();
-                if (portName != null) {
-                    _portNameText.setText(portName);
-                }
-            } else if (control.equals(_unwrappedPayloadCheckbox)) {
-                if (_binding.getMessageComposer() instanceof MessageComposerType) {
-                    MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
-                    _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
-                }
-            } else if (control.equals(_soapHeadersTypeCombo)) {
-                if (_binding.getContextMapper() instanceof ContextMapperType) {
-                    int index = ((ContextMapperType) _binding.getContextMapper()).getSoapHeadersType().getValue();
-                    if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
-                        _soapHeadersTypeCombo.select(index);
-                    }
-                }
-            } else if (control.equals(_enableMtomCheckbox)) {
-                _enableMtomCheckbox.setSelection(_binding.getMtom() != null);
-                if (_binding.getMtom() != null) {
-                    _enableXopExpandCheckbox.setEnabled(true);
-                    _disableMtomCheckbox.setEnabled(true);
-                    _mtomThresholdText.setEnabled(true);
-                    if (_binding.getMtom().getEnabled() != null) {
-                        _disableMtomCheckbox.setSelection(!(Boolean)_binding.getMtom().getEnabled());
-                        if (_binding.getMtom().getXopExpand() != null) {
-                            _enableXopExpandCheckbox.setSelection((Boolean)_binding.getMtom().getXopExpand());
-                        }
-                    }
-                } else {
-                    _mtomThresholdText.setEnabled(false);
-                    _enableXopExpandCheckbox.setEnabled(false);
-                    _disableMtomCheckbox.setEnabled(false);
-                }
-            } else if (control.equals(_mtomThresholdText)) {
-                if (_binding.getMtom() != null && _binding.getMtom().getThreshold() != null) {
-                    _mtomThresholdText.setText(PropTypeUtil.getPropValueString(_binding.getMtom().getThreshold()));
-                } else {
-                    _mtomThresholdText.setText(""); //$NON-NLS-1$
-                }
-            } else if (control.equals(_disableMtomCheckbox)) {
-                if (_binding.getMtom() != null) {
-                    _disableMtomCheckbox.setSelection(!(Boolean)_binding.getMtom().getEnabled());
-                }
-            } else if (control.equals(_enableXopExpandCheckbox)) {
-                if (_binding.getMtom() != null) {
-                    _enableXopExpandCheckbox.setSelection(!(Boolean)_binding.getMtom().getXopExpand());
-                }
-            } else if (control.equals(_configFileText)) {
-                if (_binding.getEndpointConfig() != null) {
-                    String configFile = _binding.getEndpointConfig().getConfigFile();
-                    setTextValue(_configFileText, configFile);
-                } else {
-                    setTextValue(_configFileText, null);
-                }
-            } else if (control.equals(_configNameText)) {
-                if (_binding.getEndpointConfig() != null) {
-                    String configName = _binding.getEndpointConfig().getConfigName();
-                    setTextValue(_configNameText, configName);
-                } else {
-                    setTextValue(_configNameText, null);
-                }
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
-    }
-
-    protected boolean validate() {
-        setErrorMessage(null);
-        String uriString = _mWSDLURIText.getText();
-
-        if (uriString == null || uriString.trim().length() == 0) {
-            setErrorMessage(Messages.error_noUri);
-        } else if (uriString.trim().length() < uriString.length()) {
-            setErrorMessage(Messages.error_spacesInUri);
-//        } else {
-//            try {
-//                URI.create(uriString);
-//            } catch (IllegalArgumentException e) {
-//                setErrorMessage("Invalid URI");
-//            }
-        }
-
-//        if (getBinding() != null && _mWSDLSocketText != null) {
-//            String portString = _bindingSocket;
-//            if (portString != null && portString.trim().length() > 0) {
-//                int pos = portString.indexOf(':');
-//                if (pos == -1) {
-//                    setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-//                } else {
-//                    String left = portString.substring(0, pos).trim();
-//                    if (left.length() > 0
-//                            && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
-//                        setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-//                    }
-//                    String right = portString.substring(pos + 1, portString.length()).trim();
-//                    try {
-//                        Integer.parseInt(right);
-//                    } catch (NumberFormatException nfe) {
-//                        setErrorMessage("The port number right of the : must be a valid integer.");
-//                    }
-//                }
-////            } else {
-////                setErrorMessage("No socket specified");
-//            }
-//        }
-
-        return (getErrorMessage() == null);
-    }
-
-    /**
-     * @return wsdl URI string
-     */
-    public String getWSDLURI() {
-        return this._sWSDLURI;
     }
 
     /**
@@ -519,128 +314,10 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         if (switchYardBindingType instanceof SOAPBindingType) {
             setTargetObject(switchYardBindingType.eContainer());
             this._binding = (SOAPBindingType) switchYardBindingType;
-            _sWSDLURI = _binding.getWsdl();
-            setInUpdate(true);
-            _bindingSocket = _binding.getSocketAddr();
-            if (_mWSDLURIText != null && !_mWSDLURIText.isDisposed()) {
-                String wsdlURI = _binding.getWsdl();
-                if (wsdlURI != null) {
-                    _mWSDLURIText.setText(wsdlURI);
-                } else {
-                    _mWSDLURIText.setText(""); //$NON-NLS-1$
-                }
-            }
-            if (_portNameText != null && !_portNameText.isDisposed()) {
-                String portName = _binding.getWsdlPort();
-                if (portName != null) {
-                    _portNameText.setText(portName);
-                } else {
-                    _portNameText.setText(""); //$NON-NLS-1$
-                }
-            }
-            if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
-                _bindingSocket = _binding.getSocketAddr();
-                if (_bindingSocket != null) {
-                    _mWSDLSocketText.setText(_bindingSocket);
-                } else {
-                    _mWSDLSocketText.setText(""); //$NON-NLS-1$
-                }
-            }
-            if (_contextPathText != null && !_contextPathText.isDisposed()) {
-                if (_binding.getContextPath() != null) {
-                    this._contextPathText.setText(_binding.getContextPath());
-                } else {
-                    if (getTargetObject() != null && getTargetObject() instanceof Contract) {
-                        Contract contract = (Contract) getTargetObject();
-                        if (contract.eContainer() != null
-                                && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
-                            org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract
-                                    .eContainer();
-                            if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
-                                SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
-                                // fixes SWITCHYARD-1191
-                                if (rootSwitchYard != null && rootSwitchYard.getName() != null) {
-                                    this._contextPathText.setText(rootSwitchYard.getName());
-                                } else {
-                                    this._contextPathText.setText(composite.getName());
-                                }
-                                handleModify(_contextPathText);
-                            }
-                        }
-                    }
-                }
-            }
-            if (_unwrappedPayloadCheckbox != null && !_unwrappedPayloadCheckbox.isDisposed()) {
-                if (_binding.getMessageComposer() != null
-                        && _binding.getMessageComposer() instanceof MessageComposerType) {
-                    MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
-                    _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
-                } else {
-                    _unwrappedPayloadCheckbox.setSelection(false);
-                }
-            }
-            if (_binding.getContextMapper() != null) {
-                ContextMapperType mapper = (ContextMapperType) _binding.getContextMapper();
-                int index = mapper.getSoapHeadersType().getValue();
-                if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
-                    _soapHeadersTypeCombo.select(index);
-                }
-            } else {
-                _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
-            }
-            if (_binding.getEndpointConfig() != null) {
-                if (_configFileText != null && !_configFileText.isDisposed()) {
-                    String configFile = _binding.getEndpointConfig().getConfigFile();
-                    if (configFile != null && !configFile.trim().isEmpty()) {
-                        _configFileText.setText(configFile);
-                    }
-                }
-                if (_configNameText != null && !_configNameText.isDisposed()) {
-                    String configName = _binding.getEndpointConfig().getConfigName();
-                    if (configName != null && !configName.trim().isEmpty()) {
-                        _configNameText.setText(configName);
-                    }
-                }
-            }
-            if (_enableMtomCheckbox != null && !_enableMtomCheckbox.isDisposed()) {
-                _enableMtomCheckbox.setSelection(_binding.getMtom() != null);
-                if (_binding.getMtom() != null) {
-                    _enableXopExpandCheckbox.setEnabled(true);
-                    _disableMtomCheckbox.setEnabled(true);
-                    _mtomThresholdText.setEnabled(true);
-                    if (_binding.getMtom().getEnabled() != null) {
-                        _disableMtomCheckbox.setSelection(!PropTypeUtil.getBooleanPropValue(_binding.getMtom().getEnabled()));
-                    }
-                    if (_binding.getMtom().getXopExpand() != null) {
-                        _enableXopExpandCheckbox.setSelection(PropTypeUtil.getBooleanPropValue(_binding.getMtom().getXopExpand()));
-                    }
-                    if (_binding.getMtom().getThreshold() != null) {
-                        _mtomThresholdText.setText(PropTypeUtil.getPropValueString(_binding.getMtom().getThreshold()));
-                    } else {
-                        _mtomThresholdText.setText(""); //$NON-NLS-1$
-                    }
-                } else {
-                    _enableXopExpandCheckbox.setEnabled(false);
-                    _disableMtomCheckbox.setEnabled(false);
-                    _mtomThresholdText.setEnabled(false);
-                }
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-            setInUpdate(false);
-            validate();
+            _bindingValue.setValue(_binding);
+        } else {
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
-    }
-
-    /**
-     * @return string port
-     */
-    public String getsBindingPort() {
-        return _bindingSocket;
     }
 
     /**
@@ -721,119 +398,323 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         return null;
     }
 
-    /**
-     * @param canEdit flag
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, SOAPBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "SOAP binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "SOAP binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_mWSDLURIText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                SOAPPackage.Literals.SOAP_BINDING_TYPE__WSDL),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(Messages.error_noUri)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_portNameText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                SOAPPackage.Literals.SOAP_BINDING_TYPE__WSDL_PORT),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        bindMessageComposerAndContextMapperControls(context, domain, realm);
+
+        final IObservableValue endpointConfigConfigFile = new WritableValue(realm, null, String.class);
+        final IObservableValue endpointConfigConfigName = new WritableValue(realm, null, String.class);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_configFileText, SWT.Modify), endpointConfigConfigFile,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_configNameText, SWT.Modify), endpointConfigConfigName,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        ComputedValue computedEndpointConfig = new ComputedValue() {
+            @Override
+            protected Object calculate() {
+                final String configFile = (String) endpointConfigConfigFile.getValue();
+                final String configName = (String) endpointConfigConfigName.getValue();
+                if (configFile != null || configName != null) {
+                    final EndpointConfigType endpointConfig = SOAPFactory.eINSTANCE
+                            .createEndpointConfigType();
+                    endpointConfig.setConfigFile(configFile);
+                    endpointConfig.setConfigName(configName);
+                    return endpointConfig;
+                }
+                return null;
+            }
+
+            protected void doSetValue(Object value) {
+                if (value instanceof EndpointConfigType) {
+                    final EndpointConfigType endpointConfig = (EndpointConfigType) value;
+                    endpointConfigConfigFile.setValue(endpointConfig.getConfigFile());
+                    endpointConfigConfigName.setValue(endpointConfig.getConfigName());
+                } else {
+                    endpointConfigConfigFile.setValue(null);
+                    endpointConfigConfigName.setValue(null);
+                }
+                getValue();
+            }
+        };
+
+        // now bind the endpoint config into the binding
+        binding = context.bindValue(
+                computedEndpointConfig,
+                ObservablesUtil.observeDetailValue(domain, _bindingValue, 
+                        SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_CONFIG));
+
+        bindMtomControls(context, domain, realm);
+
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_contextPathText, new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    SOAPPackage.Literals.SOAP_BINDING_TYPE__CONTEXT_PATH),
+                            new EMFUpdateValueStrategyNullForEmptyString(
+                                    null,
+                                    UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+            
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_mWSDLSocketText, new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    SOAPPackage.Literals.SOAP_BINDING_TYPE__SOCKET_ADDR),
+                            new EMFUpdateValueStrategyNullForEmptyString(
+                                    null,
+                                    UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+            
+            // TODO: Figure out how to handle this case:
+//          // for SWITCHYARD-1614 - check to make sure we have a colon and add one if missing
+//          boolean isJustPort = false;
+//          try {
+//              Integer.valueOf(_bindingSocket);
+//              isJustPort = true;
+//          } catch (NumberFormatException nfe) {
+//              isJustPort = false;
+//          }
+//          if (isJustPort && !_bindingSocket.startsWith(":")) { //$NON-NLS-1$
+//              _bindingSocket = ":" + _bindingSocket; //$NON-NLS-1$
+//              _mWSDLSocketText.setText(_bindingSocket);
+//          }
+//          updateFeature(_binding, "socketAddr", _bindingSocket); //$NON-NLS-1$
+        }
+    }
+
+    private void bindMessageComposerAndContextMapperControls(final DataBindingContext context, 
+            final EditingDomain domain, final Realm realm) {
+        final IObservableValue msgComposerUnwrappedValue = new WritableValue(realm, null, Boolean.class);
+
+        org.eclipse.core.databinding.Binding binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_unwrappedPayloadCheckbox), msgComposerUnwrappedValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        ComputedValue computedMessageComposer = new ComputedValue() {
+            @Override
+            protected Object calculate() {
+                final Boolean unwrapped = (Boolean) msgComposerUnwrappedValue.getValue();
+                if (unwrapped != null) {
+                    final MessageComposerType msgComposer = SOAPFactory.eINSTANCE
+                            .createMessageComposerType();
+                    msgComposer.setUnwrapped(unwrapped.booleanValue());
+                    return msgComposer;
+                }
+                return null;
+            }
+
+            protected void doSetValue(Object value) {
+                if (value instanceof MessageComposerType) {
+                    final MessageComposerType msgComposer = (MessageComposerType) value;
+                    msgComposerUnwrappedValue.setValue(new Boolean(msgComposer.isUnwrapped()));
+                } else {
+                    msgComposerUnwrappedValue.setValue(null);
+                }
+                getValue();
+            }
+        };
+
+        // now bind the message composer into the binding
+        binding = context.bindValue(
+                computedMessageComposer,
+                ObservablesUtil.observeDetailValue(domain, _bindingValue, 
+                        SOAPPackage.Literals.SOAP_BINDING_TYPE__MESSAGE_COMPOSER));
+
+        final IObservableValue contextMapperSOAPHeaders = new WritableValue(realm, null, SoapHeadersType.class);
+
+        binding = context
+                .bindValue(
+                        ViewersObservables.observeSingleSelection(_soapHeadersTypeCombo), contextMapperSOAPHeaders,
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        ComputedValue computedContextMapper = new ComputedValue() {
+            @Override
+            protected Object calculate() {
+                final SoapHeadersType soapHeaders = (SoapHeadersType) contextMapperSOAPHeaders.getValue();
+                if (soapHeaders != null) {
+                    final ContextMapperType ctxMapper = SOAPFactory.eINSTANCE
+                            .createContextMapperType();
+                    ctxMapper.setSoapHeadersType(soapHeaders);
+                    return ctxMapper;
+                }
+                return null;
+            }
+
+            protected void doSetValue(Object value) {
+                if (value instanceof ContextMapperType) {
+                    final ContextMapperType ctxMapper = (ContextMapperType) value;
+                    contextMapperSOAPHeaders.setValue(ctxMapper.getSoapHeadersType());
+                } else {
+                    contextMapperSOAPHeaders.setValue(null);
+                }
+                getValue();
+            }
+        };
+
+        // now bind the context mapper into the binding
+        binding = context.bindValue(
+                computedContextMapper,
+                ObservablesUtil.observeDetailValue(domain, _bindingValue, 
+                        SOAPPackage.Literals.SOAP_BINDING_TYPE__CONTEXT_MAPPER));
+    }
+
+    private void bindMtomControls(final DataBindingContext context, 
+            final EditingDomain domain, final Realm realm) {
+        final IObservableValue mtomEnabled = new WritableValue(realm, null, Boolean.class);
+        final IObservableValue mtomDisabled = new WritableValue(realm, null, Boolean.class);
+        final IObservableValue mtomXopExpand = new WritableValue(realm, null, Boolean.class);
+        final IObservableValue mtomThreshold = new WritableValue(realm, null, BigInteger.class);
+
+        org.eclipse.core.databinding.Binding binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_enableMtomCheckbox), mtomEnabled,
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_disableMtomCheckbox), mtomDisabled,
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_enableXopExpandCheckbox), mtomXopExpand,
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_mtomThresholdText, SWT.Modify), mtomThreshold,
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        ComputedValue computedMtom = new ComputedValue() {
+            @Override
+            protected Object calculate() {
+                final Boolean enabled = (Boolean) mtomEnabled.getValue();
+                final Boolean disabled = (Boolean) mtomDisabled.getValue();
+                final Boolean xopExpand = (Boolean) mtomXopExpand.getValue();
+                final BigInteger threshold = (BigInteger) mtomThreshold.getValue();
+                if (enabled != null && enabled.booleanValue()) {
+                    final MtomType mtom = SOAPFactory.eINSTANCE
+                            .createMtomType();
+                    mtom.setEnabled(disabled);
+                    mtom.setXopExpand(xopExpand);
+                    mtom.setThreshold(threshold);
+                    return mtom;
+                }
+                return null;
+            }
+            
+            protected void doSetValue(Object value) {
+                if (value instanceof MtomType) {
+                    final MtomType mtom = (MtomType) value;
+                    mtomEnabled.setValue(new Boolean(true));
+                    mtomDisabled.setValue(mtom.getEnabled());
+                    mtomXopExpand.setValue(mtom.getXopExpand());
+                    mtomThreshold.setValue(mtom.getThreshold());
+                } else {
+                    mtomEnabled.setValue(new Boolean(false));
+                    mtomDisabled.setValue(null);
+                    mtomXopExpand.setValue(null);
+                    mtomThreshold.setValue(null);
+                }
+                getValue();
+            }
+        };
+        
+        mtomEnabled.addChangeListener(new IChangeListener() {
+            
+            @Override
+            public void handleChange(ChangeEvent event) {
+                Boolean value = (Boolean) mtomEnabled.getValue();
+                _disableMtomCheckbox.setEnabled(value.booleanValue());
+                _enableXopExpandCheckbox.setEnabled(value.booleanValue());
+                _mtomThresholdText.setEnabled(value.booleanValue());
+            }
+        });
+
+        // now bind the mtom into the binding
+        binding = context.bindValue(
+                computedMtom,
+                ObservablesUtil.observeDetailValue(domain, _bindingValue, 
+                        SOAPPackage.Literals.SOAP_BINDING_TYPE__MTOM));
+
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
      */
-    public void setCanEdit(boolean canEdit) {
-        super.setCanEdit(canEdit);
-        updateControlEditable(_mWSDLURIText);
-        updateControlEditable(_newWSDLLink);
-        updateControlEditable(_browseBtnFile);
-        updateControlEditable(_browseBtnWorkspace);
-        updateControlEditable(_portNameText);
-        updateControlEditable(_contextPathText);
-        updateControlEditable(_mWSDLSocketText);
-        updateControlEditable(_unwrappedPayloadCheckbox);
-        updateControlEditable(_soapHeadersTypeCombo);
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
     }
-
-    class MessageComposerOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getMessageComposer() == null) {
-                MessageComposerType messageComposer = (MessageComposerType) createMessageComposer();
-                setFeatureValue(_binding, "messageComposer", messageComposer); //$NON-NLS-1$
-            }
-        }
-    }
-    
-    class AddMTomOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getMtom() == null) {
-                MtomType mtomType = SOAPFactory.eINSTANCE.createMtomType();
-                setFeatureValue(_binding, "mtom", mtomType); //$NON-NLS-1$
-            }
-        }
-    }
-
-    class RemoveMTomOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getMtom() != null) {
-                setFeatureValue(_binding, "mtom", null); //$NON-NLS-1$
-            }
-        }
-    }
-
-    protected void updateMessageComposerFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new MessageComposerOp());
-        ops.add(new BasicOperation("messageComposer", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-    
-    protected void updateMTomFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new AddMTomOp());
-        if (featureId != null) {
-            ops.add(new BasicOperation("mtom", featureId, value)); //$NON-NLS-1$
-        }
-        wrapOperation(ops);
-    }
-    
-    protected void removeMTomFeature() {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveMTomOp());
-        wrapOperation(ops);
-    }
-
-    class AddEndpointConfigOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getEndpointConfig() == null) {
-                EndpointConfigType endpointConfigType = SOAPFactory.eINSTANCE.createEndpointConfigType();
-                _binding.setEndpointConfig(endpointConfigType);
-//                setFeatureValue(_binding, "endpointConfig", endpointConfigType);
-            }
-        }
-    }
-
-    class RemoveEndpointConfigOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getEndpointConfig() != null) {
-                setFeatureValue(_binding, "endpointConfig", null); //$NON-NLS-1$
-            }
-        }
-    }
-    
-    protected void updateEndpointConfigFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        String epName = null;
-        String epFile =  null;
-        if (_binding.getEndpointConfig() != null) {
-            epName = _binding.getEndpointConfig().getConfigName();
-            epFile = _binding.getEndpointConfig().getConfigFile();
-        }
-        if (featureId.equalsIgnoreCase("configName")) { //$NON-NLS-1$
-            epName = (String) value;
-        } else if (featureId.equalsIgnoreCase("configFile")) { //$NON-NLS-1$
-            epFile = (String) value;
-        }
-        ops.add(new RemoveEndpointConfigOp());
-        if (epName != null || epFile != null) {
-            ops.add(new AddEndpointConfigOp());
-            ops.add(new BasicOperation("endpointConfig", "configName", epName)); //$NON-NLS-1$ //$NON-NLS-2$
-            ops.add(new BasicOperation("endpointConfig", "configFile",  epFile)); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-        wrapOperation(ops);
-    }
-
-    protected void removeEndpointConfigFeature() {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveEndpointConfigOp());
-        wrapOperation(ops);
-    }
-    
 }

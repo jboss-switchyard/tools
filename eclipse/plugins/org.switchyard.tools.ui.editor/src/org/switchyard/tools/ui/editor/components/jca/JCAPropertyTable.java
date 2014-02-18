@@ -15,159 +15,72 @@ package org.switchyard.tools.ui.editor.components.jca;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.observable.ObservableTracker;
+import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.databinding.property.value.IValueProperty;
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.databinding.EMFProperties;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ICellModifier;
-import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.viewers.CellEditorProperties;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.databinding.viewers.ObservableMapCellLabelProvider;
+import org.eclipse.jface.databinding.viewers.ObservableValueEditingSupport;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TreeColumn;
-import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 
 /**
  * @author bfitzpat
  * 
  */
-public abstract class JCAPropertyTable extends Composite implements ICellModifier {
+public abstract class JCAPropertyTable extends Composite {
 
-    private class PropertyTreeContentProvider implements ITreeContentProvider {
-        private EList<Property> _properties;
-
-        @Override
-        public void dispose() {
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-            if (newInput instanceof EList<?>) {
-                _properties = (EList<Property>) newInput;
-            }
-        }
-
-        @Override
-        public Object[] getElements(Object inputElement) {
-            if (inputElement instanceof EList<?>) {
-                return _properties.toArray();
-            }
-            return null;
-        }
-
-        @Override
-        public Object[] getChildren(Object parentElement) {
-            if (parentElement instanceof Property[]) {
-                return new Object[] {_properties.toArray() };
-            }
-            return null;
-        }
-
-        @Override
-        public Object getParent(Object element) {
-            if (element instanceof Property) {
-                return ((Property) element).eContainer();
-            }
-            return null;
-        }
-
-        @Override
-        public boolean hasChildren(Object element) {
-            if (element instanceof EList<?>) {
-                return ((EList<?>) element).size() > 0;
-            }
-            return false;
-        }
-    }
-
-    private class PropertyTreeLabelProvider implements ITableLabelProvider {
-        @Override
-        public void addListener(ILabelProviderListener listener) {
-        }
-
-        @Override
-        public void dispose() {
-        }
-
-        @Override
-        public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof Property && property.equalsIgnoreCase(NAME_COLUMN)) {
-                return true;
-            } else if (element instanceof Property && property.equalsIgnoreCase(VALUE_COLUMN)) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public void removeListener(ILabelProviderListener listener) {
-        }
-
-        @Override
-        public Image getColumnImage(Object element, int columnIndex) {
-            return null;
-        }
-
-        @Override
-        public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof Property && columnIndex == 0) {
-                return ((Property) element).getName();
-            } else if (element instanceof Property && columnIndex == 1) {
-                Property tp = (Property) element;
-                return (String) tp.getValue();
-            }
-            return null;
-        }
-    }
-
-    private TreeViewer _propertyTreeTable;
+    private TableViewer _propertyTreeTable;
     
-    /**
-     *  Name column.
-     */
-    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
-    
-    /**
-     * Value column. 
-     */
-    public static final String VALUE_COLUMN = "value"; //$NON-NLS-1$
-    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN };
-
     private Button _mAddButton;
     private Button _mRemoveButton;
     private boolean _isReadOnly = false;
     private EObject _targetObj = null;
-    private String _mWarning = null;
     private ListenerList _changeListeners;
+    
+    private IObservableValue _bindingValue;
 
     /**
      * Constructor.
      * 
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
+     * @param toolkit Form toolkit to use when creating controls
+     * @param context the data binding context
+     * @param featurePathToProperties the feature path to the Property list
+     * @param domain the editing domain
      */
-    public JCAPropertyTable(Composite parent, int style) {
-        this(parent, style, false);
+    public JCAPropertyTable(Composite parent, int style, FormToolkit toolkit, DataBindingContext context,
+            FeaturePath featurePathToProperties, EditingDomain domain) {
+        this(parent, style, false, toolkit, context, featurePathToProperties, domain);
     }
 
     /**
@@ -176,11 +89,18 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
      * @param parent composite parent
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
+     * @param toolkit Form toolkit to use when creating controls
+     * @param context the data binding context
+     * @param featurePathToProperties the feature path to the Property list
+     * @param domain the editing domain
      */
-    public JCAPropertyTable(Composite parent, int style, boolean isReadOnly) {
+    public JCAPropertyTable(Composite parent, int style, boolean isReadOnly, FormToolkit toolkit,
+            DataBindingContext context, FeaturePath featurePathToProperties, EditingDomain domain) {
         super(parent, style);
-        this._isReadOnly = isReadOnly;
-        this._changeListeners = new ListenerList();
+        _isReadOnly = isReadOnly;
+        _changeListeners = new ListenerList();
+
+        _bindingValue = new WritableValue(SWTObservables.getRealm(getDisplay()), null, JCABinding.class);
 
         int additionalStyles = SWT.NONE;
         if (isReadOnly) {
@@ -193,79 +113,78 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
 
-        _propertyTreeTable = new TreeViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
-                | additionalStyles);
-        this._propertyTreeTable.setAutoExpandLevel(TreeViewer.ALL_LEVELS);
+        Composite tableComposite = new Composite(this, additionalStyles);
         GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 5);
         gd11.heightHint = 100;
-        _propertyTreeTable.getTree().setLayoutData(gd11);
-        _propertyTreeTable.getTree().setHeaderVisible(true);
-        TreeColumn nameColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
-        nameColumn.setText(Messages.label_name);
-        nameColumn.setWidth(200);
-        TreeColumn valueColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
-        valueColumn.setText(Messages.label_value);
-        valueColumn.setWidth(200);
+        tableComposite.setLayoutData(gd11);
 
-        _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
+        TableColumnLayout tableLayout = new TableColumnLayout();
+        tableComposite.setLayout(tableLayout);
 
-        _propertyTreeTable.setLabelProvider(new PropertyTreeLabelProvider());
+        _propertyTreeTable = new TableViewer(tableComposite, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
+                | additionalStyles);
+        _propertyTreeTable.getTable().setHeaderVisible(true);
 
-        _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
+        TableViewerColumn nameColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
+        nameColumn.getColumn().setText(Messages.label_name);
+        tableLayout.setColumnData(nameColumn.getColumn(), new ColumnWeightData(100, 150, true));
 
-        _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {null, new TextCellEditor(_propertyTreeTable.getTree()),
-                null });
+        TableViewerColumn valueColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
+        valueColumn.getColumn().setText(Messages.label_value);
+        tableLayout.setColumnData(valueColumn.getColumn(), new ColumnWeightData(100, 150, true));
 
-        this._mAddButton = new Button(this, SWT.NONE);
-        this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText(Messages.button_add);
-        this._mAddButton.addSelectionListener(new SelectionAdapter() {
+        IValueProperty nameProperty = domain == null ? EMFProperties.value(JcaPackage.Literals.PROPERTY__NAME)
+                : EMFEditProperties.value(domain, JcaPackage.Literals.PROPERTY__NAME);
+        IValueProperty valueProperty = domain == null ? EMFProperties.value(JcaPackage.Literals.PROPERTY__VALUE)
+                : EMFEditProperties.value(domain, JcaPackage.Literals.PROPERTY__VALUE);
+        IValueProperty cellEditorTextProperty = CellEditorProperties.control().value(WidgetProperties.text(SWT.Modify));
 
+        final ObservableListContentProvider contentProvider;
+        ObservableTracker.setIgnore(true);
+        try {
+            // ignore any observers created internally
+            contentProvider = new ObservableListContentProvider();
+        } finally {
+            ObservableTracker.setIgnore(false);
+        }
+
+        nameColumn.setEditingSupport(ObservableValueEditingSupport.create(_propertyTreeTable, context, new TextCellEditor(_propertyTreeTable.getTable()), cellEditorTextProperty, nameProperty));
+        nameColumn.setLabelProvider(new ObservableMapCellLabelProvider(nameProperty.observeDetail(contentProvider.getKnownElements())));
+
+        valueColumn.setEditingSupport(ObservableValueEditingSupport.create(_propertyTreeTable, context, new TextCellEditor(_propertyTreeTable.getTable()), cellEditorTextProperty, valueProperty));
+        valueColumn.setLabelProvider(new ObservableMapCellLabelProvider(valueProperty.observeDetail(contentProvider.getKnownElements())));
+
+        _propertyTreeTable.setContentProvider(contentProvider);
+
+        _mAddButton = toolkit.createButton(this, Messages.button_add, SWT.NONE);
+        _mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+        _mAddButton.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 addPropertyToList();
-                if (_propertyTreeTable.getInput() == null) {
-                    JCABinding binding = (JCABinding) _targetObj;
-                    _propertyTreeTable.setInput(binding.getInboundConnection().getActivationSpec().getProperty());
-                }
-                _propertyTreeTable.refresh();
-                fireChangedEvent(e.getSource());
             }
         });
 
-        this._mAddButton.setEnabled(false);
-
-        _propertyTreeTable.getTree().addSelectionListener(new SelectionAdapter() {
-
+        _mAddButton.setEnabled(false);
+        _propertyTreeTable.getTable().addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 updatePropertyButtons();
             }
         });
 
-        this._mRemoveButton = new Button(this, SWT.NONE);
-        this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText(Messages.button_remove);
-        this._mRemoveButton.setEnabled(false);
-        this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
-
+        _mRemoveButton = toolkit.createButton(this, Messages.button_remove, SWT.NONE);
+        _mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+        _mRemoveButton.setEnabled(false);
+        _mRemoveButton.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 removeFromList();
-                _propertyTreeTable.refresh();
-                fireChangedEvent(e.getSource());
             }
         });
 
+        final IObservableList propertiesList = (domain == null ? EMFProperties.list(featurePathToProperties)
+                : EMFEditProperties.list(domain, featurePathToProperties)).observeDetail(_bindingValue);
+        _propertyTreeTable.setInput(propertiesList);
+
         updatePropertyButtons();
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-    }
-
-    @Override
-    protected void checkSubclass() {
-        // empty
     }
 
     /**
@@ -278,19 +197,6 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
      */
     protected abstract void removeFromList();
 
-    /**
-     * Return the current selection.
-     * 
-     * @return String list
-     */
-    @SuppressWarnings("unchecked")
-    public EList<Property> getSelection() {
-        if (_propertyTreeTable != null && _propertyTreeTable.getInput() != null) {
-            return (EList<Property>) _propertyTreeTable.getInput();
-        }
-        return null;
-    }
-    
     protected Property getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
@@ -306,32 +212,15 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
      */
     public void updatePropertyButtons() {
         if (_isReadOnly) {
-            this._mAddButton.setEnabled(false);
-            this._mRemoveButton.setEnabled(false);
+            _mAddButton.setEnabled(false);
+            _mRemoveButton.setEnabled(false);
 
         } else {
-            this._mAddButton.setEnabled(true);
-            if (getSelection() != null) {
+            _mAddButton.setEnabled(true);
+            if (getTableSelection() != null) {
                 _mRemoveButton.setEnabled(true);
             }
         }
-    }
-
-    /**
-     * @param properties incoming property list
-     */
-    public void setSelection(EList<Property> properties) {
-        if (!_propertyTreeTable.getTree().isDisposed()) {
-            _propertyTreeTable.setInput(properties);
-        }
-        updatePropertyButtons();
-    }
-
-    /**
-     * @return warning string
-     */
-    public String getWarning() {
-        return this._mWarning;
     }
 
     /**
@@ -354,7 +243,7 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
      * @param listener new listener
      */
     public void addChangeListener(ChangeListener listener) {
-        this._changeListeners.add(listener);
+        _changeListeners.add(listener);
     }
 
     /**
@@ -363,96 +252,22 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
      * @param listener old listener
      */
     public void removeChangeListener(ChangeListener listener) {
-        this._changeListeners.remove(listener);
+        _changeListeners.remove(listener);
     }
 
     /**
      * @param target Passed in what we're dropping on
      */
     public void setTargetObject(EObject target) {
-        this._targetObj = target;
+        _targetObj = target;
+        _bindingValue.setValue(target);
     }
 
     protected EObject getTargetObject() {
-        return this._targetObj;
+        return _targetObj;
     }
     
-    protected void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return boolean flag
-     * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object, java.lang.String)
-     */
-    public boolean canModify(Object element, String property) {
-        if (element instanceof Property && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return value of element property
-     * @see
-     * org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object ,
-     * java.lang.String)
-     */
-    public Object getValue(Object element, String property) {
-        if (element instanceof Property && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return ((Property) element).getValue();
-        }
-        return null;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @param value New property value
-     *
-     * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
-     * java.lang.String, java.lang.Object)
-     */
-    public void modify(Object element, String property, final Object value) {
-        if (element instanceof TreeItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            final TreeItem ti = (TreeItem) element;
-            if (getTargetObject() instanceof JCABinding) {
-                final JCABinding binding = (JCABinding) getTargetObject();
-                if (binding.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            Property parm = (Property) ti.getData();
-                            setFeatureValue(parm, "value", value); //$NON-NLS-1$
-                            getTreeViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    Property parm = (Property) ti.getData();
-                    setFeatureValue(parm, "value", value); //$NON-NLS-1$
-                    getTreeViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        }
-    }
-
-    protected TreeViewer getTreeViewer() {
-        return this._propertyTreeTable;
+    protected TableViewer getTableViewer() {
+        return _propertyTreeTable;
     }
 }

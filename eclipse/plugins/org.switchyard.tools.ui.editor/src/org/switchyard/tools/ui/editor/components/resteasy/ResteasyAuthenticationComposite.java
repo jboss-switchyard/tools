@@ -12,25 +12,43 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.resteasy;
 
-import java.util.ArrayList;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.DisposeEvent;
+import org.eclipse.core.databinding.observable.IDisposeListener;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.ComputedValue;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
+import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.resteasy.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
  * @author bfitzpat
@@ -40,13 +58,21 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
 
     private Composite _panel;
     private RESTBindingType _binding = null;
-    private Combo _authTypeCombo;
+    private ComboViewer _authTypeCombo;
     private Text _authUserText;
     private Text _authPasswordText;
     private Text _authRealmText;
     private Text _authHostText;
     private Text _authPortText;
     private Text _authDomainText;
+    private WritableValue _bindingValue;
+    
+    protected static final String BASIC_AUTH = "Basic";
+    protected static final String NTLM_AUTH = "NTLM";
+
+    ResteasyAuthenticationComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -58,16 +84,14 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
         return Messages.description_resteasyAuthenticationDetails;
     }
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
     @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getAuthenticationControl(_panel);
+
+        bindControls(context);
     }
 
     private Control getAuthenticationControl(Composite tabFolder) {
@@ -75,29 +99,11 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
-        _authTypeCombo = createLabelAndCombo(composite, Messages.label_authenticationType, true);
-        _authTypeCombo.add("Basic"); //$NON-NLS-1$
-        _authTypeCombo.add("NTLM"); //$NON-NLS-1$
-        _authTypeCombo.setText("Basic"); //$NON-NLS-1$
-        _authTypeCombo.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
-                _authUserText.setText(""); //$NON-NLS-1$
-                _authPasswordText.setText(""); //$NON-NLS-1$
-                _authRealmText.setText(""); //$NON-NLS-1$
-                _authHostText.setText(""); //$NON-NLS-1$
-                _authPortText.setText(""); //$NON-NLS-1$
-                _authDomainText.setText(""); //$NON-NLS-1$
-                removeAuthFeatures();
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
+        _authTypeCombo = createLabelAndComboViewer(composite, Messages.label_authenticationType, true);
+        _authTypeCombo.setContentProvider(ArrayContentProvider.getInstance());
+        _authTypeCombo.setLabelProvider(new LabelProvider());
+        String[] authTypes = new String[] {BASIC_AUTH, NTLM_AUTH};
+        _authTypeCombo.setInput(authTypes);
 
         _authUserText = createLabelAndText(composite, Messages.label_user);
         _authPasswordText = createLabelAndText(composite, Messages.label_password);
@@ -106,55 +112,12 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
         _authPortText = createLabelAndText(composite, Messages.label_port);
         _authDomainText = createLabelAndText(composite, Messages.label_domain);
 
-        _authTypeCombo.select(0);
-        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
-
         return composite;
     }
 
     protected void handleModify(Control control) {
-        if (_binding != null) {
-            if (control.equals(_authUserText)) {
-                String user = _authUserText.getText().trim();
-                updateAuthFeature("user", user); //$NON-NLS-1$
-            } else if (control.equals(_authPasswordText)) {
-                String password = _authPasswordText.getText().trim();
-                updateAuthFeature("password", password); //$NON-NLS-1$
-            } else if (control.equals(_authPortText)) {
-                String port = _authPortText.getText().trim();
-                updateAuthFeature("port", port); //$NON-NLS-1$
-            } else if (control.equals(_authRealmText)) {
-                String realm = _authRealmText.getText().trim();
-                updateAuthFeature("realm", realm); //$NON-NLS-1$
-            } else if (control.equals(_authHostText)) {
-                String host = _authHostText.getText().trim();
-                updateAuthFeature("host", host); //$NON-NLS-1$
-            } else if (control.equals(_authDomainText)) {
-                String domain = _authDomainText.getText().trim();
-                updateAuthFeature("domain", domain); //$NON-NLS-1$
-            }
-        }
-        super.handleModify(control);
-        validate();
         setHasChanged(false);
         setDidSomething(true);
-    }
-
-    protected boolean validate() {
-        setErrorMessage(null);
-//        String portText = null;
-//        if (_authPortText != null && !_authPortText.isDisposed()) {
-//            portText = _authPortText.getText();
-//            if (!portText.trim().isEmpty()) {
-//                try {
-//                    Integer.parseInt(portText);
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("The authentication port must be a valid integer");
-//                }
-//            }
-//        }
-
-        return (getErrorMessage() == null);
     }
 
     /**
@@ -172,125 +135,250 @@ public class ResteasyAuthenticationComposite extends AbstractSYBindingComposite 
         if (switchYardBindingType instanceof RESTBindingType) {
             setTargetObject(switchYardBindingType.eContainer());
             this._binding = (RESTBindingType) switchYardBindingType;
-            setInUpdate(true);
-            if (this._binding.getBasic() != null) {
-                _authTypeCombo.select(0);
-                setTextValue(_authUserText, this._binding.getBasic().getUser());
-                setTextValue(_authPasswordText, this._binding.getBasic().getPassword());
-                setTextValue(_authHostText, this._binding.getBasic().getHost());
-                setTextValue(_authRealmText, this._binding.getBasic().getRealm());
-                if (this._binding.getBasic().getPort() != null) {
-                    setTextValue(_authPortText, this._binding.getBasic().getPort().toString());
-                } else {
-                    setTextValue(_authPortText, ""); //$NON-NLS-1$
-                }
-                setTextValue(_authDomainText, null);
-            } else if (this._binding.getNtlm() != null) {
-                _authTypeCombo.select(1);
-                setTextValue(_authUserText, this._binding.getNtlm().getUser());
-                setTextValue(_authPasswordText, this._binding.getNtlm().getPassword());
-                setTextValue(_authHostText, this._binding.getNtlm().getHost());
-                setTextValue(_authRealmText, this._binding.getNtlm().getRealm());
-                setTextValue(_authDomainText, this._binding.getNtlm().getDomain());
-                if (this._binding.getNtlm().getPort() != null) {
-                    setTextValue(_authPortText, this._binding.getNtlm().getPort().toString());
-                } else {
-                    setTextValue(_authPortText, ""); //$NON-NLS-1$
-                }
-            } else {
-                if (_authTypeCombo != null) {
-                    _authTypeCombo.select(0);
-                    setTextValue(_authUserText, null);
-                    setTextValue(_authPasswordText, null);
-                    setTextValue(_authHostText, null);
-                    setTextValue(_authRealmText, null);
-                    setTextValue(_authDomainText, null);
-                    setTextValue(_authPortText, null);
-                }
-            }
-            if (_authDomainText != null) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
-            }
-            setInUpdate(false);
-            validate();
+            _bindingValue.setValue(_binding);
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     protected void handleUndo(Control control) {
-        super.handleUndo(control);
-        setHasChanged(false);
+        if (_binding != null) {
+            super.handleUndo(control);
+        }
     }
 
-    class RemoveBasicAuthenticationOp extends ModelOperation {
+    class AuthComputedValue extends ComputedValue {
+
+        private IObservableValue _authType = null;
+        private IObservableValue _basicAuthUser = null;
+        private IObservableValue _basicAuthPwd = null;
+        private IObservableValue _basicAuthRealm = null;
+        private IObservableValue _basicAuthHost = null;
+        private IObservableValue _basicAuthPort = null;
+        private IObservableValue _ntlmAuthDomain = null;
+
+        public AuthComputedValue(
+                IObservableValue authType, IObservableValue user, IObservableValue pwd,
+                IObservableValue authrealm, IObservableValue host, IObservableValue port,
+                IObservableValue domain) {
+            super();
+            this._authType = authType; 
+            this._basicAuthUser = user; 
+            this._basicAuthPwd = pwd; 
+            this._basicAuthRealm = authrealm; 
+            this._basicAuthHost = host; 
+            this._basicAuthPort = port; 
+            this._ntlmAuthDomain = domain;
+        }
+        
         @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getBasic() != null) {
-                setFeatureValue(_binding, "basic", null); //$NON-NLS-1$
+        protected Object calculate() {
+            final String authTypeStr = (String) _authType.getValue();
+            final String user = (String) _basicAuthUser.getValue();
+            final String pwd = (String) _basicAuthPwd.getValue();
+            final String realm = (String) _basicAuthRealm.getValue();
+            final String host = (String) _basicAuthHost.getValue();
+            final String port = (String) _basicAuthPort.getValue();
+            final String domain = (String) _ntlmAuthDomain.getValue();
+            
+            boolean isBasic = false;
+            boolean isNtlm = false;
+            if (authTypeStr == null) {
+                updateControls(isBasic, isNtlm);
+                return null;
             }
-        }
-    }
 
-    class RemoveNtlmAuthenticationOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getNtlm() != null) {
-                setFeatureValue(_binding, "ntlm", null); //$NON-NLS-1$
+            // "Basic", "NTLM"
+            if (authTypeStr.equalsIgnoreCase(BASIC_AUTH)) {
+                isBasic = true;
+                if (user != null || pwd != null || realm != null || host != null || port != null) {
+                    final BasicAuthenticationType basicAuth =
+                            ResteasyFactory.eINSTANCE.createBasicAuthenticationType();
+                    basicAuth.setUser(user);
+                    basicAuth.setPassword(pwd);
+                    basicAuth.setRealm(realm);
+                    basicAuth.setHost(host);
+                    basicAuth.setPort(port);
+                    updateControls(isBasic, isNtlm);
+                    return basicAuth;
+                } else {
+                    updateControls(isBasic, isNtlm);
+                    return null;
+                }
+            } else if (authTypeStr.equalsIgnoreCase(NTLM_AUTH)) {
+                isNtlm = true;
+                if (user != null || pwd != null || realm != null || host != null || port != null || domain != null) {
+                    final NTLMAuthenticationType ntlmAuth =
+                            ResteasyFactory.eINSTANCE.createNTLMAuthenticationType();
+                    ntlmAuth.setUser(user);
+                    ntlmAuth.setPassword(pwd);
+                    ntlmAuth.setRealm(realm);
+                    ntlmAuth.setHost(host);
+                    ntlmAuth.setPort(port);
+                    ntlmAuth.setDomain(domain);
+                    updateControls(isBasic, isNtlm);
+                    return ntlmAuth;
+                } else {
+                    updateControls(isBasic, isNtlm);
+                    return null;
+                }
             }
+            return null;
         }
-    }
 
-    class AddBasicAuthenticatiOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getBasic() == null) {
-                BasicAuthenticationType basicAuth = ResteasyFactory.eINSTANCE.createBasicAuthenticationType();
-                _binding.setBasic(basicAuth);
+        protected void doSetValue(Object value) {
+            if (value instanceof NTLMAuthenticationType) {
+                _authType.setValue(NTLM_AUTH);
+                final NTLMAuthenticationType ntlmAuth = (NTLMAuthenticationType) value;
+                _basicAuthHost.setValue(ntlmAuth.getHost());
+                _basicAuthPwd.setValue(ntlmAuth.getPassword());
+                _basicAuthPort.setValue(ntlmAuth.getPort());
+                _basicAuthUser.setValue(ntlmAuth.getUser());
+                _basicAuthRealm.setValue(ntlmAuth.getRealm());
+                _ntlmAuthDomain.setValue(ntlmAuth.getDomain());
+            } else  if (value instanceof BasicAuthenticationType) {
+                final BasicAuthenticationType basicAuth = (BasicAuthenticationType) value;
+                _authType.setValue(BASIC_AUTH);
+                _basicAuthHost.setValue(basicAuth.getHost());
+                _basicAuthPwd.setValue(basicAuth.getPassword());
+                _basicAuthPort.setValue(basicAuth.getPort());
+                _basicAuthUser.setValue(basicAuth.getUser());
+                _basicAuthRealm.setValue(basicAuth.getRealm());
+                _ntlmAuthDomain.setValue(null);
+            } else {
+                _authType.setValue(null);
+                _basicAuthHost.setValue(null);
+                _basicAuthPwd.setValue(null);
+                _basicAuthPort.setValue(null);
+                _basicAuthUser.setValue(null);
+                _basicAuthRealm.setValue(null);
+                _ntlmAuthDomain.setValue(null);
             }
+            getValue();
+        }
+        
+        private void updateControls(boolean isBasic, boolean isNtlm) {
+            _authDomainText.setEnabled(isNtlm);
+            _authHostText.setEnabled(isBasic || isNtlm);
+            _authPasswordText.setEnabled(isBasic || isNtlm);
+            _authPortText.setEnabled(isBasic || isNtlm);
+            _authRealmText.setEnabled(isBasic || isNtlm);
+            _authUserText.setEnabled(isBasic || isNtlm);
         }
     }
+    
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_authTypeCombo.getCombo().getDisplay());
 
-    class AddNtlmAuthenticatiOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getNtlm() == null) {
-                NTLMAuthenticationType ntlmAuth = ResteasyFactory.eINSTANCE.createNTLMAuthenticationType();
-                _binding.setNtlm(ntlmAuth);
+        _bindingValue = new WritableValue(realm, null, RESTBindingType.class);
+        final IObservableValue authType = new WritableValue(realm, null, String.class);
+        final IObservableValue basicAuthUser = new WritableValue(realm, null, String.class);
+        final IObservableValue basicAuthPwd = new WritableValue(realm, null, String.class);
+        final IObservableValue basicAuthRealm = new WritableValue(realm, null, String.class);
+        final IObservableValue basicAuthHost = new WritableValue(realm, null, String.class);
+        final IObservableValue basicAuthPort = new WritableValue(realm, null, String.class);
+        final IObservableValue ntlmAuthDomain = new WritableValue(realm, null, String.class);
+
+
+        org.eclipse.core.databinding.Binding binding = 
+                context.bindValue(SWTObservables.observeSelection(_authTypeCombo.getCombo()), authType);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authUserText, SWT.Modify), basicAuthUser,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authPasswordText, SWT.Modify), basicAuthPwd,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authRealmText, SWT.Modify), basicAuthRealm,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authHostText, SWT.Modify), basicAuthHost,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authPortText, SWT.Modify), basicAuthPort,
+                    new EMFUpdateValueStrategyNullForEmptyString("", 
+                            UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                    new EscapedPropertyIntegerValidator("Port must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                    , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authDomainText, SWT.Modify), ntlmAuthDomain,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final IObservableValue computed = new AuthComputedValue(authType, basicAuthUser, basicAuthPwd, basicAuthRealm, basicAuthHost, basicAuthPort, ntlmAuthDomain);
+        final IObservableValue ntlmValue = ObservablesUtil.observeDetailValue(domain, _bindingValue, ResteasyPackage.Literals.REST_BINDING_TYPE__NTLM);
+        final IObservableValue basicValue = ObservablesUtil.observeDetailValue(domain, _bindingValue, ResteasyPackage.Literals.REST_BINDING_TYPE__BASIC);
+        final org.eclipse.core.databinding.Binding ntlmBinding = context.bindValue(computed, ntlmValue, new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST), new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST));
+        final org.eclipse.core.databinding.Binding basicBinding = context.bindValue(computed, basicValue, new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST), new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST));
+
+        final IValueChangeListener changeListener = new IValueChangeListener() {
+            private boolean _updating = false;
+            
+            public void handleValueChange(ValueChangeEvent event) {
+                if (!_updating) {
+                    _updating = true;
+                    if (event.getSource() == ntlmValue || event.getSource() == basicValue) {
+                        if (ntlmValue.getValue() == null) {
+                            // default to basic
+                            basicBinding.updateModelToTarget();
+                        } else {
+                            ntlmBinding.updateModelToTarget();
+                        }
+                    } else {
+                        // computed
+                        // we might want to do this using a command if domain != null, so the changes are atomic
+                        if (computed.getValue() instanceof NTLMAuthenticationType) {
+                            ntlmBinding.updateTargetToModel();
+                            basicValue.setValue(null);
+                        } else {
+                            basicBinding.updateTargetToModel();
+                            ntlmValue.setValue(null);
+                        }
+                    }
+                    _updating = false;
+                }
             }
-        }
-    }
+          };
 
-    protected void updateBasicAuthFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveNtlmAuthenticationOp());
-        ops.add(new AddBasicAuthenticatiOp());
-        ops.add(new BasicOperation("basic", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
+          IDisposeListener disposeListener = new IDisposeListener() {
+            public void handleDispose(DisposeEvent event) {
+              ((IObservableValue) event.getSource()).removeValueChangeListener(changeListener);
+            }
+          };
 
-    protected void updateNtlmAuthFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveBasicAuthenticationOp());
-        ops.add(new AddNtlmAuthenticatiOp());
-        ops.add(new BasicOperation("ntlm", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
+          computed.addValueChangeListener(changeListener);
+          ntlmValue.addValueChangeListener(changeListener);
+          basicValue.addValueChangeListener(changeListener);
 
-    protected void removeAuthFeatures() {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveBasicAuthenticationOp());
-        ops.add(new RemoveNtlmAuthenticationOp());
-        wrapOperation(ops);
-    }
+          computed.addDisposeListener(disposeListener);
+          ntlmValue.addDisposeListener(disposeListener);
+          basicValue.addDisposeListener(disposeListener);        
+    } 
 
-    private void updateAuthFeature(String featureId, Object value) {
-        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic"); //$NON-NLS-1$
-        if (basicAuth) {
-            updateBasicAuthFeature(featureId, value);
-        } else {
-            updateNtlmAuthFeature(featureId, value);
-        }
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
     }
 }

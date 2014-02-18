@@ -21,6 +21,7 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
@@ -56,8 +57,8 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public List<IBindingComposite> createComposites(Binding binding) {
-        return createComposites(binding.eContainer() instanceof Service);
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+        return createComposites(toolkit, binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -70,19 +71,23 @@ public class CamelJPABindingTypeExtension implements IBindingTypeExtension {
         return Messages.label_jpa;
     }
 
-    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit, boolean forConsumer) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
         if (forConsumer) {
-            composites.add(new CamelJPAConsumerComposite());
-            composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
+            composites.add(new CamelJPAConsumerComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    JpaPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                    JpaPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+            composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, CONSUMER_ADVANCED_PROPS,
                     JpaPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                     JpaPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                     JpaPackage.eINSTANCE.getParameterType()));
         } else {
-            composites.add(new CamelJPAProducerComposite());
-            composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedCamelBindingDetailsComposite(new ArrayList<String>(),
+            composites.add(new CamelJPAProducerComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    JpaPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                    JpaPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+            composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, new ArrayList<String>(),
                     JpaPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                     JpaPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                     JpaPackage.eINSTANCE.getParameterType()));

@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2013 Red Hat, Inc. 
+ * Copyright (c) 2013-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -7,8 +7,6 @@
  * 
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
- *
- * @author bfitzpat
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding;
 
@@ -17,33 +15,41 @@ import java.util.Collection;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.observable.ObservableTracker;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.databinding.property.value.IValueProperty;
 import org.eclipse.core.runtime.ListenerList;
+import org.eclipse.emf.databinding.EMFProperties;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.viewers.CellEditorProperties;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.databinding.viewers.ObservableMapCellLabelProvider;
+import org.eclipse.jface.databinding.viewers.ObservableValueEditingSupport;
 import org.eclipse.jface.viewers.ColumnWeightData;
-import org.eclipse.jface.viewers.ICellModifier;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
@@ -53,128 +59,33 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * @author bfitzpat
  * 
  */
-public class CamelAdditionalURIPropertyTable extends Composite implements ICellModifier {
-
-    private class PropertyTreeContentProvider implements IStructuredContentProvider {
-
-        @Override
-        public void dispose() {
-        }
-
-        @Override
-        public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-        }
-
-        @Override
-        public Object[] getElements(Object inputElement) {
-            if (inputElement instanceof EObject) {
-                final EObject object = (EObject) inputElement;
-                final Object variableContainer = object.eGet(_actionVariableFeature);
-                if (variableContainer instanceof EObject) {
-                    final Object mappings = ((EObject) variableContainer).eGet(_mappingsFeature);
-                    if (mappings instanceof Collection<?>) {
-                        return ((Collection<?>) mappings).toArray();
-                    }
-                }
-            }
-            return new Object[0];
-        }
-    }
-
-    private class PropertyTreeLabelProvider implements ITableLabelProvider {
-        @Override
-        public void addListener(ILabelProviderListener listener) {
-        }
-
-        @Override
-        public void dispose() {
-        }
-
-        @Override
-        public boolean isLabelProperty(Object element, String property) {
-            if (element.getClass().isAssignableFrom(_parameterType.getInstanceClass()) && property.equalsIgnoreCase(NAME_COLUMN)) {
-                return true;
-            } else if (element.getClass().isAssignableFrom(_parameterType.getInstanceClass()) && property.equalsIgnoreCase(VALUE_COLUMN)) {
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public void removeListener(ILabelProviderListener listener) {
-        }
-
-        @Override
-        public Image getColumnImage(Object element, int columnIndex) {
-            return null;
-        }
-
-        @Override
-        public String getColumnText(Object element, int columnIndex) {
-            Class<? extends Object> elementClass = element.getClass();
-            Class<?> instanceClass = _parameterType.getInstanceClass();
-            boolean rightClass = instanceClass.isAssignableFrom(elementClass);
-            if (rightClass && columnIndex == 0) {
-                return (String) getFeatureValue((EObject) element, "name"); //$NON-NLS-1$
-            } else if (rightClass && columnIndex == 1) {
-                return (String) getFeatureValue((EObject) element, "value"); //$NON-NLS-1$
-            }
-            return null;
-        }
-    }
+public class CamelAdditionalURIPropertyTable extends Composite {
 
     private TableViewer _propertyTreeTable;
-
-    /**
-     * Value column.
-     */
-    public static final String NAME_COLUMN = "name"; //$NON-NLS-1$
-    /**
-     * Entry point column.
-     */
-    public static final String VALUE_COLUMN = "value"; //$NON-NLS-1$
-
-    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN };
-
     private Button _mAddButton;
     private Button _mRemoveButton;
     private boolean _isReadOnly = false;
     private EObject _targetObj = null;
-    private String _mWarning = null;
     private ListenerList _changeListeners;
-    private final EReference _mappingsFeature;
-    private final EReference _actionVariableFeature;
+    private final EReference _parameterFeature;
+    private final EReference _additionalUriParametersFeature;
     private final EClass _parameterType;
+    private WritableValue _bindingValue;
 
-    /**
-     * Constructor.
-     * 
-     * @param parent Composite parent
-     * @param style any SWT style bits to pass along
-     * @param actionVariableFeature blah
-     * @param mappingsFeature blah
-     * @param parameterType blah
-     */
-    public CamelAdditionalURIPropertyTable(Composite parent, int style, EReference actionVariableFeature, EReference mappingsFeature, EClass parameterType) {
-        this(parent, style, false, actionVariableFeature, mappingsFeature, parameterType);
+    CamelAdditionalURIPropertyTable(Composite parent, int style, EReference additionalUriParametersFeature,
+            EReference parameterFeature, EClass parameterType, DataBindingContext context) {
+        this(parent, style, false, additionalUriParametersFeature, parameterFeature, parameterType, context);
     }
 
-    /**
-     * Constructor.
-     * 
-     * @param parent composite parent
-     * @param style any SWT style bits
-     * @param isReadOnly boolean flag
-     * @param actionVariableFeature blah
-     * @param mappingsFeature blah
-     * @param parameterType blah
-     */
-    public CamelAdditionalURIPropertyTable(Composite parent, int style, boolean isReadOnly, EReference actionVariableFeature, EReference mappingsFeature, EClass parameterType) {
+    CamelAdditionalURIPropertyTable(Composite parent, int style, boolean isReadOnly,
+            EReference additionalUriParametersFeature, EReference parameterFeature, EClass parameterType,
+            DataBindingContext context) {
         super(parent, style);
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
-        _actionVariableFeature = actionVariableFeature;
-        _mappingsFeature = mappingsFeature;
+        _additionalUriParametersFeature = additionalUriParametersFeature;
+        _parameterFeature = parameterFeature;
         _parameterType = parameterType;
 
         int additionalStyles = SWT.NONE;
@@ -200,22 +111,39 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
         TableColumnLayout tableLayout = new TableColumnLayout();
         tableComposite.setLayout(tableLayout);
 
-        TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        nameColumn.setText(Messages.label_name);
-        tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
-        TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText(Messages.label_value);
-        tableLayout.setColumnData(valueColumn, new ColumnWeightData(100, 150, true));
+        TableViewerColumn nameColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
+        nameColumn.getColumn().setText(Messages.label_name);
+        tableLayout.setColumnData(nameColumn.getColumn(), new ColumnWeightData(100, 150, true));
 
-        _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
+        TableViewerColumn valueColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
+        valueColumn.getColumn().setText(Messages.label_value);
+        tableLayout.setColumnData(valueColumn.getColumn(), new ColumnWeightData(100, 150, true));
 
-        _propertyTreeTable.setLabelProvider(new PropertyTreeLabelProvider());
+        // TODO: need to use EMFEditProperties if we're in an editing context
+        IValueProperty nameProperty = domain == null ? EMFProperties
+                .value(_parameterType.getEStructuralFeature("name")) : EMFEditProperties.value(domain,
+                _parameterType.getEStructuralFeature("name"));
+        IValueProperty valueProperty = domain == null ? EMFProperties.value(_parameterType
+                .getEStructuralFeature("value")) : EMFEditProperties.value(domain,
+                _parameterType.getEStructuralFeature("value"));
+        IValueProperty cellEditorTextProperty = CellEditorProperties.control().value(WidgetProperties.text(SWT.Modify));
 
-        _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
+        final ObservableListContentProvider contentProvider;
+        ObservableTracker.setIgnore(true);
+        try {
+            // ignore any observers created internally
+            contentProvider = new ObservableListContentProvider();
+        } finally {
+            ObservableTracker.setIgnore(false);
+        }
 
-        _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTable()),
-                new TextCellEditor(_propertyTreeTable.getTable()) });
+        nameColumn.setEditingSupport(ObservableValueEditingSupport.create(_propertyTreeTable, context, new TextCellEditor(_propertyTreeTable.getTable()), cellEditorTextProperty, nameProperty));
+        nameColumn.setLabelProvider(new ObservableMapCellLabelProvider(nameProperty.observeDetail(contentProvider.getKnownElements())));
+
+        valueColumn.setEditingSupport(ObservableValueEditingSupport.create(_propertyTreeTable, context, new TextCellEditor(_propertyTreeTable.getTable()), cellEditorTextProperty, valueProperty));
+        valueColumn.setLabelProvider(new ObservableMapCellLabelProvider(valueProperty.observeDetail(contentProvider.getKnownElements())));
+
+        _propertyTreeTable.setContentProvider(contentProvider);
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
@@ -224,10 +152,6 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
 
             public void widgetSelected(SelectionEvent e) {
                 addPropertyToList();
-                if (_propertyTreeTable.getInput() == null) {
-                    _propertyTreeTable.setInput(_targetObj);
-                }
-                _propertyTreeTable.refresh();
                 fireChangedEvent(e.getSource());
             }
         });
@@ -249,22 +173,16 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
 
             public void widgetSelected(SelectionEvent e) {
                 removeFromList();
-                _propertyTreeTable.refresh();
                 fireChangedEvent(e.getSource());
             }
         });
 
+        // set the input. we're observing a list on the binding value
+        _bindingValue = new WritableValue(SWTObservables.getRealm(getDisplay()), null, Binding.class);
+        _propertyTreeTable.setInput(EMFProperties.list(
+                FeaturePath.fromList(_additionalUriParametersFeature, _parameterFeature)).observeDetail(_bindingValue));
+
         updatePropertyButtons();
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-    }
-
-    @Override
-    protected void checkSubclass() {
-        // empty
     }
 
     /**
@@ -273,7 +191,7 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
      * @param value value for feature
      * @throws Exception in case something can't be found
      */
-    public void setFeatureValue(EObject eObject, String featureId, Object value) throws Exception {
+    private void setFeatureValue(EObject eObject, String featureId, Object value) throws Exception {
         EClass eClass = eObject.eClass();
         for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
             EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
@@ -297,11 +215,11 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
      * Add a new property to the list
      */
     @SuppressWarnings({"unchecked", "rawtypes" })
-    protected void addPropertyToList() {
+    private void addPropertyToList() {
         if (getTargetObject() instanceof SwitchYardBindingType) {
             final SwitchYardBindingType baseCamel = (SwitchYardBindingType) getTargetObject();
             
-            final EClass mappingsClass = _mappingsFeature.getEReferenceType();
+            final EClass mappingsClass = _parameterFeature.getEReferenceType();
             final EObject mapping = mappingsClass.getEPackage().getEFactoryInstance().create(mappingsClass);
             try {
                 setFeatureValue(mapping, "name", "property"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -315,35 +233,33 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        Object variableContainer = baseCamel.eGet(_actionVariableFeature);
+                        Object variableContainer = baseCamel.eGet(_additionalUriParametersFeature);
                         if (variableContainer == null) {
-                            final EClass variableContainerClass = _actionVariableFeature.getEReferenceType();
+                            final EClass variableContainerClass = _additionalUriParametersFeature.getEReferenceType();
                             variableContainer = variableContainerClass.getEPackage().getEFactoryInstance().create(variableContainerClass);
-                            baseCamel.eSet(_actionVariableFeature, variableContainer);
+                            baseCamel.eSet(_additionalUriParametersFeature, variableContainer);
                         }
                         if (variableContainer instanceof EObject) {
-                            final Object mappings = ((EObject) variableContainer).eGet(_mappingsFeature);
+                            final Object mappings = ((EObject) variableContainer).eGet(_parameterFeature);
                             if (mappings instanceof Collection) {
                                 ((Collection) mappings).add(mapping);
                             }
                         }
-                        getTableViewer().refresh(true);
                     }
                 });
             } else {
-                Object variableContainer = baseCamel.eGet(_actionVariableFeature);
+                Object variableContainer = baseCamel.eGet(_additionalUriParametersFeature);
                 if (variableContainer == null) {
-                    final EClass variableContainerClass = _actionVariableFeature.getEReferenceType();
+                    final EClass variableContainerClass = _additionalUriParametersFeature.getEReferenceType();
                     variableContainer = variableContainerClass.getEPackage().getEFactoryInstance().create(variableContainerClass);
-                    baseCamel.eSet(_actionVariableFeature, variableContainer);
+                    baseCamel.eSet(_additionalUriParametersFeature, variableContainer);
                 }
                 if (variableContainer instanceof EObject) {
-                    final Object mappings = ((EObject) variableContainer).eGet(_mappingsFeature);
+                    final Object mappings = ((EObject) variableContainer).eGet(_parameterFeature);
                     if (mappings instanceof Collection) {
                         ((Collection) mappings).add(mapping);
                     }
                 }
-                getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
         }
@@ -353,7 +269,7 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
      * Remove a property from the list
      */
     @SuppressWarnings("rawtypes")
-    protected void removeFromList() {
+    private void removeFromList() {
         if (getTargetObject() instanceof SwitchYardBindingType) {
             final SwitchYardBindingType baseCamel = (SwitchYardBindingType) getTargetObject();
             final EObject actionToRemove = getTableSelection();
@@ -362,37 +278,35 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        final Object variableContainer = baseCamel.eGet(_actionVariableFeature);
+                        final Object variableContainer = baseCamel.eGet(_additionalUriParametersFeature);
                         if (variableContainer instanceof EObject) {
-                            final Object mappings = ((EObject) variableContainer).eGet(_mappingsFeature);
+                            final Object mappings = ((EObject) variableContainer).eGet(_parameterFeature);
                             if (mappings instanceof Collection) {
                                 ((Collection) mappings).remove(actionToRemove);
                             }
                             if (((Collection)mappings).isEmpty()) {
-                                baseCamel.eSet(_actionVariableFeature, null);
+                                baseCamel.eSet(_additionalUriParametersFeature, null);
                             }
                         }
-                        getTableViewer().refresh(true);
                     }
                 });
             } else {
-                final Object variableContainer = baseCamel.eGet(_actionVariableFeature);
+                final Object variableContainer = baseCamel.eGet(_additionalUriParametersFeature);
                 if (variableContainer instanceof EObject) {
-                    final Object mappings = ((EObject) variableContainer).eGet(_mappingsFeature);
+                    final Object mappings = ((EObject) variableContainer).eGet(_parameterFeature);
                     if (mappings instanceof Collection) {
                         ((Collection) mappings).remove(actionToRemove);
                     }
                     if (((Collection)mappings).isEmpty()) {
-                        baseCamel.eSet(_actionVariableFeature, null);
+                        baseCamel.eSet(_additionalUriParametersFeature, null);
                     }
                 }
-                getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
         }
     }
 
-    protected EObject getTableSelection() {
+    private EObject getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
             if (ssel.getFirstElement() instanceof EObject) {
@@ -402,10 +316,7 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
         return null;
     }
 
-    /**
-     * Update button state based on what's selected.
-     */
-    public void updatePropertyButtons() {
+    private void updatePropertyButtons() {
         if (_isReadOnly) {
             this._mAddButton.setEnabled(false);
             this._mRemoveButton.setEnabled(false);
@@ -418,19 +329,7 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
         }
     }
 
-    /**
-     * @return warning string
-     */
-    public String getWarning() {
-        return this._mWarning;
-    }
-
-    /**
-     * If we changed, fire a changed event.
-     * 
-     * @param source
-     */
-    protected void fireChangedEvent(Object source) {
+    private void fireChangedEvent(Object source) {
         ChangeEvent e = new ChangeEvent(source);
         // inform any listeners of the resize event
         Object[] listeners = this._changeListeners.getListeners();
@@ -462,144 +361,12 @@ public class CamelAdditionalURIPropertyTable extends Composite implements ICellM
      */
     public void setTargetObject(EObject target) {
         _targetObj = target;
-        _propertyTreeTable.setInput(target);
+        _bindingValue.setValue(target);
         updatePropertyButtons();
     }
 
-    protected EObject getTargetObject() {
+    private EObject getTargetObject() {
         return this._targetObj;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return boolean flag
-     * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object,
-     *      java.lang.String)
-     */
-    public boolean canModify(Object element, String property) {
-        return true;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return value of element property
-     * @see org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object ,
-     *      java.lang.String)
-     */
-    public Object getValue(Object element, String property) {
-        Class<? extends Object> elementClass = element.getClass();
-        Class<?> instanceClass = _parameterType.getInstanceClass();
-        boolean rightClass = instanceClass.isAssignableFrom(elementClass);
-        if (rightClass && property.equalsIgnoreCase(NAME_COLUMN)) {
-            return (String) getFeatureValue((EObject) element, "name"); //$NON-NLS-1$
-        } else if (rightClass && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return (String) getFeatureValue((EObject) element, "value"); //$NON-NLS-1$
-        }
-        return null;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @param value New property value
-     * 
-     * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
-     *      java.lang.String, java.lang.Object)
-     */
-    public void modify(Object element, String property, final Object value) {
-        if (element instanceof TableItem && property.equalsIgnoreCase(NAME_COLUMN)) {
-            final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof SwitchYardBindingType) {
-                final SwitchYardBindingType impl = (SwitchYardBindingType) getTargetObject();
-                final EObject parm = (EObject) ti.getData();
-                final String name = (String) getFeatureValue(parm, "name"); //$NON-NLS-1$
-                if ((value == null && name == null) || (value != null && value.equals(name))) {
-                    return;
-                }
-                if (impl.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            try {
-                                setFeatureValue(parm, "name", value); //$NON-NLS-1$
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            getTableViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    try {
-                        setFeatureValue(parm, "name", value); //$NON-NLS-1$
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    getTableViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof SwitchYardBindingType) {
-                final SwitchYardBindingType impl = (SwitchYardBindingType) getTargetObject();
-                final EObject parm = (EObject) ti.getData();
-                final String oldvalue = (String) getFeatureValue(parm, "value"); //$NON-NLS-1$
-                if ((value == null && oldvalue == null) || (value != null && value.equals(oldvalue))) {
-                    return;
-                }
-                if (impl.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            try {
-                                setFeatureValue(parm, "value", value); //$NON-NLS-1$
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            getTableViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    try {
-                        setFeatureValue(parm, "value", value); //$NON-NLS-1$
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    getTableViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        }
-    }
-
-    protected TableViewer getTableViewer() {
-        return this._propertyTreeTable;
-    }
-
-    /**
-     * @param eObject incoming object to retrieve
-     * @param featureId feature to retrieve
-     * @return object value
-     */
-    public Object getFeatureValue(EObject eObject, String featureId) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    return eObject.eGet(eStructuralFeature);
-                }
-            }
-        }
-        System.out.println("CamelAdditionalURIPropertyTable: Didn't find feature: " + featureId); //$NON-NLS-1$
-        showFeatures(eObject);
-        return null;
     }
 
     private void showFeatures(EObject eObject) {

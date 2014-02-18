@@ -14,6 +14,8 @@ package org.switchyard.tools.ui.editor.property;
 
 import java.util.HashMap;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.ObservablesManager;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.NotificationFilter;
@@ -53,13 +55,18 @@ public class SwitchyardSCAPropertiesInterfacesSection extends GFPropertySection
     
     private PageBook _composite;
     private Composite _blank = null;
-    
+
+    private DataBindingContext _context;
+    private ObservablesManager _observablesManager;
+
     /**
      * Constructor.
      */
     public SwitchyardSCAPropertiesInterfacesSection() {
         super();
         _modelComposites = new HashMap<Interface, IInterfaceComposite>();
+        _observablesManager = new ObservablesManager();
+        _observablesManager.addObservablesFromContext(_context, true, true);
     }
 
     private void addDomainListener() {
@@ -121,10 +128,15 @@ public class SwitchyardSCAPropertiesInterfacesSection extends GFPropertySection
                 if (_interface != null) {
                     if (_modelComposites.get(_interface) == null) {
                         TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-                        IInterfaceComposite composite = 
-                                (IInterfaceComposite) InterfaceCompositeAdapter.adaptModelToComposite(_interface);
+                        final IInterfaceComposite composite = 
+                                (IInterfaceComposite) InterfaceCompositeAdapter.adaptModelToComposite(getWidgetFactory(), _interface);
                         if (composite != null) {
-                            ((AbstractSwitchyardComposite) composite).createContents(_composite, SWT.NONE);
+                            _observablesManager.runAndCollect(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ((AbstractSwitchyardComposite) composite).createContents(_composite, SWT.NONE, _context);
+                                }
+                            });
                             factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
                             _modelComposites.put(_interface, composite);
                         }

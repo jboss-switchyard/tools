@@ -15,9 +15,16 @@ package org.switchyard.tools.ui.editor.validator.wizards;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.ObservablesManager;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.jface.databinding.wizard.WizardPageSupport;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.forms.FormColors;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
@@ -31,6 +38,10 @@ public class AddValidatorWizardJavaPage extends BaseWizardPage implements IRefre
 
     private AddValidatorWizardStartPage _startPage = null;
     private JavaValidatorComposite _javaComposite = null;
+    private final FormToolkit _toolkit;
+    private final DataBindingContext _context = new EMFDataBindingContext();
+    private final ObservablesManager _observablesManager = new ObservablesManager();
+    private WizardPageSupport _support;
 
     /**
      * @param start Start page reference
@@ -45,13 +56,37 @@ public class AddValidatorWizardJavaPage extends BaseWizardPage implements IRefre
         super(pageName);
         setTitle(Messages.title_specifyJavaValidatorDetails);
         setDescription(Messages.description_specifyJavaValidatorDetails);
+
+        FormColors colors= new FormColors(Display.getCurrent());
+        colors.setBackground(null);
+        colors.setForeground(null);
+        _toolkit= new FormToolkit(colors);
+
+        _observablesManager.addObservablesFromContext(_context, true, true);
     }
 
     @Override
-    public void createControl(Composite parent) {
-        _javaComposite = new JavaValidatorComposite();
+    public void dispose() {
+        _toolkit.dispose();
+        if (_support != null) {
+            _support.dispose();
+            _support = null;
+        }
+        _observablesManager.dispose();
+        _context.dispose();
+        super.dispose();
+    }
+
+    @Override
+    public void createControl(final Composite parent) {
+        _javaComposite = new JavaValidatorComposite(_toolkit);
         _javaComposite.setWizardPage(this);
-        _javaComposite.createContents(parent, SWT.NONE);
+        _observablesManager.runAndCollect(new Runnable() {
+            @Override
+            public void run() {
+                _javaComposite.createContents(parent, SWT.NONE, _context);
+            }
+        });
         if (_startPage != null && _startPage.getValidator() != null
                 && _startPage.getValidator() instanceof JavaValidateType) {
             _javaComposite.setValidator((JavaValidateType) _startPage.getValidator());
@@ -68,6 +103,8 @@ public class AddValidatorWizardJavaPage extends BaseWizardPage implements IRefre
         });
 
         setControl(_javaComposite.getPanel());
+
+        _support = WizardPageSupport.create(this, _context);
 
         setErrorMessage(null);
     }

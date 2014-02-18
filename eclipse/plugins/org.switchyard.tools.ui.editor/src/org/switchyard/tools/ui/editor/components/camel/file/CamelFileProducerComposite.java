@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,9 +12,17 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.file;
 
-import java.util.ArrayList;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
@@ -22,11 +30,15 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
  * @author bfitzpat
@@ -42,6 +54,11 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
     private Button _autoCreateButton;
     private Text _fileExistText;
     private Text _tempPrefixText;
+    private WritableValue _bindingValue;
+
+    CamelFileProducerComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -58,56 +75,14 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
         super.setBinding(impl);
         if (impl instanceof CamelFileBindingType) {
             this._binding = (CamelFileBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getProduce() != null) {
-                if (this._binding.getProduce().getFileExist() != null) {
-                    _fileExistText.setText(this._binding.getProduce().getFileExist());
-                } else {
-                    _fileExistText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getProduce().getTempPrefix() != null) {
-                    _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
-                } else {
-                    _tempPrefixText.setText(""); //$NON-NLS-1$
-                }
-            }
-            if (this._binding.getDirectory() != null) {
-                _directoryText.setText(this._binding.getDirectory());
-            } else {
-                _directoryText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getFileName() != null) {
-                _fileNameText.setText(this._binding.getFileName());
-            } else {
-                _fileNameText.setText(""); //$NON-NLS-1$
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-            _autoCreateButton.setSelection(this._binding.isAutoCreate());
-            setInUpdate(false);
-            validate();
+            _bindingValue.setValue(_binding);
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_directoryText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyDirectory);
-            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
         if (getRootGridData() != null) {
@@ -115,6 +90,7 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
         }
 
         getProducerTabControl(_panel);
+        bindControls(context);
     }
 
     private Control getProducerTabControl(Composite tabFolder) {
@@ -138,64 +114,98 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
         return this._panel;
     }
 
-    class ProduceOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getProduce() == null) {
-                setFeatureValue(_binding, "produce", FileFactory.eINSTANCE.createFileProducerType()); //$NON-NLS-1$
-            }
-        }
-    }
-
-    protected void updateProduceFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new ProduceOp());
-        ops.add(new BasicOperation("produce", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-
-    protected void handleModify(final Control control) {
-        if (control.equals(_directoryText)) {
-            updateFeature(_binding, "directory", _directoryText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_fileNameText)) {
-            updateFeature(_binding, "fileName", _fileNameText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_autoCreateButton)) {
-            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection())); //$NON-NLS-1$
-        } else if (control.equals(_fileExistText)) {
-            updateProduceFeature("fileExist", _fileExistText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_tempPrefixText)) {
-            updateProduceFeature("tempPrefix", _tempPrefixText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-        } else {
-            super.handleModify(control);
-        }
-        validate();
-        setHasChanged(false);
-        setDidSomething(true);
-    }
-
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_directoryText)) {
-                _directoryText.setText(this._binding.getDirectory());
-            } else if (control.equals(_fileNameText)) {
-                _fileNameText.setText(this._binding.getFileName());
-            } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else if (this._binding.getProduce() != null) {
-                if (control.equals(_fileExistText)) {
-                    _fileExistText.setText(this._binding.getProduce().getFileExist());
-                } else if (control.equals(_tempPrefixText)) {
-                    _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
-                }
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
+    }
+
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelFileBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "File binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "File binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_directoryText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__DIRECTORY),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.error_emptyDirectory)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_fileNameText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__FILE_NAME),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_autoCreateButton),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__AUTO_CREATE),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        FeaturePath path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__PRODUCE,
+                FilePackage.Literals.FILE_PRODUCER_TYPE__FILE_EXIST
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_fileExistText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__PRODUCE,
+                FilePackage.Literals.FILE_PRODUCER_TYPE__TEMP_PREFIX
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_tempPrefixText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
     }
 
 }

@@ -12,23 +12,41 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.databinding.EMFProperties;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.databinding.edit.EMFEditProperties;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
-import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
-import org.switchyard.tools.models.switchyard1_0.jca.Property;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 
 
 /**
@@ -37,7 +55,129 @@ import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite
  */
 public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAdapterExtension {
 
-    private JCAHornetQTopicResourceAdapterComposite _composite;
+    private static final String DESTINATION_TYPE_PROP = "destinationType"; //$NON-NLS-1$
+    private static final String DESTINATION_PROP = "destination"; //$NON-NLS-1$
+    private static final String MESSAGE_SELECTOR_PROP = "messageSelector"; //$NON-NLS-1$
+    private static final String ACKNOWLEDGE_MODE_PROP = "acknowledgeMode"; //$NON-NLS-1$
+    private static final String CLIENTID_PROP = "clientId"; //$NON-NLS-1$
+    private static final String SUBSCRIPTION_NAME_PROP = "subscriptionName"; //$NON-NLS-1$
+    private static final String SUBSCRIPTION_DURABILITY_PROP = "subscriptionDurability"; //$NON-NLS-1$
+
+    private static final String DESTINATION_TYPE_DEFAULT = "javax.jms.Topic";  //$NON-NLS-1$
+    private static final String DESTINATION_DEFAULT = "topic/YourTopicName";  //$NON-NLS-1$
+    private static final String SUBSCRIPTION_DURABILITY_DEFAULT = "NonDurable"; //$NON-NLS-1$
+    private static final String ACKNOWLEDGE_MODE_DEFAULT = "Auto-acknowledge"; //$NON-NLS-1$
+    private static final String RESOURCE_ADAPTER_NAME = "hornetq-ra.rar"; //$NON-NLS-1$
+
+    private static final IInboundConnectionSettings INBOUND_CONNECTION_SETTINGS = new IInboundConnectionSettings() {
+        @SuppressWarnings("serial")
+        private final Map<String, String> _activationProperties = new LinkedHashMap<String, String>() {
+            {
+                put(DESTINATION_TYPE_PROP, DESTINATION_TYPE_DEFAULT);
+                put(DESTINATION_PROP, DESTINATION_DEFAULT);
+                put(SUBSCRIPTION_NAME_PROP, null);
+                put(SUBSCRIPTION_DURABILITY_PROP, SUBSCRIPTION_DURABILITY_DEFAULT);
+                put(MESSAGE_SELECTOR_PROP, null);
+                put(ACKNOWLEDGE_MODE_PROP, ACKNOWLEDGE_MODE_DEFAULT);
+                put(CLIENTID_PROP, null);
+            }
+        };
+
+        @Override
+        public Map<String, String> getResourceAdapterProperties() {
+            return null;
+        }
+        
+        @Override
+        public String getResourceAdapterName() {
+            return RESOURCE_ADAPTER_NAME;
+        }
+        
+        @Override
+        public Map<String, String> getActivationSpecProperties() {
+            return _activationProperties;
+        }
+    };
+
+    private static final String LISTENER_TYPE_DEFAULT = "javax.jms.MessageListener"; //$NON-NLS-1$
+    private static final String ENDPOINT_TYPE_DEFAULT = "org.switchyard.component.jca.endpoint.JMSEndpoint"; //$NON-NLS-1$
+    
+    private static final IInboundInteractionSettings INBOUND_INTERACTION_SETTINGS = new IInboundInteractionSettings() {
+        
+        @Override
+        public Boolean isTransacted() {
+            return true;
+        }
+        
+        @Override
+        public String getListenerType() {
+            return LISTENER_TYPE_DEFAULT;
+        }
+        
+        @Override
+        public String getEndpointType() {
+            return ENDPOINT_TYPE_DEFAULT;
+        }
+        
+        @Override
+        public Map<String, String> getEndpointProperties() {
+            return null;
+        }
+    };
+
+    private static final IOutboundConnectionSettings OUTBOUND_CONNECTION_SETTINGS = new IOutboundConnectionSettings() {
+        
+        @Override
+        public Map<String, String> getResourceAdapterProperties() {
+            return null;
+        }
+        
+        @Override
+        public String getResourceAdapterName() {
+            return RESOURCE_ADAPTER_NAME;
+        }
+        
+        @Override
+        public Map<String, String> getConnectionProperties() {
+            return null;
+        }
+        
+        @Override
+        public String getConnectionJndiName() {
+            return null;
+        }
+    };
+
+    private static final String PROCESSOR_TYPE_DEFAULT = "org.switchyard.component.jca.processor.JMSProcessor"; //$NON-NLS-1$
+
+    private static final IOutboundInteractionSettings OUTBOUND_INTERACTION_SETTINGS = new IOutboundInteractionSettings() {
+        
+        @SuppressWarnings("serial")
+        private final Map<String, String> _processorProperties = new LinkedHashMap<String, String>() {
+            {
+                put(DESTINATION_PROP, DESTINATION_DEFAULT);
+            }
+        };
+        @Override
+        public String getProcessorType() {
+            return PROCESSOR_TYPE_DEFAULT;
+        }
+        
+        @Override
+        public Map<String, String> getProcessorProperties() {
+            return _processorProperties;
+        }
+        
+        @Override
+        public Map<String, String> getInteractionSpecProperties() {
+            return null;
+        }
+        
+        @Override
+        public Map<String, String> getConnectionSpecProperties() {
+            return null;
+        }
+    };
 
     /**
      * Constructor.
@@ -46,12 +186,23 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
     }
 
     @Override
-    public Property[] getPropertyList() {
-        ArrayList<Property> list = new ArrayList<Property>();
-        list.add(createNewProperty("destinationType", "javax.jms.Topic")); //$NON-NLS-1$ //$NON-NLS-2$
-        list.add(createNewProperty("subscriptionDurability", "NonDurable")); //$NON-NLS-1$ //$NON-NLS-2$
-        list.add(createNewProperty("destination", "topic/YourTopicName")); //$NON-NLS-1$ //$NON-NLS-2$
-        return list.toArray(new Property[list.size()]);
+    public IInboundInteractionSettings getInboundInteractionSettings() {
+        return INBOUND_INTERACTION_SETTINGS;
+    }
+
+    @Override
+    public IInboundConnectionSettings getInboundConnectionSettings() {
+        return INBOUND_CONNECTION_SETTINGS;
+    }
+
+    @Override
+    public IOutboundInteractionSettings getOutboundInteractionSettings() {
+        return OUTBOUND_INTERACTION_SETTINGS;
+    }
+
+    @Override
+    public IOutboundConnectionSettings getOutboundConnectionSettings() {
+        return OUTBOUND_CONNECTION_SETTINGS;
     }
 
     @Override
@@ -60,27 +211,26 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
     }
 
     @Override
-    public AbstractSwitchyardComposite getComposite(Composite parent) {
-        if (_composite == null) {
-            _composite = new JCAHornetQTopicResourceAdapterComposite();
-        }
-        return _composite;
+    public AbstractJCABindingComposite createComposite(FormToolkit toolkit) {
+        return new JCAHornetQTopicResourceAdapterComposite(toolkit);
     }
 
-    /**
-     * @author bfitzpat
-     *
-     */
-    public class JCAHornetQTopicResourceAdapterComposite extends AbstractJCABindingComposite {
+    private final class JCAHornetQTopicResourceAdapterComposite extends AbstractJCABindingComposite {
 
         private Text _messageSelectorText;
         private JCABinding _binding;
         private Composite _panel;
-        private Combo _acknowledgeModeCombo;
-        private Button _subscriptionDurabilityCheckbox;
+        private ComboViewer _acknowledgeModeCombo;
+        private ComboViewer _subscriptionDurabilityCombo;
         private Text _clientIdText;
         private Text _subscriptionNameText;
         private Text _destinationText;
+        private Set<org.eclipse.core.databinding.Binding> _validators = new HashSet<org.eclipse.core.databinding.Binding>();
+        private WritableValue _bindingValue;
+
+        private JCAHornetQTopicResourceAdapterComposite(FormToolkit toolkit) {
+            super(toolkit);
+        }
 
         @Override
         public String getTitle() {
@@ -93,81 +243,30 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
         }
 
         @Override
-        protected boolean validate() {
-            if (!_destinationText.isDisposed() && _destinationText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyTopic);
-                return false;
-            } else if (_subscriptionDurabilityCheckbox.getSelection() && _clientIdText.getText().trim().isEmpty() && _subscriptionNameText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyClientIdAndSubscriptionName);
-                return false;
-            }
-            return true;
-        }
-
-        @Override
-        public void createContents(Composite parent, int style) {
-            _panel = new Composite(parent, style);
+        public void createContents(Composite parent, int style, DataBindingContext context) {
+            _panel = getToolkit().createComposite(parent, style);
             _panel.setLayout(new GridLayout(2, false));
+
             _destinationText = createLabelAndText(_panel, Messages.label_destinationTopic);
             _messageSelectorText = createLabelAndText(_panel, Messages.label_messageSelector);
-            _acknowledgeModeCombo = createLabelAndCombo(_panel, Messages.label_acknowledgeMode, true);
-            _acknowledgeModeCombo.add("Auto-acknowledge"); //$NON-NLS-1$
-            _acknowledgeModeCombo.add("Dups-ok-acknowledge"); //$NON-NLS-1$
-            _acknowledgeModeCombo.setText("Auto-acknowledge"); //$NON-NLS-1$
-            _subscriptionDurabilityCheckbox = createCheckbox(_panel, Messages.label_subscriptionDurability);
+
+            _acknowledgeModeCombo = createLabelAndComboViewer(_panel, Messages.label_acknowledgeMode, true);
+            _acknowledgeModeCombo.setContentProvider(ArrayContentProvider.getInstance());
+            _acknowledgeModeCombo.setLabelProvider(new LabelProvider());
+            _acknowledgeModeCombo.setInput(new String[] {"Auto-acknowledge", "Dups-ok-acknowledge"});
+            _acknowledgeModeCombo.getCombo().setText("Auto-acknowledge"); //$NON-NLS-1$
+
+            _subscriptionDurabilityCombo = createLabelAndComboViewer(_panel, Messages.label_subscriptionDurability, true);
+            _subscriptionDurabilityCombo.setContentProvider(ArrayContentProvider.getInstance());
+            _subscriptionDurabilityCombo.setLabelProvider(new LabelProvider());
+            _subscriptionDurabilityCombo.setInput(new String[] {"Durable", "NonDurable"});
+            _subscriptionDurabilityCombo.getCombo().setText(SUBSCRIPTION_DURABILITY_DEFAULT);
+
             _clientIdText = createLabelAndText(_panel, Messages.label_clientId);
             _subscriptionNameText = createLabelAndText(_panel, Messages.label_subscriptionName);
             
-            _subscriptionDurabilityCheckbox.addSelectionListener(new SelectionListener(){
-
-                @Override
-                public void widgetSelected(SelectionEvent e) {
-                    _clientIdText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
-                    _subscriptionNameText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
-                    if (_subscriptionDurabilityCheckbox.getSelection()) {
-                        _clientIdText.setText(UUID.randomUUID().toString());
-                        updateInboundActivationProperty("clientId", _clientIdText.getText().trim()); //$NON-NLS-1$
-                        _subscriptionNameText.setText(UUID.randomUUID().toString());
-                        updateInboundActivationProperty("subscriptionName", _subscriptionNameText.getText().trim()); //$NON-NLS-1$
-                    } else {
-                        _clientIdText.setText(""); //$NON-NLS-1$
-                        _subscriptionNameText.setText(""); //$NON-NLS-1$
-                        updateInboundActivationProperty("clientId", null); //$NON-NLS-1$
-                        updateInboundActivationProperty("subscriptionName", null); //$NON-NLS-1$
-                    }
-                }
-
-                @Override
-                public void widgetDefaultSelected(SelectionEvent e) {
-                    widgetSelected(e);
-                }
-             });
+            bindControls(context);
             
-            _clientIdText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
-            _subscriptionNameText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
-        }
-
-        @Override
-        protected void handleModify(Control control) {
-            if (control.equals(_destinationText)) {
-                updateInboundActivationProperty("destination", _destinationText.getText().trim()); //$NON-NLS-1$
-            } else if (control.equals(_messageSelectorText)) {
-                updateInboundActivationProperty("messageSelector", _messageSelectorText.getText().trim()); //$NON-NLS-1$
-            } else if (control.equals(_clientIdText)) {
-                updateInboundActivationProperty("clientId", _clientIdText.getText().trim()); //$NON-NLS-1$
-            } else if (control.equals(_subscriptionNameText)) {
-                updateInboundActivationProperty("subscriptionName", _subscriptionNameText.getText().trim()); //$NON-NLS-1$
-            } else if (control.equals(_subscriptionDurabilityCheckbox)) {
-                if (_subscriptionDurabilityCheckbox.getSelection()) {
-                    updateInboundActivationProperty("subscriptionDurability", "Durable"); //$NON-NLS-1$ //$NON-NLS-2$
-                } else {
-                    updateInboundActivationProperty("subscriptionDurability", "NonDurable"); //$NON-NLS-1$ //$NON-NLS-2$
-                }
-            } else if (control.equals(_acknowledgeModeCombo)) {
-                updateInboundActivationProperty("acknowledgeMode", _acknowledgeModeCombo.getText().trim()); //$NON-NLS-1$
-            } else {
-                super.handleModify(control);
-            }
         }
 
         @Override
@@ -178,36 +277,78 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
         @Override
         public void setBinding(Binding impl) {
             super.setBinding(impl);
-            this._binding = (JCABinding) impl;
-            JCAInboundConnection inbound = this._binding.getInboundConnection();
-            if (inbound.getResourceAdapter() != null) {
-                getActivationPropertyForControl(inbound.getActivationSpec(), "destination", this._destinationText); //$NON-NLS-1$
-                getActivationPropertyForControl(inbound.getActivationSpec(), "messageSelector", this._messageSelectorText); //$NON-NLS-1$
-                getActivationPropertyForControl(inbound.getActivationSpec(), "clientId", this._clientIdText); //$NON-NLS-1$
-                getActivationPropertyForControl(inbound.getActivationSpec(), "subscriptionName", this._subscriptionNameText); //$NON-NLS-1$
-                getActivationPropertyForControl(inbound.getActivationSpec(), "acknowledgeMode", this._acknowledgeModeCombo); //$NON-NLS-1$
-
-                String subscriptionDurability =
-                        getResourceAdapterPropertyValue(inbound.getActivationSpec(), "subscriptionDurability"); //$NON-NLS-1$
-                if (subscriptionDurability != null && !this._subscriptionDurabilityCheckbox.isDisposed()) {
-                    _subscriptionDurabilityCheckbox.setSelection(subscriptionDurability.equals("Durable")); //$NON-NLS-1$
-                    _clientIdText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
-                    _subscriptionNameText.setEnabled(_subscriptionDurabilityCheckbox.getSelection());
+            _binding = (JCABinding) impl;
+            if (_bindingValue != null) {
+                _bindingValue.setValue(_binding);
+                if (_binding == null) {
+                    for (org.eclipse.core.databinding.Binding binding : _validators) {
+                        binding.getValidationStatus().setValue(Status.OK_STATUS);
+                    }
+                } else {
+                    for (org.eclipse.core.databinding.Binding binding : _validators) {
+                        binding.validateTargetToModel();
+                    }
                 }
-
             }
-            validate();
-            addObservableListeners(true);
         }
+
+        protected void bindControls(final DataBindingContext context) {
+            final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+            final Realm realm = SWTObservables.getRealm(_destinationText.getDisplay());
+            
+            _bindingValue = new WritableValue(realm, null, JCABinding.class);
+            
+            final FeaturePath propertiesFeaturePath;
+            if (getTargetObject() instanceof Service) {
+                propertiesFeaturePath = FeaturePath.fromList(JcaPackage.Literals.JCA_BINDING__INBOUND_CONNECTION,
+                        JcaPackage.Literals.JCA_INBOUND_CONNECTION__ACTIVATION_SPEC,
+                        JcaPackage.Literals.ACTIVATION_SPEC__PROPERTY);
+            } else {
+                propertiesFeaturePath = FeaturePath.fromList(JcaPackage.Literals.JCA_BINDING__OUTBOUND_INTERACTION,
+                        JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__PROCESSOR,
+                        JcaPackage.Literals.PROCESSOR__PROPERTY);
+            }
+            final IObservableList propertiesList = (domain == null ? EMFProperties.list(propertiesFeaturePath)
+                    : EMFEditProperties.list(domain, propertiesFeaturePath)).observeDetail(_bindingValue);
+
+            org.eclipse.core.databinding.Binding binding = context.bindValue(SWTObservables.observeText(
+                    _destinationText, SWT.Modify), new JCANamedPropertyObservableValue(realm, propertiesList,
+                    DESTINATION_PROP), new EMFUpdateValueStrategyNullForEmptyString(null,
+                    UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(new StringEmptyValidator(
+                    "Destination cannot be empty")), null);
+            _validators.add(binding);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
+
+            binding = context.bindValue(SWTObservables.observeText(_messageSelectorText, SWT.Modify),
+                    new JCANamedPropertyObservableValue(realm, propertiesList, MESSAGE_SELECTOR_PROP),
+                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
+
+            binding = context.bindValue(ViewersObservables.observeSingleSelection(_acknowledgeModeCombo),
+                    new JCANamedPropertyObservableValue(realm, propertiesList, ACKNOWLEDGE_MODE_PROP),
+                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_UPDATE), null);
+            ControlDecorationSupport.create(binding, SWT.TOP | SWT.LEFT, _panel);
+
+            binding = context.bindValue(SWTObservables.observeText(_clientIdText, SWT.Modify),
+                    new JCANamedPropertyObservableValue(realm, propertiesList, CLIENTID_PROP),
+                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
+
+            binding = context.bindValue(SWTObservables.observeText(_subscriptionNameText, SWT.Modify),
+                    new JCANamedPropertyObservableValue(realm, propertiesList, SUBSCRIPTION_NAME_PROP),
+                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
+
+            binding = context.bindValue(ViewersObservables.observeSingleSelection(_subscriptionDurabilityCombo),
+                    new JCANamedPropertyObservableValue(realm, propertiesList, SUBSCRIPTION_DURABILITY_PROP),
+                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_UPDATE), null);
+            ControlDecorationSupport.create(binding, SWT.TOP | SWT.LEFT, _panel);
+            
+            if (_binding != null) {
+                _bindingValue.setValue(_binding);
+            }
+        }
+
     }
 
-    @Override
-    public String getResourceAdapter() {
-        return "hornetq-ra.rar"; //$NON-NLS-1$
-    }
-
-    @Override
-    public String getDestinationType() {
-        return "javax.jms.Topic"; //$NON-NLS-1$
-    }
 }

@@ -16,6 +16,7 @@ import java.util.List;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -65,7 +66,7 @@ public class BindingPropertyComposite implements IBindingComposite, ChangeListen
     }
 
     @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         GridLayout gl = new GridLayout();
         gl.numColumns = 1;
@@ -79,7 +80,7 @@ public class BindingPropertyComposite implements IBindingComposite, ChangeListen
             final TabItem tab = new TabItem(tabFolder, SWT.NONE);
             tab.setText(composite.getTitle());
             tab.setToolTipText(composite.getDescription());
-            composite.createContents(tabFolder, SWT.NONE);
+            composite.createContents(tabFolder, SWT.NONE, context);
             tab.setControl(composite.getPanel());
             composite.addChangeListener(this);
         }
@@ -167,5 +168,10 @@ public class BindingPropertyComposite implements IBindingComposite, ChangeListen
         return _composites.get(0).getDescription();
     }
 
-    
+    @Override
+    public void dispose() {
+        for (IBindingComposite composite: _composites) {
+            composite.dispose();
+        }
+    }
 }

@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor;
 import java.util.List;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
 /**
@@ -27,8 +28,9 @@ import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 public interface IBindingTypeExtension extends IEditorTypeExtension<Binding> {
 
     /**
+     * @param toolkit the toolkit to user when creating controls
      * @param binding the binding being edited.
      * @return a list of composites for use in the "bindings" property section.
      */
-    public List<IBindingComposite> createComposites(Binding binding);
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding);
 }

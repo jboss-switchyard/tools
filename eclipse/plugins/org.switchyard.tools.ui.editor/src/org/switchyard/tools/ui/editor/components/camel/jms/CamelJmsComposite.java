@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -15,27 +15,47 @@ package org.switchyard.tools.ui.editor.components.camel.jms;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
-import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -43,14 +63,10 @@ import org.switchyard.tools.ui.editor.util.PropTypeUtil;
  */
 public class CamelJmsComposite extends AbstractSYBindingComposite {
 
-    private final static int QUEUE = 0;
-    private final static int TOPIC = 1;
-
     private Composite _panel;
     private CamelJmsBindingType _binding = null;
     private Text _nameText;
-    private Combo _typeCombo;
-    private Text _typeNameText;
+    private ComboViewer _typeCombo;
     private Text _connectionFactoryText;
     private Text _concurrentConsumersText;
     private Text _maxConcurrentConsumersText;
@@ -60,6 +76,22 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     private Text _selectorText;
     private Button _transactedButton;
     private OperationSelectorComposite _opSelectorComposite;
+    private WritableValue _bindingValue;
+    private org.eclipse.core.databinding.Binding _queueNameBinding;
+    private org.eclipse.core.databinding.Binding _topicNameBinding;
+    private StackLayout _stackLayout = null;
+    private Composite _contentPanel = null;
+    private Composite _queuePanel = null;
+    private Text _queueNameText;
+    private Composite _topicPanel = null;
+    private Text _topicNameText;
+    private DataBindingContext _context;
+    private IObservableValue _queueValue;
+    private IObservableValue _topicValue;
+
+    CamelJmsComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -75,78 +107,33 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     public void setBinding(Binding impl) {
         super.setBinding(impl);
         if (impl instanceof CamelJmsBindingType) {
-            setTargetObject(impl.eContainer());
-            this._binding = (CamelJmsBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getQueue() != null && !this._binding.getQueue().trim().isEmpty()) {
-                _typeCombo.select(QUEUE);
-                _typeNameText.setText(this._binding.getQueue());
-            } else if (this._binding.getTopic() != null && !this._binding.getTopic().trim().isEmpty()) {
-                _typeCombo.select(TOPIC);
-                _typeNameText.setText(this._binding.getTopic());
-            }
-            if (this._binding.isSetConcurrentConsumers()) {
-                setTextValue(_concurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getConcurrentConsumers()));
-//                _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
-            }
-            if (_requestTimeOutText != null && this._binding.isSetRequestTimeout()) {
-                setTextValue(_requestTimeOutText, PropTypeUtil.getPropValueString(this._binding.getRequestTimeout()));
-//                _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
-            } else  if (_requestTimeOutText != null) {
-                _requestTimeOutText.setText(""); //$NON-NLS-1$
-            }
-            if (_maxConcurrentConsumersText != null) {
-                if (this._binding.isSetMaxConcurrentConsumers()) {
-                    setTextValue(_maxConcurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getMaxConcurrentConsumers()));
-//                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
-                } else {
-                    _maxConcurrentConsumersText.setText(""); //$NON-NLS-1$
-                }
-            }
-            if (this._binding.getConnectionFactory() != null && !this._binding.getConnectionFactory().trim().isEmpty()) {
-                _connectionFactoryText.setText(this._binding.getConnectionFactory());
-            } else {
-                _connectionFactoryText.setText(""); //$NON-NLS-1$
-            }
-            _transactedButton.setSelection(this._binding.isTransacted());
-            if (this._binding.getTransactionManager() != null
-                    && !this._binding.getTransactionManager().trim().isEmpty()) {
-                _transactionManagerText.setText(this._binding.getTransactionManager());
-            } else {
-                _transactionManagerText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getReplyTo() != null && !this._binding.getReplyTo().trim().isEmpty()) {
-                _replyToText.setText(this._binding.getReplyTo());
-            } else {
-                _replyToText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getSelector() != null && !this._binding.getSelector().trim().isEmpty()) {
-                _selectorText.setText(this._binding.getSelector());
-            } else {
-                _selectorText.setText(""); //$NON-NLS-1$
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
             
+            setTargetObject(impl.eContainer());
+            _binding = (CamelJmsBindingType) impl;
+
+            _bindingValue.setValue(_binding);
+            
+            // refresh the operation selector control
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed() && getTargetObject() != null) {
+                _opSelectorComposite.setTargetObject(getTargetObject());
+            }
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
-                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-                _opSelectorComposite.setBinding(this._binding);
-                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+                _opSelectorComposite.setBinding(_binding);
             }
 
-            if (this._binding.getConnectionFactory() == null || this._binding.getConnectionFactory().trim().isEmpty()) {
-                _connectionFactoryText.setText("#ConnectionFactory"); //$NON-NLS-1$
-                handleModify(_connectionFactoryText);
+            JMSType initialType = JMSType.QUEUE;
+            String queueText = _binding.getQueue();
+            String topicText = _binding.getTopic();
+            if (queueText != null && topicText == null) {
+                initialType = JMSType.QUEUE;
+            } else if (topicText != null && queueText == null) {
+                initialType = JMSType.TOPIC;
             }
-            setInUpdate(false);
-            validate();
+            _typeCombo.setSelection(new StructuredSelection(initialType));
+
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
@@ -158,42 +145,8 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_typeNameText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyName);
-            }
-            if (_connectionFactoryText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyConnectionFactory);
-            }
-//            if (!_concurrentConsumersText.getText().trim().isEmpty()) {
-//                try {
-//                    Integer.valueOf(_concurrentConsumersText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Concurrent Consumers must be a valid integer.");
-//                }
-//            }
-//            if (!_maxConcurrentConsumersText.getText().trim().isEmpty()) {
-//                try {
-//                    Integer.valueOf(_maxConcurrentConsumersText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Maximum Concurrent Consumers must be a valid integer.");
-//                }
-//            }
-//            if (_requestTimeOutText != null && _requestTimeOutText.getText().trim().isEmpty()) {
-//                try {
-//                    Integer.valueOf(_requestTimeOutText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Request Timeout must be a valid integer.");
-//                }
-//            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
+        _context = context;
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
@@ -206,6 +159,20 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                 _opSelectorComposite.setTargetObject((EObject) getTargetObject());
             }
         }
+        
+        bindControls(context);
+
+        _typeCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                if (event.getSelection().isEmpty()) {
+                    return;
+                }
+                handleSelectorTypeChanged((JMSType) ((IStructuredSelection) event.getSelection())
+                        .getFirstElement());
+            }
+        });
+
     }
 
     private Control getJmsTabControl(Composite tabFolder) {
@@ -215,12 +182,38 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
 
         _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _typeCombo = createLabelAndCombo(composite, Messages.label_type, true);
-        _typeCombo.add(Messages.label_queue, QUEUE);
-        _typeCombo.add(Messages.label_topic, TOPIC);
-        _typeCombo.select(0);
+        _typeCombo = createLabelAndComboViewer(composite, Messages.label_type, true);
+        _typeCombo.setContentProvider(ArrayContentProvider.getInstance());
+        _typeCombo.setLabelProvider(new LabelProvider() {
+            @Override
+            public String getText(Object element) {
+                if (element instanceof JMSType) {
+                    return ((JMSType) element).getLabel();
+                }
+                return super.getText(element);
+            }
+        });
+        _typeCombo.setInput(JMSType.values());
+        
+        getToolkit().createLabel(composite, Messages.label_queueTopicName);
+        
+        _contentPanel = new Composite(composite, SWT.NONE);
+        _stackLayout = new StackLayout();
+        _contentPanel.setLayout(_stackLayout);
+        GridData gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+        gd.horizontalIndent = -5;
+        gd.verticalIndent = -5;
+        _contentPanel.setLayoutData(gd);
 
-        _typeNameText = createLabelAndText(composite, Messages.label_queueTopicName);
+        _queuePanel = new Composite(_contentPanel, SWT.NONE);
+        _queueNameText = createLabelAndText(_queuePanel, null);
+        _queuePanel.setLayout(new GridLayout(2, false));
+        _queueNameText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
+        
+        _topicPanel = new Composite(_contentPanel, SWT.NONE);
+        _topicNameText = createLabelAndText(_topicPanel, null);
+        _topicPanel.setLayout(new GridLayout(2, false));
+        _topicNameText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
 
         _connectionFactoryText = createLabelAndText(composite, Messages.label_connectionFactory);
         _connectionFactoryText.setText("#ConnectionFactory"); //$NON-NLS-1$
@@ -240,7 +233,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         _transactedButton = createCheckbox(composite, Messages.label_transacted);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
-            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);
             _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
             _opSelectorComposite.setLayout(new GridLayout(2, false));
             _opSelectorComposite.addChangeListener(new ChangeListener() {
@@ -254,144 +247,226 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         return composite;
     }
 
+    private void handleSelectorTypeChanged(final JMSType typeToSelect) {
+        _queueNameText.setEnabled(false);
+        _topicNameText.setEnabled(false);
+
+        switch (typeToSelect) {
+        case QUEUE:
+            _queueNameText.setEnabled(true);
+            if (_topicValue.getValue() != null) {
+                _topicValue.setValue(null);
+            }
+            _stackLayout.topControl = _queuePanel;
+            _context.removeBinding(_topicNameBinding);
+            _context.addBinding(_queueNameBinding);
+            break;
+        case TOPIC:
+            _topicNameText.setEnabled(true);
+            if (_queueValue.getValue() != null) {
+                _queueValue.setValue(null);
+            }
+            _stackLayout.topControl = _topicPanel;
+            _context.removeBinding(_queueNameBinding);
+            _context.addBinding(_topicNameBinding);
+            break;
+        }
+        _contentPanel.layout();
+    }
+
     @Override
     public Composite getPanel() {
         return this._panel;
     }
 
     protected void handleModify(final Control control) {
-        if (control.equals(_typeCombo) || control.equals(_typeNameText)) {
-            boolean isQueue = (_typeCombo.getSelectionIndex() == QUEUE) ? true : false;
-            String topic = null;
-            String queue = null;
-            if (isQueue) {
-                topic = null;
-                queue = _typeNameText.getText().trim();
-            } else {
-                queue = null;
-                topic = _typeNameText.getText().trim();
-            }
-            updateFeature(_binding, new String[] {"topic", "queue" }, new Object[] {topic, queue }); //$NON-NLS-1$ //$NON-NLS-2$
-        } else if (control.equals(_connectionFactoryText)) {
-            String value = null;
-            if (!_connectionFactoryText.getText().trim().isEmpty()) {
-                value = _connectionFactoryText.getText().trim();
-            }
-            updateFeature(_binding, "connectionFactory", value); //$NON-NLS-1$
-        } else if (control.equals(_concurrentConsumersText)) {
-            Integer value = null;
-            try {
-                value = Integer.valueOf(_concurrentConsumersText.getText().trim());
-                if (value != null && value.intValue() > 1) {
-                    updateFeature(_binding, "concurrentConsumers", value.intValue()); //$NON-NLS-1$
-                }
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "concurrentConsumers", _concurrentConsumersText.getText().trim()); //$NON-NLS-1$
-            }
-        } else if (control.equals(_maxConcurrentConsumersText)) {
-            Integer value = null;
-            try {
-                value = Integer.valueOf(_maxConcurrentConsumersText.getText().trim());
-                if (value != null && value.intValue() > 1) {
-                    updateFeature(_binding, "maxConcurrentConsumers", value.intValue()); //$NON-NLS-1$
-                }
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "maxConcurrentConsumers", _maxConcurrentConsumersText.getText().trim()); //$NON-NLS-1$
-            }
-        } else if (control.equals(_replyToText)) {
-            String value = null;
-            if (!_replyToText.getText().trim().isEmpty()) {
-                value = _replyToText.getText().trim();
-            }
-            updateFeature(_binding, "replyTo", value); //$NON-NLS-1$
-        } else if (control.equals(_selectorText)) {
-            String value = null;
-            if (!_selectorText.getText().trim().isEmpty()) {
-                value = _selectorText.getText().trim();
-            }
-            updateFeature(_binding, "selector", value); //$NON-NLS-1$
-        } else if (control.equals(_requestTimeOutText)) {
-            Integer value = null;
-            try {
-                value = Integer.valueOf(_requestTimeOutText.getText().trim());
-                if (value != null && value.intValue() != 20000) {
-                    updateFeature(_binding, "requestTimeout", value.intValue()); //$NON-NLS-1$
-                }
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "requestTimeout", _requestTimeOutText.getText().trim()); //$NON-NLS-1$
-            }
-        } else if (control.equals(_transactedButton)) {
-            boolean value = _transactedButton.getSelection();
-            updateFeature(_binding, "transacted", value); //$NON-NLS-1$
-        } else if (control.equals(_transactionManagerText)) {
-            String value = null;
-            if (!_transactionManagerText.getText().trim().isEmpty()) {
-                value = _transactionManagerText.getText().trim();
-            }
-            updateFeature(_binding, "transactionManager", value); //$NON-NLS-1$
-        } else if (control.equals(_opSelectorComposite)) {
-            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
-            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        // at this point, this is the only control we can't do with strict
+        // databinding
+        if (control.equals(_opSelectorComposite)) {
             fireChangedEvent(_opSelectorComposite);
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-        } else {
-            super.handleModify(control);
         }
-        validate();
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_concurrentConsumersText)) {
-                if (this._binding.getConcurrentConsumers() != null) {
-                    setTextValue(_concurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getConcurrentConsumers()));
-//                    _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
-                } else {
-                    _concurrentConsumersText.setText("1"); //$NON-NLS-1$
-                }
-            } else if (control.equals(_connectionFactoryText)) {
-                _connectionFactoryText.setText(this._binding.getConnectionFactory());
-            } else if (control.equals(_maxConcurrentConsumersText)) {
-                if (this._binding.getMaxConcurrentConsumers() != null) {
-                    setTextValue(_maxConcurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getMaxConcurrentConsumers()));
-//                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
-                } else {
-                    _maxConcurrentConsumersText.setText("1"); //$NON-NLS-1$
-                }
-            } else if (control.equals(_replyToText)) {
-                _replyToText.setText(this._binding.getReplyTo());
-            } else if (control.equals(_selectorText)) {
-                _selectorText.setText(this._binding.getSelector());
-            } else if (control.equals(_requestTimeOutText)) {
-                if (this._binding.getRequestTimeout() != null) {
-                    setTextValue(_requestTimeOutText, PropTypeUtil.getPropValueString(this._binding.getRequestTimeout()));
-//                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
-                } else {
-                    _maxConcurrentConsumersText.setText("2000"); //$NON-NLS-1$
-                }
-            } else if (control.equals(_transactedButton)) {
-                _transactedButton.setSelection(this._binding.isTransacted());
-            } else if (control.equals(_typeCombo) || control.equals(_typeNameText)) {
-                if (this._binding.getQueue() != null && !this._binding.getQueue().trim().isEmpty()) {
-                    _typeCombo.select(QUEUE);
-                    _typeNameText.setText(this._binding.getQueue());
-                } else if (this._binding.getTopic() != null && !this._binding.getTopic().trim().isEmpty()) {
-                    _typeCombo.select(TOPIC);
-                    _typeNameText.setText(this._binding.getTopic());
-                }
-//            } else if (control.equals(_operationSelectionCombo)) {
-//                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
-//                setTextValue(_operationSelectionCombo, opName);
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
 
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelJmsBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.error_emptyName)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.error_emptyName)), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        
+        _queueValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__QUEUE);
+        
+        _queueNameBinding = context
+                .bindValue(
+                        SWTObservables.observeText(_queueNameText , new int[] {SWT.Modify }),
+                        _queueValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                            .setAfterConvertValidator(new StringEmptyValidator(
+                                "Queue may not be empty.")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(_queueNameBinding), SWT.TOP | SWT.LEFT);
+
+        _topicValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__TOPIC);
+        _topicNameBinding = context
+                .bindValue(
+                        SWTObservables.observeText(_topicNameText , new int[] {SWT.Modify }),
+                        _topicValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                            .setAfterConvertValidator(new StringEmptyValidator(
+                                "Topic may not be empty.")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(_topicNameBinding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_connectionFactoryText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                            .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.error_emptyConnectionFactory)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_concurrentConsumersText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                        new EscapedPropertyIntegerValidator("Concurrent Consumers must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                        , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_maxConcurrentConsumersText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                        new EscapedPropertyIntegerValidator("Max Concurrent Consumers must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                        , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_replyToText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__REPLY_TO),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        if (_requestTimeOutText != null && !_requestTimeOutText.isDisposed()) {
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_requestTimeOutText , new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT),
+                            new EMFUpdateValueStrategyNullForEmptyString(
+                                    null,
+                                    UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                            new EscapedPropertyIntegerValidator("Request Timeout must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                            , null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        }
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_transactionManagerText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_transactedButton),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__TRANSACTED),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_selectorText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__SELECTOR),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        if (_opSelectorComposite != null) {
+            _opSelectorComposite.bindControls(domain, context);
+        }
+
+    }
+
+    private enum JMSType {
+        QUEUE(Messages.label_queue) {},
+        TOPIC(Messages.label_topic) {};
+
+        private final String _label;
+
+        private JMSType(String label) {
+            _label = label;
+        }
+
+        /**
+         * @return the display label for this JMS type.
+         */
+        public String getLabel() {
+            return _label;
+        }
+
+
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        _queueValue.dispose();
+        _topicValue.dispose();
+        _topicNameBinding.dispose();
+        _queueNameBinding.dispose();
+        super.dispose();
+    }
 }

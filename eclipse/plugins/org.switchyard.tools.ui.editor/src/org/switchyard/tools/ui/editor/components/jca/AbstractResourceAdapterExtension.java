@@ -12,8 +12,18 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
-import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec;
+import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
+import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
+import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
+
 
 /**
  * @author bfitzpat
@@ -27,25 +37,107 @@ public abstract class AbstractResourceAdapterExtension implements IJCAResourceAd
     }
 
     @Override
-    public Property[] getPropertyList() {
-        return new Property[0];
-    }
-    
-    protected Property createNewProperty(String name, String value) {
-        Property newProperty = JcaFactory.eINSTANCE.createProperty();
-        newProperty.setName(name);
-        newProperty.setValue(value);
-        return newProperty;
-    }
-
-    @Override
-    public String getResourceAdapter() {
-        return null;
+    public int score(JCABinding binding) {
+        if (binding == null) {
+            return 0;
+        } else if (binding.getInboundConnection() != null) {
+            return inboundConnectionScore(binding) + inboundInteractionScore(binding);
+        } else if (binding.getOutboundConnection() != null) {
+            return outboundConnectionScore(binding) + outboundInteractionScore(binding);
+        }
+        return 0;
     }
 
-    @Override
-    public String getDestinationType() {
-        return null;
+    private int inboundConnectionScore(JCABinding binding) {
+        int score = 0;
+        final JCAInboundConnection connection = binding.getInboundConnection();
+        if (connection == null) {
+            return score;
+        }
+
+        final IInboundConnectionSettings settings = getInboundConnectionSettings();
+        if (settings == null) {
+            return score;
+        }
+
+        final ResourceAdapter ra = connection.getResourceAdapter();
+        if (ra != null) {
+            if (settings.getResourceAdapterName() != null) {
+                if (settings.getResourceAdapterName().equals(ra.getName())) {
+                    ++score;
+                }
+            }
+            score += scoreProperties(ra.getProperty(), settings.getResourceAdapterProperties());
+        }
+        final ActivationSpec activationSpec = connection.getActivationSpec();
+        if (activationSpec != null) {
+            score += scoreProperties(activationSpec.getProperty(), settings.getActivationSpecProperties());
+        }
+        return score;
+    }
+
+    private int inboundInteractionScore(JCABinding binding) {
+        int score = 0;
+        final JCAInboundInteraction interaction = binding.getInboundInteraction();
+        if (interaction == null) {
+            return score;
+        }
+        
+        final IInboundInteractionSettings settings = getInboundInteractionSettings();
+        if (settings == null) {
+            return score;
+        }
+
+        if (settings.getListenerType() != null) {
+            if (settings.getListenerType().equals(interaction.getListener())) {
+                ++score;
+            }
+        }
+        
+        if (settings.isTransacted() != null) {
+            if (interaction.isSetTransacted() && settings.isTransacted() == interaction.isTransacted()) {
+                ++score;
+            }
+        }
+
+        Endpoint endpoint = interaction.getEndpoint();
+        if (endpoint != null) {
+            if (settings.getEndpointType() != null) {
+                if (settings.getEndpointType().equals(endpoint.getType())) {
+                    ++score;
+                }
+            }
+            score += scoreProperties(endpoint.getProperty(), settings.getEndpointProperties());
+        }
+        return score;
+    }
+
+    private int outboundConnectionScore(JCABinding binding) {
+        return 0;
+    }
+
+    private int outboundInteractionScore(JCABinding binding) {
+        return 0;
+    }
+
+    private int scoreProperties(List<Property> properties, Map<String, String> defaults) {
+        int score = 0;
+        if (properties == null || defaults == null) {
+            return score;
+        }
+        defaults = new HashMap<String, String>(defaults);
+        for (Property property : properties) {
+            if (property.getName() == null) {
+                continue;
+            }
+            final String value = defaults.get(property.getName());
+            ++score;
+            if (value != null && value.equals(property.getValue())) {
+                // to handle specific property settings, e.g. destinationType
+                ++score;
+            }
+        }
+        return score;
     }
 
 }

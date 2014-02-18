@@ -14,28 +14,34 @@ package org.switchyard.tools.ui.editor.diagram.binding;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.Binding;
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.databinding.EMFProperties;
+import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.viewers.CellEditorProperties;
+import org.eclipse.jface.databinding.viewers.ObservableValueEditingSupport;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewerEditor;
 import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
 import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
-import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.ICellEditorValidator;
-import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -57,26 +63,24 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.TreeItem;
-import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
-import org.switchyard.tools.models.switchyard1_0.jca.Property;
-import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
 
 /**
  * @author bfitzpat
  * 
  */
-public class AdvancedBindingPropertyTable extends Composite implements ICellModifier {
+public class AdvancedBindingPropertyTable extends Composite {
 
-    private class PropertyValueEditingSupport extends EditingSupport {
+    private class PropertyValueEditingSupport extends ObservableValueEditingSupport {
         private final TableViewer _viewer;
+        private final DataBindingContext _context;
+        private PropertyObject _lastPO;
 
-        public PropertyValueEditingSupport(TableViewer viewer) {
-            super(viewer);
-            this._viewer = viewer;
+        public PropertyValueEditingSupport(TableViewer viewer, DataBindingContext context) {
+            super(viewer, context);
+            _viewer = viewer;
+            _context = context;
         }
 
         @Override
@@ -174,141 +178,36 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
         }
 
         @Override
-        protected boolean canEdit(Object element) {
-            if (element instanceof PropertyObject) {
-                return true;
-            }
-            return false;
+        protected IObservableValue doCreateCellEditorObservable(CellEditor cellEditor) {
+            return CellEditorProperties.control()
+                    .value(WidgetProperties.text(new int[] {SWT.DefaultSelection, SWT.FocusOut, SWT.Modify }))
+                    .observe(cellEditor);
         }
 
         @Override
-        protected Object getValue(Object element) {
-            if (element instanceof PropertyObject) {
-                PropertyObject po = (PropertyObject) element;
-                Object value = getFeatureValue(po.getEObject(), po.getFeatureName());
-                EStructuralFeature feature = getFeature(po.getEObject(), po.getFeatureName());
-                if (feature != null) {
-                    String type = feature.getEType().getName();
-                    boolean isEnum = feature.getEType().getInstanceClass().isEnum();
-                    if (type.equalsIgnoreCase("BooleanObject") && value == null) { //$NON-NLS-1$
-                        return new Integer(2);
-                    } else if (value == null) {
-                        return ""; //$NON-NLS-1$
-                    } else if (value instanceof Boolean) {
-                        Boolean bool = (Boolean) value;
-                        if (bool.booleanValue()) {
-                            return 1;
-                        } else if (!bool.booleanValue()) {
-                            return 0;
-                        }
-                        return 2;
-                    } else if (value instanceof Integer) {
-                        if (type.equalsIgnoreCase("BooleanObject")) { //$NON-NLS-1$
-                            Integer intValue = (Integer) value;
-                            if (intValue.intValue() == 0) {
-                                return "false"; //$NON-NLS-1$
-                            } else if (intValue.intValue() == 1) {
-                                return "true"; //$NON-NLS-1$
-                            } else {
-                                return ""; //$NON-NLS-1$
-                            }
-                        } else if (type.equalsIgnoreCase("IntObject") || type.equalsIgnoreCase("Int")) { //$NON-NLS-1$ //$NON-NLS-2$
-                            return ((Integer) value).toString();
-                        }
-                        return value;
-                    } else if (value instanceof Long) {
-                        Long longValue = (Long) value;
-                        return longValue.toString();
-                    } else if (feature.getEType().getInstanceClass().isAssignableFrom(BigInteger.class)) {
-                        if (value instanceof String) {
-                            return (String) value;
-                        } else {
-                            BigInteger bigIntValue = (BigInteger) value;
-                            return bigIntValue.toString();
-                        }
-                    } else if (isEnum) {
-                        Object[] enums = feature.getEType().getInstanceClass().getEnumConstants();
-                        for (int i = 0; i < enums.length; i++) {
-                            if (value.equals(enums[i])) {
-                                return new Integer(i);
-                            }
-                        }
-                    }
-                    return value;
-                }
+        protected IObservableValue doCreateElementObservable(Object element, ViewerCell cell) {
+            _lastPO = (PropertyObject) element;
+            final EStructuralFeature feature = getTargetObject().eClass().getEStructuralFeature(_lastPO.getFeatureName());
+            final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+            if (domain == null) {
+                return EMFProperties.value(feature).observe(_lastPO.getEObject());
             }
-            return null;
+            return EMFEditProperties.value(domain, feature).observe(_lastPO.getEObject());
         }
 
         @Override
-        protected void setValue(Object element, Object value) {
-            if (element instanceof PropertyObject) {
-                PropertyObject po = (PropertyObject) element;
-                EStructuralFeature feature = getFeature(po.getEObject(), po.getFeatureName());
-                if (feature != null) {
-                    String type = feature.getEType().getName();
-                    boolean isEnum = feature.getEType().getInstanceClass().isEnum();
-                    Object realValue = null;
-                    if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI") //$NON-NLS-1$ //$NON-NLS-2$
-                            || type.equalsIgnoreCase("PropInteger")  //$NON-NLS-1$
-                            || type.equalsIgnoreCase("PropLong")) { //$NON-NLS-1$
-                        if (((String) value).trim().isEmpty()) {
-                            realValue = null;
-                        } else {
-                            realValue = (String) value;
-                        }
-                    } else if (type.equalsIgnoreCase("BooleanObject") || type.equalsIgnoreCase("Boolean")) { //$NON-NLS-1$ //$NON-NLS-2$
-                        Integer num = (Integer) value;
-                        if (num.intValue() == 0) {
-                            value = "false"; //$NON-NLS-1$
-                            realValue = Boolean.parseBoolean((String) value);
-                        } else if (num.intValue() == 1) {
-                            value = "true"; //$NON-NLS-1$
-                            realValue = Boolean.parseBoolean((String) value);
-                        } else {
-                            realValue = null;
-                        }
-                    } else if ((type.equalsIgnoreCase("Integer") || type.equalsIgnoreCase("IntObject") || type.equalsIgnoreCase("Int"))) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                        if (((String) value).trim().isEmpty()) {
-                            realValue = null;
-                        } else if (feature.getEType().getInstanceClass().isAssignableFrom(BigInteger.class)) {
-                            try {
-                                realValue = new BigInteger((String) value);
-                            } catch (NumberFormatException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            realValue = Integer.parseInt((String) value);
-                        }
-                    } else if (type.equalsIgnoreCase("LongObject") || type.equalsIgnoreCase("Long")) { //$NON-NLS-1$ //$NON-NLS-2$
-                        if (((String) value).trim().isEmpty()) {
-                            realValue = null;
-                        } else {
-                            realValue = new Long((String) value);
-                        }
-                    } else if (isEnum) {
-                        Integer valueStr = (Integer) value;
-                        Object[] enums = feature.getEType().getInstanceClass().getEnumConstants();
-                        if (valueStr.intValue() < enums.length) {
-                            realValue = enums[valueStr.intValue()];
-                        } else {
-                            realValue = null;
-                        }
-                    }
-                    if (getFeatureValue(po.getEObject(), po.getFeatureName()) != realValue) {
-                        if (realValue != null) {
-                            updateFeature(po.getEObject(), po.getFeatureName(), realValue);
-                        } else {
-                            if (feature.isUnsettable()) {
-                                unsetFeature(po.getEObject(), po.getFeatureName());
-                            } else {
-                                updateFeature(po.getEObject(), po.getFeatureName(), null);
-                            }
-                        }
-                    }
+        protected Binding createBinding(IObservableValue target, IObservableValue model) {
+            // Need to use the EMF updater to handle conversions
+            final Binding binding = _context.bindValue(target, model, new EMFUpdateValueStrategyNullForEmptyString(null,
+                    UpdateValueStrategy.POLICY_CONVERT), null);
+            model.addChangeListener(new IChangeListener() {
+                @Override
+                public void handleChange(org.eclipse.core.databinding.observable.ChangeEvent event) {
+                    _propertyTreeTable.update(_lastPO, TREE_COLUMNS);
+                    _lastPO = null;
                 }
-            }
-            _viewer.update(element, null);
+            });
+            return binding;
         }
     }
 
@@ -443,16 +342,9 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
     private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN };
 
     private EObject _targetObj = null;
-    private String _mWarning = null;
     private ListenerList _changeListeners;
 
-    /**
-     * Constructor.
-     * 
-     * @param parent composite parent
-     * @param style any SWT style bits
-     */
-    public AdvancedBindingPropertyTable(Composite parent, int style) {
+    AdvancedBindingPropertyTable(Composite parent, int style, DataBindingContext context) {
         super(parent, style);
         this._changeListeners = new ListenerList();
 
@@ -474,7 +366,7 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
         TableViewerColumn valueColumn = new TableViewerColumn(_propertyTreeTable, SWT.LEFT);
         valueColumn.getColumn().setText(Messages.label_value);
         valueColumn.getColumn().setWidth(200);
-        valueColumn.setEditingSupport(new PropertyValueEditingSupport(_propertyTreeTable));
+        valueColumn.setEditingSupport(new PropertyValueEditingSupport(_propertyTreeTable, context));
         
         FocusCellOwnerDrawHighlighter h = new FocusCellOwnerDrawHighlighter(_propertyTreeTable) {
 
@@ -540,53 +432,6 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
 
     }
 
-    @Override
-    public void dispose() {
-        super.dispose();
-    }
-
-    @Override
-    protected void checkSubclass() {
-        // empty
-    }
-
-    /**
-     * Return the current selection.
-     * 
-     * @return String list
-     */
-    @SuppressWarnings("unchecked")
-    public List<PropertyObject> getSelection() {
-        if (_propertyTreeTable != null && _propertyTreeTable.getInput() != null) {
-            return (List<PropertyObject>) _propertyTreeTable.getInput();
-        }
-        return null;
-    }
-
-    protected Property getTableSelection() {
-        if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
-            IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof Property) {
-                return (Property) ssel.getFirstElement();
-            }
-        }
-        return null;
-    }
-
-    /**
-     * @param properties incoming property list
-     */
-    public void setSelection(EList<Property> properties) {
-        _propertyTreeTable.setInput(properties);
-    }
-
-    /**
-     * @return warning string
-     */
-    public String getWarning() {
-        return this._mWarning;
-    }
-
     /**
      * If we changed, fire a changed event.
      * 
@@ -630,94 +475,6 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
         return this._targetObj;
     }
 
-    protected void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
-            }
-        }
-    }
-
-    protected void unsetFeatureValue(EObject eObject, String featureId) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eUnset(eStructuralFeature);
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return boolean flag
-     * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object,
-     *      java.lang.String)
-     */
-    public boolean canModify(Object element, String property) {
-        if (element instanceof Property && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @return value of element property
-     * @see org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object ,
-     *      java.lang.String)
-     */
-    public Object getValue(Object element, String property) {
-        if (element instanceof Property && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return ((Property) element).getValue();
-        }
-        return null;
-    }
-
-    /**
-     * @param element Object being modified
-     * @param property Property being modified
-     * @param value New property value
-     * 
-     * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
-     *      java.lang.String, java.lang.Object)
-     */
-    public void modify(Object element, String property, final Object value) {
-        if (element instanceof TreeItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            final TreeItem ti = (TreeItem) element;
-            if (getTargetObject() instanceof JCABinding) {
-                final JCABinding binding = (JCABinding) getTargetObject();
-                if (binding.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            Property parm = (Property) ti.getData();
-                            setFeatureValue(parm, "value", value); //$NON-NLS-1$
-                            getTreeViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    Property parm = (Property) ti.getData();
-                    setFeatureValue(parm, "value", value); //$NON-NLS-1$
-                    getTreeViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        }
-    }
-
     protected TableViewer getTreeViewer() {
         return this._propertyTreeTable;
     }
@@ -729,12 +486,10 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
      */
     protected Object getFeatureValue(EObject eObject, String featureId) {
         EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    return eObject.eGet(eStructuralFeature);
-                }
+        EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureId);
+        if (eStructuralFeature.isChangeable()) {
+            if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
+                return eObject.eGet(eStructuralFeature);
             }
         }
         return null;
@@ -747,128 +502,13 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
      */
     protected EStructuralFeature getFeature(EObject eObject, String featureId) {
         EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    return eStructuralFeature;
-                }
+        EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureId);
+        if (eStructuralFeature.isChangeable()) {
+            if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
+                return eStructuralFeature;
             }
         }
         return null;
     }
 
-    /**
-     * @author bfitzpat
-     */
-    public class BasicEObjectOperation extends ModelOperation {
-
-        private EObject _localObject;
-        private String _localFeature;
-        private Object _localValue;
-
-        /**
-         * @param object incoming object
-         * @param featureId feature id
-         * @param value incoming value
-         */
-        public BasicEObjectOperation(EObject object, String featureId, Object value) {
-            _localObject = object;
-            _localFeature = featureId;
-            _localValue = value;
-        }
-
-        @Override
-        public void run() throws Exception {
-            try {
-                if (_localValue instanceof String && ((String) _localValue).length() == 0) {
-                    setFeatureValue(_localObject, _localFeature, null);
-                } else {
-                    setFeatureValue(_localObject, _localFeature, _localValue);
-                }
-            } catch (Exception e) {
-                throw e;
-            }
-        }
-    }
-
-    /**
-     * @author bfitzpat
-     */
-    public class BasicUnsetEObjectOperation extends ModelOperation {
-
-        private EObject _localObject;
-        private String _localFeature;
-
-        /**
-         * @param object incoming object
-         * @param featureId feature id
-         */
-        public BasicUnsetEObjectOperation(EObject object, String featureId) {
-            _localObject = object;
-            _localFeature = featureId;
-        }
-
-        @Override
-        public void run() throws Exception {
-            try {
-                unsetFeatureValue(_localObject, _localFeature);
-            } catch (Exception e) {
-                throw e;
-            }
-        }
-    }
-
-    protected void wrapOperation(final EObject eobject, final List<ModelOperation> ops) {
-        TransactionalEditingDomain domain = getDomain(eobject);
-        if (domain != null) {
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
-                @Override
-                protected void doExecute() {
-                    Iterator<ModelOperation> execOps = ops.iterator();
-                    while (execOps.hasNext()) {
-                        try {
-                            execOps.next().run();
-                        } catch (Exception e) {
-                            Activator.logError(e);
-                            break;
-                        }
-                    }
-                }
-            });
-        } else {
-            Iterator<ModelOperation> execOps = ops.iterator();
-            while (execOps.hasNext()) {
-                try {
-                    execOps.next().run();
-                } catch (Exception e) {
-                    Activator.logError(e);
-                    break;
-                }
-            }
-        }
-    }
-
-    protected void updateFeature(EObject eObject, String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new BasicEObjectOperation(eObject, featureId, value));
-        wrapOperation(eObject, ops);
-    }
-
-    protected void unsetFeature(EObject eObject, String featureId) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new BasicUnsetEObjectOperation(eObject, featureId));
-        wrapOperation(eObject, ops);
-    }
-
-    protected TransactionalEditingDomain getDomain(EObject object) {
-        TransactionalEditingDomain domain = null;
-        if (object != null) {
-            if (object.eContainer() != null) {
-                domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                return domain;
-            }
-        }
-        return null;
-    }
 }

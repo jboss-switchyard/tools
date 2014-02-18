@@ -21,6 +21,7 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
@@ -56,8 +57,8 @@ public class CamelMailBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public List<IBindingComposite> createComposites(Binding binding) {
-        return createComposites(binding.eContainer() instanceof Service);
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+        return createComposites(toolkit, binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -70,19 +71,23 @@ public class CamelMailBindingTypeExtension implements IBindingTypeExtension {
         return Messages.label_mail;
     }
 
-    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit, boolean forConsumer) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
         if (forConsumer) {
-            composites.add(new CamelMailConsumerComposite());
-            composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
+            composites.add(new CamelMailConsumerComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    MailPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                    MailPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+            composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, CONSUMER_ADVANCED_PROPS,
                     MailPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                     MailPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                     MailPackage.eINSTANCE.getParameterType()));
         } else {
-            composites.add(new CamelMailProducerComposite());
-            composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedCamelBindingDetailsComposite(PRODUCER_ADVANCED_PROPS,
+            composites.add(new CamelMailProducerComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    MailPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                    MailPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+            composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, PRODUCER_ADVANCED_PROPS,
                     MailPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                     MailPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                     MailPackage.eINSTANCE.getParameterType()));

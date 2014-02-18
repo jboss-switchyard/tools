@@ -12,38 +12,59 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
+import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.databinding.EMFProperties;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.jca.Connection;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
-import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.Processor;
-import org.switchyard.tools.models.switchyard1_0.jca.Property;
-import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
  * @author bfitzpat
@@ -51,16 +72,71 @@ import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
  */
 public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
+    private Map<ProcessorType, AbstractJCABindingComposite> _extensionComposites = new HashMap<ProcessorType, AbstractJCABindingComposite>();
+    private ProcessorType _activeExtension;
     private Composite _panel;
     private JCABinding _binding = null;
     private Text _nameText;
     private Combo _resourceAdapterText;
-    private Text _connectionJNDINameText;
 //    private Button _browseResourceAdapterButton;
-    private JCAPropertyTable _propsList;
-    private Combo _processorMappingTypeCombo;
-    private enum ENDPOINT_MAPPING_TYPE {
-        JMSPROCESSOR, CCIPROCESSOR
+    private Composite _stackComposite;
+    private StackLayout _stackLayout;
+    private WritableValue _bindingValue;
+    private ComboViewer _processorMappingTypeCombo;
+
+    private static enum ProcessorType {
+        JMS("JMS Processor", "org.switchyard.component.jca.processor.JMSProcessor", new JCAJMSProcessorPropertiesExtension()),
+        CCI("CCI Processor", "org.switchyard.component.jca.processor.CCIProcessor", new JCACCIProcessorPropertiesExtension()),
+        CUSTOM("Custom Processor", null, new JCACustomProcessorPropertiesExtension());
+        
+        private final String _label;
+        private final String _processorType;
+        private final IJCAEndpointPropertiesExtension _extension;
+
+        private ProcessorType(String label, String processorType, IJCAEndpointPropertiesExtension extension) {
+            _label = label;
+            _processorType = processorType;
+            _extension = extension;
+        }
+
+        /**
+         * Get the label.
+         * 
+         * @return the label.
+         */
+        public String getLabel() {
+            return _label;
+        }
+
+        /**
+         * Get the processorType.
+         * 
+         * @return the processorType.
+         */
+        public String getProcessorType() {
+            return _processorType;
+        }
+
+        public AbstractJCABindingComposite createComposite(FormToolkit toolkit) {
+            return _extension.createComposite(toolkit);
+        }
+
+        /**
+         * @param processorType the processor type
+         * @return the corresponding ProcessorType
+         */
+        public static ProcessorType fromProcessorType(String processorType) {
+            if (JMS._processorType.equals(processorType)) {
+                return JMS;
+            } else if (CCI._processorType.equals(processorType)) {
+                return CCI;
+            }
+            return CUSTOM;
+        }
+    }
+
+    JCABindingOutboundComposite(FormToolkit toolkit) {
+        super(toolkit);
     }
 
     @Override
@@ -77,69 +153,25 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     public void setBinding(Binding impl) {
         super.setBinding(impl);
         if (impl instanceof JCABinding) {
-            this._binding = (JCABinding) impl;
-            setInUpdate(true);
-            _propsList.setTargetObject(this._binding);
-            if (this._binding.getOutboundConnection() != null) {
-                JCAOutboundConnection outbound = this._binding.getOutboundConnection();
-                if (outbound.getResourceAdapter() != null) {
-                    this._resourceAdapterText.setText(outbound.getResourceAdapter().getName());
-                } else {
-                    _resourceAdapterText.setText("hornetq-ra.rar"); //$NON-NLS-1$
-                    handleModify(_resourceAdapterText);
-                }
-                if (outbound.getConnection() != null) {
-                    this._connectionJNDINameText.setText(outbound.getConnection().getJndiName());
-                } else {
-                    _connectionJNDINameText.setText(""); //$NON-NLS-1$
-                }
-
-                if (_binding.getOutboundInteraction() != null) {
-                    JCAOutboundInteraction interaction = _binding.getOutboundInteraction();
-                    if (interaction.getProcessor() != null) {
-                        String className = interaction.getProcessor().getType();
-                        className = className.substring(className.lastIndexOf('.') + 1);
-                        _processorMappingTypeCombo.setText(className);
-                        
-                        EList<Property> properties = interaction.getProcessor().getProperty();
-                        _propsList.setSelection(properties);
-                    }
-                }
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-            setInUpdate(false);
+            _binding = (JCABinding) impl;
         } else {
-            this._binding = null;
+            _binding = null;
         }
-        validate();
-        addObservableListeners();
+        _bindingValue.setValue(_binding);
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_connectionJNDINameText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_jndiNameRequired);
-            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
-        getJCATabControl(_panel);
+        getJCATabControl(_panel, context);
+        
+        bindControls(context);
     }
 
-    private Control getJCATabControl(Composite tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
+    private Control getJCATabControl(Composite tabFolder, DataBindingContext context) {
+        Composite composite = getToolkit().createComposite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
@@ -147,203 +179,148 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
         _resourceAdapterText = createLabelAndCombo(composite, Messages.label_resourceAdapterArchive, false);
         _resourceAdapterText.add("hornetq-ra.rar"); //$NON-NLS-1$
-//        _browseResourceAdapterButton = new Button(outboundConnectionGroup, SWT.PUSH);
-//        _browseResourceAdapterButton.setText("Browse...");
-//        _browseResourceAdapterButton.addSelectionListener(new SelectionAdapter() {
-//            public void widgetSelected(final SelectionEvent e) {
-//                IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
-//                IJavaProject javaProject = null;
-//                if (modelFile != null) {
-//                    if (modelFile.getProject() != null) { //$NON-NLS-1$
-//                        javaProject = JavaCore.create(modelFile.getProject());
-//                    }
-//                }
-//                IResource result = browse(_panel.getShell(), javaProject);
-//                if (result != null) {
-//                    setHasChanged(true);
-//                    handleModify(_browseResourceAdapterButton);
-//                    fireChangedEvent(_browseResourceAdapterButton);
-//                }
-//            }
-//        });
 
-        _connectionJNDINameText = createLabelAndText(composite, Messages.label_jndiName);
-
-        Group outboundInteractionGroup = new Group(composite, SWT.NONE);
-        outboundInteractionGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true, 2, 1));
-        outboundInteractionGroup.setLayout(new GridLayout(2, false));
-        outboundInteractionGroup.setText(Messages.label_outboundInteractionOptions);
-
-        _processorMappingTypeCombo = createLabelAndCombo(outboundInteractionGroup, Messages.label_endpointMappingType, true);
-        _processorMappingTypeCombo.add("JMSProcessor", ENDPOINT_MAPPING_TYPE.JMSPROCESSOR.ordinal()); //$NON-NLS-1$
-        _processorMappingTypeCombo.setData("JMSProcessor", ENDPOINT_MAPPING_TYPE.JMSPROCESSOR); //$NON-NLS-1$
-        _processorMappingTypeCombo.add("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR.ordinal()); //$NON-NLS-1$
-        _processorMappingTypeCombo.setData("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR); //$NON-NLS-1$
-
-        Group activationPropsGroup = new Group(outboundInteractionGroup, SWT.NONE);
-        activationPropsGroup.setText(Messages.label_processorProperties);
-        activationPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true, 3, 1));
-        activationPropsGroup.setLayout(new GridLayout(1, false));
-
-        _propsList = new JCAProcessorPropertyTable(activationPropsGroup, SWT.NONE);
-        _propsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 4));
-        _propsList.addChangeListener(new ChangeListener(){
+        _processorMappingTypeCombo = new ComboViewer(createLabelAndCombo(composite, "Processor Type", true));
+        _processorMappingTypeCombo.setContentProvider(ArrayContentProvider.getInstance());
+        _processorMappingTypeCombo.setLabelProvider(new LabelProvider() {
             @Override
-            public void stateChanged(ChangeEvent e) {
-                if (!inUpdate() && hasChanged()) {
-                    validate();
-                    handleModify(_propsList);
-                    fireChangedEvent(_propsList);
-                }
+            public String getText(Object element) {
+                return ((ProcessorType) element).getLabel();
             }
         });
+        _processorMappingTypeCombo.setInput(ProcessorType.values());
+        _processorMappingTypeCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                processProcessorComboSelection();
+            }
+        });
+
+        _stackComposite = getToolkit().createComposite(composite, SWT.NONE);
+        GridData gd = new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1);
+        _stackComposite.setLayoutData(gd);
+        _stackLayout = new StackLayout();
+        _stackComposite.setLayout(_stackLayout);
+        Composite dummy = getToolkit().createComposite(_stackComposite, SWT.NONE);
+        _stackLayout.topControl = dummy;
+
+        // initialize processor composites
+        for (ProcessorType processorType : ProcessorType.values()) {
+            AbstractJCABindingComposite processorComposite = processorType.createComposite(getToolkit());
+            processorComposite.setTargetObject(getTargetObject());
+            processorComposite.createContents(_stackComposite, SWT.NONE, context);
+            processorComposite.setBinding(null);
+            _extensionComposites.put(processorType, processorComposite);
+        }
 
         return composite;
     }
 
     @Override
     public Composite getPanel() {
-        return this._panel;
+        return _panel;
     }
 
-    class OutboundInteractionOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getOutboundInteraction() == null) {
-                JCAOutboundInteraction interaction = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                setFeatureValue(_binding, "outboundInteraction", interaction); //$NON-NLS-1$
-            }
-        }
-    }
-    
-    class OutboundConnectionOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getOutboundConnection() == null) {
-                JCAOutboundConnection outbound = JcaFactory.eINSTANCE.createJCAOutboundConnection();
-                setFeatureValue(_binding, "outboundConnection", outbound); //$NON-NLS-1$
-            }
-        }
-    }
+    private void bindControls(DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_stackComposite.getDisplay());
 
-    class ResourceAdapterOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getOutboundConnection() != null
-                    && _binding.getOutboundConnection().getResourceAdapter() == null) {
-                ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-//                resAdapter.setType("javax.resource.spi.ResourceAdapter");
-                setFeatureValue(_binding.getOutboundConnection(), "resourceAdapter", resAdapter); //$NON-NLS-1$
-            }
-        }
-    }
+        _bindingValue = new WritableValue(realm, null, JCABinding.class);
 
-    class ConnectionOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getOutboundConnection() != null
-                    && _binding.getOutboundConnection().getConnection() == null) {
-                Connection outConnection = JcaFactory.eINSTANCE.createConnection();
-                setFeatureValue(_binding.getOutboundConnection(), "connection", outConnection); //$NON-NLS-1$
-            }
-        }
-    }
-    
-    class UpdateProcessorOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            JCAOutboundInteraction interaction = _binding.getOutboundInteraction();
-            ENDPOINT_MAPPING_TYPE type = (ENDPOINT_MAPPING_TYPE) _processorMappingTypeCombo.getData(_processorMappingTypeCombo.getText());
-            String destination = null;
-            String processorClass = null;
-            boolean foundProcessor = true;
-            switch (type) {
-                case JMSPROCESSOR:
-                    destination = "TestQueue"; //$NON-NLS-1$
-                    processorClass = "org.switchyard.component.jca.processor.JMSProcessor"; //$NON-NLS-1$
-                    break;
-                case CCIPROCESSOR:
-                    processorClass = "org.switchyard.component.jca.processor.CCIProcessor"; //$NON-NLS-1$
-                    break;
-                default:
-                    foundProcessor = false;
-                    break;
-            }
-            
-            if (foundProcessor) {
-                if (interaction.getProcessor() == null) {
-                    Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                    interaction.setProcessor(processor);
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "JCA binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final FeaturePath batchTimeoutFeaturePath = FeaturePath
+                .fromList(JcaPackage.Literals.JCA_BINDING__OUTBOUND_CONNECTION,
+                        JcaPackage.Literals.JCA_OUTBOUND_CONNECTION__RESOURCE_ADAPTER,
+                        JcaPackage.Literals.RESOURCE_ADAPTER__NAME);
+        binding = context.bindValue(SWTObservables.observeText(_resourceAdapterText),
+                EMFProperties.value(batchTimeoutFeaturePath).observeDetail(_bindingValue),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT, domain,
+                        _bindingValue, batchTimeoutFeaturePath, true), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        IObservableValue processorType = ObservablesUtil.observeDetailValue(domain, _bindingValue, FeaturePath.fromList(
+                JcaPackage.Literals.JCA_BINDING__OUTBOUND_INTERACTION,
+                JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__PROCESSOR, JcaPackage.Literals.PROCESSOR__TYPE));
+        processorType.addValueChangeListener(new IValueChangeListener() {
+            @Override
+            public void handleValueChange(ValueChangeEvent event) {
+                final ProcessorType newExtension = ProcessorType.fromProcessorType((String) event.diff.getNewValue());
+                if (newExtension != _activeExtension) {
+                    swapExtensionComposites(newExtension, false);
+                    _processorMappingTypeCombo.setSelection(new StructuredSelection(newExtension), true);
                 }
-                setFeatureValue(interaction.getProcessor(), "type", processorClass); //$NON-NLS-1$
-                
-                if (!interaction.getProcessor().getProperty().isEmpty()) {
-                    interaction.getProcessor().getProperty().clear();
-                }
-                if (destination != null) {
-                    Property prop = JcaFactory.eINSTANCE.createProperty();
-                    prop.setName("destination"); //$NON-NLS-1$
-                    prop.setValue(destination);
-                    interaction.getProcessor().getProperty().add(prop);
-                }
-                
-                EList<Property> properties = interaction.getProcessor().getProperty();
-                _propsList.setSelection(properties);
             }
+        });
+    }
+
+    private void processProcessorComboSelection() {
+        final IStructuredSelection selection = (IStructuredSelection) _processorMappingTypeCombo.getSelection();
+        swapExtensionComposites(selection.isEmpty() ? null : (ProcessorType) selection.getFirstElement(), true);
+    }
+
+    private void swapExtensionComposites(final ProcessorType newExtension, final boolean updateValues) {
+        if (newExtension == null || newExtension == _activeExtension) {
+            return;
         }
-    }
-
-    protected void updateOutboundConnectionResourceAdapterFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new OutboundConnectionOp());
-        ops.add(new ResourceAdapterOp());
-        ops.add(new BasicOperation("outboundConnection/resourceAdapter", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-
-    protected void updateOutboundConnectionConnectionFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new OutboundConnectionOp());
-        ops.add(new ConnectionOp());
-        ops.add(new BasicOperation("outboundConnection/connection", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-    
-    protected void updateProcessorFeature() {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new OutboundInteractionOp());
-        ops.add(new UpdateProcessorOp());
-        wrapOperation(ops);
-    }
-
-    protected void handleModify(final Control control) {
-        if (control.equals(_resourceAdapterText) /*|| control.equals(_browseResourceAdapterButton) */) {
-            updateOutboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_connectionJNDINameText)) {
-            updateOutboundConnectionConnectionFeature("jndiName", _connectionJNDINameText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_processorMappingTypeCombo)) {
-            updateProcessorFeature();
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
+        final TransactionalEditingDomain domain = getDomain(_binding);
+        if (updateValues && domain != null) {
+            domain.getCommandStack().execute(
+                    new RecordingCommand(domain, "Change JCA processor type") {
+                        @Override
+                        protected void doExecute() {
+                            deactivateExtension(_activeExtension);
+                            activateExtension(newExtension, updateValues);
+                        }
+                    });
         } else {
-            super.handleModify(control);
+            deactivateExtension(_activeExtension);
+            activateExtension(newExtension, updateValues);
         }
-        setHasChanged(false);
-        setDidSomething(true);
+
+        _activeExtension = newExtension;
+
+        AbstractJCABindingComposite processorComposite = _extensionComposites.get(newExtension);
+        _stackLayout.topControl = processorComposite.getPanel();
+        _stackComposite.layout();
+        if (_stackComposite.getParent() != null) {
+            _stackComposite.getParent().layout();
+        }
+    }
+ 
+    private void activateExtension(ProcessorType extension, boolean updateValues) {
+        if (extension == null) {
+            return;
+        }
+        if (updateValues) {
+            JCAOutboundInteraction interaction = _binding.getOutboundInteraction();
+            if (interaction == null) {
+                interaction = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
+                _binding.setOutboundInteraction(interaction);
+            }
+            Processor processor = interaction.getProcessor();
+            if (processor == null) {
+                processor = JcaFactory.eINSTANCE.createProcessor();
+                interaction.setProcessor(processor);
+            }
+            processor.setType(extension.getProcessorType());
+        }
+        _extensionComposites.get(extension).setBinding(_binding);
     }
 
-    protected void handleUndo(Control control) {
-        if (_binding != null) {
-            if (_binding != null) {
-                 if (control.equals(_resourceAdapterText)) {
-                     _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
-                 } else if (control.equals(_nameText)) {
-                     _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-                }
-            } else {
-                super.handleUndo(control);
-            }
+    private void deactivateExtension(ProcessorType extension) {
+        if (extension == null) {
+            return;
         }
+        final AbstractJCABindingComposite extensionComposite = _extensionComposites.get(extension);
+        extensionComposite.setBinding(null);
     }
 
     /**

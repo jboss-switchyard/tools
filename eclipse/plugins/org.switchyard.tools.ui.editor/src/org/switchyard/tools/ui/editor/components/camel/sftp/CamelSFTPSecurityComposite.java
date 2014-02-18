@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,12 +12,20 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.sftp;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -29,10 +37,15 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -47,6 +60,11 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
     private Text _privateKeyFileText;
     private Text _privateKeyFilePassphraseText;
     private Button _browseBtn;
+    private WritableValue _bindingValue;
+
+    CamelSFTPSecurityComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -63,37 +81,20 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
         super.setBinding(impl);
         if (impl instanceof CamelSftpBindingType) {
             this._binding = (CamelSftpBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getPrivateKeyFile() != null) {
-                _privateKeyFileText.setText(this._binding.getPrivateKeyFile());
-            } else {
-                _privateKeyFileText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getPrivateKeyFilePassphrase() != null) {
-                _privateKeyFilePassphraseText.setText(this._binding.getPrivateKeyFilePassphrase());
-            } else {
-                _privateKeyFilePassphraseText.setText(""); //$NON-NLS-1$
-            }
-            setInUpdate(false);
-            validate();
+            _bindingValue.setValue(_binding);
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getFTPSTabControl(_panel);
+
+        bindControls(context);
     }
     
     private Control getFTPSTabControl(Composite tabFolder) {
@@ -149,7 +150,11 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
             dialog.setTitle(Messages.title_selectPrivateKeyFile);
             if (dialog.open() == ClasspathResourceSelectionDialog.OK) {
                 _privateKeyFileText.setText(((IResource) dialog.getFirstResult()).getFullPath().toString());
-                handleModify(_privateKeyFileText);
+                // make sure a notify event gets sent, to update the binding
+                _privateKeyFileText.notifyListeners(SWT.Modify, null);
+                // simulate "ENTER" to commit the change
+                _privateKeyFileText.notifyListeners(SWT.DefaultSelection, null);
+                _privateKeyFileText.setFocus();
             }
         }
     }
@@ -160,28 +165,49 @@ public class CamelSFTPSecurityComposite extends AbstractSYBindingComposite {
     }
 
     protected void handleModify(Control control) {
-        if (control.equals(_privateKeyFileText)) {
-            updateFeature(_binding, "privateKeyFile", _privateKeyFileText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_privateKeyFilePassphraseText)) {
-            updateFeature(_binding, "privateKeyFilePassphrase", _privateKeyFilePassphraseText.getText().trim()); //$NON-NLS-1$
-        } else {
-            super.handleModify(control);
-        }
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_privateKeyFileText)) {
-                _privateKeyFileText.setText(this._binding.getPrivateKeyFile());
-            } else if (control.equals(_privateKeyFilePassphraseText)) {
-                _privateKeyFilePassphraseText.setText(this._binding.getPrivateKeyFilePassphrase());
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
 
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_privateKeyFileText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelSftpBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context
+                .bindValue(
+                        SWTObservables.observeText(_privateKeyFileText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FtpPackage.Literals.CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_privateKeyFilePassphraseText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FtpPackage.Literals.CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE_PASSPHRASE),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    }    
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
+    }
 }

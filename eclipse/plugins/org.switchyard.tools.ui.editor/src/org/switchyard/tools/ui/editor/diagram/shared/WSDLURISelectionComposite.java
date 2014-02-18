@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.diagram.shared;
 
 import java.net.URI;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -41,10 +42,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.forms.events.HyperlinkAdapter;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.wst.wsdl.PortType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.WSDLPortTypeSelectionDialog;
@@ -66,22 +70,22 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
 
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
-    private Link _newWSDLLink;
+    private Hyperlink _newWSDLLink;
 
     /**
      * Constructor.
+     * 
+     * @param toolkit the toolkit to use for creating controls
      */
-    public WSDLURISelectionComposite() {
+    public WSDLURISelectionComposite(FormToolkit toolkit) {
+        super(toolkit);
         // empty
     }
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
-    public void createContents(Composite parent, int style) {
+    @Override
+    public void createContents(Composite parent, int style, DataBindingContext context) {
 
-        _panel = new Composite(parent, style);
+        _panel = getToolkit().createComposite(parent, style);
         GridLayout gl = new GridLayout();
         gl.numColumns = 3;
         _panel.setLayout(gl);
@@ -89,14 +93,12 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             _panel.setLayoutData(getRootGridData());
         }
 
-        _newWSDLLink = new Link(_panel, SWT.NONE);
-        String message = Messages.link_wsdlUri;
-        _newWSDLLink.setText(message);
+        _newWSDLLink = getToolkit().createHyperlink(_panel, Messages.link_wsdlUri, SWT.NONE);
         _newWSDLLink.setEnabled(canEdit());
         // link.setSize(400, 100);
-        _newWSDLLink.addSelectionListener(new SelectionAdapter() {
+        _newWSDLLink.addHyperlinkListener(new HyperlinkAdapter() {
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void linkActivated(HyperlinkEvent e) {
                 String oldResult = _mWSDLInterfaceURIText.getText().trim();
                 if (oldResult.indexOf('#') > -1) {
                     oldResult = oldResult.substring(0, oldResult.indexOf('#'));
@@ -119,7 +121,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
                 }
             }
         });
-        _mWSDLInterfaceURIText = new Text(_panel, SWT.BORDER);
+        _mWSDLInterfaceURIText = getToolkit().createText(_panel, null, SWT.BORDER);
         if (_interface != null && _interface instanceof WSDLPortType) {
             _mWSDLInterfaceURIText.setText(((WSDLPortType) _interface).getInterface());
         }
@@ -144,8 +146,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         // uriGD.horizontalSpan = 2;
         _mWSDLInterfaceURIText.setLayoutData(uriGD);
 
-        _browseBtnWorkspace = new Button(_panel, SWT.PUSH);
-        _browseBtnWorkspace.setText(Messages.button_workspace);
+        _browseBtnWorkspace = getToolkit().createButton(_panel, Messages.button_workspace, SWT.PUSH);
         _browseBtnWorkspace.setEnabled(canEdit());
         GridData btnGD = new GridData();
         _browseBtnWorkspace.setLayoutData(btnGD);

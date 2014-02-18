@@ -12,13 +12,18 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.Processor;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -29,21 +34,32 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  */
 public class JCAProcessorPropertyTable extends JCAPropertyTable {
 
+    private static final FeaturePath PROCESSOR_PROPERTIES = FeaturePath.fromList(
+            JcaPackage.Literals.JCA_BINDING__OUTBOUND_INTERACTION,
+            JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__PROCESSOR, JcaPackage.Literals.PROCESSOR__PROPERTY);
+
     /**
      * @param parent Composite
      * @param style any additional style bits
+     * @param toolkit Form toolkit to use when creating controls
+     * @param context the data binding context
+     * @param domain the editing domain
      */
-    public JCAProcessorPropertyTable(Composite parent, int style) {
-        super(parent, style, false);
+    public JCAProcessorPropertyTable(Composite parent, int style, FormToolkit toolkit, DataBindingContext context, EditingDomain domain) {
+        super(parent, style, false, toolkit, context, PROCESSOR_PROPERTIES, domain);
     }
-    
+
     /**
      * @param parent Composite
      * @param style any additional style bits
      * @param isReadOnly flag
+     * @param toolkit Form toolkit to use when creating controls
+     * @param context the data binding context
+     * @param domain the editing domain
      */
-    public JCAProcessorPropertyTable(Composite parent, int style, boolean isReadOnly) {
-        super(parent, style, isReadOnly);
+    public JCAProcessorPropertyTable(Composite parent, int style, boolean isReadOnly, FormToolkit toolkit,
+            DataBindingContext context, EditingDomain domain) {
+        super(parent, style, isReadOnly, toolkit, context, PROCESSOR_PROPERTIES, domain);
     }
 
     protected void removeFromList() {
@@ -89,11 +105,10 @@ public class JCAProcessorPropertyTable extends JCAPropertyTable {
                             
                             if (binding.getOutboundInteraction() == null) {
                                 JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                                setFeatureValue(binding, "outboundInteraction", outbound); //$NON-NLS-1$
-                            }
-                            if (binding.getOutboundInteraction().getProcessor() == null) {
-                                Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                                setFeatureValue(binding.getOutboundInteraction(), "processor", processor); //$NON-NLS-1$
+                                outbound.setProcessor(JcaFactory.eINSTANCE.createProcessor());
+                                binding.setOutboundInteraction(outbound);
+                            } else if (binding.getOutboundInteraction().getProcessor() == null) {
+                                binding.getOutboundInteraction().setProcessor(JcaFactory.eINSTANCE.createProcessor());
                             }
                             Processor processor = binding.getOutboundInteraction().getProcessor();
                             processor.getProperty().add(newProperty);
@@ -106,11 +121,10 @@ public class JCAProcessorPropertyTable extends JCAPropertyTable {
                     
                     if (binding.getOutboundInteraction() == null) {
                         JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                        setFeatureValue(binding, "inboundConnection", outbound); //$NON-NLS-1$
-                    }
-                    if (binding.getOutboundInteraction().getProcessor() == null) {
-                        Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                        setFeatureValue(binding.getOutboundInteraction(), "processor", processor); //$NON-NLS-1$
+                        outbound.setProcessor(JcaFactory.eINSTANCE.createProcessor());
+                        binding.setOutboundInteraction(outbound);
+                    } else if (binding.getOutboundInteraction().getProcessor() == null) {
+                        binding.getOutboundInteraction().setProcessor(JcaFactory.eINSTANCE.createProcessor());
                     }
                     Processor processor = binding.getOutboundInteraction().getProcessor();
                     processor.getProperty().add(newProperty);

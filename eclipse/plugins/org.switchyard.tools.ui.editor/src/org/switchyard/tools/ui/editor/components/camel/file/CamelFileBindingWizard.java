@@ -44,7 +44,7 @@ public class CamelFileBindingWizard extends AbstractBindingWizard implements IBi
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelFileBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return CamelFileBindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

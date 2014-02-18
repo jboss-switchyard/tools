@@ -55,7 +55,7 @@ public class SOAPBindingWizard extends AbstractBindingWizard implements IBinding
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return SOAPBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return SOAPBindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

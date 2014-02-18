@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.validator.wizards;
 
 import java.util.ArrayList;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.core.IJavaElement;
@@ -36,9 +37,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.ui.editor.Messages;
@@ -58,21 +59,26 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
     private Button _javaClassOption;
     private Button _beanOption;
 
+    JavaValidatorComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
+
     @Override
-    public void createContents(Composite parent, int style) {
-        super.createContents(parent, style);
+    public void createContents(Composite parent, int style, DataBindingContext context) {
+        super.createContents(parent, style, context);
         
-        new Label(getPanel(), SWT.NONE); // spacer
+        getToolkit().createLabel(getPanel(), null, SWT.NONE); // spacer
         
         Group inner = new Group(getPanel(), SWT.NONE);
         inner.setText(Messages.label_javaValidatorType);
+        getToolkit().adapt(inner);
         GridData innerGD = new GridData(SWT.FILL, SWT.NULL, true, false, 2, 1);
         innerGD.horizontalIndent = -5;
         innerGD.verticalIndent = -5;
         inner.setLayoutData(innerGD);
         inner.setLayout(new GridLayout(3, false));
         
-        _javaClassOption = new Button(inner, SWT.RADIO);
+        _javaClassOption = getToolkit().createButton(inner, Messages.label_javaClass, SWT.RADIO);
         _javaClassOption.addSelectionListener(new SelectionListener(){
 
             @Override
@@ -84,13 +90,11 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
                 handleSelectedOption(_javaClassOption);
             }
         });
-        _javaClassOption.setText(Messages.label_javaClass);
         addGridData(_javaClassOption, 3, SWT.NONE);
         
         _classText = createLabelAndText(inner, Messages.label_class);
 
-        _browseButton = new Button(inner, SWT.PUSH);
-        _browseButton.setText(Messages.button_browse);
+        _browseButton = getToolkit().createButton(inner, Messages.button_browse, SWT.PUSH);
         _browseButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -101,7 +105,7 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
 
         });
 
-        _beanOption = new Button(inner, SWT.RADIO);
+        _beanOption = getToolkit().createButton(inner, Messages.label_bean, SWT.RADIO);
         _beanOption.addSelectionListener(new SelectionListener(){
 
             @Override
@@ -113,7 +117,6 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
                 handleSelectedOption(_beanOption);
             }
         });
-        _beanOption.setText(Messages.label_bean);
         addGridData(_beanOption, 3, SWT.NONE);
 
         _beanText = createLabelAndText(inner, Messages.label_name);

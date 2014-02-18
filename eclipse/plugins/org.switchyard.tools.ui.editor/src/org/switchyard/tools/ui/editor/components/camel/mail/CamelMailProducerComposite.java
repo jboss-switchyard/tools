@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,9 +12,17 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.mail;
 
-import java.util.ArrayList;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -24,12 +32,16 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -51,6 +63,11 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
     private Text _bccText;
     private Text _replyToText;
     private Button _securedCheckbox;
+    private WritableValue _bindingValue;
+
+    CamelMailProducerComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -66,98 +83,23 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
     public void setBinding(Binding impl) {
         super.setBinding(impl);
         if (impl instanceof CamelMailBindingType) {
-            this._binding = (CamelMailBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getProduce() != null) {
-                if (this._binding.getProduce().getSubject() != null) {
-                    _subjectText.setText(this._binding.getProduce().getSubject());
-                } else {
-                    _subjectText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getProduce().getFrom() != null) {
-                    _fromText.setText(this._binding.getProduce().getFrom());
-                } else {
-                    _fromText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getProduce().getTo() != null) {
-                    _toText.setText(this._binding.getProduce().getTo());
-                } else {
-                    _toText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getProduce().getCC() != null) {
-                    _ccText.setText(this._binding.getProduce().getCC());
-                } else {
-                    _ccText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getProduce().getBCC() != null) {
-                    _bccText.setText(this._binding.getProduce().getBCC());
-                } else {
-                    _bccText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getProduce().getReplyTo() != null) {
-                    _replyToText.setText(this._binding.getProduce().getReplyTo());
-                } else {
-                    _replyToText.setText(""); //$NON-NLS-1$
-                }
-            }
-            if (this._binding.getHost() != null) {
-                _hostText.setText(this._binding.getHost());
-            } else {
-                _hostText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.isSetPort()) {
-                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
-//                _portText.setText(Integer.toString(this._binding.getPort()));
-            } else {
-                _portText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getUsername() != null) {
-                _usernameText.setText(this._binding.getUsername());
-            } else {
-                _usernameText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getPassword() != null) {
-                _passwordText.setText(this._binding.getPassword());
-            } else {
-                _passwordText.setText(""); //$NON-NLS-1$
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-            _securedCheckbox.setSelection(this._binding.isSecure());
-            setInUpdate(false);
-            validate();
+            _binding = (CamelMailBindingType) impl;
+
+            _bindingValue.setValue(_binding);
+
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_hostText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyHost);
-//            } else if (!_portText.getText().trim().isEmpty()) {
-//                try {
-//                    new Integer(_portText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Port value must be a valid number.");
-//                }
-            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getProducerTabControl(_panel);
+
+        bindControls(context);
     }
 
     private Control getProducerTabControl(Composite tabFolder) {
@@ -194,93 +136,181 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
         return this._panel;
     }
 
-    class ProduceOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getProduce() == null) {
-                setFeatureValue(_binding, "produce", MailFactory.eINSTANCE.createCamelMailProducerType()); //$NON-NLS-1$
-            }
-        }
-    }
-
-    protected void updateProduceFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new ProduceOp());
-        ops.add(new BasicOperation("produce", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-
-    protected void handleModify(final Control control) {
-        if (control.equals(_hostText)) {
-            updateFeature(_binding, "host", _hostText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_portText)) {
-            try {
-                Integer port = new Integer(_portText.getText().trim());
-                updateFeature(_binding, "port", port.intValue()); //$NON-NLS-1$
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "port", _portText.getText().trim()); //$NON-NLS-1$
-            }
-            updateFeature(_binding, "port", _portText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_usernameText)) {
-            updateFeature(_binding, "username", _usernameText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_passwordText)) {
-            updateFeature(_binding, "password", _passwordText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_subjectText)) {
-            updateProduceFeature("subject", _subjectText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_fromText)) {
-            updateProduceFeature("from", _fromText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_toText)) {
-            updateProduceFeature("to", _toText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_ccText)) {
-            updateProduceFeature("cc", _ccText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_bccText)) {
-            updateProduceFeature("bcc", _bccText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_replyToText)) {
-            updateProduceFeature("replyTo", _replyToText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_securedCheckbox)) {
-            updateFeature(_binding, "secure", _securedCheckbox.getSelection()); //$NON-NLS-1$
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-        } else {
-            super.handleModify(control);
-        }
-        validate();
-        setHasChanged(false);
-        setDidSomething(true);
-    }
-
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_hostText)) {
-                _hostText.setText(this._binding.getHost());
-            } else if (control.equals(_portText)) {
-                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
-//                _portText.setText(Integer.toString(this._binding.getPort()));
-            } else if (control.equals(_usernameText)) {
-                _usernameText.setText(this._binding.getUsername());
-            } else if (control.equals(_passwordText)) {
-                _passwordText.setText(this._binding.getPassword());
-            } else if (control.equals(_subjectText)) {
-                _subjectText.setText(this._binding.getPassword());
-            } else if (control.equals(_fromText)) {
-                _fromText.setText(this._binding.getProduce().getFrom());
-            } else if (control.equals(_toText)) {
-                _toText.setText(this._binding.getProduce().getTo());
-            } else if (control.equals(_ccText)) {
-                _ccText.setText(this._binding.getProduce().getCC());
-            } else if (control.equals(_bccText)) {
-                _bccText.setText(this._binding.getProduce().getBCC());
-            } else if (control.equals(_replyToText)) {
-                _replyToText.setText(this._binding.getProduce().getReplyTo());
-            } else if (control.equals(_securedCheckbox)) {
-                _securedCheckbox.setSelection(this._binding.isSecure());
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
 
+    private void bindProducerControls(final DataBindingContext context, final EditingDomain domain, final Realm realm) {
+        FeaturePath path = FeaturePath.fromList(
+                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PRODUCE,
+                MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__SUBJECT
+              );
+        
+        org.eclipse.core.databinding.Binding binding = context
+                .bindValue(
+                        SWTObservables.observeText(_subjectText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PRODUCE,
+                MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__FROM
+              );
+        binding = context.bindValue(
+                SWTObservables.observeText(_fromText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        path),
+                new EMFUpdateValueStrategyNullForEmptyString(
+                        null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        
+        path = FeaturePath.fromList(
+                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PRODUCE,
+                MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__TO
+              );
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_toText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        
+        path = FeaturePath.fromList(
+                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PRODUCE,
+                MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__CC
+              );
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_ccText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PRODUCE,
+                MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__BCC
+              );
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_bccText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PRODUCE,
+                MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__REPLY_TO
+              );
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_replyToText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+    }
+    
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelMailBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "Mail binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "Mail binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_hostText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__HOST),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.error_emptyHost)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+       
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_portText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PORT),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "Port must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}').",
+                                UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                        new EscapedPropertyIntegerValidator("Port must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                        , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_usernameText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__USERNAME),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_passwordText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__PASSWORD),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_securedCheckbox),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                MailPackage.Literals.CAMEL_MAIL_BINDING_TYPE__SECURE),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        
+        bindProducerControls(context, domain, realm);
+
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
+    }
 }

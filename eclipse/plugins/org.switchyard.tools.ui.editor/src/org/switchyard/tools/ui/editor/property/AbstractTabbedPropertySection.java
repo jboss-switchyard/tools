@@ -11,8 +11,11 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.ObservablesManager;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -46,6 +49,14 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
     private TransactionalEditingDomain _domain = null;
     private TabbedPropertySheetPage _page;
     private AbstractModelComposite<T> _composite;
+    private DataBindingContext _context;
+    private ObservablesManager _observablesManager;
+
+    protected AbstractTabbedPropertySection() {
+        _context = new EMFDataBindingContext();
+        _observablesManager = new ObservablesManager();
+        _observablesManager.addObservablesFromContext(_context, true, true);
+    }
 
     @Override
     public FormToolkit getToolkit() {
@@ -74,10 +85,15 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
    }
 
     @Override
-    public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
+    public void createControls(final Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
         super.createControls(parent, aTabbedPropertySheetPage);
         _page = aTabbedPropertySheetPage;
-        _composite = createComposite(parent, SWT.NONE);
+        _observablesManager.runAndCollect(new Runnable() {
+            @Override
+            public void run() {
+                _composite = createComposite(parent, SWT.NONE);
+            }
+        });
         getToolkit().adapt(_composite);
     }
 
@@ -137,6 +153,12 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
     @Override
     public void dispose() {
         removeDomainListener();
+        if (_composite != null) {
+            _composite.dispose();
+            _composite = null;
+        }
+        _observablesManager.dispose();
+        _context.dispose();
         super.dispose();
     }
 
@@ -175,5 +197,15 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
     @Override
     public Command transactionAboutToCommit(ResourceSetChangeEvent arg0) throws RollbackException {
         return null;
+    }
+
+    @Override
+    public DataBindingContext getDataBindingContext() {
+        return _context;
+    }
+
+    @Override
+    public ObservablesManager getObservablesManager() {
+        return _observablesManager;
     }
 }

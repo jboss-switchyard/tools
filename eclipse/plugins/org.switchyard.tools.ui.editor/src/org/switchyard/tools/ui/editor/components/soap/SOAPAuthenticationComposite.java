@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,29 +12,46 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.soap;
 
-import java.util.ArrayList;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.DisposeEvent;
+import org.eclipse.core.databinding.observable.IDisposeListener;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.ComputedValue;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
+import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
 
 /**
@@ -45,15 +62,14 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private SOAPBindingType _binding = null;
-    private Combo _authTypeCombo;
+    private ComboViewer _authTypeCombo;
     private Text _authUserText;
     private Text _authPasswordText;
     private Text _authDomainText;
+    private WritableValue _bindingValue;
 
-    /**
-     * Create a new SOAPAuthenticationComposite.
-     */
-    public SOAPAuthenticationComposite() {
+    SOAPAuthenticationComposite(FormToolkit toolkit) {
+        super(toolkit);
     }
 
     @Override
@@ -66,16 +82,14 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         return Messages.description_soapAuthenticationDetails;
     }
 
-    /**
-     * @param parent composite parent
-     * @param style any style bits
-     */
     @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getAuthenticationControl(_panel);
+    
+        bindControls(context);
     }
 
     private Control getAuthenticationControl(Composite tabFolder) {
@@ -83,67 +97,29 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
         
-        _authTypeCombo = createLabelAndCombo(composite, Messages.label_authenticationType, true);
-        _authTypeCombo.add("Basic"); //$NON-NLS-1$
-        _authTypeCombo.add("NTLM"); //$NON-NLS-1$
-        _authTypeCombo.setText("Basic"); //$NON-NLS-1$
-        _authTypeCombo.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
-                _authUserText.setText(""); //$NON-NLS-1$
-                _authPasswordText.setText(""); //$NON-NLS-1$
-                _authDomainText.setText(""); //$NON-NLS-1$
-                removeAuthFeatures();
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
+        _authTypeCombo = createLabelAndComboViewer(composite, Messages.label_authenticationType, true);
+        _authTypeCombo.setContentProvider(ArrayContentProvider.getInstance());
+        _authTypeCombo.setLabelProvider(new LabelProvider());
+        String[] authTypes = new String[] {"Basic", "NTLM"};
+        _authTypeCombo.setInput(authTypes);
         
         _authUserText = createLabelAndText(composite, Messages.label_user);
         _authPasswordText = createLabelAndText(composite, Messages.label_password);
         _authDomainText = createLabelAndText(composite, Messages.label_domain);
         
-        _authTypeCombo.select(0);
-        _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
-        
         return composite;
     }
 
     protected void handleModify(Control control) {
-        if (_binding != null) {
-            if (control.equals(_authUserText)) {
-                String user = _authUserText.getText().trim();
-                updateAuthFeature("user", user); //$NON-NLS-1$
-            } else if (control.equals(_authPasswordText)) {
-                String password = _authPasswordText.getText().trim();
-                updateAuthFeature("password", password); //$NON-NLS-1$
-            } else if (control.equals(_authDomainText)) {
-                String domain = _authDomainText.getText().trim();
-                updateAuthFeature("domain", domain); //$NON-NLS-1$
-            } else {
-                super.handleModify(control);
-            }
-        }
-        validate();
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
-        super.handleUndo(control);
-        setHasChanged(false);
+        if (_binding != null) {
+            super.handleUndo(control);
+        }
     }
-
-    protected boolean validate() {
-        setErrorMessage(null);
-        return (getErrorMessage() == null);
-    }
-
     /**
      * @return panel
      */
@@ -159,32 +135,10 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         if (switchYardBindingType instanceof SOAPBindingType) {
             setTargetObject(switchYardBindingType.eContainer());
             this._binding = (SOAPBindingType) switchYardBindingType;
-            setInUpdate(true);
-            if (this._binding.getBasic() != null) {
-                _authTypeCombo.select(0);
-                setTextValue(_authUserText, this._binding.getBasic().getUser());
-                setTextValue(_authPasswordText, this._binding.getBasic().getPassword());
-                setTextValue(_authDomainText, null);
-            } else if (this._binding.getNtlm() != null) {
-                _authTypeCombo.select(1);
-                setTextValue(_authUserText, this._binding.getNtlm().getUser());
-                setTextValue(_authPasswordText, this._binding.getNtlm().getPassword());
-                setTextValue(_authDomainText, this._binding.getNtlm().getDomain());
-            } else {
-                if (_authTypeCombo != null) {
-                    _authTypeCombo.select(0);
-                    setTextValue(_authUserText, null);
-                    setTextValue(_authPasswordText, null);
-                    setTextValue(_authDomainText, null);
-                }
-            }
-            if (_authDomainText != null) {
-                _authDomainText.setEnabled(_authTypeCombo.getText().equals("NTLM")); //$NON-NLS-1$
-            }
-            setInUpdate(false);
-            validate();
+            _bindingValue.setValue(_binding);
+        } else {
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     /**
@@ -206,73 +160,187 @@ public class SOAPAuthenticationComposite extends AbstractSYBindingComposite {
         return null;
     }
 
-    class RemoveBasicAuthenticationOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getBasic() != null) {
-                setFeatureValue(_binding, "basic", null); //$NON-NLS-1$
-            }
+    class AuthComputedValue extends ComputedValue {
+
+        private IObservableValue _authType = null;
+        private IObservableValue _basicAuthUser = null;
+        private IObservableValue _basicAuthPwd = null;
+        private IObservableValue _ntlmAuthDomain = null;
+
+        public AuthComputedValue(
+                IObservableValue authType, IObservableValue user, IObservableValue pwd,
+                IObservableValue domain) {
+            super();
+            this._authType = authType; 
+            this._basicAuthUser = user; 
+            this._basicAuthPwd = pwd; 
+            this._ntlmAuthDomain = domain; 
         }
+        
+        @Override
+        protected Object calculate() {
+            final String authTypeStr = (String) _authType.getValue();
+            final String user = (String) _basicAuthUser.getValue();
+            final String pwd = (String) _basicAuthPwd.getValue();
+            final String domain = (String) _ntlmAuthDomain.getValue();
+            
+            boolean isBasic = false;
+            boolean isNtlm = false;
+            if (authTypeStr == null) {
+                updateControls(isBasic, isNtlm);
+                return null;
+            }
+            // "Basic", "NTLM"
+            if (authTypeStr.equalsIgnoreCase("Basic")) {
+                isBasic = true;
+                if (user != null || pwd != null) {
+                    final BasicAuthenticationType basicAuth =
+                        SOAPFactory.eINSTANCE.createBasicAuthenticationType();
+                    basicAuth.setUser(user);
+                    basicAuth.setPassword(pwd);
+                    updateControls(isBasic, isNtlm);
+                    return basicAuth;
+                } else {
+                    updateControls(isBasic, isNtlm);
+                    return null;
+                }
+            } else if (authTypeStr.equalsIgnoreCase("NTLM")) {
+                isNtlm = true;
+                if (user != null || pwd != null || domain != null) {
+                    final NTLMAuthenticationType ntlmAuth =
+                            SOAPFactory.eINSTANCE.createNTLMAuthenticationType();
+                    ntlmAuth.setUser(user);
+                    ntlmAuth.setPassword(pwd);
+                    ntlmAuth.setDomain(domain);
+                    updateControls(isBasic, isNtlm);
+                    return ntlmAuth;
+                } else {
+                    updateControls(isBasic, isNtlm);
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        protected void doSetValue(Object value) {
+            if (value instanceof NTLMAuthenticationType) {
+                _authType.setValue("NTLM");
+                final NTLMAuthenticationType ntlmAuth = (NTLMAuthenticationType) value;
+                _basicAuthPwd.setValue(ntlmAuth.getPassword());
+                _basicAuthUser.setValue(ntlmAuth.getUser());
+                _ntlmAuthDomain.setValue(ntlmAuth.getDomain());
+            } else  if (value instanceof BasicAuthenticationType) {
+                final BasicAuthenticationType basicAuth = (BasicAuthenticationType) value;
+                _authType.setValue("Basic");
+                _basicAuthPwd.setValue(basicAuth.getPassword());
+                _basicAuthUser.setValue(basicAuth.getUser());
+                _ntlmAuthDomain.setValue(null);
+            } else {
+                _authType.setValue(null);
+                _basicAuthPwd.setValue(null);
+                _basicAuthUser.setValue(null);
+                _ntlmAuthDomain.setValue(null);
+            }
+            getValue();
+        }
+        
+        private void updateControls(boolean isBasic, boolean isNtlm) {
+            _authDomainText.setEnabled(isNtlm);
+            _authPasswordText.setEnabled(isBasic || isNtlm);
+            _authUserText.setEnabled(isBasic || isNtlm);
+        }
+        
     }
     
-    class RemoveNtlmAuthenticationOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getNtlm() != null) {
-                setFeatureValue(_binding, "ntlm", null); //$NON-NLS-1$
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_authTypeCombo.getCombo().getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, SOAPBindingType.class);
+        final IObservableValue authType = new WritableValue(realm, null, String.class);
+        final IObservableValue basicAuthUser = new WritableValue(realm, null, String.class);
+        final IObservableValue basicAuthPwd = new WritableValue(realm, null, String.class);
+        final IObservableValue ntlmAuthDomain = new WritableValue(realm, null, String.class);
+
+
+        org.eclipse.core.databinding.Binding binding = 
+                context.bindValue(SWTObservables.observeSelection(_authTypeCombo.getCombo()), authType);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authUserText, SWT.Modify), basicAuthUser,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authPasswordText, SWT.Modify), basicAuthPwd,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_authDomainText, SWT.Modify), ntlmAuthDomain,
+                        new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final IObservableValue computed = new AuthComputedValue(authType, basicAuthUser, basicAuthPwd, ntlmAuthDomain);
+        final IObservableValue ntlmValue = ObservablesUtil.observeDetailValue(domain, _bindingValue, SOAPPackage.Literals.SOAP_BINDING_TYPE__NTLM);
+        final IObservableValue basicValue = ObservablesUtil.observeDetailValue(domain, _bindingValue, SOAPPackage.Literals.SOAP_BINDING_TYPE__BASIC);
+        final org.eclipse.core.databinding.Binding ntlmBinding = context.bindValue(computed, ntlmValue, new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST), new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST));
+        final org.eclipse.core.databinding.Binding basicBinding = context.bindValue(computed, basicValue, new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST), new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST));
+
+        final IValueChangeListener changeListener = new IValueChangeListener() {
+            private boolean _updating = false;
+            
+            public void handleValueChange(ValueChangeEvent event) {
+                if (!_updating) {
+                    _updating = true;
+                    if (event.getSource() == ntlmValue || event.getSource() == basicValue) {
+                        if (ntlmValue.getValue() == null) {
+                            // default to basic
+                            basicBinding.updateModelToTarget();
+                        } else {
+                            ntlmBinding.updateModelToTarget();
+                        }
+                    } else {
+                        // computed
+                        // we might want to do this using a command if domain != null, so the changes are atomic
+                        if (computed.getValue() instanceof NTLMAuthenticationType) {
+                            ntlmBinding.updateTargetToModel();
+                            basicValue.setValue(null);
+                        } else {
+                            basicBinding.updateTargetToModel();
+                            ntlmValue.setValue(null);
+                        }
+                    }
+                    _updating = false;
+                }
             }
-        }
-    }
+          };
 
-    class AddBasicAuthenticatiOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getBasic() == null) {
-                BasicAuthenticationType basicAuth = SOAPFactory.eINSTANCE.createBasicAuthenticationType();
-                _binding.setBasic(basicAuth);
+          IDisposeListener disposeListener = new IDisposeListener() {
+            public void handleDispose(DisposeEvent event) {
+              ((IObservableValue) event.getSource()).removeValueChangeListener(changeListener);
             }
-        }
-    }
-    
-    class AddNtlmAuthenticatiOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getNtlm() == null) {
-                NTLMAuthenticationType ntlmAuth = SOAPFactory.eINSTANCE.createNTLMAuthenticationType();
-                _binding.setNtlm(ntlmAuth);
-            }
-        }
+          };
+
+          computed.addValueChangeListener(changeListener);
+          ntlmValue.addValueChangeListener(changeListener);
+          basicValue.addValueChangeListener(changeListener);
+
+          computed.addDisposeListener(disposeListener);
+          ntlmValue.addDisposeListener(disposeListener);
+          basicValue.addDisposeListener(disposeListener);        
     }
 
-    protected void updateBasicAuthFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveNtlmAuthenticationOp());
-        ops.add(new AddBasicAuthenticatiOp());
-        ops.add(new BasicOperation("basic", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-
-    protected void updateNtlmAuthFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveBasicAuthenticationOp());
-        ops.add(new AddNtlmAuthenticatiOp());
-        ops.add(new BasicOperation("ntlm", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-    
-    protected void removeAuthFeatures() {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new RemoveBasicAuthenticationOp());
-        ops.add(new RemoveNtlmAuthenticationOp());
-        wrapOperation(ops);
-    }
-
-    private void updateAuthFeature(String featureId, Object value) {
-        boolean basicAuth = _authTypeCombo.getText().equalsIgnoreCase("basic"); //$NON-NLS-1$
-        if (basicAuth) {
-            updateBasicAuthFeature(featureId, value);
-        } else {
-            updateNtlmAuthFeature(featureId, value);
-        }
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
     }
 }

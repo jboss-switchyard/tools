@@ -11,13 +11,17 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.ObservablesManager;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.databinding.preference.PreferencePageSupport;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -45,6 +49,9 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
 
     private FormToolkit _toolkit;
     private AbstractModelComposite<T> _composite;
+    private DataBindingContext _context;
+    private ObservablesManager _observablesManager;
+    private PreferencePageSupport _support;
 
     /**
      * Create a new AbstractPropertyPage.
@@ -52,6 +59,9 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
     public AbstractPropertyPage() {
         super();
         noDefaultAndApplyButton();
+        _context = new EMFDataBindingContext();
+        _observablesManager = new ObservablesManager();
+        _observablesManager.addObservablesFromContext(_context, true, true);
     }
 
     @Override
@@ -120,19 +130,28 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
     }
 
     @Override
-    protected Control createContents(Composite parent) {
-        final FormColors colors = new FormColors(Display.getCurrent());
-        colors.setBackground(null);
-        colors.setForeground(null);
-        _toolkit = new FormToolkit(colors);
+    protected Control createContents(final Composite parent) {
+        if (_toolkit == null) {
+            final FormColors colors = new FormColors(Display.getCurrent());
+            colors.setBackground(null);
+            colors.setForeground(null);
+            _toolkit = new FormToolkit(colors);
+        }
 
-        _composite = createComposite(parent, SWT.NONE);
+        _observablesManager.runAndCollect(new Runnable() {
+            @Override
+            public void run() {
+                _composite = createComposite(parent, SWT.NONE);
+            }
+        });
 
         _composite.refresh();
         _composite.validate();
         setErrorMessage(null);
 
         initializeTransaction();
+
+        _support = PreferencePageSupport.create(this, _context);
 
         return _composite;
     }
@@ -172,5 +191,34 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
      */
     protected Composite getComposite() {
         return this._composite;
+    }
+
+    @Override
+    public DataBindingContext getDataBindingContext() {
+        return _context;
+    }
+
+    @Override
+    public ObservablesManager getObservablesManager() {
+        return _observablesManager;
+    }
+
+    @Override
+    public void dispose() {
+        if (_composite != null) {
+            _composite.dispose();
+            _composite = null;
+        }
+        if (_toolkit != null) {
+            _toolkit.dispose();
+            _toolkit = null;
+        }
+        if (_support != null) {
+            _support.dispose();
+            _support = null;
+        }
+        _observablesManager.dispose();
+        _context.dispose();
+        super.dispose();
     }
 }

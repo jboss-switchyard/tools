@@ -20,6 +20,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
@@ -55,8 +56,8 @@ public class CamelJMSBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public List<IBindingComposite> createComposites(Binding binding) {
-        return createComposites();
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+        return createComposites(toolkit);
     }
 
     @Override
@@ -69,11 +70,12 @@ public class CamelJMSBindingTypeExtension implements IBindingTypeExtension {
         return Messages.label_jms;
     }
 
-    protected static List<IBindingComposite> createComposites() {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
-        composites.add(new CamelJmsComposite());
-        composites.add(new MessageComposerComposite());
-        composites.add(new AdvancedCamelBindingDetailsComposite(ADVANCED_PROPS,
+        composites.add(new CamelJmsComposite(toolkit));
+        composites.add(new MessageComposerComposite(toolkit, JmsPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                JmsPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+        composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, ADVANCED_PROPS,
                 JmsPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                 JmsPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                 JmsPackage.eINSTANCE.getParameterType()));

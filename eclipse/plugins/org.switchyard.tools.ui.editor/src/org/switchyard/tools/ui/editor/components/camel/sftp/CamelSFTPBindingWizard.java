@@ -44,7 +44,7 @@ public class CamelSFTPBindingWizard extends AbstractBindingWizard implements IBi
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelSFTPBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return CamelSFTPBindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

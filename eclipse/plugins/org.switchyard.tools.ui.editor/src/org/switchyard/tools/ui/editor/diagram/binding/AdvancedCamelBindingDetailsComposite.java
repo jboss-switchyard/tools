@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2013 Red Hat, Inc. 
+ * Copyright (c) 2013-1014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -7,13 +7,12 @@
  * 
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
- *
- * @author bfitzpat
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding;
 
 import java.util.List;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -21,6 +20,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.Messages;
 
 /**
@@ -31,51 +31,50 @@ import org.switchyard.tools.ui.editor.Messages;
 public class AdvancedCamelBindingDetailsComposite extends AdvancedBindingDetailsComposite {
 
     private CamelAdditionalURIPropertyTable _propTable;
-    private final EReference _mappingsFeature;
-    private final EReference _actionVariableFeature;
+    private final EReference _parameterFeature;
+    private final EReference _additionalUriParametersFeature;
     private final EClass _parameterType;
 
     /**
      * Create a new AdvancedBindingDetailsComposite.
      * 
+     * @param toolkit to be used for creating controls
      * @param advancedProperties list of properties
-     * @param actionVariableFeature collection
-     * @param mappingsFeature items in collection
-     * @param parameterType individual items
+     * @param additionalUriParametersFeature feature for additional URI parameters container
+     * @param parameterFeature feature for parameter list
+     * @param parameterType EClass for the specific model's parameter type
      */
-    public AdvancedCamelBindingDetailsComposite(List<String> advancedProperties, 
-            EReference actionVariableFeature, 
-            EReference mappingsFeature, 
+    public AdvancedCamelBindingDetailsComposite(FormToolkit toolkit, List<String> advancedProperties, 
+            EReference additionalUriParametersFeature, 
+            EReference parameterFeature, 
             EClass parameterType) {
-        super(advancedProperties);
-        _actionVariableFeature = actionVariableFeature;
-        _mappingsFeature = mappingsFeature;
+        super(toolkit, advancedProperties);
+        _additionalUriParametersFeature = additionalUriParametersFeature;
+        _parameterFeature = parameterFeature;
         _parameterType = parameterType;
     }
 
     
     
     @Override
-    protected void addAdvancedPropertiesTable(Composite parent) {
+    protected void addAdvancedPropertiesTable(Composite parent, DataBindingContext context) {
         if (!getAdvancedPropertiesList().isEmpty()) {
-            Label advancedPropertiesLabel = new Label(parent, SWT.NONE);
-            advancedPropertiesLabel.setText(Messages.AdvancedCamelBindingDetailsComposite_labelTextAdvancedProperties);
+            Label advancedPropertiesLabel = getToolkit().createLabel(parent,
+                    Messages.AdvancedCamelBindingDetailsComposite_labelTextAdvancedProperties, SWT.NONE);
             GridData gd3 = new GridData(SWT.FILL, SWT.NONE, true, false);
             advancedPropertiesLabel.setLayoutData(gd3);
     
-            super.addAdvancedPropertiesTable(parent);
+            super.addAdvancedPropertiesTable(parent, context);
         }
 
-        Label additionalURIPropsLabel = new Label(parent, SWT.NONE);
-        additionalURIPropsLabel.setText(Messages.AdvancedCamelBindingDetailsComposite_labelTextAdditionalURIParameters);
+        Label additionalURIPropsLabel = getToolkit().createLabel(parent,
+                Messages.AdvancedCamelBindingDetailsComposite_labelTextAdditionalURIParameters, SWT.NONE);
         GridData gd = new GridData(SWT.FILL, SWT.NONE, true, false);
         additionalURIPropsLabel.setLayoutData(gd);
         
         // add the additional URI properties table
-        _propTable = new CamelAdditionalURIPropertyTable(getPanel(), SWT.NONE, 
-                _actionVariableFeature, 
-                _mappingsFeature, 
-                _parameterType);
+        _propTable = new CamelAdditionalURIPropertyTable(getPanel(), SWT.NONE, _additionalUriParametersFeature,
+                _parameterFeature, _parameterType, context);
         GridData gd2 = new GridData(SWT.FILL, SWT.FILL, true, false);
         gd2.verticalSpan = 5;
         _propTable.setLayoutData(gd2);

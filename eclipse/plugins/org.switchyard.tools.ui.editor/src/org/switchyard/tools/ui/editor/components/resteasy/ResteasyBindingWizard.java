@@ -39,7 +39,7 @@ public class ResteasyBindingWizard extends AbstractBindingWizard implements IBin
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return ResteasyBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return ResteasyBindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

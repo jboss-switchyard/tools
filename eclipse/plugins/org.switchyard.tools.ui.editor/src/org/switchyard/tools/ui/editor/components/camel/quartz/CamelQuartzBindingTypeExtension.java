@@ -20,6 +20,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
@@ -55,8 +56,8 @@ public class CamelQuartzBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public List<IBindingComposite> createComposites(Binding binding) {
-        return createComposites();
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+        return createComposites(toolkit);
     }
 
     @Override
@@ -69,11 +70,13 @@ public class CamelQuartzBindingTypeExtension implements IBindingTypeExtension {
         return Messages.label_scheduling;
     }
 
-    protected static List<IBindingComposite> createComposites() {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
-        composites.add(new CamelQuartzComposite());
-        composites.add(new MessageComposerComposite());
-        composites.add(new AdvancedCamelBindingDetailsComposite(ADVANCED_PROPS,
+        composites.add(new CamelQuartzComposite(toolkit));
+        composites.add(new MessageComposerComposite(toolkit,
+                QuartzPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                QuartzPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+        composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, ADVANCED_PROPS,
                 QuartzPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                 QuartzPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                 QuartzPackage.eINSTANCE.getParameterType()));

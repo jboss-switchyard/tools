@@ -87,6 +87,8 @@ public class NewSecurityTypeWizardPage extends WizardPage {
     private ISWTObservableValue _runAsFocusObserver;
     private SecurityDomainTextValueChangeListener _securityDomainListener;
     private ISWTObservableValue _securityDomainFocusObserver;
+    
+    private FormToolkit _toolkit;
 
     protected NewSecurityTypeWizardPage(String pageName) {
         super(pageName);
@@ -94,35 +96,37 @@ public class NewSecurityTypeWizardPage extends WizardPage {
 
     @Override
     public void createControl(Composite parent) {
-        FormToolkit toolkit = new FormToolkit(parent.getDisplay());
-        Composite client3 = toolkit.createComposite(parent, SWT.WRAP);
+        if (_toolkit == null) {
+            _toolkit = new FormToolkit(parent.getDisplay());
+        }
+        Composite client3 = _toolkit.createComposite(parent, SWT.WRAP);
         GridLayout layout3 = new GridLayout();
         layout3.numColumns = 3;
         layout3.marginWidth = 2;
         layout3.marginHeight = 2;
         client3.setLayout(layout3);
 
-        toolkit.createLabel(client3, Messages.label_nameOptional);
-        _moduleNameText = toolkit.createText(client3, ""); //$NON-NLS-1$
+        _toolkit.createLabel(client3, Messages.label_nameOptional);
+        _moduleNameText = _toolkit.createText(client3, ""); //$NON-NLS-1$
         _moduleNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, Messages.label_rolesAllowed);
-        _rolesAllowedText = toolkit.createText(client3, ""); //$NON-NLS-1$
+        _toolkit.createLabel(client3, Messages.label_rolesAllowed);
+        _rolesAllowedText = _toolkit.createText(client3, ""); //$NON-NLS-1$
         _rolesAllowedText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, Messages.label_runAs);
-        _runAsText = toolkit.createText(client3, ""); //$NON-NLS-1$
+        _toolkit.createLabel(client3, Messages.label_runAs);
+        _runAsText = _toolkit.createText(client3, ""); //$NON-NLS-1$
         _runAsText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, Messages.label_securityDomain);
-        _securityDomainText = toolkit.createText(client3, ""); //$NON-NLS-1$
+        _toolkit.createLabel(client3, Messages.label_securityDomain);
+        _securityDomainText = _toolkit.createText(client3, ""); //$NON-NLS-1$
         _securityDomainText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        toolkit.createLabel(client3, Messages.label_callbackHandlerClass);
-        _callbackHandlerText = toolkit.createText(client3, "", SWT.READ_ONLY); //$NON-NLS-1$
+        _toolkit.createLabel(client3, Messages.label_callbackHandlerClass);
+        _callbackHandlerText = _toolkit.createText(client3, "", SWT.READ_ONLY); //$NON-NLS-1$
         _callbackHandlerText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
 
-        _callbackHandlerBrowseBtn = toolkit.createButton(client3, Messages.button_browse, SWT.PUSH);
+        _callbackHandlerBrowseBtn = _toolkit.createButton(client3, Messages.button_browse, SWT.PUSH);
         _callbackHandlerBrowseBtn.addSelectionListener(new SelectionListener() {
 
             @Override
@@ -136,7 +140,7 @@ public class NewSecurityTypeWizardPage extends WizardPage {
             }
         });
 
-        Label separator = toolkit.createLabel(client3, null, SWT.HORIZONTAL);
+        Label separator = _toolkit.createLabel(client3, null, SWT.HORIZONTAL);
         separator.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
 
         _securityProperties = new DomainPropertyTable(client3, SWT.NONE) {
@@ -371,6 +375,10 @@ public class NewSecurityTypeWizardPage extends WizardPage {
 
     @Override
     public void dispose() {
+        if (_toolkit != null) {
+            _toolkit.dispose();
+            _toolkit = null;
+        }
         removeObservableListeners();
         super.dispose();
     }

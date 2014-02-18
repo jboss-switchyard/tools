@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.diagram.shared;
 
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.widgets.Composite;
@@ -50,8 +51,9 @@ public interface IBindingComposite {
     /**
      * @param parent Composite parent
      * @param style any style bits
+     * @param dataBindingContext the context to be used for binding controls
      */
-    public void createContents(Composite parent, int style);
+    public void createContents(Composite parent, int style, DataBindingContext dataBindingContext);
 
     /**
      * @return panel
@@ -113,4 +115,10 @@ public interface IBindingComposite {
      * @return true/false
      */
     public boolean getDidSomething();
+    
+    /**
+     * Dispose of any resources allocated for this object.
+     */
+    public void dispose();
+    
 }

@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -15,9 +15,17 @@ package org.switchyard.tools.ui.editor.components.camel.sql;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -26,15 +34,17 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyLongValidator;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -51,6 +61,11 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
     private OperationSelectorComposite _opSelectorComposite;
     private Text _periodText;
     private Text _initialDelayText;
+    private WritableValue _bindingValue;
+
+    CamelSQLComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -67,50 +82,17 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         super.setBinding(impl);
         if (impl instanceof CamelSqlBindingType) {
             this._binding = (CamelSqlBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getQuery() != null) {
-                _queryText.setText(this._binding.getQuery());
-            } else {
-                _queryText.setText(""); //$NON-NLS-1$
+            _bindingValue.setValue(_binding);
+            // refresh the operation selector control
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed() && getTargetObject() != null) {
+                _opSelectorComposite.setTargetObject(getTargetObject());
             }
-            if (this._binding.getDataSourceRef() != null) {
-                _dataSourceRefText.setText(this._binding.getDataSourceRef());
-            } else {
-                _dataSourceRefText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getPlaceholder() != null && _placeholderText != null) {
-                _placeholderText.setText(this._binding.getPlaceholder());
-            } else if (_placeholderText != null) {
-                _placeholderText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getInitialDelay() != null && _initialDelayText != null) {
-                setTextValue(_initialDelayText, PropTypeUtil.getPropValueString(this._binding.getInitialDelay()));
-            } else if (_initialDelayText != null) {
-                _initialDelayText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getPeriod() != null && _periodText != null) {
-                _periodText.setText(this._binding.getPeriod());
-            } else if (_periodText != null) {
-                _periodText.setText(""); //$NON-NLS-1$
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-            
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
-                OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-                _opSelectorComposite.setBinding(this._binding);
-                _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+                _opSelectorComposite.setBinding(_binding);
             }
-
-            setInUpdate(false);
-            validate();
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
@@ -122,23 +104,7 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_queryText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyQuery);
-                return false;
-            }
-            if (_dataSourceRefText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyDataSourceReference);
-                return false;
-            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
@@ -149,6 +115,8 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
                 _opSelectorComposite.setTargetObject((EObject) getTargetObject());
             }
         }
+        
+        bindControls(context);
     }
 
     private Control getSQLTabControl(Composite tabFolder) {
@@ -160,13 +128,14 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
 
         _queryText = createLabelAndText(composite, Messages.label_queryStar);
         _dataSourceRefText = createLabelAndText(composite, Messages.label_dataSourceStar);
+        _placeholderText = createLabelAndText(composite, "Placeholder:");
         if (getTargetObject() instanceof Service) {
             _periodText = createLabelAndText(composite, Messages.label_periodStar);
             _initialDelayText = createLabelAndText(composite, Messages.label_initialDelay);
         }
 
         if (getTargetObject() instanceof Service) {
-            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+            _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);
             _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
             _opSelectorComposite.setLayout(new GridLayout(2, false));
             _opSelectorComposite.addChangeListener(new ChangeListener() {
@@ -185,61 +154,115 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         return this._panel;
     }
 
-    class CamelOperationSelectorOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()); //$NON-NLS-1$
-            }
-        }
-    }
-
     protected void handleModify(final Control control) {
-        if (control.equals(_queryText)) {
-            updateFeature(_binding, "query", _queryText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_dataSourceRefText)) {
-            updateFeature(_binding, "dataSourceRef", _dataSourceRefText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_placeholderText)) {
-            updateFeature(_binding, "placeholder", _placeholderText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_periodText)) {
-            updateFeature(_binding, "period", _periodText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_initialDelayText)) {
-            updateFeature(_binding, "initialDelay", _initialDelayText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_opSelectorComposite)) {
-            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
-            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        // at this point, this is the only control we can't do with strict
+        // databinding
+        if (control.equals(_opSelectorComposite)) {
             fireChangedEvent(_opSelectorComposite);
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
         }
-        super.handleModify(control);
-        validate();
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_queryText)) {
-                _queryText.setText(this._binding.getQuery());
-            } else if (control.equals(_dataSourceRefText)) {
-                _dataSourceRefText.setText(this._binding.getDataSourceRef());
-            } else if (control.equals(_placeholderText)) {
-                _placeholderText.setText(this._binding.getPlaceholder());
-            } else if (control.equals(_periodText)) {
-                _periodText.setText(PropTypeUtil.getPropValueString(this._binding.getPeriod()));
-            } else if (control.equals(_initialDelayText)) {
-                _initialDelayText.setText(PropTypeUtil.getPropValueString(this._binding.getInitialDelay()));
-//            } else if (control.equals(_operationSelectionCombo)) {
-//                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
-//                setTextValue(_operationSelectionCombo, opName);
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
     
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelSqlBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "SQL binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "SQL binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_queryText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__QUERY),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.error_emptyQuery)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_dataSourceRefText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.error_emptyDataSourceReference)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_placeholderText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        if (_periodText != null && !_periodText.isDisposed()) {
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_periodText , new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__PERIOD),
+                            new EMFUpdateValueStrategyNullForEmptyString(
+                                    "", UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        }
+
+        if (_initialDelayText != null && !_initialDelayText.isDisposed()) {
+            binding = context
+                    .bindValue(
+                            SWTObservables.observeText(_initialDelayText , new int[] {SWT.Modify }),
+                            ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                    SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY),
+                            new EMFUpdateValueStrategyNullForEmptyString("", 
+                                    UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                            new EscapedPropertyLongValidator("Initial Delay must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                            , null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        }
+
+        if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+            _opSelectorComposite.bindControls(domain, context);
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
+    }
 }

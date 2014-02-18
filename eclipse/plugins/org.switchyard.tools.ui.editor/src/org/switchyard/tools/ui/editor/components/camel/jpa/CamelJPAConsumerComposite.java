@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,13 +12,18 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.jpa;
 
-import java.util.ArrayList;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -28,7 +33,10 @@ import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.ui.IJavaElementSearchConstants;
 import org.eclipse.jdt.ui.JavaUI;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -42,13 +50,17 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.IntegerValidator;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
-import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -71,6 +83,11 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
     private Text _nativeQueryText;
     private Button _transactedCheckbox;
     private IJavaProject _project;
+    private WritableValue _bindingValue;
+
+    CamelJPAConsumerComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -87,53 +104,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
         super.setBinding(impl);
         if (impl instanceof CamelJpaBindingType) {
             this._binding = (CamelJpaBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getConsume() != null) {
-                _deleteCheckbox.setSelection(this._binding.getConsume().isConsumeDelete());
-                _lockEntityCheckbox.setSelection(this._binding.getConsume().isConsumeLockEntity());
-                if (this._binding.getConsume().isSetMaximumResults()) {
-                    setTextValue(_maximumResultsText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaximumResults()));
-                } else {
-                    _maximumResultsText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getConsumerQuery() != null) {
-                    _queryText.setText(this._binding.getConsume().getConsumerQuery());
-                } else {
-                    _queryText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getConsumerNamedQuery() != null) {
-                    _namedQueryText.setText(this._binding.getConsume().getConsumerNamedQuery());
-                } else {
-                    _namedQueryText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getConsumerNativeQuery() != null) {
-                    _nativeQueryText.setText(this._binding.getConsume().getConsumerNativeQuery());
-                } else {
-                    _nativeQueryText.setText(""); //$NON-NLS-1$
-                }
-                _transactedCheckbox.setSelection(this._binding.getConsume().isConsumerTransacted());
-            }
-            if (this._binding.getEntityClassName() != null) {
-                _entityClassNameText.setText(this._binding.getEntityClassName());
-            } else {
-                _entityClassNameText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getPersistenceUnit() != null) {
-                _persistenceUnitText.setText(this._binding.getPersistenceUnit().toString());
-            } else {
-                _persistenceUnitText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getTransactionManager() != null) {
-                _transcationManagerText.setText(this._binding.getTransactionManager());
-            } else {
-                _transcationManagerText.setText(""); //$NON-NLS-1$
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-
+            _bindingValue.setValue(_binding);
             final Resource resource = MergedModelUtil.getSwitchYard((EObject) getTargetObject()).eResource();
             if (resource.getURI().isPlatformResource()) {
                 final IFile file = ResourcesPlugin.getWorkspace().getRoot()
@@ -142,40 +113,19 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                     _project = JavaCore.create(file.getProject());
                 }
             }
-
-            setInUpdate(false);
-            validate();
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_entityClassNameText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyEntityClassName);
-            } else if (_persistenceUnitText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyPersistenceUnit);
-//            } else if (!_maximumResultsText.getText().trim().isEmpty()) {
-//                try {
-//                    new Integer(_maximumResultsText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Maximum Results must be a valid number.");
-//                }
-            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getConsumerTabControl(_panel);
+
+        bindControls(context);
     }
 
     private Control getConsumerTabControl(Composite tabFolder) {
@@ -197,10 +147,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             public void widgetSelected(SelectionEvent event) {
                 String newClass = handleBrowse(_entityClassNameText.getText());
                 if (newClass != null) {
-                    _entityClassNameText.setText(newClass);
-                    setHasChanged(true);
-                    handleModify(_entityClassNameText);
-                    fireChangedEvent(_entityClassNameText);
+                    setTextValueAndNotify(_entityClassNameText, newClass, true);
                 }
             }
         });
@@ -239,87 +186,15 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
         return this._panel;
     }
 
-    class ConsumeOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", JpaFactory.eINSTANCE.createJpaConsumerType()); //$NON-NLS-1$
-            }
-        }
-    }
-
-    protected void updateConsumeFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new ConsumeOp());
-        ops.add(new BasicOperation("consume", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-
     protected void handleModify(final Control control) {
-        if (control.equals(_entityClassNameText)) {
-            updateFeature(_binding, "entityClassName", _entityClassNameText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_persistenceUnitText)) {
-            updateFeature(_binding, "persistenceUnit", _persistenceUnitText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_transcationManagerText)) {
-            updateFeature(_binding, "transactionManager", _transcationManagerText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_deleteCheckbox)) {
-            updateConsumeFeature("consumeDelete", _deleteCheckbox.getSelection()); //$NON-NLS-1$
-        } else if (control.equals(_lockEntityCheckbox)) {
-            updateConsumeFeature("consumeLockEntity", _lockEntityCheckbox.getSelection()); //$NON-NLS-1$
-        } else if (control.equals(_maximumResultsText)) {
-            try {
-                Integer port = new Integer(_maximumResultsText.getText().trim());
-                updateConsumeFeature("maximumResults", port.intValue()); //$NON-NLS-1$
-            } catch (NumberFormatException nfe) {
-                updateConsumeFeature("maximumResults", _maximumResultsText.getText().trim()); //$NON-NLS-1$
-            }
-        } else if (control.equals(_queryText)) {
-            updateConsumeFeature("consumerQuery", _queryText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_namedQueryText)) {
-            updateConsumeFeature("consumerNamedQuery", _namedQueryText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_nativeQueryText)) {
-            updateConsumeFeature("consumerNativeQuery", _nativeQueryText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_transactedCheckbox)) {
-            updateConsumeFeature("consumerTransacted", _transactedCheckbox.getSelection()); //$NON-NLS-1$
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-        } else {
-            super.handleModify(control);
-        }
-        validate();
         setHasChanged(false);
         setDidSomething(true);
     }
-
+    
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_entityClassNameText)) {
-                _entityClassNameText.setText(this._binding.getEntityClassName());
-            } else if (control.equals(_persistenceUnitText)) {
-                _persistenceUnitText.setText(this._binding.getPersistenceUnit().toString());
-            } else if (control.equals(_transcationManagerText)) {
-                _transcationManagerText.setText(this._binding.getTransactionManager());
-            } else if (control.equals(_deleteCheckbox)) {
-                _deleteCheckbox.setSelection(this._binding.getConsume().isConsumeDelete());
-            } else if (control.equals(_lockEntityCheckbox)) {
-                _lockEntityCheckbox.setSelection(this._binding.getConsume().isConsumeLockEntity());
-            } else if (control.equals(_maximumResultsText)) {
-                setTextValue(_maximumResultsText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaximumResults()));
-            } else if (control.equals(_queryText)) {
-                _queryText.setText(this._binding.getConsume().getConsumerQuery());
-            } else if (control.equals(_namedQueryText)) {
-                _namedQueryText.setText(this._binding.getConsume().getConsumerNamedQuery());
-            } else if (control.equals(_nativeQueryText)) {
-                _nativeQueryText.setText(this._binding.getConsume().getConsumerNativeQuery());
-            } else if (control.equals(_transactedCheckbox)) {
-                _transactedCheckbox.setSelection(this._binding.getConsume().isConsumerTransacted());
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
 
     private String handleBrowse(String filter) {
@@ -342,5 +217,180 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private void bindConsumerControls(final DataBindingContext context, final EditingDomain domain) {
+        FeaturePath path = FeaturePath.fromList(
+                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__CONSUME,
+                JpaPackage.Literals.JPA_CONSUMER_TYPE__CONSUME_DELETE
+              );
+
+        org.eclipse.core.databinding.Binding binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_deleteCheckbox),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__CONSUME,
+                JpaPackage.Literals.JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY
+              );
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_lockEntityCheckbox),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__CONSUME,
+                JpaPackage.Literals.JPA_CONSUMER_TYPE__MAXIMUM_RESULTS
+              );
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_maximumResultsText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "Maximum Results must be a valid number.",
+                                UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new IntegerValidator("Maximum Results must be a valid number.")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__CONSUME,
+                JpaPackage.Literals.JPA_CONSUMER_TYPE__CONSUMER_QUERY
+              );
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_queryText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__CONSUME,
+                JpaPackage.Literals.JPA_CONSUMER_TYPE__CONSUMER_NATIVE_QUERY
+              );
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_nativeQueryText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__CONSUME,
+                JpaPackage.Literals.JPA_CONSUMER_TYPE__CONSUMER_NAMED_QUERY
+              );
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_namedQueryText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__CONSUME,
+                JpaPackage.Literals.JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED
+              );
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_transactedCheckbox),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    }
+
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelJpaBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "JPA binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "JPA binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_entityClassNameText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.error_emptyEntityClassName)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_persistenceUnitText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.error_emptyPersistenceUnit)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_transcationManagerText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                JpaPackage.Literals.CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        
+        bindConsumerControls(context, domain);
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
     }
 }

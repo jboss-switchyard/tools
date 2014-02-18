@@ -97,6 +97,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private SwitchYardType _syRoot = null;
     private DomainPropertyTable _domainProperties = null;
     private SecurityInstanceTable _securityInstanceTable;
+    private FormToolkit _toolkit;
     
     /**
      * Creates a multi-page editor example.
@@ -112,6 +113,10 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
      */
     @Override
     public void dispose() {
+        if (_toolkit != null) {
+            _toolkit.dispose();
+            _toolkit = null;
+        }
         removeDomainListener();
        super.dispose();
     }
@@ -534,7 +539,9 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private void createDomainPage() {
         if (_domainPage == null) {
 
-            FormToolkit toolkit = new FormToolkit(getContainer().getDisplay());
+            if (_toolkit == null) {
+                _toolkit = new FormToolkit(getContainer().getDisplay());
+            }
 
             final ScrolledComposite sc1 = new ScrolledComposite(getContainer(), SWT.H_SCROLL | SWT.V_SCROLL);
             sc1.setAlwaysShowScrollBars(false);
@@ -542,11 +549,11 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
             sc1.setExpandVertical(true);
             sc1.setLayoutData(new GridData(GridData.FILL_BOTH));
             
-            _domainPage = toolkit.createComposite(sc1);
+            _domainPage = _toolkit.createComposite(sc1);
             _domainPage.setLayout(new GridLayout(1, false));
 
-            createDomainSettingsSection(toolkit, _domainPage);
-            createDomainSecuritySettingsSection(toolkit, _domainPage);
+            createDomainSettingsSection(_toolkit, _domainPage);
+            createDomainSecuritySettingsSection(_toolkit, _domainPage);
 
             sc1.setContent(_domainPage);
             sc1.setMinSize(_domainPage.computeSize(SWT.DEFAULT, SWT.DEFAULT));

@@ -38,7 +38,7 @@ public class CamelSqlBindingWizard extends AbstractBindingWizard implements IBin
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelSQLBindingTypeExtension.createComposites();
+        return CamelSQLBindingTypeExtension.createComposites(getToolkit());
     }
 
 }

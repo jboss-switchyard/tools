@@ -200,7 +200,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                     IBindingComposite testcomposite = _composites.get(key);
                     if (testcomposite == null) {
                         testcomposite = new BindingPropertyComposite(BindingTypeExtensionManager.instance()
-                                .getExtensionFor(testBinding.getClass()).createComposites(testBinding));
+                                .getExtensionFor(testBinding.getClass()).createComposites(getContainer().getToolkit(), testBinding));
                         _composites.put(key, testcomposite);
                     }
                     if (_composite == null || _composite != testcomposite) {
@@ -248,7 +248,8 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                     @Override
                     protected void doExecute() {
                         Contract contract = (Contract) _targetBO;
-                        contract.getBindingGroup().remove(_listViewer.getList().getSelectionIndex());
+                        IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
+                        contract.getBinding().remove(ssel.getFirstElement());
                     }
                 };
                 _domain.getCommandStack().execute(rcmd);
@@ -331,25 +332,35 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         }
         if (_binding != null) {
             String bindingKey = createKey(_binding);
-            IBindingComposite composite = _composites.get(bindingKey);
+            final IBindingComposite composite = _composites.get(bindingKey);
             if (composite.getPanel() == null) {
                 composite.setOpenOnCreate(true);
-                    composite.setTargetObject(_binding.eContainer());
-                    composite.addChangeListener(new ChangeListener() {
-                        @Override
-                        public void stateChanged(ChangeEvent arg0) {
-                            if (_composite != null) {
-                                _validError = _composite.getErrorMessage();
-                                getContainer().validated(validate());
-                            }
+                composite.setTargetObject(_binding.eContainer());
+                composite.addChangeListener(new ChangeListener() {
+                    @Override
+                    public void stateChanged(ChangeEvent arg0) {
+                        if (_composite != null) {
+                            _validError = _composite.getErrorMessage();
+                            getContainer().validated(validate());
                         }
-                    });
-                composite.createContents(_pageBook.getContainer(), SWT.NONE);
+                    }
+                });
+                getContainer().getObservablesManager().runAndCollect(new Runnable() {
+                    @Override
+                    public void run() {
+                        composite.createContents(_pageBook.getContainer(), SWT.NONE, getContainer()
+                                .getDataBindingContext());
+                    }
+                });
                 _pageBook.registerPage(bindingKey, composite.getPanel());
                 adaptChildren(composite.getPanel());
             }
             _composite = composite;
-            composite.setBinding(_binding);
+            if (composite.getBinding() != _binding) {
+                composite.setBinding(_binding);
+            }
+            _validError = _composite.getErrorMessage();
+            getContainer().validated(validate());
             _pageBook.showPage(bindingKey);
         } else {
             _pageBook.showEmptyPage();
@@ -403,6 +414,10 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
     @Override
     public void dispose() {
         removeDomainListener();
+        for (IBindingComposite bindingComposite : _composites.values()) {
+            bindingComposite.dispose();
+        }
+        _composites.clear();
         super.dispose();
     }
 

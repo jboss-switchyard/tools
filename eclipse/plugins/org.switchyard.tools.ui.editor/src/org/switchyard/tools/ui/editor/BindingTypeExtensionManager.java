@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -29,6 +30,7 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 
@@ -120,8 +122,8 @@ public final class BindingTypeExtensionManager {
         }
 
         @Override
-        public List<IBindingComposite> createComposites(Binding binding) {
-            return Collections.<IBindingComposite> singletonList(new DefaultBindingComposite());
+        public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+            return Collections.<IBindingComposite> singletonList(new DefaultBindingComposite(toolkit));
         }
 
         @Override
@@ -137,6 +139,10 @@ public final class BindingTypeExtensionManager {
 
     private static final class DefaultBindingComposite extends AbstractSYBindingComposite {
         private Composite _composite;
+
+        private DefaultBindingComposite(FormToolkit toolkit) {
+            super(toolkit);
+        }
 
         @Override
         public String getTitle() {
@@ -163,8 +169,8 @@ public final class BindingTypeExtensionManager {
         }
 
         @Override
-        public void createContents(Composite parent, int style) {
-            _composite = new Composite(parent, style);
+        public void createContents(Composite parent, int style, DataBindingContext context) {
+            _composite = getToolkit().createComposite(parent, style);
         }
     }
 

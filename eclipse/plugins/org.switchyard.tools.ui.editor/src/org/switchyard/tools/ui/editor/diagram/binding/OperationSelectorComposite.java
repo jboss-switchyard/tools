@@ -12,21 +12,22 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.ComputedValue;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
@@ -35,29 +36,27 @@ import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.ui.IJavaElementSearchConstants;
 import org.eclipse.jdt.ui.JavaUI;
-import org.eclipse.jface.databinding.swt.ISWTObservableValue;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.internal.databinding.swt.SWTObservableValueDecorator;
-import org.eclipse.jface.internal.databinding.swt.SWTVetoableValueDecorator;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.events.TraverseEvent;
 import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.layout.GridData;
@@ -76,45 +75,24 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType;
 import org.switchyard.tools.ui.editor.Messages;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.RegexValidator;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
-import org.switchyard.tools.ui.editor.property.AbstractPropertyPage;
-import org.switchyard.tools.ui.editor.util.ErrorUtils;
 import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
 /**
  * @author bfitzpat
  * 
  */
-@SuppressWarnings("restriction")
 public class OperationSelectorComposite extends Composite {
 
-    /**
-     * Static operation selector type.
-     */
-    public static final int STATIC_TYPE = 0;
-    /**
-     * XPath operation selector type.
-     */
-    public static final int XPATH_TYPE = 1;
-    /**
-     * Regex operation selector type.
-     */
-    public static final int REGEX_TYPE = 2;
-    /**
-     * Java operation selector type.
-     */
-    public static final int JAVA_TYPE = 3;
-    
-    private int _selectedType = 0;
     private boolean _isReadOnly = false;
     private EObject _targetObj = null;
     private Binding _binding = null;
-    private String _mWarning = null;
     private ListenerList _changeListeners;
     private Combo _operationSelectionCombo;
     private Text _xpathText;
@@ -124,28 +102,24 @@ public class OperationSelectorComposite extends Composite {
     private Composite _xpathComposite;
     private Composite _regexComposite;
     private Composite _javaComposite;
-    private SwitchYardOperationSelectorType _opSelector = null;
-    private ArrayList<Control> _observableControls = new ArrayList<Control>();
-    private ArrayList<IObservable> _observables = null;
-    private boolean _observersAdded = false;
-    private TextValueChangeListener _textValueChangeListener = null;
-    private ComboValueChangeListener _comboValueChangeListener = null;
-    private Control _comboTextChanged = null;
-    private boolean _inUpdate = false;
     private Composite _panel;
-    private Combo _typeCombo;
+    private ComboViewer _typeCombo;
     private Composite _contentPanel = null;
     private StackLayout _stackLayout = null;
     private Button _browseClassBtn = null;
+
+    private WritableValue _bindingValue;
+    private IObservableValue _selectorValue;
 
     /**
      * Constructor.
      * 
      * @param parent composite
      * @param style style bits
+     * @param container the containing binding composite
      */
-    public OperationSelectorComposite(Composite parent, int style) {
-        this(parent, style, false);
+    public OperationSelectorComposite(Composite parent, int style, AbstractSYBindingComposite container) {
+        this(parent, style, container, false);
     }
 
     /**
@@ -153,13 +127,15 @@ public class OperationSelectorComposite extends Composite {
      * 
      * @param parent composite
      * @param style style bits
+     * @param container the containing binding composite
      * @param isReadOnly true/false
      */
-    public OperationSelectorComposite(Composite parent, int style, boolean isReadOnly) {
+    public OperationSelectorComposite(Composite parent, int style, AbstractSYBindingComposite container,
+            boolean isReadOnly) {
         super(parent, style);
         _panel = parent;
-        this._isReadOnly = isReadOnly;
-        this._changeListeners = new ListenerList();
+        _isReadOnly = isReadOnly;
+        _changeListeners = new ListenerList();
 
         int additionalStyles = SWT.NONE;
         if (isReadOnly) {
@@ -177,47 +153,41 @@ public class OperationSelectorComposite extends Composite {
         GridLayout layout = new GridLayout(2, false);
         opGroup.setLayout(layout);
         opGroup.setText(Messages.OperationSelectorComposite_OperationSelectorGroup_label);
-        
-        _typeCombo = createCombo(opGroup, null, true);
-        _typeCombo.add(Messages.label_operationName, STATIC_TYPE);
-        _typeCombo.add(Messages.label_xpath, XPATH_TYPE);
-        _typeCombo.add(Messages.label_regex, REGEX_TYPE);
-        _typeCombo.add(Messages.label_javaClass, JAVA_TYPE);
-        _typeCombo.select(STATIC_TYPE);
-        _typeCombo.setLayoutData(new GridData());
-        
-        _typeCombo.addSelectionListener(new SelectionListener() {
-            
+
+        _typeCombo = new ComboViewer(createCombo(opGroup, null, true));
+        _typeCombo.getControl().setLayoutData(new GridData());
+        _typeCombo.setContentProvider(ArrayContentProvider.getInstance());
+        _typeCombo.setLabelProvider(new LabelProvider() {
             @Override
-            public void widgetSelected(SelectionEvent e) {
-                String selected = _typeCombo.getText();
-                if (selected.contentEquals(Messages.label_operationName)) {
-                    selectOperationTypeInDropdown(Messages.label_operationName);
-                } else if (selected.contentEquals(Messages.label_xpath)) {
-                    selectOperationTypeInDropdown(Messages.label_xpath);
-                } else if (selected.contentEquals(Messages.label_regex)) {
-                    selectOperationTypeInDropdown(Messages.label_regex);
-                } else if (selected.contentEquals(Messages.label_javaClass)) {
-                    selectOperationTypeInDropdown(Messages.label_javaClass);
+            public String getText(Object element) {
+                if (element instanceof SelectorType) {
+                    return ((SelectorType) element).getLabel();
                 }
-                fireChangedEvent(_typeCombo);
-            }
-            
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
+                return super.getText(element);
             }
         });
-        
+        _typeCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                if (event.getSelection().isEmpty()) {
+                    return;
+                }
+                handleSelectorTypeChanged((SelectorType) ((IStructuredSelection) event.getSelection())
+                        .getFirstElement());
+            }
+        });
+        _typeCombo.setInput(SelectorType.values());
+
         _contentPanel = new Composite(opGroup, SWT.NONE);
         _stackLayout = new StackLayout();
         _contentPanel.setLayout(_stackLayout);
         _contentPanel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        
+
         _operationSelectionComposite = new Composite(_contentPanel, SWT.NONE);
         _operationSelectionCombo = createCombo(_operationSelectionComposite, Messages.label_operationName, false);
         _operationSelectionComposite.setLayout(new GridLayout());
         _operationSelectionCombo.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
-        
+
         _xpathComposite = new Composite(_contentPanel, SWT.NONE);
         _xpathText = createText(_xpathComposite);
         _xpathComposite.setLayout(new GridLayout());
@@ -243,22 +213,13 @@ public class OperationSelectorComposite extends Composite {
                     IType selected = selectType(_panel.getShell(), "org.switchyard.selector.OperationSelector", null); //$NON-NLS-1$
                     if (selected != null) {
                         _javaText.setText(selected.getFullyQualifiedName());
-                        fireChangedEvent(_javaText);
                     }
                 } catch (JavaModelException e1) {
                     e1.printStackTrace();
                 }
             }
         });
-
-        selectOperationTypeInDropdown(Messages.label_operationName);
-    }
-
-    /**
-     * @return warning string
-     */
-    public String getWarning() {
-        return this._mWarning;
+        _typeCombo.setSelection(new StructuredSelection(SelectorType.STATIC_TYPE));
     }
 
     /**
@@ -304,7 +265,7 @@ public class OperationSelectorComposite extends Composite {
     protected EObject getTargetObject() {
         return this._targetObj;
     }
-    
+
     protected Binding getBinding() {
         return this._binding;
     }
@@ -313,20 +274,128 @@ public class OperationSelectorComposite extends Composite {
      * @param binding incoming
      */
     public void setBinding(Binding binding) {
-        this._binding = binding;
+        _binding = binding;
+        populateOperationCombo();
+        _bindingValue.setValue(binding);
     }
-    
-    protected void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
+
+    /**
+     * Bind the controls.
+     * 
+     * @param domain the editing domain, may be null
+     * @param context the data binding context
+     */
+    public void bindControls(EditingDomain domain, DataBindingContext context) {
+        final Realm realm = SWTObservables.getRealm(getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, Binding.class);
+
+        /*
+         * intermediate values, used to separate control changes from value
+         * changes (i.e. the bindings for these are wrapped with
+         * SWTValueUpdater).
+         */
+        final IObservableValue selectorTypeValue = new WritableValue(realm, null, SelectorType.class);
+        final IObservableValue staticValue = new WritableValue(realm, null, String.class);
+        final IObservableValue regexValue = new WritableValue(realm, null, String.class);
+        final IObservableValue xpathValue = new WritableValue(realm, null, String.class);
+        final IObservableValue javaValue = new WritableValue(realm, null, String.class);
+
+        // bind intermediate values to controls
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                ViewersObservables.observeSingleSelection(_typeCombo), selectorTypeValue, new UpdateValueStrategy(),
+                null);
+        ControlDecorationSupport.create(binding, SWT.TOP | SWT.LEFT);
+
+        binding = context.bindValue(SWTObservables.observeSelection(_operationSelectionCombo), staticValue,
+                new UpdateValueStrategy(UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context.bindValue(SWTObservables.observeText(_regexText, SWT.Modify), regexValue,
+                new UpdateValueStrategy(UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new RegexValidator()), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context.bindValue(SWTObservables.observeText(_xpathText, SWT.Modify), xpathValue,
+                new UpdateValueStrategy(UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context.bindValue(SWTObservables.observeText(_javaText, SWT.Modify), javaValue,
+                new UpdateValueStrategy(UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * computed value. creates an operation selector based on the current
+         * state of the controls.
+         */
+        _selectorValue = new ComputedValue(realm, OperationSelectorType.class) {
+            @Override
+            protected Object calculate() {
+                // we need to interrogate all values, or we'll miss events
+                final SelectorType selectedType = (SelectorType) selectorTypeValue.getValue();
+                final String operationText = (String) staticValue.getValue();
+                final String xpathText = (String) xpathValue.getValue();
+                final String regexText = (String) regexValue.getValue();
+                final String javaText = (String) javaValue.getValue();
+                if (selectedType == null) {
+                    return null;
                 }
+                switch (selectedType) {
+                case STATIC_TYPE:
+                    return selectedType.createOperationSelector(operationText);
+                case XPATH_TYPE:
+                    return selectedType.createOperationSelector(xpathText);
+                case REGEX_TYPE:
+                    return selectedType.createOperationSelector(regexText);
+                case JAVA_TYPE:
+                    return selectedType.createOperationSelector(javaText);
+                }
+                return null;
             }
-        }
+
+            @Override
+            protected void doSetValue(Object value) {
+                if (value == null) {
+                    selectorTypeValue.setValue(SelectorType.STATIC_TYPE);
+                    staticValue.setValue("");
+                } else if (value instanceof OperationSelectorType) {
+                    final SelectorType selectorType = SelectorType.valueOf((OperationSelectorType) value);
+                    selectorTypeValue.setValue(selectorType);
+                    switch (selectorType) {
+                    case STATIC_TYPE:
+                        staticValue.setValue(((StaticOperationSelectorType) value).getOperationName());
+                        break;
+                    case XPATH_TYPE:
+                        xpathValue.setValue(((XPathOperationSelectorType) value).getExpression());
+                        break;
+                    case REGEX_TYPE:
+                        regexValue.setValue(((RegexOperationSelectorType) value).getExpression());
+                        break;
+                    case JAVA_TYPE:
+                        javaValue.setValue(((JavaOperationSelectorType) value).getClass_());
+                        break;
+                    }
+                } else {
+                    throw new IllegalArgumentException("Unknown selector type: " + value.getClass().getCanonicalName());
+                }
+                // update our cached value
+                getValue();
+            }
+        };
+
+        // now bind the selector into the binding
+        context.bindValue(
+                _selectorValue,
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_OperationSelector()));
+
+        // propagate changes to the old binding composites
+        _selectorValue.addValueChangeListener(new IValueChangeListener() {
+            @Override
+            public void handleValueChange(ValueChangeEvent event) {
+                fireChangedEvent(OperationSelectorComposite.this);
+            }
+        });
     }
 
     /**
@@ -366,8 +435,7 @@ public class OperationSelectorComposite extends Composite {
         }
         Combo combo = new Combo(parent, styles);
         combo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
-            addEnterNextListener(combo);
-        _observableControls.add(combo);
+        addEnterNextListener(combo);
         return combo;
     }
 
@@ -376,7 +444,6 @@ public class OperationSelectorComposite extends Composite {
         Text textfield = new Text(parent, styles);
         textfield.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
         addEnterNextListener(textfield);
-        _observableControls.add(textfield);
         return textfield;
     }
 
@@ -391,13 +458,13 @@ public class OperationSelectorComposite extends Composite {
             }
         });
     }
-    
+
     /**
-     * Populate the drop-down with available operations from the contract interface.
+     * Populate the drop-down with available operations from the contract
+     * interface.
      */
     public void populateOperationCombo() {
         if (_operationSelectionCombo != null && !_operationSelectionCombo.isDisposed()) {
-
             EObject target = null;
             if (getBinding() != null && getTargetObject() == null) {
                 EObject parent = getBinding().eContainer();
@@ -409,341 +476,48 @@ public class OperationSelectorComposite extends Composite {
                     setTargetObject(target);
                 }
             }
-            _operationSelectionCombo.removeAll();
-            _operationSelectionCombo.clearSelection();
+            final String selection = _operationSelectionCombo.getText();
             if (getTargetObject() != null && getTargetObject() instanceof Contract) {
                 String[] operations = InterfaceOpsUtil.gatherOperations((Contract) getTargetObject());
-                for (int i = 0; i < operations.length; i++) {
-                    _operationSelectionCombo.add(operations[i]);
+                _operationSelectionCombo.setItems(operations);
+            }
+            if (selection != null && selection.length() > 0) {
+                final int index = _operationSelectionCombo.indexOf(selection);
+                if (index < 0) {
+                    _operationSelectionCombo.setText(selection);
+                } else {
+                    _operationSelectionCombo.select(index);
                 }
             }
         }
     }
 
-    /**
-     * @param opSelector Incoming operation selector class
-     */
-    public void setOperation(SwitchYardOperationSelectorType opSelector) {
-        _opSelector = opSelector;
-        _inUpdate = true;
-        _operationSelectionCombo.setText(""); //$NON-NLS-1$
-        _xpathText.setText(""); //$NON-NLS-1$
-        _regexText.setText(""); //$NON-NLS-1$
-        _javaText.setText(""); //$NON-NLS-1$
-        
-        String value = getValueOfExistingOpSelector(opSelector);
-        if (_opSelector instanceof StaticOperationSelectorType) {
-            selectOperationTypeInDropdown(Messages.label_operationName);
-            _operationSelectionCombo.setText(value);
-        } else if (_opSelector instanceof XPathOperationSelectorType) {
-            selectOperationTypeInDropdown(Messages.label_xpath);
-            _xpathText.setText(value);
-        } else if (_opSelector instanceof RegexOperationSelectorType) {
-            selectOperationTypeInDropdown(Messages.label_regex);
-            _regexText.setText(value);
-        } else if (_opSelector instanceof JavaOperationSelectorType) {
-            selectOperationTypeInDropdown(Messages.label_javaClass);
-            _javaText.setText(value);
-        }
-        _inUpdate = false;
-        addObservableListeners(true);
-    }
-    
-    /**
-     * @param opSelector incoming operation selector class
-     * @return String value
-     */
-    public static String getValueOfExistingOpSelector(OperationSelectorType opSelector) {
-        if (opSelector instanceof StaticOperationSelectorType) {
-            return ((StaticOperationSelectorType) opSelector).getOperationName();
-        } else if (opSelector instanceof XPathOperationSelectorType) {
-            return ((XPathOperationSelectorType) opSelector).getExpression();
-        } else if (opSelector instanceof RegexOperationSelectorType) {
-            return ((RegexOperationSelectorType) opSelector).getExpression();
-        } else if (opSelector instanceof JavaOperationSelectorType) {
-            return ((JavaOperationSelectorType) opSelector).getClass_();
-        }
-        return null;
-    }
-    
-    /**
-     * @param opSelector incoming operation selector class
-     * @return int of type
-     */
-    public static int getTypeOfExistingOpSelector(OperationSelectorType opSelector) {
-        if (opSelector instanceof StaticOperationSelectorType) {
-            return STATIC_TYPE;
-        } else if (opSelector instanceof XPathOperationSelectorType) {
-            return XPATH_TYPE;
-        } else if (opSelector instanceof RegexOperationSelectorType) {
-            return REGEX_TYPE;
-        } else if (opSelector instanceof JavaOperationSelectorType) {
-            return JAVA_TYPE;
-        }
-        return -1;
-    }
-
-    /**
-     * @param toTest Control to test
-     * @return true/false
-     */
-    public boolean controlExists(Control toTest) {
-        if (toTest.equals(_operationSelectionCombo) 
-                || toTest.equals(_xpathText) 
-                || toTest.equals(_regexText)
-                || toTest.equals(_javaText)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * @return int corresponding to type of operation selector
-     */
-    public int getSelectedOperationSelectorType() {
-        return this._selectedType;
-    }
-    
-    /**
-     * @return String value for the selected operation selector
-     */
-    public String getSelectedOperationSelectorValue() {
-        switch (getSelectedOperationSelectorType()) {
-            case STATIC_TYPE:
-                return _operationSelectionCombo.getText();
-            case REGEX_TYPE:
-                return _regexText.getText();
-            case XPATH_TYPE:
-                return _xpathText.getText();
-            case JAVA_TYPE:
-                return _javaText.getText();
-
-        }
-        return null;
-    }
-
-    /**
-     * @return list of ops to handle adding/removing operation selector
-     */
-    public ArrayList<ModelOperation> getOperationSelectorFeatureOps() {
-        
-        String featureId = null;
-        String value = getSelectedOperationSelectorValue();
-        ModelOperation newOpSelectorOp = null;
-        switch (getSelectedOperationSelectorType()) {
-            case STATIC_TYPE:
-                featureId = "operationName"; //$NON-NLS-1$
-                newOpSelectorOp = new StaticOperationSelectorGroupOp((Binding) getBinding());
-                break;
-            case REGEX_TYPE:
-                featureId = "expression"; //$NON-NLS-1$
-                newOpSelectorOp = new RegexOperationSelectorGroupOp((Binding) getBinding(), value);
-                break;
-            case XPATH_TYPE:
-                featureId = "expression"; //$NON-NLS-1$
-                newOpSelectorOp = new XPathOperationSelectorGroupOp((Binding) getBinding());
-                break;
-            case JAVA_TYPE:
-                featureId = "class"; //$NON-NLS-1$
-                newOpSelectorOp = new JavaOperationSelectorGroupOp((Binding) getBinding());
-                break;
-        }
-        
-        if (_opSelector != null) {
-            Object oldValue = getFeatureValue(_opSelector, featureId);
-            // don't do anything if the value is the same
-            if (oldValue == null && value == null) {
-                return null;
-            } else if (oldValue != null && oldValue.equals(value)) {
-                return null;
-            } else if (value != null && value.equals(oldValue)) {
-                return null;
-            }
-        }
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(newOpSelectorOp);
-        return ops;
-    }
-
-    /**
-     * @param eObject incoming object to retrieve
-     * @param featureId feature to retrieve
-     * @return object value
-     */
-    private Object getFeatureValue(EObject eObject, String featureId) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    return eObject.eGet(eStructuralFeature);
-                }
-            }
-        }
-        return null;
-    }
-    
-    private void selectOperationTypeInDropdown(Object typeToSelect) {
-        
-        _typeCombo.select(0);
-        _operationSelectionCombo.setEnabled(false);
+    private void handleSelectorTypeChanged(final SelectorType typeToSelect) {
         _xpathText.setEnabled(false);
         _regexText.setEnabled(false);
         _javaText.setEnabled(false);
         _browseClassBtn.setEnabled(false);
-        
-        if (typeToSelect.equals(Messages.label_operationName)) {
-            _typeCombo.select(STATIC_TYPE);
+
+        switch (typeToSelect) {
+        case STATIC_TYPE:
             _operationSelectionCombo.setEnabled(true);
-            populateOperationCombo();
-            _selectedType = STATIC_TYPE;
             _stackLayout.topControl = _operationSelectionComposite;
-        } else if (typeToSelect.equals(Messages.label_xpath)) {
-            _typeCombo.select(XPATH_TYPE);
+            break;
+        case XPATH_TYPE:
             _xpathText.setEnabled(true);
-            _selectedType = XPATH_TYPE;
             _stackLayout.topControl = _xpathComposite;
-        } else if (typeToSelect.equals(Messages.label_regex)) {
-            _typeCombo.select(REGEX_TYPE);
+            break;
+        case REGEX_TYPE:
             _regexText.setEnabled(true);
-            _selectedType = REGEX_TYPE;
             _stackLayout.topControl = _regexComposite;
-        } else if (typeToSelect.equals(Messages.label_javaClass)) {
-            _typeCombo.select(JAVA_TYPE);
+            break;
+        case JAVA_TYPE:
             _javaText.setEnabled(true);
             _browseClassBtn.setEnabled(true);
-            _selectedType = JAVA_TYPE;
             _stackLayout.topControl = _javaComposite;
+            break;
         }
         _contentPanel.layout();
-    }
-
-    protected void addObservableListeners() {
-        addObservableListeners(false);
-    }
-
-    protected void addObservableListeners(boolean reset) {
-        if (_observersAdded && !reset) {
-            return;
-        }
-
-        if (reset && _observables != null && _observables.size() > 0) {
-            for (int i = 0; i < _observables.size(); i++) {
-                _observables.get(i).dispose();
-            }
-            _observables.clear();
-        }
-        _observables = new ArrayList<IObservable>();
-
-        if (_textValueChangeListener == null) {
-            _textValueChangeListener = new TextValueChangeListener();
-        }
-        if (_comboValueChangeListener == null) {
-            _comboValueChangeListener = new ComboValueChangeListener();
-        }
-
-        int styleBit = 0;
-        Composite parent = _panel.getParent();
-        while (parent != null && !(parent instanceof AbstractModelComposite<?>)) {
-            parent = parent.getParent();
-        }
-        if (parent != null && parent instanceof AbstractModelComposite<?>) {
-            AbstractModelComposite<?> modelComposite = (AbstractModelComposite<?>) parent;
-            if (modelComposite.getContainer() instanceof AbstractPropertyPage) {
-                styleBit = SWT.Modify;
-            }
-        }
-
-        Iterator<Control> iter = _observableControls.iterator();
-        while (iter.hasNext()) {
-            Control ctrl = iter.next();
-            if (ctrl instanceof Text) {
-                Text newText = (Text) ctrl;
-
-                ISWTObservableValue focusObserver = SWTObservables.observeText(newText, SWT.FocusOut | styleBit);
-                _observables.add(focusObserver);
-                focusObserver.addValueChangeListener(_textValueChangeListener);
-            } else if (ctrl instanceof Combo) {
-                final Combo newCombo = (Combo) ctrl;
-                if ((newCombo.getStyle() & SWT.READ_ONLY) == 0) {
-                    newCombo.addKeyListener(new KeyListener() {
-                        @Override
-                        public void keyPressed(KeyEvent e) {
-                        }
-
-                        @Override
-                        public void keyReleased(KeyEvent e) {
-                            if ((e.keyCode >= 97 && e.keyCode <= 122) || // characters
-                                    (e.keyCode >= 48 && e.keyCode <= 57) || // digits
-                                    (e.keyCode == 32) || // spacebar
-                                    (e.keyCode == SWT.BS) || // backspace
-                                    (e.keyCode == SWT.ARROW_UP) || // up arrow
-                                    (e.keyCode == SWT.ARROW_DOWN)) {
-                                _comboTextChanged = (Control) e.widget;
-                            }
-                        }
-                    });
-                    newCombo.addModifyListener(new ModifyListener() {
-                        @Override
-                        public void modifyText(ModifyEvent arg0) {
-                            _comboTextChanged = (Control) arg0.widget;
-                        }
-                    });
-                    if (styleBit != 0) {
-                        newCombo.addSelectionListener(new SelectionAdapter() {
-                            @Override
-                            public void widgetSelected(SelectionEvent e) {
-                                if (_comboTextChanged != null && _comboTextChanged.equals((Control) e.getSource())) {
-                                    System.out.println("OperationSelectorComposite: New Combo Selection (text entry): " + ((Combo) _comboTextChanged).getText()); //$NON-NLS-1$
-                                    fireChangedEvent(_comboTextChanged);
-                                    _comboTextChanged = null;
-                                }
-                            }
-                        });
-                    }
-                    newCombo.addFocusListener(new FocusListener() {
-                        @Override
-                        public void focusGained(FocusEvent e) {
-                        }
-
-                        @Override
-                        public void focusLost(FocusEvent e) {
-                            if (_comboTextChanged != null && _comboTextChanged.equals((Control) e.getSource())) {
-                                System.out.println("OperationSelectorComposite: New Combo Value (text entry): " + ((Combo) _comboTextChanged).getText()); //$NON-NLS-1$
-                                fireChangedEvent(_comboTextChanged);
-                                _comboTextChanged = null;
-                            }
-                        }
-                    });
-                }
-            }
-
-        }
-        _observersAdded = true;
-    }
-
-    class TextValueChangeListener implements IValueChangeListener {
-        @Override
-        public void handleValueChange(final ValueChangeEvent e) {
-            if (e.diff != null && !_inUpdate) {
-                System.out.println("OperationSelectorComposite: TextValueChanged: " + e.diff); //$NON-NLS-1$
-                SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
-                fireChangedEvent((Control) decorator.getWidget());
-                ErrorUtils.showErrorMessage(null);
-            }
-        }
-    }
-
-    class ComboValueChangeListener implements IValueChangeListener {
-        @Override
-        public void handleValueChange(final ValueChangeEvent e) {
-            if (e.diff != null && !_inUpdate) {
-                System.out.println("OperationSelectorComposite: ComboValueChanged: " + e.diff); //$NON-NLS-1$
-                SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
-                fireChangedEvent((Control) decorator.getWidget());
-                ErrorUtils.showErrorMessage(null);
-            }
-        }
     }
 
     /**
@@ -792,4 +566,95 @@ public class OperationSelectorComposite extends Composite {
         return (IType) types[0];
     }
 
+    private enum SelectorType {
+        STATIC_TYPE(Messages.label_operationName) {
+            @Override
+            public OperationSelectorType createOperationSelector(String selectorText) {
+                if (selectorText == null || selectorText.trim().length() == 0) {
+                    return null;
+                }
+                final StaticOperationSelectorType selector = SwitchyardFactory.eINSTANCE
+                        .createStaticOperationSelectorType();
+                selector.setOperationName(selectorText);
+                return selector;
+            }
+        },
+        XPATH_TYPE(Messages.label_xpath) {
+            @Override
+            public OperationSelectorType createOperationSelector(String selectorText) {
+                if (selectorText == null || selectorText.trim().length() == 0) {
+                    return null;
+                }
+                final XPathOperationSelectorType selector = SwitchyardFactory.eINSTANCE
+                        .createXPathOperationSelectorType();
+                selector.setExpression(selectorText);
+                return selector;
+            }
+        },
+        REGEX_TYPE(Messages.label_regex) {
+            @Override
+            public OperationSelectorType createOperationSelector(String selectorText) {
+                if (selectorText == null || selectorText.trim().length() == 0) {
+                    return null;
+                }
+                final RegexOperationSelectorType selector = SwitchyardFactory.eINSTANCE
+                        .createRegexOperationSelectorType();
+                selector.setExpression(selectorText);
+                return selector;
+            }
+        },
+        JAVA_TYPE(Messages.label_javaClass) {
+            @Override
+            public OperationSelectorType createOperationSelector(String selectorText) {
+                if (selectorText == null || selectorText.trim().length() == 0) {
+                    return null;
+                }
+                final JavaOperationSelectorType selector = SwitchyardFactory.eINSTANCE
+                        .createJavaOperationSelectorType();
+                selector.setClass(selectorText);
+                return selector;
+            }
+        };
+
+        private final String _label;
+
+        private SelectorType(String label) {
+            _label = label;
+        }
+
+        /**
+         * @return the display label for this selector type.
+         */
+        public String getLabel() {
+            return _label;
+        }
+
+        /**
+         * Create a new operation selector.
+         * 
+         * @param selectorText the selector text
+         * @return a new operation selector
+         */
+        public abstract OperationSelectorType createOperationSelector(String selectorText);
+
+        /**
+         * @param value an operation selector
+         * @return the matching enum value
+         */
+        public static SelectorType valueOf(final OperationSelectorType value) {
+            if (value == null) {
+                return null;
+            } else if (value instanceof StaticOperationSelectorType) {
+                return STATIC_TYPE;
+            } else if (value instanceof XPathOperationSelectorType) {
+                return XPATH_TYPE;
+            } else if (value instanceof RegexOperationSelectorType) {
+                return REGEX_TYPE;
+            } else if (value instanceof JavaOperationSelectorType) {
+                return JAVA_TYPE;
+            } else {
+                throw new IllegalArgumentException("Unknown selector type: " + value.getClass().getCanonicalName());
+            }
+        }
+    }
 }

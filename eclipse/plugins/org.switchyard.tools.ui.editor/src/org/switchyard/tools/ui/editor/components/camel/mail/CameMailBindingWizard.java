@@ -44,7 +44,7 @@ public class CameMailBindingWizard extends AbstractBindingWizard implements IBin
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelMailBindingTypeExtension.createComposites(getTargetContainer() instanceof Service);
+        return CamelMailBindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

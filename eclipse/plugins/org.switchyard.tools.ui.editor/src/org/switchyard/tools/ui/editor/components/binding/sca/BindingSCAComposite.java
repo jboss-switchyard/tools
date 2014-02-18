@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2013 Red Hat, Inc. 
+ * Copyright (c) 2013-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -10,16 +10,21 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.binding.sca;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.ComputedValue;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.FeatureMap.Entry;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -29,8 +34,15 @@ import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.ui.IJavaElementSearchConstants;
 import org.eclipse.jdt.ui.JavaUI;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -39,17 +51,21 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
@@ -62,13 +78,18 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
     private SCABinding _binding = null;
     private Text _nameText;
     private Button _clusteredCheckbox;
-    private Combo _loadBalancingCombo;
+    private ComboViewer _loadBalancingCombo;
     private Text _loadBalancingCustomClassText;
     private Button _browseLoadBalancingClassButton;
     private Text _targetServiceText;
     private Text _targetNamespaceText;
     private boolean _showConsumer;
     private IJavaProject _project;
+    private WritableValue _bindingValue;
+
+    BindingSCAComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -85,17 +106,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         super.setBinding(impl);
         if (impl instanceof SCABinding) {
             this._binding = (SCABinding) impl;
-            setInUpdate(true);
-            
-            Boolean clusteredValue = (Boolean) getFunkyAttributeValue("clustered"); //$NON-NLS-1$
-            if (clusteredValue != null) {
-                _clusteredCheckbox.setSelection(clusteredValue.booleanValue());
-            }
-            
-            if (!_showConsumer) {
-                 updateProducerControls();
-            }
-
+            _bindingValue.setValue(_binding);
             final Resource resource = MergedModelUtil.getSwitchYard((EObject) getTargetObject()).eResource();
             if (resource.getURI().isPlatformResource()) {
                 final IFile file = ResourcesPlugin.getWorkspace().getRoot()
@@ -104,58 +115,8 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                     _project = JavaCore.create(file.getProject());
                 }
             }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-
-            setInUpdate(false);
-            validate();
         } else {
-            this._binding = null;
-        }
-        addObservableListeners();
-    }
-
-    private void updateProducerControls() {
-        if (!_showConsumer) {
-            _loadBalancingCombo.setEnabled(_clusteredCheckbox.getSelection());
-
-            String loadBalanceValue = (String) getFunkyAttributeValue("loadBalance"); //$NON-NLS-1$
-            if (loadBalanceValue != null && (!(loadBalanceValue.equalsIgnoreCase("RandomStrategy")  //$NON-NLS-1$
-                    || loadBalanceValue.equalsIgnoreCase("RoundRobinStrategy") || loadBalanceValue.trim().length() == 0))) { //$NON-NLS-1$
-                // custom class
-                setTextValue(_loadBalancingCombo, Messages.constant_customLoadBalanceStrategy);
-                _loadBalancingCustomClassText.setEnabled(true);
-                _browseLoadBalancingClassButton.setEnabled(true);
-                setTextValue(_loadBalancingCustomClassText, loadBalanceValue);
-            } else {
-                if (loadBalanceValue == null) {
-                    _loadBalancingCombo.select(0);
-                    setTextValue(_loadBalancingCustomClassText, ""); //$NON-NLS-1$
-                } else {
-                    setTextValue(_loadBalancingCombo, loadBalanceValue);
-                    _loadBalancingCustomClassText.setEnabled(false);
-                    _browseLoadBalancingClassButton.setEnabled(false);
-                    setTextValue(_loadBalancingCustomClassText, ""); //$NON-NLS-1$
-                }
-            }
-            
-            String targetValue = (String) getFunkyAttributeValue("target"); //$NON-NLS-1$
-            setTextValue(_targetServiceText, targetValue);
-            String targetNamespaceValue = (String) getFunkyAttributeValue("targetNamespace"); //$NON-NLS-1$
-            setTextValue(_targetNamespaceText, targetNamespaceValue);
-
-            if (_clusteredCheckbox.getSelection() 
-                    && _loadBalancingCombo.getText().equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy)) {
-                _loadBalancingCustomClassText.setEnabled(true);
-                _browseLoadBalancingClassButton.setEnabled(true);
-                
-            } else {
-                _loadBalancingCustomClassText.setEnabled(false);
-                _browseLoadBalancingClassButton.setEnabled(false);
-            }
+            _bindingValue.setValue(null);
         }
     }
     
@@ -168,20 +129,16 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
-        _panel = new Composite(parent, style);
+    public void createContents(Composite parent, int style, DataBindingContext context) {
+        _panel = getToolkit().createComposite(parent, style);
         _panel.setLayout(new FillLayout());
-        getConsumerTabControl(_panel);
+        getConsumerTabControl(_panel, context);
+        bindControls(context);
     }
 
-    private Control getConsumerTabControl(Composite tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
+    private Control getConsumerTabControl(Composite tabFolder, DataBindingContext context) {
+        final FormToolkit toolkit = getToolkit();
+        Composite composite = toolkit.createComposite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
@@ -196,23 +153,24 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         clusteringGroup.setLayout(new GridLayout(3, false));
         clusteringGroup.setText(Messages.label_clustering);
+        toolkit.adapt(clusteringGroup);
         
         _clusteredCheckbox = createCheckbox(clusteringGroup, Messages.label_clustered);
         addGridData(_clusteredCheckbox, 3, GridData.FILL_HORIZONTAL);
         
         if (!_showConsumer) {
-            _loadBalancingCombo = createLabelAndCombo(clusteringGroup, Messages.label_loadBalancing, true);
-            addGridData(_loadBalancingCombo, 2, GridData.FILL_HORIZONTAL);
-            _loadBalancingCombo.removeAll();
-            _loadBalancingCombo.add(""); //$NON-NLS-1$
-            _loadBalancingCombo.add("RoundRobinStrategy"); //$NON-NLS-1$
-            _loadBalancingCombo.add("RandomStrategy"); //$NON-NLS-1$
-            _loadBalancingCombo.add(Messages.constant_customLoadBalanceStrategy);
+            _loadBalancingCombo = createLabelAndComboViewer(clusteringGroup, Messages.label_loadBalancing, true);
+            addGridData(_loadBalancingCombo.getCombo(), 2, GridData.FILL_HORIZONTAL);
+            _loadBalancingCombo.setContentProvider(ArrayContentProvider.getInstance());
+            _loadBalancingCombo.setLabelProvider(new LabelProvider());
+            String[] authTypes = new String[] {"", "RoundRobinStrategy", "RandomStrategy", Messages.constant_customLoadBalanceStrategy};
+            _loadBalancingCombo.setInput(authTypes);
             
             _loadBalancingCustomClassText = createLabelAndText(clusteringGroup, Messages.label_customClass);
+            _loadBalancingCombo.getCombo().setEnabled(false);
+            _loadBalancingCustomClassText.setEnabled(false);
 
-            _browseLoadBalancingClassButton = new Button(clusteringGroup, SWT.PUSH);
-            _browseLoadBalancingClassButton.setText(Messages.button_browse);
+            _browseLoadBalancingClassButton = toolkit.createButton(clusteringGroup, Messages.button_browse, SWT.PUSH);
             GridData btnGD = new GridData();
             _browseLoadBalancingClassButton.setLayoutData(btnGD);
             _browseLoadBalancingClassButton.addSelectionListener(new SelectionAdapter() {
@@ -220,10 +178,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 public void widgetSelected(SelectionEvent event) {
                     String newClass = handleBrowse(_loadBalancingCustomClassText.getText());
                     if (newClass != null) {
-                        _loadBalancingCustomClassText.setText(newClass);
-                        setHasChanged(true);
-                        handleModify(_loadBalancingCustomClassText);
-                        fireChangedEvent(_loadBalancingCustomClassText);
+                        setTextValueAndNotify(_loadBalancingCustomClassText, newClass, true);
                     }
                 }
             });
@@ -237,173 +192,15 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         return this._panel;
     }
 
-    private class FunkyAttributeBindingOperation extends ModelOperation {
-
-        private Binding _localObject;
-        private String _localFeature;
-        private Object _localValue;
-
-        /**
-         * @param object incoming object
-         * @param featureId feature id
-         * @param value incoming value
-         */
-        public FunkyAttributeBindingOperation(Binding object, String featureId, Object value) {
-            _localObject = object;
-            _localFeature = featureId;
-            _localValue = value;
-        }
-
-        private void removeFunkyAttributeValue(String propertyName) {
-            Iterator<Entry> iter = _localObject.getAnyAttribute().iterator();
-            while (iter.hasNext()) {
-                Entry entry = iter.next();
-                String name = entry.getEStructuralFeature().getName();
-                if (name.contentEquals(propertyName)) {
-                    _localObject.getAnyAttribute().remove(entry);
-                    break;
-                }
-            }
-        }
-        
-        private void setFunkyAttributeValue(EAttribute attribute, String propertyName, Object propertyValue) {
-            Iterator<Entry> iter = _localObject.getAnyAttribute().iterator();
-            boolean foundIt = false;
-            while (iter.hasNext()) {
-                Entry entry = iter.next();
-                String name = entry.getEStructuralFeature().getName();
-                if (name.contentEquals(propertyName)) {
-                    _localObject.getAnyAttribute().add(
-                            attribute, propertyValue);
-                    foundIt = true;
-                    break;
-                }
-            }
-            if (!foundIt) {
-                _localObject.getAnyAttribute().add(
-                        attribute, propertyValue);
-            }
-        }
-
-        @Override
-        public void run() throws Exception {
-            
-            if (_localFeature.contentEquals("clustered")) { //$NON-NLS-1$
-                boolean removeAll = false;
-                if (_localValue instanceof Boolean) {
-                    // if clustered = false, remove all other properties
-                    removeAll = !((Boolean)_localValue).booleanValue();
-                }
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Clustered(), "clustered", _localValue); //$NON-NLS-1$
-                if (removeAll) {
-                    removeFunkyAttributeValue("target"); //$NON-NLS-1$
-                    removeFunkyAttributeValue("targetNamespace"); //$NON-NLS-1$
-                    removeFunkyAttributeValue("loadBalance"); //$NON-NLS-1$
-                }
-            } else if (_localFeature.contentEquals("target")) { //$NON-NLS-1$
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Target(), "target", _localValue); //$NON-NLS-1$
-            } else if (_localFeature.contentEquals("targetNamespace")) { //$NON-NLS-1$
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_TargetNamespace(), "targetNamespace", _localValue); //$NON-NLS-1$
-            } else if (_localFeature.contentEquals("loadBalance")) { //$NON-NLS-1$
-                setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_LoadBalance(), "loadBalance", _localValue); //$NON-NLS-1$
-            }
-        }
-    }
-    
-    protected void updateFeature(final Binding eObject, final String featureId, final Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new FunkyAttributeBindingOperation(eObject, featureId, value));
-        wrapOperation(ops);
-    }
-
     protected void handleModify(final Control control) {
-        if (control.equals(_clusteredCheckbox)) {
-            updateFeature(_binding, "clustered", _clusteredCheckbox.getSelection()); //$NON-NLS-1$
-        } else if (control.equals(_targetServiceText)) {
-            updateFeature(_binding, "target", _targetServiceText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_targetNamespaceText)) {
-            updateFeature(_binding, "targetNamespace", _targetNamespaceText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_loadBalancingCombo)) {
-            String value = _loadBalancingCombo.getText().trim();
-            if (value.contentEquals(Messages.constant_customLoadBalanceStrategy)) {
-                value = _loadBalancingCustomClassText.getText().trim();
-                if (value.trim().isEmpty()) {
-                    value = "CustomLoadBalanceStrategyClass"; //$NON-NLS-1$
-                }
-            }
-            updateFeature(_binding, "loadBalance", value); //$NON-NLS-1$
-        } else if (control.equals(_loadBalancingCustomClassText)) {
-            String value = _loadBalancingCombo.getText().trim();
-            if (value.contentEquals(Messages.constant_customLoadBalanceStrategy)) {
-                value = _loadBalancingCustomClassText.getText().trim();
-            }
-            updateFeature(_binding, "loadBalance", value); //$NON-NLS-1$
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-        } else {
-            super.handleModify(control);
-        }
-        validate();
         setHasChanged(false);
         setDidSomething(true);
-        updateProducerControls();
-    }
-
-    private Object getFunkyAttributeValue(String propertyName) {
-        Iterator<Entry> iter = this._binding.getAnyAttribute().iterator();
-        while (iter.hasNext()) {
-            Entry entry = iter.next();
-            String name = entry.getEStructuralFeature().getName();
-            if (name.contentEquals(propertyName)) {
-                if (name.equals("clustered")) { //$NON-NLS-1$
-                    Boolean clusteredValue = (Boolean) entry.getValue();
-                    return clusteredValue;
-                } else if (name.equals("loadBalance")) { //$NON-NLS-1$
-                    String value = (String) entry.getValue();
-                    return value;
-                } else if (name.equals("target")) { //$NON-NLS-1$
-                    String value = (String) entry.getValue();
-                    return value;
-                } else if (name.equals("targetNamespace")) { //$NON-NLS-1$
-                    String value = (String) entry.getValue();
-                    return value;
-                }
-            }
-        }
-        return null;
     }
     
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_clusteredCheckbox)) {
-                Boolean value = (Boolean) getFunkyAttributeValue("clustered"); //$NON-NLS-1$
-                _clusteredCheckbox.setSelection(value.booleanValue());
-            } else if (control.equals(_targetServiceText)) {
-                String value = (String) getFunkyAttributeValue("target"); //$NON-NLS-1$
-                _targetServiceText.setText(value);
-            } else if (control.equals(_targetNamespaceText)) {
-                String value = (String) getFunkyAttributeValue("targetNamespace"); //$NON-NLS-1$
-                _targetNamespaceText.setText(value);
-            } else if (control.equals(_loadBalancingCombo) || control.equals(_loadBalancingCustomClassText)) {
-                String value = (String) getFunkyAttributeValue("loadBalance"); //$NON-NLS-1$
-                if (!(value.equalsIgnoreCase("RoundRobinStrategy"))) { //$NON-NLS-1$
-                    // custom class
-                    setTextValue(_loadBalancingCombo, Messages.constant_customLoadBalanceStrategy);
-                    _loadBalancingCustomClassText.setEnabled(true);
-                    setTextValue(_loadBalancingCustomClassText, value);
-                } else {
-                    setTextValue(_loadBalancingCombo, value);
-                    _loadBalancingCustomClassText.setEnabled(false);
-                    setTextValue(_loadBalancingCustomClassText, ""); //$NON-NLS-1$
-                }
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        updateProducerControls();
-        setHasChanged(false);
     }
 
     /**
@@ -437,4 +234,152 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         }
         return null;
     }
+    
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelJmsBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.error_emptyName)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.error_emptyName)), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        final IObservableValue clusteredValue =  ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                SwitchyardPackage.eINSTANCE.getDocumentRoot_Clustered());
+        
+        binding = context.bindValue(
+                SWTObservables.observeSelection(_clusteredCheckbox), clusteredValue,
+                new EMFUpdateValueStrategyNullForEmptyString(null,
+                        UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+        
+        if (!_showConsumer) {
+            final IObservableValue loadBalanceValue = new WritableValue(realm, null, String.class);
+            final IObservableValue loadBalanceCustomValue = new WritableValue(realm, null, String.class);
+
+            clusteredValue.addChangeListener(new IChangeListener() {
+                
+                @Override
+                public void handleChange(ChangeEvent event) {
+                    boolean isClustered = ((Boolean) clusteredValue.getValue()).booleanValue();
+                    _loadBalancingCombo.getControl().setEnabled(isClustered);
+                    String value = (String) loadBalanceValue.getValue();
+                    if (!isClustered && value != null) {
+                        loadBalanceValue.setValue(null);
+                    }
+                }
+            });
+    
+            loadBalanceValue.addChangeListener(new IChangeListener() {
+                
+                @Override
+                public void handleChange(ChangeEvent event) {
+                    String value = (String) loadBalanceValue.getValue();
+                    boolean isCustom = false;
+                    if (value != null) {
+                        isCustom = value.equals(Messages.constant_customLoadBalanceStrategy);
+                    }
+                    _loadBalancingCustomClassText.setEnabled(isCustom);
+                    _browseLoadBalancingClassButton.setEnabled(isCustom);
+                    if (!isCustom) {
+                        loadBalanceCustomValue.setValue(null);
+                    }
+                }
+            });
+    
+            binding = context.bindValue(
+                    SWTObservables.observeText(_targetServiceText, new int[] {SWT.Modify }),
+                    ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                            SwitchyardPackage.eINSTANCE.getDocumentRoot_Target()),
+                    new EMFUpdateValueStrategyNullForEmptyString(null,
+                            UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    
+            binding = context.bindValue(
+                    SWTObservables.observeText(_targetNamespaceText, new int[] {SWT.Modify }),
+                    ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                            SwitchyardPackage.eINSTANCE.getDocumentRoot_TargetNamespace()),
+                    new EMFUpdateValueStrategyNullForEmptyString(null,
+                            UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    
+            binding = 
+                    context.bindValue(ViewersObservables.observeSingleSelection(_loadBalancingCombo), 
+                            loadBalanceValue,
+                            new EMFUpdateValueStrategyNullForEmptyString(null,
+                                    UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    
+            binding = 
+                    context.bindValue(SWTObservables.observeText(_loadBalancingCustomClassText, SWT.Modify), 
+                            loadBalanceCustomValue,
+                            new EMFUpdateValueStrategyNullForEmptyString(null,
+                                    UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    
+            ComputedValue computedLoadBalanceValue = new ComputedValue() {
+                @Override
+                protected Object calculate() {
+                    final String loadBalance = (String) loadBalanceValue.getValue();
+                    final String customLoadBalance = (String) loadBalanceCustomValue.getValue();
+                    if (loadBalance != null 
+                            && loadBalance.equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy) 
+                            && customLoadBalance != null) {
+                        return customLoadBalance;
+                    } else if (loadBalance != null
+                            && !loadBalance.equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy)) {
+                        loadBalanceCustomValue.setValue(null);
+                        return loadBalance;
+                    }
+                    return null;
+                }
+    
+                protected void doSetValue(Object value) {
+                    final String strValue = (String) value;
+                    //"RoundRobinStrategy", "RandomStrategy"
+                    if (strValue != null 
+                            && !strValue.equalsIgnoreCase("RoundRobinStrategy")
+                            && !strValue.equalsIgnoreCase("RandomStrategy")) {
+                        loadBalanceValue.setValue(Messages.constant_customLoadBalanceStrategy);
+                        loadBalanceCustomValue.setValue(strValue);
+                    } else if (strValue != null) {
+                        loadBalanceValue.setValue(strValue);
+                        loadBalanceCustomValue.setValue(null);
+                        setTextValueAndNotify(_loadBalancingCustomClassText, "", false);
+                    } else {
+                        loadBalanceValue.setValue(null);
+                        loadBalanceCustomValue.setValue(null);
+                    }
+                    getValue();
+                }
+            };
+    
+            // now bind the proxy into the binding
+            binding = context.bindValue(
+                    computedLoadBalanceValue,
+                    ObservablesUtil.observeDetailValue(domain, _bindingValue, 
+                            SwitchyardPackage.eINSTANCE.getDocumentRoot_LoadBalance()));
+        }
+    }
+    
 }

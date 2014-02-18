@@ -21,6 +21,7 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
@@ -56,8 +57,8 @@ public class CamelSFTPBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public List<IBindingComposite> createComposites(Binding binding) {
-        return createComposites(binding.eContainer() instanceof Service);
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+        return createComposites(toolkit, binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -70,22 +71,26 @@ public class CamelSFTPBindingTypeExtension implements IBindingTypeExtension {
         return Messages.label_sftp;
     }
 
-    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit, boolean forConsumer) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);
         if (forConsumer) {
-            composites.add(new CamelSFTPConsumerComposite());
-            composites.add(new CamelSFTPConsumerMoveAndPollComposite());
-            composites.add(new CamelSFTPSecurityComposite());
-            composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedCamelBindingDetailsComposite(CONSUMER_ADVANCED_PROPS,
+            composites.add(new CamelSFTPConsumerComposite(toolkit));
+            composites.add(new CamelSFTPConsumerMoveAndPollComposite(toolkit));
+            composites.add(new CamelSFTPSecurityComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    FtpPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                    FtpPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+            composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, CONSUMER_ADVANCED_PROPS,
                     FtpPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                     FtpPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                     FtpPackage.eINSTANCE.getParameterType()));
         } else {
-            composites.add(new CamelSFTPProducerComposite());
-            composites.add(new CamelSFTPSecurityComposite());
-            composites.add(new MessageComposerComposite());
-            composites.add(new AdvancedCamelBindingDetailsComposite(PRODUCER_ADVANCED_PROPS,
+            composites.add(new CamelSFTPProducerComposite(toolkit));
+            composites.add(new CamelSFTPSecurityComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    FtpPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
+                    FtpPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));
+            composites.add(new AdvancedCamelBindingDetailsComposite(toolkit, PRODUCER_ADVANCED_PROPS,
                     FtpPackage.eINSTANCE.getBaseCamelBinding_AdditionalUriParameters(), 
                     FtpPackage.eINSTANCE.getAdditionalUriParametersType_Parameter(), 
                     FtpPackage.eINSTANCE.getParameterType()));

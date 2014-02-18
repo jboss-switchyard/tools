@@ -21,7 +21,9 @@ import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.ui.editor.IBindingTypeExtension;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.Messages;
@@ -54,8 +56,8 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
     }
 
     @Override
-    public List<IBindingComposite> createComposites(Binding binding) {
-        return createComposites(binding.eContainer() instanceof Service);
+    public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
+        return createComposites(toolkit, binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -68,16 +70,20 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
         return Messages.label_http;
     }
 
-    protected static List<IBindingComposite> createComposites(boolean forConsumer) {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit, boolean forConsumer) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(3);
         if (forConsumer) {
-            composites.add(new HttpBindingComposite());
-            composites.add(new MessageComposerComposite());
+            composites.add(new HttpBindingComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    HttpPackage.Literals.HTTP_BINDING_TYPE__MESSAGE_COMPOSER,
+                    HttpPackage.Literals.HTTP_BINDING_TYPE__CONTEXT_MAPPER));
         } else {
-            composites.add(new HttpBindingComposite());
-            composites.add(new HttpAuthenticationComposite());
-            composites.add(new HttpProxyComposite());
-            composites.add(new MessageComposerComposite());
+            composites.add(new HttpBindingComposite(toolkit));
+            composites.add(new HttpAuthenticationComposite(toolkit));
+            composites.add(new HttpProxyComposite(toolkit));
+            composites.add(new MessageComposerComposite(toolkit,
+                    HttpPackage.Literals.HTTP_BINDING_TYPE__MESSAGE_COMPOSER,
+                    HttpPackage.Literals.HTTP_BINDING_TYPE__CONTEXT_MAPPER));
         }
         return composites;
     }

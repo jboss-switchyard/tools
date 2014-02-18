@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,15 +12,21 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.file;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -30,15 +36,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -60,6 +68,11 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     private Text _maxMessagesPerPollText;
     private Text _delayText;
     private OperationSelectorComposite _opSelectorComposite;
+    private WritableValue _bindingValue;
+
+    CamelFileConsumerComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -75,73 +88,19 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     public void setBinding(Binding impl) {
         super.setBinding(impl);
         if (impl instanceof CamelFileBindingType) {
-            this._binding = (CamelFileBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getConsume() != null) {
-                if (this._binding.getConsume().isSetDelay()) {
-                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
-//                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
-                } else {
-                    _delayText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().isSetMaxMessagesPerPoll()) {
-                    setTextValue(_maxMessagesPerPollText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
-//                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
-                } else {
-                    _maxMessagesPerPollText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getExclude() != null) {
-                    _excludeText.setText(this._binding.getConsume().getExclude());
-                } else {
-                    _excludeText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getInclude() != null) {
-                    _includeText.setText(this._binding.getConsume().getInclude());
-                } else {
-                    _includeText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getMoveFailed() != null) {
-                    _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
-                } else {
-                    _moveFailedText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getMove() != null) {
-                    _moveText.setText(this._binding.getConsume().getMove());
-                } else {
-                    _moveText.setText(""); //$NON-NLS-1$
-                }
-                if (this._binding.getConsume().getPreMove() != null) {
-                    _preMoveText.setText(this._binding.getConsume().getPreMove());
-                } else {
-                    _preMoveText.setText(""); //$NON-NLS-1$
-                }
-            }
-            if (this._binding.getDirectory() != null) {
-                _directoryText.setText(this._binding.getDirectory());
-            } else {
-                _directoryText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getFileName() != null) {
-                _fileNameText.setText(this._binding.getFileName());
-            } else {
-                _fileNameText.setText(""); //$NON-NLS-1$
-            }
-            if (_binding.getName() == null) {
-                _nameText.setText(""); //$NON-NLS-1$
-            } else {
-                _nameText.setText(_binding.getName());
-            }
-            _autoCreateButton.setSelection(this._binding.isAutoCreate());
-            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-            _opSelectorComposite.setBinding(this._binding);
-            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+            _binding = (CamelFileBindingType) impl;
 
-            setInUpdate(false);
-            validate();
+            _bindingValue.setValue(_binding);
+
+            // refresh the operation selector control
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed() && getTargetObject() != null) {
+                _opSelectorComposite.setTargetObject(getTargetObject());
+            }
+
+            _opSelectorComposite.setBinding(_binding);
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
@@ -153,34 +112,13 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_directoryText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyDirectory);
-//            } else if (!_delayText.getText().trim().isEmpty()) {
-//                try {
-//                    new BigInteger(_delayText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Delay value must be a valid number.");
-//                }
-//            } else if (!_maxMessagesPerPollText.getText().trim().isEmpty()) {
-//                try {
-//                    new BigInteger(_maxMessagesPerPollText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Max Messages per Poll value must be a valid number.");
-//                }
-            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getConsumerTabControl(_panel);
+        
+        bindControls(context);
     }
 
     private Control getConsumerTabControl(Composite tabFolder) {
@@ -197,7 +135,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         _includeText = createLabelAndText(composite, Messages.label_include);
         _excludeText = createLabelAndText(composite, Messages.label_exclude);
 
-        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         _opSelectorComposite.setLayout(new GridLayout(2, false));
         _opSelectorComposite.addChangeListener(new ChangeListener() {
@@ -232,103 +170,202 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         return this._panel;
     }
 
-    class ConsumeOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", FileFactory.eINSTANCE.createFileConsumerType()); //$NON-NLS-1$
-            }
-        }
-    }
-
-    protected void updateConsumeFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new ConsumeOp());
-        ops.add(new BasicOperation("consume", featureId, value)); //$NON-NLS-1$
-        wrapOperation(ops);
-    }
-
     protected void handleModify(final Control control) {
-        if (control.equals(_directoryText)) {
-            updateFeature(_binding, "directory", _directoryText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_fileNameText)) {
-            updateFeature(_binding, "fileName", _fileNameText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_autoCreateButton)) {
-            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection())); //$NON-NLS-1$
-        } else if (control.equals(_delayText)) {
-            try {
-                BigInteger delay = new BigInteger(_delayText.getText().trim());
-                updateConsumeFeature("delay", delay); //$NON-NLS-1$
-            } catch (NumberFormatException nfe) {
-                updateConsumeFeature("delay", _delayText.getText().trim()); //$NON-NLS-1$
-            }
-        } else if (control.equals(_excludeText)) {
-            updateConsumeFeature("exclude", _excludeText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_includeText)) {
-            updateConsumeFeature("include", _includeText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_maxMessagesPerPollText)) {
-            try {
-                BigInteger max = new BigInteger(_maxMessagesPerPollText.getText().trim());
-                updateConsumeFeature("maxMessagesPerPoll", max); //$NON-NLS-1$
-            } catch (NumberFormatException nfe) {
-                updateConsumeFeature("maxMessagesPerPoll", _maxMessagesPerPollText.getText().trim()); //$NON-NLS-1$
-            }
-        } else if (control.equals(_moveFailedText)) {
-            updateConsumeFeature("moveFailed", _moveFailedText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_moveText)) {
-            updateConsumeFeature("move", _moveText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_preMoveText)) {
-            updateConsumeFeature("preMove", _preMoveText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_opSelectorComposite)) {
-            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
-            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        // at this point, this is the only control we can't do with strict
+        // databinding
+        if (control.equals(_opSelectorComposite)) {
             fireChangedEvent(_opSelectorComposite);
-        } else if (control.equals(_nameText)) {
-            super.updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-        } else {
-            super.handleModify(control);
         }
-        validate();
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_directoryText)) {
-                _directoryText.setText(this._binding.getDirectory());
-            } else if (control.equals(_fileNameText)) {
-                _fileNameText.setText(this._binding.getFileName());
-            } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
-//            } else if (control.equals(_operationSelectionCombo)) {
-//                String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
-//                setTextValue(_operationSelectionCombo, opName);
-            } else if (control.equals(_nameText)) {
-                _nameText.setText(_binding.getName() == null ? "" : _binding.getName()); //$NON-NLS-1$
-            } else if (this._binding.getConsume() != null) {
-                if (control.equals(_delayText)) {
-                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
-//                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
-                } else if (control.equals(_maxMessagesPerPollText)) {
-                    setTextValue(_maxMessagesPerPollText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
-//                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
-                } else if (control.equals(_excludeText)) {
-                    _excludeText.setText(this._binding.getConsume().getExclude());
-                } else if (control.equals(_includeText)) {
-                    _includeText.setText(this._binding.getConsume().getInclude());
-                } else if (control.equals(_moveFailedText)) {
-                    _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
-                } else if (control.equals(_moveText)) {
-                    _moveText.setText(this._binding.getConsume().getMove());
-                } else if (control.equals(_preMoveText)) {
-                    _preMoveText.setText(this._binding.getConsume().getPreMove());
-                }
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
+    }
+
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelFileBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "File binding name cannot be empty")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        ScaPackage.eINSTANCE.getBinding_Name()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                "File binding name cannot be empty")), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_directoryText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__DIRECTORY),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.error_emptyDirectory)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_fileNameText , new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__FILE_NAME),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeSelection(_autoCreateButton),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__AUTO_CREATE),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        bindConsumeControls(context, domain);
+        
+        _opSelectorComposite.bindControls(domain, context);
+    }
+
+    private void bindConsumeControls(final DataBindingContext context, final EditingDomain domain) {
+        FeaturePath path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__CONSUME,
+                FilePackage.Literals.FILE_CONSUMER_TYPE__INCLUDE
+              );
+        
+        org.eclipse.core.databinding.Binding binding = context
+                .bindValue(
+                        SWTObservables.observeText(_includeText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__CONSUME,
+                FilePackage.Literals.FILE_CONSUMER_TYPE__EXCLUDE
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_excludeText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__CONSUME,
+                FilePackage.Literals.FILE_CONSUMER_TYPE__PRE_MOVE
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_preMoveText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__CONSUME,
+                FilePackage.Literals.FILE_CONSUMER_TYPE__MOVE
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_moveText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__CONSUME,
+                FilePackage.Literals.FILE_CONSUMER_TYPE__MOVE_FAILED
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_moveFailedText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__CONSUME,
+                FilePackage.Literals.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_maxMessagesPerPollText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                        new EscapedPropertyIntegerValidator("Max Messages per Poll must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                        , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        path = FeaturePath.fromList(
+                FilePackage.Literals.CAMEL_FILE_BINDING_TYPE__CONSUME,
+                FilePackage.Literals.FILE_CONSUMER_TYPE__DELAY
+              );
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_delayText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                path),
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null,
+                                UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
+                                        new EscapedPropertyIntegerValidator("Delay must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                        , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
     }
 
 }

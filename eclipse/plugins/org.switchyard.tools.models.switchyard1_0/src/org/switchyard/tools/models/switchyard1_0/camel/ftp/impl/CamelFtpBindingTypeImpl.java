@@ -209,7 +209,7 @@ public class CamelFtpBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final String HOST_EDEFAULT = "";
+    protected static final String HOST_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getHost() <em>Host</em>}' attribute.

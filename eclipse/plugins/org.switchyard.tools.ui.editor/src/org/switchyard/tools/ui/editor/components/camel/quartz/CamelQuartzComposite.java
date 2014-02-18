@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,37 +12,44 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.quartz;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.TimeZone;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
-import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
+import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
+import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
-import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
  * @author bfitzpat
@@ -56,8 +63,13 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     private Text _cronText;
     private Text _startTimeText;
     private Text _endTimeText;
-    private Combo _timezoneText;
+    private ComboViewer _timezoneViewer;
     private OperationSelectorComposite _opSelectorComposite;
+    private WritableValue _bindingValue;
+
+    CamelQuartzComposite(FormToolkit toolkit) {
+        super(toolkit);
+    }
 
     @Override
     public String getTitle() {
@@ -73,54 +85,19 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     public void setBinding(Binding impl) {
         super.setBinding(impl);
         if (impl instanceof CamelQuartzBindingType) {
-            this._binding = (CamelQuartzBindingType) impl;
-            setInUpdate(true);
-            if (this._binding.getCamelBindingName() != null) {
-                _nameText.setText(this._binding.getCamelBindingName());
-            } else {
-                _nameText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getCron() != null) {
-                _cronText.setText(this._binding.getCron());
-            } else {
-                _cronText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getTriggerStartTime() != null) {
-                _startTimeText.setText(this._binding.getTriggerStartTime().toString());
-            } else {
-                _startTimeText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getTriggerEndTime() != null) {
-                _endTimeText.setText(this._binding.getTriggerEndTime().toString());
-            } else {
-                _endTimeText.setText(""); //$NON-NLS-1$
-            }
-            if (this._binding.getTriggerTimeZone() != null) {
-                _timezoneText.setText(this._binding.getTriggerTimeZone().toString());
-            } else {
-                _timezoneText.setText(""); //$NON-NLS-1$
+            _binding = (CamelQuartzBindingType) impl;
+
+            _bindingValue.setValue(_binding);
+
+            // refresh the operation selector control
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed() && getTargetObject() != null) {
+                _opSelectorComposite.setTargetObject(getTargetObject());
             }
 
-            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
-            _opSelectorComposite.setBinding(this._binding);
-            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
-
-            setInUpdate(false);
-            if (this._binding.getCamelBindingName() == null || this._binding.getCamelBindingName().trim().isEmpty()) {
-                if (getTargetObject() != null && getTargetObject() instanceof Contract) {
-                    Contract contract = (Contract) getTargetObject();
-                    if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
-                        org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract.eContainer();
-                        _nameText.setText(composite.getName());
-                        handleModify(_nameText);
-                    }
-                }
-            }
-            validate();
+            _opSelectorComposite.setBinding(_binding);
         } else {
-            this._binding = null;
+            _bindingValue.setValue(null);
         }
-        addObservableListeners();
     }
 
     @Override
@@ -132,45 +109,17 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     }
 
     @Override
-    protected boolean validate() {
-        setErrorMessage(null);
-        if (getBinding() != null) {
-            if (_nameText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyName);
-            }
-            if (_cronText.getText().trim().isEmpty()) {
-                setErrorMessage(Messages.error_emptyCron);
-            }
-//            if (!_startTimeText.getText().trim().isEmpty()) {
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-//                try {
-//                    sdf.parse(_startTimeText.getText().trim());
-//                } catch (ParseException pe) {
-//                    setErrorMessage("Start time must match the format yyyy-MM-ddTHH:mm:ss");
-//                }
-//            }
-//            if (!_endTimeText.getText().trim().isEmpty()) {
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-//                try {
-//                    sdf.parse(_endTimeText.getText().trim());
-//                } catch (ParseException pe) {
-//                    setErrorMessage("End time must match the format yyyy-MM-ddTHH:mm:ss");
-//                }
-//            }
-        }
-        return (getErrorMessage() == null);
-    }
-
-    @Override
-    public void createContents(Composite parent, int style) {
+    public void createContents(Composite parent, int style, DataBindingContext context) {
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
         getSchedulerTabControl(_panel);
+        
+        bindControls(context);
     }
 
     private Control getSchedulerTabControl(Composite tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
+        Composite composite = getToolkit().createComposite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
@@ -178,15 +127,17 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         _cronText = createLabelAndText(composite, Messages.label_cronStar);
         _startTimeText = createLabelAndText(composite, Messages.label_startTime);
         _endTimeText = createLabelAndText(composite, Messages.label_endTime);
-        _timezoneText = createLabelAndCombo(composite, Messages.label_timeZone, false);
-        _timezoneText.removeAll();
-        String[] timezones = TimeZone.getAvailableIDs();
-        Arrays.sort(timezones);
-        for (int i = 0; i < timezones.length; i++) {
-            _timezoneText.add(timezones[i]);    
-        }
 
-        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+        _timezoneViewer = createLabelAndComboViewer(composite, Messages.label_timeZone, true);
+        _timezoneViewer.setContentProvider(ArrayContentProvider.getInstance());
+        _timezoneViewer.setLabelProvider(new LabelProvider());
+        String[] timezones = TimeZone.getAvailableIDs();
+        String[] tzPlusBlank = Arrays.copyOf(timezones, timezones.length + 1);
+        tzPlusBlank[timezones.length] = "";
+        Arrays.sort(tzPlusBlank);
+        _timezoneViewer.setInput(tzPlusBlank);
+
+        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         _opSelectorComposite.setLayout(new GridLayout(2, false));
         _opSelectorComposite.addChangeListener(new ChangeListener() {
@@ -194,7 +145,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             public void stateChanged(ChangeEvent e) {
                 handleModify(_opSelectorComposite);
             }
-         });
+        });
 
         return composite;
     }
@@ -204,81 +155,102 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         return this._panel;
     }
 
-    class CamelOperationSelectorOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()); //$NON-NLS-1$
-            }
-        }
-    }
-    
     protected void handleModify(final Control control) {
-        if (control.equals(_nameText)) {
-            updateFeature(_binding, "camelBindingName", _nameText.getText().trim()); //$NON-NLS-1$
-            updateFeature(_binding, "name", _nameText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_cronText)) {
-            updateFeature(_binding, "cron", _cronText.getText().trim()); //$NON-NLS-1$
-        } else if (control.equals(_startTimeText)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //$NON-NLS-1$
-            try {
-                XMLGregorianCalendar calendar = null;
-                if (_startTimeText.getText().trim().length() > 0) {
-                    Date date = sdf.parse(_startTimeText.getText().trim());
-                    String dateStr = sdf.format(date);
-                    calendar = XMLTypeFactory.eINSTANCE.createDateTime(dateStr);
-                }
-                updateFeature(_binding, "triggerStartTime", calendar); //$NON-NLS-1$
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        } else if (control.equals(_endTimeText)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //$NON-NLS-1$
-            try {
-                XMLGregorianCalendar calendar = null;
-                if (_endTimeText.getText().trim().length() > 0) {
-                    Date date = sdf.parse(_endTimeText.getText().trim());
-                    String dateStr = sdf.format(date);
-                    calendar = XMLTypeFactory.eINSTANCE.createDateTime(dateStr);
-                }
-                updateFeature(_binding, "triggerEndTime", calendar); //$NON-NLS-1$
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        } else if (control.equals(_timezoneText)) {
-            String timezone = _timezoneText.getText().trim();
-            updateFeature(_binding,"triggerTimeZone", timezone);
-        } else if (control.equals(_opSelectorComposite)) {
-            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
-            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
+        // at this point, this is the only control we can't do with strict
+        // databinding
+        if (control.equals(_opSelectorComposite)) {
             fireChangedEvent(_opSelectorComposite);
         }
-        super.handleModify(control);
         setHasChanged(false);
         setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
-            if (control.equals(_nameText)) {
-                _nameText.setText(this._binding.getCamelBindingName());
-            } else if (control.equals(_cronText)) {
-                _cronText.setText(this._binding.getCron());
-            } else if (control.equals(_endTimeText)) {
-                _endTimeText.setText(this._binding.getTriggerEndTime().toString());
-            } else if (control.equals(_startTimeText)) {
-                _startTimeText.setText(this._binding.getTriggerStartTime().toString());
-//            } else if (control.equals(_operationSelectionCombo)) {
-//                if (this._binding.getOperationSelector() != null && this._binding.getOperationSelector() instanceof StaticOperationSelectorType) {
-//                    populateOperationCombo();
-//                    String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
-//                    setTextValue(_operationSelectionCombo, opName);
-//                }
-            } else {
-                super.handleUndo(control);
-            }
+            super.handleUndo(control);
         }
-        setHasChanged(false);
     }
 
+    private void bindControls(final DataBindingContext context) {
+        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+
+        _bindingValue = new WritableValue(realm, null, CamelQuartzBindingType.class);
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.CamelQuartzComposite_Validation_Name_Empty)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        /*
+         * we also want to bind the name field to the binding name. note that
+         * the model to target updater is configured to NEVER update. we want
+         * the camel binding name to be the definitive source for this field.
+         */
+        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+                .observeDetailValue(domain, _bindingValue,
+                        QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.CamelQuartzComposite_Validation_Name_Empty)), new UpdateValueStrategy(
+                        UpdateValueStrategy.POLICY_NEVER));
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_cronText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__CRON),
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                        Messages.CamelQuartzComposite_Validation_CRON_Empty)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        EMFUpdateValueStrategy startTimeStrategy = new EMFUpdateValueStrategyNullForEmptyString(
+                Messages.CamelQuartzComposite_Validation_Start_Time_Format,
+                UpdateValueStrategy.POLICY_CONVERT);
+        
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_startTimeText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME),
+                        startTimeStrategy, null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        EMFUpdateValueStrategy endTimeStrategy = new EMFUpdateValueStrategyNullForEmptyString(
+                Messages.CamelQuartzComposite_Validation_End_Time_Format,
+                UpdateValueStrategy.POLICY_CONVERT);
+
+        binding = context.bindValue(
+                SWTObservables.observeText(_endTimeText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME),
+                endTimeStrategy, null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context.bindValue(
+                ViewersObservables.observeSingleSelection(_timezoneViewer),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE),
+                new EMFUpdateValueStrategyNullForEmptyString(
+                        null, UpdateValueStrategy.POLICY_CONVERT), null);
+
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        _opSelectorComposite.bindControls(domain, context);
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite#dispose()
+     */
+    @Override
+    public void dispose() {
+        _bindingValue.dispose();
+        super.dispose();
+    }
 }
