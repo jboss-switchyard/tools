@@ -20,7 +20,7 @@
   <description>Parent project for Eclipse based SwitchYard tooling.</description>
 
   <properties>
-    <tycho-version>0.16.0</tycho-version>
+    <tycho-version>0.18.1</tycho-version>
     <version.jbtis.target-platform>4.1.5.Final</version.jbtis.target-platform>
   </properties>
 
