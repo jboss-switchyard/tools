@@ -2,7 +2,7 @@
 <feature
       id="org.switchyard.tools.feature"
       label="%featureName"
-      version="1.1.4.qualifier"
+      version="1.1.5.qualifier"
       provider-name="%featureProvider"
       plugin="org.switchyard.tools">
 
