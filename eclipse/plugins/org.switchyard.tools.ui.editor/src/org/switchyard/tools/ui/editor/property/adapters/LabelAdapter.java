@@ -37,6 +37,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
+import org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
@@ -88,7 +89,7 @@ public final class LabelAdapter {
     private static String getLabelForBindingType(Binding binding) {
         String bindingLabel = BindingTypeExtensionManager.instance().getExtensionFor(binding.getClass()).getTypeName(binding);
         if (binding.getName() != null && !binding.getName().trim().isEmpty()) {
-            bindingLabel = bindingLabel + " (" + binding.getName() + ")";
+            bindingLabel = bindingLabel + " (" + binding.getName() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
         }
         return bindingLabel;
     }
@@ -105,7 +106,7 @@ public final class LabelAdapter {
         } else if (intfc instanceof WSDLPortType) {
             return Messages.constant_wsdl;
         } else {
-            return "Unsupported (" + intfc.eClass().getClass().getName() + ")";
+            return Messages.LabelAdapter_Unsupported + intfc.eClass().getClass().getName() + ")"; //$NON-NLS-2$
         }
     }
     /**
@@ -175,11 +176,13 @@ public final class LabelAdapter {
      * @return String label
      */
     private static String getLabelForTransformType(TransformType transform) {
-        String label = "Unsupported (" + transform.eClass().getClass().getName() + ")";
+        String label = Messages.LabelAdapter_Unsupported + transform.eClass().getClass().getName() + ")"; //$NON-NLS-2$
         if (transform instanceof JAXBTransformType) {
             label = Messages.constant_jaxb;
         } else if (transform instanceof XsltTransformType) {
             label = Messages.constant_xslt;
+        } else if (transform instanceof DozerTransformType) {
+            label = Messages.LabelAdapter_Dozer_Transform;
         } else if (transform instanceof JavaTransformType1) {
             label = Messages.constant_java;
         } else if (transform instanceof JsonTransformType) {
@@ -200,7 +203,7 @@ public final class LabelAdapter {
      * @return String label
      */
     private static String getLabelForValidatorType(ValidateType validator) {
-        String label = "Unsupported (" + validator.eClass().getClass().getName() + ")";
+        String label = Messages.LabelAdapter_Unsupported + validator.eClass().getClass().getName() + ")"; //$NON-NLS-2$
         if (validator instanceof XmlValidateType) {
             label = Messages.constant_xml;
         } else if (validator instanceof JavaValidateType) {

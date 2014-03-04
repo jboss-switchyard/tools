@@ -583,11 +583,21 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformDozer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformJava"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformJaxb"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformJson"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformSmooks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformXslt"/>
+    </genClasses>
+    <genClasses ecoreClass="config.transform.ecore#//DozerFileEntryType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//DozerFileEntryType/file"/>
+    </genClasses>
+    <genClasses ecoreClass="config.transform.ecore#//DozerMappingFilesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DozerMappingFilesType/entry"/>
+    </genClasses>
+    <genClasses ecoreClass="config.transform.ecore#//DozerTransformType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DozerTransformType/mappingFiles"/>
     </genClasses>
     <genClasses ecoreClass="config.transform.ecore#//JavaTransformType1">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//JavaTransformType1/class"/>

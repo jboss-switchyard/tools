@@ -32,7 +32,7 @@ public class TransformFactoryImpl extends EFactoryImpl implements TransformFacto
      */
 	public static TransformFactory init() {
         try {
-            TransformFactory theTransformFactory = (TransformFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:transform:2.0"); 
+            TransformFactory theTransformFactory = (TransformFactory)EPackage.Registry.INSTANCE.getEFactory(TransformPackage.eNS_URI);
             if (theTransformFactory != null) {
                 return theTransformFactory;
             }
@@ -62,6 +62,9 @@ public class TransformFactoryImpl extends EFactoryImpl implements TransformFacto
 	public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case TransformPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case TransformPackage.DOZER_FILE_ENTRY_TYPE: return createDozerFileEntryType();
+            case TransformPackage.DOZER_MAPPING_FILES_TYPE: return createDozerMappingFilesType();
+            case TransformPackage.DOZER_TRANSFORM_TYPE: return createDozerTransformType();
             case TransformPackage.JAVA_TRANSFORM_TYPE1: return createJavaTransformType1();
             case TransformPackage.JAXB_TRANSFORM_TYPE: return createJAXBTransformType();
             case TransformPackage.JSON_TRANSFORM_TYPE: return createJsonTransformType();
@@ -125,6 +128,36 @@ public class TransformFactoryImpl extends EFactoryImpl implements TransformFacto
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DozerFileEntryType createDozerFileEntryType() {
+        DozerFileEntryTypeImpl dozerFileEntryType = new DozerFileEntryTypeImpl();
+        return dozerFileEntryType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DozerMappingFilesType createDozerMappingFilesType() {
+        DozerMappingFilesTypeImpl dozerMappingFilesType = new DozerMappingFilesTypeImpl();
+        return dozerMappingFilesType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DozerTransformType createDozerTransformType() {
+        DozerTransformTypeImpl dozerTransformType = new DozerTransformTypeImpl();
+        return dozerTransformType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

@@ -77,6 +77,18 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
                 return createDocumentRootAdapter();
             }
             @Override
+            public Adapter caseDozerFileEntryType(DozerFileEntryType object) {
+                return createDozerFileEntryTypeAdapter();
+            }
+            @Override
+            public Adapter caseDozerMappingFilesType(DozerMappingFilesType object) {
+                return createDozerMappingFilesTypeAdapter();
+            }
+            @Override
+            public Adapter caseDozerTransformType(DozerTransformType object) {
+                return createDozerTransformTypeAdapter();
+            }
+            @Override
             public Adapter caseJavaTransformType1(JavaTransformType1 object) {
                 return createJavaTransformType1Adapter();
             }
@@ -135,6 +147,48 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType <em>Dozer File Entry Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType
+     * @generated
+     */
+    public Adapter createDozerFileEntryTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType <em>Dozer Mapping Files Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType
+     * @generated
+     */
+    public Adapter createDozerMappingFilesTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType <em>Dozer Transform Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType
+     * @generated
+     */
+    public Adapter createDozerTransformTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1 <em>Java Transform Type1</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

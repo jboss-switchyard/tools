@@ -77,6 +77,25 @@ public class TransformSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case TransformPackage.DOZER_FILE_ENTRY_TYPE: {
+                DozerFileEntryType dozerFileEntryType = (DozerFileEntryType)theEObject;
+                T result = caseDozerFileEntryType(dozerFileEntryType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case TransformPackage.DOZER_MAPPING_FILES_TYPE: {
+                DozerMappingFilesType dozerMappingFilesType = (DozerMappingFilesType)theEObject;
+                T result = caseDozerMappingFilesType(dozerMappingFilesType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case TransformPackage.DOZER_TRANSFORM_TYPE: {
+                DozerTransformType dozerTransformType = (DozerTransformType)theEObject;
+                T result = caseDozerTransformType(dozerTransformType);
+                if (result == null) result = caseTransformType(dozerTransformType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case TransformPackage.JAVA_TRANSFORM_TYPE1: {
                 JavaTransformType1 javaTransformType1 = (JavaTransformType1)theEObject;
                 T result = caseJavaTransformType1(javaTransformType1);
@@ -132,6 +151,51 @@ public class TransformSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Dozer File Entry Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Dozer File Entry Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseDozerFileEntryType(DozerFileEntryType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Dozer Mapping Files Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Dozer Mapping Files Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseDozerMappingFilesType(DozerMappingFilesType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Dozer Transform Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Dozer Transform Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseDozerTransformType(DozerTransformType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Java Transform Type1</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;

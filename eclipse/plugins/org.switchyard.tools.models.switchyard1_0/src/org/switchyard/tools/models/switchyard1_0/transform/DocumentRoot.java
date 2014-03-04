@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformDozer <em>Transform Dozer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformJava <em>Transform Java</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformJaxb <em>Transform Jaxb</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformJson <em>Transform Json</em>}</li>
@@ -90,6 +91,33 @@ public interface DocumentRoot extends EObject {
 	EMap<String, String> getXSISchemaLocation();
 
 	/**
+     * Returns the value of the '<em><b>Transform Dozer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Transform Dozer</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Transform Dozer</em>' containment reference.
+     * @see #setTransformDozer(DozerTransformType)
+     * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformDozer()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='transform.dozer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#transform'"
+     * @generated
+     */
+    DozerTransformType getTransformDozer();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformDozer <em>Transform Dozer</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Transform Dozer</em>' containment reference.
+     * @see #getTransformDozer()
+     * @generated
+     */
+    void setTransformDozer(DozerTransformType value);
+
+    /**
      * Returns the value of the '<em><b>Transform Java</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>

@@ -35,6 +35,33 @@ public interface TransformFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+     * Returns a new object of class '<em>Dozer File Entry Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Dozer File Entry Type</em>'.
+     * @generated
+     */
+    DozerFileEntryType createDozerFileEntryType();
+
+    /**
+     * Returns a new object of class '<em>Dozer Mapping Files Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Dozer Mapping Files Type</em>'.
+     * @generated
+     */
+    DozerMappingFilesType createDozerMappingFilesType();
+
+    /**
+     * Returns a new object of class '<em>Dozer Transform Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Dozer Transform Type</em>'.
+     * @generated
+     */
+    DozerTransformType createDozerTransformType();
+
+    /**
      * Returns a new object of class '<em>Java Transform Type1</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

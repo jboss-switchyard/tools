@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
@@ -41,6 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformDozer <em>Transform Dozer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformJava <em>Transform Java</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformJaxb <em>Transform Jaxb</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformJson <em>Transform Json</em>}</li>
@@ -138,6 +140,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DozerTransformType getTransformDozer() {
+        return (DozerTransformType)getMixed().get(TransformPackage.Literals.DOCUMENT_ROOT__TRANSFORM_DOZER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetTransformDozer(DozerTransformType newTransformDozer, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(TransformPackage.Literals.DOCUMENT_ROOT__TRANSFORM_DOZER, newTransformDozer, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTransformDozer(DozerTransformType newTransformDozer) {
+        ((FeatureMap.Internal)getMixed()).set(TransformPackage.Literals.DOCUMENT_ROOT__TRANSFORM_DOZER, newTransformDozer);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -286,6 +315,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
+                return basicSetTransformDozer(null, msgs);
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:
                 return basicSetTransformJava(null, msgs);
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAXB:
@@ -317,6 +348,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
+                return getTransformDozer();
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:
                 return getTransformJava();
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAXB:
@@ -347,6 +380,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
+                return;
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
+                setTransformDozer((DozerTransformType)newValue);
                 return;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:
                 setTransformJava((JavaTransformType1)newValue);
@@ -384,6 +420,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
+                setTransformDozer((DozerTransformType)null);
+                return;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:
                 setTransformJava((JavaTransformType1)null);
                 return;
@@ -417,6 +456,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
+                return getTransformDozer() != null;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:
                 return getTransformJava() != null;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAXB:

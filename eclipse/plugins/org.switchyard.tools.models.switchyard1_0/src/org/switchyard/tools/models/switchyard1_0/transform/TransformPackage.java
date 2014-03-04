@@ -101,13 +101,22 @@ public interface TransformPackage extends EPackage {
 	int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
 
 	/**
+     * The feature id for the '<em><b>Transform Dozer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__TRANSFORM_DOZER = 3;
+
+    /**
      * The feature id for the '<em><b>Transform Java</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_JAVA = 3;
+	int DOCUMENT_ROOT__TRANSFORM_JAVA = 4;
 
 	/**
      * The feature id for the '<em><b>Transform Jaxb</b></em>' containment reference.
@@ -116,7 +125,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_JAXB = 4;
+	int DOCUMENT_ROOT__TRANSFORM_JAXB = 5;
 
 	/**
      * The feature id for the '<em><b>Transform Json</b></em>' containment reference.
@@ -125,7 +134,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_JSON = 5;
+	int DOCUMENT_ROOT__TRANSFORM_JSON = 6;
 
 	/**
      * The feature id for the '<em><b>Transform Smooks</b></em>' containment reference.
@@ -134,7 +143,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_SMOOKS = 6;
+	int DOCUMENT_ROOT__TRANSFORM_SMOOKS = 7;
 
 	/**
      * The feature id for the '<em><b>Transform Xslt</b></em>' containment reference.
@@ -143,7 +152,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_XSLT = 7;
+	int DOCUMENT_ROOT__TRANSFORM_XSLT = 8;
 
 	/**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -152,9 +161,111 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 8;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 9;
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerFileEntryTypeImpl <em>Dozer File Entry Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.DozerFileEntryTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerFileEntryType()
+     * @generated
+     */
+    int DOZER_FILE_ENTRY_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_FILE_ENTRY_TYPE__FILE = 0;
+
+    /**
+     * The number of structural features of the '<em>Dozer File Entry Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_FILE_ENTRY_TYPE_FEATURE_COUNT = 1;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerMappingFilesTypeImpl <em>Dozer Mapping Files Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.DozerMappingFilesTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerMappingFilesType()
+     * @generated
+     */
+    int DOZER_MAPPING_FILES_TYPE = 2;
+
+    /**
+     * The feature id for the '<em><b>Entry</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_MAPPING_FILES_TYPE__ENTRY = 0;
+
+    /**
+     * The number of structural features of the '<em>Dozer Mapping Files Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_MAPPING_FILES_TYPE_FEATURE_COUNT = 1;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerTransformTypeImpl <em>Dozer Transform Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.DozerTransformTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerTransformType()
+     * @generated
+     */
+    int DOZER_TRANSFORM_TYPE = 3;
+
+    /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_TRANSFORM_TYPE__FROM = SwitchyardPackage.TRANSFORM_TYPE__FROM;
+
+    /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_TRANSFORM_TYPE__TO = SwitchyardPackage.TRANSFORM_TYPE__TO;
+
+    /**
+     * The feature id for the '<em><b>Mapping Files</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_TRANSFORM_TYPE__MAPPING_FILES = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Dozer Transform Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOZER_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JavaTransformType1Impl <em>Java Transform Type1</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,7 +273,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJavaTransformType1()
      * @generated
      */
-	int JAVA_TRANSFORM_TYPE1 = 1;
+	int JAVA_TRANSFORM_TYPE1 = 4;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -217,7 +328,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJAXBTransformType()
      * @generated
      */
-	int JAXB_TRANSFORM_TYPE = 2;
+	int JAXB_TRANSFORM_TYPE = 5;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -263,7 +374,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJsonTransformType()
      * @generated
      */
-	int JSON_TRANSFORM_TYPE = 3;
+	int JSON_TRANSFORM_TYPE = 6;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -300,7 +411,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getSmooksTransformType1()
      * @generated
      */
-	int SMOOKS_TRANSFORM_TYPE1 = 4;
+	int SMOOKS_TRANSFORM_TYPE1 = 7;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -364,7 +475,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getXsltTransformType()
      * @generated
      */
-	int XSLT_TRANSFORM_TYPE = 5;
+	int XSLT_TRANSFORM_TYPE = 8;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -419,7 +530,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJavaTransformType()
      * @generated
      */
-	int JAVA_TRANSFORM_TYPE = 6;
+	int JAVA_TRANSFORM_TYPE = 9;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType <em>Smooks Transform Type</em>}' enum.
@@ -429,7 +540,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getSmooksTransformType()
      * @generated
      */
-	int SMOOKS_TRANSFORM_TYPE = 7;
+	int SMOOKS_TRANSFORM_TYPE = 10;
 
 	/**
      * The meta object id for the '<em>Java Transform Type Object</em>' data type.
@@ -439,7 +550,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJavaTransformTypeObject()
      * @generated
      */
-	int JAVA_TRANSFORM_TYPE_OBJECT = 8;
+	int JAVA_TRANSFORM_TYPE_OBJECT = 11;
 
 	/**
      * The meta object id for the '<em>Smooks Transform Type Object</em>' data type.
@@ -449,7 +560,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getSmooksTransformTypeObject()
      * @generated
      */
-	int SMOOKS_TRANSFORM_TYPE_OBJECT = 9;
+	int SMOOKS_TRANSFORM_TYPE_OBJECT = 12;
 
 
 	/**
@@ -496,6 +607,17 @@ public interface TransformPackage extends EPackage {
 	EReference getDocumentRoot_XSISchemaLocation();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformDozer <em>Transform Dozer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Transform Dozer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformDozer()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_TransformDozer();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformJava <em>Transform Java</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -551,6 +673,69 @@ public interface TransformPackage extends EPackage {
 	EReference getDocumentRoot_TransformXslt();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType <em>Dozer File Entry Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Dozer File Entry Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType
+     * @generated
+     */
+    EClass getDozerFileEntryType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType#getFile <em>File</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>File</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType#getFile()
+     * @see #getDozerFileEntryType()
+     * @generated
+     */
+    EAttribute getDozerFileEntryType_File();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType <em>Dozer Mapping Files Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Dozer Mapping Files Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType
+     * @generated
+     */
+    EClass getDozerMappingFilesType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType#getEntry <em>Entry</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Entry</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType#getEntry()
+     * @see #getDozerMappingFilesType()
+     * @generated
+     */
+    EReference getDozerMappingFilesType_Entry();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType <em>Dozer Transform Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Dozer Transform Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType
+     * @generated
+     */
+    EClass getDozerTransformType();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType#getMappingFiles <em>Mapping Files</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Mapping Files</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType#getMappingFiles()
+     * @see #getDozerTransformType()
+     * @generated
+     */
+    EReference getDozerTransformType_MappingFiles();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1 <em>Java Transform Type1</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -789,6 +974,14 @@ public interface TransformPackage extends EPackage {
 		EReference DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = eINSTANCE.getDocumentRoot_XSISchemaLocation();
 
 		/**
+         * The meta object literal for the '<em><b>Transform Dozer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__TRANSFORM_DOZER = eINSTANCE.getDocumentRoot_TransformDozer();
+
+        /**
          * The meta object literal for the '<em><b>Transform Java</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -829,6 +1022,60 @@ public interface TransformPackage extends EPackage {
 		EReference DOCUMENT_ROOT__TRANSFORM_XSLT = eINSTANCE.getDocumentRoot_TransformXslt();
 
 		/**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerFileEntryTypeImpl <em>Dozer File Entry Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.DozerFileEntryTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerFileEntryType()
+         * @generated
+         */
+        EClass DOZER_FILE_ENTRY_TYPE = eINSTANCE.getDozerFileEntryType();
+
+        /**
+         * The meta object literal for the '<em><b>File</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DOZER_FILE_ENTRY_TYPE__FILE = eINSTANCE.getDozerFileEntryType_File();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerMappingFilesTypeImpl <em>Dozer Mapping Files Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.DozerMappingFilesTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerMappingFilesType()
+         * @generated
+         */
+        EClass DOZER_MAPPING_FILES_TYPE = eINSTANCE.getDozerMappingFilesType();
+
+        /**
+         * The meta object literal for the '<em><b>Entry</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOZER_MAPPING_FILES_TYPE__ENTRY = eINSTANCE.getDozerMappingFilesType_Entry();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerTransformTypeImpl <em>Dozer Transform Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.DozerTransformTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerTransformType()
+         * @generated
+         */
+        EClass DOZER_TRANSFORM_TYPE = eINSTANCE.getDozerTransformType();
+
+        /**
+         * The meta object literal for the '<em><b>Mapping Files</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOZER_TRANSFORM_TYPE__MAPPING_FILES = eINSTANCE.getDozerTransformType_MappingFiles();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JavaTransformType1Impl <em>Java Transform Type1</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

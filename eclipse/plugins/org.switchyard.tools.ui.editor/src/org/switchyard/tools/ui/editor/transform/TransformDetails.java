@@ -224,8 +224,8 @@ public class TransformDetails {
 
     private static String createOperationDetails(String invokingServiceName, String targetServiceName,
             String invokingOperationName, String targetOperationName, MapType type) {
-        return "" + type + ": " + invokingServiceName + "." + invokingOperationName
-                + (type == MapType.Input ? "() => " : "() <=") + targetServiceName + "." + targetOperationName + "()";
+        return "" + type + ": " + invokingServiceName + "." + invokingOperationName //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                + (type == MapType.Input ? "() => " : "() <=") + targetServiceName + "." + targetOperationName + "()"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     }
 
     private static enum MapType {

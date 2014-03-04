@@ -64,6 +64,9 @@ import org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType;
+import org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType;
+import org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
@@ -91,6 +94,27 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	private EClass documentRootEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass dozerFileEntryTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass dozerMappingFilesTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass dozerTransformTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -331,19 +355,19 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformJava() {
+    public EReference getDocumentRoot_TransformDozer() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformJaxb() {
+	public EReference getDocumentRoot_TransformJava() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
@@ -352,7 +376,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformJson() {
+	public EReference getDocumentRoot_TransformJaxb() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
     }
 
@@ -361,7 +385,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformSmooks() {
+	public EReference getDocumentRoot_TransformJson() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
     }
 
@@ -370,11 +394,74 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformXslt() {
+	public EReference getDocumentRoot_TransformSmooks() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_TransformXslt() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDozerFileEntryType() {
+        return dozerFileEntryTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDozerFileEntryType_File() {
+        return (EAttribute)dozerFileEntryTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDozerMappingFilesType() {
+        return dozerMappingFilesTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDozerMappingFilesType_Entry() {
+        return (EReference)dozerMappingFilesTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDozerTransformType() {
+        return dozerTransformTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDozerTransformType_MappingFiles() {
+        return (EReference)dozerTransformTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -559,11 +646,21 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_DOZER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_JAVA);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_JAXB);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_JSON);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_SMOOKS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_XSLT);
+
+        dozerFileEntryTypeEClass = createEClass(DOZER_FILE_ENTRY_TYPE);
+        createEAttribute(dozerFileEntryTypeEClass, DOZER_FILE_ENTRY_TYPE__FILE);
+
+        dozerMappingFilesTypeEClass = createEClass(DOZER_MAPPING_FILES_TYPE);
+        createEReference(dozerMappingFilesTypeEClass, DOZER_MAPPING_FILES_TYPE__ENTRY);
+
+        dozerTransformTypeEClass = createEClass(DOZER_TRANSFORM_TYPE);
+        createEReference(dozerTransformTypeEClass, DOZER_TRANSFORM_TYPE__MAPPING_FILES);
 
         javaTransformType1EClass = createEClass(JAVA_TRANSFORM_TYPE1);
         createEAttribute(javaTransformType1EClass, JAVA_TRANSFORM_TYPE1__CLASS);
@@ -616,14 +713,15 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
-        SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
+        SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
 
         // Create type parameters
 
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        dozerTransformTypeEClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
         javaTransformType1EClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
         jaxbTransformTypeEClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
         jsonTransformTypeEClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
@@ -635,11 +733,21 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_TransformDozer(), this.getDozerTransformType(), null, "transformDozer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformJava(), this.getJavaTransformType1(), null, "transformJava", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformJaxb(), this.getJAXBTransformType(), null, "transformJaxb", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformJson(), this.getJsonTransformType(), null, "transformJson", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformSmooks(), this.getSmooksTransformType1(), null, "transformSmooks", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformXslt(), this.getXsltTransformType(), null, "transformXslt", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(dozerFileEntryTypeEClass, DozerFileEntryType.class, "DozerFileEntryType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getDozerFileEntryType_File(), theXMLTypePackage.getString(), "file", null, 1, 1, DozerFileEntryType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(dozerMappingFilesTypeEClass, DozerMappingFilesType.class, "DozerMappingFilesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getDozerMappingFilesType_Entry(), this.getDozerFileEntryType(), null, "entry", null, 0, -1, DozerMappingFilesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(dozerTransformTypeEClass, DozerTransformType.class, "DozerTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getDozerTransformType_MappingFiles(), this.getDozerMappingFilesType(), null, "mappingFiles", null, 0, 1, DozerTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(javaTransformType1EClass, JavaTransformType1.class, "JavaTransformType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJavaTransformType1_Class(), theXMLTypePackage.getString(), "class", null, 0, 1, JavaTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -718,6 +826,15 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "xsi:schemaLocation"
            });		
         addAnnotation
+          (getDocumentRoot_TransformDozer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "transform.dozer",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#transform"
+           });		
+        addAnnotation
           (getDocumentRoot_TransformJava(), 
            source, 
            new String[] {
@@ -761,6 +878,50 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "transform.xslt",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
+           });		
+        addAnnotation
+          (dozerFileEntryTypeEClass, 
+           source, 
+           new String[] {
+             "name", "dozerFileEntryType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getDozerFileEntryType_File(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "file"
+           });			
+        addAnnotation
+          (dozerMappingFilesTypeEClass, 
+           source, 
+           new String[] {
+             "name", "dozerMappingFilesType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getDozerMappingFilesType_Entry(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "entry",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (dozerTransformTypeEClass, 
+           source, 
+           new String[] {
+             "name", "DozerTransformType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getDozerTransformType_MappingFiles(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "mappingFiles",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (javaTransformTypeEEnum, 

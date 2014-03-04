@@ -36,7 +36,8 @@ public final class TransformProviderRegistry {
      * Create a new TransformProviderRegistry.
      */
     private TransformProviderRegistry() {
-        _providers = new ArrayList<ITransformProvider>(5);
+        _providers = new ArrayList<ITransformProvider>(6);
+        _providers.add(new DozerTransformProvider());
         _providers.add(new JavaTransformProvider());
         _providers.add(new JAXBTransformProvider());
         _providers.add(new JSONTransformProvider());
