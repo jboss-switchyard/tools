@@ -97,7 +97,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingRest(RESTBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage#getDocumentRoot_BindingRest()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.rest' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.rest' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     RESTBindingType getBindingRest();

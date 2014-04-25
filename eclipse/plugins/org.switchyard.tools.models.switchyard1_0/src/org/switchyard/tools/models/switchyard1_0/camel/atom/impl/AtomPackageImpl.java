@@ -922,7 +922,7 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
              "kind", "element",
              "name", "binding.atom",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (parameterTypeEClass, 

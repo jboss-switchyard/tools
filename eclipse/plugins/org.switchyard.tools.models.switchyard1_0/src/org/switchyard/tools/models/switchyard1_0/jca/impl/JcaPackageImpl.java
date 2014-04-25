@@ -1135,7 +1135,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "kind", "element",
              "name", "binding.jca",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (endpointEClass, 

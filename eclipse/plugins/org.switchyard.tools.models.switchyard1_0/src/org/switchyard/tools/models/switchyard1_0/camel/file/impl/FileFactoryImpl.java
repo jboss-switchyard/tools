@@ -28,7 +28,7 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      */
     public static FileFactory init() {
         try {
-            FileFactory theFileFactory = (FileFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-file:config:1.0"); 
+            FileFactory theFileFactory = (FileFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-file:config:2.0"); 
             if (theFileFactory != null) {
                 return theFileFactory;
             }

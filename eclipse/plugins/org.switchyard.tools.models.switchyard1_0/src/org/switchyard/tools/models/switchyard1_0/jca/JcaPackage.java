@@ -201,7 +201,7 @@ public interface JcaPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "urn:switchyard-component-jca:config:1.0";
+    String eNS_URI = "urn:switchyard-component-jca:config:2.0";
 
     /**
      * The package namespace name.

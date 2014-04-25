@@ -32,7 +32,7 @@ public class TransformFactoryImpl extends EFactoryImpl implements TransformFacto
      */
 	public static TransformFactory init() {
         try {
-            TransformFactory theTransformFactory = (TransformFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:transform:1.0"); 
+            TransformFactory theTransformFactory = (TransformFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:transform:2.0"); 
             if (theTransformFactory != null) {
                 return theTransformFactory;
             }

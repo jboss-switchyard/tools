@@ -13,10 +13,12 @@ package org.switchyard.tools.ui.facets;
 
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FSW_RUNTIME_ID;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FSW_RUNTIME_VERSION_6_0;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FSW_RUNTIME_VERSION_6_1;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_ID;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_LABEL_KEY;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_1_0;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_1_1;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_2_0;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_KEY;
 
 import java.io.File;
@@ -94,6 +96,11 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
                                                 RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
                                                         FSW_RUNTIME_VERSION_6_0),
                                                 createRuntimeComponentProperties(switchYardMetaData));
+                                    } else if (switchYardMetaData._runtimeVersion.startsWith("6.1.")) { //$NON-NLS-1$
+                                        switchYardRuntime = RuntimeManager.createRuntimeComponent(
+                                                RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
+                                                        FSW_RUNTIME_VERSION_6_1),
+                                                createRuntimeComponentProperties(switchYardMetaData));
                                     }
                                 }
                                 if (switchYardRuntime == null) {
@@ -133,6 +140,11 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
                     switchYardRuntime = RuntimeManager.createRuntimeComponent(
                             RuntimeManager.getRuntimeComponentType(SWITCHYARD_RUNTIME_ID).getVersion(
                                     SWITCHYARD_RUNTIME_VERSION_1_1),
+                            createRuntimeComponentProperties(switchYardMetaData));
+                } else if (switchYardMetaData._runtimeVersion.startsWith("2.0.")) { //$NON-NLS-1$
+                    switchYardRuntime = RuntimeManager.createRuntimeComponent(
+                            RuntimeManager.getRuntimeComponentType(SWITCHYARD_RUNTIME_ID).getVersion(
+                                    SWITCHYARD_RUNTIME_VERSION_2_0),
                             createRuntimeComponentProperties(switchYardMetaData));
                 } else {
                     switchYardRuntime = getDefaultRuntimeComponent(switchYardMetaData);

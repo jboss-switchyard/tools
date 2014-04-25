@@ -1214,7 +1214,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
              "kind", "element",
              "name", "binding.file",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (fileConsumerTypeEClass, 

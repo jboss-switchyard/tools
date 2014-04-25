@@ -2131,7 +2131,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "binding.ftp",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (getDocumentRoot_BindingFtps(), 
@@ -2140,7 +2140,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "binding.ftps",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (getDocumentRoot_BindingSftp(), 
@@ -2149,7 +2149,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "binding.sftp",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (parameterTypeEClass, 

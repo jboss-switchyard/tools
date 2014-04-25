@@ -97,7 +97,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingDirect(CamelDirectBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingDirect()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.direct' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.direct' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelDirectBindingType getBindingDirect();
@@ -124,7 +124,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingMock(CamelMockBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingMock()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.mock' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.mock' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelMockBindingType getBindingMock();
@@ -151,7 +151,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingSeda(CamelSedaBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingSeda()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.seda' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.seda' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelSedaBindingType getBindingSeda();
@@ -178,7 +178,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingTimer(CamelTimerBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingTimer()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.timer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.timer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelTimerBindingType getBindingTimer();
@@ -205,7 +205,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingUri(CamelBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingUri()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.uri' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.uri' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelBindingType getBindingUri();

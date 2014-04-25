@@ -27,7 +27,7 @@ public class NettyFactoryImpl extends EFactoryImpl implements NettyFactory {
      */
     public static NettyFactory init() {
         try {
-            NettyFactory theNettyFactory = (NettyFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-netty:config:1.0"); 
+            NettyFactory theNettyFactory = (NettyFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-netty:config:2.0"); 
             if (theNettyFactory != null) {
                 return theNettyFactory;
             }

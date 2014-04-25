@@ -32,7 +32,7 @@ public class ValidateFactoryImpl extends EFactoryImpl implements ValidateFactory
      */
 	public static ValidateFactory init() {
         try {
-            ValidateFactory theValidateFactory = (ValidateFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:validate:1.0"); 
+            ValidateFactory theValidateFactory = (ValidateFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:validate:2.0"); 
             if (theValidateFactory != null) {
                 return theValidateFactory;
             }

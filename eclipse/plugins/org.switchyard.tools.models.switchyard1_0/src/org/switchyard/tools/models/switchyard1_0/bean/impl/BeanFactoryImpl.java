@@ -31,7 +31,7 @@ public class BeanFactoryImpl extends EFactoryImpl implements BeanFactory {
      */
 	public static BeanFactory init() {
         try {
-            BeanFactory theBeanFactory = (BeanFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bean:config:1.0"); 
+            BeanFactory theBeanFactory = (BeanFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bean:config:2.0"); 
             if (theBeanFactory != null) {
                 return theBeanFactory;
             }

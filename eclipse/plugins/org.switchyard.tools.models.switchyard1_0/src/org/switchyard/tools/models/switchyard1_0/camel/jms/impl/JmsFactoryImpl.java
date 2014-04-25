@@ -27,7 +27,7 @@ public class JmsFactoryImpl extends EFactoryImpl implements JmsFactory {
      */
     public static JmsFactory init() {
         try {
-            JmsFactory theJmsFactory = (JmsFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-jms:config:1.0"); 
+            JmsFactory theJmsFactory = (JmsFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-jms:config:2.0"); 
             if (theJmsFactory != null) {
                 return theJmsFactory;
             }

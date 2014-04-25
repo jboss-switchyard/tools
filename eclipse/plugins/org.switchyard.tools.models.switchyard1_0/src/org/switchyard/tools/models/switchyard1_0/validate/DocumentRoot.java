@@ -98,7 +98,7 @@ public interface DocumentRoot extends EObject {
      * @see #setValidateJava(JavaValidateType)
      * @see org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage#getDocumentRoot_ValidateJava()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='validate.java' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#validate'"
+     *        extendedMetaData="kind='element' name='validate.java' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#validate'"
      * @generated
      */
 	JavaValidateType getValidateJava();
@@ -125,7 +125,7 @@ public interface DocumentRoot extends EObject {
      * @see #setValidateXml(XmlValidateType)
      * @see org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage#getDocumentRoot_ValidateXml()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='validate.xml' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#validate'"
+     *        extendedMetaData="kind='element' name='validate.xml' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#validate'"
      * @generated
      */
 	XmlValidateType getValidateXml();

@@ -100,7 +100,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingSoap(SOAPBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getDocumentRoot_BindingSoap()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.soap' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.soap' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     SOAPBindingType getBindingSoap();

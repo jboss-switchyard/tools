@@ -27,7 +27,7 @@ public class SqlFactoryImpl extends EFactoryImpl implements SqlFactory {
      */
     public static SqlFactory init() {
         try {
-            SqlFactory theSqlFactory = (SqlFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-sql:config:1.0"); 
+            SqlFactory theSqlFactory = (SqlFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-sql:config:2.0"); 
             if (theSqlFactory != null) {
                 return theSqlFactory;
             }

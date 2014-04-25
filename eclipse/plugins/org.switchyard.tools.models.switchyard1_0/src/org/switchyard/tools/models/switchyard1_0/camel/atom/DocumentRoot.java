@@ -93,7 +93,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingAtom(CamelAtomBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getDocumentRoot_BindingAtom()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.atom' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.atom' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelAtomBindingType getBindingAtom();

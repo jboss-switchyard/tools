@@ -94,7 +94,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingTcp(CamelNettyTcpBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getDocumentRoot_BindingTcp()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.tcp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.tcp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelNettyTcpBindingType getBindingTcp();
@@ -121,7 +121,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingUdp(CamelNettyUdpBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getDocumentRoot_BindingUdp()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.udp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.udp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelNettyUdpBindingType getBindingUdp();

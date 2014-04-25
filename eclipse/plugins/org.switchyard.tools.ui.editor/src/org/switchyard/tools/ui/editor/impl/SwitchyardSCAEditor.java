@@ -109,7 +109,6 @@ import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.operation.IThreadListener;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
@@ -119,17 +118,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.internal.WorkbenchMessages;
-import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
-import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
-import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
-import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener;
@@ -1268,22 +1258,6 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             return visibleList.toArray(new PictogramElement[visibleList.size()]);
         }
 
-    }
-
-    /**
-     * @param resourceSet register all the EMF packages for the SY resource set
-     */
-    public static void registerPackages(ResourceSet resourceSet) {
-        resourceSet.getPackageRegistry().put("http://docs.oasis-open.org/ns/opencsa/sca/200912", ScaPackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-config:switchyard:1.0", SwitchyardPackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-config:transform:1.0", TransformPackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-bean:config:1.0", BeanPackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-config:validate:1.0", ValidatePackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-soap:config:1.0", SOAPPackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-rules:config:1.0", RulesPackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-clojure:config:1.0", ClojurePackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-camel:config:1.0", CamelPackage.eINSTANCE); //$NON-NLS-1$
-        resourceSet.getPackageRegistry().put("urn:switchyard-component-bpm:config:1.0", BPMPackage.eINSTANCE); //$NON-NLS-1$
     }
 
 }

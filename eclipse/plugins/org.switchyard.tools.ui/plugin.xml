@@ -119,6 +119,27 @@
                version="1.0">
          </facet>
       </static-preset>
+      <!-- 2.0 applications -->
+      <dynamic-preset
+            id="preset.switchyard.basic.2_0">
+         <factory
+               class="org.switchyard.tools.ui.facets.SwitchYardBasicPresetFactory">
+         </factory>
+      </dynamic-preset>
+      <static-preset
+            extends="preset.switchyard.basic.2_0"
+            id="preset.switchyard.jar.2_0">
+         <description>
+            Project facet set for SwitchYard 2.0 JAR applications.
+         </description>
+         <label>
+            SwitchYard 2.0 Java Application
+         </label>
+         <facet
+               id="jst.utility"
+               version="1.0">
+         </facet>
+      </static-preset>
    </extension>
 
    <extension
@@ -126,7 +147,7 @@
       <project-facet
             id="switchyard.core">
          <default-version
-               version="1.1">
+               version="2.0">
          </default-version>
     	 <property name="hide.version" value="true"/>
          <description>
@@ -172,11 +193,29 @@
             </and>
          </constraint>
       </project-facet-version>
+      <project-facet-version
+            facet="switchyard.core"
+            version="2.0">
+         <constraint>
+         	<and>
+	            <requires
+	                  facet="jst.java"
+	                  version="[6.0">
+	            </requires>
+	            <!-- currently only support maven builds -->
+	            <requires
+                   facet="jboss.m2"
+                   soft="true"
+                   version="*">
+	            </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
       <action
             facet="switchyard.core"
             id="switchyard.core.install"
             type="install"
-            version="[1.0-1.1]">
+            version="[1.0-2.0]">
          <delegate
                class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallActionDelegate">
          </delegate>
@@ -188,7 +227,7 @@
             facet="switchyard.core"
             id="switchyard.core.version"
             type="version-change"
-            version="[1.0-1.1]">
+            version="[1.0-2.0]">
          <delegate
                class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallActionDelegate">
          </delegate>
@@ -200,7 +239,7 @@
             facet="switchyard.core"
             id="switchyard.core.uninstall"
             type="uninstall"
-            version="[1.0-1.1]">
+            version="[1.0-2.0]">
          <delegate
                class="org.switchyard.tools.ui.facets.SwitchYardFacetUnInstallActionDelegate">
          </delegate>
@@ -237,12 +276,20 @@
            type="switchyard.runtime"
            version="1.1">
      </runtime-component-version>
+     <runtime-component-version
+           type="switchyard.runtime"
+           version="2.0">
+     </runtime-component-version>
      <runtime-component-type
            id="fuseServiceWorks.runtime">
      </runtime-component-type>
      <runtime-component-version
            type="fuseServiceWorks.runtime"
            version="6.0">
+     </runtime-component-version>
+     <runtime-component-version
+           type="fuseServiceWorks.runtime"
+           version="6.1">
      </runtime-component-version>
      <supported>
         <facet
@@ -251,11 +298,11 @@
         </facet>
         <runtime-component
               id="switchyard.runtime"
-              version="[1.0-1.1]">
+              version="[1.0-2.0]">
         </runtime-component>
         <runtime-component
               id="fuseServiceWorks.runtime"
-              version="6.0">
+              version="[6.0-6.1]">
         </runtime-component>
         <runtime-component
               id="org.jboss.ide.eclipse.as.runtime.stripped.component"
@@ -269,11 +316,29 @@
         </facet>
         <runtime-component
               id="switchyard.runtime"
-              version="1.1">
+              version="[1.1-2.0]">
         </runtime-component>
         <runtime-component
               id="fuseServiceWorks.runtime"
-              version="6.0">
+              version="[6.0-6.1]">
+        </runtime-component>
+        <runtime-component
+              id="org.jboss.ide.eclipse.as.runtime.stripped.component"
+              version="1.0">
+        </runtime-component>
+     </supported>
+     <supported>
+        <facet
+              id="switchyard.core"
+              version="2.0">
+        </facet>
+        <runtime-component
+              id="switchyard.runtime"
+              version="2.0">
+        </runtime-component>
+        <runtime-component
+              id="fuseServiceWorks.runtime"
+              version="6.1">
         </runtime-component>
         <runtime-component
               id="org.jboss.ide.eclipse.as.runtime.stripped.component"
@@ -350,7 +415,7 @@
            projects="true">
         <moduleType
               types="switchyard.core"
-              versions="1.0,1.1">
+              versions="1.0,1.1,2.0">
         </moduleType>
      </moduleFactory>
   </extension>
@@ -1393,7 +1458,7 @@
     <constraintProvider
           cache="true">
        <package
-             namespaceUri="urn:switchyard-component-bean:config:1.0">
+             namespaceUri="urn:switchyard-component-bean:config:2.0">
        </package>
        <constraints
              categories="org.switchyard.tools.validationCategory/bean">

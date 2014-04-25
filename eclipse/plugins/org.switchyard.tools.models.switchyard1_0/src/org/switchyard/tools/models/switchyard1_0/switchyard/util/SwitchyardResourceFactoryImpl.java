@@ -90,7 +90,7 @@ public class SwitchyardResourceFactoryImpl extends ResourceFactoryImpl {
         private static final String MODEL_NAMESPACE_VERSION;
         // notice the version is pegged to 1.x
         private static final Pattern SWITCHYARD_NAMESPACE_PATTERN = Pattern
-                .compile("(urn:switchyard-(config:|component-).*?:)(1\\.\\d+(\\.\\d+)*)$");
+                .compile("(urn:switchyard-(config:|component-).*?:)((1\\.\\d+(\\.\\d+)*)|(2.0))$");
         private static final int NAMESPACE_TYPE_GROUP = 1;
         private static final int NAMESPACE_VERSION_GROUP = 3;
 

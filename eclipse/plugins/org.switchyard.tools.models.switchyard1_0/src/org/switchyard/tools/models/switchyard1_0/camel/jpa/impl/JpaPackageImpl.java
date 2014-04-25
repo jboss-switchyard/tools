@@ -982,7 +982,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "kind", "element",
              "name", "binding.jpa",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (jpaConsumerTypeEClass, 

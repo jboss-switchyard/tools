@@ -198,7 +198,7 @@ public interface FtpPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "urn:switchyard-component-camel-ftp:config:1.0";
+    String eNS_URI = "urn:switchyard-component-camel-ftp:config:2.0";
 
     /**
      * The package namespace name.

@@ -747,7 +747,7 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
              "kind", "element",
              "name", "binding.http",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (httpBindingTypeEClass, 

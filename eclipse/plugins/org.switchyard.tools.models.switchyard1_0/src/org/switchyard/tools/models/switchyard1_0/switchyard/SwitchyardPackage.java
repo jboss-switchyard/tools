@@ -202,7 +202,7 @@ public interface SwitchyardPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "urn:switchyard-config:switchyard:1.0";
+	String eNS_URI = "urn:switchyard-config:switchyard:2.0";
 
 	/**
      * The package namespace name.

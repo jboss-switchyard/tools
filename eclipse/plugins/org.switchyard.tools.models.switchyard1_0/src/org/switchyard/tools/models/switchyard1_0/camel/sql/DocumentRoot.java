@@ -93,7 +93,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingSql(CamelSqlBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage#getDocumentRoot_BindingSql()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.sql' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.sql' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelSqlBindingType getBindingSql();

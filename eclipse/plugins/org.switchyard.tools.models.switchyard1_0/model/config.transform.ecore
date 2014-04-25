@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transform" nsURI="urn:switchyard-config:transform:1.0" nsPrefix="transform">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transform" nsURI="urn:switchyard-config:transform:2.0" nsPrefix="transform">
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value=""/>
@@ -36,7 +36,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="transform.java"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#transform"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#transform"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformJaxb" upperBound="-2"
@@ -46,7 +46,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="transform.jaxb"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#transform"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#transform"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformJson" upperBound="-2"
@@ -56,7 +56,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="transform.json"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#transform"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#transform"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformSmooks" upperBound="-2"
@@ -66,7 +66,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="transform.smooks"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#transform"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#transform"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformXslt" upperBound="-2"
@@ -76,7 +76,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="transform.xslt"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#transform"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#transform"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -689,7 +689,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
              "kind", "element",
              "name", "binding.rest",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (proxyTypeEClass, 

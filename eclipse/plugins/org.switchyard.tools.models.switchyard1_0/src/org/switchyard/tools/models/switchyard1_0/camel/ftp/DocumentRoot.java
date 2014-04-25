@@ -95,7 +95,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingFtp(CamelFtpBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getDocumentRoot_BindingFtp()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.ftp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.ftp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelFtpBindingType getBindingFtp();
@@ -122,7 +122,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingFtps(CamelFtpsBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getDocumentRoot_BindingFtps()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.ftps' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.ftps' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelFtpsBindingType getBindingFtps();
@@ -149,7 +149,7 @@ public interface DocumentRoot extends EObject {
      * @see #setBindingSftp(CamelSftpBindingType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getDocumentRoot_BindingSftp()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.sftp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='binding.sftp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#binding.switchyard'"
      * @generated
      */
     CamelSftpBindingType getBindingSftp();

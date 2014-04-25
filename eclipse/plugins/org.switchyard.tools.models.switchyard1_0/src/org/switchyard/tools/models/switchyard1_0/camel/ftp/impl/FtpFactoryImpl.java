@@ -28,7 +28,7 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
      */
     public static FtpFactory init() {
         try {
-            FtpFactory theFtpFactory = (FtpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-ftp:config:1.0"); 
+            FtpFactory theFtpFactory = (FtpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-ftp:config:2.0"); 
             if (theFtpFactory != null) {
                 return theFtpFactory;
             }

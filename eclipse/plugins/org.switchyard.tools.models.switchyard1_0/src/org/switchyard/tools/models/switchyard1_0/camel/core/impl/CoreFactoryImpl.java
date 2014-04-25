@@ -27,7 +27,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
      */
     public static CoreFactory init() {
         try {
-            CoreFactory theCoreFactory = (CoreFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-core:config:1.0"); 
+            CoreFactory theCoreFactory = (CoreFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-core:config:2.0"); 
             if (theCoreFactory != null) {
                 return theCoreFactory;
             }

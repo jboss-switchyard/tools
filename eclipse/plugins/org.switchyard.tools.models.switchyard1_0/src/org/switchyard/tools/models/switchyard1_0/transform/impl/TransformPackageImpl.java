@@ -724,7 +724,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "transform.java",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#transform"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
            });		
         addAnnotation
           (getDocumentRoot_TransformJaxb(), 
@@ -733,7 +733,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "transform.jaxb",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#transform"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
            });		
         addAnnotation
           (getDocumentRoot_TransformJson(), 
@@ -742,7 +742,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "transform.json",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#transform"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
            });		
         addAnnotation
           (getDocumentRoot_TransformSmooks(), 
@@ -751,7 +751,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "transform.smooks",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#transform"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
            });		
         addAnnotation
           (getDocumentRoot_TransformXslt(), 
@@ -760,7 +760,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "transform.xslt",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#transform"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
            });		
         addAnnotation
           (javaTransformTypeEEnum, 

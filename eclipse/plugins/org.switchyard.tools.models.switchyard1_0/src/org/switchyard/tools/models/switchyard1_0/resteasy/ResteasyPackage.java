@@ -202,7 +202,7 @@ public interface ResteasyPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "urn:switchyard-component-resteasy:config:1.0";
+    String eNS_URI = "urn:switchyard-component-resteasy:config:2.0";
 
     /**
      * The package namespace name.

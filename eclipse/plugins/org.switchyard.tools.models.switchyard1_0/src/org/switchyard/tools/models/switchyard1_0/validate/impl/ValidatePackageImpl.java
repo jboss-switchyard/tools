@@ -691,7 +691,7 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
              "kind", "element",
              "name", "validate.java",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#validate"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#validate"
            });		
         addAnnotation
           (getDocumentRoot_ValidateXml(), 
@@ -700,7 +700,7 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
              "kind", "element",
              "name", "validate.xml",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#validate"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#validate"
            });			
         addAnnotation
           (javaValidateTypeEClass, 

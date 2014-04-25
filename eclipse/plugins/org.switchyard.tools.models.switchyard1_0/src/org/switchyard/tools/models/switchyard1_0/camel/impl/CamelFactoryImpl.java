@@ -34,7 +34,7 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
      */
 	public static CamelFactory init() {
         try {
-            CamelFactory theCamelFactory = (CamelFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel:config:1.0"); 
+            CamelFactory theCamelFactory = (CamelFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel:config:2.0"); 
             if (theCamelFactory != null) {
                 return theCamelFactory;
             }

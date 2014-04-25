@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hornetq" nsURI="urn:switchyard-component-hornetq:config:1.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hornetq" nsURI="urn:switchyard-component-hornetq:config:2.0"
     nsPrefix="hornetq">
   <eClassifiers xsi:type="ecore:EClass" name="BindingType" eSuperTypes="config.switchyard.ecore#//SwitchYardBindingType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -413,7 +413,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="binding.hornetq"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#binding.switchyard"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#binding.switchyard"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" upperBound="-2"
@@ -432,7 +432,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="contextMapper"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#contextMapper"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#contextMapper"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messageComposer" upperBound="-2"
@@ -442,7 +442,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="messageComposer"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#messageComposer"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#messageComposer"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

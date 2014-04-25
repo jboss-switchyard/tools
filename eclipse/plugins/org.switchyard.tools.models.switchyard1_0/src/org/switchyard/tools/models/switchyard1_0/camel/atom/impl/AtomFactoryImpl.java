@@ -28,7 +28,7 @@ public class AtomFactoryImpl extends EFactoryImpl implements AtomFactory {
      */
     public static AtomFactory init() {
         try {
-            AtomFactory theAtomFactory = (AtomFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-atom:config:1.0"); 
+            AtomFactory theAtomFactory = (AtomFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-atom:config:2.0"); 
             if (theAtomFactory != null) {
                 return theAtomFactory;
             }

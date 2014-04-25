@@ -31,7 +31,7 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
      */
     public static JcaFactory init() {
         try {
-            JcaFactory theJcaFactory = (JcaFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-jca:config:1.0"); 
+            JcaFactory theJcaFactory = (JcaFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-jca:config:2.0"); 
             if (theJcaFactory != null) {
                 return theJcaFactory;
             }

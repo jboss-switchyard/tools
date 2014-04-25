@@ -58,7 +58,8 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
     private static final IProjectFacet UTILITY_MODULE_FACET;
     private static final String VERSION_SUFFIX_1_0 = "1_0"; //$NON-NLS-1$
     private static final String VERSION_SUFFIX_1_1 = "1_1"; //$NON-NLS-1$
-    private static final String LATEST_VERSION_SUFFIX = VERSION_SUFFIX_1_1;
+    private static final String VERSION_SUFFIX_2_0 = "2_0"; //$NON-NLS-1$
+    private static final String LATEST_VERSION_SUFFIX = VERSION_SUFFIX_2_0;
 
     @Override
     public void configure(ProjectConfigurationRequest request, IProgressMonitor monitor) throws CoreException {
@@ -189,6 +190,16 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
                     return VERSION_SUFFIX_1_1;
                 }
             }
+            break;
+        case 2:
+            if (segments.length > 1) {
+                final int minorVersion = Integer.valueOf(segments[1]);
+                switch (minorVersion) {
+                case 0:
+                    return VERSION_SUFFIX_2_0;
+                }
+            }
+            break;
         }
         // we either don't know or it's newer, so use the best we've got
         return LATEST_VERSION_SUFFIX;

@@ -1029,7 +1029,7 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
              "kind", "element",
              "name", "binding.amqp",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (parameterTypeEClass, 

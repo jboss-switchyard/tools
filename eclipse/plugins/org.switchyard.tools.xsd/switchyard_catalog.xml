@@ -3,4 +3,5 @@
   <nextCatalog catalog="sca_catalog_1.1-cd06.xml" />
   <nextCatalog catalog="switchyard_catalog_1.0.xml" />
   <nextCatalog catalog="switchyard_catalog_1.1.xml" />
+  <nextCatalog catalog="switchyard_catalog_2.0.xml" />
 </catalog>

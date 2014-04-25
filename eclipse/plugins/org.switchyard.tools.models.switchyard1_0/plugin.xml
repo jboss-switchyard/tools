@@ -12,56 +12,56 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-component-bean:config:1.0"
+            uri="urn:switchyard-component-bean:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.bean.BeanPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-component-bpm:config:1.0"
+            uri="urn:switchyard-component-bpm:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-config:switchyard:1.0"
+            uri="urn:switchyard-config:switchyard:2.0"
             class="org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-component-clojure:config:1.0"
+            uri="urn:switchyard-component-clojure:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-component-rules:config:1.0"
+            uri="urn:switchyard-component-rules:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.rules.RulesPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-component-soap:config:1.0"
+            uri="urn:switchyard-component-soap:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-config:transform:1.0"
+            uri="urn:switchyard-config:transform:2.0"
             class="org.switchyard.tools.models.switchyard1_0.transform.TransformPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="urn:switchyard-config:validate:1.0"
+            uri="urn:switchyard-config:validate:2.0"
             class="org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -69,7 +69,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel:config:1.0"
+            uri="urn:switchyard-component-camel:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.CamelPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -92,7 +92,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-jca:config:1.0"
+            uri="urn:switchyard-component-jca:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.jca.JcaPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -100,7 +100,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-resteasy:config:1.0"
+            uri="urn:switchyard-component-resteasy:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -115,7 +115,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-http:config:1.0"
+            uri="urn:switchyard-component-http:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.http.HttpPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -130,7 +130,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-core:config:1.0"
+            uri="urn:switchyard-component-camel-core:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -145,7 +145,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-amqp:config:1.0"
+            uri="urn:switchyard-component-camel-amqp:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -160,7 +160,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-atom:config:1.0"
+            uri="urn:switchyard-component-camel-atom:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -175,7 +175,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-file:config:1.0"
+            uri="urn:switchyard-component-camel-file:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -190,7 +190,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-ftp:config:1.0"
+            uri="urn:switchyard-component-camel-ftp:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -205,7 +205,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-jms:config:1.0"
+            uri="urn:switchyard-component-camel-jms:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -220,7 +220,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-jpa:config:1.0"
+            uri="urn:switchyard-component-camel-jpa:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -235,7 +235,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-mail:config:1.0"
+            uri="urn:switchyard-component-camel-mail:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -250,7 +250,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-netty:config:1.0"
+            uri="urn:switchyard-component-camel-netty:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -265,7 +265,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-quartz:config:1.0"
+            uri="urn:switchyard-component-camel-quartz:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -280,7 +280,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated switchyard_1.0 -->
       <package
-            uri="urn:switchyard-component-camel-sql:config:1.0"
+            uri="urn:switchyard-component-camel-sql:config:2.0"
             class="org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
@@ -317,6 +317,10 @@
             <parameter
                   name="element"
                   value="{urn:switchyard-config:switchyard:1.1}switchyard">
+            </parameter>
+            <parameter
+                  name="element"
+                  value="{urn:switchyard-config:switchyard:2.0}switchyard">
             </parameter>
          </describer>
       </content-type>

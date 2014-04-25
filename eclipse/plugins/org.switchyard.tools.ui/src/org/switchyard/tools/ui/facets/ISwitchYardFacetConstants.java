@@ -43,14 +43,18 @@ public interface ISwitchYardFacetConstants {
     public static final String SWITCHYARD_BASIC_1_0_PRESET_ID = "preset.switchyard.basic.1_0"; //$NON-NLS-1$
     /** The ID of the basic SwitchYard 1.1 facet set. */
     public static final String SWITCHYARD_BASIC_1_1_PRESET_ID = "preset.switchyard.basic.1_1"; //$NON-NLS-1$
+    /** The ID of the basic SwitchYard 1.1 facet set. */
+    public static final String SWITCHYARD_BASIC_2_0_PRESET_ID = "preset.switchyard.basic.2_0"; //$NON-NLS-1$
     /** The ID of the default basic SwitchYard facet set. */
-    public static final String SWITCHYARD_BASIC_PRESET_ID = SWITCHYARD_BASIC_1_1_PRESET_ID;
+    public static final String SWITCHYARD_BASIC_PRESET_ID = SWITCHYARD_BASIC_2_0_PRESET_ID;
     /** The ID of the JAR SwitchYard 1.0 facet set. */
     public static final String SWITCHYARD_JAR_1_0_PRESET_ID = "preset.switchyard.jar.1_0"; //$NON-NLS-1$
     /** The ID of the JAR SwitchYard 1.1 facet set. */
     public static final String SWITCHYARD_JAR_1_1_PRESET_ID = "preset.switchyard.jar.1_1"; //$NON-NLS-1$
+    /** The ID of the JAR SwitchYard 1.1 facet set. */
+    public static final String SWITCHYARD_JAR_2_0_PRESET_ID = "preset.switchyard.jar.2_0"; //$NON-NLS-1$
     /** The ID of the default JAR SwitchYard facet set. */
-    public static final String SWITCHYARD_JAR_PRESET_ID = SWITCHYARD_JAR_1_1_PRESET_ID;
+    public static final String SWITCHYARD_JAR_PRESET_ID = SWITCHYARD_JAR_2_0_PRESET_ID;
 
     /** The ID of the framework default facet set. */
     public static final String DEFAULT_PRESET_ID = "default.configuration"; //$NON-NLS-1$
@@ -71,11 +75,15 @@ public interface ISwitchYardFacetConstants {
     public static final String SWITCHYARD_RUNTIME_VERSION_1_0 = "1.0"; //$NON-NLS-1$
     /** The SwitchYard 1.0 runtime version. */
     public static final String SWITCHYARD_RUNTIME_VERSION_1_1 = "1.1"; //$NON-NLS-1$
+    /** The SwitchYard 2.0 runtime version. */
+    public static final String SWITCHYARD_RUNTIME_VERSION_2_0 = "2.0"; //$NON-NLS-1$
 
     /** The SwitchYard FSW runtime component ID. */
     public static final String FSW_RUNTIME_ID = "fuseServiceWorks.runtime"; //$NON-NLS-1$
     /** The FSW 6.0 runtime version. */
     public static final String FSW_RUNTIME_VERSION_6_0 = "6.0"; //$NON-NLS-1$
+    /** The FSW 6.1 runtime version. */
+    public static final String FSW_RUNTIME_VERSION_6_1 = "6.1"; //$NON-NLS-1$
 
     /**
      * Key for retrieving SY runtime version (String) from runtime component

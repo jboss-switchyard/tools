@@ -101,7 +101,7 @@ public interface DocumentRoot extends EObject {
      * @see #setTransformJava(JavaTransformType1)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformJava()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='transform.java' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#transform'"
+     *        extendedMetaData="kind='element' name='transform.java' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#transform'"
      * @generated
      */
 	JavaTransformType1 getTransformJava();
@@ -128,7 +128,7 @@ public interface DocumentRoot extends EObject {
      * @see #setTransformJaxb(JAXBTransformType)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformJaxb()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='transform.jaxb' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#transform'"
+     *        extendedMetaData="kind='element' name='transform.jaxb' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#transform'"
      * @generated
      */
 	JAXBTransformType getTransformJaxb();
@@ -155,7 +155,7 @@ public interface DocumentRoot extends EObject {
      * @see #setTransformJson(JsonTransformType)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformJson()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='transform.json' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#transform'"
+     *        extendedMetaData="kind='element' name='transform.json' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#transform'"
      * @generated
      */
 	JsonTransformType getTransformJson();
@@ -182,7 +182,7 @@ public interface DocumentRoot extends EObject {
      * @see #setTransformSmooks(SmooksTransformType1)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformSmooks()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='transform.smooks' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#transform'"
+     *        extendedMetaData="kind='element' name='transform.smooks' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#transform'"
      * @generated
      */
 	SmooksTransformType1 getTransformSmooks();
@@ -209,7 +209,7 @@ public interface DocumentRoot extends EObject {
      * @see #setTransformXslt(XsltTransformType)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformXslt()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='transform.xslt' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#transform'"
+     *        extendedMetaData="kind='element' name='transform.xslt' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#transform'"
      * @generated
      */
 	XsltTransformType getTransformXslt();

@@ -160,7 +160,6 @@ public final class ValidatorTypesUtil {
 
         // Obtain a new resource set
         ResourceSet resourceSet = SwitchYardModelUtils.newResourceSet();
-        SwitchyardSCAEditor.registerPackages(resourceSet);
 
         URI modelUri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
         // Get the resource

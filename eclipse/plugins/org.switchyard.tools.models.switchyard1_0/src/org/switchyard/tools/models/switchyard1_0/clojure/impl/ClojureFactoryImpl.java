@@ -31,7 +31,7 @@ public class ClojureFactoryImpl extends EFactoryImpl implements ClojureFactory {
      */
 	public static ClojureFactory init() {
         try {
-            ClojureFactory theClojureFactory = (ClojureFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-clojure:config:1.0"); 
+            ClojureFactory theClojureFactory = (ClojureFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-clojure:config:2.0"); 
             if (theClojureFactory != null) {
                 return theClojureFactory;
             }

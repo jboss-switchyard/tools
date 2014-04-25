@@ -1254,7 +1254,7 @@ public class MailPackageImpl extends EPackageImpl implements MailPackage {
              "kind", "element",
              "name", "binding.mail",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (mailConsumerAccountTypeEEnum, 

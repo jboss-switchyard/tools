@@ -1138,7 +1138,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
              "kind", "element",
              "name", "binding.direct",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (getDocumentRoot_BindingMock(), 
@@ -1147,7 +1147,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
              "kind", "element",
              "name", "binding.mock",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (getDocumentRoot_BindingSeda(), 
@@ -1156,7 +1156,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
              "kind", "element",
              "name", "binding.seda",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (getDocumentRoot_BindingTimer(), 
@@ -1165,7 +1165,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
              "kind", "element",
              "name", "binding.timer",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (getDocumentRoot_BindingUri(), 
@@ -1174,7 +1174,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
              "kind", "element",
              "name", "binding.uri",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (parameterTypeEClass, 

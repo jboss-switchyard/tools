@@ -35,7 +35,7 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
      */
 	public static SwitchyardFactory init() {
         try {
-            SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:switchyard:1.0"); 
+            SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:switchyard:2.0"); 
             if (theSwitchyardFactory != null) {
                 return theSwitchyardFactory;
             }

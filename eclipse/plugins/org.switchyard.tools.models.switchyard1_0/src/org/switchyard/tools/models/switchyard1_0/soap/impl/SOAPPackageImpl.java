@@ -1180,7 +1180,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "binding.soap",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
         addAnnotation
           (getDocumentRoot_Interceptor(), 

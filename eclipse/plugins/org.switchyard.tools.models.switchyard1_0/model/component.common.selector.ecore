@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="commonselector"
-    nsURI="urn:switchyard-component-common-selector:config:1.0" nsPrefix="common_selector">
+    nsURI="urn:switchyard-component-common-selector:config:2.0" nsPrefix="common_selector">
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value=""/>
@@ -38,7 +38,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="operationSelector"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#operationSelector.switchyard"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="xpathOperationSelector"
@@ -48,7 +48,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="operationSelector.xpath"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#operationSelector.switchyard"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="regexOperationSelector"
@@ -58,7 +58,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="operationSelector.regex"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#operationSelector.switchyard"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="javaOperationSelector"
@@ -68,7 +68,7 @@
         <details key="kind" value="element"/>
         <details key="name" value="operationSelector.java"/>
         <details key="namespace" value="##targetNamespace"/>
-        <details key="affiliation" value="urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"/>
+        <details key="affiliation" value="urn:switchyard-config:switchyard:2.0#operationSelector.switchyard"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
