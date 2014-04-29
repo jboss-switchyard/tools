@@ -170,7 +170,7 @@ public class BindingPropertyComposite implements IBindingComposite, ChangeListen
 
     @Override
     public void dispose() {
-        for (IBindingComposite composite: _composites) {
+        for (IBindingComposite composite : _composites) {
             composite.dispose();
         }
     }
