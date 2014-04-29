@@ -147,7 +147,7 @@
       <project-facet
             id="switchyard.core">
          <default-version
-               version="2.0">
+               version="1.1">
          </default-version>
     	 <property name="hide.version" value="true"/>
          <description>
