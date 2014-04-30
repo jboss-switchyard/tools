@@ -1105,6 +1105,38 @@
            <scope>test</scope>
         </dependency>
      </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-atom"
+           name="Atom">
+        <description>
+           Provides support for Camel Atom gateways.
+        </description>
+        <dependency>
+           <groupId>
+              org.switchyard.components
+           </groupId>
+           <artifactId>
+              switchyard-component-camel-atom
+           </artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-rss"
+           name="RSS">
+        <description>
+           Provides support for Camel RSS gateways.
+        </description>
+        <dependency>
+           <groupId>
+              org.switchyard.components
+           </groupId>
+           <artifactId>
+              switchyard-component-camel-rss
+           </artifactId>
+        </dependency>
+     </component>
   </extension>
   <extension
         point="org.switchyard.tools.ui.switchYardTestMixIn">

@@ -32,6 +32,7 @@
   <foreignModel>component.camel.netty.ecore</foreignModel>
   <foreignModel>component.camel.quartz.ecore</foreignModel>
   <foreignModel>component.camel.sql.ecore</foreignModel>
+  <foreignModel>component.camel.rss.ecore</foreignModel>
   <genPackages prefix="Bean" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions=""
       ecorePackage="component.bean.ecore#/">
@@ -3212,6 +3213,54 @@
     <genClasses ecoreClass="component.camel.sql.ecore#//ParameterType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//ParameterType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//ParameterType/value"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Rss" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
+      resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.rss.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.camel.rss.ecore#//TimeUnitType">
+      <genEnumLiterals ecoreEnumLiteral="component.camel.rss.ecore#//TimeUnitType/NANOSECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.rss.ecore#//TimeUnitType/MICROSECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.rss.ecore#//TimeUnitType/MILLISECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.rss.ecore#//TimeUnitType/SECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.rss.ecore#//TimeUnitType/MINUTES"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.rss.ecore#//TimeUnitType/HOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.rss.ecore#//TimeUnitType/DAYS"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="component.camel.rss.ecore#//TimeUnitTypeObject"/>
+    <genClasses ecoreClass="component.camel.rss.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.rss.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.rss.ecore#//BaseCamelBinding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.rss.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.rss.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.rss.ecore#//BaseCamelBinding/additionalUriParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.rss.ecore#//CamelRSSBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//CamelRSSBindingType/feedURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//CamelRSSBindingType/splitEntries"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//CamelRSSBindingType/filter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//CamelRSSBindingType/lastUpdate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//CamelRSSBindingType/throttleEntries"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//CamelRSSBindingType/feedHeader"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//CamelRSSBindingType/sortEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.rss.ecore#//CamelRSSBindingType/consume"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.rss.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.rss.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.rss.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.rss.ecore#//DocumentRoot/bindingRss"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.rss.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//ParameterType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.rss.ecore#//RSSScheduledPollConsumerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/initialDelay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/delay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/useFixedDelay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/sendEmptyMessageWhenIdle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/timeUnit"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

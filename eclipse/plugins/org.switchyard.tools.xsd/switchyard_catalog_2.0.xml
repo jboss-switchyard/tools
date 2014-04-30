@@ -20,6 +20,7 @@
   <public publicId="urn:switchyard-component-camel-mail:config:2.0" uri="camel-mail_2_0.xsd" />
   <public publicId="urn:switchyard-component-camel-netty:config:2.0" uri="camel-netty_2_0.xsd" />
   <public publicId="urn:switchyard-component-camel-quartz:config:2.0" uri="camel-quartz_2_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-rss:config:2.0" uri="camel-rss_2_0.xsd" />
   <public publicId="urn:switchyard-component-camel-sql:config:2.0" uri="camel-sql_2_0.xsd" />
   <public publicId="urn:switchyard-component-clojure:config:2.0" uri="clojure_2_0.xsd" />
   <public publicId="urn:switchyard-component-rules:config:2.0" uri="rules_2_0.xsd" />

@@ -355,6 +355,12 @@
     <bindingExtension
           class="org.switchyard.tools.ui.editor.components.camel.binding.CamelBindingTypeExtension">
     </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.atom.CamelAtomBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.rss.CamelRSSBindingTypeExtension">
+    </bindingExtension>
  </extension>
 
   <!-- Validation Extensions -->

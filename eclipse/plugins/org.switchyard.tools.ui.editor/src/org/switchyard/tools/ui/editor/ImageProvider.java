@@ -207,6 +207,9 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for breakpoint decorator. **/
     public static final String IMG_16_TRANSFORM_WATCH = PREFIX + "TRANSFORM_WATCH" + DOT16; //$NON-NLS-1$
 
+    /** Image for RSS & Atom feeds. **/
+    public static final String IMG_16_FEED = PREFIX + "FEED" + DOT16; //$NON-NLS-1$
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif"); //$NON-NLS-1$
@@ -266,6 +269,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_SERVICE_WATCH, ICONS_16 + "jwatch_obj.gif"); //$NON-NLS-1$
         addImageFilePath(IMG_16_VALIDATE_WATCH, ICONS_16 + "validatewatch.png"); //$NON-NLS-1$
         addImageFilePath(IMG_16_TRANSFORM_WATCH, ICONS_16 + "transformwatch.png"); //$NON-NLS-1$
+        addImageFilePath(IMG_16_FEED, ICONS_16 + "feed.png"); //$NON-NLS-1$
     }
 
 }

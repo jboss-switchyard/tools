@@ -25,6 +25,7 @@ import org.switchyard.tools.ui.editor.Activator;
 public class StringEmptyValidator implements IValidator {
 
     private final String _message;
+    private int _statusLevel = Status.ERROR;
 
     /**
      * Constructor.
@@ -34,18 +35,29 @@ public class StringEmptyValidator implements IValidator {
     public StringEmptyValidator(String message) {
         _message = message;
     }
+    
+    /**
+     * Constructor.
+     * 
+     * @param message Validation message
+     * @param level Status level - either Status.ERROR or Status.WARNING
+     */
+    public StringEmptyValidator(String message, int level) {
+        this(message);
+        _statusLevel = level;
+    }
 
     @Override
     public IStatus validate(Object value) {
         if (value == null) {
-            return new Status(Status.ERROR, Activator.PLUGIN_ID, _message);
+            return new Status(_statusLevel, Activator.PLUGIN_ID, _message);
         }
         if (value instanceof String) {
             String s = (String) value;
             if (!s.trim().isEmpty()) {
                 return Status.OK_STATUS;
             } else {
-                return new Status(Status.ERROR, Activator.PLUGIN_ID, _message);
+                return new Status(_statusLevel, Activator.PLUGIN_ID, _message);
             }
         }
         // if it's not a string, then ignore it

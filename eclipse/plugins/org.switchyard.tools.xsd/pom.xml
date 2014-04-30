@@ -141,6 +141,12 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-rss</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <classifier>sources</classifier>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-camel-sql</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>

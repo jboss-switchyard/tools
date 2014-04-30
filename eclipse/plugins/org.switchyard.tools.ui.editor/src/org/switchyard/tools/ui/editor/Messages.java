@@ -126,6 +126,7 @@ public class Messages extends NLS {
     public static String description_specifyXmlValidatorDetails;
     public static String description_sqlBindingDetails;
     public static String description_tcpBindingDetails;
+    public static String description_tool_atom;
     public static String description_tool_beanComponent;
     public static String description_tool_beanComponentImplementation;
     public static String description_tool_beanImplementation;
@@ -149,6 +150,7 @@ public class Messages extends NLS {
     public static String description_tool_promote;
     public static String description_tool_reference;
     public static String description_tool_rest;
+    public static String description_tool_rss;
     public static String description_tool_rulesComponent;
     public static String description_tool_rulesComponentImplementation;
     public static String description_tool_rulesImplementation;
@@ -311,6 +313,7 @@ public class Messages extends NLS {
     public static String label_address;
     public static String label_advanced;
     public static String label_artifactId;
+    public static String label_atom;
     public static String label_auditSettings;
     public static String label_authenticationType;
     public static String label_authorization;
@@ -506,6 +509,7 @@ public class Messages extends NLS {
     public static String label_rest;
     public static String label_restfulInterfaces;
     public static String label_rolesAllowed;
+    public static String label_rss;
     public static String label_rules;
     public static String label_rulesDrl;
     public static String label_runAs;

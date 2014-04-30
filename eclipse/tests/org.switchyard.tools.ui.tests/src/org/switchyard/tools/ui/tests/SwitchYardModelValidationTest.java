@@ -79,6 +79,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
+     * Tests import and configuration of camel-atom quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelAtomQuickstart() throws Exception {
+        runModelTest("camel-atom-binding");
+    }
+
+    /**
      * Tests import and configuration of camel-binding quickstart.
      * 
      * @throws Exception if a failure occurs.
@@ -158,6 +167,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
      */
     public void testCamelQuartzQuickstart() throws Exception {
         runModelTest("camel-quartz-binding");
+    }
+
+    /**
+     * Tests import and configuration of camel-rss quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelrssQuickstart() throws Exception {
+        runModelTest("camel-rss-binding");
     }
 
     /**

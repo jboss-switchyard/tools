@@ -18,6 +18,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
@@ -29,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.CamelRSSBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
@@ -150,6 +152,10 @@ public final class LabelAdapter {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_MAIL);
         } else if (binding instanceof CamelJpaBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_JPA);
+        } else if (binding instanceof CamelAtomBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FEED);
+        } else if (binding instanceof CamelRSSBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FEED);
         }
         return imageRenderingDecorator;
     }
