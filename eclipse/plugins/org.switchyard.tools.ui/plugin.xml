@@ -1137,6 +1137,18 @@
            </artifactId>
         </dependency>
      </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-sap"
+           name="File">
+        <description>
+           Provides support for Camel SAP gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-sap</artifactId>
+        </dependency>
+     </component>
   </extension>
   <extension
         point="org.switchyard.tools.ui.switchYardTestMixIn">

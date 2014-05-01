@@ -28,6 +28,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
@@ -354,7 +355,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                         ScaPackage.eINSTANCE.getBinding_Name()),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new StringEmptyValidator(
-                                "SOAP binding name cannot be empty")), null);
+                                "SOAP binding name should not be empty", Status.WARNING)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         /*
@@ -367,7 +368,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                         ScaPackage.eINSTANCE.getBinding_Name()),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new StringEmptyValidator(
-                                "SOAP binding name cannot be empty")), new UpdateValueStrategy(
+                                "SOAP binding name should not be empty", Status.WARNING)), new UpdateValueStrategy(
                         UpdateValueStrategy.POLICY_NEVER));
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 

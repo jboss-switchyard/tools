@@ -43,6 +43,16 @@ public class Messages extends NLS {
     public static String CamelQuartzComposite_Validation_End_Time_Format;
     public static String CamelQuartzComposite_Validation_Name_Empty;
     public static String CamelQuartzComposite_Validation_Start_Time_Format;
+    public static String CamelSAPBindingTypeExtension_SAP_description;
+    public static String CamelSAPBindingTypeExtension_SAP_label;
+    public static String CamelSAPComposite_Binding_name_empty_warning;
+    public static String CamelSAPComposite_Destination_name_empty_error;
+    public static String CamelSAPComposite_Destination_name_label;
+    public static String CamelSAPComposite_RFC_name_empty_error;
+    public static String CamelSAPComposite_RFC_name_label;
+    public static String CamelSAPComposite_Server_name_empty_error;
+    public static String CamelSAPComposite_Server_name_label;
+    public static String CamelSAPComposite_Transacted_checkbox_label;
     public static String category_menu_binding;
     public static String category_menu_component;
     public static String category_menu_implementation;

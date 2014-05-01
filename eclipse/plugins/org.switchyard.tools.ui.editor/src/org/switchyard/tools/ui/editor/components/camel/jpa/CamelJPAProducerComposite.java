@@ -19,6 +19,7 @@ import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -212,7 +213,7 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                         ScaPackage.eINSTANCE.getBinding_Name()),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new StringEmptyValidator(
-                                "JPA binding name cannot be empty")), null);
+                                "JPA binding name should not be empty", Status.WARNING)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         /*
@@ -225,7 +226,7 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                         ScaPackage.eINSTANCE.getBinding_Name()),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new StringEmptyValidator(
-                                "JPA binding name cannot be empty")), new UpdateValueStrategy(
+                                "JPA binding name should not be empty", Status.WARNING)), new UpdateValueStrategy(
                         UpdateValueStrategy.POLICY_NEVER));
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 

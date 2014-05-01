@@ -24,6 +24,7 @@ import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -233,7 +234,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                         ScaPackage.eINSTANCE.getBinding_Name()),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new StringEmptyValidator(
-                                "JCA binding name cannot be empty")), null);
+                                "JCA binding name should not be empty", Status.WARNING)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         final FeaturePath batchTimeoutFeaturePath = FeaturePath

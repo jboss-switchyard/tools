@@ -28,5 +28,6 @@
   <public publicId="urn:switchyard-component-jca:config:2.0" uri="jca_2_0.xsd" />
   <public publicId="urn:switchyard-component-resteasy:config:2.0" uri="resteasy_2_0.xsd" />
   <public publicId="urn:switchyard-component-http:config:2.0" uri="http_2_0.xsd" />
+  <public publicId="urn:switchyard-component-camel-sap:config:2.0" uri="camel-sap_2_0.xsd" />
 
 </catalog>

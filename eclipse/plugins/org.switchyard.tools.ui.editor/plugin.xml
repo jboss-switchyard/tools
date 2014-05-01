@@ -361,6 +361,9 @@
     <bindingExtension
           class="org.switchyard.tools.ui.editor.components.camel.rss.CamelRSSBindingTypeExtension">
     </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.sap.CamelSAPBindingTypeExtension">
+    </bindingExtension>
  </extension>
 
   <!-- Validation Extensions -->

@@ -300,11 +300,24 @@
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="urn:switchyard-component-camel-sap:config:2.0"
+            class="org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage"
+            genModel="model/switchyard_1.0.genmodel"/>
+   </extension>
+
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated switchyard_1.0 -->
       <parser
             type="rss"
             class="org.switchyard.tools.models.switchyard1_0.camel.rss.util.RssResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="sap"
+            class="org.switchyard.tools.models.switchyard1_0.camel.sap.util.SapResourceFactoryImpl"/>
    </extension>
 
    <extension

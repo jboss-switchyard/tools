@@ -195,6 +195,9 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for SCA binding. **/
     public static final String IMG_16_SCA = PREFIX + "SCA" + DOT16; //$NON-NLS-1$
     
+    /** Image for SAP binding. **/
+    public static final String IMG_16_SAP = PREFIX + "SAP" + DOT16; //$NON-NLS-1$
+
     /** Image for Properties dialog. **/
     public static final String IMG_16_PROPERTIES = PREFIX + "PROPERTIES" + DOT16; //$NON-NLS-1$
 
@@ -265,6 +268,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_WSDL_2_JAVA, ICONS_16 + "wsdl2java.png"); //$NON-NLS-1$
         addImageFilePath(IMG_16_TEST_CLASS, ICONS_16 + "test-class.png"); //$NON-NLS-1$
         addImageFilePath(IMG_16_SCA, ICONS_16 + "sca.png"); //$NON-NLS-1$
+        addImageFilePath(IMG_16_SAP, ICONS_16 + "sap.png"); //$NON-NLS-1$
         addImageFilePath(IMG_16_PROPERTIES, ICONS_16 + "properties.gif"); //$NON-NLS-1$
         addImageFilePath(IMG_16_SERVICE_WATCH, ICONS_16 + "jwatch_obj.gif"); //$NON-NLS-1$
         addImageFilePath(IMG_16_VALIDATE_WATCH, ICONS_16 + "validatewatch.png"); //$NON-NLS-1$

@@ -208,6 +208,11 @@
                   <groupId>org.apache.camel</groupId>
                   <artifactId>camel-core</artifactId>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-sap</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>

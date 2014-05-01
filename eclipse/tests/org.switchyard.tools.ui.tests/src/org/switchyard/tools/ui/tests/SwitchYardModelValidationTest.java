@@ -179,6 +179,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
+     * Tests import and configuration of camel-sap quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelSAPQuickstart() throws Exception {
+        runModelTest("camel-sap-binding");
+    }
+
+    /**
      * Tests import and configuration of camel-sql quickstart.
      * 
      * @throws Exception if a failure occurs.

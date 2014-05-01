@@ -33,6 +33,7 @@
   <foreignModel>component.camel.quartz.ecore</foreignModel>
   <foreignModel>component.camel.sql.ecore</foreignModel>
   <foreignModel>component.camel.rss.ecore</foreignModel>
+  <foreignModel>component.camel.sap.ecore</foreignModel>
   <genPackages prefix="Bean" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions=""
       ecorePackage="component.bean.ecore#/">
@@ -3261,6 +3262,32 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/useFixedDelay"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/sendEmptyMessageWhenIdle"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/timeUnit"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Sap" resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.sap.ecore#/">
+    <genClasses ecoreClass="component.camel.sap.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//BaseCamelBinding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//BaseCamelBinding/additionalUriParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/server"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/destination"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/rfcName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/transacted"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.sap.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.sap.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//DocumentRoot/bindingSap"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//ParameterType/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
