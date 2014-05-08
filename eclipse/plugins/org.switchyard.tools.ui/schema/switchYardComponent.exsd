@@ -91,6 +91,13 @@
                </restriction>
             </simpleType>
          </attribute>
+         <attribute name="bundleId" type="string">
+            <annotation>
+               <documentation>
+                  The OSGI/bundle ID that should be included in the feature definition for this component.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

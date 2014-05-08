@@ -275,6 +275,10 @@ public final class Messages extends NLS {
 
     public static String CreateServiceTestOperation_wizardPageText_creatingNewSYServiceTest;
 
+    public static String CreateSwitchYardProjectOperation_CreatingFeaturesXML;
+
+    public static String CreateSwitchYardProjectOperation_ErrorCreatingFeaturesXML;
+
     public static String CreateSwitchYardProjectOperation_errorMessage_errorAttachingTargetRuntimeToProject;
 
     public static String CreateSwitchYardProjectOperation_exceptionMessage_errorCreatingSYProject;
@@ -506,6 +510,8 @@ public final class Messages extends NLS {
     public static String ProjectConfigurationWizardPage_labelPackageName;
 
     public static String ProjectConfigurationWizardPage_labelTNS;
+
+    public static String ProjectConfigurationWizardPage_OSGIBundleCheckbox;
 
     public static String ProjectConfigurationWizardPage_wizardPageDescription;
 

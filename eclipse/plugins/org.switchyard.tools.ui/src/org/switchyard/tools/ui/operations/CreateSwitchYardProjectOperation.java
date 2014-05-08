@@ -22,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -30,6 +31,7 @@ import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Plugin;
+import org.apache.maven.model.PluginExecution;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -95,6 +97,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         private String _groupId;
         private String _projectVersion;
         private String _runtimeVersion;
+        private boolean _isOSGIEnabled = false;
         private IProjectFacetVersion _configurationVersion;
         private IRuntimeComponent _targetRuntime;
 
@@ -239,6 +242,20 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         public void setComponents(Collection<ISwitchYardComponentExtension> components) {
             _components = components;
         }
+
+        /**
+         * @return flag true/false (default false) adding OSGI bundle (Karaf) support.
+         */
+        public boolean isOSGIEnabled() {
+            return _isOSGIEnabled;
+        }
+
+        /**
+         * @param isEnabled Should support OSGI bundle (Karaf) config.
+         */
+        public void setIsOSGIEnabled(boolean isEnabled) {
+            this._isOSGIEnabled = isEnabled;
+        }
     }
 
     private final NewSwitchYardProjectMetaData _projectMetatData;
@@ -353,6 +370,18 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
+            if (_projectMetatData.isOSGIEnabled()) {
+                // create features.xml
+                try {
+                    createFeaturesXML(monitor, status);
+                } catch (Exception e) {
+                    mergeStatus(status, Messages.CreateSwitchYardProjectOperation_ErrorCreatingFeaturesXML, e);
+                } finally {
+                    subMonitor.done();
+                    subMonitor.setTaskName(""); //$NON-NLS-1$
+                }
+            }
+
             // create switchyard.xml
             try {
                 monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_creatingSYXMLFile);
@@ -395,6 +424,49 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
     }
 
+    private void createFeaturesXML(IProgressMonitor monitor, MultiStatus status) throws IOException {
+        if (_projectMetatData.isOSGIEnabled()) {
+            // create features.xml
+            
+            IProgressMonitor subMonitor = null;
+            try {                monitor.subTask(Messages.CreateSwitchYardProjectOperation_CreatingFeaturesXML);
+                IFile featuresFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
+                         .getFile("features.xml"); //$NON-NLS-1$
+                StringBuffer contents = new StringBuffer();
+                contents.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$
+                contents.append("<features xmlns=\"http://karaf.apache.org/xmlns/features/v1.0.0\">\n"); //$NON-NLS-1$
+                contents.append("\t<repository>mvn:org.switchyard/switchyard-deploy-karaf/"  //$NON-NLS-1$
+                        + "${" + SWITCHYARD_VERSION + "}/xml/features</repository>\n"); //$NON-NLS-1$
+                contents.append("\t<feature name=\"" + _projectMetatData.getNewProjectHandle().getName()  //$NON-NLS-1$
+                        + "\" version=\"" + _projectMetatData._projectVersion + "\">\n"); //$NON-NLS-1$ //$NON-NLS-2$
+                for (ISwitchYardComponentExtension component : _projectMetatData.getComponents()) {
+                    String featureId = component.getBundleId();
+                    if (featureId != null && featureId.length() > 0) {
+                        contents.append("\t\t<feature version=\"${" + SWITCHYARD_VERSION + "}\">" + featureId + "</feature>\n"); //$NON-NLS-1$ //$NON-NLS-2$
+                    }
+                }
+                contents.append("\t\t<bundle>mvn:" + _projectMetatData.getGroupId() + "/"  //$NON-NLS-1$ //$NON-NLS-2$
+                        + _projectMetatData.getNewProjectHandle().getName() + "/"  //$NON-NLS-1$
+                        + _projectMetatData.getProjectVersion() + "</bundle>\n"); //$NON-NLS-1$
+                contents.append("\t</feature>\n"); //$NON-NLS-1$
+
+                
+                contents.append("</features>\n"); //$NON-NLS-1$
+                CreateFileOperation op = new CreateFileOperation(featuresFile, null, new ByteArrayInputStream(
+                        contents.toString().getBytes()), Messages.CreateSwitchYardProjectOperation_CreatingFeaturesXML);
+                subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+                op.execute(subMonitor, _uiInfo);
+            } catch (Exception e) {
+                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_ErrorCreatingFeaturesXML, e);
+            } finally {
+                if (subMonitor != null) {
+                    subMonitor.done();
+                    subMonitor.setTaskName(""); //$NON-NLS-1$
+                }
+            }
+        }
+    }
+    
     private void createSwitchYardConfig(IProgressMonitor monitor) throws IOException {
         ResourceSet rs = SwitchYardModelUtils.newResourceSet();
         try {
@@ -482,11 +554,27 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         model.setGroupId(_projectMetatData.getGroupId());
         model.setArtifactId(_projectMetatData.getNewProjectHandle().getName());
         model.setVersion(_projectMetatData.getProjectVersion());
-        model.setPackaging("jar"); //$NON-NLS-1$
+        
+        if (_projectMetatData.isOSGIEnabled()) {
+            model.setPackaging("bundle"); //$NON-NLS-1$
+        } else {
+            model.setPackaging("jar"); //$NON-NLS-1$
+        }
         model.setName(_projectMetatData.getGroupId() + ":" + _projectMetatData.getNewProjectHandle().getName()); //$NON-NLS-1$
 
         // add runtime dependencies
         model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
+        if (_projectMetatData.isOSGIEnabled()) {
+            model.addProperty("switchyard.osgi.require.capability", //$NON-NLS-1$
+                    "org.ops4j.pax.cdi.extension; filter:=\"(extension=switchyard-component-bean)\",\n" //$NON-NLS-1$
+                    + "org.ops4j.pax.cdi.extension; filter:=\"(extension=deltaspike-core-api)\",\n" //$NON-NLS-1$
+                    + "osgi.extender; filter:=\"(osgi.extender=pax.cdi)\""); //$NON-NLS-1$
+            model.addProperty("switchyard.osgi.provide.capability", ""); //$NON-NLS-1$ //$NON-NLS-2$
+            model.addProperty("switchyard.osgi.symbolic.name", _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$ //$NON-NLS-2$
+            model.addProperty("switchyard.osgi.export", _projectMetatData.getPackageName() + "*"); //$NON-NLS-1$ //$NON-NLS-2$
+            model.addProperty("switchyard.osgi.import",  //$NON-NLS-1$
+                    "org.switchyard.*;version=\"[$(version;==;${switchyard.osgi.version}),$(version;=+;${switchyard.osgi.version}))\"\n,*"); //$NON-NLS-1$
+        }
 
         String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
         Set<String> scanners = new LinkedHashSet<String>();
@@ -504,7 +592,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
         // add build section
         model.setBuild(createBuildSection(versionString, scanners));
-
+        
         // add repository
         // Repository repository =
         // createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID);
@@ -513,14 +601,69 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
         return model;
     }
-
+    
     private Build createBuildSection(String versionString, Set<String> scanners) {
         Build build = new Build();
         build.addPlugin(createSwitchYardPlugin(versionString, scanners));
-        build.addPlugin(createCompilerPlugin());
+        if (_projectMetatData.isOSGIEnabled()) {
+            build.addPlugin(createBundlePlugin());
+            build.addPlugin(createAttachFeaturePlugin());
+            build.addResource(createFilteredResource());
+            build.addResource(createUnFilteredResource());
+        } else {
+            build.addPlugin(createCompilerPlugin());
+        }
         return build;
     }
 
+    private org.apache.maven.model.Resource createFilteredResource() {
+        org.apache.maven.model.Resource mvnResource = new org.apache.maven.model.Resource();
+        mvnResource.setDirectory(MAVEN_MAIN_RESOURCES_PATH);
+        mvnResource.setFiltering(true);
+        ArrayList<String> includesList = new ArrayList<String>();
+        includesList.add("features.xml");
+        mvnResource.setIncludes(includesList);
+        return mvnResource;
+    }
+    
+    private org.apache.maven.model.Resource createUnFilteredResource() {
+        org.apache.maven.model.Resource mvnResource = new org.apache.maven.model.Resource();
+        mvnResource.setDirectory(MAVEN_MAIN_RESOURCES_PATH);
+        mvnResource.setFiltering(false);
+        ArrayList<String> excludesList = new ArrayList<String>();
+        excludesList.add("features.xml");
+        mvnResource.setExcludes(excludesList);
+        return mvnResource;
+    }
+
+    private Plugin createAttachFeaturePlugin() {
+        Plugin plugin = new Plugin();
+        plugin.setArtifactId("build-helper-maven-plugin"); //$NON-NLS-1$
+        plugin.setGroupId("org.codehaus.mojo"); //$NON-NLS-1$
+        
+        PluginExecution attachFeatureExecution = new PluginExecution();
+        attachFeatureExecution.setId("attach-artifacts"); //$NON-NLS-1$
+        attachFeatureExecution.setPhase("package"); //$NON-NLS-1$
+        attachFeatureExecution.addGoal("attach-artifact"); //$NON-NLS-1$
+        
+        Xpp3Dom configuration = createNode("configuration"); //$NON-NLS-1$
+        Xpp3Dom artifacts = createNode("artifacts"); //$NON-NLS-1$
+        Xpp3Dom artifact = createNode("artifact"); //$NON-NLS-1$
+        Xpp3Dom file = createNode("file", "target/classes/features.xml"); //$NON-NLS-1$ //$NON-NLS-2$
+        artifact.addChild(file);
+        Xpp3Dom type = createNode("type", "xml"); //$NON-NLS-1$ //$NON-NLS-2$
+        artifact.addChild(type);
+        Xpp3Dom classifier = createNode("classifier", "features"); //$NON-NLS-1$ //$NON-NLS-2$
+        artifact.addChild(classifier);
+        artifacts.addChild(artifact);
+        configuration.addChild(artifacts);
+        attachFeatureExecution.setConfiguration(configuration);
+        
+        plugin.addExecution(attachFeatureExecution);
+        
+        return plugin;
+    }
+    
     private Plugin createCompilerPlugin() {
         Plugin plugin = new Plugin();
         plugin.setArtifactId("maven-compiler-plugin"); //$NON-NLS-1$
@@ -548,8 +691,54 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         return plugin;
     }
 
+    private Xpp3Dom createNode(String tag) {
+        return createNode(tag, null);
+    }
+    
+    private Xpp3Dom createNode(String tag, String value) {
+        Xpp3Dom domNode = new Xpp3Dom(tag);
+        if (value != null) {
+            domNode.setValue(value);
+        }
+        return domNode;
+    }
+    
+    private Plugin createBundlePlugin() {
+        Plugin plugin = new Plugin();
+        plugin.setArtifactId("maven-bundle-plugin"); //$NON-NLS-1$
+        plugin.setGroupId("org.apache.felix"); //$NON-NLS-1$
+        plugin.setVersion("2.4.0"); //$NON-NLS-1$
+        plugin.setExtensions(true);
+        
+        Xpp3Dom configuration = createNode("configuration"); //$NON-NLS-1$
+        Xpp3Dom excludeDeps = createNode("excludeDependencies", "false"); //$NON-NLS-1$ //$NON-NLS-2$
+        configuration.addChild(excludeDeps);
+        
+        Xpp3Dom instructions = createNode("instructions"); //$NON-NLS-1$
+        instructions.addChild(createNode("Bundle-Name", "${project.name}")); //$NON-NLS-1$ //$NON-NLS-2$
+        instructions.addChild(createNode("Bundle-SymbolicName", "${project.groupId}" + "." + "${project.artifactId}")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        instructions.addChild(createNode("Import-Package", "${switchyard.osgi.import}")); //$NON-NLS-1$ //$NON-NLS-2$
+        instructions.addChild(createNode("Include-Resource", "{maven-resources}, META-INF/switchyard.xml=target/classes/META-INF/switchyard.xml")); //$NON-NLS-1$ //$NON-NLS-2$
+        instructions.addChild(createNode("_failok", "true")); //$NON-NLS-1$ //$NON-NLS-2$
+        instructions.addChild(createNode("Embed-Dependency", "!*")); //$NON-NLS-1$ //$NON-NLS-2$
+        instructions.addChild(createNode("Require-Capability", "${switchyard.osgi.require.capability}")); //$NON-NLS-1$ //$NON-NLS-2$
+        
+        configuration.addChild(instructions);
+
+        Xpp3Dom archive = createNode("archive"); //$NON-NLS-1$
+        Xpp3Dom manifestEntries = createNode("manifestEntries"); //$NON-NLS-1$
+        manifestEntries.addChild(createNode("Project-Artifact-Id", "${project.artifactId}")); //$NON-NLS-1$ //$NON-NLS-2$
+        manifestEntries.addChild(createNode("Project-Group-Id", "${project.groupId}")); //$NON-NLS-1$ //$NON-NLS-2$
+        manifestEntries.addChild(createNode("Project-Version", "${project.version}")); //$NON-NLS-1$ //$NON-NLS-2$
+        archive.addChild(manifestEntries);
+        configuration.addChild(archive);
+
+        plugin.setConfiguration(configuration);
+        
+        return plugin;
+    }
+
     private Plugin createSwitchYardPlugin(String versionString, Set<String> scanners) {
         return M2EUtils.createSwitchYardPlugin(versionString, true, scanners);
     }
-
 }

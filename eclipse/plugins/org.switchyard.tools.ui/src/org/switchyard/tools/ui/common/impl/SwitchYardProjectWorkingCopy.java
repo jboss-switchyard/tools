@@ -25,8 +25,10 @@ import org.apache.maven.model.Model;
 import org.apache.maven.project.MavenProject;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.text.DocumentRewriteSession;
@@ -48,6 +50,9 @@ import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.i18n.Messages;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 
 /**
  * SwitchYardProjectWorkingCopy
@@ -276,9 +281,24 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 subMonitor.done();
             }
             subMonitor.done();
+            final List<Operation> updateFeatureOperations = processFeatureUpdates(subMonitor);
+            if (updateFeatureOperations.size() > 0) {
+                subMonitor.done();
+
+                subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+                try {
+                    updateFeatures(updateFeatureOperations);
+                } catch (IOException e) {
+                    throw new CoreException(
+                            new Status(Status.ERROR, Activator.PLUGIN_ID, "Could not update features.xml", e));
+                }
+                subMonitor.done();
+            }
+            subMonitor.done();
             monitor.done();
         } finally {
             _switchYardProject.readUnlock();
+            _switchYardProject.getSwitchYardFeaturesFile().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
         }
     }
 
@@ -301,6 +321,68 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         _switchYardProject.disposed(this);
     }
 
+    private List<Operation> processFeatureUpdates(IProgressMonitor monitor) throws CoreException {
+        final List<Operation> operations = new ArrayList<Operation>();
+
+        if (_switchYardProject.getSwitchYardFeaturesFile() == null 
+                || (_switchYardProject.getSwitchYardConfigurationFile() != null && !_switchYardProject.getSwitchYardFeaturesFile().exists())) {
+            return operations;
+        }
+        
+        monitor.beginTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_processingSYSettingsChanges, 50);
+
+        if (_mavenProject != _switchYardProject.getMavenProject()) {
+            throw new CoreException(
+                    new Status(Status.ERROR, Activator.PLUGIN_ID,
+                            Messages.SwitchYardProjectWorkingCopy_errorMessage_workingCopyOutOfSync));
+        }
+
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingVersionProperty);
+        final String switchYardVersionPropertyKey = getVersionPropertyKey();
+        final String currentSwitchYardVersion = _switchYardProject.getVersion();
+        if (switchYardVersionPropertyKey != null) {
+            if (_newVersion != null) {
+                operations.add(new UpdatePropertyOperation(switchYardVersionPropertyKey, _newVersion));
+            } else if (currentSwitchYardVersion == null) {
+                operations.add(new UpdatePropertyOperation(switchYardVersionPropertyKey, "")); //$NON-NLS-1$
+            }
+        }
+        monitor.worked(33);
+
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingComponentDependencies);
+
+        if (_removedComponents.size() > 0) {
+            // there's got to be a better way....
+            final List<ISwitchYardComponentExtension> removedComponentList = new ArrayList<ISwitchYardComponentExtension>();
+            for (ISwitchYardComponentExtension component : _removedComponents.values()) {
+                removedComponentList.add(component);
+            }
+            if (removedComponentList.size() > 0) {
+                RemoveFeaturesOperation featuresOp = new RemoveFeaturesOperation(removedComponentList);
+                operations.add(featuresOp);
+            }
+        }
+        monitor.worked(33);
+
+        // make sure the runtime component is always present
+        addComponent(SwitchYardComponentExtensionManager.instance().getRuntimeComponentExtension());
+        if (_addedComponents.size() > 0) {
+            final List<ISwitchYardComponentExtension> addedComponentList = new ArrayList<ISwitchYardComponentExtension>();
+            for (ISwitchYardComponentExtension component : _addedComponents.values()) {
+                addedComponentList.add(component);
+            }
+            if (addedComponentList.size() > 0) {
+                AddFeaturesOperation featuresOp = new AddFeaturesOperation(addedComponentList);
+                operations.add(featuresOp);
+            }
+        }
+        monitor.worked(33);
+
+        monitor.done();
+
+        return operations;
+    }    
+    
     private List<Operation> processUpdates(IProgressMonitor monitor) throws CoreException {
         final List<Operation> operations = new ArrayList<Operation>();
 
@@ -353,7 +435,9 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         if (_addedComponents.size() > 0) {
             final String versionString = getRawVersionString();
             final List<Dependency> addedDependencies = new ArrayList<Dependency>();
+            final List<ISwitchYardComponentExtension> addedComponentList = new ArrayList<ISwitchYardComponentExtension>();
             for (ISwitchYardComponentExtension component : _addedComponents.values()) {
+                addedComponentList.add(component);
                 COMPONENT_DEPENDENCIES: for (Dependency dependency : component.getDependencies()) {
                     // crude, but effective
                     for (Iterator<Dependency> it = model.getDependencies().iterator(); it.hasNext();) {
@@ -367,6 +451,10 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                     addedDependencies.add(dependency);
                 }
             }
+//            if (addedComponentList.size() > 0) {
+//                AddFeaturesOperation featuresOp = new AddFeaturesOperation(addedComponentList);
+//                operations.add(featuresOp);
+//            }
             if (addedDependencies.size() > 0) {
                 operations.add(new AddDependenciesOperation(addedDependencies));
             }
@@ -477,6 +565,58 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         }
     }
 
+    /**
+     * performs an modifying operation on top of the features
+     * 
+     * Adapted from org.eclipse.m2e.core.ui.internal.editing.PomEdits.performOnDOMDocument()
+     */
+    private void updateFeatures(List<Operation> operations) throws IOException, CoreException {
+        final IDOMModel domFeatureModel = (IDOMModel) StructuredModelManager.getModelManager().getModelForEdit(
+                _switchYardProject.getSwitchYardFeaturesFile());
+        if (domFeatureModel == null) {
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Could not update features.xml."));
+        }
+        
+        try {
+            DocumentRewriteSession session = null;
+            IStructuredTextUndoManager undo = null;
+
+            // let the model know we make changes
+            domFeatureModel.aboutToChangeModel();
+            undo = domFeatureModel.getStructuredDocument().getUndoManager();
+            // let the document know we make changes
+            if (domFeatureModel.getStructuredDocument() instanceof IDocumentExtension4) {
+                IDocumentExtension4 ext4 = (IDocumentExtension4) domFeatureModel.getStructuredDocument();
+                session = ext4.startRewriteSession(DocumentRewriteSessionType.UNRESTRICTED_SMALL);
+            }
+            undo.beginRecording(domFeatureModel);
+
+            try {
+                for (Operation operation : operations) {
+                    try {
+                        operation.process(domFeatureModel.getDocument());
+                    } catch (Exception e) {
+                        // XXX: should we log an error?
+                        e.printStackTrace();
+                    }
+                }
+            } finally {
+                undo.endRecording(domFeatureModel);
+                if (session != null && domFeatureModel.getStructuredDocument() instanceof IDocumentExtension4) {
+                    IDocumentExtension4 ext4 = (IDocumentExtension4) domFeatureModel.getStructuredDocument();
+                    ext4.stopRewriteSession(session);
+                }
+                domFeatureModel.changedModel();
+            }
+        } finally {
+            try {
+                domFeatureModel.save();
+            } finally {
+                domFeatureModel.releaseFromEdit();
+            }
+        }
+    }
+
     private static interface Operation {
         public void process(IDOMDocument document);
     }
@@ -536,6 +676,108 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                     // TODO: log an error?
                     e.printStackTrace();
                 }
+            }
+        }
+    }
+
+    private final class AddFeaturesOperation implements Operation {
+
+        private final List<ISwitchYardComponentExtension> _addedComponentsList;
+
+        private AddFeaturesOperation(List<ISwitchYardComponentExtension> addedDependencies) {
+            _addedComponentsList = addedDependencies;
+        }
+
+        @Override
+        public void process(IDOMDocument document) {
+            NodeList featureNodes = document.getElementsByTagName("feature");
+            if (featureNodes != null && featureNodes.getLength() > 0) {
+                Node firstFeature = featureNodes.item(0);
+                if (firstFeature instanceof Element) {
+                    Element firstFeatureElement = (Element) firstFeature;
+                    NodeList childFeatures = firstFeatureElement.getElementsByTagName("feature");
+                    for (ISwitchYardComponentExtension component : _addedComponentsList) {
+                        try {
+                            boolean foundIt = false; 
+                            String addIt = null;
+                            String featureId = component.getBundleId();
+                            for (int i = 0; i < childFeatures.getLength(); i++) {
+                                Node feature = childFeatures.item(i);
+                                if (feature instanceof Element) {
+                                    Text value = null;
+                                    if (feature.getFirstChild() instanceof Text) {
+                                        value = (Text) feature.getFirstChild();
+                                    }
+                                    String featureIdText = value.getTextContent();
+                                    if (featureIdText.equalsIgnoreCase(featureId)) {
+                                        foundIt = true;
+                                    } else {
+                                        addIt = featureId;
+                                    }
+                                }
+                            }
+                            if (!foundIt && addIt != null) {
+                                Element newFeature = document.createElement("feature");
+                                newFeature.setAttribute("version", "${switchyard.version}"); //getVersion());
+                                newFeature.appendChild(document.createTextNode(addIt));
+                                firstFeatureElement.appendChild(newFeature);
+                            }
+                        } catch (Exception e) {
+                            // TODO: log an error?
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    private final class RemoveFeaturesOperation implements Operation {
+
+        private final List<ISwitchYardComponentExtension> _removedComponentsList;
+
+        private RemoveFeaturesOperation(List<ISwitchYardComponentExtension> removedDependencies) {
+            _removedComponentsList = removedDependencies;
+        }
+
+        @Override
+        public void process(IDOMDocument document) {
+            NodeList featureNodes = document.getElementsByTagName("feature");
+            if (featureNodes != null && featureNodes.getLength() > 0) {
+                Node firstFeature = featureNodes.item(0);
+                if (firstFeature instanceof Element) {
+                    Element firstFeatureElement = (Element) firstFeature;
+                    NodeList childFeatures = firstFeatureElement.getElementsByTagName("feature");
+                    for (ISwitchYardComponentExtension component : _removedComponentsList) {
+                        try {
+                            boolean foundIt = false; 
+                            String featureId = component.getBundleId();
+                            Node removeIt = null;
+                            for (int i = 0; i < childFeatures.getLength(); i++) {
+                                Node feature = childFeatures.item(i);
+                                if (feature instanceof Element) {
+                                    Text value = null;
+                                    if (feature.getFirstChild() instanceof Text) {
+                                        value = (Text) feature.getFirstChild();
+                                    }
+                                    String featureIdText = value.getTextContent();
+                                    if (featureIdText.equalsIgnoreCase(featureId)) {
+                                        foundIt = true;
+                                        removeIt = feature;
+                                    }
+                                }
+                            }
+                            if (foundIt && removeIt != null) {
+                                firstFeatureElement.removeChild(removeIt);
+                            }
+                        } catch (Exception e) {
+                            // TODO: log an error?
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                
             }
         }
     }
@@ -625,6 +867,11 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
             }
             PomEdits.removeIfNoChildElement(scannersElement);
         }
+    }
+
+    @Override
+    public IFile getSwitchYardFeaturesFile() {
+        return _switchYardProject.getSwitchYardFeaturesFile();
     }
 
 }

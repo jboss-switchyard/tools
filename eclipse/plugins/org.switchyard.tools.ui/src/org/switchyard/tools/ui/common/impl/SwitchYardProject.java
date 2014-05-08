@@ -99,6 +99,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
     private long _lastOutputTimestamp;
     private final SwitchYardProjectManager _manager;
     private ReadWriteLock _loadLock = new ReentrantReadWriteLock();
+    private volatile IFile _featuresFile;
 
     /**
      * Create a new SwitchYardProject.
@@ -416,6 +417,17 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                 break;
             }
         }
+
+        for (IPath resourceLocation : MavenProjectUtils.getResourceLocations(_project, mavenProject.getResources())) {
+            IFile temp = _project.getFolder(resourceLocation).getFile("features.xml"); //$NON-NLS-1$
+            if (_featuresFile == null) {
+                _featuresFile = temp;
+            }
+            if (temp.exists()) {
+                _featuresFile = temp;
+                break;
+            }
+        }
     }
 
     private String readSwitchYardVersion(MavenProject mavenProject) {
@@ -724,5 +736,10 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
             _outputFile = _project.getWorkspace().getRoot()
                     .getFile(_mavenProjectFacade.getOutputLocation().append(META_INF).append(SWITCHYARD_XML));
         }
+    }
+
+    @Override
+    public IFile getSwitchYardFeaturesFile() {
+        return this._featuresFile;
     }
 }

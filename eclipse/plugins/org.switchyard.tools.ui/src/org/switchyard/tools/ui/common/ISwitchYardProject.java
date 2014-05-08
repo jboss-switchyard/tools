@@ -114,4 +114,11 @@ public interface ISwitchYardProject {
      */
     ISwitchYardProjectWorkingCopy createWorkingCopy();
     
+    /**
+     * Scans resource folders for the first instance of features.xml.
+     * If one is not located, the first applicable resource folder will be used.
+     * 
+     * @return the location of the features.xml file.
+     */
+    public IFile getSwitchYardFeaturesFile();
 }

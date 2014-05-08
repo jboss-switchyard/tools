@@ -123,6 +123,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         projectMetaData.setComponents(_configurationPage.getSelectedComponents());
         projectMetaData.setTargetRuntime(_configurationPage.getTargetRuntime());
         projectMetaData.setConfigurationVersion(_configurationPage.getConfigurationVersion());
+        projectMetaData.setIsOSGIEnabled(_configurationPage.isBundled());
 
         // create the new project operation
         final CreateSwitchYardProjectOperation op = new CreateSwitchYardProjectOperation(projectMetaData,

@@ -120,6 +120,7 @@ public final class SwitchYardComponentExtensionManager {
         String name = element.getAttribute("name"); //$NON-NLS-1$
         Category category = parseCategory(element);
         String description = parseDescription(element);
+        String bundleId = parseBundleId(element);
         List<Dependency> dependencies = parseDependencies(element);
         if (id == null) {
             Activator
@@ -141,7 +142,7 @@ public final class SwitchYardComponentExtensionManager {
             name = id;
         }
         ISwitchYardComponentExtension extension = new SwitchYardComponentExtension(id, name, category,
-                element.getAttribute("scannerClass"), description, dependencies); //$NON-NLS-1$
+                element.getAttribute("scannerClass"), description, bundleId, dependencies); //$NON-NLS-1$
         _extensions.put(id, extension);
         _extensionsByCategory.get(category).add(extension);
     }
@@ -224,6 +225,14 @@ public final class SwitchYardComponentExtensionManager {
         return artifactIds[0].getValue().trim();
     }
 
+    private String parseBundleId(IConfigurationElement element) {
+        String bundleIdString = element.getAttribute("bundleId"); //$NON-NLS-1$
+        if (bundleIdString != null && bundleIdString.length() > 0) {
+            return bundleIdString;
+        }
+        return null;
+    }
+
     private String parseScope(IConfigurationElement element) {
         IConfigurationElement[] scopes = element.getChildren("scope"); //$NON-NLS-1$
         if (scopes.length == 0) {
@@ -248,10 +257,11 @@ public final class SwitchYardComponentExtensionManager {
         private final Category _category;
         private final String _scannerClassName;
         private final String _description;
+        private final String _bundleId;
         private final List<Dependency> _dependencies;
 
         private SwitchYardComponentExtension(String id, String name, Category category, String scannerClassName,
-                String description, List<Dependency> dependencies) {
+                String description, String bundleId, List<Dependency> dependencies) {
             super();
             _id = id;
             _name = name;
@@ -259,6 +269,7 @@ public final class SwitchYardComponentExtensionManager {
             _scannerClassName = scannerClassName;
             _description = description;
             _dependencies = Collections.unmodifiableList(dependencies);
+            _bundleId = bundleId;
         }
 
         @Override
@@ -291,5 +302,9 @@ public final class SwitchYardComponentExtensionManager {
             return _dependencies;
         }
 
+        @Override
+        public String getBundleId() {
+            return _bundleId;
+        }
     }
 }

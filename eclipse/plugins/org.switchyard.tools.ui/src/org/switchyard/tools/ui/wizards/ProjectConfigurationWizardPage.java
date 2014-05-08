@@ -29,6 +29,8 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -60,11 +62,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     private Text _groupIdText;
     private Text _namespaceText;
     private Text _packageNameText;
+    private Button _isBundleCheckbox;
     private SwitchYardSettingsGroup _settingsGroup;
     private boolean _isInitialized;
     private String _groupId = ""; //$NON-NLS-1$
     private String _packageName = ""; //$NON-NLS-1$
     private String _namespace = ""; //$NON-NLS-1$
+    private boolean _isBundled = false;
 
     /**
      * Create a new ProjectConfigurationWizardPage.
@@ -94,6 +98,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
      */
     public String getPackageName() {
         return _packageName;
+    }
+    
+    /**
+     * @return the bundled state (true/false)
+     */
+    public boolean isBundled() {
+        return _isBundled;
     }
 
     /**
@@ -187,7 +198,24 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 validate();
             }
         });
+        
+        label = new Label(projectDetails, SWT.RIGHT);
+        _isBundleCheckbox = new Button(projectDetails, SWT.CHECK);
+        _isBundleCheckbox.setText(Messages.ProjectConfigurationWizardPage_OSGIBundleCheckbox);
+        GridData cbGD = new GridData(GridData.FILL_HORIZONTAL);
+        _isBundleCheckbox.setLayoutData(cbGD);
+        _isBundleCheckbox.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                _isBundled = _isBundleCheckbox.getSelection();
+                validate();
+            }
 
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                // empty
+            }
+        });
         // runtime version
         Composite settingsContent = new Composite(content, SWT.NONE);
         settingsContent.setLayout(new GridLayout());

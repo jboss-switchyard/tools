@@ -55,7 +55,7 @@ public interface ISwitchYardComponentExtension {
      * @return the Maven dependencies required by this component.
      */
     public List<Dependency> getDependencies();
-
+    
     /**
      * Represents a component category.
      */
@@ -68,5 +68,10 @@ public interface ISwitchYardComponentExtension {
         GATEWAY,
         /** Test components (e.g. HTTP mixin, CDI mixin, etc.). */
         TEST
-    };
+    }
+
+    /**
+     * @return the bundleId of this component, if any.
+     */
+    public String getBundleId();
 }

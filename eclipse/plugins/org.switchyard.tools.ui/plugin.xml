@@ -765,6 +765,7 @@
   <extension
         point="org.switchyard.tools.ui.switchYardComponent">
      <component
+           bundleId="switchyard"
            id="org.switchyard:switchyard-runtime"
            name="Runtime"
            scannerClass="org.switchyard.transform.config.model.TransformSwitchYardScanner">
@@ -805,6 +806,7 @@
            scannerClass="org.switchyard.component.bean.config.model.BeanSwitchYardScanner">
      -->
      <component
+           bundleId="switchyard-bean"
            category="implementation"
            id="org.switchyard.components:switchyard-component-bean"
            name="Bean">
@@ -823,6 +825,7 @@
            scannerClass="org.switchyard.component.camel.config.model.RouteScanner">
      -->
      <component
+           bundleId="switchyard-camel"
            category="implementation"
            id="org.switchyard.components:switchyard-component-camel"
            name="Camel Route">
@@ -846,6 +849,7 @@
         </dependency>
      </component> -->
      <component
+           bundleId="switchyard-http"
            category="gateway"
            id="org.switchyard.components:switchyard-component-http"
            name="HTTP">
@@ -858,6 +862,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-jca"
            category="gateway"
            id="org.switchyard.components:switchyard-component-jca"
            name="JCA">
@@ -874,6 +879,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-rest"
            category="gateway"
            id="org.switchyard.components:switchyard-component-resteasy"
            name="REST">
@@ -896,6 +902,7 @@
            scannerClass="org.switchyard.component.rules.config.model.RulesSwitchYardScanner">
      -->
      <component
+           bundleId="switchyard-rules"
            category="implementation"
            id="org.switchyard.components:switchyard-component-rules"
            name="Rules (Drools)">
@@ -908,6 +915,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-soap"
            category="gateway"
            id="org.switchyard.components:switchyard-component-soap"
            name="SOAP">
@@ -920,6 +928,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-camel"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-core"
            name="Camel Core (SEDA/Timer/URI)">
@@ -932,6 +941,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-file"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-file"
            name="File">
@@ -944,6 +954,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-ftp"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-ftp"
            name="File Transfer (FTP/FTPS/SFTP)">
@@ -956,6 +967,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-jms"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-jms"
            name="JMS">
@@ -968,6 +980,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-jpa"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-jpa"
            name="JPA">
@@ -980,6 +993,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-mail"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-mail"
            name="Mail">
@@ -992,6 +1006,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-quartz"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-quartz"
            name="Scheduling">
@@ -1004,6 +1019,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-sql"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-sql"
            name="SQL">
@@ -1016,6 +1032,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-netty"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-netty"
            name="Network (TCP/UDP)">
@@ -1028,6 +1045,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-sca"
            category="gateway"
            id="org.switchyard.components:switchyard-component-sca"
            name="SCA">
