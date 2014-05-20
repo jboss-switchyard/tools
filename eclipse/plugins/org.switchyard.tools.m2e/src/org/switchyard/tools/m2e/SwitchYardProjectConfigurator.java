@@ -74,7 +74,7 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
             if (!ifpwc.hasProjectFacet(facet.getProjectFacet())) {
                 ifpwc.addProjectFacet(facet);
                 modified = true;
-            } else if (!facet.getVersionString().equals(ifpwc.getProjectFacetVersion(facet.getProjectFacet()).getVersionString())) {
+            } else if ("switchyard.core".equals(facet.getProjectFacet().getId()) && !facet.getVersionString().equals(ifpwc.getProjectFacetVersion(facet.getProjectFacet()).getVersionString())) {
                 // different version
                 ifpwc.changeProjectFacetVersion(facet);
                 modified = true;
