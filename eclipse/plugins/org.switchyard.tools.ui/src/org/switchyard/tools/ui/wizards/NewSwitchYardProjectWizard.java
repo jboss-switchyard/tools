@@ -12,6 +12,7 @@ package org.switchyard.tools.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -31,7 +32,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
-import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.i18n.Messages;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation;
@@ -101,7 +101,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
     @Override
     public boolean performFinish() {
-        final Version runtimeVersion = _configurationPage.getRuntimeVersion();
+        final ArtifactVersion runtimeVersion = _configurationPage.getRuntimeVersion();
         if (!validateVersion(runtimeVersion)) {
             return false;
         }
@@ -194,7 +194,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         return super.canFinish() && getContainer().getCurrentPage() != _newProjectPage;
     }
 
-    private boolean validateVersion(final Version version) {
+    private boolean validateVersion(final ArtifactVersion version) {
         if (version == null) {
             MessageDialog.openError(getShell(), Messages.NewSwitchYardProjectWizard_errorTitle_noVersionSpecified,
                     Messages.NewSwitchYardProjectWizard_errorMessage_noSwitchYardVersionSpecified);

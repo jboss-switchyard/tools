@@ -11,12 +11,11 @@
 package org.switchyard.tools.ui;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.maven.RepositoryUtils;
-import org.apache.maven.artifact.repository.ArtifactRepository;
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
@@ -24,26 +23,15 @@ import org.apache.maven.model.Plugin;
 import org.apache.maven.model.PluginExecution;
 import org.apache.maven.model.Repository;
 import org.apache.maven.project.MavenProject;
-import org.apache.maven.repository.internal.MavenRepositorySystemSession;
-import org.apache.maven.wagon.authentication.AuthenticationInfo;
-import org.codehaus.plexus.PlexusContainer;
+import org.apache.maven.repository.RepositorySystem;
+import org.apache.maven.repository.legacy.metadata.ArtifactMetadataSource;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.embedder.IMaven;
 import org.eclipse.m2e.core.internal.embedder.MavenImpl;
-import org.eclipse.m2e.core.repository.IRepository;
-import org.eclipse.m2e.core.repository.IRepositoryRegistry;
-import org.sonatype.aether.artifact.Artifact;
-import org.sonatype.aether.repository.Authentication;
-import org.sonatype.aether.repository.LocalRepository;
-import org.sonatype.aether.repository.RemoteRepository;
-import org.sonatype.aether.resolution.VersionRangeRequest;
-import org.sonatype.aether.resolution.VersionRangeResult;
-import org.sonatype.aether.util.artifact.DefaultArtifact;
 
 /**
  * M2EUtils
@@ -153,9 +141,15 @@ public final class M2EUtils {
      * @return the version range for org.switchyard:switchyard-api
      * @throws CoreException if an error occurs.
      */
-    public static VersionRangeResult resolveSwitchYardVersionRange(IProgressMonitor monitor) throws CoreException {
-        return resolveVersionRange(new DefaultArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "jar", //$NON-NLS-1$
-                "[,]"), monitor); //$NON-NLS-1$
+    public static List<ArtifactVersion> resolveSwitchYardVersionRange(IProgressMonitor monitor) throws CoreException {
+        try {
+            return resolveVersionRange(
+                    ((MavenImpl) MavenPlugin.getMaven()).getPlexusContainer().lookup(RepositorySystem.class)
+                            .createArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "[,]", "jar"),
+                    monitor);
+        } catch (Exception e) {
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e)); //$NON-NLS-1$
+        }
     }
 
     /**
@@ -169,62 +163,19 @@ public final class M2EUtils {
      * @return the version range for the artifact.
      * @throws CoreException if an error occurs.
      */
-    public static VersionRangeResult resolveVersionRange(Artifact artifact, IProgressMonitor monitor)
+    public static List<ArtifactVersion> resolveVersionRange(Artifact artifact, IProgressMonitor monitor)
             throws CoreException {
         try {
-            IMaven maven = MavenPlugin.getMaven();
-            ArtifactRepository localRepository = maven.getLocalRepository();
-
-            PlexusContainer container = ((MavenImpl) maven).getPlexusContainer();
-            org.sonatype.aether.RepositorySystem repoSystem = container
-                    .lookup(org.sonatype.aether.RepositorySystem.class);
-
-            MavenRepositorySystemSession session = new MavenRepositorySystemSession();
-            session.setLocalRepositoryManager(repoSystem.newLocalRepositoryManager(new LocalRepository(localRepository
-                    .getBasedir())));
-            // use null progress to prevent SWTException: invalid thread access
-            session.setTransferListener(((MavenImpl) maven).createArtifactTransferListener(new NullProgressMonitor()));
-            VersionRangeRequest rangeRequest = new VersionRangeRequest(artifact, getRemoteRepositories(), null);
-            return repoSystem.resolveVersionRange(session, rangeRequest);
+            final IMaven maven = MavenPlugin.getMaven();
+            final ArtifactMetadataSource source = ((MavenImpl) maven).getPlexusContainer().lookup(
+                    ArtifactMetadataSource.class, "org.apache.maven.artifact.metadata.ArtifactMetadataSource", "maven"); //$NON-NLS-1$  $NON-NLS-2$
+            return source.retrieveAvailableVersions(artifact, maven.getLocalRepository(),
+                    maven.getArtifactRepositories());
         } catch (Exception e) {
             throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e)); //$NON-NLS-1$
         }
     }
-
-    private static List<RemoteRepository> getRemoteRepositories() {
-        List<RemoteRepository> remoteRepositories;
-        try {
-            remoteRepositories = RepositoryUtils.toRepos(MavenPlugin.getMaven().getArtifactRepositories());
-        } catch (CoreException e) {
-            // we've tried
-            remoteRepositories = new ArrayList<RemoteRepository>();
-        }
-
-        // add in any other repositories
-        List<IRepository> repositories = MavenPlugin.getRepositoryRegistry().getRepositories(
-                IRepositoryRegistry.SCOPE_SETTINGS | IRepositoryRegistry.SCOPE_UNKNOWN);
-        for (IRepository repository : repositories) {
-            boolean found = false;
-            for (RemoteRepository remoteRepository : remoteRepositories) {
-                if (remoteRepository.getUrl().equals(repository.getUrl())) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                RemoteRepository remoteRepository = new RemoteRepository(repository.getId(), "default", //$NON-NLS-1$
-                        repository.getUrl());
-                AuthenticationInfo authInfo = repository.getAuthenticationInfo();
-                if (authInfo != null) {
-                    remoteRepository.setAuthentication(new Authentication(authInfo.getUserName(), authInfo
-                            .getPassword(), authInfo.getPrivateKey(), authInfo.getPassphrase()));
-                }
-                remoteRepositories.add(remoteRepository);
-            }
-        }
-        return remoteRepositories;
-    }
-
+    
     /**
      * @param version the plugin version
      * @param createExecution true to create an execution with a configure goal

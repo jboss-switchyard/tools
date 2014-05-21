@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -48,7 +49,6 @@ import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
@@ -93,7 +93,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
         }
 
         Object versionObject = dataModel.getProperty(ISwitchYardFacetConstants.RUNTIME_VERSION);
-        String versionString = versionObject instanceof Version ? ((Version) versionObject).toString() : null;
+        String versionString = versionObject instanceof ArtifactVersion ? ((ArtifactVersion) versionObject).toString() : null;
 
         workingCopy = switchYardProject.createWorkingCopy();
         workingCopy.setRuntimeVersion(versionString);

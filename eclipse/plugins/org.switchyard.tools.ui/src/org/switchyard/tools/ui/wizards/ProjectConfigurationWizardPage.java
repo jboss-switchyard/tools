@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.JavaConventions;
 import org.eclipse.jdt.internal.ui.dialogs.StatusUtil;
@@ -35,9 +37,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
-import org.sonatype.aether.util.version.GenericVersionScheme;
-import org.sonatype.aether.version.InvalidVersionSpecificationException;
-import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.common.ILayoutUtilities;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.SwitchYardSettingsGroup;
@@ -100,12 +99,12 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     /**
      * @return the selected SwitchYard runtime version.
      */
-    public Version getRuntimeVersion() {
+    public ArtifactVersion getRuntimeVersion() {
         ISelection runtimeVersionListSelection = _settingsGroup.getRuntimeVersionsList().getSelection();
         if (runtimeVersionListSelection.isEmpty()) {
             return null;
         }
-        return (Version) ((IStructuredSelection) runtimeVersionListSelection).getFirstElement();
+        return (ArtifactVersion) ((IStructuredSelection) runtimeVersionListSelection).getFirstElement();
     }
 
     /**
@@ -226,20 +225,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     }
 
     private void initRuntimeVersionsList() {
-        Collection<Version> versions = _settingsGroup.getAvailableVersions();
-        try {
-            // TODO: allow use of preferred version or allow association of
-            // server runtime version.
-            if (getRuntimeVersion() == null) {
-                _settingsGroup.getRuntimeVersionsList().setSelection(
-                        new StructuredSelection(new GenericVersionScheme()
-                                .parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION)));
-            }
-        } catch (InvalidVersionSpecificationException e) {
-            e.printStackTrace();
-            if (versions != null && versions.size() > 0) {
-                _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(versions.iterator().next()), true);
-            }
+        Collection<ArtifactVersion> versions = _settingsGroup.getAvailableVersions();
+        // TODO: allow use of preferred version or allow association of
+        // server runtime version.
+        if (getRuntimeVersion() == null) {
+            _settingsGroup.getRuntimeVersionsList().setSelection(
+                    new StructuredSelection(new DefaultArtifactVersion(
+                            NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION)));
         }
     }
 
@@ -251,7 +243,7 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         if (!packageNameStatus.isOK()) {
             StatusUtil.applyToStatusLine(this, packageNameStatus);
         } else if (getErrorMessage() == null) {
-            final Version version = getRuntimeVersion();
+            final ArtifactVersion version = getRuntimeVersion();
             if (version == null) {
                 setErrorMessage(Messages.ProjectConfigurationWizardPage_errorMessage_pleaseSpecifySwitchYardVersion);
             }

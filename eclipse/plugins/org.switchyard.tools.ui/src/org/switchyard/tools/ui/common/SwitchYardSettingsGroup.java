@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -76,9 +78,6 @@ import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.eclipse.wst.common.project.facet.core.runtime.RuntimeManager;
 import org.eclipse.wst.common.project.facet.ui.IRuntimeComponentLabelProvider;
-import org.sonatype.aether.util.version.GenericVersionScheme;
-import org.sonatype.aether.version.InvalidVersionSpecificationException;
-import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
@@ -107,7 +106,7 @@ public class SwitchYardSettingsGroup {
     private Text _descriptionText;
     private IRuntimeComponent _initialComponent;
     private List<Object> _compatibleRuntimes;
-    private Set<Version> _availableVersions;
+    private Set<ArtifactVersion> _availableVersions;
     private IFacetedProjectWorkingCopy _project;
     private IFacetedProjectListener _projectListener = new IFacetedProjectListener() {
         @Override
@@ -368,7 +367,7 @@ public class SwitchYardSettingsGroup {
     /**
      * @return the available SwitchYard runtime versions.
      */
-    public Set<Version> getAvailableVersions() {
+    public Set<ArtifactVersion> getAvailableVersions() {
         return _availableVersions;
     }
 
@@ -445,7 +444,7 @@ public class SwitchYardSettingsGroup {
         if (selection == null || selection.isEmpty() || selection.getFirstElement() == NULL_RUNTIME) {
             _runtimeVersionsList.getCombo().setEnabled(true);
         } else {
-            final Version version = getRuntimeVersion((IRuntimeComponent) selection.getFirstElement());
+            final ArtifactVersion version = getRuntimeVersion((IRuntimeComponent) selection.getFirstElement());
             if (version != null) {
                 _runtimeVersionsList.setSelection(new StructuredSelection(version));
             }
@@ -453,7 +452,7 @@ public class SwitchYardSettingsGroup {
         }
     }
 
-    private Version getRuntimeVersion(IRuntimeComponent component) {
+    private ArtifactVersion getRuntimeVersion(IRuntimeComponent component) {
         return parseVersion(component.getProperty(SWITCHYARD_RUNTIME_VERSION_KEY));
     }
 
@@ -541,12 +540,12 @@ public class SwitchYardSettingsGroup {
     @SuppressWarnings("unchecked")
     private void populateRuntimeVersionsList(IProgressMonitor monitor) {
         try {
-            _availableVersions = filterSwitchYardVersions(resolveSwitchYardVersionRange(monitor).getVersions());
+            _availableVersions = filterSwitchYardVersions(resolveSwitchYardVersionRange(monitor));
         } catch (Exception e) {
-            _availableVersions = new LinkedHashSet<Version>();
+            _availableVersions = new LinkedHashSet<ArtifactVersion>();
         }
         // add default version
-        final Version defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
+        final ArtifactVersion defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
         _availableVersions.add(defaultVersion);
 
         // add known runtime versions
@@ -554,7 +553,7 @@ public class SwitchYardSettingsGroup {
             if (obj == NULL_RUNTIME) {
                 continue;
             }
-            Version version = getRuntimeVersion((IRuntimeComponent) obj);
+            ArtifactVersion version = getRuntimeVersion((IRuntimeComponent) obj);
             if (version != null && !_availableVersions.contains(version)) {
                 _availableVersions.add(version);
             }
@@ -562,14 +561,14 @@ public class SwitchYardSettingsGroup {
         _runtimeVersionsList.setInput(_availableVersions);
     }
 
-    private Set<Version> filterSwitchYardVersions(List<Version> versions) {
+    private Set<ArtifactVersion> filterSwitchYardVersions(List<ArtifactVersion> versions) {
         final String onePointZero = "1.0"; //$NON-NLS-1$
-        final Set<Version> filtered = new LinkedHashSet<Version>();
+        final Set<ArtifactVersion> filtered = new LinkedHashSet<ArtifactVersion>();
         String previousMajorMinor = null;
         boolean previousWasSnapshot = false;
         /* assumes list is sorted lowest to highest. */
-        for (ListIterator<Version> it = versions.listIterator(versions.size()); it.hasPrevious();) {
-            Version next = it.previous();
+        for (ListIterator<ArtifactVersion> it = versions.listIterator(versions.size()); it.hasPrevious();) {
+            ArtifactVersion next = it.previous();
             String version = next.toString();
             String majorMinor = getMajorMinor(version);
             try {
@@ -637,15 +636,11 @@ public class SwitchYardSettingsGroup {
         }
     }
 
-    private Version parseVersion(final String text) {
+    private ArtifactVersion parseVersion(final String text) {
         if (text == null || text.length() == 0) {
             return null;
         }
-        try {
-            return new GenericVersionScheme().parseVersion(text);
-        } catch (InvalidVersionSpecificationException e) {
-            return null;
-        }
+        return new DefaultArtifactVersion(text);
     }
 
     private void repopulateRuntimesList() {
@@ -682,8 +677,8 @@ public class SwitchYardSettingsGroup {
         @Override
         protected List<?> getSelectionFromWidget() {
             if (getCombo().getSelectionIndex() < 0) {
-                List<Version> selected = new ArrayList<Version>();
-                Version version = parseVersion(getCombo().getText());
+                List<ArtifactVersion> selected = new ArrayList<ArtifactVersion>();
+                ArtifactVersion version = parseVersion(getCombo().getText());
                 if (version != null) {
                     selected.add(version);
                 }

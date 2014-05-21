@@ -11,6 +11,9 @@
 package org.switchyard.tools.m2e;
 
 import java.io.File;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 import org.apache.maven.model.Resource;
@@ -24,9 +27,9 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.m2e.core.MavenPlugin;
-import org.eclipse.m2e.core.internal.builder.EclipseIncrementalBuildContext;
 import org.eclipse.m2e.core.project.configurator.MojoExecutionBuildParticipant;
 import org.eclipse.wst.validation.ValidationFramework;
 import org.sonatype.plexus.build.incremental.BuildContext;
@@ -38,7 +41,6 @@ import org.sonatype.plexus.build.incremental.BuildContext;
  * 
  * @author Rob Cernich
  */
-@SuppressWarnings("restriction")
 public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
 
     private static final String SWITCHYARD_DEFAULT_OUTPUT_FILE_PATH = "META-INF/switchyard.xml"; //$NON-NLS-1$
@@ -146,7 +148,7 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
         }
         try {
             final IPath scanPath = new Path(scanDirectory.getCanonicalPath());
-            for (File refreshed : ((EclipseIncrementalBuildContext) getBuildContext()).getFiles()) {
+            for (File refreshed : getRefreshedFiles()) {
                 if (refreshed == null) {
                     continue;
                 }
@@ -166,24 +168,44 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
         return false;
     }
 
+    /**
+     * The Eclipse build context changed packages between m2e 1.4 and 1.5, see
+     * if we can work with both.
+     * 
+     * @return the collection of refreshed files
+     */
+    @SuppressWarnings("unchecked")
+    private Collection<File> getRefreshedFiles() {
+        final BuildContext buildContext = getBuildContext();
+        try {
+            final Method getFilesMethod = buildContext.getClass().getMethod("getFiles", new Class<?>[0]);
+            return (Collection<File>) getFilesMethod.invoke(buildContext, new Object[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Collections.emptySet();
+    }
+
     private File getOutputDirectory() throws CoreException {
-        File outputDirectory = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
-                "_project_build_outputDirectory", File.class); //$NON-NLS-1$
+        File outputDirectory = MavenPlugin.getMaven().getMojoParameterValue(getMavenProjectFacade().getMavenProject(),
+                getMojoExecution(), "_project_build_outputDirectory", File.class, new NullProgressMonitor()); //$NON-NLS-1$
         if (outputDirectory == null) {
             // pre-0.6 property name
-            outputDirectory = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
-                    "outputDirectory", File.class); //$NON-NLS-1$
+            outputDirectory = MavenPlugin.getMaven().getMojoParameterValue(getMavenProjectFacade().getMavenProject(),
+                    getMojoExecution(), "outputDirectory", File.class, new NullProgressMonitor()); //$NON-NLS-1$
         }
         return outputDirectory;
     }
 
     private File getOutputFile(File outputDirectory) throws CoreException {
-        File outputFile = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "_outputFile", //$NON-NLS-1$
-                File.class);
+        File outputFile = MavenPlugin.getMaven().getMojoParameterValue(getMavenProjectFacade().getMavenProject(),
+                getMojoExecution(), "_outputFile", //$NON-NLS-1$
+                File.class, new NullProgressMonitor());
         if (outputFile == null) {
             // pre-0.6 property name
-            outputFile = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "outputFile", //$NON-NLS-1$
-                    File.class);
+            outputFile = MavenPlugin.getMaven().getMojoParameterValue(getMavenProjectFacade().getMavenProject(),
+                    getMojoExecution(), "outputFile", //$NON-NLS-1$
+                    File.class, new NullProgressMonitor());
             if (outputFile == null) {
                 outputFile = new File(outputDirectory, SWITCHYARD_DEFAULT_OUTPUT_FILE_PATH);
             }
@@ -192,12 +214,13 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
     }
 
     private Resource[] getResources() throws CoreException {
-        Resource[] resources = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
-                "_project_resources", Resource[].class); //$NON-NLS-1$
+        Resource[] resources = MavenPlugin.getMaven().getMojoParameterValue(getMavenProjectFacade().getMavenProject(),
+                getMojoExecution(), "_project_resources", Resource[].class, new NullProgressMonitor()); //$NON-NLS-1$
         if (resources == null || resources.length == 0) {
             // pre-0.6 property name
-            resources = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "resources", //$NON-NLS-1$
-                    Resource[].class);
+            resources = MavenPlugin.getMaven().getMojoParameterValue(getMavenProjectFacade().getMavenProject(),
+                    getMojoExecution(), "resources", //$NON-NLS-1$
+                    Resource[].class, new NullProgressMonitor());
             if (resources == null) {
                 return new Resource[0];
             }
@@ -206,12 +229,13 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
     }
 
     private File[] getScanDirectories(File outputDirectory) throws CoreException {
-        File[] scanDirectories = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
-                "_scanDirectories", File[].class); //$NON-NLS-1$
+        File[] scanDirectories = MavenPlugin.getMaven().getMojoParameterValue(
+                getMavenProjectFacade().getMavenProject(), getMojoExecution(),
+                "_scanDirectories", File[].class, new NullProgressMonitor()); //$NON-NLS-1$
         if (scanDirectories == null || scanDirectories.length == 0) {
             // pre-0.6 property name
-            scanDirectories = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
-                    "scanDirectories", File[].class); //$NON-NLS-1$
+            scanDirectories = MavenPlugin.getMaven().getMojoParameterValue(getMavenProjectFacade().getMavenProject(),
+                    getMojoExecution(), "scanDirectories", File[].class, new NullProgressMonitor()); //$NON-NLS-1$
             if (scanDirectories == null || scanDirectories.length == 0) {
                 return new File[] {outputDirectory };
             }

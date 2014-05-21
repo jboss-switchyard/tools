@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -27,9 +29,6 @@ import org.eclipse.wst.common.componentcore.datamodel.FacetInstallDataModelProvi
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
-import org.sonatype.aether.util.version.GenericVersionScheme;
-import org.sonatype.aether.version.InvalidVersionSpecificationException;
-import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
@@ -46,9 +45,9 @@ import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
 public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelProvider implements
         ISwitchYardFacetConstants {
 
-    private List<Version> _versions;
+    private List<ArtifactVersion> _versions;
     private Set<IRuntime> _originalRuntimes;
-    private Version _defaultVersion;
+    private ArtifactVersion _defaultVersion;
     private ISwitchYardProject _switchYardProject;
 
     /**
@@ -56,13 +55,8 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
      */
     public SwitchYardFacetInstallConfigFactory() {
         super();
-        try {
-            // TODO: we should look this up from preferences
-            _defaultVersion = new GenericVersionScheme()
-                    .parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
-        } catch (InvalidVersionSpecificationException e) {
-            e.printStackTrace();
-        }
+        // TODO: we should look this up from preferences
+        _defaultVersion = new DefaultArtifactVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
     }
 
     @SuppressWarnings({"rawtypes", "unchecked" })
@@ -86,8 +80,8 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
 
         // the default version
         if (_defaultVersion == null) {
-            for (ListIterator<Version> lit = _versions.listIterator(_versions.size()); lit.hasPrevious();) {
-                Version version = lit.previous();
+            for (ListIterator<ArtifactVersion> lit = _versions.listIterator(_versions.size()); lit.hasPrevious();) {
+                ArtifactVersion version = lit.previous();
                 _defaultVersion = version;
                 if (!version.toString().endsWith("-SNAPSHOT")) { //$NON-NLS-1$
                     _defaultVersion = version;
@@ -98,11 +92,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
         if (_switchYardProject != null) {
             String versionString = _switchYardProject.getVersion();
             if (versionString != null && versionString.length() > 0) {
-                try {
-                    getDataModel().setProperty(RUNTIME_VERSION, new GenericVersionScheme().parseVersion(versionString));
-                } catch (InvalidVersionSpecificationException e) {
-                    e.fillInStackTrace();
-                }
+                getDataModel().setProperty(RUNTIME_VERSION, new DefaultArtifactVersion(versionString));
                 getDataModel().setProperty(RUNTIME_COMPONENTS, _switchYardProject.getComponents());
             }
         }
@@ -174,7 +164,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
             return Status.OK_STATUS;
         } else if (RUNTIME_VERSION.equals(name)) {
             Object version = getProperty(RUNTIME_VERSION);
-            if (version instanceof Version) {
+            if (version instanceof ArtifactVersion) {
                 return Status.OK_STATUS;
             }
             return new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.SwitchYardFacetInstallConfigFactory_statusMessage_MustSpecifySYVersion);
@@ -191,15 +181,15 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
         if (_switchYardProject != null && _switchYardProject.needsLoading()) {
             _switchYardProject.load(new NullProgressMonitor());
             try {
-                _versions = resolveSwitchYardVersionRange(new NullProgressMonitor()).getVersions();
+                _versions = resolveSwitchYardVersionRange(new NullProgressMonitor());
             } catch (CoreException e) {
-                _versions = new ArrayList<Version>();
+                _versions = new ArrayList<ArtifactVersion>();
             }
         } else {
             try {
-                _versions = resolveSwitchYardVersionRange(new NullProgressMonitor()).getVersions();
+                _versions = resolveSwitchYardVersionRange(new NullProgressMonitor());
             } catch (CoreException e) {
-                _versions = new ArrayList<Version>();
+                _versions = new ArrayList<ArtifactVersion>();
             }
         }
         _originalRuntimes = ifpwc.getTargetedRuntimes();

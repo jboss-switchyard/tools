@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.facets;
 import java.util.Collections;
 import java.util.Set;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -27,7 +28,6 @@ import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.ui.AbstractFacetWizardPage;
 import org.eclipse.wst.common.project.facet.ui.IFacetWizardPage;
-import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.common.ILayoutUtilities;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
@@ -74,7 +74,7 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
                     _config.setProperty(RUNTIME_VERSION, null);
                 } else {
                     _config.setProperty(RUNTIME_VERSION,
-                            (Version) ((IStructuredSelection) event.getSelection()).getFirstElement());
+                            (ArtifactVersion) ((IStructuredSelection) event.getSelection()).getFirstElement());
                 }
                 validate();
             }
@@ -156,7 +156,7 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
                         .getSelection()).getFirstElement());
             } else if (_settingsGroup.getRuntimeVersionsList().getSelection().isEmpty()) {
                 /* no target or version selected by default, so we'll specify one now. */
-                Version defaultVersion = (Version) _config.getDefaultProperty(RUNTIME_VERSION);
+                ArtifactVersion defaultVersion = (ArtifactVersion) _config.getDefaultProperty(RUNTIME_VERSION);
                 if (defaultVersion != null) {
                     _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(defaultVersion), true);
                 }

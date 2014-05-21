@@ -15,6 +15,8 @@ import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYAR
 
 import java.util.Set;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -41,9 +43,6 @@ import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.eclipse.wst.common.project.facet.ui.internal.SharedWorkingCopyManager;
-import org.sonatype.aether.util.version.GenericVersionScheme;
-import org.sonatype.aether.version.InvalidVersionSpecificationException;
-import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ILayoutUtilities;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
@@ -193,14 +192,10 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
     }
 
     private void initRuntimeVersion() {
-        Version version = null;
+        ArtifactVersion version = null;
         String versionString = _switchYardProject.getVersion();
         if (versionString != null && versionString.length() > 0) {
-            try {
-                version = new GenericVersionScheme().parseVersion(versionString);
-            } catch (InvalidVersionSpecificationException e) {
-                e.fillInStackTrace();
-            }
+            version = new DefaultArtifactVersion(versionString);
         }
         if (version != null) {
             _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(version), true);
