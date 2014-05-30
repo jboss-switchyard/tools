@@ -45,79 +45,79 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <artifactId>switchyard-bean-service</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/bean-service</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-bpm-service</artifactId>
+                  <artifactId>switchyard-bpm-service</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/bpm-service</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-bpel-service-say-hello</artifactId>
+                  <artifactId>switchyard-bpel-say-hello</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/bpel-service/say_hello</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-binding</artifactId>
+                  <artifactId>switchyard-camel-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-bus-cdi</artifactId>
+                  <artifactId>switchyard-camel-bus-cdi</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-bus-cdi</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-ftp-binding</artifactId>
+                  <artifactId>switchyard-camel-ftp-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-ftp-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-jms-binding</artifactId>
+                  <artifactId>switchyard-camel-jms-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-jms-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-netty-binding</artifactId>
+                  <artifactId>switchyard-camel-netty-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-netty-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-rest-binding</artifactId>
+                  <artifactId>switchyard-rest-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/rest-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-sql-binding</artifactId>
+                  <artifactId>switchyard-camel-sql-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-sql-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-service</artifactId>
+                  <artifactId>switchyard-camel-service</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-service</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-soap-proxy</artifactId>
+                  <artifactId>switchyard-camel-soap-proxy</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-soap-proxy</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <artifactId>switchyard-demo-helpdesk</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <type>war</type>
                   <outputDirectory>test-data/quickstart-configs/demos/helpdesk</outputDirectory>
@@ -130,97 +130,97 @@
 <!--                 </artifactItem> -->
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-http-binding</artifactId>
+                  <artifactId>switchyard-http-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/http-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-rules-camel-cbr</artifactId>
+                  <artifactId>switchyard-rules-camel-cbr</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/rules-camel-cbr</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-rules-interview</artifactId>
+                  <artifactId>switchyard-rules-interview</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/rules-interview</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-rules-interview-container</artifactId>
+                  <artifactId>switchyard-rules-interview-container</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/rules-interview-container</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-transform-jaxb</artifactId>
+                  <artifactId>switchyard-transform-jaxb</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/transform-jaxb</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-transform-json</artifactId>
+                  <artifactId>switchyard-transform-json</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/transform-json</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-transform-smooks</artifactId>
+                  <artifactId>switchyard-transform-smooks</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/transform-smooks</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-transform-xslt</artifactId>
+                  <artifactId>switchyard-transform-xslt</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/transform-xslt</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-mail-binding</artifactId>
+                  <artifactId>switchyard-camel-mail-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-mail-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-jpa-binding</artifactId>
+                  <artifactId>switchyard-camel-jpa-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-jpa-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-policy-security-cert</artifactId>
+                  <artifactId>switchyard-demo-policy-security-cert</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/demos/policy-security-cert</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-policy-security-basic</artifactId>
+                  <artifactId>switchyard-demo-policy-security-basic</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/demos/policy-security-basic</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-policy-security-saml</artifactId>
+                  <artifactId>switchyard-demo-policy-security-saml</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/demos/policy-security-saml</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-amqp-binding</artifactId>
+                  <artifactId>switchyard-camel-amqp-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-amqp-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-quartz-binding</artifactId>
+                  <artifactId>switchyard-camel-quartz-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-quartz-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-sql-binding</artifactId>
+                  <artifactId>switchyard-camel-sql-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-sql-binding</outputDirectory>
                 </artifactItem>

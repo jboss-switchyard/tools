@@ -52,14 +52,14 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <artifactId>switchyard-bean-service</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <outputDirectory>test-data/projects/bean-service/src/main/java</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <artifactId>switchyard-demo-helpdesk</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <outputDirectory>test-data/projects/helpdesk/src/main/java</outputDirectory>
@@ -74,18 +74,18 @@
               <goal>unpack</goal>
             </goals>
             <configuration>
-              <excludes>**/*.java</excludes>
+              <excludes>**/*.java,**/META-INF/MANIFEST.MF</excludes>
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <artifactId>switchyard-bean-service</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <outputDirectory>test-data/projects/bean-service/src/main/resources</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <artifactId>switchyard-demo-helpdesk</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <outputDirectory>test-data/projects/helpdesk/src/main/resources</outputDirectory>
@@ -104,7 +104,7 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <artifactId>switchyard-demo-helpdesk</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <type>war</type>
                   <outputDirectory>test-data/projects/helpdesk/src/main/webapp</outputDirectory>
@@ -122,7 +122,7 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <artifactId>switchyard-bean-service</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <type>pom</type>
                   <outputDirectory>test-data/projects/bean-service</outputDirectory>
@@ -130,7 +130,7 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <artifactId>switchyard-demo-helpdesk</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <type>pom</type>
                   <outputDirectory>test-data/projects/helpdesk</outputDirectory>
@@ -150,13 +150,13 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <artifactId>switchyard-bean-service</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/validation/bean-service</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
-                  <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <artifactId>switchyard-demo-helpdesk</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <type>war</type>
                   <outputDirectory>test-data/validation/helpdesk</outputDirectory>
