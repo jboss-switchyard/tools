@@ -80,6 +80,8 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
                     .getContents());
             testReader = new InputStreamReader(SwitchYardConfigurationTest.class.getClassLoader().getResourceAsStream(
                     "test-data/validation/" + projectName + (isWeb ? "/WEB-INF/switchyard.xml" : "/META-INF/switchyard.xml")));
+            XMLUnit.setIgnoreComments(true);
+            XMLUnit.setIgnoreWhitespace(true);
             Diff diff = XMLUnit.compareXML(sourceReader, testReader);
             diff.overrideElementQualifier(new ElementNameAndAttributeQualifier());
             assertTrue(diff.toString(), diff.similar());
