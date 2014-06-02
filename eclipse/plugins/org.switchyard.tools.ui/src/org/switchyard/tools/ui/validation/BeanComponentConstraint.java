@@ -35,6 +35,7 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.ui.JavaTypeScanner;
 import org.switchyard.tools.ui.validation.SwitchYardProjectValidator.ValidationAdapter;
@@ -122,7 +123,18 @@ public class BeanComponentConstraint extends AbstractModelConstraint {
                      * check for type mismatches (i.e. interface.java/@class !=
                      * interface.java/@class).
                      */
-                    if (!EcoreUtil.equals(javaContract.getInterface(), switchYardContract.getInterface())) {
+                    boolean isReferenceInvoker = false;
+                    if (javaContract.getInterface() instanceof JavaInterface) {
+                        JavaInterface jInt = (JavaInterface) javaContract.getInterface();
+                        if (jInt.getInterface().contentEquals("org.switchyard.component.bean.ReferenceInvoker")) { //$NON-NLS-1$
+                            /*
+                             * Check to see if the implementation is a reference invoker. If so,
+                             * it's up to the caller to take care of casting the return data. 
+                             */
+                            isReferenceInvoker = true;
+                        }
+                    }
+                    if (!isReferenceInvoker && !EcoreUtil.equals(javaContract.getInterface(), switchYardContract.getInterface())) {
                         // interface mismatch
                         statuses.add(ConstraintStatus.createStatus(ctx, switchYardContract, null,
                                 mismatchProblem.getSeverity(), mismatchProblem.ordinal(), mismatchProblem.getMessage(),
