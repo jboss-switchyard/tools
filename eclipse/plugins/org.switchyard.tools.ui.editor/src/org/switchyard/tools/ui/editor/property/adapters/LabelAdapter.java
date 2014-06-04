@@ -21,6 +21,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CamelCxfBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
@@ -32,6 +33,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindin
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.rss.CamelRSSBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HTTPBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
@@ -159,6 +161,10 @@ public final class LabelAdapter {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FEED);
         } else if (binding instanceof CamelMqttBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_MQTT);
+        } else if (binding instanceof CamelCxfBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CXF);
+        } else if (binding instanceof CamelSapBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_SAP);
         }
         return imageRenderingDecorator;
     }

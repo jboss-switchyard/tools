@@ -197,6 +197,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
+     * Tests import and configuration of camel-cxf quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelCxfQuickstart() throws Exception {
+        runModelTest("camel-cxf-binding");
+    }
+
+    /**
      * Tests import and configuration of camel-soap-proxy quickstart.
      * 
      * @throws Exception if a failure occurs.

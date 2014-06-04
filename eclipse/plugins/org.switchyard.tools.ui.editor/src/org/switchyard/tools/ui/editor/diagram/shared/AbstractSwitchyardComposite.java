@@ -253,8 +253,21 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @return reference to created Button
      */
     protected Button createCheckbox(Composite parent, String label) {
+        return createCheckbox(parent, label, 1);
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string for label
+     * @return reference to created Button
+     */
+    protected Button createCheckbox(Composite parent, String label, int horizSpan) {
         Button newButton = getToolkit().createButton(parent, label, SWT.CHECK | SWT.LEFT);
-        newButton.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false, 2, 1));
+        GridData gd = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
+        if (horizSpan > 1) {
+            gd.horizontalSpan = horizSpan;
+        }
+        newButton.setLayoutData(gd);
         _observableControls.add(newButton);
 
         return newButton;
@@ -278,11 +291,25 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @return reference to created Text control
      */
     protected Text createLabelAndText(Composite parent, String label) {
+        return createLabelAndText(parent, label, 1);
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @param horizSpan number of GridData columns to span vertically
+     * @return reference to created Text control
+     */
+    protected Text createLabelAndText(Composite parent, String label, int horizSpan) {
         if (label != null && !label.trim().isEmpty()) {
             getToolkit().createLabel(parent, label, SWT.NONE);
         }
         Text newText = getToolkit().createText(parent, "", SWT.BORDER);
-        newText.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+        GridData gd = new GridData(SWT.FILL, SWT.NONE, true, false);
+        if (horizSpan > 1) {
+            gd.horizontalSpan = horizSpan;
+        }
+        newText.setLayoutData(gd);
         newText.addKeyListener(this);
         addEnterNextListener(newText);
 
@@ -469,7 +496,24 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         return createLabelAndCombo(parent, label, false);
     }
 
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @param readOnly should combo text be editable
+     * @return reference to created Text control
+     */
     protected Combo createLabelAndCombo(Composite parent, String label, boolean readOnly) {
+        return createLabelAndCombo(parent,  label, readOnly, 1);
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @param readOnly should combo text be editable
+     * @param horizSpan how many GridData cols should it span?
+     * @return reference to created Text control
+     */
+    protected Combo createLabelAndCombo(Composite parent, String label, boolean readOnly, int horizSpan) {
         if (label != null && !label.trim().isEmpty()) {
             getToolkit().createLabel(parent, label, SWT.NONE);
         }
@@ -478,7 +522,11 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
             styles = SWT.BORDER | SWT.DROP_DOWN | SWT.READ_ONLY;
         }
         Combo combo = new Combo(parent, styles);
-        combo.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+        GridData gd = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
+        if (horizSpan > 1) {
+            gd.horizontalSpan = horizSpan;
+        }
+        combo.setLayoutData(gd);
         if (!readOnly) {
             addEnterNextListener(combo);
         }
@@ -489,6 +537,10 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
     }
 
     protected ComboViewer createLabelAndComboViewer(Composite parent, String label, boolean readOnly) {
+        return createLabelAndComboViewer(parent, label, readOnly, 1);
+    }
+
+    protected ComboViewer createLabelAndComboViewer(Composite parent, String label, boolean readOnly, int horizSpan) {
         if (label != null && !label.trim().isEmpty()) {
             getToolkit().createLabel(parent, label, SWT.NONE);
         }
@@ -497,7 +549,11 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
             styles = SWT.BORDER | SWT.DROP_DOWN | SWT.READ_ONLY;
         }
         ComboViewer combo = new ComboViewer(parent, styles);
-        combo.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+        GridData gd = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
+        if (horizSpan > 1) {
+            gd.horizontalSpan = horizSpan;
+        }
+        combo.getCombo().setLayoutData(gd);
         if (!readOnly) {
             addEnterNextListener(combo.getCombo());
         }

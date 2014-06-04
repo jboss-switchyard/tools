@@ -35,6 +35,7 @@
   <foreignModel>component.camel.rss.ecore</foreignModel>
   <foreignModel>component.camel.sap.ecore</foreignModel>
   <foreignModel>component.camel.mqtt.ecore</foreignModel>
+  <foreignModel>component.camel.cxf.ecore</foreignModel>
   <genPackages prefix="Bean" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions=""
       ecorePackage="component.bean.ecore#/">
@@ -3340,6 +3341,51 @@
     <genClasses ecoreClass="component.camel.mqtt.ecore#//ParameterType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//ParameterType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//ParameterType/value"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Cxf" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
+      resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.cxf.ecore#/">
+    <genClasses ecoreClass="component.camel.cxf.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.cxf.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.cxf.ecore#//BaseCamelBinding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.cxf.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.cxf.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.cxf.ecore#//BaseCamelBinding/additionalUriParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.cxf.ecore#//CamelCxfBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/cxfURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/wsdlURL"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/serviceClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/serviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/portName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/dataFormat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/relayHeaders"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/wrapped"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/wrappedStyle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/setDefaultBus"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/bus"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/cxfBinding"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/headerFilterStrategy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/loggingFeatureEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/defaultOperationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/defaultOperationNamespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/synchronous"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/publishedEndpointUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/allowStreaming"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/skipFaultLogging"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//CamelCxfBindingType/password"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.cxf.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.cxf.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.cxf.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.cxf.ecore#//DocumentRoot/bindingCxf"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.cxf.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.cxf.ecore#//ParameterType/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -335,6 +335,21 @@
             class="org.switchyard.tools.models.switchyard1_0.camel.sap.util.SapResourceFactoryImpl"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated switchyard_1.0 -->
+      <package
+            uri="urn:switchyard-component-camel-cxf:config:2.0"
+            class="org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage"
+            genModel="model/switchyard_1.0.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated switchyard_1.0 -->
+      <parser
+            type="cxf"
+            class="org.switchyard.tools.models.switchyard1_0.camel.cxf.util.CxfResourceFactoryImpl"/>
+   </extension>
+
    <extension
          point="org.eclipse.emf.ecore.content_parser">
       <parser

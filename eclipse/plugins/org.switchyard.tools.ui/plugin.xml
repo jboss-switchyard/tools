@@ -1167,6 +1167,22 @@
            <artifactId>switchyard-component-camel-sap</artifactId>
         </dependency>
      </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-cxf"
+           name="CXF">
+        <description>
+           Provides support for Camel CXF gateways.
+        </description>
+        <dependency>
+           <groupId>
+              org.switchyard.components
+           </groupId>
+           <artifactId>
+              switchyard-component-camel-cxf
+           </artifactId>
+        </dependency>
+     </component>
   </extension>
   <extension
         point="org.switchyard.tools.ui.switchYardTestMixIn">

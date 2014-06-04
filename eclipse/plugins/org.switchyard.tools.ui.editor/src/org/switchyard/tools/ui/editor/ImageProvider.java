@@ -216,6 +216,9 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for MQTT component. **/
     public static final String IMG_16_MQTT = PREFIX + "MQTT" + DOT16; //$NON-NLS-1$
 
+    /** Image for Camel CXF. **/
+    public static final String IMG_16_CXF = PREFIX + "CXF" + DOT16; //$NON-NLS-1$
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif"); //$NON-NLS-1$
@@ -278,6 +281,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_TRANSFORM_WATCH, ICONS_16 + "transformwatch.png"); //$NON-NLS-1$
         addImageFilePath(IMG_16_FEED, ICONS_16 + "feed.png"); //$NON-NLS-1$
         addImageFilePath(IMG_16_MQTT, ICONS_16 + "camel-mqtt.png"); //$NON-NLS-1$
+        addImageFilePath(IMG_16_CXF, ICONS_16 + "cxf.png"); //$NON-NLS-1$
     }
 
 }

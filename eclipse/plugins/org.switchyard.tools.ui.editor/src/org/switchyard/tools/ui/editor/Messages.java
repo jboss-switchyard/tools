@@ -148,6 +148,7 @@ public class Messages extends NLS {
     public static String description_tool_camelXmlComponentImplementation;
     public static String description_tool_camelXmlImplementation;
     public static String description_tool_component;
+    public static String description_tool_cxf;
     public static String description_tool_file;
     public static String description_tool_ftp;
     public static String description_tool_ftps;
@@ -370,6 +371,7 @@ public class Messages extends NLS {
     public static String label_createRequiredTransformers;
     public static String label_cronStar;
     public static String label_customClass;
+    public static String label_cxf;
     public static String label_dataSourceStar;
     public static String label_definedResources;
     public static String label_delayBetweenPollsDefault500;
