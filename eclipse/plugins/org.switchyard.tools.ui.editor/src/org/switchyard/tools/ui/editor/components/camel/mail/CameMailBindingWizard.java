@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
@@ -35,6 +36,7 @@ public class CameMailBindingWizard extends AbstractBindingWizard implements IBin
         final CamelMailBindingType binding = MailFactory.eINSTANCE.createCamelMailBindingType();
         if (getTargetContainer() instanceof Service) {
             binding.setConsume(MailFactory.eINSTANCE.createCamelMailConsumerType());
+            binding.getConsume().setAccountType(MailConsumerAccountType.IMAP);
         } else {
             binding.setProduce(MailFactory.eINSTANCE.createCamelMailProducerType());
         }
