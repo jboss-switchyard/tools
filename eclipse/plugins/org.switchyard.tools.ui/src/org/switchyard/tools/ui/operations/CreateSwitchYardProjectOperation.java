@@ -435,7 +435,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 StringBuffer contents = new StringBuffer();
                 contents.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$
                 contents.append("<features xmlns=\"http://karaf.apache.org/xmlns/features/v1.0.0\">\n"); //$NON-NLS-1$
-                contents.append("\t<repository>mvn:org.switchyard/switchyard-deploy-karaf/"  //$NON-NLS-1$
+                contents.append("\t<repository>mvn:org.switchyard.karaf/switchyard/"  //$NON-NLS-1$
                         + "${" + SWITCHYARD_VERSION + "}/xml/features</repository>\n"); //$NON-NLS-1$
                 contents.append("\t<feature name=\"" + _projectMetatData.getNewProjectHandle().getName()  //$NON-NLS-1$
                         + "\" version=\"" + _projectMetatData._projectVersion + "\">\n"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -445,9 +445,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                         contents.append("\t\t<feature version=\"${" + SWITCHYARD_VERSION + "}\">" + featureId + "</feature>\n"); //$NON-NLS-1$ //$NON-NLS-2$
                     }
                 }
-                contents.append("\t\t<bundle>mvn:" + _projectMetatData.getGroupId() + "/"  //$NON-NLS-1$ //$NON-NLS-2$
-                        + _projectMetatData.getNewProjectHandle().getName() + "/"  //$NON-NLS-1$
-                        + _projectMetatData.getProjectVersion() + "</bundle>\n"); //$NON-NLS-1$
+                contents.append("\t\t<bundle>mvn:${project.groupId}/${project.artifactId}/${project.version}</bundle>\n"); //$NON-NLS-1$
                 contents.append("\t</feature>\n"); //$NON-NLS-1$
 
                 
@@ -573,7 +571,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             model.addProperty("switchyard.osgi.symbolic.name", _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$ //$NON-NLS-2$
             model.addProperty("switchyard.osgi.export", _projectMetatData.getPackageName() + "*"); //$NON-NLS-1$ //$NON-NLS-2$
             model.addProperty("switchyard.osgi.import",  //$NON-NLS-1$
-                    "org.switchyard.*;version=\"[$(version;==;${switchyard.osgi.version}),$(version;=+;${switchyard.osgi.version}))\"\n,*"); //$NON-NLS-1$
+                    "org.switchyard.*;version=\"[$(version;==;${switchyard.version}),$(version;=+;${switchyard.version}))\"\n,*"); //$NON-NLS-1$
         }
 
         String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
