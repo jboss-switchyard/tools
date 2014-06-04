@@ -1158,7 +1158,7 @@
      <component
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-sap"
-           name="File">
+           name="SAP">
         <description>
            Provides support for Camel SAP gateways.
         </description>
