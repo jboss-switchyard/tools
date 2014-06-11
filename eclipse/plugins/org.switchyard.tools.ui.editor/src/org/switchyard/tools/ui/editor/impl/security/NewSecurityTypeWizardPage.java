@@ -168,6 +168,8 @@ public class NewSecurityTypeWizardPage extends WizardPage {
         };
         _securityProperties.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 5));
         if (_securityType != null) {
+            _securityProperties.setTargetObject(_securityType);
+            
             if (_securityType.getProperties() != null) {
                 _securityProperties.setSelection(_securityType.getProperties().getProperty());
             }

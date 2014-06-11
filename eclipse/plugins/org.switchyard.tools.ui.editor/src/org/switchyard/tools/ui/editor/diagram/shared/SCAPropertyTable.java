@@ -215,7 +215,9 @@ public abstract class SCAPropertyTable extends Composite implements ICellModifie
         _propertyTreeTable.setContentProvider(new PropertyTypeTreeContentProvider());
 
         _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {null, new TextCellEditor(_propertyTreeTable.getTree()),
+        _propertyTreeTable.setCellEditors(new CellEditor[] {
+                new TextCellEditor(_propertyTreeTable.getTree()), 
+                new TextCellEditor(_propertyTreeTable.getTree()),
                 null });
 
         this._mAddButton = new Button(this, SWT.NONE);
@@ -397,6 +399,8 @@ public abstract class SCAPropertyTable extends Composite implements ICellModifie
     public boolean canModify(Object element, String property) {
         if (element instanceof Property && property.equalsIgnoreCase(VALUE_COLUMN)) {
             return true;
+        } else if (element instanceof Property && property.equalsIgnoreCase(NAME_COLUMN)) {
+            return true;
         }
         return false;
     }
@@ -412,6 +416,8 @@ public abstract class SCAPropertyTable extends Composite implements ICellModifie
     public Object getValue(Object element, String property) {
         if (element instanceof Property && property.equalsIgnoreCase(VALUE_COLUMN)) {
             return ((Property) element).getValue();
+        } else if (element instanceof Property && property.equalsIgnoreCase(NAME_COLUMN)) {
+                return ((Property) element).getName();
         }
         return null;
     }
@@ -424,8 +430,8 @@ public abstract class SCAPropertyTable extends Composite implements ICellModifie
      * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
      * java.lang.String, java.lang.Object)
      */
-    public void modify(Object element, String property, final Object value) {
-        if (element instanceof TreeItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
+    public void modify(Object element, final String property, final Object value) {
+        if (element instanceof TreeItem) {
             final TreeItem ti = (TreeItem) element;
             if (getTargetObject() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
                 final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) getTargetObject();
@@ -435,13 +441,13 @@ public abstract class SCAPropertyTable extends Composite implements ICellModifie
                         @Override
                         protected void doExecute() {
                             Property parm = (Property) ti.getData();
-                            setFeatureValue(parm, "value", value); //$NON-NLS-1$
+                            setFeatureValue(parm, property, value); //$NON-NLS-1$
                             getTreeViewer().refresh(true);
                         }
                     });
                 } else {
                     Property parm = (Property) ti.getData();
-                    setFeatureValue(parm, "value", value); //$NON-NLS-1$
+                    setFeatureValue(parm, property, value); //$NON-NLS-1$
                     getTreeViewer().refresh(true);
                 }
             } else if (getTargetObject() instanceof Component) {
@@ -452,13 +458,13 @@ public abstract class SCAPropertyTable extends Composite implements ICellModifie
                         @Override
                         protected void doExecute() {
                             Property parm = (Property) ti.getData();
-                            setFeatureValue(parm, "value", value); //$NON-NLS-1$
+                            setFeatureValue(parm, property, value); //$NON-NLS-1$
                             getTreeViewer().refresh(true);
                         }
                     });
                 } else {
                     Property parm = (Property) ti.getData();
-                    setFeatureValue(parm, "value", value); //$NON-NLS-1$
+                    setFeatureValue(parm, property, value); //$NON-NLS-1$
                     getTreeViewer().refresh(true);
                 }
             }
