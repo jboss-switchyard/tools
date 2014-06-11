@@ -235,8 +235,9 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
                             SWTObservables.observeText(_periodText , new int[] {SWT.Modify }),
                             ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                     SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__PERIOD),
-                            new EMFUpdateValueStrategyNullForEmptyString(
-                                    "", UpdateValueStrategy.POLICY_CONVERT), null);
+                            new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new StringEmptyValidator(
+                                    "Period may not be empty.")), null);
             ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
         }
 
