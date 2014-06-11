@@ -28,6 +28,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
@@ -37,17 +38,16 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.ide.IDE;
-import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
-import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
+import org.switchyard.tools.ui.editor.property.AbstractChangeAwareModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
 /**
  * @author bfitzpat
  * 
  */
-public class BPELImplementationComposite extends AbstractModelComposite<Component> {
+public class BPELImplementationComposite extends AbstractChangeAwareModelComposite<Component> {
 
     private Composite _panel;
     private BPELImplementation _implementation;
@@ -86,19 +86,8 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
         _bpelFileText.addModifyListener(new ModifyListener() {
             @Override
             public void modifyText(ModifyEvent event) {
-                final QName newValue = _bpelFileText.getText().length() == 0 ? null : QName.valueOf(_bpelFileText
-                        .getText());
-                if (!_updating
-                        && ((newValue == null && _implementation.getProcess() != null) || (newValue != null && !newValue
-                                .equals(_implementation.getProcess())))) {
-                    wrapOperation(new Runnable() {
-                        public void run() {
-                            _implementation.setProcess(newValue);
-                        }
-                    });
-                }
+                handleModify(_bpelFileText);
             }
-
         });
 
         _browseBPELButton = factory.createButton(_panel, Messages.BPELImplementationComposite_browseBPELFileButton, SWT.PUSH);
@@ -112,6 +101,20 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
 
         adaptChildren(this);
     }
+    
+    protected void handleModify(Control control) {
+        final QName newValue = _bpelFileText.getText().length() == 0 ? null : QName.valueOf(_bpelFileText
+                .getText());
+        if (!_updating
+                && ((newValue == null && _implementation.getProcess() != null) || (newValue != null && !newValue
+                        .equals(_implementation.getProcess())))) {
+            wrapOperation(new Runnable() {
+                public void run() {
+                    _implementation.setProcess(newValue);
+                }
+            });
+        }
+    }
 
     @Override
     public void refresh() {
@@ -123,11 +126,10 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
         }
         _updating = true;
         try {
-            if (_implementation == null || _implementation.getProcess() == null) {
-                _bpelFileText.setText(""); //$NON-NLS-1$
-            } else {
+            if (_implementation != null && _implementation.getProcess() != null && _bpelFileText != null) {
                 _bpelFileText.setText(_implementation.getProcess().toString());
-
+            } else {
+                handleModify(_bpelFileText);
             }
         } finally {
             _updating = false;
@@ -160,8 +162,10 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
             Object[] result = dialog.getResult();
             if (result.length > 0 && result[0] instanceof IFile) {
                 IFile bpelFile = (IFile) result[0];
-                String bpelFilePath = JavaUtil.getJavaPathForResource(bpelFile).toString();
-                _implementation = ScaFactory.eINSTANCE.createBPELImplementation();
+
+                if (_implementation == null) {
+                    _implementation = ScaFactory.eINSTANCE.createBPELImplementation();
+                }
 
                 // load process
                 final QName processName = Activator.getDefault().getProcessForFile(bpelFile);
@@ -169,7 +173,9 @@ public class BPELImplementationComposite extends AbstractModelComposite<Componen
                 _implementation.setProcess(processName);
 
                 // update the text box, which should trigger a validate
-                _bpelFileText.setText(bpelFilePath);
+                _bpelFileText.setText(processName.toString());
+                handleModify(_bpelFileText);
+                fireChangedEvent(_bpelFileText);
             }
         }
     }
