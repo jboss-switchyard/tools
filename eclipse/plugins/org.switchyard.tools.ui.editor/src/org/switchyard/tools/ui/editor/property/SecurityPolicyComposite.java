@@ -228,19 +228,16 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
                 }
             }
 
-            if (!_clientAuthCheckbox.isDisposed()) {
+            if (_clientAuthCheckbox != null && !_clientAuthCheckbox.isDisposed()) {
                 _clientAuthCheckbox.setEnabled(showClientAuthCheckbox);
-            }
-
-            if (clientAuthentication && _clientAuthCheckbox != null && !_clientAuthCheckbox.isDisposed()) {
                 _clientAuthCheckbox.setSelection(clientAuthentication);
             }
 
-            if (confidentiality && !_confidentialityCheckbox.isDisposed()) {
+            if (_confidentialityCheckbox != null && !_confidentialityCheckbox.isDisposed()) {
                 _confidentialityCheckbox.setSelection(confidentiality);
             }
             
-            if (!_securityCombo.isDisposed()) {
+            if (_securityCombo != null && !_securityCombo.isDisposed()) {
                 setupSecurityCombo(contract);
                 if (hasSecurityAttr) {
                     _securityCombo.setText(securityName);
@@ -287,7 +284,7 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
     private void setupSecurityCombo(Contract object) {
         _securityCombo.removeAll();
         EObject parent = object;
-        while (parent.eContainer() != null && !(parent instanceof SwitchYardType)) {
+        while (parent != null && parent.eContainer() != null && !(parent instanceof SwitchYardType)) {
             parent = parent.eContainer();
         }
         if (parent != null && parent instanceof SwitchYardType) {
