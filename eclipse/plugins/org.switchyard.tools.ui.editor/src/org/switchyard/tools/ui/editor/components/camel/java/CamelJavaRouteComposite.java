@@ -79,7 +79,7 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
     private boolean _updating;
 
     /**
-     * Create a new BeanImplementationComposite.
+     * Create a new CamelJavaRouteImplementationComposite.
      * 
      * @param container the container.
      * @param parent the parent composite.
@@ -144,6 +144,8 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
                         // TODO: should also parse for references
                         // (to("switchyard:referenceName"))
                         _mClassText.setText(selected.getFullyQualifiedName());
+                        handleModify(_mClassText);
+                        fireChangedEvent(_browseClassBtn);
                     }
                 } catch (JavaModelException e1) {
                     e1.printStackTrace();
@@ -278,21 +280,29 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
     }
 
     protected void handleModify(Control control) {
-        _routeClassName = _mClassText.getText().trim();
-        getContainer().validated(validate());
-        if (!_updating) {
-            if (_mClassText != null && !_mClassText.isDisposed()) {
-                if (_implementation == null) {
-                    _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
+        if (_mClassText != null && !_mClassText.isDisposed()) {
+            _routeClassName = _mClassText.getText().trim();
+            getContainer().validated(validate());
+            if (!_updating) {
+                if (_mClassText != null && !_mClassText.isDisposed()) {
+                    wrapOperation(new Runnable() {
+                        @Override
+                        public void run() {
+                        if (_implementation == null) {
+                            _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
+                        }
+                        
+                        // handle java class name
+                        JavaDSLType javatype = _implementation.getJava();
+                        if (javatype == null) {
+                            javatype = CamelFactory.eINSTANCE.createJavaDSLType();
+                            _implementation.setJava(javatype);
+                        }
+                        javatype.setClass(_mClassText.getText());
+                        _implementation.setXml(null);
+                        }
+                    });
                 }
-                // handle java class name
-                JavaDSLType javatype = _implementation.getJava();
-                if (javatype == null) {
-                    javatype = CamelFactory.eINSTANCE.createJavaDSLType();
-                    _implementation.setJava(javatype);
-                }
-                javatype.setClass(_mClassText.getText());
-                _implementation.setXml(null);
             }
         }
     }
