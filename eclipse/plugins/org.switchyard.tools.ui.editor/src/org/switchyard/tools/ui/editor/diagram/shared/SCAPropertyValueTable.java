@@ -195,7 +195,7 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
         setLayout(gridLayout);
 
         _propertyTreeTable = new TreeViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
-                | additionalStyles);
+                | style | additionalStyles);
         this._propertyTreeTable.setAutoExpandLevel(TreeViewer.ALL_LEVELS);
         GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 5);
         gd11.heightHint = 100;
@@ -298,6 +298,17 @@ public abstract class SCAPropertyValueTable extends Composite implements ICellMo
             if (ssel.getFirstElement() instanceof PropertyValue) {
                 return (PropertyValue) ssel.getFirstElement();
             }
+        }
+        return null;
+    }
+
+    /**
+     * @return the current selection from the table
+     */
+    public IStructuredSelection getStructuredSelection() {
+        if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
+            IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
+            return ssel;
         }
         return null;
     }

@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl;
 
+import java.util.Iterator;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IPath;
@@ -488,13 +490,29 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         layout2.marginHeight = 2;
         client2.setLayout(layout2);
 
-        _domainProperties = new DomainPropertyTable(client2, SWT.NONE) {
+        _domainProperties = new DomainPropertyTable(client2, SWT.MULTI) {
 
             @Override
             protected void removeFromList() {
-                final PropertyType toRemove = _domainProperties.getTableSelection();
-                if (toRemove != null) {
-                    removeDomainProperty(toRemove);
+                final IStructuredSelection ssel = _domainProperties.getStructuredSelection();
+                if (ssel != null && !ssel.isEmpty() && ssel.size() > 1) {
+                    if (ssel != null && _editDomain != null) {
+                        _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                            @Override
+                            protected void doExecute() {
+                                Iterator<?> iter = ssel.iterator();
+                                while (iter.hasNext()) {
+                                    PropertyType toRemove = (PropertyType) iter.next();
+                                    removeDomainProperty(toRemove);
+                                }
+                            } 
+                        });
+                    }
+                } else if (ssel != null && ssel.size() == 1) {
+                    final PropertyType toRemove = _domainProperties.getTableSelection();
+                    if (toRemove != null) {
+                        removeDomainProperty(toRemove);
+                    }
                 }
             }
 

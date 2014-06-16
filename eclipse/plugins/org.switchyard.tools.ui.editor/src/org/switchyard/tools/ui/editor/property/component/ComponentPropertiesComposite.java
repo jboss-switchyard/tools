@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property.component;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.NotificationFilter;
@@ -21,6 +23,7 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
@@ -69,13 +72,29 @@ public class ComponentPropertiesComposite extends AbstractModelComposite<Compone
 
         _toolkit = getWidgetFactory();
         
-        _componentProperties = new SCAPropertyValueTable(this, SWT.NONE) {
+        _componentProperties = new SCAPropertyValueTable(this, SWT.MULTI) {
 
             @Override
             protected void removeFromList() {
-                final PropertyValue toRemove = _componentProperties.getTableSelection();
-                if (toRemove != null) {
-                    removeDomainProperty(toRemove);
+                final IStructuredSelection ssel = _componentProperties.getStructuredSelection();
+                if (ssel != null && !ssel.isEmpty() && ssel.size() > 1) {
+                    if (ssel != null && _domain != null) {
+                        _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                            @Override
+                            protected void doExecute() {
+                                Iterator<?> iter = ssel.iterator();
+                                while (iter.hasNext()) {
+                                    PropertyValue toRemove = (PropertyValue) iter.next();
+                                    removeDomainProperty(toRemove);
+                                }
+                            } 
+                        });
+                    }
+                } else if (ssel != null && ssel.size() == 1) {
+                    final PropertyValue toRemove = _componentProperties.getTableSelection();
+                    if (toRemove != null) {
+                        removeDomainProperty(toRemove);
+                    }
                 }
             }
 
