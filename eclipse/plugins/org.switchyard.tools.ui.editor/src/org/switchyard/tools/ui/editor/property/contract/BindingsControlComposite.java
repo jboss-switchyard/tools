@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.property.contract;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.swing.event.ChangeEvent;
@@ -162,7 +163,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         if (!showButtons) {
             span = 3;
         }
-        _listViewer = new ListViewer(tableAndButtonsComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+        _listViewer = new ListViewer(tableAndButtonsComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
         gridData = new GridData(SWT.FILL, SWT.FILL, true, true, span, 1);
         gridData.widthHint = 100;
         gridData.heightHint = 100;
@@ -193,7 +194,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection ssel = (IStructuredSelection) event.getSelection();
-                if (!ssel.isEmpty() && ssel.getFirstElement() instanceof Binding) {
+                if (!ssel.isEmpty() && ssel.size() == 1 && ssel.getFirstElement() instanceof Binding) {
                     boolean justRefresh = true;
                     Binding testBinding = (Binding) ssel.getFirstElement();
                     String key = createKey(testBinding);
@@ -208,6 +209,9 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                     }
                     _binding = testBinding;
                     handleSelectListItem(justRefresh);
+                } else {
+                    _binding = null;
+                    handleSelectListItem(true);
                 }
             }
         });
@@ -220,14 +224,18 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
                 @Override
                 public void widgetSelected(SelectionEvent e) {
                     if (e.widget.equals(_removeButton) && _removeButton.isEnabled()) {
+                        IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
                         if (_composite != null && _composite.getDidSomething()) {
                             _composite.setDidSomething(false);
                             return;
                         }
-                        // remove old binding
-                        IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
-                        Binding binding = (Binding) ssel.getFirstElement();
-                        removeBinding(binding);
+                        if (ssel.size() == 1) {
+                            // remove old binding
+                            Binding binding = (Binding) ssel.getFirstElement();
+                            removeBinding(binding);
+                        } else if (ssel.size() > 1) {
+                            removeBindingss(ssel);
+                        }
                         _binding = null;
                         refresh();
                     }
@@ -241,6 +249,26 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
         }
     }
 
+    private void removeBindingss(final IStructuredSelection ssel) {
+        if (ssel != null && _domain != null) {
+            if (_targetBO instanceof Contract) {
+                _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                    @Override
+                    protected void doExecute() {
+                        Contract contract = (Contract) _targetBO;
+                        IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
+                        Iterator<?> bindingsIter = ssel.iterator();
+                        while (bindingsIter.hasNext()) {
+                            Object next = bindingsIter.next();
+                            contract.getBinding().remove(next);
+                        }
+                    }
+                });
+                refresh();
+            }
+        }
+    }
+    
     private void removeBinding(final Binding selected) {
         if (selected != null && _domain != null) {
             if (_targetBO instanceof Contract) {
@@ -266,7 +294,8 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
             Display.getDefault().asyncExec(new Runnable() {
                 public void run() {
                     getContainer().layout();
-                    if (_listViewer.getList().isDisposed()) {
+                    if (_listViewer != null && _listViewer.getList() != null 
+                            && _listViewer.getList().isDisposed()) {
                         return;
                     }
                     Object newTarget = contract;
@@ -328,7 +357,7 @@ public class BindingsControlComposite extends AbstractModelComposite<Contract> i
 
     private void handleSelectListItem(boolean justRefresh) {
         if (_removeButton != null && !_removeButton.isDisposed()) {
-            _removeButton.setEnabled(_binding != null);
+            _removeButton.setEnabled(!_listViewer.getSelection().isEmpty());
         }
         if (_binding != null) {
             String bindingKey = createKey(_binding);
