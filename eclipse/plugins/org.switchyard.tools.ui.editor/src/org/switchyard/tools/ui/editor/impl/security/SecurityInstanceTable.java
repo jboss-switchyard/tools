@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl.security;
 
+import java.util.Iterator;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -249,7 +251,7 @@ public class SecurityInstanceTable extends Composite {
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
 
-        _propertyTreeTable = new TreeViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
+        _propertyTreeTable = new TreeViewer(this, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
                 | additionalStyles);
         this._propertyTreeTable.setAutoExpandLevel(TreeViewer.ALL_LEVELS);
         GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 5);
@@ -300,9 +302,14 @@ public class SecurityInstanceTable extends Composite {
         this._mEditButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
-                editSecurityType();
-                _propertyTreeTable.refresh();
-                fireChangedEvent(e.getSource());
+                if (_propertyTreeTable !=  null && !_propertyTreeTable.getSelection().isEmpty()) {
+                    IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
+                    if (ssel.size() == 1) {
+                        editSecurityType();
+                        _propertyTreeTable.refresh();
+                        fireChangedEvent(e.getSource());
+                    }
+                }
             }
         });
 
@@ -315,9 +322,16 @@ public class SecurityInstanceTable extends Composite {
         this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
-                removeFromList();
-                _propertyTreeTable.refresh();
-                fireChangedEvent(e.getSource());
+                if (_propertyTreeTable !=  null && !_propertyTreeTable.getSelection().isEmpty()) {
+                    IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
+                    if (ssel.size() == 1) {
+                        removeFromList();
+                    } else if (ssel.size() > 1) {
+                        removeMultipleFromList();
+                    }
+                    _propertyTreeTable.refresh();
+                    fireChangedEvent(e.getSource());
+                }
             }
         });
 
@@ -426,6 +440,34 @@ public class SecurityInstanceTable extends Composite {
     };
 
     /**
+     * Remove a multiple selected security configs from the list
+     */
+    protected void removeMultipleFromList() {
+        final StructuredSelection ssel = (StructuredSelection) _propertyTreeTable.getSelection();
+        if (ssel.getFirstElement() != null && ssel.getFirstElement() instanceof SecurityType) {
+            if (_syRoot != null) {
+                final SwitchYardType finalRoot = _syRoot;
+                _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                    @Override
+                    protected void doExecute() {
+                        Iterator<?> configIter = ssel.iterator();
+                        while (configIter.hasNext()) {
+                            SecurityType security = (SecurityType) configIter.next();
+                            DomainType domain = finalRoot.getDomain();
+                            if (domain == null) {
+                                domain = SwitchyardFactory.eINSTANCE.createDomainType();
+                                finalRoot.setDomain(domain);
+                            }
+                            SecuritiesType securities = domain.getSecurities();
+                            securities.getSecurity().remove(security);
+                        }
+                    }
+                });
+            }
+        }
+    };
+
+    /**
      * Return the current selection.
      * 
      * @return String list
@@ -456,13 +498,17 @@ public class SecurityInstanceTable extends Composite {
      */
     public void updateSecurityTypeButtons() {
         if (_isReadOnly) {
-            this._mAddButton.setEnabled(false);
-            this._mRemoveButton.setEnabled(false);
+            _mAddButton.setEnabled(false);
+            _mRemoveButton.setEnabled(false);
+            _mEditButton.setEnabled(false);
 
         } else {
-            this._mAddButton.setEnabled(true);
-            if (getSelection() != null) {
+            _mAddButton.setEnabled(true);
+            IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
+            if (!ssel.isEmpty() && ssel.size() == 1) {
                 _mEditButton.setEnabled(true);
+            }
+            if (!ssel.isEmpty()) {
                 _mRemoveButton.setEnabled(true);
             }
         }
