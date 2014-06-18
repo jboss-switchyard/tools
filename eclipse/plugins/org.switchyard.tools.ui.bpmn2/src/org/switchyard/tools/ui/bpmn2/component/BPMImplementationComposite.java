@@ -19,6 +19,7 @@
 package org.switchyard.tools.ui.bpmn2.component;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -44,6 +45,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.ModifyEvent;
@@ -77,6 +79,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
@@ -198,10 +201,19 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
     @Override
     public void refresh() {
+        BPMOperationType selectedOp = null;
+        if (_implementation != null && _actionsTable.getTableSelection() != null) {
+            selectedOp = _actionsTable.getTableSelection();
+        }
         _implementation = null;
         final Component bo = getTargetObject();
         if (bo != null) {
-            _implementation = (BPMImplementationType) ((Component) bo).getImplementation();
+            Implementation rawImpl = ((Component) bo).getImplementation();
+            if (rawImpl instanceof BPMImplementationType) {
+                _implementation = (BPMImplementationType) rawImpl;
+            } else {
+                _implementation = null;
+            }
             if (_implementation != null && _implementation.getManifest() != null) {
                 _resources = _implementation.getManifest().getResources();
                 _container = _implementation.getManifest().getContainer();
@@ -211,6 +223,21 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         try {
             _resourcesTable.setTargetObject(_implementation);
             _actionsTable.setTargetObject(_implementation);
+            if (selectedOp != null) {
+                OperationsType ops = _implementation.getOperations();
+                if (ops != null && ops.getOperation() != null && !ops.getOperation().isEmpty()) {
+                    Iterator<BPMOperationType> opIter = ops.getOperation().iterator();
+                    while (opIter.hasNext()) {
+                        BPMOperationType op = opIter.next();
+                        if (op.getName().equals(selectedOp.getName())) { 
+                            _actionsTable.getTableViewer().setSelection(new StructuredSelection(op));
+                            break;
+                        }
+                    }
+                } else {
+                    _actionsTable.getTableViewer().setSelection(null);
+                }
+            }
             _propertiesTable.setTargetObject(_implementation);
             _loggersTable.setTargetObject(_implementation);
             _handlersTable.setTargetObject(_implementation);
@@ -238,9 +265,10 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 _manifestLayout.topControl = _containerDetailsControls;
                 _containerDetailsControls.getParent().layout();
             }
+
             // initialize container controls
             _containerDetailsControls.setContainer(_container);
-            if (_implementation.getUserGroupCallback() != null) {
+            if (_implementation != null && _implementation.getUserGroupCallback() != null) {
                 String value = _implementation.getUserGroupCallback().getClass_();
                 if (value == null) {
                     value = ""; //$NON-NLS-1$

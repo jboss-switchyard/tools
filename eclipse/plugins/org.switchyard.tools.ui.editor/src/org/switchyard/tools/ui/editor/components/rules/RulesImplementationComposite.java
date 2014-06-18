@@ -19,11 +19,14 @@
 package org.switchyard.tools.ui.editor.components.rules;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -44,6 +47,7 @@ import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
+import org.switchyard.tools.models.switchyard1_0.rules.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
@@ -161,10 +165,19 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
     @Override
     public void refresh() {
+        RulesOperationType selectedOp = null;
+        if (_implementation != null && _actionsTable.getTableSelection() != null) {
+            selectedOp = _actionsTable.getTableSelection();
+        }
         _implementation = null;
         final Component bo = getTargetObject();
         if (bo != null) {
-            _implementation = (RulesImplementationType) ((Component) bo).getImplementation();
+            Implementation rawImpl = ((Component) bo).getImplementation();
+            if (rawImpl instanceof RulesImplementationType) {
+                _implementation = (RulesImplementationType) rawImpl;
+            } else {
+                _implementation = null;
+            }
             if (_implementation != null && _implementation.getManifest() != null) {
                 _resources = _implementation.getManifest().getResources();
                 _container = _implementation.getManifest().getContainer();
@@ -174,6 +187,27 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         try {
             _resourcesTable.setTargetObject(_implementation);
             _actionsTable.setTargetObject(_implementation);
+            if (selectedOp != null) {
+                OperationsType ops = _implementation.getOperations();
+                if (ops != null && ops.getOperation() != null && !ops.getOperation().isEmpty()) {
+                    Iterator<RulesOperationType> opIter = ops.getOperation().iterator();
+                    while (opIter.hasNext()) {
+                        RulesOperationType op = opIter.next();
+                        if (op.getName() != null && op.getName().equals(selectedOp.getName())) { 
+                            _actionsTable.getTableViewer().setSelection(new StructuredSelection(op));
+                            break;
+                        } else if (selectedOp.getName() != null && selectedOp.getName().equals(selectedOp.getName())) {
+                            _actionsTable.getTableViewer().setSelection(new StructuredSelection(op));
+                            break;
+                        } else if (selectedOp.getName() == null && op.getName() == null) {
+                            _actionsTable.getTableViewer().setSelection(new StructuredSelection(op));
+                            break;
+                        }
+                    }
+                } else {
+                    _actionsTable.getTableViewer().setSelection(null);
+                }
+            }
             _propertiesTable.setTargetObject(_implementation);
             _loggersTable.setTargetObject(_implementation);
             _listenersTable.setTargetObject(_implementation);
