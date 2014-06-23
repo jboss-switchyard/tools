@@ -150,23 +150,18 @@ public class CamelXMLRouteComposite extends AbstractChangeAwareModelComposite<Co
             getContainer().validated(validate());
             if (!_updating) {
                 if (_mXMLText != null && !_mXMLText.isDisposed()) {
-                    wrapOperation(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (_implementation == null) {
-                                _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
-                            }
+                    if (_implementation == null) {
+                        _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
+                    }
 
-                            // handle xml file path
-                            XMLDSLType xmltype = _implementation.getXml();
-                            if (xmltype == null) {
-                                xmltype = CamelFactory.eINSTANCE.createXMLDSLType();
-                                _implementation.setXml(xmltype);
-                            }
-                            xmltype.setPath(_mXMLText.getText());
-                            _implementation.setJava(null);
-                        }
-                    });
+                    // handle xml file path
+                    XMLDSLType xmltype = _implementation.getXml();
+                    if (xmltype == null) {
+                        xmltype = CamelFactory.eINSTANCE.createXMLDSLType();
+                        _implementation.setXml(xmltype);
+                    }
+                    xmltype.setPath(_mXMLText.getText());
+                    _implementation.setJava(null);
                 }
             }
         }
