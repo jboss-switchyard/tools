@@ -13,9 +13,11 @@
 package org.switchyard.tools.ui.editor.components.soap;
 
 import java.math.BigInteger;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.conversion.Converter;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.Realm;
@@ -503,6 +505,14 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
         bindMtomControls(context, domain, realm);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            
+            final IObservableValue wsdlSocketValue = SWTObservables.observeText(_mWSDLSocketText, new int[] {SWT.Modify });
+            final UpdateValueStrategy wsdlSocketUpdateValueStrategy = new EMFUpdateValueStrategyNullForEmptyString(
+                    null, UpdateValueStrategy.POLICY_CONVERT);
+            wsdlSocketUpdateValueStrategy.setConverter(new WSDLPortConverter());
+            wsdlSocketUpdateValueStrategy.setAfterConvertValidator(
+                    new ServerPortValidator("Server Port value must be in the form '1234', ':1234', or 'host:1234' or follow the pattern for escaped properties (i.e. ':${propName}' or '${propName1}:${propName2}')."));
+            
             binding = context
                     .bindValue(
                             SWTObservables.observeText(_contextPathText, new int[] {SWT.Modify }),
@@ -515,29 +525,35 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             
             binding = context
                     .bindValue(
-                            SWTObservables.observeText(_mWSDLSocketText, new int[] {SWT.Modify }),
+                            wsdlSocketValue,
                             ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                     SOAPPackage.Literals.SOAP_BINDING_TYPE__SOCKET_ADDR),
-                            new EMFUpdateValueStrategyNullForEmptyString(
-                                    null,
-                                    UpdateValueStrategy.POLICY_CONVERT), null);
+                                    wsdlSocketUpdateValueStrategy, null);
             ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-            
-            // TODO: Figure out how to handle this case:
-//          // for SWITCHYARD-1614 - check to make sure we have a colon and add one if missing
-//          boolean isJustPort = false;
-//          try {
-//              Integer.valueOf(_bindingSocket);
-//              isJustPort = true;
-//          } catch (NumberFormatException nfe) {
-//              isJustPort = false;
-//          }
-//          if (isJustPort && !_bindingSocket.startsWith(":")) { //$NON-NLS-1$
-//              _bindingSocket = ":" + _bindingSocket; //$NON-NLS-1$
-//              _mWSDLSocketText.setText(_bindingSocket);
-//          }
-//          updateFeature(_binding, "socketAddr", _bindingSocket); //$NON-NLS-1$
         }
+    }
+    
+    private class WSDLPortConverter extends Converter {
+        
+        public WSDLPortConverter() {
+            super(String.class, String.class);
+        }
+
+        @Override
+        public Object convert(Object fromObject) {
+            if (fromObject == null || ((String) fromObject).trim().isEmpty()) {
+                return null;
+            }
+            String fromString = (String) fromObject;
+            Pattern numOnly = Pattern.compile("\\d+");
+            if (numOnly.matcher(fromString).matches()) {
+                fromString = ":" + fromString;
+                return fromString;
+            } else {
+                return fromString; 
+            }
+        }
+        
     }
 
     private void bindMessageComposerAndContextMapperControls(final DataBindingContext context, 
