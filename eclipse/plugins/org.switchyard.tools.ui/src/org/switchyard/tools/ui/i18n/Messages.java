@@ -759,12 +759,16 @@ public final class Messages extends NLS {
     public static String ValidationProblem_UnimplementedServiceDeclaration;
 
     public static String ValidationProblem_UnresolvableBeanClass;
+    
+    public static String ValidationProblem_UnresolvableCamelRouteClass;
 
     public static String ValidationProblem_UnresolvableServiceInterface;
 
     public static String ValidationProblem_UnresolvedReference;
 
     public static String ValidationProblem_UnspecifiedBeanClass;
+
+    public static String ValidationProblem_UnspecifiedCamelRouteClass;
 
     public static String ValidationProblem_UnusedCapability;
 
@@ -813,7 +817,25 @@ public final class Messages extends NLS {
     public static String WSDLPortTypeSelectionDialog_validateMessage_SelectWSDLFileAndPortType;
     
     public static String InterfaceControl_DefaultESBInterface_ServiceName;
-
+    
+    public static String ValidationProblem_CamelJavaClassDoesNotExtendRouteBuilder;
+    
+    public static String ValidationProblem_NoCamelXMLSpecified;
+    
+    public static String ValidationProblem_CamelImplementationTypeMissing;
+    
+    public static String ValidationProblem_InvalidCamelRouteOperationReference;
+    
+    public static String ValidationProblem_CamelRouteOperationNotFoundAsReference;
+    
+    public static String ValidationProblem_CamelRouteOperationNotFoundAsService;
+    
+    public static String ValidationProblem_CamelRouteOperationRequiredNotSpecified;
+    
+    public static String ValidationProblem_CamelXMLNotFound;
+    
+    public static String ValidationProblem_CamelRouteMoreThanOneFromFound;
+    
     static {
         // initialize resource bundle
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
@@ -822,3 +844,4 @@ public final class Messages extends NLS {
     private Messages() {
     }
 }
+

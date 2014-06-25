@@ -24,7 +24,7 @@ import org.switchyard.tools.ui.validation.SwitchYardProjectValidator;
  * 
  * Tests the validator logic.
  * 
- * @author Rob Cernich
+ * @author Rob Cernich, Brian Fitzpatrick
  */
 @SuppressWarnings("restriction")
 public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
@@ -98,4 +98,73 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
         assertEquals(WorkspaceHelpers.toString(markers), 23, markers.length);
     }
 
+    /**
+     * Tests Camel route validation.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelRouteValidation() throws Exception {
+        IProject project = importProject("test-data/validator-tests/camel-route-tests/pom.xml");
+        waitForJobsToComplete();
+
+        project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobsToComplete();
+        project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, monitor);
+        waitForJobsToComplete();
+
+        IFile switchYardFile = project.getFile("src/main/resources/META-INF/switchyard.xml");
+        assertTrue("switchyard.xml does not exist.", switchYardFile != null && switchYardFile.exists());
+
+        IMarker[] markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
+                IFile.DEPTH_ZERO);
+        int errorCount = 0;
+        int warningCount = 0;
+        int infoCount = 0;
+        int unknownCount = 0;
+        for (IMarker marker : markers) {
+            switch (marker.getAttribute(IMarker.SEVERITY, -1)) {
+            case IMarker.SEVERITY_ERROR:
+                ++errorCount;
+                break;
+            case IMarker.SEVERITY_INFO:
+                ++infoCount;
+                break;
+            case IMarker.SEVERITY_WARNING:
+                ++warningCount;
+                break;
+            default:
+                ++unknownCount;
+                break;
+            }
+        }
+
+        assertEquals("Expecting 10 errors: " + WorkspaceHelpers.toString(markers), 10, errorCount);
+        assertEquals("Expecting 0 warnings: " + WorkspaceHelpers.toString(markers), 0, warningCount);
+        assertEquals("Expecting 0 infos: " + WorkspaceHelpers.toString(markers), 0, infoCount);
+        assertEquals("Unexpected marker severity (not info, warning, error): " + WorkspaceHelpers.toString(markers), 0,
+                unknownCount);
+
+        project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = project.findMarkers(null, true, IFile.DEPTH_INFINITE);
+        assertEquals(WorkspaceHelpers.toString(markers), 0, markers.length);
+
+        project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
+                IFile.DEPTH_ZERO);
+        assertEquals(WorkspaceHelpers.toString(markers), 10, markers.length);
+
+        MavenPlugin.getProjectConfigurationManager().updateProjectConfiguration(project, monitor);
+        project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = project.findMarkers(null, true, IFile.DEPTH_INFINITE);
+        assertEquals(WorkspaceHelpers.toString(markers), 0, markers.length);
+
+        project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobsToComplete();
+        markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
+                IFile.DEPTH_ZERO);
+        assertEquals(WorkspaceHelpers.toString(markers), 10, markers.length);
+    }
 }

@@ -1463,6 +1463,10 @@
           category="org.switchyard.tools.validationCategory/bean"
           context="org.switchyard.tools.validationContext">
     </binding>
+    <binding
+          category="org.switchyard.tools.validationCategory/camel"
+          context="org.switchyard.tools.validationContext">
+    </binding>
   </extension>
   <extension
        point="org.eclipse.emf.validation.constraintProviders">
@@ -1473,6 +1477,10 @@
     <category
           id="org.switchyard.tools.validationCategory/bean"
           name="%constraintCategoryName.bean">
+    </category>
+    <category
+          id="org.switchyard.tools.validationCategory/camel"
+          name="%constraintCategoryName.camel">
     </category>
     <constraintProvider
           cache="true">
@@ -1537,6 +1545,30 @@
              </message>
              <target
                    class="BeanImplementationType">
+             </target>
+          </constraint>
+       </constraints>
+    </constraintProvider>
+    <constraintProvider
+          cache="true">
+       <package
+             namespaceUri="urn:switchyard-component-camel:config:2.0">
+       </package>
+       <constraints
+             categories="org.switchyard.tools.validationCategory/camel">
+          <constraint
+                class="org.switchyard.tools.ui.validation.CamelComponentConstraint"
+                id="org.switchyard.tools.validation.constraint.component/camel/route"
+                isEnabledByDefault="true"
+                lang="Java"
+                mode="Batch"
+                name="%constraintCategory.childConstraintName.camelRouteComponent"
+                statusCode="0">
+             <message>
+                %constraintCategory.childConstraintMessage.camelRouteComponent
+             </message>
+             <target
+                   class="CamelImplementationType">
              </target>
           </constraint>
        </constraints>

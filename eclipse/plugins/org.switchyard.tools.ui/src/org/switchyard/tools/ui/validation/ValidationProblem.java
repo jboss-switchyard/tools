@@ -88,7 +88,9 @@ public enum ValidationProblem {
             Messages.ValidationProblem_UnspecifiedBeanClass,
             IStatus.ERROR, false),
     /** Class cannot be resolved for implementation.bean. */
-    BeanUnresolvableClass(Messages.ValidationProblem_UnresolvableBeanClass, IStatus.ERROR, false),
+    BeanUnresolvableClass(Messages.ValidationProblem_UnresolvableBeanClass, 
+            IStatus.ERROR, false),
+
     /** Service specified on implementation, but not in switchyard.xml. */
     MissingServiceDeclaration(
             Messages.ValidationProblem_MissingComponentService,
@@ -120,7 +122,52 @@ public enum ValidationProblem {
     /** Reference is not used by implementation. */
     UnusedReferenceDeclaration(
             Messages.ValidationProblem_UnusedComponentReference,
-            IStatus.WARNING, false);
+            IStatus.WARNING, false),
+            
+    /** No class specified on implementation.camel (java). */
+    CamelJavaUnspecifiedClass(
+            Messages.ValidationProblem_UnspecifiedCamelRouteClass,
+            IStatus.ERROR, false),
+    /** Class cannot be resolved for implementation.camel (java). */
+    CamelJavaUnresolvableClass(Messages.ValidationProblem_UnresolvableCamelRouteClass, 
+            IStatus.ERROR, false),
+    /** Camel Java route class for implementation.camel (java) does not extend RouteBuilder. */
+    CamelJavaWrongSuperclass(Messages.ValidationProblem_CamelJavaClassDoesNotExtendRouteBuilder, 
+            IStatus.ERROR, false),
+    /** No XML specified on implementation.camel (xml). */
+    CamelXMLUnspecified(
+            Messages.ValidationProblem_NoCamelXMLSpecified,
+            IStatus.ERROR, false),
+    /** No XML or Java route specified on implementation.camel (xml). */
+    CamelImplementationIncomplete(
+            Messages.ValidationProblem_CamelImplementationTypeMissing,
+            IStatus.ERROR, false),
+    /** The operation specified in the route for a implementation.camel (xml) is
+     * incorrect. */
+    InvalidCamelRouteOperationReference(
+            Messages.ValidationProblem_InvalidCamelRouteOperationReference,
+            IStatus.ERROR, false),
+    /** The reference specified in the camel route URI is not available in the component. */
+    CamelRouteOperationNotFoundAsReference(
+            Messages.ValidationProblem_CamelRouteOperationNotFoundAsReference,
+            IStatus.ERROR, false),
+    /** The service specified in the camel route URI is not available in the component. */
+    CamelRouteOperationNotFoundAsService(
+            Messages.ValidationProblem_CamelRouteOperationNotFoundAsService,
+            IStatus.ERROR, false),
+    /** The referenced service or reference has multiple operations available. Route URI should
+     * specify one. */
+    CamelRouteOperationRequiredNotSpecified(
+            Messages.ValidationProblem_CamelRouteOperationRequiredNotSpecified,
+            IStatus.WARNING, false),
+    /** XML specified on implementation.camel (xml) not found. */
+    CamelXMLNotFound(
+            Messages.ValidationProblem_CamelXMLNotFound,
+            IStatus.ERROR, false),
+    /** Route for implementation.camel specifies more than a single "from". */
+    CamelRouteMoreThanOneFromFound(
+            Messages.ValidationProblem_CamelRouteMoreThanOneFromFound,
+            IStatus.ERROR, false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
     public static final String PROBLEM_CODE = Messages.ValidationProblem_ValidateProblem;

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:camel="urn:switchyard-component-camel:config:1.1" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:1.1" name="camel-route-tests" targetNamespace="urn:com.tests.switchyard:camel-route-tests:1.0">
+  <sca:composite name="camel-route-tests" targetNamespace="urn:com.tests.switchyard:camel-route-tests:1.0">
+    <sca:component name="Route">
+      <camel:implementation.camel>
+        <camel:xml path="route.xml"/>
+      </camel:implementation.camel>
+      <sca:service name="MyFirstService">
+        <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="MyFirstService" promote="Route/MyFirstService">
+      <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
+    </sca:service>
+    <sca:component name="CamelServiceRoute">
+      <camel:implementation.camel>
+        <camel:java class="com.switchyard.camel_route_tests.CamelServiceRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="MySecondService">
+        <sca:interface.java interface="com.switchyard.camel_route_tests.MySecondService"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="MySecondService" promote="CamelServiceRoute/MySecondService">
+      <sca:interface.java interface="com.switchyard.camel_route_tests.MySecondService"/>
+    </sca:service>
+    <sca:component name="BrokenRoute">
+      <camel:implementation.camel>
+        <camel:xml path="brokenroute.xml"/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="BrokenRoute2">
+      <camel:implementation.camel>
+        <camel:xml path=""/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="BrokenRoute3">
+      <camel:implementation.camel>
+        <camel:xml/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="BrokenJavaRoute">
+      <camel:implementation.camel>
+        <camel:java class="this.class.does.not.Exist"/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="BrokenJavaRoute2">
+      <camel:implementation.camel>
+        <camel:java class=""/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="BrokenJavaRoute3">
+      <camel:implementation.camel>
+        <camel:java/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="NestedCamelServiceRoute">
+      <camel:implementation.camel>
+        <camel:java class="com.switchyard.camel_route_tests.NestedCamelServiceRoute"/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="BadParentCamelServiceRoute">
+      <camel:implementation.camel>
+        <camel:java class="com.switchyard.camel_route_tests.BrokenCamelServiceRoute"/>
+      </camel:implementation.camel>
+    </sca:component>
+    <sca:component name="CorrectCamelServiceRoute">
+      <camel:implementation.camel>
+        <camel:java class="com.switchyard.camel_route_tests.CorrectCamelServiceRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="MyOtherFirstService">
+        <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
+      </sca:service>
+      <sca:reference name="MyOtherSecondService">
+        <sca:interface.java interface="com.switchyard.camel_route_tests.MySecondService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="MyOtherFirstService" promote="CorrectCamelServiceRoute/MyOtherFirstService">
+      <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
+    </sca:service>
+    <sca:reference name="MyOtherSecondService" multiplicity="0..1" promote="CorrectCamelServiceRoute/MyOtherSecondService">
+      <sca:interface.java interface="com.switchyard.camel_route_tests.MySecondService"/>
+    </sca:reference>
+    <sca:component name="Correctroute">
+      <camel:implementation.camel>
+        <camel:xml path="correctroute.xml"/>
+      </camel:implementation.camel>
+      <sca:service name="MyOtherFirstService2">
+        <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
+      </sca:service>
+      <sca:reference name="MyOtherSecondService2">
+        <sca:interface.java interface="com.switchyard.camel_route_tests.MySecondService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="MyOtherFirstService2" promote="Correctroute/MyOtherFirstService2">
+      <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
+    </sca:service>
+    <sca:reference name="MyOtherSecondService2" multiplicity="0..1" promote="Correctroute/MyOtherSecondService2">
+      <sca:interface.java interface="com.switchyard.camel_route_tests.MySecondService"/>
+    </sca:reference>
+  </sca:composite>
+</sy:switchyard>

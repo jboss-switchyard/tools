@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+  <route>
+    <from uri="switchyard://MyFirstService"/>
+        <log message="Inside XML Camel Route"/>
+  </route>
+  <route>
+    <from uri="switchyard://MyFourthService"/>
+        <log message="Inside nonexistent XML Camel Route"/>
+  </route>
+</routes>
