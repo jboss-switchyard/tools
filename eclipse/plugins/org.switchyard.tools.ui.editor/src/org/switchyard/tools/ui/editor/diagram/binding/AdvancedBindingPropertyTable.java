@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.CellEditorProperties;
 import org.eclipse.jface.databinding.viewers.ObservableValueEditingSupport;
@@ -55,6 +56,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.TraverseEvent;
 import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.Color;
@@ -179,6 +181,12 @@ public class AdvancedBindingPropertyTable extends Composite {
 
         @Override
         protected IObservableValue doCreateCellEditorObservable(CellEditor cellEditor) {
+            if (cellEditor.getControl() instanceof CCombo) {
+                IObservableValue ccomboObservable =
+                        SWTObservables.observeSelection(cellEditor.getControl());
+                return ccomboObservable;
+            }
+            
             return CellEditorProperties.control()
                     .value(WidgetProperties.text(new int[] {SWT.DefaultSelection, SWT.FocusOut, SWT.Modify }))
                     .observe(cellEditor);
@@ -187,8 +195,8 @@ public class AdvancedBindingPropertyTable extends Composite {
         @Override
         protected IObservableValue doCreateElementObservable(Object element, ViewerCell cell) {
             _lastPO = (PropertyObject) element;
-            final EStructuralFeature feature = getTargetObject().eClass().getEStructuralFeature(_lastPO.getFeatureName());
-            final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+            final EStructuralFeature feature = _lastPO.getEObject().eClass().getEStructuralFeature(_lastPO.getFeatureName());
+            final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(_lastPO.getEObject());
             if (domain == null) {
                 return EMFProperties.value(feature).observe(_lastPO.getEObject());
             }
