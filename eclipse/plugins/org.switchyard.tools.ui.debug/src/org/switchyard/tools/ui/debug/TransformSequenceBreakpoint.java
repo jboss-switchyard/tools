@@ -198,6 +198,9 @@ public class TransformSequenceBreakpoint extends DelegatingJavaBreakpoint<String
             return null;
         }
         final Set<TriggerType> triggers = config.getTriggers();
+        if (triggers == null) {
+            return null;
+        }
         final StringBuffer buffer = new StringBuffer();
         boolean addOr = false;
         buffer.append("(");
