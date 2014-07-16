@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.debug;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -122,11 +123,13 @@ public class ValidateHandlerBreakpoint extends ServiceHandlerBreakpoint {
         buffer.append('(');
         buffer.append("get(").append(EXCHANGE_VARIABLE).append(") != null && ");
         buffer.append("java.util.Arrays.asList(");
-        for (String type : types) {
-            if (buffer.length() > 0) {
+        Iterator<String> typeIter = types.iterator();
+        while (typeIter.hasNext()) {
+            String type = typeIter.next();
+            buffer.append('"').append(type).append('"');
+            if (typeIter.hasNext()) {
                 buffer.append(", ");
             }
-            buffer.append('"').append(type).append('"');
         }
         buffer.append(").contains(").append(EXCHANGE_VARIABLE)
                 .append(".getContext().getProperty(\"org.switchyard.contentType\").getValue().toString())");
