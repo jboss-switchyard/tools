@@ -364,6 +364,9 @@
     <bindingExtension
           class="org.switchyard.tools.ui.editor.components.camel.sap.CamelSAPBindingTypeExtension">
     </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.mqtt.CamelMQTTBindingTypeExtension">
+    </bindingExtension>
  </extension>
 
   <!-- Validation Extensions -->

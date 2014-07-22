@@ -1614,6 +1614,16 @@ public interface SwitchyardPackage extends EPackage {
     int PROP_BOOLEAN = 24;
 
                 /**
+     * The meta object id for the '<em>Prop Double</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.lang.Object
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropDouble()
+     * @generated
+     */
+    int PROP_DOUBLE = 25;
+
+                /**
      * The meta object id for the '<em>Property Value</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1621,7 +1631,17 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyValue()
      * @generated
      */
-    int PROPERTY_VALUE = 25;
+    int PROPERTY_VALUE = 26;
+
+                /**
+     * The meta object id for the '<em>Prop Float</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.lang.Object
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropFloat()
+     * @generated
+     */
+    int PROP_FLOAT = 27;
 
                 /**
      * The meta object id for the '<em>Prop Integer</em>' data type.
@@ -1631,7 +1651,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropInteger()
      * @generated
      */
-    int PROP_INTEGER = 26;
+    int PROP_INTEGER = 28;
 
                 /**
      * The meta object id for the '<em>Prop Long</em>' data type.
@@ -1641,7 +1661,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropLong()
      * @generated
      */
-    int PROP_LONG = 27;
+    int PROP_LONG = 29;
 
 
                 /**
@@ -2745,6 +2765,18 @@ public interface SwitchyardPackage extends EPackage {
     EDataType getPropBoolean();
 
     /**
+     * Returns the meta object for data type '{@link java.lang.Object <em>Prop Double</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Prop Double</em>'.
+     * @see java.lang.Object
+     * @model instanceClass="java.lang.Object"
+     *        extendedMetaData="name='propDouble' memberTypes='http://www.eclipse.org/emf/2003/XMLType#double propertyValue'"
+     * @generated
+     */
+    EDataType getPropDouble();
+
+    /**
      * Returns the meta object for data type '{@link java.lang.String <em>Property Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2755,6 +2787,18 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      */
     EDataType getPropertyValue();
+
+    /**
+     * Returns the meta object for data type '{@link java.lang.Object <em>Prop Float</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Prop Float</em>'.
+     * @see java.lang.Object
+     * @model instanceClass="java.lang.Object"
+     *        extendedMetaData="name='propFloat' memberTypes='http://www.eclipse.org/emf/2003/XMLType#float propertyValue'"
+     * @generated
+     */
+    EDataType getPropFloat();
 
     /**
      * Returns the meta object for data type '{@link java.lang.Object <em>Prop Integer</em>}'.
@@ -3677,6 +3721,16 @@ public interface SwitchyardPackage extends EPackage {
         EDataType PROP_BOOLEAN = eINSTANCE.getPropBoolean();
 
         /**
+         * The meta object literal for the '<em>Prop Double</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see java.lang.Object
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropDouble()
+         * @generated
+         */
+        EDataType PROP_DOUBLE = eINSTANCE.getPropDouble();
+
+        /**
          * The meta object literal for the '<em>Property Value</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3685,6 +3739,16 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
         EDataType PROPERTY_VALUE = eINSTANCE.getPropertyValue();
+
+        /**
+         * The meta object literal for the '<em>Prop Float</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see java.lang.Object
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropFloat()
+         * @generated
+         */
+        EDataType PROP_FLOAT = eINSTANCE.getPropFloat();
 
         /**
          * The meta object literal for the '<em>Prop Integer</em>' data type.

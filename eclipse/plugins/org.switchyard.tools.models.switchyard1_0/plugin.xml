@@ -314,6 +314,21 @@
             class="org.switchyard.tools.models.switchyard1_0.camel.rss.util.RssResourceFactoryImpl"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated switchyard_1.0 -->
+      <package
+            uri="urn:switchyard-component-camel-mqtt:config:2.0"
+            class="org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage"
+            genModel="model/switchyard_1.0.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated switchyard_1.0 -->
+      <parser
+            type="mqtt"
+            class="org.switchyard.tools.models.switchyard1_0.camel.mqtt.util.MqttResourceFactoryImpl"/>
+   </extension>
+
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="sap"

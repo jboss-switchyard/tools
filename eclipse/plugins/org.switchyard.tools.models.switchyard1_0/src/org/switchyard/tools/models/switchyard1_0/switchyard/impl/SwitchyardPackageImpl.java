@@ -41,10 +41,14 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -92,6 +96,8 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -273,7 +279,21 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      * <!-- end-user-doc -->
      * @generated
      */
+    private EDataType propDoubleEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EDataType propertyValueEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType propFloatEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -370,6 +390,9 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
         QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
+        RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -398,6 +421,9 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         theNettyPackage.createPackageContents();
         theQuartzPackage.createPackageContents();
         theSqlPackage.createPackageContents();
+        theRssPackage.createPackageContents();
+        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
 
         // Initialize created meta-data
         theSwitchyardPackage.initializePackageContents();
@@ -423,6 +449,9 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         theNettyPackage.initializePackageContents();
         theQuartzPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
+        theRssPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -1368,8 +1397,26 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      * <!-- end-user-doc -->
      * @generated
      */
+    public EDataType getPropDouble() {
+        return propDoubleEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EDataType getPropertyValue() {
         return propertyValueEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getPropFloat() {
+        return propFloatEDataType;
     }
 
     /**
@@ -1555,7 +1602,9 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         // Create data types
         propBooleanEDataType = createEDataType(PROP_BOOLEAN);
+        propDoubleEDataType = createEDataType(PROP_DOUBLE);
         propertyValueEDataType = createEDataType(PROPERTY_VALUE);
+        propFloatEDataType = createEDataType(PROP_FLOAT);
         propIntegerEDataType = createEDataType(PROP_INTEGER);
         propLongEDataType = createEDataType(PROP_LONG);
     }
@@ -1729,7 +1778,9 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         // Initialize data types
         initEDataType(propBooleanEDataType, Object.class, "PropBoolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(propDoubleEDataType, Object.class, "PropDouble", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
         initEDataType(propertyValueEDataType, String.class, "PropertyValue", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(propFloatEDataType, Object.class, "PropFloat", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
         initEDataType(propIntegerEDataType, Object.class, "PropInteger", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
         initEDataType(propLongEDataType, Object.class, "PropLong", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
@@ -2180,6 +2231,13 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
              "memberTypes", "http://www.eclipse.org/emf/2003/XMLType#boolean propertyValue"
            });		
         addAnnotation
+          (propDoubleEDataType, 
+           source, 
+           new String[] {
+             "name", "propDouble",
+             "memberTypes", "http://www.eclipse.org/emf/2003/XMLType#double propertyValue"
+           });		
+        addAnnotation
           (propertiesTypeEClass, 
            source, 
            new String[] {
@@ -2222,6 +2280,13 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
              "name", "propertyValue",
              "baseType", "http://www.eclipse.org/emf/2003/XMLType#string",
              "pattern", "\\$\\{([a-zA-Z0-9\\.-_])*(:([a-zA-Z0-9])*)?\\}"
+           });		
+        addAnnotation
+          (propFloatEDataType, 
+           source, 
+           new String[] {
+             "name", "propFloat",
+             "memberTypes", "http://www.eclipse.org/emf/2003/XMLType#float propertyValue"
            });		
         addAnnotation
           (propIntegerEDataType, 

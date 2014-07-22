@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.CamelMqttBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
@@ -156,6 +157,8 @@ public final class LabelAdapter {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FEED);
         } else if (binding instanceof CamelRSSBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FEED);
+        } else if (binding instanceof CamelMqttBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_MQTT);
         }
         return imageRenderingDecorator;
     }

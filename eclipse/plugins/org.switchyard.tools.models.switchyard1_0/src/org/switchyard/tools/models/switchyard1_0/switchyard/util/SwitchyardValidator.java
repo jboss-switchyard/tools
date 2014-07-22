@@ -153,8 +153,12 @@ public class SwitchyardValidator extends EObjectValidator {
                 return validateXPathOperationSelectorType((XPathOperationSelectorType)value, diagnostics, context);
             case SwitchyardPackage.PROP_BOOLEAN:
                 return validatePropBoolean(value, diagnostics, context);
+            case SwitchyardPackage.PROP_DOUBLE:
+                return validatePropDouble(value, diagnostics, context);
             case SwitchyardPackage.PROPERTY_VALUE:
                 return validatePropertyValue((String)value, diagnostics, context);
+            case SwitchyardPackage.PROP_FLOAT:
+                return validatePropFloat(value, diagnostics, context);
             case SwitchyardPackage.PROP_INTEGER:
                 return validatePropInteger(value, diagnostics, context);
             case SwitchyardPackage.PROP_LONG:
@@ -425,6 +429,46 @@ public class SwitchyardValidator extends EObjectValidator {
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean validatePropDouble(Object propDouble, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        boolean result = validatePropDouble_MemberTypes(propDouble, diagnostics, context);
+        return result;
+    }
+
+    /**
+     * Validates the MemberTypes constraint of '<em>Prop Double</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validatePropDouble_MemberTypes(Object propDouble, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (diagnostics != null) {
+            BasicDiagnostic tempDiagnostics = new BasicDiagnostic();
+            if (XMLTypePackage.Literals.DOUBLE.isInstance(propDouble)) {
+                if (xmlTypeValidator.validateDouble((Double)propDouble, tempDiagnostics, context)) return true;
+            }
+            if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(propDouble)) {
+                if (validatePropertyValue((String)propDouble, tempDiagnostics, context)) return true;
+            }
+            for (Diagnostic diagnostic : tempDiagnostics.getChildren()) {
+                diagnostics.add(diagnostic);
+            }
+        }
+        else {
+            if (XMLTypePackage.Literals.DOUBLE.isInstance(propDouble)) {
+                if (xmlTypeValidator.validateDouble((Double)propDouble, null, context)) return true;
+            }
+            if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(propDouble)) {
+                if (validatePropertyValue((String)propDouble, null, context)) return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public boolean validatePropertyValue(String propertyValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
         boolean result = validatePropertyValue_Pattern(propertyValue, diagnostics, context);
         return result;
@@ -451,6 +495,46 @@ public class SwitchyardValidator extends EObjectValidator {
      */
     public boolean validatePropertyValue_Pattern(String propertyValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validatePattern(SwitchyardPackage.Literals.PROPERTY_VALUE, propertyValue, PROPERTY_VALUE__PATTERN__VALUES, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validatePropFloat(Object propFloat, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        boolean result = validatePropFloat_MemberTypes(propFloat, diagnostics, context);
+        return result;
+    }
+
+    /**
+     * Validates the MemberTypes constraint of '<em>Prop Float</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validatePropFloat_MemberTypes(Object propFloat, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (diagnostics != null) {
+            BasicDiagnostic tempDiagnostics = new BasicDiagnostic();
+            if (XMLTypePackage.Literals.FLOAT.isInstance(propFloat)) {
+                if (xmlTypeValidator.validateFloat((Float)propFloat, tempDiagnostics, context)) return true;
+            }
+            if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(propFloat)) {
+                if (validatePropertyValue((String)propFloat, tempDiagnostics, context)) return true;
+            }
+            for (Diagnostic diagnostic : tempDiagnostics.getChildren()) {
+                diagnostics.add(diagnostic);
+            }
+        }
+        else {
+            if (XMLTypePackage.Literals.FLOAT.isInstance(propFloat)) {
+                if (xmlTypeValidator.validateFloat((Float)propFloat, null, context)) return true;
+            }
+            if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(propFloat)) {
+                if (validatePropertyValue((String)propFloat, null, context)) return true;
+            }
+        }
+        return false;
     }
 
     /**

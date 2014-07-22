@@ -242,6 +242,12 @@
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-sap-binding</outputDirectory>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-camel-mqtt-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-mqtt-binding</outputDirectory>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>

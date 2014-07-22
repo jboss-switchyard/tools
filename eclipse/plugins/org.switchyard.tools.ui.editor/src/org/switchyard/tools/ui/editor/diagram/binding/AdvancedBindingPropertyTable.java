@@ -97,6 +97,8 @@ public class AdvancedBindingPropertyTable extends Composite {
                     boolean isEnum = feature.getEType().getInstanceClass().isEnum();
                     if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI") //$NON-NLS-1$ //$NON-NLS-2$
                             || type.equalsIgnoreCase("PropInteger")  //$NON-NLS-1$
+                            || type.equalsIgnoreCase("PropDouble")  //$NON-NLS-1$
+                            || type.equalsIgnoreCase("PropFloat")  //$NON-NLS-1$
                             || type.equalsIgnoreCase("PropLong")) { //$NON-NLS-1$
                         ce = new TextCellEditor(_viewer.getTable());
                     } else if (type.equalsIgnoreCase("BooleanObject") || type.equalsIgnoreCase("Boolean")) { //$NON-NLS-1$ //$NON-NLS-2$
@@ -316,6 +318,10 @@ public class AdvancedBindingPropertyTable extends Composite {
                         return ((Long) value).toString();
                     } else if (value instanceof BigInteger) {
                         return ((BigInteger) value).toString();
+                    } else if (value instanceof Double) {
+                        return ((Double) value).toString();
+                    } else if (value instanceof Float) {
+                        return ((Float) value).toString();
                     } else {
                         EStructuralFeature feature = getFeature(po.getEObject(), po.getFeatureName());
                         if (feature != null) {

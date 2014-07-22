@@ -35,7 +35,7 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
      */
 	public static SwitchyardFactory init() {
         try {
-            SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:switchyard:2.0"); 
+            SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory(SwitchyardPackage.eNS_URI);
             if (theSwitchyardFactory != null) {
                 return theSwitchyardFactory;
             }
@@ -99,8 +99,12 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
         switch (eDataType.getClassifierID()) {
             case SwitchyardPackage.PROP_BOOLEAN:
                 return createPropBooleanFromString(eDataType, initialValue);
+            case SwitchyardPackage.PROP_DOUBLE:
+                return createPropDoubleFromString(eDataType, initialValue);
             case SwitchyardPackage.PROPERTY_VALUE:
                 return createPropertyValueFromString(eDataType, initialValue);
+            case SwitchyardPackage.PROP_FLOAT:
+                return createPropFloatFromString(eDataType, initialValue);
             case SwitchyardPackage.PROP_INTEGER:
                 return createPropIntegerFromString(eDataType, initialValue);
             case SwitchyardPackage.PROP_LONG:
@@ -120,8 +124,12 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
         switch (eDataType.getClassifierID()) {
             case SwitchyardPackage.PROP_BOOLEAN:
                 return convertPropBooleanToString(eDataType, instanceValue);
+            case SwitchyardPackage.PROP_DOUBLE:
+                return convertPropDoubleToString(eDataType, instanceValue);
             case SwitchyardPackage.PROPERTY_VALUE:
                 return convertPropertyValueToString(eDataType, instanceValue);
+            case SwitchyardPackage.PROP_FLOAT:
+                return convertPropFloatToString(eDataType, instanceValue);
             case SwitchyardPackage.PROP_INTEGER:
                 return convertPropIntegerToString(eDataType, instanceValue);
             case SwitchyardPackage.PROP_LONG:
@@ -396,6 +404,66 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
      * <!-- end-user-doc -->
      * @generated
      */
+    public Object createPropDoubleFromString(EDataType eDataType, String initialValue) {
+        if (initialValue == null) return null;
+        Object result = null;
+        RuntimeException exception = null;
+        try {
+            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.DOUBLE, initialValue);
+            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+                return result;
+            }
+        }
+        catch (RuntimeException e) {
+            exception = e;
+        }
+        try {
+            result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
+            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+                return result;
+            }
+        }
+        catch (RuntimeException e) {
+            exception = e;
+        }
+        if (result != null || exception == null) return result;
+    
+        throw exception;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertPropDoubleToString(EDataType eDataType, Object instanceValue) {
+        if (instanceValue == null) return null;
+        if (XMLTypePackage.Literals.DOUBLE.isInstance(instanceValue)) {
+            try {
+                String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.DOUBLE, instanceValue);
+                if (value != null) return value;
+            }
+            catch (Exception e) {
+                // Keep trying other member types until all have failed.
+            }
+        }
+        if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
+            try {
+                String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
+                if (value != null) return value;
+            }
+            catch (Exception e) {
+                // Keep trying other member types until all have failed.
+            }
+        }
+        throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String createPropertyValueFromString(EDataType eDataType, String initialValue) {
         return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
     }
@@ -407,6 +475,66 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
      */
     public String convertPropertyValueToString(EDataType eDataType, Object instanceValue) {
         return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Object createPropFloatFromString(EDataType eDataType, String initialValue) {
+        if (initialValue == null) return null;
+        Object result = null;
+        RuntimeException exception = null;
+        try {
+            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.FLOAT, initialValue);
+            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+                return result;
+            }
+        }
+        catch (RuntimeException e) {
+            exception = e;
+        }
+        try {
+            result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
+            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+                return result;
+            }
+        }
+        catch (RuntimeException e) {
+            exception = e;
+        }
+        if (result != null || exception == null) return result;
+    
+        throw exception;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertPropFloatToString(EDataType eDataType, Object instanceValue) {
+        if (instanceValue == null) return null;
+        if (XMLTypePackage.Literals.FLOAT.isInstance(instanceValue)) {
+            try {
+                String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.FLOAT, instanceValue);
+                if (value != null) return value;
+            }
+            catch (Exception e) {
+                // Keep trying other member types until all have failed.
+            }
+        }
+        if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
+            try {
+                String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
+                if (value != null) return value;
+            }
+            catch (Exception e) {
+                // Keep trying other member types until all have failed.
+            }
+        }
+        throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
     }
 
     /**

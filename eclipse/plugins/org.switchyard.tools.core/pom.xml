@@ -213,6 +213,11 @@
                   <artifactId>switchyard-component-camel-sap</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-mqtt</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>

@@ -155,6 +155,7 @@ public class Messages extends NLS {
     public static String description_tool_jca;
     public static String description_tool_jms;
     public static String description_tool_mail;
+    public static String description_tool_mqtt;
     public static String description_tool_nettyTcp;
     public static String description_tool_nettyUdp;
     public static String description_tool_promote;
@@ -465,6 +466,7 @@ public class Messages extends NLS {
     public static String label_moveDefaultDotCamel;
     public static String label_moveFailed;
     public static String label_moveOptions;
+    public static String label_mqtt;
     public static String label_mtom;
     public static String label_name;
     public static String label_namedQuery;

@@ -1,9 +1,11 @@
 /**
  */
-package org.switchyard.tools.models.switchyard1_0.camel.sap.impl;
+package org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -57,8 +59,15 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.AdditionalUriParametersType;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.BaseCamelBinding;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.CamelMqttBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.ParameterType;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.QualityOfServiceType;
+
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
@@ -68,14 +77,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+
 import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
-import org.switchyard.tools.models.switchyard1_0.camel.sap.AdditionalUriParametersType;
-import org.switchyard.tools.models.switchyard1_0.camel.sap.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.sap.DocumentRoot;
-import org.switchyard.tools.models.switchyard1_0.camel.sap.ParameterType;
-import org.switchyard.tools.models.switchyard1_0.camel.sap.SapFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 
@@ -121,13 +124,17 @@ import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 
 import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
  * @generated
  */
-public class SapPackageImpl extends EPackageImpl implements SapPackage {
+public class MqttPackageImpl extends EPackageImpl implements MqttPackage {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -147,7 +154,7 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass camelSapBindingTypeEClass = null;
+    private EClass camelMqttBindingTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -164,6 +171,20 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
     private EClass parameterTypeEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum qualityOfServiceTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType qualityOfServiceTypeObjectEDataType = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -174,12 +195,12 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.ecore.EPackage.Registry
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage#eNS_URI
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage#eNS_URI
      * @see #init()
      * @generated
      */
-    private SapPackageImpl() {
-        super(eNS_URI, SapFactory.eINSTANCE);
+    private MqttPackageImpl() {
+        super(eNS_URI, MqttFactory.eINSTANCE);
     }
 
     /**
@@ -192,7 +213,7 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
     /**
      * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
      * 
-     * <p>This method is used to initialize {@link SapPackage#eINSTANCE} when that field is accessed.
+     * <p>This method is used to initialize {@link MqttPackage#eINSTANCE} when that field is accessed.
      * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -201,11 +222,11 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * @see #initializePackageContents()
      * @generated
      */
-    public static SapPackage init() {
-        if (isInited) return (SapPackage)EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI);
+    public static MqttPackage init() {
+        if (isInited) return (MqttPackage)EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI);
 
         // Obtain or create and register package
-        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SapPackageImpl());
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MqttPackageImpl());
 
         isInited = true;
 
@@ -239,13 +260,13 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
         QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
         RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
-        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
 
         // Create package meta-data objects
-        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
         theBeanPackage.createPackageContents();
         theBPMPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
@@ -270,10 +291,10 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
         theQuartzPackage.createPackageContents();
         theSqlPackage.createPackageContents();
         theRssPackage.createPackageContents();
-        theMqttPackage.createPackageContents();
+        theSapPackage.createPackageContents();
 
         // Initialize created meta-data
-        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
         theBeanPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
@@ -298,18 +319,18 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
         theQuartzPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
         theRssPackage.initializePackageContents();
-        theMqttPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
 
         // Mark meta-data to indicate it can't be changed
-        theSapPackage.freeze();
+        theMqttPackage.freeze();
 
   
         // Update the registry and return the package
-        EPackage.Registry.INSTANCE.put(SapPackage.eNS_URI, theSapPackage);
-        return theSapPackage;
+        EPackage.Registry.INSTANCE.put(MqttPackage.eNS_URI, theMqttPackage);
+        return theMqttPackage;
     }
 
     /**
@@ -371,8 +392,8 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCamelSapBindingType() {
-        return camelSapBindingTypeEClass;
+    public EClass getCamelMqttBindingType() {
+        return camelMqttBindingTypeEClass;
     }
 
     /**
@@ -380,8 +401,8 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSapBindingType_Server() {
-        return (EAttribute)camelSapBindingTypeEClass.getEStructuralFeatures().get(0);
+    public EAttribute getCamelMqttBindingType_Host() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -389,8 +410,8 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSapBindingType_Destination() {
-        return (EAttribute)camelSapBindingTypeEClass.getEStructuralFeatures().get(1);
+    public EAttribute getCamelMqttBindingType_LocalAddress() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -398,8 +419,8 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSapBindingType_RfcName() {
-        return (EAttribute)camelSapBindingTypeEClass.getEStructuralFeatures().get(2);
+    public EAttribute getCamelMqttBindingType_ConnectAttemptsMax() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -407,8 +428,143 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSapBindingType_Transacted() {
-        return (EAttribute)camelSapBindingTypeEClass.getEStructuralFeatures().get(3);
+    public EAttribute getCamelMqttBindingType_ReconnectAttemptsMax() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_ReconnectDelay() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_ReconnectBackOffMultiplier() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_ReconnectDelayMax() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_UserName() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_Password() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_QualityOfService() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_SubscribeTopicName() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_PublishTopicName() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_ByDefaultRetain() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_MqttTopicPropertyName() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(13);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_MqttRetainPropertyName() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(14);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_MqttQosPropertyName() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(15);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_ConnectWaitInSeconds() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(16);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_DisconnectWaitInSeconds() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(17);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMqttBindingType_SendWaitInSeconds() {
+        return (EAttribute)camelMqttBindingTypeEClass.getEStructuralFeatures().get(18);
     }
 
     /**
@@ -452,7 +608,7 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_BindingSap() {
+    public EReference getDocumentRoot_BindingMqtt() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
@@ -488,8 +644,26 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public SapFactory getSapFactory() {
-        return (SapFactory)getEFactoryInstance();
+    public EEnum getQualityOfServiceType() {
+        return qualityOfServiceTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getQualityOfServiceTypeObject() {
+        return qualityOfServiceTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MqttFactory getMqttFactory() {
+        return (MqttFactory)getEFactoryInstance();
     }
 
     /**
@@ -519,21 +693,42 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
-        camelSapBindingTypeEClass = createEClass(CAMEL_SAP_BINDING_TYPE);
-        createEAttribute(camelSapBindingTypeEClass, CAMEL_SAP_BINDING_TYPE__SERVER);
-        createEAttribute(camelSapBindingTypeEClass, CAMEL_SAP_BINDING_TYPE__DESTINATION);
-        createEAttribute(camelSapBindingTypeEClass, CAMEL_SAP_BINDING_TYPE__RFC_NAME);
-        createEAttribute(camelSapBindingTypeEClass, CAMEL_SAP_BINDING_TYPE__TRANSACTED);
+        camelMqttBindingTypeEClass = createEClass(CAMEL_MQTT_BINDING_TYPE);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__HOST);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__LOCAL_ADDRESS);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__CONNECT_ATTEMPTS_MAX);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__RECONNECT_ATTEMPTS_MAX);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__RECONNECT_DELAY);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__RECONNECT_BACK_OFF_MULTIPLIER);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__RECONNECT_DELAY_MAX);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__USER_NAME);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__PASSWORD);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__QUALITY_OF_SERVICE);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__SUBSCRIBE_TOPIC_NAME);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__PUBLISH_TOPIC_NAME);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__BY_DEFAULT_RETAIN);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__MQTT_TOPIC_PROPERTY_NAME);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__MQTT_RETAIN_PROPERTY_NAME);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__MQTT_QOS_PROPERTY_NAME);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__CONNECT_WAIT_IN_SECONDS);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__DISCONNECT_WAIT_IN_SECONDS);
+        createEAttribute(camelMqttBindingTypeEClass, CAMEL_MQTT_BINDING_TYPE__SEND_WAIT_IN_SECONDS);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SAP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MQTT);
 
         parameterTypeEClass = createEClass(PARAMETER_TYPE);
         createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
         createEAttribute(parameterTypeEClass, PARAMETER_TYPE__VALUE);
+
+        // Create enums
+        qualityOfServiceTypeEEnum = createEEnum(QUALITY_OF_SERVICE_TYPE);
+
+        // Create data types
+        qualityOfServiceTypeObjectEDataType = createEDataType(QUALITY_OF_SERVICE_TYPE_OBJECT);
     }
 
     /**
@@ -569,7 +764,7 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
 
         // Add supertypes to classes
         baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
-        camelSapBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        camelMqttBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
         initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -580,21 +775,45 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
         initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(camelSapBindingTypeEClass, CamelSapBindingType.class, "CamelSapBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelSapBindingType_Server(), theXMLTypePackage.getString(), "server", null, 0, 1, CamelSapBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSapBindingType_Destination(), theXMLTypePackage.getString(), "destination", null, 0, 1, CamelSapBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSapBindingType_RfcName(), theXMLTypePackage.getString(), "rfcName", null, 1, 1, CamelSapBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSapBindingType_Transacted(), theXMLTypePackage.getBoolean(), "transacted", null, 0, 1, CamelSapBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(camelMqttBindingTypeEClass, CamelMqttBindingType.class, "CamelMqttBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelMqttBindingType_Host(), theXMLTypePackage.getString(), "host", "tcp://127.0.0.1:1883", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_LocalAddress(), theXMLTypePackage.getString(), "localAddress", null, 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_ConnectAttemptsMax(), theSwitchyardPackage.getPropInteger(), "connectAttemptsMax", "-1", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_ReconnectAttemptsMax(), theSwitchyardPackage.getPropInteger(), "reconnectAttemptsMax", "-1", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_ReconnectDelay(), theSwitchyardPackage.getPropInteger(), "reconnectDelay", "10", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_ReconnectBackOffMultiplier(), theSwitchyardPackage.getPropDouble(), "reconnectBackOffMultiplier", "2.0", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_ReconnectDelayMax(), theSwitchyardPackage.getPropInteger(), "reconnectDelayMax", "30000", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_UserName(), theXMLTypePackage.getString(), "userName", null, 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_QualityOfService(), this.getQualityOfServiceType(), "qualityOfService", "AtLeastOnce", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_SubscribeTopicName(), theXMLTypePackage.getString(), "subscribeTopicName", null, 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_PublishTopicName(), theXMLTypePackage.getString(), "publishTopicName", "camel/mqtt/test", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_ByDefaultRetain(), theSwitchyardPackage.getPropBoolean(), "byDefaultRetain", "false", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_MqttTopicPropertyName(), theXMLTypePackage.getString(), "mqttTopicPropertyName", "_MQTTTopicPropertyName+", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_MqttRetainPropertyName(), theXMLTypePackage.getString(), "mqttRetainPropertyName", "MQTTRetain", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_MqttQosPropertyName(), theXMLTypePackage.getString(), "mqttQosPropertyName", "MQTTQos", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_ConnectWaitInSeconds(), theSwitchyardPackage.getPropInteger(), "connectWaitInSeconds", "10", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_DisconnectWaitInSeconds(), theSwitchyardPackage.getPropInteger(), "disconnectWaitInSeconds", "5", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_SendWaitInSeconds(), theSwitchyardPackage.getPropInteger(), "sendWaitInSeconds", "5", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingSap(), this.getCamelSapBindingType(), null, "bindingSap", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingMqtt(), this.getCamelMqttBindingType(), null, "bindingMqtt", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getParameterType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        // Initialize enums and add enum literals
+        initEEnum(qualityOfServiceTypeEEnum, QualityOfServiceType.class, "QualityOfServiceType");
+        addEEnumLiteral(qualityOfServiceTypeEEnum, QualityOfServiceType.AT_MOST_ONCE);
+        addEEnumLiteral(qualityOfServiceTypeEEnum, QualityOfServiceType.AT_LEAST_ONCE);
+        addEEnumLiteral(qualityOfServiceTypeEEnum, QualityOfServiceType.EXACTLY_ONCE);
+
+        // Initialize data types
+        initEDataType(qualityOfServiceTypeObjectEDataType, QualityOfServiceType.class, "QualityOfServiceTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -659,42 +878,162 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (camelSapBindingTypeEClass, 
+          (camelMqttBindingTypeEClass, 
            source, 
            new String[] {
-             "name", "CamelSapBindingType",
+             "name", "CamelMqttBindingType",
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getCamelSapBindingType_Server(), 
+          (getCamelMqttBindingType_Host(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "server",
+             "name", "host",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelSapBindingType_Destination(), 
+          (getCamelMqttBindingType_LocalAddress(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "destination",
+             "name", "localAddress",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelSapBindingType_RfcName(), 
+          (getCamelMqttBindingType_ConnectAttemptsMax(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "rfcName",
+             "name", "connectAttemptsMax",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelSapBindingType_Transacted(), 
+          (getCamelMqttBindingType_ReconnectAttemptsMax(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "transacted",
+             "name", "reconnectAttemptsMax",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_ReconnectDelay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "reconnectDelay",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_ReconnectBackOffMultiplier(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "reconnectBackOffMultiplier",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_ReconnectDelayMax(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "reconnectDelayMax",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_UserName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "userName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_QualityOfService(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "qualityOfService",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_SubscribeTopicName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "subscribeTopicName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_PublishTopicName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "publishTopicName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_ByDefaultRetain(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "byDefaultRetain",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_MqttTopicPropertyName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "mqttTopicPropertyName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_MqttRetainPropertyName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "mqttRetainPropertyName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_MqttQosPropertyName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "mqttQosPropertyName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_ConnectWaitInSeconds(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "connectWaitInSeconds",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_DisconnectWaitInSeconds(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "disconnectWaitInSeconds",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMqttBindingType_SendWaitInSeconds(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "sendWaitInSeconds",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -726,11 +1065,11 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
              "name", "xsi:schemaLocation"
            });		
         addAnnotation
-          (getDocumentRoot_BindingSap(), 
+          (getDocumentRoot_BindingMqtt(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "binding.sap",
+             "name", "binding.mqtt",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
            });		
@@ -754,7 +1093,20 @@ public class SapPackageImpl extends EPackageImpl implements SapPackage {
            new String[] {
              "kind", "attribute",
              "name", "value"
+           });		
+        addAnnotation
+          (qualityOfServiceTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "qualityOfService_._type"
+           });		
+        addAnnotation
+          (qualityOfServiceTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "qualityOfService_._type:Object",
+             "baseType", "qualityOfService_._type"
            });
     }
 
-} //SapPackageImpl
+} //MqttPackageImpl

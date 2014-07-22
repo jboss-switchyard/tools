@@ -34,6 +34,7 @@
   <foreignModel>component.camel.sql.ecore</foreignModel>
   <foreignModel>component.camel.rss.ecore</foreignModel>
   <foreignModel>component.camel.sap.ecore</foreignModel>
+  <foreignModel>component.camel.mqtt.ecore</foreignModel>
   <genPackages prefix="Bean" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions=""
       ecorePackage="component.bean.ecore#/">
@@ -204,7 +205,9 @@
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       fileExtensions="" ecorePackage="config.switchyard.ecore#/">
     <genDataTypes ecoreDataType="config.switchyard.ecore#//PropBoolean"/>
+    <genDataTypes ecoreDataType="config.switchyard.ecore#//PropDouble"/>
     <genDataTypes ecoreDataType="config.switchyard.ecore#//PropertyValue"/>
+    <genDataTypes ecoreDataType="config.switchyard.ecore#//PropFloat"/>
     <genDataTypes ecoreDataType="config.switchyard.ecore#//PropInteger"/>
     <genDataTypes ecoreDataType="config.switchyard.ecore#//PropLong"/>
     <genClasses ecoreClass="config.switchyard.ecore#//ArtifactsType">
@@ -3264,7 +3267,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.rss.ecore#//RSSScheduledPollConsumerType/timeUnit"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Sap" resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.sap.ecore#/">
+  <genPackages prefix="Sap" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
+      resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.sap.ecore#/">
     <genClasses ecoreClass="component.camel.sap.ecore#//AdditionalUriParametersType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//AdditionalUriParametersType/parameter"/>
     </genClasses>
@@ -3288,6 +3292,54 @@
     <genClasses ecoreClass="component.camel.sap.ecore#//ParameterType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//ParameterType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//ParameterType/value"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Mqtt" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
+      resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.mqtt.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.camel.mqtt.ecore#//QualityOfServiceType">
+      <genEnumLiterals ecoreEnumLiteral="component.camel.mqtt.ecore#//QualityOfServiceType/AtMostOnce"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.mqtt.ecore#//QualityOfServiceType/AtLeastOnce"/>
+      <genEnumLiterals ecoreEnumLiteral="component.camel.mqtt.ecore#//QualityOfServiceType/ExactlyOnce"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="component.camel.mqtt.ecore#//QualityOfServiceTypeObject"/>
+    <genClasses ecoreClass="component.camel.mqtt.ecore#//AdditionalUriParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mqtt.ecore#//AdditionalUriParametersType/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.mqtt.ecore#//BaseCamelBinding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mqtt.ecore#//BaseCamelBinding/contextMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mqtt.ecore#//BaseCamelBinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mqtt.ecore#//BaseCamelBinding/additionalUriParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.mqtt.ecore#//CamelMqttBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/localAddress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/connectAttemptsMax"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/reconnectAttemptsMax"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/reconnectDelay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/reconnectBackOffMultiplier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/reconnectDelayMax"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/userName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/qualityOfService"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/subscribeTopicName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/publishTopicName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/byDefaultRetain"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/mqttTopicPropertyName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/mqttRetainPropertyName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/mqttQosPropertyName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/connectWaitInSeconds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/disconnectWaitInSeconds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//CamelMqttBindingType/sendWaitInSeconds"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.mqtt.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.mqtt.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.mqtt.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.mqtt.ecore#//DocumentRoot/bindingMqtt"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.mqtt.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//ParameterType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.mqtt.ecore#//ParameterType/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

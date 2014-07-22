@@ -207,6 +207,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
+     * Tests import and configuration of camel-mqtt quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelMQTTQuickstart() throws Exception {
+        runModelTest("camel-mqtt-binding");
+    }
+
+    /**
      * Tests import and configuration of http-binding quickstart.
      * (commented out since it's an incomplete config - need generated config, not source)
      * 
