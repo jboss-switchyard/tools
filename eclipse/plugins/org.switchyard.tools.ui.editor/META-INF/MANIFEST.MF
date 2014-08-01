@@ -46,9 +46,10 @@ Require-Bundle: org.eclipse.graphiti;bundle-version="[0.10.0,0.11.0)",
  org.switchyard.tools.models.sca.core.edit,
  org.switchyard.tools.models.sca.sca1_1.edit,
  org.eclipse.emf.compare;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.emf.compare.rcp;bundle-version="[2.1.0,3.0.0)",
+ org.eclipse.emf.compare.rcp;bundle-version="[2.1.0,4.0.0)",
  org.eclipse.ltk.core.refactoring,
- org.eclipse.ui.cheatsheets
+ org.eclipse.ui.cheatsheets,
+ com.google.guava
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui.editor,

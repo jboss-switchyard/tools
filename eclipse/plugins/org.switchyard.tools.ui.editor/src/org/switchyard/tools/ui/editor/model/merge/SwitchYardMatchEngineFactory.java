@@ -20,7 +20,6 @@ import org.eclipse.emf.compare.match.eobject.EditionDistance;
 import org.eclipse.emf.compare.match.eobject.IEObjectMatcher;
 import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher;
 import org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher;
-import org.eclipse.emf.compare.match.eobject.internal.ReflectiveWeightProvider;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
@@ -38,7 +37,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResou
  * 
  * Creates match engines for matching switchyard.xml files.
  */
-@SuppressWarnings("restriction")
 public class SwitchYardMatchEngineFactory implements Factory {
 
     private final IMatchEngine _matchEngine;
