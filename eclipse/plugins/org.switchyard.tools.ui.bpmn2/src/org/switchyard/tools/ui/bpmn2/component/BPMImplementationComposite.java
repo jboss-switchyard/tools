@@ -229,7 +229,9 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                     Iterator<BPMOperationType> opIter = ops.getOperation().iterator();
                     while (opIter.hasNext()) {
                         BPMOperationType op = opIter.next();
-                        if (op.getName().equals(selectedOp.getName())) { 
+                        String opName = op.getName();
+                        String selectedOpName = selectedOp.getName();
+                        if (opName != null && selectedOpName != null && opName.equals(selectedOpName)) {
                             _actionsTable.getTableViewer().setSelection(new StructuredSelection(op));
                             break;
                         }
