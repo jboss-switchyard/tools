@@ -53,7 +53,7 @@ import org.switchyard.tools.ui.i18n.Messages;
 @SuppressWarnings("restriction")
 public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentProviderDelegate {
 
-    private static final Pattern DEPLOY_JAR_NAME_PATTERN = Pattern.compile("switchyard-deploy-jboss-as7-(.*?)\\.jar"); //$NON-NLS-1$
+    private static final Pattern DEPLOY_JAR_NAME_PATTERN = Pattern.compile("switchyard-deploy-(jboss-as7|wildfly)-(.*?)\\.jar"); //$NON-NLS-1$
     private static final String SWITCHYARD_AS_DEPLOY_MODULE_PATH = "modules/system/layers/soa/org/switchyard/main"; //$NON-NLS-1$
     private static final String FSW_PRODUCT_MANIFEST_PATH = "modules/system/layers/soa/org/jboss/as/product/soa/dir/META-INF/MANIFEST.MF"; //$NON-NLS-1$
 

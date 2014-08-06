@@ -388,7 +388,7 @@
     <runtimeComponentProvider
           class="org.switchyard.tools.ui.facets.SwitchYardRuntimeComponentProvider"
           id="org.switchyard.tools.ui.runtimeComponentProvider2"
-          runtimeTypeIds="org.jboss.ide.eclipse.as.runtime.eap.61">
+          runtimeTypeIds="org.jboss.ide.eclipse.as.runtime.eap.61,org.jboss.ide.eclipse.as.runtime.wildfly.80">
     </runtimeComponentProvider>
  </extension>
 
