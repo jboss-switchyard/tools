@@ -16,8 +16,10 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.binding.IBindingWizard;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -50,6 +52,9 @@ public class SOAPBindingWizard extends AbstractBindingWizard implements IBinding
             }
         }
         binding.setName(makeUniqueName("soap")); //$NON-NLS-1$
+        ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
+        contextMapper.setSoapHeadersType(SoapHeadersType.VALUE);
+        binding.setContextMapper(contextMapper);
         return binding;
     }
 
