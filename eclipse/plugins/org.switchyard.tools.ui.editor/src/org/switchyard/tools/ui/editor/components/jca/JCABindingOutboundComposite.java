@@ -257,6 +257,8 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                 if (newExtension != _activeExtension) {
                     swapExtensionComposites(newExtension, false);
                     _processorMappingTypeCombo.setSelection(new StructuredSelection(newExtension), true);
+                } else {
+                    _processorMappingTypeCombo.setSelection(new StructuredSelection(newExtension), true);
                 }
             }
         });
@@ -268,7 +270,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     }
 
     private void swapExtensionComposites(final ProcessorType newExtension, final boolean updateValues) {
-        if (newExtension == null || newExtension == _activeExtension) {
+        if (newExtension == null) { // || newExtension == _activeExtension) {
             return;
         }
         final TransactionalEditingDomain domain = getDomain(_binding);

@@ -225,7 +225,9 @@ public class JCAJMSProcessorPropertiesExtension implements
 
             binding = context.bindValue(SWTObservables.observeSelection(_transactedCheckbox),
                     new JCANamedPropertyObservableValue(realm, propertiesList, TRANSACTED_PROP),
-                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_UPDATE), null);
+                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_UPDATE), 
+                    new EMFUpdateValueStrategyFalseForNullString(null, UpdateValueStrategy.POLICY_UPDATE));
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
 
             binding = context.bindValue(SWTObservables.observeText(_usernameText, SWT.Modify),
                     new JCANamedPropertyObservableValue(realm, propertiesList, USER_NAME_PROP),

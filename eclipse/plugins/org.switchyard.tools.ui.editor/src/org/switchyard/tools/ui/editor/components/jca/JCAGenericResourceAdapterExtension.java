@@ -64,7 +64,6 @@ public class JCAGenericResourceAdapterExtension extends AbstractResourceAdapterE
 
     @Override
     public int score(JCABinding binding) {
-        // doesn't match anything, we're the default
         return 0;
     }
 

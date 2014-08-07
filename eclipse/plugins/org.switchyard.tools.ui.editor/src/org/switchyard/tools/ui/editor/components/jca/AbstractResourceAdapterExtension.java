@@ -70,7 +70,7 @@ public abstract class AbstractResourceAdapterExtension implements IJCAResourceAd
             score += scoreProperties(ra.getProperty(), settings.getResourceAdapterProperties());
         }
         final ActivationSpec activationSpec = connection.getActivationSpec();
-        if (activationSpec != null) {
+        if (activationSpec != null && settings.getActivationSpecProperties() != null) {
             score += scoreProperties(activationSpec.getProperty(), settings.getActivationSpecProperties());
         }
         return score;
@@ -118,6 +118,27 @@ public abstract class AbstractResourceAdapterExtension implements IJCAResourceAd
 
     private int outboundInteractionScore(JCABinding binding) {
         return 0;
+    }
+
+    protected int scoreProperty(List<Property> properties, String prop, Object defaultval) {
+        int score = 0;
+        if (properties == null || prop == null) {
+            return score;
+        }
+        for (Property property : properties) {
+            if (property.getName() == null) {
+                continue;
+            }
+            final String propname = property.getName();
+            if (propname.equals(prop)) {
+                final Object propvalue = property.getValue();
+                if (propvalue != null && propvalue.equals(defaultval)) {
+                    ++score;
+                    break;
+                }
+            }
+        }
+        return score;
     }
 
     private int scoreProperties(List<Property> properties, Map<String, String> defaults) {

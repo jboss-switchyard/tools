@@ -127,6 +127,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             processJCAExtensionSelection(newExtension, false);
             _resourceAdapterTypeCombo.setSelection(new StructuredSelection(newExtension), true);
         } else {
+            processJCAExtensionSelection(_activeExtension, false);
             _resAdapterMap.get(_activeExtension).setBinding(_binding);
         }
 
@@ -262,8 +263,23 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         }
         for (Map.Entry<String, String> entry : defaults.entrySet()) {
             final String name = entry.getKey();
-            if (name == null || propertiesMap.containsKey(name)) {
+            if (name == null) {
                 continue;
+            }
+            Object value = entry.getValue();
+            if (propertiesMap.containsKey(name)) {
+                // override
+                Object oldPropValue = propertiesMap.get(name).getValue();
+                if (oldPropValue != null && !oldPropValue.equals(value)) {
+                    Iterator<Property> propIter = properties.iterator();
+                    while (propIter.hasNext()) {
+                        Property next = propIter.next();
+                        if (next.getName().equals(name)) {
+                            properties.remove(next);
+                            break;
+                        }
+                    }
+                }
             }
             final Property property = JcaFactory.eINSTANCE.createProperty();
             property.setName(name);
@@ -278,7 +294,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         }
         if (processDefaults) {
             unapplyConnectionSettings(extension.getInboundConnectionSettings());
-            unapplyInteractionSettings(extension.getInboundInteractionSettings());
+//            unapplyInteractionSettings(extension.getInboundInteractionSettings());
         }
         final AbstractJCABindingComposite extensionComposite = _resAdapterMap.get(extension);
         extensionComposite.setBinding(null);
@@ -294,9 +310,9 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         }
         ResourceAdapter resourceAdapter = connection.getResourceAdapter();
         if (resourceAdapter != null) {
-            if (settings.getResourceAdapterName() != null && settings.getResourceAdapterName().equals(resourceAdapter.getName())) {
-                resourceAdapter.setName(null);
-            }
+//            if (settings.getResourceAdapterName() != null && settings.getResourceAdapterName().equals(resourceAdapter.getName())) {
+//                resourceAdapter.setName(null);
+//            }
             removeDefaultProperties(resourceAdapter.getProperty(), settings.getResourceAdapterProperties());
         }
 
@@ -306,31 +322,31 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         }
     }
 
-    private void unapplyInteractionSettings(IInboundInteractionSettings settings) {
-        if (_binding == null || settings == null) {
-            return;
-        }
-        JCAInboundInteraction interaction = _binding.getInboundInteraction();
-        if (interaction == null) {
-            return;
-        }
-
-        if (settings.getListenerType() != null && settings.getListenerType().equals(interaction.getListener())) {
-            interaction.setListener(null);
-        }
-
-        if (settings.isTransacted() != null && settings.isTransacted() == interaction.isTransacted()) {
-            interaction.unsetTransacted();
-        }
-
-        Endpoint endpoint = interaction.getEndpoint();
-        if (endpoint != null) {
-            if (settings.getEndpointType() != null && settings.getEndpointType().equals(endpoint.getType())) {
-                endpoint.setType(null);
-            }
-            removeDefaultProperties(endpoint.getProperty(), settings.getEndpointProperties());
-        }
-    }
+//    private void unapplyInteractionSettings(IInboundInteractionSettings settings) {
+//        if (_binding == null || settings == null) {
+//            return;
+//        }
+//        JCAInboundInteraction interaction = _binding.getInboundInteraction();
+//        if (interaction == null) {
+//            return;
+//        }
+//
+//        if (settings.getListenerType() != null && settings.getListenerType().equals(interaction.getListener())) {
+//            interaction.setListener(null);
+//        }
+//
+//        if (settings.isTransacted() != null && settings.isTransacted() == interaction.isTransacted()) {
+//            interaction.unsetTransacted();
+//        }
+//
+//        Endpoint endpoint = interaction.getEndpoint();
+//        if (endpoint != null) {
+//            if (settings.getEndpointType() != null && settings.getEndpointType().equals(endpoint.getType())) {
+//                endpoint.setType(null);
+//            }
+//            removeDefaultProperties(endpoint.getProperty(), settings.getEndpointProperties());
+//        }
+//    }
 
     private void removeDefaultProperties(List<Property> properties, Map<String, String> defaults) {
         if (defaults == null) {
@@ -342,26 +358,29 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             if (name == null) {
                 continue;
             }
-            final String value = defaults.get(name);
-            if (value == null) {
-                if (property.getValue() == null) {
-                    it.remove();
-                }
-            } else if (value.equals(property.getValue())) {
-                it.remove();
-            }
+//            final String value = defaults.get(name);
+//            if (value == null) {
+//                if (property.getValue() == null) {
+//                    it.remove();
+//                }
+//            } else if (value.equals(property.getValue())) {
+//                it.remove();
+//            }
         }
     }
 
     private IJCAResourceAdapterExtension findJCAExtension(JCABinding binding) {
-        IJCAResourceAdapterExtension foundExtension = _defaultJCAExtension;
-        int score = 0;
+        IJCAResourceAdapterExtension foundExtension = null;
+        int score = -1;
         for (IJCAResourceAdapterExtension extension : IJCAResourceAdapterExtensionManager.instance().getExtensions()) {
             int newScore = extension.score(binding);
             if (newScore > score) {
                 foundExtension = extension;
                 score = newScore;
             }
+        }
+        if (foundExtension == null) {
+            foundExtension = _defaultJCAExtension;
         }
         return foundExtension;
     }

@@ -41,8 +41,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
+import org.switchyard.tools.models.switchyard1_0.jca.Processor;
+import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
@@ -213,6 +219,77 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
     @Override
     public AbstractJCABindingComposite createComposite(FormToolkit toolkit) {
         return new JCAHornetQTopicResourceAdapterComposite(toolkit);
+    }
+
+    @Override
+    public int score(JCABinding binding) {
+        if (binding == null) {
+            return 0;
+        } else if (binding.getInboundConnection() != null) {
+            // process inbound
+            return scoreInboundProperties(binding);
+        } else if (binding.getOutboundConnection() != null) {
+            // process outbound
+            return scoreOutboundProperties(binding);
+        }
+        return 0;
+    }
+    
+    private int scoreInboundProperties(JCABinding binding) {
+        int score = -1;
+        final JCAInboundConnection connection = binding.getInboundConnection();
+        if (connection == null) {
+            return score;
+        }
+        final IInboundConnectionSettings settings = getInboundConnectionSettings();
+        if (settings == null) {
+            return score;
+        }
+        
+        final ResourceAdapter ra = connection.getResourceAdapter();
+        if (ra != null && settings.getResourceAdapterName() != null) {
+            if (settings.getResourceAdapterName().equals(ra.getName())) {
+                ++score;
+            }
+        }
+        
+        final ActivationSpec activationSpec = connection.getActivationSpec();
+        if (activationSpec != null && settings.getActivationSpecProperties() != null) {
+            score = score + scoreProperty(activationSpec.getProperty(), DESTINATION_TYPE_PROP, DESTINATION_TYPE_DEFAULT);
+        }
+        
+        return score;
+    }
+
+    private int scoreOutboundProperties(JCABinding binding) {
+        int score = -1;
+        final JCAOutboundConnection connection = binding.getOutboundConnection();
+        if (connection == null) {
+            return score;
+        }
+        final IOutboundConnectionSettings settings = getOutboundConnectionSettings();
+        if (settings == null) {
+            return score;
+        }
+        final ResourceAdapter ra = connection.getResourceAdapter();
+        if (ra != null) {
+            if (settings.getResourceAdapterName() != null) {
+                if (settings.getResourceAdapterName().equals(ra.getName())) {
+                    ++score;
+                }
+            }
+        }
+        final JCAOutboundInteraction interaction = binding.getOutboundInteraction();
+        if (interaction != null && OUTBOUND_INTERACTION_SETTINGS.getProcessorType() != null) {
+            final Processor processor = interaction.getProcessor();
+            if (processor != null) {
+                if (OUTBOUND_INTERACTION_SETTINGS.getProcessorType().equals(processor.getType())) {
+                    ++score;
+                }
+            }
+        }
+        
+        return score;
     }
 
     private final class JCAHornetQTopicResourceAdapterComposite extends AbstractJCABindingComposite {
