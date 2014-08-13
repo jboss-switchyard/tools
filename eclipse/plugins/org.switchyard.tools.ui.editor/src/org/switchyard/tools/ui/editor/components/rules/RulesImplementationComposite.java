@@ -240,6 +240,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section resourcesSection = factory.createSection(control, Section.TITLE_BAR | Section.EXPANDED);
+        resourcesSection.setBackgroundMode(SWT.INHERIT_NONE);
         resourcesSection.setText(Messages.label_manifest);
         resourcesSection.setLayout(new GridLayout(2, false));
         resourcesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -323,6 +324,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section actionsSection = factory.createSection(actionsComposite, Section.TITLE_BAR | Section.EXPANDED);
+        actionsSection.setBackgroundMode(SWT.INHERIT_NONE);
         actionsSection.setText(Messages.label_operations);
         actionsSection.setLayout(new GridLayout());
         actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -357,6 +359,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         mappingsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
+        globalsSection.setBackgroundMode(SWT.INHERIT_NONE);
         globalsSection.setText(Messages.label_globals);
         globalsSection.setLayout(new GridLayout());
         globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -376,6 +379,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section inputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        inputsSection.setBackgroundMode(SWT.INHERIT_NONE);
         inputsSection.setText(Messages.label_inputs);
         inputsSection.setLayout(new GridLayout());
         inputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -395,6 +399,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section outputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        outputsSection.setBackgroundMode(SWT.INHERIT_NONE);
         outputsSection.setText(Messages.label_outputs);
         outputsSection.setLayout(new GridLayout());
         outputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -414,6 +419,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section faultsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        faultsSection.setBackgroundMode(SWT.INHERIT_NONE);
         faultsSection.setText(Messages.label_faults);
         faultsSection.setLayout(new GridLayout());
         faultsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -447,6 +453,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
 
         Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        channelsSection.setBackgroundMode(SWT.INHERIT_NONE);
         channelsSection.setText(Messages.label_channels);
         channelsSection.setLayout(new GridLayout());
         channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -468,6 +475,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         channelsSection.setClient(_channelsTable);
 
         Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        listenersSection.setBackgroundMode(SWT.INHERIT_NONE);
         listenersSection.setText(Messages.label_listeners);
         listenersSection.setLayout(new GridLayout());
         listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -484,6 +492,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         listenersSection.setClient(_listenersTable);
 
         Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        loggersSection.setBackgroundMode(SWT.INHERIT_NONE);
         loggersSection.setText(Messages.label_loggers);
         loggersSection.setLayout(new GridLayout());
         loggersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -500,6 +509,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         loggersSection.setClient(_loggersTable);
 
         Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        propertiesSection.setBackgroundMode(SWT.INHERIT_NONE);
         propertiesSection.setText(Messages.label_properties);
         propertiesSection.setLayout(new GridLayout());
         propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));

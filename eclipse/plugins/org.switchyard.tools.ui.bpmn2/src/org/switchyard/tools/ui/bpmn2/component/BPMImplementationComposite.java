@@ -323,6 +323,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         Section resourcesSection = factory.createSection(control, Section.TITLE_BAR | Section.EXPANDED);
+        resourcesSection.setBackgroundMode(SWT.INHERIT_NONE);
         resourcesSection.setText(Messages.label_manifest);
         resourcesSection.setLayout(new GridLayout());
         resourcesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
@@ -405,6 +406,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section actionsSection = factory.createSection(actionsComposite, Section.TITLE_BAR | Section.EXPANDED);
+        actionsSection.setBackgroundMode(SWT.INHERIT_NONE);
         actionsSection.setText(Messages.title_operations);
         actionsSection.setLayout(new GridLayout());
         actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -439,6 +441,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         mappingsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Section globalsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR);
+        globalsSection.setBackgroundMode(SWT.INHERIT_NONE);
         globalsSection.setText(Messages.title_globals);
         globalsSection.setLayout(new GridLayout());
         globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -457,6 +460,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section inputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        inputsSection.setBackgroundMode(SWT.INHERIT_NONE);
         inputsSection.setText(Messages.title_inputs);
         inputsSection.setLayout(new GridLayout());
         inputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -475,6 +479,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section outputsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        outputsSection.setBackgroundMode(SWT.INHERIT_NONE);
         outputsSection.setText(Messages.title_outputs);
         outputsSection.setLayout(new GridLayout());
         outputsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -493,6 +498,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section faultsSection = factory.createSection(mappingsComposite, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        faultsSection.setBackgroundMode(SWT.INHERIT_NONE);
         faultsSection.setText(Messages.title_faults);
         faultsSection.setLayout(new GridLayout());
         faultsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -525,6 +531,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
 
         Section channelsSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR
                 | Section.EXPANDED);
+        channelsSection.setBackgroundMode(SWT.INHERIT_NONE);
         channelsSection.setText(Messages.title_channels);
         channelsSection.setLayout(new GridLayout());
         channelsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -541,6 +548,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         channelsSection.setClient(_channelsTable);
 
         Section listenersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        listenersSection.setBackgroundMode(SWT.INHERIT_NONE);
         listenersSection.setText(Messages.title_listeners);
         listenersSection.setLayout(new GridLayout());
         listenersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -557,6 +565,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         listenersSection.setClient(_listenersTable);
 
         Section loggersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        loggersSection.setBackgroundMode(SWT.INHERIT_NONE);
         loggersSection.setText(Messages.title_loggers);
         loggersSection.setLayout(new GridLayout());
         loggersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -573,6 +582,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         loggersSection.setClient(_loggersTable);
 
         Section propertiesSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        propertiesSection.setBackgroundMode(SWT.INHERIT_NONE);
         propertiesSection.setText(Messages.title_properties);
         propertiesSection.setLayout(new GridLayout());
         propertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -591,6 +601,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         addUserGroupCallBackSection(factory, control);
 
         final Section handlersSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        handlersSection.setBackgroundMode(SWT.INHERIT_NONE);
         handlersSection.setText(Messages.title_workItemHandlers);
         handlersSection.setLayout(new GridLayout());
         handlersSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -611,6 +622,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
     
     private void addUserGroupCallBackSection(final FormToolkit factory, final Composite control) {
         Section userGroupCallbackSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
+        userGroupCallbackSection.setBackgroundMode(SWT.INHERIT_NONE);
         userGroupCallbackSection.setText(Messages.title_userGroupCallback);
         userGroupCallbackSection.setLayout(new GridLayout());
         userGroupCallbackSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
