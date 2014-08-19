@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2012 Red Hat, Inc. and others.
+ * Copyright (c) 2012-2014 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.rules;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -43,6 +48,8 @@ import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
+import org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType;
+import org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
@@ -72,7 +79,12 @@ public class RulesImplementationWizardPage extends WizardPage {
     private RulesImplementationType _implementation;
     private ResourcesType _resources = RulesFactory.eINSTANCE.createResourcesType();
     private ContainerType _container = RulesFactory.eINSTANCE.createContainerType();
+    private RemoteJmsType _remoteJms = RulesFactory.eINSTANCE.createRemoteJmsType();
+    private RemoteRestType _remoteRest = RulesFactory.eINSTANCE.createRemoteRestType();
+    
     private ComponentService _service;
+    private RemoteRestContainerDetailsComposite _remoteRestContainerDetailsControls;
+    private RemoteJMSContainerDetailsComposite _remoteJMSContainerDetailsControls;
 
     /**
      * Create a new RulesImplementationWizardPage.
@@ -140,6 +152,8 @@ public class RulesImplementationWizardPage extends WizardPage {
         final StackLayout manifestLayout = new StackLayout();
         final Button resourcesRadio = factory.createButton(resourceButtonsComposite, Messages.label_projectResource, SWT.RADIO);
         final Button containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
+        final Button remoteJMSRadio = factory.createButton(resourceButtonsComposite, "Remote JMS", SWT.RADIO);
+        final Button remoteRESTRadio = factory.createButton(resourceButtonsComposite, "Remote REST", SWT.RADIO);
 
         Composite resourceDetailsComposite = factory.createComposite(contents);
         resourceDetailsComposite.setLayout(manifestLayout);
@@ -149,6 +163,22 @@ public class RulesImplementationWizardPage extends WizardPage {
         final KIEContainerDetailsComposite containerControls = new KIEContainerDetailsComposite(
                 resourceDetailsComposite, factory);
         containerControls.setContainer(_container);
+        _remoteJMSContainerDetailsControls = new RemoteJMSContainerDetailsComposite(null, resourceDetailsComposite, SWT.NONE, factory);
+        _remoteJMSContainerDetailsControls.setRemoteJMS(_remoteJms);
+        _remoteJMSContainerDetailsControls.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                validate();
+            }
+        });
+        _remoteRestContainerDetailsControls = new RemoteRestContainerDetailsComposite(null, resourceDetailsComposite, SWT.NONE, factory);
+        _remoteRestContainerDetailsControls.setRemoteREST(_remoteRest);
+        _remoteRestContainerDetailsControls.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                validate();
+            }
+        });
 
         resourcesRadio.setSelection(true);
         manifestLayout.topControl = resourceControls;
@@ -167,11 +197,29 @@ public class RulesImplementationWizardPage extends WizardPage {
                     resourceControls.getParent().layout();
                     _implementation.getManifest().setContainer(null);
                     _implementation.getManifest().setResources(_resources);
-                } else {
+                    _implementation.getManifest().setRemoteJms(null);
+                    _implementation.getManifest().setRemoteRest(null);
+                } else if (containerRadio.getSelection()) {
                     manifestLayout.topControl = containerControls;
                     containerControls.getParent().layout();
                     _implementation.getManifest().setResources(null);
                     _implementation.getManifest().setContainer(_container);
+                    _implementation.getManifest().setRemoteJms(null);
+                    _implementation.getManifest().setRemoteRest(null);
+                } else if (remoteRESTRadio.getSelection()) {
+                    manifestLayout.topControl = _remoteRestContainerDetailsControls;
+                    _remoteRestContainerDetailsControls.getParent().layout();
+                    _implementation.getManifest().setResources(null);
+                    _implementation.getManifest().setContainer(null);
+                    _implementation.getManifest().setRemoteJms(null);
+                    _implementation.getManifest().setRemoteRest(_remoteRest);
+                } else if (remoteJMSRadio.getSelection()) {
+                    manifestLayout.topControl = _remoteJMSContainerDetailsControls;
+                    _remoteJMSContainerDetailsControls.getParent().layout();
+                    _implementation.getManifest().setResources(null);
+                    _implementation.getManifest().setContainer(null);
+                    _implementation.getManifest().setRemoteJms(_remoteJms);
+                    _implementation.getManifest().setRemoteRest(null);
                 }
                 validate();
             }
@@ -179,6 +227,8 @@ public class RulesImplementationWizardPage extends WizardPage {
 
         resourcesRadio.addSelectionListener(radioListener);
         containerRadio.addSelectionListener(radioListener);
+        remoteRESTRadio.addSelectionListener(radioListener);
+        remoteJMSRadio.addSelectionListener(radioListener);
 
         setControl(contents);
     }
@@ -225,6 +275,20 @@ public class RulesImplementationWizardPage extends WizardPage {
         setErrorMessage(null);
         if (_implementation == null) {
             setErrorMessage(Messages.error_noRulesFile);
+        }
+        if (_implementation != null && _implementation.getManifest() != null) {
+            ManifestType manifest = _implementation.getManifest();
+            if (manifest.getRemoteJms() != null) {
+                IStatus jmsStatus = _remoteJMSContainerDetailsControls.validate();
+                if (jmsStatus != Status.OK_STATUS) {
+                    setErrorMessage(jmsStatus.getMessage());
+                }
+            } else if (manifest.getRemoteRest() != null) {
+                IStatus restStatus = _remoteRestContainerDetailsControls.validate();
+                if (restStatus != Status.OK_STATUS) {
+                    setErrorMessage(restStatus.getMessage());
+                }
+            }
         }
         setPageComplete(getErrorMessage() == null);
     }

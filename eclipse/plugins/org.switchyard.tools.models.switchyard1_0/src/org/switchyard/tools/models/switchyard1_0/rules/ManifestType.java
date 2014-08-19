@@ -14,6 +14,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getContainer <em>Container</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteJms <em>Remote Jms</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteRest <em>Remote Rest</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,5 +77,59 @@ public interface ManifestType extends CommonExtensionBase {
      * @generated
      */
     void setResources(ResourcesType value);
+
+    /**
+     * Returns the value of the '<em><b>Remote Jms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Remote Jms</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Remote Jms</em>' containment reference.
+     * @see #setRemoteJms(RemoteJmsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getManifestType_RemoteJms()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='remoteJms' namespace='##targetNamespace'"
+     * @generated
+     */
+    RemoteJmsType getRemoteJms();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteJms <em>Remote Jms</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Remote Jms</em>' containment reference.
+     * @see #getRemoteJms()
+     * @generated
+     */
+    void setRemoteJms(RemoteJmsType value);
+
+    /**
+     * Returns the value of the '<em><b>Remote Rest</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Remote Rest</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Remote Rest</em>' containment reference.
+     * @see #setRemoteRest(RemoteRestType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getManifestType_RemoteRest()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='remoteRest' namespace='##targetNamespace'"
+     * @generated
+     */
+    RemoteRestType getRemoteRest();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteRest <em>Remote Rest</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Remote Rest</em>' containment reference.
+     * @see #getRemoteRest()
+     * @generated
+     */
+    void setRemoteRest(RemoteRestType value);
 
 } // ManifestType

@@ -73,11 +73,11 @@ public class KIEContainerDetailsComposite extends Composite {
             public void modifyText(ModifyEvent e) {
                 final String newValue = _sessionNameText.getText().length() == 0 ? null : _sessionNameText.getText();
                 if (!_updating
-                        && ((newValue == null && _container.getSessionName() != null) || (newValue != null && !newValue
-                                .equals(_container.getSessionName())))) {
+                        && ((newValue == null && getContainer().getSessionName() != null) || (newValue != null && !newValue
+                                .equals(getContainer().getSessionName())))) {
                     wrapOperation(new Runnable() {
                         public void run() {
-                            _container.setSessionName(newValue);
+                            getContainer().setSessionName(newValue);
                         }
                     });
                 }

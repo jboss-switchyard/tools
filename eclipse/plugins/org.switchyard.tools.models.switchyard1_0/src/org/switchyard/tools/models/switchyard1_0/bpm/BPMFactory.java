@@ -89,6 +89,15 @@ public interface BPMFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+     * Returns a new object of class '<em>Extra Jaxb Classes Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Extra Jaxb Classes Type</em>'.
+     * @generated
+     */
+    ExtraJaxbClassesType createExtraJaxbClassesType();
+
+    /**
      * Returns a new object of class '<em>Globals Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -186,6 +195,24 @@ public interface BPMFactory extends EFactory {
      * @generated
      */
     PropertyType createPropertyType();
+
+    /**
+     * Returns a new object of class '<em>Remote Jms Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Remote Jms Type</em>'.
+     * @generated
+     */
+    RemoteJmsType createRemoteJmsType();
+
+    /**
+     * Returns a new object of class '<em>Remote Rest Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Remote Rest Type</em>'.
+     * @generated
+     */
+    RemoteRestType createRemoteRestType();
 
     /**
      * Returns a new object of class '<em>Resource Detail Type</em>'.

@@ -23,6 +23,9 @@ import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
@@ -60,6 +63,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Link;
@@ -79,7 +83,10 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OperationsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.RemoteJmsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.RemoteRestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
@@ -101,9 +108,13 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
     private Button _persistentButton;
     private Button _resourcesRadio;
     private Button _containerRadio;
+    private Button _remoteJMSRadio;
+    private Button _remoteRESTRadio;
     private StackLayout _manifestLayout;
     private BPMResourceTable _resourcesTable;
     private KIEContainerDetailsComposite _containerDetailsControls;
+    private RemoteJMSContainerDetailsComposite _remoteJMSContainerDetailsControls;
+    private RemoteRestContainerDetailsComposite _remoteRestContainerDetailsControls;
     private BPMActionTable _actionsTable;
     private BPMMappingsTable _inputsTable;
     private BPMMappingsTable _outputsTable;
@@ -117,6 +128,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
     private BPMImplementationType _implementation;
     private ResourcesType _resources;
     private ContainerType _container;
+    private RemoteJmsType _remoteJms;
+    private RemoteRestType _remoteRest;
     private boolean _updating;
     private Text _userGroupCallbackClassText;
     private BPMUserGroupCallbackPropertyTable _userCallbackPropertiesTable;
@@ -217,6 +230,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             if (_implementation != null && _implementation.getManifest() != null) {
                 _resources = _implementation.getManifest().getResources();
                 _container = _implementation.getManifest().getContainer();
+                _remoteJms = _implementation.getManifest().getRemoteJms();
+                _remoteRest = _implementation.getManifest().getRemoteRest();
             }
         }
         _updating = true;
@@ -253,23 +268,69 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 _processIDText.setText(_implementation.getProcessId() == null ? "" : _implementation.getProcessId()); //$NON-NLS-1$
                 _persistentButton.setSelection(_implementation.isPersistent());
             }
-            if (_resources != null || _container == null) {
+            if (_resources != null && _container == null && _remoteJms == null && _remoteRest == null) {
                 _resourcesRadio.setSelection(true);
                 _containerRadio.setSelection(false);
+                _remoteJMSRadio.setSelection(false);
+                _remoteRESTRadio.setSelection(false);
                 _manifestLayout.topControl = _resourcesTable;
                 _resourcesTable.getParent().layout();
 
                 // container should be null if we get here
                 _container = BPMFactory.eINSTANCE.createContainerType();
-            } else {
+                _remoteJms = BPMFactory.eINSTANCE.createRemoteJmsType();
+                _remoteRest = BPMFactory.eINSTANCE.createRemoteRestType();
+                
+            } else if (_resources == null && _container != null && _remoteJms == null && _remoteRest == null) {
                 _resourcesRadio.setSelection(false);
                 _containerRadio.setSelection(true);
+                _remoteJMSRadio.setSelection(false);
+                _remoteRESTRadio.setSelection(false);
                 _manifestLayout.topControl = _containerDetailsControls;
                 _containerDetailsControls.getParent().layout();
-            }
 
+                _resources = BPMFactory.eINSTANCE.createResourcesType();
+                _remoteJms = BPMFactory.eINSTANCE.createRemoteJmsType();
+                _remoteRest = BPMFactory.eINSTANCE.createRemoteRestType();
+            } else if (_resources == null && _container == null && _remoteJms != null && _remoteRest == null)  {
+                _resourcesRadio.setSelection(false);
+                _containerRadio.setSelection(false);
+                _remoteJMSRadio.setSelection(true);
+                _remoteRESTRadio.setSelection(false);
+                _manifestLayout.topControl = _remoteJMSContainerDetailsControls;
+                _remoteJMSContainerDetailsControls.getParent().layout();
+
+                _resources = BPMFactory.eINSTANCE.createResourcesType();
+                _container = BPMFactory.eINSTANCE.createContainerType();
+                _remoteRest = BPMFactory.eINSTANCE.createRemoteRestType();
+            } else if (_resources == null && _container == null && _remoteJms == null && _remoteRest != null)  {
+                _resourcesRadio.setSelection(false);
+                _containerRadio.setSelection(false);
+                _remoteJMSRadio.setSelection(false);
+                _remoteRESTRadio.setSelection(true);
+                _manifestLayout.topControl = _remoteRestContainerDetailsControls;
+                _remoteRestContainerDetailsControls.getParent().layout();
+
+                _resources = BPMFactory.eINSTANCE.createResourcesType();
+                _container = BPMFactory.eINSTANCE.createContainerType();
+                _remoteJms = BPMFactory.eINSTANCE.createRemoteJmsType();
+            } else {
+                _resourcesRadio.setSelection(true);
+                _containerRadio.setSelection(false);
+                _remoteJMSRadio.setSelection(false);
+                _remoteRESTRadio.setSelection(false);
+                _manifestLayout.topControl = _resourcesTable;
+                _resourcesTable.getParent().layout();
+
+                // container should be null if we get here
+                _container = BPMFactory.eINSTANCE.createContainerType();
+                _remoteJms = BPMFactory.eINSTANCE.createRemoteJmsType();
+                _remoteRest = BPMFactory.eINSTANCE.createRemoteRestType();
+            }
             // initialize container controls
             _containerDetailsControls.setContainer(_container);
+            _remoteRestContainerDetailsControls.setRemoteREST(_remoteRest);
+            _remoteJMSContainerDetailsControls.setRemoteJMS(_remoteJms);
             if (_implementation != null && _implementation.getUserGroupCallback() != null) {
                 String value = _implementation.getUserGroupCallback().getClass_();
                 if (value == null) {
@@ -341,35 +402,13 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             @Override
             public void widgetSelected(SelectionEvent event) {
                 if (_resourcesRadio.getSelection()) {
-                    _manifestLayout.topControl = _resourcesTable;
-                    _resourcesTable.getParent().layout();
-                    if (!_updating && _implementation.getManifest() != null
-                            && _implementation.getManifest().getContainer() != null) {
-                        wrapOperation(new Runnable() {
-                            public void run() {
-                                _implementation.getManifest().setContainer(null);
-                                _implementation.getManifest().setResources(_resources);
-                            };
-                        });
-                    }
+                    swapResourceControls(_resourcesTable, _resources);
+                } else if (_remoteJMSRadio.getSelection()) {
+                    swapResourceControls(_remoteJMSContainerDetailsControls, _remoteJms);
+                } else if (_remoteRESTRadio.getSelection()) {
+                    swapResourceControls(_remoteRestContainerDetailsControls, _remoteRest);
                 } else {
-                    _manifestLayout.topControl = _containerDetailsControls;
-                    _containerDetailsControls.getParent().layout();
-                    if (!_updating) {
-                        if (_implementation.getManifest() == null
-                                || _implementation.getManifest().getContainer() == null) {
-                            wrapOperation(new Runnable() {
-                                public void run() {
-                                    if (_implementation.getManifest() == null) {
-                                        _implementation.setManifest(BPMFactory.eINSTANCE.createManifestType());
-                                    }
-                                    _resources = _implementation.getManifest().getResources();
-                                    _implementation.getManifest().setResources(null);
-                                    _implementation.getManifest().setContainer(_container);
-                                };
-                            });
-                        }
-                    }
+                    swapResourceControls(_containerDetailsControls, _container);
                 }
             }
         };
@@ -377,6 +416,10 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         _resourcesRadio.addSelectionListener(radioListener);
         _containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
         _containerRadio.addSelectionListener(radioListener);
+        _remoteJMSRadio = factory.createButton(resourceButtonsComposite, "Remote JMS", SWT.RADIO);
+        _remoteJMSRadio.addSelectionListener(radioListener);
+        _remoteRESTRadio = factory.createButton(resourceButtonsComposite, "Remote REST", SWT.RADIO);
+        _remoteRESTRadio.addSelectionListener(radioListener);
 
         Composite resourceDetailsComposite = factory.createComposite(resourcesComposite);
         _manifestLayout = new StackLayout();
@@ -391,8 +434,52 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         item.setControl(control);
     }
 
+    private void swapResourceControls(final Control topControl, final EObject newResourceObject) {
+        _manifestLayout.topControl = topControl;
+        topControl.getParent().layout();
+        if (!_updating) {
+            EObject manifest = _implementation.getManifest();
+            final boolean createManifest = manifest == null;
+            
+            wrapOperation(new Runnable() {
+                public void run() {
+                    if (createManifest) {
+                        _implementation.setManifest(BPMFactory.eINSTANCE.createManifestType());
+                    }
+                    if (newResourceObject instanceof ResourcesType) {
+                        _resources = (ResourcesType) newResourceObject;
+                        _implementation.getManifest().setResources(_resources);
+                        _implementation.getManifest().setContainer(null);
+                        _implementation.getManifest().setRemoteJms(null);
+                        _implementation.getManifest().setRemoteRest(null);
+                    } else if (newResourceObject instanceof ContainerType) {
+                        _container = (ContainerType) newResourceObject;
+                        _implementation.getManifest().setContainer(_container);
+                        _implementation.getManifest().setResources(null);
+                        _implementation.getManifest().setRemoteJms(null);
+                        _implementation.getManifest().setRemoteRest(null);
+                    } else if (newResourceObject instanceof RemoteJmsType) {
+                        _remoteJms = (RemoteJmsType) newResourceObject;
+                        _implementation.getManifest().setRemoteJms(_remoteJms);
+                        _implementation.getManifest().setResources(null);
+                        _implementation.getManifest().setContainer(null);
+                        _implementation.getManifest().setRemoteRest(null);
+                    } else if (newResourceObject instanceof RemoteRestType) {
+                        _remoteRest = (RemoteRestType) newResourceObject;
+                        _implementation.getManifest().setRemoteRest(_remoteRest);
+                        _implementation.getManifest().setResources(null);
+                        _implementation.getManifest().setContainer(null);
+                        _implementation.getManifest().setRemoteJms(null);
+                    }
+                };
+            });
+        }
+    }
+
     private void createContainerDetailsControls(Composite parent) {
         _containerDetailsControls = new KIEContainerDetailsComposite(parent, getWidgetFactory());
+        _remoteJMSContainerDetailsControls = new RemoteJMSContainerDetailsComposite(getContainer(), parent, SWT.NONE, getWidgetFactory());
+        _remoteRestContainerDetailsControls = new RemoteRestContainerDetailsComposite(getContainer(), parent, SWT.NONE, getWidgetFactory());
     }
 
     private void createActionsControls(TabFolder folder, TabItem item) {
@@ -867,5 +954,29 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 e.printStackTrace();
             }
         }
+    }
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.property.AbstractModelComposite#validate()
+     */
+    @Override
+    public IStatus validate() {
+        if (_implementation != null && _implementation.getManifest() != null) {
+            ManifestType manifest = _implementation.getManifest();
+            if (manifest.getRemoteJms() != null) {
+                IStatus jmsStatus = _remoteJMSContainerDetailsControls.validate();
+                if (jmsStatus != Status.OK_STATUS) {
+                    return jmsStatus;
+                }
+            }
+            if (manifest.getRemoteRest() != null) {
+                IStatus restStatus = _remoteRestContainerDetailsControls.validate();
+                if (restStatus != Status.OK_STATUS) {
+                    return restStatus;
+                }
+            }
+        }
+        
+        return Status.OK_STATUS;
     }
 }

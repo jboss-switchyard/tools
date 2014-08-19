@@ -43,6 +43,9 @@ import org.switchyard.tools.models.switchyard1_0.bpm.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.bpm.RemoteJmsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.RemoteRestType;
+import org.switchyard.tools.models.switchyard1_0.bpm.RemoteType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceDetailType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
@@ -81,6 +84,9 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getRemote <em>Remote</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getRemoteJms <em>Remote Jms</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getRemoteRest <em>Remote Rest</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResourceDetail <em>Resource Detail</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResources <em>Resources</em>}</li>
@@ -693,6 +699,78 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RemoteType getRemote() {
+        return (RemoteType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetRemote(RemoteType newRemote, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE, newRemote, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RemoteJmsType getRemoteJms() {
+        return (RemoteJmsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE_JMS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetRemoteJms(RemoteJmsType newRemoteJms, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE_JMS, newRemoteJms, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRemoteJms(RemoteJmsType newRemoteJms) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE_JMS, newRemoteJms);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RemoteRestType getRemoteRest() {
+        return (RemoteRestType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE_REST, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetRemoteRest(RemoteRestType newRemoteRest, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE_REST, newRemoteRest, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRemoteRest(RemoteRestType newRemoteRest) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__REMOTE_REST, newRemoteRest);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -963,6 +1041,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetProperties(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__PROPERTY:
                 return basicSetProperty(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__REMOTE:
+                return basicSetRemote(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_JMS:
+                return basicSetRemoteJms(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_REST:
+                return basicSetRemoteRest(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return basicSetResource(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
@@ -1038,6 +1122,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getProperties();
             case BPMPackage.DOCUMENT_ROOT__PROPERTY:
                 return getProperty();
+            case BPMPackage.DOCUMENT_ROOT__REMOTE:
+                return getRemote();
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_JMS:
+                return getRemoteJms();
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_REST:
+                return getRemoteRest();
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource();
             case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:
@@ -1133,6 +1223,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case BPMPackage.DOCUMENT_ROOT__PROPERTY:
                 setProperty((PropertyType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_JMS:
+                setRemoteJms((RemoteJmsType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_REST:
+                setRemoteRest((RemoteRestType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)newValue);
@@ -1236,6 +1332,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__PROPERTY:
                 setProperty((PropertyType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_JMS:
+                setRemoteJms((RemoteJmsType)null);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_REST:
+                setRemoteRest((RemoteRestType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)null);
                 return;
@@ -1314,6 +1416,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getProperties() != null;
             case BPMPackage.DOCUMENT_ROOT__PROPERTY:
                 return getProperty() != null;
+            case BPMPackage.DOCUMENT_ROOT__REMOTE:
+                return getRemote() != null;
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_JMS:
+                return getRemoteJms() != null;
+            case BPMPackage.DOCUMENT_ROOT__REMOTE_REST:
+                return getRemoteRest() != null;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource() != null;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE_DETAIL:

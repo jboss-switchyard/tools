@@ -226,6 +226,36 @@ public class RulesSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case RulesPackage.REMOTE_TYPE: {
+                RemoteType remoteType = (RemoteType)theEObject;
+                T result = caseRemoteType(remoteType);
+                if (result == null) result = caseCommonExtensionBase(remoteType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case RulesPackage.REMOTE_JMS_TYPE: {
+                RemoteJmsType remoteJmsType = (RemoteJmsType)theEObject;
+                T result = caseRemoteJmsType(remoteJmsType);
+                if (result == null) result = caseRemoteType(remoteJmsType);
+                if (result == null) result = caseCommonExtensionBase(remoteJmsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case RulesPackage.REMOTE_REST_TYPE: {
+                RemoteRestType remoteRestType = (RemoteRestType)theEObject;
+                T result = caseRemoteRestType(remoteRestType);
+                if (result == null) result = caseRemoteType(remoteRestType);
+                if (result == null) result = caseCommonExtensionBase(remoteRestType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case RulesPackage.EXTRA_JAXB_CLASSES_TYPE: {
+                ExtraJaxbClassesType extraJaxbClassesType = (ExtraJaxbClassesType)theEObject;
+                T result = caseExtraJaxbClassesType(extraJaxbClassesType);
+                if (result == null) result = caseCommonExtensionBase(extraJaxbClassesType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -557,6 +587,66 @@ public class RulesSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseFaultsType(FaultsType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Remote Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Remote Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseRemoteType(RemoteType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Remote Jms Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Remote Jms Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseRemoteJmsType(RemoteJmsType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Remote Rest Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Remote Rest Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseRemoteRestType(RemoteRestType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Extra Jaxb Classes Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extra Jaxb Classes Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExtraJaxbClassesType(ExtraJaxbClassesType object) {
         return null;
     }
 

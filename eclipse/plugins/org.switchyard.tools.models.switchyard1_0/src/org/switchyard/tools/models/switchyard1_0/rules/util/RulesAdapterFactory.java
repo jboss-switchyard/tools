@@ -162,6 +162,22 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
                 return createFaultsTypeAdapter();
             }
             @Override
+            public Adapter caseRemoteType(RemoteType object) {
+                return createRemoteTypeAdapter();
+            }
+            @Override
+            public Adapter caseRemoteJmsType(RemoteJmsType object) {
+                return createRemoteJmsTypeAdapter();
+            }
+            @Override
+            public Adapter caseRemoteRestType(RemoteRestType object) {
+                return createRemoteRestTypeAdapter();
+            }
+            @Override
+            public Adapter caseExtraJaxbClassesType(ExtraJaxbClassesType object) {
+                return createExtraJaxbClassesTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -494,6 +510,62 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createFaultsTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteType <em>Remote Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteType
+     * @generated
+     */
+    public Adapter createRemoteTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType <em>Remote Jms Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType
+     * @generated
+     */
+    public Adapter createRemoteJmsTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType <em>Remote Rest Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType
+     * @generated
+     */
+    public Adapter createRemoteRestTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType <em>Extra Jaxb Classes Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType
+     * @generated
+     */
+    public Adapter createExtraJaxbClassesTypeAdapter() {
         return null;
     }
 

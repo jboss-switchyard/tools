@@ -94,6 +94,10 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createDocumentRootAdapter();
             }
             @Override
+            public Adapter caseExtraJaxbClassesType(ExtraJaxbClassesType object) {
+                return createExtraJaxbClassesTypeAdapter();
+            }
+            @Override
             public Adapter caseFaultsType(FaultsType object) {
                 return createFaultsTypeAdapter();
             }
@@ -148,6 +152,18 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter casePropertyType(PropertyType object) {
                 return createPropertyTypeAdapter();
+            }
+            @Override
+            public Adapter caseRemoteJmsType(RemoteJmsType object) {
+                return createRemoteJmsTypeAdapter();
+            }
+            @Override
+            public Adapter caseRemoteRestType(RemoteRestType object) {
+                return createRemoteRestTypeAdapter();
+            }
+            @Override
+            public Adapter caseRemoteType(RemoteType object) {
+                return createRemoteTypeAdapter();
             }
             @Override
             public Adapter caseResourceDetailType(ResourceDetailType object) {
@@ -300,6 +316,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ExtraJaxbClassesType <em>Extra Jaxb Classes Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ExtraJaxbClassesType
+     * @generated
+     */
+    public Adapter createExtraJaxbClassesTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType <em>Globals Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -450,6 +480,48 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createPropertyTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.RemoteJmsType <em>Remote Jms Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.RemoteJmsType
+     * @generated
+     */
+    public Adapter createRemoteJmsTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.RemoteRestType <em>Remote Rest Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.RemoteRestType
+     * @generated
+     */
+    public Adapter createRemoteRestTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.RemoteType <em>Remote Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.RemoteType
+     * @generated
+     */
+    public Adapter createRemoteTypeAdapter() {
         return null;
     }
 

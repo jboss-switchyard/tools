@@ -44,6 +44,9 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getRemote <em>Remote</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getRemoteJms <em>Remote Jms</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getRemoteRest <em>Remote Rest</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResourceDetail <em>Resource Detail</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResources <em>Resources</em>}</li>
@@ -623,6 +626,76 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setProperty(PropertyType value);
+
+    /**
+     * Returns the value of the '<em><b>Remote</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Remote</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Remote</em>' containment reference.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Remote()
+     * @model containment="true" upper="-2" transient="true" changeable="false" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='remote' namespace='##targetNamespace'"
+     * @generated
+     */
+    RemoteType getRemote();
+
+    /**
+     * Returns the value of the '<em><b>Remote Jms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Remote Jms</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Remote Jms</em>' containment reference.
+     * @see #setRemoteJms(RemoteJmsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_RemoteJms()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='remoteJms' namespace='##targetNamespace' affiliation='remote'"
+     * @generated
+     */
+    RemoteJmsType getRemoteJms();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getRemoteJms <em>Remote Jms</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Remote Jms</em>' containment reference.
+     * @see #getRemoteJms()
+     * @generated
+     */
+    void setRemoteJms(RemoteJmsType value);
+
+    /**
+     * Returns the value of the '<em><b>Remote Rest</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Remote Rest</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Remote Rest</em>' containment reference.
+     * @see #setRemoteRest(RemoteRestType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_RemoteRest()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='remoteRest' namespace='##targetNamespace' affiliation='remote'"
+     * @generated
+     */
+    RemoteRestType getRemoteRest();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getRemoteRest <em>Remote Rest</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Remote Rest</em>' containment reference.
+     * @see #getRemoteRest()
+     * @generated
+     */
+    void setRemoteRest(RemoteRestType value);
 
     /**
      * Returns the value of the '<em><b>Resource</b></em>' containment reference.

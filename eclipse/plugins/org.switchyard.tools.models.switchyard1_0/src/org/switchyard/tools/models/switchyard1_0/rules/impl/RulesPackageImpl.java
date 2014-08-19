@@ -40,10 +40,16 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -59,6 +65,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.rules.ExpressionType;
+import org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType;
 import org.switchyard.tools.models.switchyard1_0.rules.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.InputsType;
@@ -74,6 +81,9 @@ import org.switchyard.tools.models.switchyard1_0.rules.OperationsType;
 import org.switchyard.tools.models.switchyard1_0.rules.OutputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.rules.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType;
+import org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType;
+import org.switchyard.tools.models.switchyard1_0.rules.RemoteType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceDetailType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
@@ -259,6 +269,34 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass remoteTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass remoteJmsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass remoteRestTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass extraJaxbClassesTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum operationTypeEEnum = null;
 
     /**
@@ -384,6 +422,9 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
         QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
+        RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -412,6 +453,9 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         theNettyPackage.createPackageContents();
         theQuartzPackage.createPackageContents();
         theSqlPackage.createPackageContents();
+        theRssPackage.createPackageContents();
+        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
 
         // Initialize created meta-data
         theRulesPackage.initializePackageContents();
@@ -437,6 +481,9 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         theNettyPackage.initializePackageContents();
         theQuartzPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
+        theRssPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -1067,6 +1114,24 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getManifestType_RemoteJms() {
+        return (EReference)manifestTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getManifestType_RemoteRest() {
+        return (EReference)manifestTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getMappingType() {
         return mappingTypeEClass;
     }
@@ -1328,6 +1393,186 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getRemoteType() {
+        return remoteTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteType_DeploymentId() {
+        return (EAttribute)remoteTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRemoteType_ExtraJaxbClasses() {
+        return (EReference)remoteTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteType_Password() {
+        return (EAttribute)remoteTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteType_Timeout() {
+        return (EAttribute)remoteTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteType_UserName() {
+        return (EAttribute)remoteTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRemoteJmsType() {
+        return remoteJmsTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_HostName() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_KeystoreLocation() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_KeystorePassword() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_RemotingPort() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_MessagingPort() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_TruststoreLocation() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_TruststorePassword() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteJmsType_UseSsl() {
+        return (EAttribute)remoteJmsTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRemoteRestType() {
+        return remoteRestTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteRestType_Url() {
+        return (EAttribute)remoteRestTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRemoteRestType_UseFormBasedAuth() {
+        return (EAttribute)remoteRestTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getExtraJaxbClassesType() {
+        return extraJaxbClassesTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getExtraJaxbClassesType_ExtraJaxbClass() {
+        return (EAttribute)extraJaxbClassesTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getOperationType() {
         return operationTypeEEnum;
     }
@@ -1503,6 +1748,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         manifestTypeEClass = createEClass(MANIFEST_TYPE);
         createEReference(manifestTypeEClass, MANIFEST_TYPE__CONTAINER);
         createEReference(manifestTypeEClass, MANIFEST_TYPE__RESOURCES);
+        createEReference(manifestTypeEClass, MANIFEST_TYPE__REMOTE_JMS);
+        createEReference(manifestTypeEClass, MANIFEST_TYPE__REMOTE_REST);
 
         mappingTypeEClass = createEClass(MAPPING_TYPE);
         createEAttribute(mappingTypeEClass, MAPPING_TYPE__FROM);
@@ -1541,6 +1788,30 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
         faultsTypeEClass = createEClass(FAULTS_TYPE);
         createEReference(faultsTypeEClass, FAULTS_TYPE__FAULT);
+
+        remoteTypeEClass = createEClass(REMOTE_TYPE);
+        createEAttribute(remoteTypeEClass, REMOTE_TYPE__DEPLOYMENT_ID);
+        createEReference(remoteTypeEClass, REMOTE_TYPE__EXTRA_JAXB_CLASSES);
+        createEAttribute(remoteTypeEClass, REMOTE_TYPE__PASSWORD);
+        createEAttribute(remoteTypeEClass, REMOTE_TYPE__TIMEOUT);
+        createEAttribute(remoteTypeEClass, REMOTE_TYPE__USER_NAME);
+
+        remoteJmsTypeEClass = createEClass(REMOTE_JMS_TYPE);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__HOST_NAME);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__KEYSTORE_LOCATION);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__KEYSTORE_PASSWORD);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__REMOTING_PORT);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__MESSAGING_PORT);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__TRUSTSTORE_LOCATION);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__TRUSTSTORE_PASSWORD);
+        createEAttribute(remoteJmsTypeEClass, REMOTE_JMS_TYPE__USE_SSL);
+
+        remoteRestTypeEClass = createEClass(REMOTE_REST_TYPE);
+        createEAttribute(remoteRestTypeEClass, REMOTE_REST_TYPE__URL);
+        createEAttribute(remoteRestTypeEClass, REMOTE_REST_TYPE__USE_FORM_BASED_AUTH);
+
+        extraJaxbClassesTypeEClass = createEClass(EXTRA_JAXB_CLASSES_TYPE);
+        createEAttribute(extraJaxbClassesTypeEClass, EXTRA_JAXB_CLASSES_TYPE__EXTRA_JAXB_CLASS);
 
         // Create enums
         operationTypeEEnum = createEEnum(OPERATION_TYPE);
@@ -1609,6 +1880,10 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         resourceTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         rulesImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
         faultsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        remoteTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        remoteJmsTypeEClass.getESuperTypes().add(this.getRemoteType());
+        remoteRestTypeEClass.getESuperTypes().add(this.getRemoteType());
+        extraJaxbClassesTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
         initEClass(operationsTypeEClass, OperationsType.class, "OperationsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1691,6 +1966,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEClass(manifestTypeEClass, ManifestType.class, "ManifestType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getManifestType_Container(), this.getContainerType(), null, "container", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getManifestType_Resources(), this.getResourcesType(), null, "resources", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getManifestType_RemoteJms(), this.getRemoteJmsType(), null, "remoteJms", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getManifestType_RemoteRest(), this.getRemoteRestType(), null, "remoteRest", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(mappingTypeEClass, MappingType.class, "MappingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMappingType_From(), theXMLTypePackage.getString(), "from", null, 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1729,6 +2006,30 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
         initEClass(faultsTypeEClass, FaultsType.class, "FaultsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getFaultsType_Fault(), this.getMappingType(), null, "fault", null, 0, -1, FaultsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(remoteTypeEClass, RemoteType.class, "RemoteType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getRemoteType_DeploymentId(), theXMLTypePackage.getString(), "deploymentId", null, 1, 1, RemoteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRemoteType_ExtraJaxbClasses(), this.getExtraJaxbClassesType(), null, "extraJaxbClasses", null, 0, 1, RemoteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, RemoteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteType_Timeout(), theSwitchyardPackage.getPropInteger(), "timeout", null, 0, 1, RemoteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteType_UserName(), theXMLTypePackage.getString(), "userName", null, 0, 1, RemoteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(remoteJmsTypeEClass, RemoteJmsType.class, "RemoteJmsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getRemoteJmsType_HostName(), theXMLTypePackage.getString(), "hostName", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteJmsType_KeystoreLocation(), theXMLTypePackage.getString(), "keystoreLocation", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteJmsType_KeystorePassword(), theXMLTypePackage.getString(), "keystorePassword", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteJmsType_RemotingPort(), theSwitchyardPackage.getPropInteger(), "remotingPort", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteJmsType_MessagingPort(), theSwitchyardPackage.getPropInteger(), "messagingPort", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteJmsType_TruststoreLocation(), theXMLTypePackage.getString(), "truststoreLocation", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteJmsType_TruststorePassword(), theXMLTypePackage.getString(), "truststorePassword", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteJmsType_UseSsl(), theSwitchyardPackage.getPropBoolean(), "useSsl", null, 0, 1, RemoteJmsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(remoteRestTypeEClass, RemoteRestType.class, "RemoteRestType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getRemoteRestType_Url(), theXMLTypePackage.getString(), "url", null, 1, 1, RemoteRestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRemoteRestType_UseFormBasedAuth(), theSwitchyardPackage.getPropBoolean(), "useFormBasedAuth", null, 0, 1, RemoteRestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(extraJaxbClassesTypeEClass, ExtraJaxbClassesType.class, "ExtraJaxbClassesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getExtraJaxbClassesType_ExtraJaxbClass(), theXMLTypePackage.getString(), "extraJaxbClass", null, 0, -1, ExtraJaxbClassesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(operationTypeEEnum, OperationType.class, "OperationType");
@@ -2324,6 +2625,22 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getManifestType_RemoteJms(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "remoteJms",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getManifestType_RemoteRest(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "remoteRest",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (mappingTypeEClass, 
            source, 
            new String[] {
@@ -2548,6 +2865,148 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
            new String[] {
              "kind", "element",
              "name", "fault",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (remoteTypeEClass, 
+           source, 
+           new String[] {
+             "name", "RemoteType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getRemoteType_DeploymentId(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "deploymentId"
+           });		
+        addAnnotation
+          (getRemoteType_ExtraJaxbClasses(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "extraJaxbClasses",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getRemoteType_Password(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "password"
+           });		
+        addAnnotation
+          (getRemoteType_Timeout(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "timeout"
+           });		
+        addAnnotation
+          (getRemoteType_UserName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "userName"
+           });		
+        addAnnotation
+          (remoteJmsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "RemoteJmsType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getRemoteJmsType_HostName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "hostName"
+           });		
+        addAnnotation
+          (getRemoteJmsType_KeystoreLocation(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "keystoreLocation"
+           });		
+        addAnnotation
+          (getRemoteJmsType_KeystorePassword(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "keystorePassword"
+           });		
+        addAnnotation
+          (getRemoteJmsType_RemotingPort(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "remotingPort"
+           });		
+        addAnnotation
+          (getRemoteJmsType_MessagingPort(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "messagingPort"
+           });		
+        addAnnotation
+          (getRemoteJmsType_TruststoreLocation(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "truststoreLocation"
+           });		
+        addAnnotation
+          (getRemoteJmsType_TruststorePassword(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "truststorePassword"
+           });		
+        addAnnotation
+          (getRemoteJmsType_UseSsl(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "useSsl"
+           });		
+        addAnnotation
+          (remoteRestTypeEClass, 
+           source, 
+           new String[] {
+             "name", "RemoteRestType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getRemoteRestType_Url(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "url"
+           });		
+        addAnnotation
+          (getRemoteRestType_UseFormBasedAuth(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "useFormBasedAuth"
+           });		
+        addAnnotation
+          (extraJaxbClassesTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ExtraJaxbClassesType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getExtraJaxbClassesType_ExtraJaxbClass(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "extraJaxbClass",
              "namespace", "##targetNamespace"
            });
     }

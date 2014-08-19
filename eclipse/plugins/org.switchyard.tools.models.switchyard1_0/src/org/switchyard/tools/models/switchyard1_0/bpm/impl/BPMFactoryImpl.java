@@ -32,7 +32,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      */
 	public static BPMFactory init() {
         try {
-            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bpm:config:2.0"); 
+            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory(BPMPackage.eNS_URI);
             if (theBPMFactory != null) {
                 return theBPMFactory;
             }
@@ -66,6 +66,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.CHANNEL_TYPE: return createChannelType();
             case BPMPackage.CONTAINER_TYPE: return createContainerType();
             case BPMPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case BPMPackage.EXTRA_JAXB_CLASSES_TYPE: return createExtraJaxbClassesType();
             case BPMPackage.FAULTS_TYPE: return createFaultsType();
             case BPMPackage.GLOBALS_TYPE: return createGlobalsType();
             case BPMPackage.INPUTS_TYPE: return createInputsType();
@@ -80,6 +81,8 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.OUTPUTS_TYPE: return createOutputsType();
             case BPMPackage.PROPERTIES_TYPE: return createPropertiesType();
             case BPMPackage.PROPERTY_TYPE: return createPropertyType();
+            case BPMPackage.REMOTE_JMS_TYPE: return createRemoteJmsType();
+            case BPMPackage.REMOTE_REST_TYPE: return createRemoteRestType();
             case BPMPackage.RESOURCE_DETAIL_TYPE: return createResourceDetailType();
             case BPMPackage.RESOURCES_TYPE: return createResourcesType();
             case BPMPackage.RESOURCE_TYPE: return createResourceType();
@@ -208,6 +211,16 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ExtraJaxbClassesType createExtraJaxbClassesType() {
+        ExtraJaxbClassesTypeImpl extraJaxbClassesType = new ExtraJaxbClassesTypeImpl();
+        return extraJaxbClassesType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public GlobalsType createGlobalsType() {
         GlobalsTypeImpl globalsType = new GlobalsTypeImpl();
         return globalsType;
@@ -311,6 +324,26 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
     public PropertyType createPropertyType() {
         PropertyTypeImpl propertyType = new PropertyTypeImpl();
         return propertyType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RemoteJmsType createRemoteJmsType() {
+        RemoteJmsTypeImpl remoteJmsType = new RemoteJmsTypeImpl();
+        return remoteJmsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RemoteRestType createRemoteRestType() {
+        RemoteRestTypeImpl remoteRestType = new RemoteRestTypeImpl();
+        return remoteRestType;
     }
 
     /**

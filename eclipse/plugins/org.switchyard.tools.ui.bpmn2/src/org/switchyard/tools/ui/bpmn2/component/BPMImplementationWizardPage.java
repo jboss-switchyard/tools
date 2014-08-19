@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2012 Red Hat, Inc. and others.
+ * Copyright (c) 2012-2014 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,10 +13,15 @@ package org.switchyard.tools.ui.bpmn2.component;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -48,6 +53,8 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
+import org.switchyard.tools.models.switchyard1_0.bpm.RemoteJmsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.RemoteRestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
@@ -75,7 +82,11 @@ public class BPMImplementationWizardPage extends WizardPage {
     private BPMImplementationType _implementation;
     private ResourcesType _resources = BPMFactory.eINSTANCE.createResourcesType();
     private ContainerType _container = BPMFactory.eINSTANCE.createContainerType();
+    private RemoteJmsType _remoteJms = BPMFactory.eINSTANCE.createRemoteJmsType();
+    private RemoteRestType _remoteRest = BPMFactory.eINSTANCE.createRemoteRestType();
     private ComponentService _service;
+    private RemoteRestContainerDetailsComposite _remoteRestContainerDetailsControls;
+    private RemoteJMSContainerDetailsComposite _remoteJMSContainerDetailsControls;
 
     /**
      * Create a new BPMImplementationWizardPage.
@@ -143,6 +154,8 @@ public class BPMImplementationWizardPage extends WizardPage {
         final StackLayout manifestLayout = new StackLayout();
         final Button resourcesRadio = factory.createButton(resourceButtonsComposite, Messages.label_projectResource, SWT.RADIO);
         final Button containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
+        final Button remoteJMSRadio = factory.createButton(resourceButtonsComposite, "Remote JMS", SWT.RADIO);
+        final Button remoteRESTRadio = factory.createButton(resourceButtonsComposite, "Remote REST", SWT.RADIO);
 
         Composite resourceDetailsComposite = factory.createComposite(contents);
         resourceDetailsComposite.setLayout(manifestLayout);
@@ -152,6 +165,22 @@ public class BPMImplementationWizardPage extends WizardPage {
         final KIEContainerDetailsComposite containerControls = new KIEContainerDetailsComposite(
                 resourceDetailsComposite, factory);
         containerControls.setContainer(_container);
+        _remoteJMSContainerDetailsControls = new RemoteJMSContainerDetailsComposite(null, resourceDetailsComposite, SWT.NONE, factory);
+        _remoteJMSContainerDetailsControls.setRemoteJMS(_remoteJms);
+        _remoteJMSContainerDetailsControls.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                validate();
+            }
+        });
+        _remoteRestContainerDetailsControls = new RemoteRestContainerDetailsComposite(null, resourceDetailsComposite, SWT.NONE, factory);
+        _remoteRestContainerDetailsControls.setRemoteREST(_remoteRest);
+        _remoteRestContainerDetailsControls.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                validate();
+            }
+        });
 
         resourcesRadio.setSelection(true);
         manifestLayout.topControl = resourceControls;
@@ -170,11 +199,29 @@ public class BPMImplementationWizardPage extends WizardPage {
                     resourceControls.getParent().layout();
                     _implementation.getManifest().setContainer(null);
                     _implementation.getManifest().setResources(_resources);
-                } else {
+                    _implementation.getManifest().setRemoteJms(null);
+                    _implementation.getManifest().setRemoteRest(null);
+                } else if (containerRadio.getSelection()) {
                     manifestLayout.topControl = containerControls;
                     containerControls.getParent().layout();
                     _implementation.getManifest().setResources(null);
                     _implementation.getManifest().setContainer(_container);
+                    _implementation.getManifest().setRemoteJms(null);
+                    _implementation.getManifest().setRemoteRest(null);
+                } else if (remoteRESTRadio.getSelection()) {
+                    manifestLayout.topControl = _remoteRestContainerDetailsControls;
+                    _remoteRestContainerDetailsControls.getParent().layout();
+                    _implementation.getManifest().setResources(null);
+                    _implementation.getManifest().setContainer(null);
+                    _implementation.getManifest().setRemoteJms(null);
+                    _implementation.getManifest().setRemoteRest(_remoteRest);
+                } else if (remoteJMSRadio.getSelection()) {
+                    manifestLayout.topControl = _remoteJMSContainerDetailsControls;
+                    _remoteJMSContainerDetailsControls.getParent().layout();
+                    _implementation.getManifest().setResources(null);
+                    _implementation.getManifest().setContainer(null);
+                    _implementation.getManifest().setRemoteJms(_remoteJms);
+                    _implementation.getManifest().setRemoteRest(null);
                 }
                 validate();
             }
@@ -228,6 +275,20 @@ public class BPMImplementationWizardPage extends WizardPage {
         setErrorMessage(null);
         if (_implementation == null) {
             setErrorMessage(Messages.error_noBpmnFile);
+        }
+        if (_implementation != null && _implementation.getManifest() != null) {
+            ManifestType manifest = _implementation.getManifest();
+            if (manifest.getRemoteJms() != null) {
+                IStatus jmsStatus = _remoteJMSContainerDetailsControls.validate();
+                if (jmsStatus != Status.OK_STATUS) {
+                    setErrorMessage(jmsStatus.getMessage());
+                }
+            } else if (manifest.getRemoteRest() != null) {
+                IStatus restStatus = _remoteRestContainerDetailsControls.validate();
+                if (restStatus != Status.OK_STATUS) {
+                    setErrorMessage(restStatus.getMessage());
+                }
+            }
         }
         setPageComplete(getErrorMessage() == null);
     }

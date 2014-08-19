@@ -1171,13 +1171,31 @@ public interface RulesPackage extends EPackage {
     int MANIFEST_TYPE__RESOURCES = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Remote Jms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANIFEST_TYPE__REMOTE_JMS = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Remote Rest</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANIFEST_TYPE__REMOTE_REST = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Manifest Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MANIFEST_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+    int MANIFEST_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
@@ -1711,6 +1729,388 @@ public interface RulesPackage extends EPackage {
     int FAULTS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteTypeImpl <em>Remote Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteType()
+     * @generated
+     */
+    int REMOTE_TYPE = 22;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Deployment Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE__DEPLOYMENT_ID = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Extra Jaxb Classes</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE__EXTRA_JAXB_CLASSES = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE__PASSWORD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE__TIMEOUT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>User Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE__USER_NAME = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
+
+    /**
+     * The number of structural features of the '<em>Remote Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 5;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteJmsTypeImpl <em>Remote Jms Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteJmsTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteJmsType()
+     * @generated
+     */
+    int REMOTE_JMS_TYPE = 23;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__DOCUMENTATION = REMOTE_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__ANY_ATTRIBUTE = REMOTE_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Deployment Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__DEPLOYMENT_ID = REMOTE_TYPE__DEPLOYMENT_ID;
+
+    /**
+     * The feature id for the '<em><b>Extra Jaxb Classes</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__EXTRA_JAXB_CLASSES = REMOTE_TYPE__EXTRA_JAXB_CLASSES;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__PASSWORD = REMOTE_TYPE__PASSWORD;
+
+    /**
+     * The feature id for the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__TIMEOUT = REMOTE_TYPE__TIMEOUT;
+
+    /**
+     * The feature id for the '<em><b>User Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__USER_NAME = REMOTE_TYPE__USER_NAME;
+
+    /**
+     * The feature id for the '<em><b>Host Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__HOST_NAME = REMOTE_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Keystore Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__KEYSTORE_LOCATION = REMOTE_TYPE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Keystore Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__KEYSTORE_PASSWORD = REMOTE_TYPE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Remoting Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__REMOTING_PORT = REMOTE_TYPE_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Messaging Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__MESSAGING_PORT = REMOTE_TYPE_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Truststore Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__TRUSTSTORE_LOCATION = REMOTE_TYPE_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Truststore Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__TRUSTSTORE_PASSWORD = REMOTE_TYPE_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Use Ssl</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE__USE_SSL = REMOTE_TYPE_FEATURE_COUNT + 7;
+
+    /**
+     * The number of structural features of the '<em>Remote Jms Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_JMS_TYPE_FEATURE_COUNT = REMOTE_TYPE_FEATURE_COUNT + 8;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteRestTypeImpl <em>Remote Rest Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteRestTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteRestType()
+     * @generated
+     */
+    int REMOTE_REST_TYPE = 24;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__DOCUMENTATION = REMOTE_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__ANY_ATTRIBUTE = REMOTE_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Deployment Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__DEPLOYMENT_ID = REMOTE_TYPE__DEPLOYMENT_ID;
+
+    /**
+     * The feature id for the '<em><b>Extra Jaxb Classes</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__EXTRA_JAXB_CLASSES = REMOTE_TYPE__EXTRA_JAXB_CLASSES;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__PASSWORD = REMOTE_TYPE__PASSWORD;
+
+    /**
+     * The feature id for the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__TIMEOUT = REMOTE_TYPE__TIMEOUT;
+
+    /**
+     * The feature id for the '<em><b>User Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__USER_NAME = REMOTE_TYPE__USER_NAME;
+
+    /**
+     * The feature id for the '<em><b>Url</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__URL = REMOTE_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Use Form Based Auth</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE__USE_FORM_BASED_AUTH = REMOTE_TYPE_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Remote Rest Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REMOTE_REST_TYPE_FEATURE_COUNT = REMOTE_TYPE_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ExtraJaxbClassesTypeImpl <em>Extra Jaxb Classes Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ExtraJaxbClassesTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExtraJaxbClassesType()
+     * @generated
+     */
+    int EXTRA_JAXB_CLASSES_TYPE = 25;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTRA_JAXB_CLASSES_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTRA_JAXB_CLASSES_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Extra Jaxb Class</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTRA_JAXB_CLASSES_TYPE__EXTRA_JAXB_CLASS = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Extra Jaxb Classes Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTRA_JAXB_CLASSES_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.OperationType <em>Operation Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1718,7 +2118,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getOperationType()
      * @generated
      */
-    int OPERATION_TYPE = 22;
+    int OPERATION_TYPE = 26;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ExpressionType <em>Expression Type</em>}' enum.
@@ -1728,7 +2128,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExpressionType()
      * @generated
      */
-    int EXPRESSION_TYPE = 23;
+    int EXPRESSION_TYPE = 27;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.LoggerType <em>Logger Type</em>}' enum.
@@ -1738,7 +2138,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerType()
      * @generated
      */
-    int LOGGER_TYPE = 24;
+    int LOGGER_TYPE = 28;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ScopeType <em>Scope Type</em>}' enum.
@@ -1748,7 +2148,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getScopeType()
      * @generated
      */
-    int SCOPE_TYPE = 25;
+    int SCOPE_TYPE = 29;
 
     /**
      * The meta object id for the '<em>Operation Type Object</em>' data type.
@@ -1758,7 +2158,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getOperationTypeObject()
      * @generated
      */
-    int OPERATION_TYPE_OBJECT = 26;
+    int OPERATION_TYPE_OBJECT = 30;
 
     /**
      * The meta object id for the '<em>Expression Type Object</em>' data type.
@@ -1768,7 +2168,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExpressionTypeObject()
      * @generated
      */
-    int EXPRESSION_TYPE_OBJECT = 27;
+    int EXPRESSION_TYPE_OBJECT = 31;
 
     /**
      * The meta object id for the '<em>Logger Type Object</em>' data type.
@@ -1778,7 +2178,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerTypeObject()
      * @generated
      */
-    int LOGGER_TYPE_OBJECT = 28;
+    int LOGGER_TYPE_OBJECT = 32;
 
     /**
      * The meta object id for the '<em>Scope Type Object</em>' data type.
@@ -1788,7 +2188,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getScopeTypeObject()
      * @generated
      */
-    int SCOPE_TYPE_OBJECT = 29;
+    int SCOPE_TYPE_OBJECT = 33;
 
 
     /**
@@ -2527,6 +2927,28 @@ public interface RulesPackage extends EPackage {
     EReference getManifestType_Resources();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteJms <em>Remote Jms</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Remote Jms</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteJms()
+     * @see #getManifestType()
+     * @generated
+     */
+    EReference getManifestType_RemoteJms();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteRest <em>Remote Rest</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Remote Rest</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ManifestType#getRemoteRest()
+     * @see #getManifestType()
+     * @generated
+     */
+    EReference getManifestType_RemoteRest();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.MappingType <em>Mapping Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2835,6 +3257,222 @@ public interface RulesPackage extends EPackage {
      * @generated
      */
     EReference getFaultsType_Fault();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteType <em>Remote Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Remote Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteType
+     * @generated
+     */
+    EClass getRemoteType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getDeploymentId <em>Deployment Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Deployment Id</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getDeploymentId()
+     * @see #getRemoteType()
+     * @generated
+     */
+    EAttribute getRemoteType_DeploymentId();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getExtraJaxbClasses <em>Extra Jaxb Classes</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Extra Jaxb Classes</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getExtraJaxbClasses()
+     * @see #getRemoteType()
+     * @generated
+     */
+    EReference getRemoteType_ExtraJaxbClasses();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getPassword()
+     * @see #getRemoteType()
+     * @generated
+     */
+    EAttribute getRemoteType_Password();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getTimeout <em>Timeout</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Timeout</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getTimeout()
+     * @see #getRemoteType()
+     * @generated
+     */
+    EAttribute getRemoteType_Timeout();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getUserName <em>User Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>User Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteType#getUserName()
+     * @see #getRemoteType()
+     * @generated
+     */
+    EAttribute getRemoteType_UserName();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType <em>Remote Jms Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Remote Jms Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType
+     * @generated
+     */
+    EClass getRemoteJmsType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getHostName <em>Host Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Host Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getHostName()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_HostName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getKeystoreLocation <em>Keystore Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Keystore Location</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getKeystoreLocation()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_KeystoreLocation();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getKeystorePassword <em>Keystore Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Keystore Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getKeystorePassword()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_KeystorePassword();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getRemotingPort <em>Remoting Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Remoting Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getRemotingPort()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_RemotingPort();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getMessagingPort <em>Messaging Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Messaging Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getMessagingPort()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_MessagingPort();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getTruststoreLocation <em>Truststore Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Truststore Location</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getTruststoreLocation()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_TruststoreLocation();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getTruststorePassword <em>Truststore Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Truststore Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getTruststorePassword()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_TruststorePassword();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getUseSsl <em>Use Ssl</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Use Ssl</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType#getUseSsl()
+     * @see #getRemoteJmsType()
+     * @generated
+     */
+    EAttribute getRemoteJmsType_UseSsl();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType <em>Remote Rest Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Remote Rest Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType
+     * @generated
+     */
+    EClass getRemoteRestType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType#getUrl <em>Url</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Url</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType#getUrl()
+     * @see #getRemoteRestType()
+     * @generated
+     */
+    EAttribute getRemoteRestType_Url();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType#getUseFormBasedAuth <em>Use Form Based Auth</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Use Form Based Auth</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType#getUseFormBasedAuth()
+     * @see #getRemoteRestType()
+     * @generated
+     */
+    EAttribute getRemoteRestType_UseFormBasedAuth();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType <em>Extra Jaxb Classes Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Extra Jaxb Classes Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType
+     * @generated
+     */
+    EClass getExtraJaxbClassesType();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType#getExtraJaxbClass <em>Extra Jaxb Class</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Extra Jaxb Class</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType#getExtraJaxbClass()
+     * @see #getExtraJaxbClassesType()
+     * @generated
+     */
+    EAttribute getExtraJaxbClassesType_ExtraJaxbClass();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.rules.OperationType <em>Operation Type</em>}'.
@@ -3517,6 +4155,22 @@ public interface RulesPackage extends EPackage {
         EReference MANIFEST_TYPE__RESOURCES = eINSTANCE.getManifestType_Resources();
 
         /**
+         * The meta object literal for the '<em><b>Remote Jms</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MANIFEST_TYPE__REMOTE_JMS = eINSTANCE.getManifestType_RemoteJms();
+
+        /**
+         * The meta object literal for the '<em><b>Remote Rest</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MANIFEST_TYPE__REMOTE_REST = eINSTANCE.getManifestType_RemoteRest();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3765,6 +4419,174 @@ public interface RulesPackage extends EPackage {
          * @generated
          */
         EReference FAULTS_TYPE__FAULT = eINSTANCE.getFaultsType_Fault();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteTypeImpl <em>Remote Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteType()
+         * @generated
+         */
+        EClass REMOTE_TYPE = eINSTANCE.getRemoteType();
+
+        /**
+         * The meta object literal for the '<em><b>Deployment Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_TYPE__DEPLOYMENT_ID = eINSTANCE.getRemoteType_DeploymentId();
+
+        /**
+         * The meta object literal for the '<em><b>Extra Jaxb Classes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REMOTE_TYPE__EXTRA_JAXB_CLASSES = eINSTANCE.getRemoteType_ExtraJaxbClasses();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_TYPE__PASSWORD = eINSTANCE.getRemoteType_Password();
+
+        /**
+         * The meta object literal for the '<em><b>Timeout</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_TYPE__TIMEOUT = eINSTANCE.getRemoteType_Timeout();
+
+        /**
+         * The meta object literal for the '<em><b>User Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_TYPE__USER_NAME = eINSTANCE.getRemoteType_UserName();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteJmsTypeImpl <em>Remote Jms Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteJmsTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteJmsType()
+         * @generated
+         */
+        EClass REMOTE_JMS_TYPE = eINSTANCE.getRemoteJmsType();
+
+        /**
+         * The meta object literal for the '<em><b>Host Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__HOST_NAME = eINSTANCE.getRemoteJmsType_HostName();
+
+        /**
+         * The meta object literal for the '<em><b>Keystore Location</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__KEYSTORE_LOCATION = eINSTANCE.getRemoteJmsType_KeystoreLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Keystore Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__KEYSTORE_PASSWORD = eINSTANCE.getRemoteJmsType_KeystorePassword();
+
+        /**
+         * The meta object literal for the '<em><b>Remoting Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__REMOTING_PORT = eINSTANCE.getRemoteJmsType_RemotingPort();
+
+        /**
+         * The meta object literal for the '<em><b>Messaging Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__MESSAGING_PORT = eINSTANCE.getRemoteJmsType_MessagingPort();
+
+        /**
+         * The meta object literal for the '<em><b>Truststore Location</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__TRUSTSTORE_LOCATION = eINSTANCE.getRemoteJmsType_TruststoreLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Truststore Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__TRUSTSTORE_PASSWORD = eINSTANCE.getRemoteJmsType_TruststorePassword();
+
+        /**
+         * The meta object literal for the '<em><b>Use Ssl</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_JMS_TYPE__USE_SSL = eINSTANCE.getRemoteJmsType_UseSsl();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteRestTypeImpl <em>Remote Rest Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RemoteRestTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteRestType()
+         * @generated
+         */
+        EClass REMOTE_REST_TYPE = eINSTANCE.getRemoteRestType();
+
+        /**
+         * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_REST_TYPE__URL = eINSTANCE.getRemoteRestType_Url();
+
+        /**
+         * The meta object literal for the '<em><b>Use Form Based Auth</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute REMOTE_REST_TYPE__USE_FORM_BASED_AUTH = eINSTANCE.getRemoteRestType_UseFormBasedAuth();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ExtraJaxbClassesTypeImpl <em>Extra Jaxb Classes Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ExtraJaxbClassesTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExtraJaxbClassesType()
+         * @generated
+         */
+        EClass EXTRA_JAXB_CLASSES_TYPE = eINSTANCE.getExtraJaxbClassesType();
+
+        /**
+         * The meta object literal for the '<em><b>Extra Jaxb Class</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EXTRA_JAXB_CLASSES_TYPE__EXTRA_JAXB_CLASS = eINSTANCE.getExtraJaxbClassesType_ExtraJaxbClass();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.OperationType <em>Operation Type</em>}' enum.

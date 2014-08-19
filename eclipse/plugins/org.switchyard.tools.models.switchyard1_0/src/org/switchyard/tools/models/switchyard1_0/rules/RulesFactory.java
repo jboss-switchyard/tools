@@ -224,6 +224,33 @@ public interface RulesFactory extends EFactory {
     FaultsType createFaultsType();
 
     /**
+     * Returns a new object of class '<em>Remote Jms Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Remote Jms Type</em>'.
+     * @generated
+     */
+    RemoteJmsType createRemoteJmsType();
+
+    /**
+     * Returns a new object of class '<em>Remote Rest Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Remote Rest Type</em>'.
+     * @generated
+     */
+    RemoteRestType createRemoteRestType();
+
+    /**
+     * Returns a new object of class '<em>Extra Jaxb Classes Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Extra Jaxb Classes Type</em>'.
+     * @generated
+     */
+    ExtraJaxbClassesType createExtraJaxbClassesType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

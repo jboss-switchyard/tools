@@ -32,7 +32,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
      */
 	public static RulesFactory init() {
         try {
-            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-rules:config:2.0"); 
+            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory(RulesPackage.eNS_URI);
             if (theRulesFactory != null) {
                 return theRulesFactory;
             }
@@ -83,6 +83,9 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
             case RulesPackage.RESOURCE_TYPE: return createResourceType();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE: return createRulesImplementationType();
             case RulesPackage.FAULTS_TYPE: return createFaultsType();
+            case RulesPackage.REMOTE_JMS_TYPE: return createRemoteJmsType();
+            case RulesPackage.REMOTE_REST_TYPE: return createRemoteRestType();
+            case RulesPackage.EXTRA_JAXB_CLASSES_TYPE: return createExtraJaxbClassesType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -364,6 +367,36 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
     public FaultsType createFaultsType() {
         FaultsTypeImpl faultsType = new FaultsTypeImpl();
         return faultsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RemoteJmsType createRemoteJmsType() {
+        RemoteJmsTypeImpl remoteJmsType = new RemoteJmsTypeImpl();
+        return remoteJmsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RemoteRestType createRemoteRestType() {
+        RemoteRestTypeImpl remoteRestType = new RemoteRestTypeImpl();
+        return remoteRestType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ExtraJaxbClassesType createExtraJaxbClassesType() {
+        ExtraJaxbClassesTypeImpl extraJaxbClassesType = new ExtraJaxbClassesTypeImpl();
+        return extraJaxbClassesType;
     }
 
     /**
