@@ -67,6 +67,20 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         super(toolkit);
     }
 
+    private void handleSchemaTypeSelection(SelectionEvent e) {
+        wrapOperation(new Runnable(){
+            public void run() {
+                XmlValidateType xmlValidator = (XmlValidateType) getValidator();
+                String selectedSchemaType = _schemaTypeCombo.getText();
+                XmlSchemaType actualSchemaType = (XmlSchemaType) _schemaTypeCombo.getData(selectedSchemaType);
+                xmlValidator.setSchemaType(actualSchemaType);
+                fireChangedEvent(this);
+                handleModify(_schemaFileTable);
+                _schemaFileTable.getTreeViewer().refresh(true);
+            }
+        });
+    }
+    
     @Override
     public void createContents(Composite parent, int style, DataBindingContext context) {
         super.createContents(parent, style, context);
@@ -85,7 +99,17 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         _schemaTypeCombo.setData("XMLSCHEMA", XmlSchemaType.XMLSCHEMA); //$NON-NLS-1$
         _schemaTypeCombo.add("RELAX_NG",2); //$NON-NLS-1$
         _schemaTypeCombo.setData("RELAX_NG", XmlSchemaType.RELAXNG); //$NON-NLS-1$
-        _schemaTypeCombo.select(XmlSchemaType.DTD_VALUE);
+        _schemaTypeCombo.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                handleSchemaTypeSelection(e);
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
 
         Composite inner = getToolkit().createComposite(getPanel(), SWT.NONE);
         GridData innerGD = new GridData(SWT.FILL, SWT.NULL, true, true, 2, 1);
@@ -116,6 +140,9 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
                             fileEntry.setFile(filepath);
                             if (_schemaFileTable.getSelection() == null) {
                                 XmlValidateType xmlValidator = (XmlValidateType) getValidator();
+                                String selectedSchemaType = _schemaTypeCombo.getText();
+                                XmlSchemaType actualSchemaType = (XmlSchemaType) _schemaTypeCombo.getData(selectedSchemaType);
+                                xmlValidator.setSchemaType(actualSchemaType);
                                 xmlValidator.setSchemaFiles(ValidateFactory.eINSTANCE.createSchemaFilesType());
                                 _schemaFileTable.setSelection(xmlValidator.getSchemaFiles().getEntry());
                             }

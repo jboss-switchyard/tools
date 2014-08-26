@@ -92,6 +92,7 @@ public interface XmlValidateType extends ValidateType {
 
     /**
      * Returns the value of the '<em><b>Schema Type</b></em>' attribute.
+     * The default value is <code>"DTD"</code>.
      * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType}.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -101,9 +102,11 @@ public interface XmlValidateType extends ValidateType {
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Schema Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType
+     * @see #isSetSchemaType()
+     * @see #unsetSchemaType()
      * @see #setSchemaType(XmlSchemaType)
      * @see org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage#getXmlValidateType_SchemaType()
-     * @model required="true"
+     * @model default="DTD" unsettable="true" required="true"
      *        extendedMetaData="kind='attribute' name='schemaType'"
      * @generated
      */
@@ -115,13 +118,39 @@ public interface XmlValidateType extends ValidateType {
 	 * <!-- end-user-doc -->
      * @param value the new value of the '<em>Schema Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType
+     * @see #isSetSchemaType()
+     * @see #unsetSchemaType()
      * @see #getSchemaType()
      * @generated
      */
 	void setSchemaType(XmlSchemaType value);
 
 	/**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaType <em>Schema Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetSchemaType()
+     * @see #getSchemaType()
+     * @see #setSchemaType(XmlSchemaType)
+     * @generated
+     */
+    void unsetSchemaType();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaType <em>Schema Type</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Schema Type</em>' attribute is set.
+     * @see #unsetSchemaType()
+     * @see #getSchemaType()
+     * @see #setSchemaType(XmlSchemaType)
+     * @generated
+     */
+    boolean isSetSchemaType();
+
+    /**
      * Returns the value of the '<em><b>Fail On Warning</b></em>' attribute.
+     * The default value is <code>""</code>.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Fail On Warning</em>' attribute isn't clear,
@@ -131,7 +160,7 @@ public interface XmlValidateType extends ValidateType {
      * @return the value of the '<em>Fail On Warning</em>' attribute.
      * @see #setFailOnWarning(String)
      * @see org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage#getXmlValidateType_FailOnWarning()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='attribute' name='failOnWarning'"
      * @generated
      */

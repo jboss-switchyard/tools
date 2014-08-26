@@ -122,13 +122,14 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="schemaType" lowerBound="1"
-        eType="#//XmlSchemaType">
+        eType="#//XmlSchemaType" defaultValueLiteral="DTD" unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="schemaType"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="failOnWarning" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="failOnWarning" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+        defaultValueLiteral="">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="failOnWarning"/>

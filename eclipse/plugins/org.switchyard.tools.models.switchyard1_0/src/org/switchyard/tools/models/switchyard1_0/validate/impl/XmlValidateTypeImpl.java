@@ -75,6 +75,14 @@ public class XmlValidateTypeImpl extends ValidateTypeImpl implements XmlValidate
      */
 	protected XmlSchemaType schemaType = SCHEMA_TYPE_EDEFAULT;
 	/**
+     * This is true if the Schema Type attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean schemaTypeESet;
+    /**
      * The default value of the '{@link #getFailOnWarning() <em>Fail On Warning</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,7 +90,7 @@ public class XmlValidateTypeImpl extends ValidateTypeImpl implements XmlValidate
      * @generated
      * @ordered
      */
-	protected static final String FAIL_ON_WARNING_EDEFAULT = null;
+	protected static final String FAIL_ON_WARNING_EDEFAULT = "";
 	/**
      * The cached value of the '{@link #getFailOnWarning() <em>Fail On Warning</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -234,11 +242,36 @@ public class XmlValidateTypeImpl extends ValidateTypeImpl implements XmlValidate
 	public void setSchemaType(XmlSchemaType newSchemaType) {
         XmlSchemaType oldSchemaType = schemaType;
         schemaType = newSchemaType == null ? SCHEMA_TYPE_EDEFAULT : newSchemaType;
+        boolean oldSchemaTypeESet = schemaTypeESet;
+        schemaTypeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_TYPE, oldSchemaType, schemaType));
+            eNotify(new ENotificationImpl(this, Notification.SET, ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_TYPE, oldSchemaType, schemaType, !oldSchemaTypeESet));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSchemaType() {
+        XmlSchemaType oldSchemaType = schemaType;
+        boolean oldSchemaTypeESet = schemaTypeESet;
+        schemaType = SCHEMA_TYPE_EDEFAULT;
+        schemaTypeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_TYPE, oldSchemaType, SCHEMA_TYPE_EDEFAULT, oldSchemaTypeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSchemaType() {
+        return schemaTypeESet;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -360,7 +393,7 @@ public class XmlValidateTypeImpl extends ValidateTypeImpl implements XmlValidate
                 setSchemaCatalogs((SchemaCatalogsType)null);
                 return;
             case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_TYPE:
-                setSchemaType(SCHEMA_TYPE_EDEFAULT);
+                unsetSchemaType();
                 return;
             case ValidatePackage.XML_VALIDATE_TYPE__FAIL_ON_WARNING:
                 setFailOnWarning(FAIL_ON_WARNING_EDEFAULT);
@@ -385,7 +418,7 @@ public class XmlValidateTypeImpl extends ValidateTypeImpl implements XmlValidate
             case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_CATALOGS:
                 return schemaCatalogs != null;
             case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_TYPE:
-                return schemaType != SCHEMA_TYPE_EDEFAULT;
+                return isSetSchemaType();
             case ValidatePackage.XML_VALIDATE_TYPE__FAIL_ON_WARNING:
                 return FAIL_ON_WARNING_EDEFAULT == null ? failOnWarning != null : !FAIL_ON_WARNING_EDEFAULT.equals(failOnWarning);
             case ValidatePackage.XML_VALIDATE_TYPE__NAMESPACE_AWARE:
@@ -405,7 +438,7 @@ public class XmlValidateTypeImpl extends ValidateTypeImpl implements XmlValidate
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (schemaType: ");
-        result.append(schemaType);
+        if (schemaTypeESet) result.append(schemaType); else result.append("<unset>");
         result.append(", failOnWarning: ");
         result.append(failOnWarning);
         result.append(", namespaceAware: ");

@@ -40,7 +40,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
+import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidateFactory;
+import org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType;
+import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -73,10 +76,11 @@ public final class ValidatorTypesUtil {
     public static List<ValidateType> getSupportedValidateTypes() {
         ArrayList<ValidateType> typeList = new ArrayList<ValidateType>();
 
-        ValidateType xmlType = ValidateFactory.eINSTANCE.createXmlValidateType();
+        XmlValidateType xmlType = ValidateFactory.eINSTANCE.createXmlValidateType();
+        xmlType.setSchemaType(XmlSchemaType.DTD);
         typeList.add(xmlType);
 
-        ValidateType javaType = ValidateFactory.eINSTANCE.createJavaValidateType();
+        JavaValidateType javaType = ValidateFactory.eINSTANCE.createJavaValidateType();
         typeList.add(javaType);
 
         return typeList;

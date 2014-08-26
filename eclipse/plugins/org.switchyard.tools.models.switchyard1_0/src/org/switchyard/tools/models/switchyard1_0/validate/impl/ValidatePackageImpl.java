@@ -40,10 +40,16 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -211,6 +217,9 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
         QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
+        RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -239,6 +248,9 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         theNettyPackage.createPackageContents();
         theQuartzPackage.createPackageContents();
         theSqlPackage.createPackageContents();
+        theRssPackage.createPackageContents();
+        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
 
         // Initialize created meta-data
         theValidatePackage.initializePackageContents();
@@ -264,6 +276,9 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         theNettyPackage.initializePackageContents();
         theQuartzPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
+        theRssPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -616,8 +631,8 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         initEClass(xmlValidateTypeEClass, XmlValidateType.class, "XmlValidateType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getXmlValidateType_SchemaFiles(), this.getSchemaFilesType(), null, "SchemaFiles", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getXmlValidateType_SchemaCatalogs(), this.getSchemaCatalogsType(), null, "SchemaCatalogs", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getXmlValidateType_SchemaType(), this.getXmlSchemaType(), "schemaType", null, 1, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getXmlValidateType_FailOnWarning(), theXMLTypePackage.getString(), "failOnWarning", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXmlValidateType_SchemaType(), this.getXmlSchemaType(), "schemaType", "DTD", 1, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXmlValidateType_FailOnWarning(), theXMLTypePackage.getString(), "failOnWarning", "", 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXmlValidateType_NamespaceAware(), theXMLTypePackage.getString(), "namespaceAware", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(schemaFilesTypeEClass, SchemaFilesType.class, "SchemaFilesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
