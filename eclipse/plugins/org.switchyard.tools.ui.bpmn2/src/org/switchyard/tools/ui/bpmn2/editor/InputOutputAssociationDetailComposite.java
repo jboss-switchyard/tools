@@ -61,7 +61,7 @@ public class InputOutputAssociationDetailComposite extends JbpmDataAssociationDe
         protected void bindAttribute(Composite parent, EObject object, EAttribute attribute, String label) {
             if ("name".equals(attribute.getName())) { //$NON-NLS-1$
                 if (label == null) {
-                    label = getPropertiesProvider().getLabel(object, attribute);
+                    label = getBusinessObjectDelegate().getLabel(object, attribute);
                 }
                 ObjectEditor editor = new ReadonlyTextObjectEditor(this, object, attribute);
                 editor.createControl(parent, label);

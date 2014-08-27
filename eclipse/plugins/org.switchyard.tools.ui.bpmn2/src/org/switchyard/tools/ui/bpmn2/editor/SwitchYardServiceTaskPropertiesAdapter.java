@@ -43,7 +43,7 @@ public class SwitchYardServiceTaskPropertiesAdapter extends ServiceTaskPropertie
 
         final EStructuralFeature feature = Bpmn2Package.eINSTANCE.getServiceTask_Implementation();
         final FeatureDescriptor<ServiceTask> parentDescriptor = getFeatureDescriptor(feature);
-        setFeatureDescriptor(feature, new FeatureDescriptor<ServiceTask>(adapterFactory, object, feature) {
+        setFeatureDescriptor(feature, new FeatureDescriptor<ServiceTask>(this, object, feature) {
             @Override
             public Hashtable<String, Object> getChoiceOfValues(Object context) {
                 if (choiceOfValues == null) {

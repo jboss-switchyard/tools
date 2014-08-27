@@ -219,7 +219,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
 
                 if ("Parameter".equals(name)) { //$NON-NLS-1$
                     _parameter = parameter;
-                    Section inputSection = createSection(this, Messages.label_input);
+                    Section inputSection = createSection(this, Messages.label_input, false);
                     inputSection.setLayout(new FillLayout());
                     inputSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
                     InputOutputAssociationDetailComposite inputComposite = new InputOutputAssociationDetailComposite(
@@ -321,7 +321,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
 
                 if ("Result".equals(name)) { //$NON-NLS-1$
                     _result = result;
-                    Section outputSection = createSection(this, "Output"); //$NON-NLS-1$
+                    Section outputSection = createSection(this, "Output", false); //$NON-NLS-1$
                     outputSection.setLayout(new FillLayout());
                     outputSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
                     InputOutputAssociationDetailComposite outputComposite = new InputOutputAssociationDetailComposite(
@@ -329,9 +329,9 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                     outputSection.setClient(outputComposite);
                     outputComposite.setBusinessObject(result);
                     outputSection.setText(Messages.label_resultMappingDetails);
-                    outputSection.setExpanded(false);
+//                    outputSection.setExpanded(false);
                 } else if ("Fault".equals(name)) { //$NON-NLS-1$
-                    Section faultSection = createSection(this, "Fault"); //$NON-NLS-1$
+                    Section faultSection = createSection(this, "Fault", false); //$NON-NLS-1$
                     faultSection.setLayout(new FillLayout());
                     faultSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
                     InputOutputAssociationDetailComposite faultComposite = new InputOutputAssociationDetailComposite(
@@ -339,7 +339,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                     faultSection.setClient(faultComposite);
                     faultComposite.setBusinessObject(result);
                     faultSection.setText(Messages.label_faultMappingDetails);
-                    faultSection.setExpanded(false);
+//                    faultSection.setExpanded(false);
                 }
             }
         }
