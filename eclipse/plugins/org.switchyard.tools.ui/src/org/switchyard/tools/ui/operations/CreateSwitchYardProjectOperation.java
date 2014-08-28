@@ -567,11 +567,13 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                     "org.ops4j.pax.cdi.extension; filter:=\"(extension=switchyard-component-bean)\",\n" //$NON-NLS-1$
                     + "org.ops4j.pax.cdi.extension; filter:=\"(extension=deltaspike-core-api)\",\n" //$NON-NLS-1$
                     + "osgi.extender; filter:=\"(osgi.extender=pax.cdi)\""); //$NON-NLS-1$
-            model.addProperty("switchyard.osgi.provide.capability", ""); //$NON-NLS-1$ //$NON-NLS-2$
+//            model.addProperty("switchyard.osgi.provide.capability", ""); //$NON-NLS-1$ //$NON-NLS-2$
             model.addProperty("switchyard.osgi.symbolic.name", _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$ //$NON-NLS-2$
             model.addProperty("switchyard.osgi.export", _projectMetatData.getPackageName() + "*"); //$NON-NLS-1$ //$NON-NLS-2$
             model.addProperty("switchyard.osgi.import",  //$NON-NLS-1$
                     "org.switchyard.*;version=\"[$(version;==;${switchyard.version}),$(version;=+;${switchyard.version}))\"\n,*"); //$NON-NLS-1$
+            model.addProperty("switchyard.osgi.dynamic",  //$NON-NLS-1$
+                    "org.switchyard,org.switchyard.*"); //$NON-NLS-1$
         }
 
         String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
@@ -717,6 +719,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         instructions.addChild(createNode("Bundle-SymbolicName", "${project.groupId}" + "." + "${project.artifactId}")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         instructions.addChild(createNode("Import-Package", "${switchyard.osgi.import}")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("Include-Resource", "{maven-resources}, META-INF/switchyard.xml=target/classes/META-INF/switchyard.xml")); //$NON-NLS-1$ //$NON-NLS-2$
+        instructions.addChild(createNode("DynamicImport-Package", "${switchyard.osgi.dynamic}")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("_failok", "true")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("Embed-Dependency", "!*")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("Require-Capability", "${switchyard.osgi.require.capability}")); //$NON-NLS-1$ //$NON-NLS-2$
