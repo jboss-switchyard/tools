@@ -39,6 +39,7 @@ import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
+import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
@@ -61,6 +62,8 @@ import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.graphiti.util.IColorConstant;
+import org.eclipse.graphiti.util.ILocationInfo;
+import org.eclipse.graphiti.util.LocationInfo;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
@@ -92,6 +95,7 @@ import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCreateServiceFea
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCustomPromoteServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.CompositeCreateConnectionFeature;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
+import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
 /**
@@ -889,4 +893,28 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         return false;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#getLocationInfo(org.eclipse.graphiti.mm.pictograms.PictogramElement, org.eclipse.graphiti.util.ILocationInfo)
+     * This code was adapted from the FAQ #5 here- http://www.eclipse.org/graphiti/developers/faq.php
+     */
+    @Override
+    public ILocationInfo getLocationInfo(PictogramElement pe, ILocationInfo locationInfo) {
+        PictogramElement[] selectedPictogramElements = getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().getSelectedPictogramElements();
+        if (selectedPictogramElements != null && selectedPictogramElements.length > 0) {
+            // Use the first selected pictogram element for direct editing
+            PictogramElement pictogramElement = selectedPictogramElements[0];
+            if (pictogramElement instanceof ContainerShape) {
+                Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(pictogramElement);
+                if (bo instanceof Composite || bo instanceof Component || bo instanceof Service || bo instanceof Reference) {
+                    ContainerShape shape = (ContainerShape) pictogramElement;
+                    GraphicsAlgorithm ga = shape.getGraphicsAlgorithm();
+                    Text text = GraphitiUtil.findChildGA(ga, Text.class);
+                    if (text != null) {
+                        return new LocationInfo(shape, text);
+                    }
+                }
+            }
+        }
+        return super.getLocationInfo(pe, locationInfo);
+    }
 }
