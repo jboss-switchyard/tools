@@ -102,7 +102,7 @@ public interface DocumentRoot extends EObject {
      * @see #setTransformDozer(DozerTransformType)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformDozer()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='transform.dozer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#transform'"
+     *        extendedMetaData="kind='element' name='transform.dozer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#transform'"
      * @generated
      */
     DozerTransformType getTransformDozer();

@@ -19,8 +19,10 @@ import org.eclipse.emf.compare.match.IMatchEngine.Factory;
 import org.eclipse.emf.compare.match.eobject.EditionDistance;
 import org.eclipse.emf.compare.match.eobject.IEObjectMatcher;
 import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher;
+import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher.DefaultIDFunction;
 import org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher;
 import org.eclipse.emf.compare.scope.IComparisonScope;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
@@ -28,8 +30,15 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardSwitch;
 
 /**
  * SwitchYardMatchEngineFactory
@@ -90,7 +99,7 @@ public class SwitchYardMatchEngineFactory implements Factory {
                                 && (super.irrelevant(feat) || ExtendedMetaData.INSTANCE.getFeatureKind(feat) == ExtendedMetaData.GROUP_FEATURE);
                     }
                 }).build();
-        IEObjectMatcher matcher = new IdentifierEObjectMatcher(new ProximityEObjectMatcher(meter));
+        IEObjectMatcher matcher = new IdentifierEObjectMatcher(new ProximityEObjectMatcher(meter), new IDFunctionOverride());
         _matchEngine = new DefaultMatchEngine(matcher, new DefaultComparisonFactory(new DefaultEqualityHelperFactory()));
     }
 
@@ -114,4 +123,44 @@ public class SwitchYardMatchEngineFactory implements Factory {
         return scope.getLeft() instanceof SwitchyardResourceImpl && scope.getRight() instanceof SwitchyardResourceImpl;
     }
 
+    private static final class IDFunctionOverride extends DefaultIDFunction {
+        @Override
+        public String apply(EObject eObject) {
+            // ensure container classes always match
+            return new SwitchyardSwitch<String>() {
+                @Override
+                public String caseArtifactsType(ArtifactsType object) {
+                    return SwitchyardPackage.eINSTANCE.getSwitchYardType_Artifacts().getName();
+                }
+                @Override
+                public String caseDomainType(DomainType object) {
+                    return SwitchyardPackage.eINSTANCE.getSwitchYardType_Domain().getName();
+                }
+                @Override
+                public String casePropertiesType(PropertiesType object) {
+                    return object.eContainer().eClass().getName() + "Properties";
+                }
+                @Override
+                public String caseSecuritiesType(org.switchyard.tools.models.switchyard1_0.switchyard.SecuritiesType object) {
+                  return SwitchyardPackage.eINSTANCE.getDomainType_Securities().getName();
+                };
+                @Override
+                public String caseSwitchYardType(SwitchYardType object) {
+                    return SwitchyardPackage.eINSTANCE.getSwitchYardType().getName();
+                }
+                @Override
+                public String caseTransformsType(TransformsType object) {
+                    return object.eContainer().eClass().getName() + "Transforms";
+                }
+                @Override
+                public String caseValidatesType(ValidatesType object) {
+                    return object.eContainer().eClass().getName() + "Validates";
+                }
+                @Override
+                public String defaultCase(EObject object) {
+                    return IDFunctionOverride.super.apply(object);
+                }
+            }.doSwitch(eObject);
+        }
+    }
 }

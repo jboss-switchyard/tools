@@ -832,7 +832,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "transform.dozer",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#transform"
+             "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
            });		
         addAnnotation
           (getDocumentRoot_TransformJava(), 
