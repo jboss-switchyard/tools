@@ -14,25 +14,28 @@ import static org.switchyard.tools.ui.validation.ValidationProblem.CamelImplemen
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelJavaUnresolvableClass;
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelJavaUnspecifiedClass;
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelJavaWrongSuperclass;
+import static org.switchyard.tools.ui.validation.ValidationProblem.CamelRouteMoreThanOneFromFound;
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelRouteOperationNotFoundAsReference;
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelRouteOperationNotFoundAsService;
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelRouteOperationRequiredNotSpecified;
+import static org.switchyard.tools.ui.validation.ValidationProblem.CamelRouteURIInvalid;
+import static org.switchyard.tools.ui.validation.ValidationProblem.CamelXMLNotFound;
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelXMLUnspecified;
-import static org.switchyard.tools.ui.validation.ValidationProblem.InvalidCamelRouteOperationReference;
 import static org.switchyard.tools.ui.validation.ValidationProblem.MissingReferenceDeclaration;
 import static org.switchyard.tools.ui.validation.ValidationProblem.MissingServiceDeclaration;
-import static org.switchyard.tools.ui.validation.ValidationProblem.CamelXMLNotFound;
-import static org.switchyard.tools.ui.validation.ValidationProblem.CamelRouteMoreThanOneFromFound;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -50,10 +53,12 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
@@ -63,6 +68,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.switchyard.metadata.ServiceInterface;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.validation.SwitchYardProjectValidator.ValidationAdapter;
@@ -342,9 +348,24 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
             IJavaProject javaProject) {
         final List<IStatus> statuses = new ArrayList<IStatus>();
         
+        // switchyard://[service-name]?operationName=[operation-name]
+        // switchyard://ReverseService?hack=one&amp;operationName=[operation-name]&amp;jimminy=cricket
+        URI testURI = null;
         try {
-            // switchyard://[service-name]?operationName=[operation-name]
-            URI testURI = new URI(uriValue);
+            testURI = new URI(uriValue);
+        } catch (URISyntaxException ex) {
+            String fromOrTo = "TO";
+            if (isFrom) {
+                fromOrTo = "FROM";
+            }
+            statuses.add(ConstraintStatus
+                    .createStatus(ctx, component, null, CamelRouteURIInvalid.getSeverity(),
+                            CamelRouteURIInvalid.ordinal(), CamelRouteURIInvalid.getMessage(), fromOrTo, 
+                            component.getName(),
+                            ex.getLocalizedMessage()));
+        }
+        
+        if (testURI != null) {
             final String scheme = testURI.getScheme();
             ComponentService serviceFound = null;
             ComponentReference referenceFound = null;
@@ -377,20 +398,7 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
                     }
                 }
     
-                final String query = testURI.getQuery();
-                String operationName = null;
-                if (query != null) {
-                    int posEquals = query.indexOf('=');
-                    if (query != null && posEquals > -1) {
-                        operationName = query.substring(posEquals + 1);
-                    } else {
-                        // invalid - operation name must be in the format "operationName=[operation-name]"
-                        statuses.add(ConstraintStatus
-                                .createStatus(ctx, component, null, InvalidCamelRouteOperationReference.getSeverity(),
-                                        InvalidCamelRouteOperationReference.ordinal(), InvalidCamelRouteOperationReference.getMessage(),
-                                        component.getName(), query));
-                    }
-                }
+                String operationName = getOperationName(testURI);
                 if (!isFrom && operationName != null && referenceFound != null) {
                     // verify that the referenced interface includes the operation
                     if (!checkInterfaceForOperation(referenceFound.getInterface(), operationName, javaProject)) {
@@ -419,10 +427,9 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
                     }
                 }
             }
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
+        // by this point the URI has already been validated or not, so any messages 
+        // should have been created
 
         if (statuses.isEmpty()) {
             return ctx.createSuccessStatus();
@@ -430,8 +437,36 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
         return ConstraintStatus.createMultiStatus(ctx, statuses);
     }
     
-    private boolean checkInterfaceForOperation(Interface intfc, String opName, IJavaProject javaProject) {
+    private String getOperationName(URI uri) {
         try {
+            final String query = uri.getQuery();
+            if (query == null) {
+                return null;
+            }
+            // XXX: we should be using the encoding specified in the XML
+            for (String pair : URLDecoder.decode(query, "UTF-8").split("&")) {
+                final int index = pair.indexOf('=');
+                if (index < 0) {
+                    continue;
+                }
+                final String name = pair.substring(0, index);
+                if ("operationName".equals(name)) {
+                    return pair.substring(index + 1);
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    private boolean checkInterfaceForOperation(Interface intfc, String opName, IJavaProject javaProject) {
+        ClassLoader oldTCCL = Thread.currentThread().getContextClassLoader();
+        try {
+            Thread.currentThread().setContextClassLoader(
+                    JavaUtil.getProjectClassLoader(
+                            JavaCore.create(WorkspaceSynchronizer.getFile(intfc.eResource()).getProject()), 
+                            getClass().getClassLoader()));
             if (intfc instanceof JavaInterface) {
                 JavaInterface javaIntfc = (JavaInterface) intfc;
                 String className = javaIntfc.getInterface();
@@ -452,18 +487,34 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
                 if (serviceIntfc != null && serviceIntfc.getOperations() != null) {
                     if (serviceIntfc.getOperation(opName) != null) {
                         return true;
+                    } else {
+                        try {
+                            QName qname = new QName(opName);
+                            if (serviceIntfc.getOperation(qname.getLocalPart()) != null) {
+                                return true;
+                            }
+                        } catch (IllegalArgumentException e) {
+                            return false;
+                        }
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            Thread.currentThread().setContextClassLoader(oldTCCL);
         }
         return false;
     }
     
     private boolean checkInterfaceForNumberOfOperations(Interface intfc, IJavaProject javaProject) {
+        ClassLoader oldTCCL = Thread.currentThread().getContextClassLoader();
         // if we have zero or one operation, no operation name is required
         try {
+            Thread.currentThread().setContextClassLoader(
+                    JavaUtil.getProjectClassLoader(
+                            JavaCore.create(WorkspaceSynchronizer.getFile(intfc.eResource()).getProject()), 
+                            getClass().getClassLoader()));
             if (intfc instanceof JavaInterface) {
                 JavaInterface javaIntfc = (JavaInterface) intfc;
                 String className = javaIntfc.getInterface();
@@ -484,6 +535,8 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            Thread.currentThread().setContextClassLoader(oldTCCL);
         }
         return false;
     }

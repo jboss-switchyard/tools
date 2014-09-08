@@ -167,6 +167,10 @@ public enum ValidationProblem {
     /** Route for implementation.camel specifies more than a single "from". */
     CamelRouteMoreThanOneFromFound(
             Messages.ValidationProblem_CamelRouteMoreThanOneFromFound,
+            IStatus.ERROR, false),
+    /** To or From URI in camel route is invalid. */
+    CamelRouteURIInvalid(
+            Messages.ValidationProblem_CamelRouteURIInvalid,
             IStatus.ERROR, false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
