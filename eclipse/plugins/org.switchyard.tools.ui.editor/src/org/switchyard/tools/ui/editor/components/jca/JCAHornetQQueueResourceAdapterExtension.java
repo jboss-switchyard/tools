@@ -68,6 +68,8 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
     private static final String DESTINATION_DEFAULT = "queue/YourQueueName";  //$NON-NLS-1$
     private static final String ACKNOWLEDGE_MODE_DEFAULT = "Auto-acknowledge"; //$NON-NLS-1$
     private static final String RESOURCE_ADAPTER_NAME = "hornetq-ra.rar"; //$NON-NLS-1$
+    
+    private static final String OUTBOUND_CONNECTION_JNDINAME_DEFAULT = "java:/JmsXA"; //$NON-NLS-1$
 
     private static final IInboundConnectionSettings INBOUND_CONNECTION_SETTINGS = new IInboundConnectionSettings() {
         @SuppressWarnings("serial")
@@ -141,7 +143,7 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
         
         @Override
         public String getConnectionJndiName() {
-            return null;
+            return OUTBOUND_CONNECTION_JNDINAME_DEFAULT;
         }
     };
 
