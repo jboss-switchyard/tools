@@ -18,10 +18,15 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.emf.databinding.edit.IEMFEditObservable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
+import org.switchyard.tools.models.switchyard1_0.jca.Processor;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 
 /**
@@ -33,6 +38,7 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
     private final String _name;
     private Property _property;
     private final Object _type;
+    private final boolean _removeNullProperties;
     private final IChangeListener _listener = new IChangeListener() {
         @Override
         public void handleChange(ChangeEvent event) {
@@ -54,6 +60,26 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
         _name = name;
         _property = findProperty();
         _type = type;
+        _removeNullProperties = false;
+        _list.addChangeListener(_listener);
+    }
+
+    /**
+     * Create a new JCANamedPropertyObservableValue.
+     * 
+     * @param realm the realm
+     * @param list the property list
+     * @param name the name of the property
+     * @param type the value type
+     * @param removeNullProps true/false to remove properties with a null value
+     */
+    public JCANamedPropertyObservableValue(Realm realm, IObservableList list, String name, Object type, boolean removeNullProps) {
+        super(realm);
+        _list = list;
+        _name = name;
+        _property = findProperty();
+        _type = type;
+        _removeNullProperties = removeNullProps;
         _list.addChangeListener(_listener);
     }
 
@@ -70,6 +96,26 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
         _name = name;
         _property = findProperty();
         _type = String.class;
+        _removeNullProperties = false;
+        
+        _list.addChangeListener(_listener);
+    }
+
+    /**
+     * Create a new JCANamedPropertyObservableValue.
+     * 
+     * @param realm the realm
+     * @param list the property list
+     * @param name the name of the property
+     * @param removeNullProps true/false to remove properties with a null value
+     */
+    public JCANamedPropertyObservableValue(Realm realm, IObservableList list, String name, boolean removeNullProps) {
+        super(realm);
+        _list = list;
+        _name = name;
+        _property = findProperty();
+        _type = String.class;
+        _removeNullProperties = removeNullProps;
         
         _list.addChangeListener(_listener);
     }
@@ -116,10 +162,61 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
             }
             if (_list instanceof IEMFEditObservable) {
                 final EditingDomain domain = ((IEMFEditObservable) _list).getEditingDomain();
-                domain.getCommandStack().execute(
-                        SetCommand.create(domain, _property, JcaPackage.Literals.PROPERTY__VALUE, value));
+                if (!_removeNullProperties) {
+                    domain.getCommandStack().execute(
+                            SetCommand.create(domain, _property, JcaPackage.Literals.PROPERTY__VALUE, value));
+                } else {
+                    if (value == null) {
+                        final EObject container = _property.eContainer();
+                        if (container instanceof Processor) {
+                            if (domain instanceof TransactionalEditingDomain) {
+                                TransactionalEditingDomain ted = (TransactionalEditingDomain) domain;
+                                ted.getCommandStack().execute(new RecordingCommand(ted) {
+                                    @Override
+                                    protected void doExecute() {
+                                        Processor processor = (Processor) container;
+                                        boolean flag = processor.getProperty().remove(_property);
+                                        System.out.println("Property was removed: " + flag);
+                                    }
+                                });
+                            }
+                        } else if (container instanceof Endpoint) {
+                            if (domain instanceof TransactionalEditingDomain) {
+                                TransactionalEditingDomain ted = (TransactionalEditingDomain) domain;
+                                ted.getCommandStack().execute(new RecordingCommand(ted) {
+                                    @Override
+                                    protected void doExecute() {
+                                        Endpoint endpoint = (Endpoint) container;
+                                        boolean flag = endpoint.getProperty().remove(_property);
+                                        System.out.println("Property was removed: " + flag);
+                                    }
+                                });
+                            }
+                        }
+                    } else {
+                        domain.getCommandStack().execute(
+                                SetCommand.create(domain, _property, JcaPackage.Literals.PROPERTY__VALUE, value));
+                    }
+                }
             } else {
-                _property.setValue(value);
+                if (!_removeNullProperties) {
+                    _property.setValue(value);
+                } else {
+                    if (value == null) {
+                        final EObject container = _property.eContainer();
+                        if (container instanceof Processor) {
+                            Processor processor = (Processor) container;
+                            boolean flag = processor.getProperty().remove(_property);
+                            System.out.println("Property was removed: " + flag);
+                        } else if (container instanceof Endpoint) {
+                            Endpoint endpoint = (Endpoint) container;
+                            boolean flag = endpoint.getProperty().remove(_property);
+                            System.out.println("Property was removed: " + flag);
+                        }
+                    } else {
+                        _property.setValue(value);
+                    }
+                }
             }
         }
         fireValueChange(Diffs.createValueDiff(original, value));

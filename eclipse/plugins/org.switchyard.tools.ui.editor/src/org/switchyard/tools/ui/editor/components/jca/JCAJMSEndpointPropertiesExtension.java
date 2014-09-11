@@ -17,8 +17,11 @@ import java.util.Set;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
@@ -27,12 +30,15 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -64,6 +70,8 @@ public class JCAJMSEndpointPropertiesExtension implements
     private static final String PASSWORD_PROP = "password"; //$NON-NLS-1$
     private static final String REPLY_TO_PROP = "replyTo"; //$NON-NLS-1$
     private static final String USER_NAME_PROP = "username"; //$NON-NLS-1$
+    private static final String DESTINATION_TYPE_PROP = "destinationType"; //$NON-NLS-1$
+    
     @SuppressWarnings("serial")
     private static final Set<String> HIDDEN_PROPERTIES = new HashSet<String>() {
         {
@@ -103,8 +111,12 @@ public class JCAJMSEndpointPropertiesExtension implements
         private Combo _messageTypeCombo;
         private Text _usernameText;
         private Text _passwordText;
+        private ComboViewer _destinationTypeCombo;
+        private Button _jndiLookupCheckbox;
         private WritableValue _bindingValue;
-
+        private IObservableValue _jndiLookupSelectionValue;
+        private IObservableValue _destinationTypeValue;
+        
         @Override
         public String getTitle() {
             return Messages.JCAJMSEndpointPropertiesExtension_title;
@@ -125,15 +137,19 @@ public class JCAJMSEndpointPropertiesExtension implements
             endpointPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, true, 3, 1));
             endpointPropsGroup.setLayout(new GridLayout(2, false));
             getToolkit().adapt(endpointPropsGroup);
-            
+
+            /* Connection Factory related Properties */
+            _connectionFactoryJNDINameText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_ConnectionFactoryJNDIName_label);
             _jndiPropsFileNameText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_JNDIPropsFileName_Label);
 
+            /* Properties related to sending Reply / Fault */
+            _jndiLookupCheckbox = createCheckbox(endpointPropsGroup, "Use JNDI Lookup for Destination", 2);
+            _destinationTypeCombo = createLabelAndComboViewer(endpointPropsGroup, "Destination Type", true); 
+            _destinationTypeCombo.add("javax.jms.Queue"); //$NON-NLS-1$
+            _destinationTypeCombo.add("javax.jms.Topic"); //$NON-NLS-1$
+
             _destinationJndiPropertiesFileNameText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_DestinationJNDIPropertiesFileName_label);
-
-            _connectionFactoryJNDINameText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_ConnectionFactoryJNDIName_label);
-
             _replyToText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_ReplyTo_Label);
-
             _faultToText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_FaultTo_Label);
 
             _messageTypeCombo = createLabelAndCombo(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_MessageType_label, true);
@@ -145,8 +161,8 @@ public class JCAJMSEndpointPropertiesExtension implements
             _messageTypeCombo.add("Bytes"); //$NON-NLS-1$
             _messageTypeCombo.add("Plain"); //$NON-NLS-1$
 
+            /* Other properties */
             _usernameText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_UserName_label);
-
             _passwordText = createLabelAndText(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_Password_label);
 
             getToolkit().createLabel(endpointPropsGroup, Messages.JCAJMSEndpointPropertiesExtension_PropertyList_label); //new Label(endpointPropsGroup, SWT.NONE);
@@ -184,8 +200,42 @@ public class JCAJMSEndpointPropertiesExtension implements
                     new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
             ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
 
+            final IObservableValue destinationJNDIPropFileNameValue = new JCANamedPropertyObservableValue(realm, propertiesList, DESTINATION_JNDI_PROPERTIES_FILE_PROP, true);
+            _destinationTypeValue = new JCANamedPropertyObservableValue(realm, propertiesList, DESTINATION_TYPE_PROP);
+            _jndiLookupSelectionValue = new WritableValue(realm, null, Boolean.class);
+            
+            binding = context.bindValue(
+                    SWTObservables.observeSelection(_jndiLookupCheckbox), 
+                    _jndiLookupSelectionValue,
+                    new EMFUpdateValueStrategyNullForEmptyString(null,
+                            UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+            
+            _jndiLookupSelectionValue.addChangeListener(new IChangeListener() {
+                @Override
+                public void handleChange(ChangeEvent event) {
+                    boolean isJNDILookupSelected = ((Boolean) _jndiLookupSelectionValue.getValue()).booleanValue();
+                    _destinationTypeCombo.getControl().setEnabled(!isJNDILookupSelected);
+                    _destinationJndiPropertiesFileNameText.setEnabled(isJNDILookupSelected);
+                    if (isJNDILookupSelected) {
+                        _destinationTypeValue.setValue("JNDI");
+                    } else {
+                        String value = (String) _destinationTypeValue.getValue();
+                        if (value == null || (value != null && value.equalsIgnoreCase("JNDI"))) {
+                                _destinationTypeValue.setValue("javax.jms.Queue");
+                                destinationJNDIPropFileNameValue.setValue(null);
+                            }
+                        }
+                }
+            });
+            
+            binding = context.bindValue(ViewersObservables.observeSingleSelection(_destinationTypeCombo),
+                    _destinationTypeValue,
+                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
+            
             binding = context.bindValue(SWTObservables.observeText(_destinationJndiPropertiesFileNameText, SWT.Modify),
-                    new JCANamedPropertyObservableValue(realm, propertiesList, DESTINATION_JNDI_PROPERTIES_FILE_PROP),
+                    destinationJNDIPropFileNameValue,
                     new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
             ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
 
@@ -217,6 +267,7 @@ public class JCAJMSEndpointPropertiesExtension implements
                     new JCANamedPropertyObservableValue(realm, propertiesList, USER_NAME_PROP),
                     new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
             ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT, _panel);
+            
         }
 
         @Override
@@ -230,6 +281,14 @@ public class JCAJMSEndpointPropertiesExtension implements
             _binding = (JCABinding) impl;
             _bindingValue.setValue(_binding);
             _propsList.setTargetObject(_binding);
+            if (_destinationTypeValue.getValue() != null) {
+                String value = (String) _destinationTypeValue.getValue();
+                if (value.equalsIgnoreCase("JNDI")) {
+                    _jndiLookupSelectionValue.setValue(Boolean.TRUE);
+                } else {
+                    _jndiLookupSelectionValue.setValue(Boolean.FALSE);
+                }
+            }
         }
     }
 }
