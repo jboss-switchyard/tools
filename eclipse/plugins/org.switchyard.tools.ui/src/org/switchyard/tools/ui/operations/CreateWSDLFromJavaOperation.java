@@ -85,79 +85,81 @@ public class CreateWSDLFromJavaOperation implements IWorkspaceRunnable {
         } catch (Exception e) {
             throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_exceptionMessage_wsdlGenerationFailed, e));
         }
-        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusMessage_wsdlGeneratedSuccessfully));
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        InputStream is = null;
-        try {
-            WSDLFactory.newInstance().newWSDLWriter().writeWSDL(java2wsdl.getGeneratedWSDL(), baos);
-            is = new ByteArrayInputStream(baos.toByteArray());
-            String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_operationLabel_writingWSDLFile, _wsdlFile.getName());
-            final CreateFileOperation op = new CreateFileOperation(_wsdlFile, null, is, message);
-            op.execute(monitor, null);
-        } catch (Exception e) {
-            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_exceptionMessage_errorWritingWSDL, e));
-        } finally {
+        if (java2wsdl.getGeneratedWSDL() != null) {
+            _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusMessage_wsdlGeneratedSuccessfully));
+    
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            InputStream is = null;
             try {
-                baos.close();
-            } catch (IOException e) {
-                e.fillInStackTrace();
-            }
-            if (is != null) {
+                WSDLFactory.newInstance().newWSDLWriter().writeWSDL(java2wsdl.getGeneratedWSDL(), baos);
+                is = new ByteArrayInputStream(baos.toByteArray());
+                String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_operationLabel_writingWSDLFile, _wsdlFile.getName());
+                final CreateFileOperation op = new CreateFileOperation(_wsdlFile, null, is, message);
+                op.execute(monitor, null);
+            } catch (Exception e) {
+                throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_exceptionMessage_errorWritingWSDL, e));
+            } finally {
                 try {
-                    is.close();
+                    baos.close();
                 } catch (IOException e) {
                     e.fillInStackTrace();
                 }
-            }
-            baos = null;
-            is = null;
-        }
-        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusMessage_wsdlWrittenSuccessfully));
-
-        try {
-            final Transformer transformer = createTransformer();
-            for (Entry<String, Element> schemaEntry : java2wsdl.getGeneratedSchema().entrySet()) {
-                final IFile schemaFile = _wsdlFile.getParent().getFile(new Path(schemaEntry.getKey()));
-                if (schemaFile.exists()) {
-                    // TODO: prompt overwrite
-                    continue;
-                }
-                try {
-                    baos = new ByteArrayOutputStream();
-                    final DOMSource source = new DOMSource(schemaEntry.getValue());
-                    final StreamResult result = new StreamResult(baos);
-                    transformer.transform(source, result);
-                    is = new ByteArrayInputStream(baos.toByteArray());
-                    final CreateFileOperation op = new CreateFileOperation(schemaFile, null, is,
-                            Messages.CreateWSDLFromJavaOperation_operationLabel_writingSchemaFile + schemaFile.getName());
-                    op.execute(monitor, null);
-                    String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_statusMessage_schemaWrittenSuccessfully, schemaFile.getName());
-                    _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, message));
-                } catch (Exception e) {
-                    String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_statusMessage_errorWritingImportedSchema, schemaFile.getName());
-                    _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, message, e));
-                } finally {
+                if (is != null) {
                     try {
-                        if (baos != null) {
-                            baos.close();
-                        }
+                        is.close();
                     } catch (IOException e) {
                         e.fillInStackTrace();
                     }
-                    if (is != null) {
+                }
+                baos = null;
+                is = null;
+            }
+            _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusMessage_wsdlWrittenSuccessfully));
+    
+            try {
+                final Transformer transformer = createTransformer();
+                for (Entry<String, Element> schemaEntry : java2wsdl.getGeneratedSchema().entrySet()) {
+                    final IFile schemaFile = _wsdlFile.getParent().getFile(new Path(schemaEntry.getKey()));
+                    if (schemaFile.exists()) {
+                        // TODO: prompt overwrite
+                        continue;
+                    }
+                    try {
+                        baos = new ByteArrayOutputStream();
+                        final DOMSource source = new DOMSource(schemaEntry.getValue());
+                        final StreamResult result = new StreamResult(baos);
+                        transformer.transform(source, result);
+                        is = new ByteArrayInputStream(baos.toByteArray());
+                        final CreateFileOperation op = new CreateFileOperation(schemaFile, null, is,
+                                Messages.CreateWSDLFromJavaOperation_operationLabel_writingSchemaFile + schemaFile.getName());
+                        op.execute(monitor, null);
+                        String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_statusMessage_schemaWrittenSuccessfully, schemaFile.getName());
+                        _status.add(new Status(Status.INFO, Activator.PLUGIN_ID, message));
+                    } catch (Exception e) {
+                        String message = NLS.bind(Messages.CreateWSDLFromJavaOperation_statusMessage_errorWritingImportedSchema, schemaFile.getName());
+                        _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, message, e));
+                    } finally {
                         try {
-                            is.close();
+                            if (baos != null) {
+                                baos.close();
+                            }
                         } catch (IOException e) {
                             e.fillInStackTrace();
                         }
+                        if (is != null) {
+                            try {
+                                is.close();
+                            } catch (IOException e) {
+                                e.fillInStackTrace();
+                            }
+                        }
+                        baos = null;
+                        is = null;
                     }
-                    baos = null;
-                    is = null;
                 }
+            } catch (Exception e) {
+                _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusLabel_errorWritingSchemaFiles, e));
             }
-        } catch (Exception e) {
-            _status.add(new Status(Status.WARNING, Activator.PLUGIN_ID, Messages.CreateWSDLFromJavaOperation_statusLabel_errorWritingSchemaFiles, e));
         }
     }
 

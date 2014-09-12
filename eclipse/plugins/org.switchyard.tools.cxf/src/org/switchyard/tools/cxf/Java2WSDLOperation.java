@@ -34,8 +34,17 @@ import org.apache.cxf.service.model.ServiceInfo;
 import org.apache.cxf.tools.common.ToolConstants;
 import org.apache.cxf.tools.java2wsdl.processor.internal.ServiceBuilderFactory;
 import org.apache.cxf.wsdl11.ServiceWSDLBuilder;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.swt.custom.BusyIndicator;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 import org.w3c.dom.Element;
 
 /**
@@ -75,16 +84,56 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
     public Map<String, Element> getGeneratedSchema() {
         return _imports;
     }
-
+    
     @Override
     public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
+        Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+        if (!ResourcesPlugin.getWorkspace().isAutoBuilding()) {
+            MessageDialog dg = new MessageDialog(activeShell,
+                    "Rebuild project?", null,
+                    "The project must be built before a WSDL can be generated. Rebuild now?",
+                    MessageDialog.QUESTION_WITH_CANCEL, 
+                    new String[]{IDialogConstants.YES_LABEL
+                        , IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL},
+                    0);
+            switch(dg.open()) {
+            case 0: 
+                //yes
+                BusyIndicator.showWhile(activeShell.getDisplay(), new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                        _options.getServiceInterface().getJavaProject().getProject()
+                            .build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
+                        } catch (CoreException e) {
+                            // ignore, this gets checked one more time in a bit
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                break;
+            case 1:
+                //no, let them continue and potentially fail if the class is not found
+                break;
+            case 2:
+                //cancel and get out of here
+                return;
+            }
+        }
         try {
             ClassLoader loader = Activator.getProjectBuildClassLoader(_options.getServiceInterface().getJavaProject());
             Thread.currentThread().setContextClassLoader(loader);
             ServiceBuilderFactory builderFactory = ServiceBuilderFactory.getInstance(null,
                     ToolConstants.JAXB_DATABINDING);
-            builderFactory.setServiceClass(loader.loadClass(_options.getServiceInterface().getFullyQualifiedName()));
+            
+            try {
+                Class<?> serviceInterfaceClass = 
+                        loader.loadClass(_options.getServiceInterface().getFullyQualifiedName());
+                builderFactory.setServiceClass(serviceInterfaceClass);
+            } catch (ClassNotFoundException cnfe) {
+                throw new InvocationTargetException(cnfe, "Service interface class not found.");
+            }
             builderFactory.setDatabindingName(ToolConstants.JAXB_DATABINDING);
 
             AbstractServiceFactory builder = (AbstractServiceFactory) builderFactory.newBuilder();
