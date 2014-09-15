@@ -15,6 +15,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.eclipse.core.runtime.IStatus;
@@ -63,12 +66,14 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     private Text _namespaceText;
     private Text _packageNameText;
     private Button _isBundleCheckbox;
+    private Button _useSwitchYardDependencyBOMCheckbox;
     private SwitchYardSettingsGroup _settingsGroup;
     private boolean _isInitialized;
     private String _groupId = ""; //$NON-NLS-1$
     private String _packageName = ""; //$NON-NLS-1$
     private String _namespace = ""; //$NON-NLS-1$
     private boolean _isBundled = false;
+    private boolean _doesUseSwitchYardDependencyBOM;
 
     /**
      * Create a new ProjectConfigurationWizardPage.
@@ -105,6 +110,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
      */
     public boolean isBundled() {
         return _isBundled;
+    }
+
+    /**
+     * @return the SwitchYard Dependency BOM state (true/false)
+     */
+    public boolean isSwitchYardBOMEnabled() {
+        return _doesUseSwitchYardDependencyBOM;
     }
 
     /**
@@ -216,6 +228,24 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 // empty
             }
         });
+
+        label = new Label(projectDetails, SWT.RIGHT);
+        _useSwitchYardDependencyBOMCheckbox = new Button(projectDetails, SWT.CHECK);
+        _useSwitchYardDependencyBOMCheckbox.setText(Messages.ProjectConfigurationWizardPage_BOMCheckbox);
+        GridData cb2GD = new GridData(GridData.FILL_HORIZONTAL);
+        _useSwitchYardDependencyBOMCheckbox.setLayoutData(cb2GD);
+        _useSwitchYardDependencyBOMCheckbox.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                _doesUseSwitchYardDependencyBOM = _useSwitchYardDependencyBOMCheckbox.getSelection();
+                validate();
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                // empty
+            }
+        });
         // runtime version
         Composite settingsContent = new Composite(content, SWT.NONE);
         settingsContent.setLayout(new GridLayout());
@@ -225,6 +255,18 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         _settingsGroup.getRuntimeVersionsList().addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
+                validate();
+            }
+        });
+        
+        _settingsGroup.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                boolean testRuntimeVersion = isSelectedRuntimeV2();
+                _useSwitchYardDependencyBOMCheckbox.setEnabled(testRuntimeVersion);
+                _doesUseSwitchYardDependencyBOM = testRuntimeVersion;
+                _useSwitchYardDependencyBOMCheckbox.setSelection(_doesUseSwitchYardDependencyBOM);
+
                 validate();
             }
         });
@@ -242,6 +284,8 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 _packageNameText.setText(normalizePackageName(projectName));
                 _namespaceText.setText("urn::" + projectName + ":1.0"); //$NON-NLS-1$ //$NON-NLS-2$
                 _groupIdText.setText(DEFAULT_GROUP_ID);
+                _useSwitchYardDependencyBOMCheckbox.setSelection(_doesUseSwitchYardDependencyBOM);
+                _useSwitchYardDependencyBOMCheckbox.setEnabled(_doesUseSwitchYardDependencyBOM);
                 validate();
                 // clear out any error the first time we are displayed
                 setErrorMessage(null);
@@ -283,10 +327,37 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
              * might be better to put this into the wizard's performFinish()
              * logic and fail there instead of here. }
              */
+            
+            // if the version < 2.0 and they want to use the BOM, it's not allowed
+            if (_doesUseSwitchYardDependencyBOM) {
+                if (!isSelectedRuntimeV2()) {
+                    setErrorMessage(Messages.ProjectConfigurationWizardPage_errorMessage_bomRequiresVersion2);
+                }
+            }
         }
         setPageComplete(getErrorMessage() == null);
     }
 
+    private boolean isSelectedRuntimeV2() {
+        IStructuredSelection ssel = (IStructuredSelection) _settingsGroup.getRuntimeVersionsList().getSelection();
+        DefaultArtifactVersion artversion = (DefaultArtifactVersion) ssel.getFirstElement();
+        String versionString = artversion.toString();
+        if (versionString.indexOf('.') > -1) {
+            String majorVersionString = versionString.substring(0, versionString.indexOf('.'));
+            try {
+                long major = Long.decode(majorVersionString);
+                if (major < 2) {
+                    return false;
+                }
+            } catch (NumberFormatException nfe) {
+                return false;
+            }
+            return true;
+        }
+        
+        return false;
+    }
+    
     private void updateNamespaceGroup(String oldGroupId, String newGroupId) {
         // strip off trailing .'s
         while (oldGroupId.endsWith(".")) { //$NON-NLS-1$

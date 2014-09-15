@@ -29,6 +29,7 @@ import java.util.Set;
 
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
+import org.apache.maven.model.DependencyManagement;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.model.PluginExecution;
@@ -98,6 +99,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         private String _projectVersion;
         private String _runtimeVersion;
         private boolean _isOSGIEnabled = false;
+        private boolean _useSwitchYardDependencyBOM = false;
         private IProjectFacetVersion _configurationVersion;
         private IRuntimeComponent _targetRuntime;
 
@@ -255,6 +257,20 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
          */
         public void setIsOSGIEnabled(boolean isEnabled) {
             this._isOSGIEnabled = isEnabled;
+        }
+
+        /**
+         * @return flag true/false (default false) adding SwitchYard Dependency BOM support.
+         */
+        public boolean isSwitchYardDependencyBOMEnabled() {
+            return _useSwitchYardDependencyBOM;
+        }
+
+        /**
+         * @param isEnabled Should support the SwitchYard Dependency BOM.
+         */
+        public void setIsSwitchYardDependencyBOMEnabled(boolean isEnabled) {
+            this._useSwitchYardDependencyBOM = isEnabled;
         }
     }
 
@@ -577,6 +593,22 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
 
         String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
+        
+        // add dependency management for SwitchYard BOM
+        if (_projectMetatData.isSwitchYardDependencyBOMEnabled()) {
+            Dependency bomDependency = new Dependency();
+            bomDependency.setGroupId(M2EUtils.SWITCHYARD_CORE_GROUP_ID);
+            bomDependency.setArtifactId(M2EUtils.SWITCHYARD_BOM_ARTIFACT_ID);
+            bomDependency.setVersion("${" + M2EUtils.SWITCHYARD_VERSION + "}"); //$NON-NLS-1$ //$NON-NLS-2$
+            bomDependency.setScope("import"); //$NON-NLS-1$
+            bomDependency.setType("pom"); //$NON-NLS-1$
+            if (model.getDependencyManagement() == null) {
+                model.setDependencyManagement(new DependencyManagement());
+            }
+            model.getDependencyManagement().addDependency(bomDependency);
+        }
+        
+        // add dependencies
         Set<String> scanners = new LinkedHashSet<String>();
         for (ISwitchYardComponentExtension component : _projectMetatData.getComponents()) {
             String scanner = component.getScannerClassName();
@@ -585,7 +617,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             }
             for (Dependency dependency : component.getDependencies()) {
                 dependency = dependency.clone();
-                dependency.setVersion(versionString);
+                if (!_projectMetatData.isSwitchYardDependencyBOMEnabled()) {
+                    dependency.setVersion(versionString);
+                }
                 model.getDependencies().add(dependency);
             }
         }

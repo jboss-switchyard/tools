@@ -27,11 +27,15 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
@@ -61,6 +65,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -145,6 +150,8 @@ public class SwitchYardSettingsGroup {
             return true;
         }
     };
+    // change listeners
+    private ListenerList _changeListeners;
 
     /**
      * Create a new SwitchYardSettingsGroup.
@@ -257,6 +264,17 @@ public class SwitchYardSettingsGroup {
         _runtimeVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _runtimeVersionsList.setLabelProvider(new LabelProvider());
         _runtimeVersionsList.setContentProvider(ArrayContentProvider.getInstance());
+        _runtimeVersionsList.getCombo().addSelectionListener(new SelectionListener(){
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                fireChangedEvent(this);
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
 
         // spacer
         new Label(runtimeControls, SWT.NONE);
@@ -437,6 +455,7 @@ public class SwitchYardSettingsGroup {
         }
         // update in the event the selected runtime is no longer compatible
         repopulateRuntimesList();
+        fireChangedEvent(this);
     }
 
     private void handleRuntimeSelected() {
@@ -806,6 +825,45 @@ public class SwitchYardSettingsGroup {
         @Override
         protected Comparator getComparator() {
             return _comparator;
+        }
+    }
+
+    /**
+     * If we changed, fire a changed event.
+     * 
+     * @param source
+     */
+    protected void fireChangedEvent(Object source) {
+        ChangeEvent e = new ChangeEvent(source);
+        // inform any listeners of the change event
+        if (this._changeListeners != null && !this._changeListeners.isEmpty()) {
+            Object[] listeners = this._changeListeners.getListeners();
+            for (int i = 0; i < listeners.length; ++i) {
+                ((ChangeListener) listeners[i]).stateChanged(e);
+            }
+        }
+    }
+
+    /**
+     * Add a change listener.
+     * 
+     * @param listener new listener
+     */
+    public void addChangeListener(ChangeListener listener) {
+        if (this._changeListeners == null) {
+            this._changeListeners = new ListenerList();
+        }
+        this._changeListeners.add(listener);
+    }
+
+    /**
+     * Remove a change listener.
+     * 
+     * @param listener to remove
+     */
+    public void removeChangeListener(ChangeListener listener) {
+        if (this._changeListeners != null && !this._changeListeners.isEmpty()) {
+            this._changeListeners.remove(listener);
         }
     }
 }

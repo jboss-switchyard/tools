@@ -52,6 +52,8 @@ public final class M2EUtils {
     public static final String SWITCHYARD_API_ARTIFACT_ID = "switchyard-api"; //$NON-NLS-1$
     /** The core SwitchYard plugin project artifact ID. */
     public static final String SWITCHYARD_PLUGIN_ARTIFACT_ID = "switchyard-plugin"; //$NON-NLS-1$
+    /** The core SwitchYard BOM Artifact ID. */
+    public static final String SWITCHYARD_BOM_ARTIFACT_ID = "switchyard-bom"; //$NON-NLS-1$
 
     /** src/main/java. */
     public static final String MAVEN_MAIN_JAVA_PATH = "src/main/java"; //$NON-NLS-1$

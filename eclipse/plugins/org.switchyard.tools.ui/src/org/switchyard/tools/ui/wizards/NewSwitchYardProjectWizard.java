@@ -124,6 +124,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         projectMetaData.setTargetRuntime(_configurationPage.getTargetRuntime());
         projectMetaData.setConfigurationVersion(_configurationPage.getConfigurationVersion());
         projectMetaData.setIsOSGIEnabled(_configurationPage.isBundled());
+        projectMetaData.setIsSwitchYardDependencyBOMEnabled(_configurationPage.isSwitchYardBOMEnabled());
 
         // create the new project operation
         final CreateSwitchYardProjectOperation op = new CreateSwitchYardProjectOperation(projectMetaData,
