@@ -615,7 +615,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 int pageIndex = _tabFolder.getItemCount();
                 FileEditorInput input = new FileEditorInput(_diagramEditor.getModelFile());
                 addPage(pageIndex, _sourceViewer, input);
-                _tabFolder.getItem(pageIndex).setShowClose(true);
 
                 setPageText(pageIndex, Messages.title_source);
                 updateTabs();
