@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2014 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -7,9 +7,7 @@
  * 
  * Contributors: 
  * Red Hat, Inc. - initial API and implementation 
- *
- * @author bfitzpat
- ******************************************************************************/
+  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl;
 
 import java.util.Iterator;
@@ -59,6 +57,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.IGotoMarker;
+import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
@@ -615,7 +614,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                 int pageIndex = _tabFolder.getItemCount();
                 FileEditorInput input = new FileEditorInput(_diagramEditor.getModelFile());
                 addPage(pageIndex, _sourceViewer, input);
-
                 setPageText(pageIndex, Messages.title_source);
                 updateTabs();
             } catch (Exception e) {
@@ -803,6 +801,17 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private void refresh() {
         Display.getDefault().asyncExec(new Runnable() {
             public void run() {
+                IEditorInput input = getSourceViewer().getEditorInput();
+                if (input instanceof IFileEditorInput) {
+                    IFile oldFile = ((IFileEditorInput)input).getFile();
+                    boolean doesFileExist = oldFile.exists();
+                    if (!doesFileExist) {
+                        // close the editor, it's been deleted
+                        IEditorPart editorPart = ResourceUtil.findEditor(getSite().getPage(), oldFile);
+                        getSite().getPage().closeEditor(editorPart, false);
+                        return;
+                    }
+                }
                 if (!_messageTraceCheckbox.isDisposed()) {
                     _messageTraceCheckbox.setSelection(testForMessageTraceHandler());
                 }
