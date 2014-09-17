@@ -205,6 +205,9 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
 
     @Override
     public void dispose() {
+        if (_observablesManager != null) {
+            _observablesManager.dispose();
+        }
         if (_composite != null) {
             _composite.dispose();
             _composite = null;
@@ -217,8 +220,9 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
             _support.dispose();
             _support = null;
         }
-        _observablesManager.dispose();
-        _context.dispose();
+        if (_context != null) {
+            _context.dispose();
+        }
         super.dispose();
     }
 }
