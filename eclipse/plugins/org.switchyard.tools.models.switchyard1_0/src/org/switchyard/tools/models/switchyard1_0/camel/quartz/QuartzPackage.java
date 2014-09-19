@@ -524,13 +524,31 @@ public interface QuartzPackage extends EPackage {
     int CAMEL_QUARTZ_BINDING_TYPE__CRON = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Trigger Repeat Count</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Trigger Repeat Interval</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+
+    /**
      * The feature id for the '<em><b>Stateful</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_QUARTZ_BINDING_TYPE__STATEFUL = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+    int CAMEL_QUARTZ_BINDING_TYPE__STATEFUL = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Trigger Start Time</b></em>' attribute.
@@ -539,7 +557,7 @@ public interface QuartzPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
 
     /**
      * The feature id for the '<em><b>Trigger End Time</b></em>' attribute.
@@ -548,7 +566,7 @@ public interface QuartzPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Trigger Time Zone</b></em>' attribute.
@@ -557,7 +575,7 @@ public interface QuartzPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+    int CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_TIME_ZONE = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
 
     /**
      * The number of structural features of the '<em>Camel Quartz Binding Type</em>' class.
@@ -566,7 +584,7 @@ public interface QuartzPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_QUARTZ_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+    int CAMEL_QUARTZ_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -757,6 +775,28 @@ public interface QuartzPackage extends EPackage {
      * @generated
      */
     EAttribute getCamelQuartzBindingType_Cron();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatCount <em>Trigger Repeat Count</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Trigger Repeat Count</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatCount()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_TriggerRepeatCount();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatInterval <em>Trigger Repeat Interval</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Trigger Repeat Interval</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatInterval()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_TriggerRepeatInterval();
 
     /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}'.
@@ -987,6 +1027,22 @@ public interface QuartzPackage extends EPackage {
          * @generated
          */
         EAttribute CAMEL_QUARTZ_BINDING_TYPE__CRON = eINSTANCE.getCamelQuartzBindingType_Cron();
+
+        /**
+         * The meta object literal for the '<em><b>Trigger Repeat Count</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT = eINSTANCE.getCamelQuartzBindingType_TriggerRepeatCount();
+
+        /**
+         * The meta object literal for the '<em><b>Trigger Repeat Interval</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL = eINSTANCE.getCamelQuartzBindingType_TriggerRepeatInterval();
 
         /**
          * The meta object literal for the '<em><b>Stateful</b></em>' attribute feature.

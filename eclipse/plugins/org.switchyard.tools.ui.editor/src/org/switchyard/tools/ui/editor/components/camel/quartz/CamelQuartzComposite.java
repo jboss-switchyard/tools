@@ -21,7 +21,9 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.ecore.EObject;
@@ -35,9 +37,12 @@ import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
@@ -46,6 +51,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBinding
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyLongValidator;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
@@ -64,9 +71,18 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     private Text _cronText;
     private Text _startTimeText;
     private Text _endTimeText;
+    private Text _repeatCountText;
+    private Text _repeatIntervalText;
+    private Combo _quartzTypeCombo;
     private ComboViewer _timezoneViewer;
     private OperationSelectorComposite _opSelectorComposite;
     private WritableValue _bindingValue;
+    private org.eclipse.core.databinding.Binding _cronBinding;
+    private IObservableValue _cronValue;
+    private org.eclipse.core.databinding.Binding _repeatIntervalBinding;
+    private IObservableValue _repeatIntervalValue;
+    private org.eclipse.core.databinding.Binding _repeatCountBinding;
+    private IObservableValue _repeatCountValue;
 
     CamelQuartzComposite(FormToolkit toolkit) {
         super(toolkit);
@@ -95,7 +111,23 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                 _opSelectorComposite.setTargetObject(getTargetObject());
             }
 
-            _opSelectorComposite.setBinding(_binding);
+            if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed() && _binding != null) {
+                _opSelectorComposite.setBinding(_binding);
+            }
+            
+            if (_binding != null) {
+                boolean cronSet = _binding.getCron() != null;
+                boolean repeatCountSet = _binding.getTriggerRepeatCount() != null;
+                boolean repeatIntervalSet = _binding.getTriggerRepeatInterval() != null;
+                if (cronSet) {
+                    _quartzTypeCombo.select(0);
+                } else if (repeatCountSet || repeatIntervalSet) {
+                    _quartzTypeCombo.select(1);
+                } else if (!cronSet && !repeatCountSet && !repeatIntervalSet) {
+                    _quartzTypeCombo.select(0);
+                }
+                handleScheduleTypeSelection();
+            }
         } else {
             _bindingValue.setValue(null);
         }
@@ -125,7 +157,27 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         composite.setLayout(gl);
 
         _nameText = createLabelAndText(composite, Messages.label_nameStar);
-        _cronText = createLabelAndText(composite, Messages.label_cronStar);
+        
+        _quartzTypeCombo = createLabelAndCombo(composite, "Scheduling Type", true);
+        _quartzTypeCombo.add("cron");
+        _quartzTypeCombo.add("trigger");
+        _quartzTypeCombo.addSelectionListener(new SelectionListener(){
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                handleScheduleTypeSelection();
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+        _quartzTypeCombo.select(0);
+        
+        _cronText = createLabelAndText(composite, Messages.label_cronStar, 1, "The cron field is only mandatory when the Scheduling Type is set to 'cron'.");
+
+        _repeatCountText = createLabelAndText(composite, "Repeat Count");
+        _repeatIntervalText = createLabelAndText(composite, "Repeat Interval");
+
         _startTimeText = createLabelAndText(composite, Messages.label_startTime);
         _endTimeText = createLabelAndText(composite, Messages.label_endTime);
 
@@ -151,6 +203,22 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         return composite;
     }
 
+    private void handleScheduleTypeSelection() {
+        boolean cronEnabled = _quartzTypeCombo.getSelectionIndex() == 0;
+        _cronText.setEnabled(cronEnabled);
+        _repeatCountText.setEnabled(!cronEnabled);
+        _repeatIntervalText.setEnabled(!cronEnabled);
+        if (!cronEnabled) {
+            _cronValue.setValue(null);
+        } else {
+            _repeatCountValue.setValue(null);
+            _repeatIntervalValue.setValue(null);
+        }
+        _cronBinding.validateTargetToModel();
+        _repeatCountBinding.validateTargetToModel();
+        _repeatIntervalBinding.validateTargetToModel();
+    }
+    
     @Override
     public Composite getPanel() {
         return this._panel;
@@ -200,16 +268,17 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                                 "Schedule binding name should not be empty", Status.WARNING)), new UpdateValueStrategy(
                         UpdateValueStrategy.POLICY_NEVER));
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-
-        binding = context
+        
+        _cronValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__CRON);
+        _cronBinding = context
                 .bindValue(
                         SWTObservables.observeText(_cronText, new int[] {SWT.Modify }),
-                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__CRON),
+                        _cronValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
-                                .setAfterConvertValidator(new StringEmptyValidator(
-                                        Messages.CamelQuartzComposite_Validation_CRON_Empty)), null);
-        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+                                .setAfterConvertValidator(new StringEmptyValidatorControlAware(
+                                        Messages.CamelQuartzComposite_Validation_CRON_Empty, _cronText)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(_cronBinding), SWT.TOP | SWT.LEFT);
 
         EMFUpdateValueStrategy startTimeStrategy = new EMFUpdateValueStrategyNullForEmptyString(
                 Messages.CamelQuartzComposite_Validation_Start_Time_Format,
@@ -243,6 +312,29 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
 
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
+        _repeatCountValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT);
+        _repeatCountBinding = context
+                .bindValue(
+                        SWTObservables.observeText(_repeatCountText, new int[] {SWT.Modify }),
+                        _repeatCountValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                            .setAfterConvertValidator(new EscapedPropertyIntegerValidatorControlAware(
+                                "Repeat Count must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}').", _repeatCountText)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(_repeatCountBinding), SWT.TOP | SWT.LEFT);
+
+        _repeatIntervalValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL);
+        _repeatIntervalBinding = context
+                .bindValue(
+                        SWTObservables.observeText(_repeatIntervalText, new int[] {SWT.Modify }),
+                        _repeatIntervalValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                            .setAfterConvertValidator(new EscapedPropertyLongValidatorControlAware(
+                                    "Repeat Interval must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}').", _repeatIntervalText)), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(_repeatIntervalBinding), SWT.TOP | SWT.LEFT);
+        
+
         _opSelectorComposite.bindControls(domain, context);
     }
 
@@ -253,5 +345,59 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     public void dispose() {
         _bindingValue.dispose();
         super.dispose();
+    }
+
+    private class StringEmptyValidatorControlAware extends StringEmptyValidator {
+
+        private Control _control = null;
+        
+        public StringEmptyValidatorControlAware(String message, Control control) {
+            super(message);
+            _control = control;
+        }
+        
+        @Override
+        public IStatus validate(Object value) {
+            if (_control != null && !_control.isEnabled()) {
+                return Status.OK_STATUS;
+            }
+            return super.validate(value);
+        }
+    }
+    
+    private class EscapedPropertyLongValidatorControlAware extends EscapedPropertyLongValidator {
+
+        private Control _control = null;
+        
+        public EscapedPropertyLongValidatorControlAware(String message, Control control) {
+            super(message);
+            _control = control;
+        }
+        
+        @Override
+        public IStatus validate(Object value) {
+            if (_control != null && !_control.isEnabled()) {
+                return Status.OK_STATUS;
+            }
+            return super.validate(value);
+        }
+    }
+    
+    private class EscapedPropertyIntegerValidatorControlAware extends EscapedPropertyIntegerValidator {
+        
+        private Control _control = null;
+        
+        public EscapedPropertyIntegerValidatorControlAware(String message, Control control) {
+            super(message);
+            _control = control;
+        }
+        
+        @Override
+        public IStatus validate(Object value) {
+            if (_control != null && !_control.isEnabled()) {
+                return Status.OK_STATUS;
+            }
+            return super.validate(value);
+        }
     }
 }

@@ -117,12 +117,18 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/outputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/property"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/remote"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/remoteJms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/remoteRest"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resource"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resourceDetail"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/resources"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/userGroupCallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/workItemHandler"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/workItemHandlers"/>
+    </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//ExtraJaxbClassesType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ExtraJaxbClassesType/extraJaxbClass"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//FaultsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//FaultsType/fault"/>
@@ -150,6 +156,8 @@
     <genClasses ecoreClass="component.bpm.ecore#//ManifestType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ManifestType/container"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ManifestType/resources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ManifestType/remoteJms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ManifestType/remoteRest"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//MappingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//MappingType/from"/>
@@ -176,6 +184,27 @@
     <genClasses ecoreClass="component.bpm.ecore#//PropertyType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//PropertyType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//PropertyType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//RemoteJmsType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/hostName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/keystoreLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/keystorePassword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/messagingPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/remotingPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/truststoreLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/truststorePassword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteJmsType/useSsl"/>
+    </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//RemoteRestType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteRestType/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteRestType/useFormBasedAuth"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="component.bpm.ecore#//RemoteType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//RemoteType/extraJaxbClasses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteType/deploymentId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteType/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteType/timeout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//RemoteType/userName"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//ResourceDetailType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//ResourceDetailType/inputType"/>
@@ -452,6 +481,8 @@
     <genClasses ecoreClass="component.rules.ecore#//ManifestType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ManifestType/container"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ManifestType/resources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ManifestType/remoteJms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//ManifestType/remoteRest"/>
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//MappingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//MappingType/from"/>
@@ -490,6 +521,30 @@
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//FaultsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//FaultsType/fault"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="component.rules.ecore#//RemoteType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteType/deploymentId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RemoteType/extraJaxbClasses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteType/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteType/timeout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteType/userName"/>
+    </genClasses>
+    <genClasses ecoreClass="component.rules.ecore#//RemoteJmsType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/hostName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/keystoreLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/keystorePassword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/remotingPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/messagingPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/truststoreLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/truststorePassword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteJmsType/useSsl"/>
+    </genClasses>
+    <genClasses ecoreClass="component.rules.ecore#//RemoteRestType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteRestType/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//RemoteRestType/useFormBasedAuth"/>
+    </genClasses>
+    <genClasses ecoreClass="component.rules.ecore#//ExtraJaxbClassesType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//ExtraJaxbClassesType/extraJaxbClass"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="SOAP" basePackage="org.switchyard.tools.models.switchyard1_0"
@@ -3174,6 +3229,8 @@
     <genClasses ecoreClass="component.camel.quartz.ecore#//CamelQuartzBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/camelBindingName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/cron"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/triggerRepeatCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/triggerRepeatInterval"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/stateful"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/triggerStartTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.quartz.ecore#//CamelQuartzBindingType/triggerEndTime"/>

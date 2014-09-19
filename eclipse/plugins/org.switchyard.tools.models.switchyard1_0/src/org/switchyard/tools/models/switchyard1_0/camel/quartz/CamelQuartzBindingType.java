@@ -14,6 +14,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCron <em>Cron</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatCount <em>Trigger Repeat Count</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatInterval <em>Trigger Repeat Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerStartTime <em>Trigger Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerEndTime <em>Trigger End Time</em>}</li>
@@ -79,6 +81,60 @@ public interface CamelQuartzBindingType extends BaseCamelBinding {
      * @generated
      */
     void setCron(String value);
+
+    /**
+     * Returns the value of the '<em><b>Trigger Repeat Count</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Trigger Repeat Count</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Trigger Repeat Count</em>' attribute.
+     * @see #setTriggerRepeatCount(Object)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_TriggerRepeatCount()
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
+     *        extendedMetaData="kind='element' name='trigger.repeatCount' namespace='##targetNamespace'"
+     * @generated
+     */
+    Object getTriggerRepeatCount();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatCount <em>Trigger Repeat Count</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Trigger Repeat Count</em>' attribute.
+     * @see #getTriggerRepeatCount()
+     * @generated
+     */
+    void setTriggerRepeatCount(Object value);
+
+    /**
+     * Returns the value of the '<em><b>Trigger Repeat Interval</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Trigger Repeat Interval</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Trigger Repeat Interval</em>' attribute.
+     * @see #setTriggerRepeatInterval(Object)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_TriggerRepeatInterval()
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
+     *        extendedMetaData="kind='element' name='trigger.repeatInterval' namespace='##targetNamespace'"
+     * @generated
+     */
+    Object getTriggerRepeatInterval();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerRepeatInterval <em>Trigger Repeat Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Trigger Repeat Interval</em>' attribute.
+     * @see #getTriggerRepeatInterval()
+     * @generated
+     */
+    void setTriggerRepeatInterval(Object value);
 
     /**
      * Returns the value of the '<em><b>Stateful</b></em>' attribute.

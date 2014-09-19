@@ -53,6 +53,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -301,8 +302,22 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @return reference to created Text control
      */
     protected Text createLabelAndText(Composite parent, String label, int horizSpan) {
+        return createLabelAndText(parent, label, 1, null);
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @param horizSpan number of GridData columns to span vertically
+     * @param tooltip string to use for label tooltip
+     * @return reference to created Text control
+     */
+    protected Text createLabelAndText(Composite parent, String label, int horizSpan, String tooltip) {
         if (label != null && !label.trim().isEmpty()) {
-            getToolkit().createLabel(parent, label, SWT.NONE);
+            Label labelCtrl = getToolkit().createLabel(parent, label, SWT.NONE);
+            if (tooltip != null) {
+                labelCtrl.setToolTipText(tooltip);
+            }
         }
         Text newText = getToolkit().createText(parent, "", SWT.BORDER);
         GridData gd = new GridData(SWT.FILL, SWT.NONE, true, false);

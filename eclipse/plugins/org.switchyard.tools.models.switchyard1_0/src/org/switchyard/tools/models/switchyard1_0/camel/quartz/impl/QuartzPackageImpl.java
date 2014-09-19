@@ -24,6 +24,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.impl.CxfPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
@@ -35,6 +37,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.AdditionalUriParametersType;
@@ -44,6 +48,10 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -183,6 +191,10 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         MailPackageImpl theMailPackage = (MailPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) instanceof MailPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) : MailPackage.eINSTANCE);
         NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
+        RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
+        CxfPackageImpl theCxfPackage = (CxfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) instanceof CxfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) : CxfPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -211,6 +223,10 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         theMailPackage.createPackageContents();
         theNettyPackage.createPackageContents();
         theSqlPackage.createPackageContents();
+        theRssPackage.createPackageContents();
+        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
+        theCxfPackage.createPackageContents();
 
         // Initialize created meta-data
         theQuartzPackage.initializePackageContents();
@@ -236,6 +252,10 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         theMailPackage.initializePackageContents();
         theNettyPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
+        theRssPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
+        theCxfPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -335,7 +355,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_Stateful() {
+    public EAttribute getCamelQuartzBindingType_TriggerRepeatCount() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
@@ -344,7 +364,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_TriggerStartTime() {
+    public EAttribute getCamelQuartzBindingType_TriggerRepeatInterval() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
@@ -353,7 +373,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_TriggerEndTime() {
+    public EAttribute getCamelQuartzBindingType_Stateful() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
@@ -362,8 +382,26 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_TriggerTimeZone() {
+    public EAttribute getCamelQuartzBindingType_TriggerStartTime() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelQuartzBindingType_TriggerEndTime() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelQuartzBindingType_TriggerTimeZone() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(7);
     }
 
     /**
@@ -477,6 +515,8 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         camelQuartzBindingTypeEClass = createEClass(CAMEL_QUARTZ_BINDING_TYPE);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CRON);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__STATEFUL);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME);
@@ -540,6 +580,8 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         initEClass(camelQuartzBindingTypeEClass, CamelQuartzBindingType.class, "CamelQuartzBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelQuartzBindingType_CamelBindingName(), theXMLTypePackage.getString(), "camelBindingName", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_Cron(), theXMLTypePackage.getString(), "cron", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_TriggerRepeatCount(), theSwitchyardPackage.getPropInteger(), "triggerRepeatCount", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_TriggerRepeatInterval(), theSwitchyardPackage.getPropLong(), "triggerRepeatInterval", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_Stateful(), theXMLTypePackage.getBoolean(), "stateful", "false", 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_TriggerStartTime(), theXMLTypePackage.getDateTime(), "triggerStartTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_TriggerEndTime(), theXMLTypePackage.getDateTime(), "triggerEndTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -638,6 +680,22 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
            new String[] {
              "kind", "element",
              "name", "cron",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelQuartzBindingType_TriggerRepeatCount(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "trigger.repeatCount",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelQuartzBindingType_TriggerRepeatInterval(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "trigger.repeatInterval",
              "namespace", "##targetNamespace"
            });		
         addAnnotation

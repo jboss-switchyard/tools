@@ -22,6 +22,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getCron <em>Cron</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerRepeatCount <em>Trigger Repeat Count</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerRepeatInterval <em>Trigger Repeat Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerStartTime <em>Trigger Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerEndTime <em>Trigger End Time</em>}</li>
@@ -71,6 +73,46 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * @ordered
      */
     protected String cron = CRON_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTriggerRepeatCount() <em>Trigger Repeat Count</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTriggerRepeatCount()
+     * @generated
+     * @ordered
+     */
+    protected static final Object TRIGGER_REPEAT_COUNT_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTriggerRepeatCount() <em>Trigger Repeat Count</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTriggerRepeatCount()
+     * @generated
+     * @ordered
+     */
+    protected Object triggerRepeatCount = TRIGGER_REPEAT_COUNT_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTriggerRepeatInterval() <em>Trigger Repeat Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTriggerRepeatInterval()
+     * @generated
+     * @ordered
+     */
+    protected static final Object TRIGGER_REPEAT_INTERVAL_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTriggerRepeatInterval() <em>Trigger Repeat Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTriggerRepeatInterval()
+     * @generated
+     * @ordered
+     */
+    protected Object triggerRepeatInterval = TRIGGER_REPEAT_INTERVAL_EDEFAULT;
 
     /**
      * The default value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
@@ -227,6 +269,48 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
+    public Object getTriggerRepeatCount() {
+        return triggerRepeatCount;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTriggerRepeatCount(Object newTriggerRepeatCount) {
+        Object oldTriggerRepeatCount = triggerRepeatCount;
+        triggerRepeatCount = newTriggerRepeatCount;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT, oldTriggerRepeatCount, triggerRepeatCount));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Object getTriggerRepeatInterval() {
+        return triggerRepeatInterval;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTriggerRepeatInterval(Object newTriggerRepeatInterval) {
+        Object oldTriggerRepeatInterval = triggerRepeatInterval;
+        triggerRepeatInterval = newTriggerRepeatInterval;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL, oldTriggerRepeatInterval, triggerRepeatInterval));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public boolean isStateful() {
         return stateful;
     }
@@ -343,6 +427,10 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
                 return getCamelBindingName();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 return getCron();
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT:
+                return getTriggerRepeatCount();
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL:
+                return getTriggerRepeatInterval();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
                 return isStateful();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME:
@@ -368,6 +456,12 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
                 return;
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 setCron((String)newValue);
+                return;
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT:
+                setTriggerRepeatCount(newValue);
+                return;
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL:
+                setTriggerRepeatInterval(newValue);
                 return;
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
                 setStateful((Boolean)newValue);
@@ -399,6 +493,12 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 setCron(CRON_EDEFAULT);
                 return;
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT:
+                setTriggerRepeatCount(TRIGGER_REPEAT_COUNT_EDEFAULT);
+                return;
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL:
+                setTriggerRepeatInterval(TRIGGER_REPEAT_INTERVAL_EDEFAULT);
+                return;
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
                 unsetStateful();
                 return;
@@ -427,6 +527,10 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
                 return CAMEL_BINDING_NAME_EDEFAULT == null ? camelBindingName != null : !CAMEL_BINDING_NAME_EDEFAULT.equals(camelBindingName);
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 return CRON_EDEFAULT == null ? cron != null : !CRON_EDEFAULT.equals(cron);
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_COUNT:
+                return TRIGGER_REPEAT_COUNT_EDEFAULT == null ? triggerRepeatCount != null : !TRIGGER_REPEAT_COUNT_EDEFAULT.equals(triggerRepeatCount);
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_REPEAT_INTERVAL:
+                return TRIGGER_REPEAT_INTERVAL_EDEFAULT == null ? triggerRepeatInterval != null : !TRIGGER_REPEAT_INTERVAL_EDEFAULT.equals(triggerRepeatInterval);
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
                 return isSetStateful();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME:
@@ -453,6 +557,10 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
         result.append(camelBindingName);
         result.append(", cron: ");
         result.append(cron);
+        result.append(", triggerRepeatCount: ");
+        result.append(triggerRepeatCount);
+        result.append(", triggerRepeatInterval: ");
+        result.append(triggerRepeatInterval);
         result.append(", stateful: ");
         if (statefulESet) result.append(stateful); else result.append("<unset>");
         result.append(", triggerStartTime: ");
