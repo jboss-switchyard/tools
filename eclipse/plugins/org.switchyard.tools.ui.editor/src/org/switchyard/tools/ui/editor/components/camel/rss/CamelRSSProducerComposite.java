@@ -118,10 +118,10 @@ public class CamelRSSProducerComposite extends AbstractSYBindingComposite {
         splitEntryOptionsGroup.setLayout(new GridLayout(2, false));
         splitEntryOptionsGroup.setText("Split Entry Options");
 
-        _splitEntriesCheckbox = createCheckbox(splitEntryOptionsGroup, "Split Entries");
-        _filterCheckbox = createCheckbox(splitEntryOptionsGroup, "Filter");
+        _splitEntriesCheckbox = createCheckbox(splitEntryOptionsGroup, "Split Entries", 2);
+        _filterCheckbox = createCheckbox(splitEntryOptionsGroup, "Filter", 2);
         _lastUpdateText = createLabelAndText(splitEntryOptionsGroup, "Last Update (Starting Timestamp)");
-        _sortEntriesCheckbox = createCheckbox(splitEntryOptionsGroup, "Sort Entries (by Date)");
+        _sortEntriesCheckbox = createCheckbox(splitEntryOptionsGroup, "Sort Entries (by Date)", 2);
 
         return composite;
     }

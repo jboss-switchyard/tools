@@ -231,7 +231,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         }
         _selectorText = createLabelAndText(composite, Messages.label_selector);
         _transactionManagerText = createLabelAndText(composite, Messages.label_transactionManager);
-        _transactedButton = createCheckbox(composite, Messages.label_transacted);
+        _transactedButton = createCheckbox(composite, Messages.label_transacted, 2);
 
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
             _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);

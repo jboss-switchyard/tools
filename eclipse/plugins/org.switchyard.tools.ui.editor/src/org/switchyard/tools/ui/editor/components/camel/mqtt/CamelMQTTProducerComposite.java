@@ -123,7 +123,7 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
         _qosCombo.setInput(qosTypes);
         getToolkit().adapt(_qosCombo.getControl(), true, true);
         
-        _byDefaultRetainCheckbox = createCheckbox(composite, "Retain By Default");
+        _byDefaultRetainCheckbox = createCheckbox(composite, "Retain By Default", 2);
 
         return composite;
     }

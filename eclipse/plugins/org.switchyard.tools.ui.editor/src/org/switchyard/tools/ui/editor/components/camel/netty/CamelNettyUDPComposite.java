@@ -129,7 +129,7 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
 
         _hostText = createLabelAndText(composite, Messages.label_hostStar);
         _portText = createLabelAndText(composite, Messages.label_portStar);
-        _broadcastCheckbox = createCheckbox(composite, Messages.label_broadcast);
+        _broadcastCheckbox = createCheckbox(composite, Messages.label_broadcast, 2);
 
         if (getTargetObject() instanceof Service) {
             _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);

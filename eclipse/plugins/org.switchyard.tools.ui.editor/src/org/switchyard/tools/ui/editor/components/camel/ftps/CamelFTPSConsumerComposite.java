@@ -134,7 +134,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
         _usernameText = createLabelAndText(composite, Messages.label_userName);
         _pwdText = createLabelAndText(composite, Messages.label_password);
         _pwdText.setEchoChar('*');
-        _binaryButton = createCheckbox(composite, Messages.label_useBinaryTransferMode);
+        _binaryButton = createCheckbox(composite, Messages.label_useBinaryTransferMode, 2);
 
         Group fileGroup = new Group(composite, SWT.NONE);
         fileGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
@@ -143,11 +143,11 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
 
         _directoryText = createLabelAndText(fileGroup, Messages.label_directoryStar);
         _fileNameText = createLabelAndText(fileGroup, Messages.label_fileName);
-        _autoCreateButton = createCheckbox(fileGroup, Messages.label_autoCreateMissingDirectories);
+        _autoCreateButton = createCheckbox(fileGroup, Messages.label_autoCreateMissingDirectories, 2);
         _includeText = createLabelAndText(fileGroup, Messages.label_include);
         _excludeText = createLabelAndText(fileGroup, Messages.label_exclude);
-        _deleteButton = createCheckbox(fileGroup, Messages.label_deleteFilesOnceProcessed);
-        _recursiveButton = createCheckbox(fileGroup, Messages.label_processSubDirectoriesRecursively);
+        _deleteButton = createCheckbox(fileGroup, Messages.label_deleteFilesOnceProcessed, 2);
+        _recursiveButton = createCheckbox(fileGroup, Messages.label_processSubDirectoriesRecursively, 2);
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));

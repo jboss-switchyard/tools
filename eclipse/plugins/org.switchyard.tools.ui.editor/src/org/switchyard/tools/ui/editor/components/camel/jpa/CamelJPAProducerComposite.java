@@ -157,8 +157,8 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         producerGroup.setLayout(new GridLayout(2, false));
         producerGroup.setText(Messages.label_producerOptions);
         
-        _flushOnSendCheckbox = createCheckbox(producerGroup, Messages.label_flushOnSend);
-        _usePersistCheckbox = createCheckbox(producerGroup, Messages.label_usePersist);
+        _flushOnSendCheckbox = createCheckbox(producerGroup, Messages.label_flushOnSend, 2);
+        _usePersistCheckbox = createCheckbox(producerGroup, Messages.label_usePersist, 2);
 
         return composite;
     }

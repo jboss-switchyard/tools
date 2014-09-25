@@ -98,7 +98,7 @@ public class CamelFTPSSecurityComposite extends AbstractSYBindingComposite {
         _securityProtocolCombo.setInput(securityProtocols);
         getToolkit().adapt(_securityProtocolCombo.getControl(), true, true);
 
-        _isImplicitCheckbox = createCheckbox(composite, Messages.label_implicit);
+        _isImplicitCheckbox = createCheckbox(composite, Messages.label_implicit, 2);
         
         _execProtCombo = createLabelAndComboViewer(composite, Messages.label_executionProtocol, true);
         _execProtCombo.setContentProvider(ArrayContentProvider.getInstance());

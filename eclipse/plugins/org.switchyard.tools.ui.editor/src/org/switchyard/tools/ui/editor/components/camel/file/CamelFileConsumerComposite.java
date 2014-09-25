@@ -132,7 +132,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         _directoryText = createLabelAndText(composite, Messages.label_directoryStar);
         _fileNameText = createLabelAndText(composite, Messages.label_fileName);
 
-        _autoCreateButton = createCheckbox(composite, Messages.label_autoCreateMissingDirectories);
+        _autoCreateButton = createCheckbox(composite, Messages.label_autoCreateMissingDirectories, 2);
         _includeText = createLabelAndText(composite, Messages.label_include);
         _excludeText = createLabelAndText(composite, Messages.label_exclude);
 

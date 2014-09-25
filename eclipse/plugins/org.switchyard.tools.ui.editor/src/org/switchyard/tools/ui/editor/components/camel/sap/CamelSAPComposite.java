@@ -110,7 +110,7 @@ public class CamelSAPComposite extends AbstractSYBindingComposite {
             _destinationText = createLabelAndText(composite, Messages.CamelSAPComposite_Destination_name_label);
         }
         _rfcNameText = createLabelAndText(composite, Messages.CamelSAPComposite_RFC_name_label);
-        _transactedCheckbox = createCheckbox(composite, Messages.CamelSAPComposite_Transacted_checkbox_label);
+        _transactedCheckbox = createCheckbox(composite, Messages.CamelSAPComposite_Transacted_checkbox_label, 2);
 
         return composite;
     }
