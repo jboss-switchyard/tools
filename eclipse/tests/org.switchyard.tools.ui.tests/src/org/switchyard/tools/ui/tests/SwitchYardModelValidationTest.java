@@ -88,12 +88,12 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
-     * Tests import and configuration of camel-binding quickstart.
+     * Tests import and configuration of camel-file-binding quickstart.
      * 
      * @throws Exception if a failure occurs.
      */
     public void testCamelBindingQuickstart() throws Exception {
-        runModelTest("camel-binding");
+        runModelTest("camel-file-binding");
     }
 
     /**

@@ -70,9 +70,9 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-camel-binding</artifactId>
+                  <artifactId>switchyard-camel-file-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
-                  <outputDirectory>test-data/quickstart-configs/camel-binding</outputDirectory>
+                  <outputDirectory>test-data/quickstart-configs/camel-file-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
