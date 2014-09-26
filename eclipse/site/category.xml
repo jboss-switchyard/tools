@@ -3,6 +3,7 @@
    <description name="SwitchYard Tools Update Site">
       This is the update site for SwitchYard tools.
    </description>
+
    <feature url="features/org.switchyard.tools.feature_0.0.0.jar" id="org.switchyard.tools.feature" version="0.0.0">
       <category name="switchyard.category"/>
    </feature>
@@ -12,9 +13,26 @@
    <feature url="features/org.switchyard.tools.bpmn2.feature_0.0.0.jar" id="org.switchyard.tools.bpmn2.feature" version="0.0.0">
       <category name="switchyard.category"/>
    </feature>
+
+   <feature url="features/org.switchyard.tools.feature.source_0.0.0.jar" id="org.switchyard.tools.feature.source" version="0.0.0">
+      <category name="switchyard.category-sources"/>
+   </feature>
+   <feature url="features/org.switchyard.tools.bpel.feature.source_0.0.0.jar" id="org.switchyard.tools.bpel.feature.source" version="0.0.0">
+      <category name="switchyard.category-sources"/>
+   </feature>
+   <feature url="features/org.switchyard.tools.bpmn2.feature.source_0.0.0.jar" id="org.switchyard.tools.bpmn2.feature.source" version="0.0.0">
+      <category name="switchyard.category-sources"/>
+   </feature>
+
    <category-def name="switchyard.category" label="SwitchYard Tools">
       <description>
          Tools for creating, testing, and debugging SwitchYard applications.
       </description>
    </category-def>
+   <category-def name="switchyard.category-sources" label="SwitchYard Tools Sources">
+      <description>
+         SwitchYard tools sources.
+      </description>
+   </category-def>
+
 </site>
