@@ -128,6 +128,14 @@ public class BPMSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BPMPackage.INPUT_MAPPING_TYPE: {
+                InputMappingType inputMappingType = (InputMappingType)theEObject;
+                T result = caseInputMappingType(inputMappingType);
+                if (result == null) result = caseMappingType(inputMappingType);
+                if (result == null) result = caseCommonExtensionBase(inputMappingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BPMPackage.INPUTS_TYPE: {
                 InputsType inputsType = (InputsType)theEObject;
                 T result = caseInputsType(inputsType);
@@ -413,6 +421,21 @@ public class BPMSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseGlobalsType(GlobalsType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Input Mapping Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Input Mapping Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInputMappingType(InputMappingType object) {
         return null;
     }
 

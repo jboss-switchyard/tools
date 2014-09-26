@@ -44,6 +44,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.switchyard.tools.models.switchyard1_0.rules.InputMappingType;
+import org.switchyard.tools.models.switchyard1_0.rules.InputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
@@ -97,6 +99,8 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
                 return true;
             } else if (element instanceof MappingType && property.equalsIgnoreCase(TO_COLUMN)) {
                 return true;
+            } else if (element instanceof MappingType && property.equalsIgnoreCase(OUTPUT_COLUMN)) {
+                return true;
             }
             return false;
         }
@@ -109,24 +113,28 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
         public Image getColumnImage(Object element, int columnIndex) {
             return null;
         }
-
+        
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof MappingType) {
-                if (columnIndex == 0) {
-                    if (FROM_COLUMN.equals(_treeColumns.get(0))) {
-                        return ((MappingType) element).getFrom();
-                    } else {
-                        return ((MappingType) element).getTo();
-                    }
-                } else if (columnIndex == 1) {
-                    if (FROM_COLUMN.equals(_treeColumns.get(1))) {
-                        return ((MappingType) element).getFrom();
-                    } else {
-                        return ((MappingType) element).getTo();
-                    }
+            String treeColumn = _treeColumns.get(columnIndex);
+            if (element instanceof InputMappingType) {
+                InputMappingType inputMapping = (InputMappingType) element;
+                if (FROM_COLUMN.equals(treeColumn)) {
+                    return inputMapping.getFrom();
+                } else if (TO_COLUMN.equals(treeColumn)) {
+                    return inputMapping.getTo();
+                } else if (OUTPUT_COLUMN.equals(treeColumn)) {
+                    return inputMapping.getOutput();
+                }
+            } else if (element instanceof MappingType) {
+                MappingType mapping = (MappingType) element;
+                if (FROM_COLUMN.equals(treeColumn)) {
+                    return mapping.getFrom();
+                } else if (TO_COLUMN.equals(treeColumn)) {
+                    return mapping.getTo();
                 }
             }
+
             return null;
         }
     }
@@ -143,6 +151,10 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
      */
     public static final String TO_COLUMN = "to"; //$NON-NLS-1$
 
+    /**
+     * Output column.
+     */
+    public static final String OUTPUT_COLUMN = "output"; //$NON-NLS-1$
 
     private final List<String> _treeColumns;
 
@@ -156,6 +168,7 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
     private final EReference _actionVariableFeature;
     private final String _defaultFrom;
     private final String _defaultTo;
+    private final String _defaultOutput;
 
     /**
      * Constructor.
@@ -171,7 +184,25 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
      * @param columns the columns to display, must be either FROM_COLUMN, TO_COLUMN or both.
      */
     public RulesMappingsTable(Composite parent, int style, String defaultFrom, String defaultTo, EReference actionVariableFeature, EReference mappingsFeature, List<String> columns) {
-        this(parent, style, false, defaultFrom, defaultTo, actionVariableFeature, mappingsFeature, columns);
+        this(parent, style, false, defaultFrom, defaultTo, null, actionVariableFeature, mappingsFeature, columns);
+    }
+
+    /**
+     * Constructor.
+     * 
+     * @param parent Composite parent
+     * @param style any SWT style bits to pass along
+     * @param defaultFrom default text for "from"
+     * @param defaultTo default text for "to"
+     * @param defaultOutput default text for "output"
+     * @param actionVariableFeature the feature describing the variable type
+     *            (e.g. inputs, outputs, globals).
+     * @param mappingsFeature the feature describing the "mappings" feature on
+     *            the variable type.
+     * @param columns the columns to display, must be either FROM_COLUMN, TO_COLUMN or both.
+     */
+    public RulesMappingsTable(Composite parent, int style, String defaultFrom, String defaultTo, String defaultOutput, EReference actionVariableFeature, EReference mappingsFeature, List<String> columns) {
+        this(parent, style, false, defaultFrom, defaultTo, null, actionVariableFeature, mappingsFeature, columns);
     }
 
     /**
@@ -182,13 +213,14 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
      * @param isReadOnly boolean flag
      * @param defaultFrom default text for "from"
      * @param defaultTo default text for "to"
+     * @param defaultOutput default text for "output"
      * @param actionVariableFeature the feature describing the variable type
      *            (e.g. inputs, outputs, globals).
      * @param mappingsFeature the feature describing the "mappings" feature on
      *            the variable type.
      * @param columns the columns to display, must be either FROM_COLUMN, TO_COLUMN or both.
      */
-    public RulesMappingsTable(Composite parent, int style, boolean isReadOnly, String defaultFrom, String defaultTo, EReference actionVariableFeature,
+    public RulesMappingsTable(Composite parent, int style, boolean isReadOnly, String defaultFrom, String defaultTo, String defaultOutput, EReference actionVariableFeature,
             EReference mappingsFeature, List<String> columns) {
         super(parent, style);
         _isReadOnly = isReadOnly;
@@ -197,6 +229,7 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
         _mappingsFeature = mappingsFeature;
         _defaultFrom = defaultFrom;
         _defaultTo = defaultTo;
+        _defaultOutput = defaultOutput;
         
         _treeColumns = columns;
 
@@ -223,16 +256,24 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
         TableColumnLayout tableLayout = new TableColumnLayout();
         tableComposite.setLayout(tableLayout);
 
+        int minWidth = 300 / _treeColumns.size();
+        
         if (_treeColumns.contains(FROM_COLUMN)) {
             TableColumn expressionColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
             expressionColumn.setText(Messages.label_from);
-            tableLayout.setColumnData(expressionColumn, new ColumnWeightData(100, 150, true));
+            tableLayout.setColumnData(expressionColumn, new ColumnWeightData(100, minWidth, true));
         }
         
         if (_treeColumns.contains(TO_COLUMN)) {
             TableColumn variableColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
             variableColumn.setText(Messages.label_to);
-            tableLayout.setColumnData(variableColumn, new ColumnWeightData(100, 150, true));
+            tableLayout.setColumnData(variableColumn, new ColumnWeightData(100, minWidth, true));
+        }
+
+        if (_treeColumns.contains(OUTPUT_COLUMN)) {
+            TableColumn variableColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+            variableColumn.setText("Output");
+            tableLayout.setColumnData(variableColumn, new ColumnWeightData(100, minWidth, true));
         }
 
         _propertyTreeTable.setColumnProperties(_treeColumns.toArray(new String[_treeColumns.size()]));
@@ -247,6 +288,12 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
                 .setCellEditors(new CellEditor[] {
                     new TextCellEditor(_propertyTreeTable.getTable()),
                     new TextCellEditor(_propertyTreeTable.getTable()) });
+        } else if (_treeColumns.size() == 3) {
+                _propertyTreeTable
+                    .setCellEditors(new CellEditor[] {
+                        new TextCellEditor(_propertyTreeTable.getTable()),
+                        new TextCellEditor(_propertyTreeTable.getTable()),
+                        new TextCellEditor(_propertyTreeTable.getTable()) });
         } else {            
             _propertyTreeTable
                 .setCellEditors(new CellEditor[] {
@@ -310,7 +357,15 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
     protected void addPropertyToList() {
         if (getTargetObject() instanceof RulesOperationType) {
             final RulesOperationType impl = (RulesOperationType) getTargetObject();
-            final MappingType newMapping = RulesFactory.eINSTANCE.createMappingType();
+            EClass testVariableContainerClass = _actionVariableFeature.getEReferenceType();
+            final MappingType newMapping;
+            if (testVariableContainerClass != null
+                    && testVariableContainerClass.getName().equals(InputsType.class.getSimpleName())) {
+                newMapping = RulesFactory.eINSTANCE.createInputMappingType();
+                ((InputMappingType)newMapping).setOutput(_defaultOutput);
+            } else {
+                newMapping = RulesFactory.eINSTANCE.createMappingType();
+            }
             newMapping.setFrom(_defaultFrom);
             newMapping.setTo(_defaultTo);
             if (impl.eContainer() != null) {
@@ -500,6 +555,12 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
             } else {
                 return ""; //$NON-NLS-1$
             }
+        } else if (element instanceof InputMappingType && property.equalsIgnoreCase(OUTPUT_COLUMN)) {
+            if (((InputMappingType) element).getOutput() != null) {
+                return ((InputMappingType) element).getOutput();
+            } else {
+                return ""; //$NON-NLS-1$
+            }
         }
         return null;
     }
@@ -554,6 +615,29 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
                 } else {
                     MappingType parm = (MappingType) ti.getData();
                     parm.setTo(newValue);
+                    getTableViewer().refresh(true);
+                }
+            }
+            fireChangedEvent(this);
+            // validate();
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(OUTPUT_COLUMN)) {
+            final TableItem ti = (TableItem) element;
+            if (getTargetObject() instanceof RulesOperationType && ti.getData() instanceof InputMappingType) {
+                final RulesOperationType impl = (RulesOperationType) getTargetObject();
+                final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
+                if (impl.eContainer() != null) {
+                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            InputMappingType parm = (InputMappingType) ti.getData();
+                            parm.setOutput(newValue);
+                            getTableViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    InputMappingType parm = (InputMappingType) ti.getData();
+                    parm.setOutput(newValue);
                     getTableViewer().refresh(true);
                 }
             }

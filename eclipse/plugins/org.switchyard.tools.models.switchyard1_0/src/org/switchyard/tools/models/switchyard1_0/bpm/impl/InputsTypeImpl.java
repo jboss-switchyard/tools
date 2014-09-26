@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 
@@ -42,7 +43,7 @@ public class InputsTypeImpl extends CommonExtensionBaseImpl implements InputsTyp
      * @generated
      * @ordered
      */
-    protected EList<MappingType> input;
+    protected EList<InputMappingType> input;
 
     /**
      * <!-- begin-user-doc -->
@@ -68,9 +69,9 @@ public class InputsTypeImpl extends CommonExtensionBaseImpl implements InputsTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<MappingType> getInput() {
+    public EList<InputMappingType> getInput() {
         if (input == null) {
-            input = new EObjectContainmentEList<MappingType>(MappingType.class, this, BPMPackage.INPUTS_TYPE__INPUT);
+            input = new EObjectContainmentEList<InputMappingType>(InputMappingType.class, this, BPMPackage.INPUTS_TYPE__INPUT);
         }
         return input;
     }
@@ -114,7 +115,7 @@ public class InputsTypeImpl extends CommonExtensionBaseImpl implements InputsTyp
         switch (featureID) {
             case BPMPackage.INPUTS_TYPE__INPUT:
                 getInput().clear();
-                getInput().addAll((Collection<? extends MappingType>)newValue);
+                getInput().addAll((Collection<? extends InputMappingType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);

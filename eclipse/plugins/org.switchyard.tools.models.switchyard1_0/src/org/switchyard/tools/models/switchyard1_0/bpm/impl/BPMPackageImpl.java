@@ -31,6 +31,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.bpm.ExtraJaxbClassesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenersType;
@@ -60,6 +61,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.impl.CxfPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
@@ -173,6 +176,13 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     private EClass globalsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass inputMappingTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -419,6 +429,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
         SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
         MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
+        CxfPackageImpl theCxfPackage = (CxfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) instanceof CxfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) : CxfPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -450,6 +461,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         theRssPackage.createPackageContents();
         theSapPackage.createPackageContents();
         theMqttPackage.createPackageContents();
+        theCxfPackage.createPackageContents();
 
         // Initialize created meta-data
         theBPMPackage.initializePackageContents();
@@ -478,6 +490,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         theRssPackage.initializePackageContents();
         theSapPackage.initializePackageContents();
         theMqttPackage.initializePackageContents();
+        theCxfPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -839,7 +852,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_Operation() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(18);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(19);
     }
 
     /**
@@ -848,7 +861,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_Operations() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(19);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(20);
     }
 
     /**
@@ -883,8 +896,17 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_ExtraJaxbClasses() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getDocumentRoot_Global() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
     }
 
     /**
@@ -893,7 +915,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_Globals() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(10);
     }
 
     /**
@@ -902,7 +924,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
 	public EReference getDocumentRoot_ImplementationBpm() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(10);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
     }
 
 	/**
@@ -911,15 +933,6 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_Input() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_Inputs() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(12);
     }
 
@@ -928,7 +941,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Listener() {
+    public EReference getDocumentRoot_Inputs() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(13);
     }
 
@@ -937,7 +950,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Listeners() {
+    public EReference getDocumentRoot_Listener() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(14);
     }
 
@@ -946,7 +959,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Logger() {
+    public EReference getDocumentRoot_Listeners() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(15);
     }
 
@@ -955,7 +968,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Loggers() {
+    public EReference getDocumentRoot_Logger() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(16);
     }
 
@@ -964,7 +977,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Manifest() {
+    public EReference getDocumentRoot_Loggers() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(17);
     }
 
@@ -973,8 +986,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Output() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(20);
+    public EReference getDocumentRoot_Manifest() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(18);
     }
 
     /**
@@ -982,7 +995,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Outputs() {
+    public EReference getDocumentRoot_Output() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(21);
     }
 
@@ -991,7 +1004,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Properties() {
+    public EReference getDocumentRoot_Outputs() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(22);
     }
 
@@ -1000,7 +1013,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Property() {
+    public EReference getDocumentRoot_Properties() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(23);
     }
 
@@ -1009,7 +1022,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Remote() {
+    public EReference getDocumentRoot_Property() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(24);
     }
 
@@ -1018,7 +1031,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_RemoteJms() {
+    public EReference getDocumentRoot_Remote() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(25);
     }
 
@@ -1027,8 +1040,17 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_RemoteRest() {
+    public EReference getDocumentRoot_RemoteJms() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(26);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_RemoteRest() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(27);
     }
 
     /**
@@ -1037,7 +1059,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
 	public EReference getDocumentRoot_Resource() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(27);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(28);
     }
 
 	/**
@@ -1046,15 +1068,6 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_ResourceDetail() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(28);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_Resources() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(29);
     }
 
@@ -1063,8 +1076,17 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_Resources() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(30);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getDocumentRoot_WorkItemHandler() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(31);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(32);
     }
 
     /**
@@ -1073,7 +1095,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_WorkItemHandlers() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(32);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(33);
     }
 
     /**
@@ -1100,7 +1122,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_UserGroupCallback() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(30);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(31);
     }
 
     /**
@@ -1109,7 +1131,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_Faults() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
     }
 
     /**
@@ -1118,7 +1140,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getDocumentRoot_Fault() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
     }
 
     /**
@@ -1137,6 +1159,24 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      */
     public EReference getGlobalsType_Global() {
         return (EReference)globalsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInputMappingType() {
+        return inputMappingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getInputMappingType_Output() {
+        return (EAttribute)inputMappingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -1823,6 +1863,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__CHANNEL);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CHANNELS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONTAINER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__EXTRA_JAXB_CLASSES);
         createEReference(documentRootEClass, DOCUMENT_ROOT__FAULT);
         createEReference(documentRootEClass, DOCUMENT_ROOT__FAULTS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__GLOBAL);
@@ -1859,6 +1900,9 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
         globalsTypeEClass = createEClass(GLOBALS_TYPE);
         createEReference(globalsTypeEClass, GLOBALS_TYPE__GLOBAL);
+
+        inputMappingTypeEClass = createEClass(INPUT_MAPPING_TYPE);
+        createEAttribute(inputMappingTypeEClass, INPUT_MAPPING_TYPE__OUTPUT);
 
         inputsTypeEClass = createEClass(INPUTS_TYPE);
         createEReference(inputsTypeEClass, INPUTS_TYPE__INPUT);
@@ -2003,6 +2047,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         extraJaxbClassesTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         faultsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         globalsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        inputMappingTypeEClass.getESuperTypes().add(this.getMappingType());
         inputsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         listenersTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         listenerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
@@ -2061,12 +2106,13 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEReference(getDocumentRoot_Channel(), this.getChannelType(), null, "channel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Channels(), this.getChannelsType(), null, "channels", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Container(), this.getContainerType(), null, "container", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_ExtraJaxbClasses(), this.getExtraJaxbClassesType(), null, "extraJaxbClasses", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Fault(), this.getMappingType(), null, "fault", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Faults(), this.getFaultsType(), null, "faults", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Global(), this.getMappingType(), null, "global", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Globals(), this.getGlobalsType(), null, "globals", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ImplementationBpm(), this.getBPMImplementationType(), null, "implementationBpm", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Input(), this.getMappingType(), null, "input", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Input(), this.getInputMappingType(), null, "input", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Inputs(), this.getInputsType(), null, "inputs", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Listener(), this.getListenerType(), null, "listener", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Listeners(), this.getListenersType(), null, "listeners", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -2098,8 +2144,11 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEClass(globalsTypeEClass, GlobalsType.class, "GlobalsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGlobalsType_Global(), this.getMappingType(), null, "global", null, 0, -1, GlobalsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(inputMappingTypeEClass, InputMappingType.class, "InputMappingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getInputMappingType_Output(), theXMLTypePackage.getString(), "output", null, 0, 1, InputMappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(inputsTypeEClass, InputsType.class, "InputsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInputsType_Input(), this.getMappingType(), null, "input", null, 0, -1, InputsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInputsType_Input(), this.getInputMappingType(), null, "input", null, 0, -1, InputsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(listenersTypeEClass, ListenersType.class, "ListenersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getListenersType_Listener(), this.getListenerType(), null, "listener", null, 0, -1, ListenersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2454,6 +2503,14 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getDocumentRoot_ExtraJaxbClasses(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "extraJaxbClasses",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (getDocumentRoot_Fault(), 
            source, 
            new String[] {
@@ -2716,6 +2773,20 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "kind", "element",
              "name", "global",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (inputMappingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "InputMappingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getInputMappingType_Output(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "output"
            });		
         addAnnotation
           (inputsTypeEClass, 

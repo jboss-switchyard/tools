@@ -25,7 +25,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 public interface InputsType extends CommonExtensionBase {
     /**
      * Returns the value of the '<em><b>Input</b></em>' containment reference list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.rules.MappingType}.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.rules.InputMappingType}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Input</em>' containment reference list isn't clear,
@@ -38,6 +38,6 @@ public interface InputsType extends CommonExtensionBase {
      *        extendedMetaData="kind='element' name='input' namespace='##targetNamespace'"
      * @generated
      */
-    EList<MappingType> getInput();
+    EList<InputMappingType> getInput();
 
 } // InputsType

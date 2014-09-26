@@ -102,6 +102,10 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
                 return createGlobalsTypeAdapter();
             }
             @Override
+            public Adapter caseInputMappingType(InputMappingType object) {
+                return createInputMappingTypeAdapter();
+            }
+            @Override
             public Adapter caseInputsType(InputsType object) {
                 return createInputsTypeAdapter();
             }
@@ -300,6 +304,20 @@ public class RulesAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createGlobalsTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.rules.InputMappingType <em>Input Mapping Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.InputMappingType
+     * @generated
+     */
+    public Adapter createInputMappingTypeAdapter() {
         return null;
     }
 

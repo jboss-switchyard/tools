@@ -30,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
@@ -118,9 +119,10 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
             startAction.setInputs(null);
         } else {
             final InputsType inputs = BPMFactory.eINSTANCE.createInputsType();
-            final MappingType inputMapping = BPMFactory.eINSTANCE.createMappingType();
+            final InputMappingType inputMapping = BPMFactory.eINSTANCE.createInputMappingType();
             inputMapping.setFrom("message.content"); //$NON-NLS-1$
             inputMapping.setTo(_processPage.getMessageInName());
+            inputMapping.setOutput(null);
 
             inputs.getInput().add(inputMapping);
             startAction.setInputs(inputs);

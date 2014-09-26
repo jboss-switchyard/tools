@@ -29,6 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.rules.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.rules.InputMappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.InputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenerType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenersType;
@@ -393,8 +394,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingType getInput() {
-        return (MappingType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__INPUT, true);
+    public InputMappingType getInput() {
+        return (InputMappingType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__INPUT, true);
     }
 
     /**
@@ -402,7 +403,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetInput(MappingType newInput, NotificationChain msgs) {
+    public NotificationChain basicSetInput(InputMappingType newInput, NotificationChain msgs) {
         return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__INPUT, newInput, msgs);
     }
 
@@ -411,7 +412,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInput(MappingType newInput) {
+    public void setInput(InputMappingType newInput) {
         ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__INPUT, newInput);
     }
 
@@ -997,7 +998,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 setImplementationRules((RulesImplementationType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__INPUT:
-                setInput((MappingType)newValue);
+                setInput((InputMappingType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__INPUTS:
                 setInputs((InputsType)newValue);
@@ -1090,7 +1091,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 setImplementationRules((RulesImplementationType)null);
                 return;
             case RulesPackage.DOCUMENT_ROOT__INPUT:
-                setInput((MappingType)null);
+                setInput((InputMappingType)null);
                 return;
             case RulesPackage.DOCUMENT_ROOT__INPUTS:
                 setInputs((InputsType)null);

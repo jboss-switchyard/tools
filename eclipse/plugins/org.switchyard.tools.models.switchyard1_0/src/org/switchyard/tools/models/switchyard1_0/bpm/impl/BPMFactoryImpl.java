@@ -69,6 +69,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.EXTRA_JAXB_CLASSES_TYPE: return createExtraJaxbClassesType();
             case BPMPackage.FAULTS_TYPE: return createFaultsType();
             case BPMPackage.GLOBALS_TYPE: return createGlobalsType();
+            case BPMPackage.INPUT_MAPPING_TYPE: return createInputMappingType();
             case BPMPackage.INPUTS_TYPE: return createInputsType();
             case BPMPackage.LISTENERS_TYPE: return createListenersType();
             case BPMPackage.LISTENER_TYPE: return createListenerType();
@@ -224,6 +225,16 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
     public GlobalsType createGlobalsType() {
         GlobalsTypeImpl globalsType = new GlobalsTypeImpl();
         return globalsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InputMappingType createInputMappingType() {
+        InputMappingTypeImpl inputMappingType = new InputMappingTypeImpl();
+        return inputMappingType;
     }
 
     /**

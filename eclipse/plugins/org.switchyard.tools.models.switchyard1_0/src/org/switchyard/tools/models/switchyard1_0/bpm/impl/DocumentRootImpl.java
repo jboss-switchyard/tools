@@ -30,8 +30,10 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.bpm.ExtraJaxbClassesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenersType;
@@ -66,6 +68,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getExtraJaxbClasses <em>Extra Jaxb Classes</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFault <em>Fault</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getFaults <em>Faults</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getGlobal <em>Global</em>}</li>
@@ -324,6 +327,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ExtraJaxbClassesType getExtraJaxbClasses() {
+        return (ExtraJaxbClassesType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetExtraJaxbClasses(ExtraJaxbClassesType newExtraJaxbClasses, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES, newExtraJaxbClasses, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExtraJaxbClasses(ExtraJaxbClassesType newExtraJaxbClasses) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES, newExtraJaxbClasses);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public MappingType getGlobal() {
         return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__GLOBAL, true);
     }
@@ -405,8 +435,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MappingType getInput() {
-        return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__INPUT, true);
+    public InputMappingType getInput() {
+        return (InputMappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__INPUT, true);
     }
 
     /**
@@ -414,7 +444,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetInput(MappingType newInput, NotificationChain msgs) {
+    public NotificationChain basicSetInput(InputMappingType newInput, NotificationChain msgs) {
         return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__INPUT, newInput, msgs);
     }
 
@@ -423,7 +453,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInput(MappingType newInput) {
+    public void setInput(InputMappingType newInput) {
         ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__INPUT, newInput);
     }
 
@@ -1005,6 +1035,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetChannels(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return basicSetContainer(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES:
+                return basicSetExtraJaxbClasses(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__FAULT:
                 return basicSetFault(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__FAULTS:
@@ -1086,6 +1118,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getChannels();
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return getContainer();
+            case BPMPackage.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES:
+                return getExtraJaxbClasses();
             case BPMPackage.DOCUMENT_ROOT__FAULT:
                 return getFault();
             case BPMPackage.DOCUMENT_ROOT__FAULTS:
@@ -1170,6 +1204,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 setContainer((ContainerType)newValue);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES:
+                setExtraJaxbClasses((ExtraJaxbClassesType)newValue);
+                return;
             case BPMPackage.DOCUMENT_ROOT__FAULT:
                 setFault((MappingType)newValue);
                 return;
@@ -1186,7 +1223,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 setImplementationBpm((BPMImplementationType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__INPUT:
-                setInput((MappingType)newValue);
+                setInput((InputMappingType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
                 setInputs((InputsType)newValue);
@@ -1278,6 +1315,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 setContainer((ContainerType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES:
+                setExtraJaxbClasses((ExtraJaxbClassesType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__FAULT:
                 setFault((MappingType)null);
                 return;
@@ -1294,7 +1334,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 setImplementationBpm((BPMImplementationType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__INPUT:
-                setInput((MappingType)null);
+                setInput((InputMappingType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__INPUTS:
                 setInputs((InputsType)null);
@@ -1380,6 +1420,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getChannels() != null;
             case BPMPackage.DOCUMENT_ROOT__CONTAINER:
                 return getContainer() != null;
+            case BPMPackage.DOCUMENT_ROOT__EXTRA_JAXB_CLASSES:
+                return getExtraJaxbClasses() != null;
             case BPMPackage.DOCUMENT_ROOT__FAULT:
                 return getFault() != null;
             case BPMPackage.DOCUMENT_ROOT__FAULTS:

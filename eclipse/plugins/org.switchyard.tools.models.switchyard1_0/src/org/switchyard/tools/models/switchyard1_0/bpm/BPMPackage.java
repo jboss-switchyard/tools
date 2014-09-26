@@ -229,7 +229,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getOperationsType()
      * @generated
      */
-    int OPERATIONS_TYPE = 15;
+    int OPERATIONS_TYPE = 16;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMOperationTypeImpl <em>Operation Type</em>}' class.
@@ -239,7 +239,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getBPMOperationType()
      * @generated
      */
-    int BPM_OPERATION_TYPE = 16;
+    int BPM_OPERATION_TYPE = 17;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl <em>Implementation Type</em>}' class.
@@ -652,13 +652,22 @@ public interface BPMPackage extends EPackage {
     int DOCUMENT_ROOT__CONTAINER = 5;
 
     /**
+     * The feature id for the '<em><b>Extra Jaxb Classes</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__EXTRA_JAXB_CLASSES = 6;
+
+    /**
      * The feature id for the '<em><b>Fault</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__FAULT = 6;
+    int DOCUMENT_ROOT__FAULT = 7;
 
     /**
      * The feature id for the '<em><b>Faults</b></em>' containment reference.
@@ -667,7 +676,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__FAULTS = 7;
+    int DOCUMENT_ROOT__FAULTS = 8;
 
     /**
      * The feature id for the '<em><b>Global</b></em>' containment reference.
@@ -676,7 +685,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__GLOBAL = 8;
+    int DOCUMENT_ROOT__GLOBAL = 9;
 
     /**
      * The feature id for the '<em><b>Globals</b></em>' containment reference.
@@ -685,7 +694,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__GLOBALS = 9;
+    int DOCUMENT_ROOT__GLOBALS = 10;
 
     /**
      * The feature id for the '<em><b>Implementation Bpm</b></em>' containment reference.
@@ -694,7 +703,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__IMPLEMENTATION_BPM = 10;
+	int DOCUMENT_ROOT__IMPLEMENTATION_BPM = 11;
 
     /**
      * The feature id for the '<em><b>Input</b></em>' containment reference.
@@ -703,7 +712,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__INPUT = 11;
+    int DOCUMENT_ROOT__INPUT = 12;
 
     /**
      * The feature id for the '<em><b>Inputs</b></em>' containment reference.
@@ -712,7 +721,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__INPUTS = 12;
+    int DOCUMENT_ROOT__INPUTS = 13;
 
     /**
      * The feature id for the '<em><b>Listener</b></em>' containment reference.
@@ -721,7 +730,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__LISTENER = 13;
+    int DOCUMENT_ROOT__LISTENER = 14;
 
     /**
      * The feature id for the '<em><b>Listeners</b></em>' containment reference.
@@ -730,7 +739,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__LISTENERS = 14;
+    int DOCUMENT_ROOT__LISTENERS = 15;
 
     /**
      * The feature id for the '<em><b>Logger</b></em>' containment reference.
@@ -739,7 +748,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__LOGGER = 15;
+    int DOCUMENT_ROOT__LOGGER = 16;
 
     /**
      * The feature id for the '<em><b>Loggers</b></em>' containment reference.
@@ -748,7 +757,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__LOGGERS = 16;
+    int DOCUMENT_ROOT__LOGGERS = 17;
 
     /**
      * The feature id for the '<em><b>Manifest</b></em>' containment reference.
@@ -757,7 +766,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__MANIFEST = 17;
+    int DOCUMENT_ROOT__MANIFEST = 18;
 
     /**
      * The feature id for the '<em><b>Operation</b></em>' containment reference.
@@ -766,7 +775,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATION = 18;
+    int DOCUMENT_ROOT__OPERATION = 19;
 
     /**
      * The feature id for the '<em><b>Operations</b></em>' containment reference.
@@ -775,7 +784,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OPERATIONS = 19;
+    int DOCUMENT_ROOT__OPERATIONS = 20;
 
     /**
      * The feature id for the '<em><b>Output</b></em>' containment reference.
@@ -784,7 +793,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OUTPUT = 20;
+    int DOCUMENT_ROOT__OUTPUT = 21;
 
     /**
      * The feature id for the '<em><b>Outputs</b></em>' containment reference.
@@ -793,7 +802,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__OUTPUTS = 21;
+    int DOCUMENT_ROOT__OUTPUTS = 22;
 
     /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -802,7 +811,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__PROPERTIES = 22;
+    int DOCUMENT_ROOT__PROPERTIES = 23;
 
     /**
      * The feature id for the '<em><b>Property</b></em>' containment reference.
@@ -811,7 +820,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__PROPERTY = 23;
+    int DOCUMENT_ROOT__PROPERTY = 24;
 
     /**
      * The feature id for the '<em><b>Remote</b></em>' containment reference.
@@ -820,7 +829,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__REMOTE = 24;
+    int DOCUMENT_ROOT__REMOTE = 25;
 
     /**
      * The feature id for the '<em><b>Remote Jms</b></em>' containment reference.
@@ -829,7 +838,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__REMOTE_JMS = 25;
+    int DOCUMENT_ROOT__REMOTE_JMS = 26;
 
     /**
      * The feature id for the '<em><b>Remote Rest</b></em>' containment reference.
@@ -838,7 +847,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__REMOTE_REST = 26;
+    int DOCUMENT_ROOT__REMOTE_REST = 27;
 
     /**
      * The feature id for the '<em><b>Resource</b></em>' containment reference.
@@ -847,7 +856,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RESOURCE = 27;
+	int DOCUMENT_ROOT__RESOURCE = 28;
 
     /**
      * The feature id for the '<em><b>Resource Detail</b></em>' containment reference.
@@ -856,7 +865,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__RESOURCE_DETAIL = 28;
+    int DOCUMENT_ROOT__RESOURCE_DETAIL = 29;
 
     /**
      * The feature id for the '<em><b>Resources</b></em>' containment reference.
@@ -865,7 +874,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__RESOURCES = 29;
+    int DOCUMENT_ROOT__RESOURCES = 30;
 
     /**
      * The feature id for the '<em><b>User Group Callback</b></em>' containment reference.
@@ -874,7 +883,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__USER_GROUP_CALLBACK = 30;
+    int DOCUMENT_ROOT__USER_GROUP_CALLBACK = 31;
 
     /**
      * The feature id for the '<em><b>Work Item Handler</b></em>' containment reference.
@@ -883,7 +892,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__WORK_ITEM_HANDLER = 31;
+    int DOCUMENT_ROOT__WORK_ITEM_HANDLER = 32;
 
     /**
      * The feature id for the '<em><b>Work Item Handlers</b></em>' containment reference.
@@ -892,7 +901,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__WORK_ITEM_HANDLERS = 32;
+    int DOCUMENT_ROOT__WORK_ITEM_HANDLERS = 33;
 
     /**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -901,7 +910,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 33;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 34;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ExtraJaxbClassesTypeImpl <em>Extra Jaxb Classes Type</em>}' class.
@@ -967,7 +976,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getInputsType()
      * @generated
      */
-    int INPUTS_TYPE = 8;
+    int INPUTS_TYPE = 9;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ListenersTypeImpl <em>Listeners Type</em>}' class.
@@ -977,7 +986,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getListenersType()
      * @generated
      */
-    int LISTENERS_TYPE = 9;
+    int LISTENERS_TYPE = 10;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ListenerTypeImpl <em>Listener Type</em>}' class.
@@ -987,7 +996,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getListenerType()
      * @generated
      */
-    int LISTENER_TYPE = 10;
+    int LISTENER_TYPE = 11;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.LoggersTypeImpl <em>Loggers Type</em>}' class.
@@ -997,7 +1006,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getLoggersType()
      * @generated
      */
-    int LOGGERS_TYPE = 11;
+    int LOGGERS_TYPE = 12;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.LoggerType1Impl <em>Logger Type1</em>}' class.
@@ -1007,7 +1016,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getLoggerType1()
      * @generated
      */
-    int LOGGER_TYPE1 = 12;
+    int LOGGER_TYPE1 = 13;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ManifestTypeImpl <em>Manifest Type</em>}' class.
@@ -1017,7 +1026,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getManifestType()
      * @generated
      */
-    int MANIFEST_TYPE = 13;
+    int MANIFEST_TYPE = 14;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
@@ -1027,7 +1036,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getMappingType()
      * @generated
      */
-    int MAPPING_TYPE = 14;
+    int MAPPING_TYPE = 15;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.OutputsTypeImpl <em>Outputs Type</em>}' class.
@@ -1037,7 +1046,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getOutputsType()
      * @generated
      */
-    int OUTPUTS_TYPE = 17;
+    int OUTPUTS_TYPE = 18;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.PropertiesTypeImpl <em>Properties Type</em>}' class.
@@ -1047,7 +1056,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getPropertiesType()
      * @generated
      */
-    int PROPERTIES_TYPE = 18;
+    int PROPERTIES_TYPE = 19;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.PropertyTypeImpl <em>Property Type</em>}' class.
@@ -1057,7 +1066,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getPropertyType()
      * @generated
      */
-    int PROPERTY_TYPE = 19;
+    int PROPERTY_TYPE = 20;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ResourcesTypeImpl <em>Resources Type</em>}' class.
@@ -1067,7 +1076,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getResourcesType()
      * @generated
      */
-    int RESOURCES_TYPE = 24;
+    int RESOURCES_TYPE = 25;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ResourceTypeImpl <em>Resource Type</em>}' class.
@@ -1077,7 +1086,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getResourceType()
      * @generated
      */
-	int RESOURCE_TYPE = 25;
+	int RESOURCE_TYPE = 26;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.WorkItemHandlersTypeImpl <em>Work Item Handlers Type</em>}' class.
@@ -1087,7 +1096,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getWorkItemHandlersType()
      * @generated
      */
-    int WORK_ITEM_HANDLERS_TYPE = 27;
+    int WORK_ITEM_HANDLERS_TYPE = 28;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.WorkItemHandlerTypeImpl <em>Work Item Handler Type</em>}' class.
@@ -1097,7 +1106,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getWorkItemHandlerType()
      * @generated
      */
-    int WORK_ITEM_HANDLER_TYPE = 28;
+    int WORK_ITEM_HANDLER_TYPE = 29;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.UserGroupCallbackTypeImpl <em>User Group Callback Type</em>}' class.
@@ -1107,7 +1116,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getUserGroupCallbackType()
      * @generated
      */
-    int USER_GROUP_CALLBACK_TYPE = 26;
+    int USER_GROUP_CALLBACK_TYPE = 27;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.FaultsTypeImpl <em>Faults Type</em>}' class.
@@ -1190,6 +1199,115 @@ public interface BPMPackage extends EPackage {
      * @ordered
      */
     int GLOBALS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__FROM = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__TO = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Mapping Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.InputMappingTypeImpl <em>Input Mapping Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.InputMappingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getInputMappingType()
+     * @generated
+     */
+    int INPUT_MAPPING_TYPE = 8;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__DOCUMENTATION = MAPPING_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__ANY_ATTRIBUTE = MAPPING_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__FROM = MAPPING_TYPE__FROM;
+
+    /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__TO = MAPPING_TYPE__TO;
+
+    /**
+     * The feature id for the '<em><b>Output</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__OUTPUT = MAPPING_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Input Mapping Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1459,51 +1577,6 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MAPPING_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>From</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE__FROM = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE__TO = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Mapping Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
     int OPERATIONS_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
 
     /**
@@ -1748,7 +1821,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getRemoteType()
      * @generated
      */
-    int REMOTE_TYPE = 22;
+    int REMOTE_TYPE = 23;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1830,7 +1903,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getRemoteJmsType()
      * @generated
      */
-    int REMOTE_JMS_TYPE = 20;
+    int REMOTE_JMS_TYPE = 21;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1984,7 +2057,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getRemoteRestType()
      * @generated
      */
-    int REMOTE_REST_TYPE = 21;
+    int REMOTE_REST_TYPE = 22;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -2084,7 +2157,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getResourceDetailType()
      * @generated
      */
-    int RESOURCE_DETAIL_TYPE = 23;
+    int RESOURCE_DETAIL_TYPE = 24;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -2364,7 +2437,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getOperationType()
      * @generated
      */
-    int OPERATION_TYPE = 30;
+    int OPERATION_TYPE = 31;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.LoggerType <em>Logger Type</em>}' enum.
@@ -2374,7 +2447,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getLoggerType()
      * @generated
      */
-    int LOGGER_TYPE = 29;
+    int LOGGER_TYPE = 30;
 
     /**
      * The meta object id for the '<em>Operation Type Object</em>' data type.
@@ -2384,7 +2457,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getOperationTypeObject()
      * @generated
      */
-    int OPERATION_TYPE_OBJECT = 32;
+    int OPERATION_TYPE_OBJECT = 33;
 
     /**
      * The meta object id for the '<em>Logger Type Object</em>' data type.
@@ -2394,7 +2467,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getLoggerTypeObject()
      * @generated
      */
-    int LOGGER_TYPE_OBJECT = 31;
+    int LOGGER_TYPE_OBJECT = 32;
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.OperationsType <em>Operations Type</em>}'.
@@ -2863,6 +2936,17 @@ public interface BPMPackage extends EPackage {
     EReference getDocumentRoot_Container();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getExtraJaxbClasses <em>Extra Jaxb Classes</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Extra Jaxb Classes</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getExtraJaxbClasses()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_ExtraJaxbClasses();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getGlobal <em>Global</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3178,6 +3262,27 @@ public interface BPMPackage extends EPackage {
      * @generated
      */
     EReference getGlobalsType_Global();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType <em>Input Mapping Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Input Mapping Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType
+     * @generated
+     */
+    EClass getInputMappingType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType#getOutput <em>Output</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Output</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType#getOutput()
+     * @see #getInputMappingType()
+     * @generated
+     */
+    EAttribute getInputMappingType_Output();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.InputsType <em>Inputs Type</em>}'.
@@ -4299,6 +4404,14 @@ public interface BPMPackage extends EPackage {
         EReference DOCUMENT_ROOT__CONTAINER = eINSTANCE.getDocumentRoot_Container();
 
         /**
+         * The meta object literal for the '<em><b>Extra Jaxb Classes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__EXTRA_JAXB_CLASSES = eINSTANCE.getDocumentRoot_ExtraJaxbClasses();
+
+        /**
          * The meta object literal for the '<em><b>Global</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4533,6 +4646,24 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EReference GLOBALS_TYPE__GLOBAL = eINSTANCE.getGlobalsType_Global();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.InputMappingTypeImpl <em>Input Mapping Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.InputMappingTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getInputMappingType()
+         * @generated
+         */
+        EClass INPUT_MAPPING_TYPE = eINSTANCE.getInputMappingType();
+
+        /**
+         * The meta object literal for the '<em><b>Output</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_MAPPING_TYPE__OUTPUT = eINSTANCE.getInputMappingType_Output();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.InputsTypeImpl <em>Inputs Type</em>}' class.

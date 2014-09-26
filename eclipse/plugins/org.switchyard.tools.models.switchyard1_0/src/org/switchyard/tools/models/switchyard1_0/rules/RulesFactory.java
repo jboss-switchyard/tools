@@ -89,6 +89,15 @@ public interface RulesFactory extends EFactory {
     GlobalsType createGlobalsType();
 
     /**
+     * Returns a new object of class '<em>Input Mapping Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Input Mapping Type</em>'.
+     * @generated
+     */
+    InputMappingType createInputMappingType();
+
+    /**
      * Returns a new object of class '<em>Inputs Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

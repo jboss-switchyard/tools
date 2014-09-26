@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannels <em>Channels</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getExtraJaxbClasses <em>Extra Jaxb Classes</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getFault <em>Fault</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getFaults <em>Faults</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getGlobal <em>Global</em>}</li>
@@ -250,6 +251,33 @@ public interface DocumentRoot extends EObject {
     void setContainer(ContainerType value);
 
     /**
+     * Returns the value of the '<em><b>Extra Jaxb Classes</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Extra Jaxb Classes</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Extra Jaxb Classes</em>' containment reference.
+     * @see #setExtraJaxbClasses(ExtraJaxbClassesType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_ExtraJaxbClasses()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='extraJaxbClasses' namespace='##targetNamespace'"
+     * @generated
+     */
+    ExtraJaxbClassesType getExtraJaxbClasses();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getExtraJaxbClasses <em>Extra Jaxb Classes</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Extra Jaxb Classes</em>' containment reference.
+     * @see #getExtraJaxbClasses()
+     * @generated
+     */
+    void setExtraJaxbClasses(ExtraJaxbClassesType value);
+
+    /**
      * Returns the value of the '<em><b>Global</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -339,13 +367,13 @@ public interface DocumentRoot extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Input</em>' containment reference.
-     * @see #setInput(MappingType)
+     * @see #setInput(InputMappingType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Input()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='input' namespace='##targetNamespace'"
      * @generated
      */
-    MappingType getInput();
+    InputMappingType getInput();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getInput <em>Input</em>}' containment reference.
@@ -355,7 +383,7 @@ public interface DocumentRoot extends EObject {
      * @see #getInput()
      * @generated
      */
-    void setInput(MappingType value);
+    void setInput(InputMappingType value);
 
     /**
      * Returns the value of the '<em><b>Inputs</b></em>' containment reference.

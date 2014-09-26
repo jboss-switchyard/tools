@@ -19,6 +19,7 @@
 package org.switchyard.tools.ui.bpmn2.component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
@@ -540,7 +541,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         _globalsTable = new BPMMappingsTable(globalsSection, SWT.NONE,"message.content", "",  //$NON-NLS-1$ //$NON-NLS-2$
-                BPMPackage.eINSTANCE.getBPMOperationType_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global());
+                BPMPackage.eINSTANCE.getBPMOperationType_Globals(), BPMPackage.eINSTANCE.getGlobalsType_Global(),
+                Arrays.asList(BPMMappingsTable.FROM_COLUMN, BPMMappingsTable.TO_COLUMN));
         _globalsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_globalsTable);
         globalsSection.setClient(_globalsTable);
@@ -558,8 +560,9 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _inputsTable = new BPMMappingsTable(inputsSection, SWT.NONE, "message.content", "Parameter", //$NON-NLS-1$ //$NON-NLS-2$
-                BPMPackage.eINSTANCE.getBPMOperationType_Inputs(), BPMPackage.eINSTANCE.getInputsType_Input());
+        _inputsTable = new BPMMappingsTable(inputsSection, SWT.NONE, false, "message.content", "Parameter", null, //$NON-NLS-1$ //$NON-NLS-2$
+                BPMPackage.eINSTANCE.getBPMOperationType_Inputs(), BPMPackage.eINSTANCE.getInputsType_Input(),
+                Arrays.asList(BPMMappingsTable.FROM_COLUMN, BPMMappingsTable.TO_COLUMN, BPMMappingsTable.OUTPUT_COLUMN));
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
         inputsSection.setClient(_inputsTable);
@@ -578,7 +581,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         _outputsTable = new BPMMappingsTable(outputsSection, SWT.NONE, "Result", "message.content", //$NON-NLS-1$ //$NON-NLS-2$
-                BPMPackage.eINSTANCE.getBPMOperationType_Outputs(), BPMPackage.eINSTANCE.getOutputsType_Output());
+                BPMPackage.eINSTANCE.getBPMOperationType_Outputs(), BPMPackage.eINSTANCE.getOutputsType_Output(),
+                Arrays.asList(BPMMappingsTable.FROM_COLUMN, BPMMappingsTable.TO_COLUMN));
         _outputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_outputsTable);
         outputsSection.setClient(_outputsTable);
@@ -597,7 +601,8 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         });
 
         _faultsTable = new BPMMappingsTable(faultsSection, SWT.NONE, "Fault", "message.content", //$NON-NLS-1$ //$NON-NLS-2$
-                BPMPackage.eINSTANCE.getBPMOperationType_Faults(), BPMPackage.eINSTANCE.getFaultsType_Fault());
+                BPMPackage.eINSTANCE.getBPMOperationType_Faults(), BPMPackage.eINSTANCE.getFaultsType_Fault(),
+                Arrays.asList(BPMMappingsTable.FROM_COLUMN, BPMMappingsTable.TO_COLUMN));
         _faultsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_faultsTable);
         faultsSection.setClient(_faultsTable);

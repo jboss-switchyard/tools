@@ -68,6 +68,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
             case RulesPackage.CONTAINER_TYPE: return createContainerType();
             case RulesPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case RulesPackage.GLOBALS_TYPE: return createGlobalsType();
+            case RulesPackage.INPUT_MAPPING_TYPE: return createInputMappingType();
             case RulesPackage.INPUTS_TYPE: return createInputsType();
             case RulesPackage.LISTENERS_TYPE: return createListenersType();
             case RulesPackage.LISTENER_TYPE: return createListenerType();
@@ -217,6 +218,16 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
     public GlobalsType createGlobalsType() {
         GlobalsTypeImpl globalsType = new GlobalsTypeImpl();
         return globalsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InputMappingType createInputMappingType() {
+        InputMappingTypeImpl inputMappingType = new InputMappingTypeImpl();
+        return inputMappingType;
     }
 
     /**

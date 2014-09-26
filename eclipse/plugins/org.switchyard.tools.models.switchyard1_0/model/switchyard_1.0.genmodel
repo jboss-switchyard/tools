@@ -99,6 +99,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/channel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/container"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/extraJaxbClasses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/fault"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/faults"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//DocumentRoot/global"/>
@@ -135,6 +136,9 @@
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//GlobalsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//GlobalsType/global"/>
+    </genClasses>
+    <genClasses ecoreClass="component.bpm.ecore#//InputMappingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//InputMappingType/output"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//InputsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//InputsType/input"/>
@@ -460,6 +464,9 @@
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//GlobalsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//GlobalsType/global"/>
+    </genClasses>
+    <genClasses ecoreClass="component.rules.ecore#//InputMappingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//InputMappingType/output"/>
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//InputsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//InputsType/input"/>

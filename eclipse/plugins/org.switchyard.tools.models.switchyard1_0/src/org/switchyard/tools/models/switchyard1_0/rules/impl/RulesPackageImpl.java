@@ -29,6 +29,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.impl.CxfPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
@@ -68,6 +70,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ExpressionType;
 import org.switchyard.tools.models.switchyard1_0.rules.ExtraJaxbClassesType;
 import org.switchyard.tools.models.switchyard1_0.rules.FaultsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.rules.InputMappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.InputsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenerType;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenersType;
@@ -158,6 +161,13 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * @generated
      */
     private EClass globalsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass inputMappingTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -425,6 +435,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
         SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
         MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
+        CxfPackageImpl theCxfPackage = (CxfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) instanceof CxfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) : CxfPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -456,6 +467,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         theRssPackage.createPackageContents();
         theSapPackage.createPackageContents();
         theMqttPackage.createPackageContents();
+        theCxfPackage.createPackageContents();
 
         // Initialize created meta-data
         theRulesPackage.initializePackageContents();
@@ -484,6 +496,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         theRssPackage.initializePackageContents();
         theSapPackage.initializePackageContents();
         theMqttPackage.initializePackageContents();
+        theCxfPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -972,6 +985,24 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      */
     public EReference getGlobalsType_Global() {
         return (EReference)globalsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInputMappingType() {
+        return inputMappingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getInputMappingType_Output() {
+        return (EAttribute)inputMappingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -1728,6 +1759,9 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         globalsTypeEClass = createEClass(GLOBALS_TYPE);
         createEReference(globalsTypeEClass, GLOBALS_TYPE__GLOBAL);
 
+        inputMappingTypeEClass = createEClass(INPUT_MAPPING_TYPE);
+        createEAttribute(inputMappingTypeEClass, INPUT_MAPPING_TYPE__OUTPUT);
+
         inputsTypeEClass = createEClass(INPUTS_TYPE);
         createEReference(inputsTypeEClass, INPUTS_TYPE__INPUT);
 
@@ -1865,6 +1899,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         channelTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         containerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         globalsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        inputMappingTypeEClass.getESuperTypes().add(this.getMappingType());
         inputsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         listenersTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         listenerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
@@ -1926,7 +1961,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEReference(getDocumentRoot_Global(), this.getMappingType(), null, "global", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Globals(), this.getGlobalsType(), null, "globals", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ImplementationRules(), this.getRulesImplementationType(), null, "implementationRules", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Input(), this.getMappingType(), null, "input", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Input(), this.getInputMappingType(), null, "input", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Inputs(), this.getInputsType(), null, "inputs", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Listener(), this.getListenerType(), null, "listener", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Listeners(), this.getListenersType(), null, "listeners", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -1946,8 +1981,11 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEClass(globalsTypeEClass, GlobalsType.class, "GlobalsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGlobalsType_Global(), this.getMappingType(), null, "global", null, 0, -1, GlobalsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(inputMappingTypeEClass, InputMappingType.class, "InputMappingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getInputMappingType_Output(), theXMLTypePackage.getString(), "output", null, 0, 1, InputMappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(inputsTypeEClass, InputsType.class, "InputsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInputsType_Input(), this.getMappingType(), null, "input", null, 0, -1, InputsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInputsType_Input(), this.getInputMappingType(), null, "input", null, 0, -1, InputsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(listenersTypeEClass, ListenersType.class, "ListenersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getListenersType_Listener(), this.getListenerType(), null, "listener", null, 0, -1, ListenersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2500,6 +2538,20 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "kind", "element",
              "name", "global",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (inputMappingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "InputMappingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getInputMappingType_Output(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "output"
            });		
         addAnnotation
           (inputsTypeEClass, 

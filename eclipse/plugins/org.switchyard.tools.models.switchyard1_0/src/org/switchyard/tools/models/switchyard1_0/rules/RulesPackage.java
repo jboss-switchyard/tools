@@ -884,7 +884,176 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getInputsType()
      * @generated
      */
-    int INPUTS_TYPE = 7;
+    int INPUTS_TYPE = 8;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ListenersTypeImpl <em>Listeners Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ListenersTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getListenersType()
+     * @generated
+     */
+    int LISTENERS_TYPE = 9;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ListenerTypeImpl <em>Listener Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ListenerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getListenerType()
+     * @generated
+     */
+    int LISTENER_TYPE = 10;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.LoggersTypeImpl <em>Loggers Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.LoggersTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggersType()
+     * @generated
+     */
+    int LOGGERS_TYPE = 11;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.LoggerType1Impl <em>Logger Type1</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.LoggerType1Impl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerType1()
+     * @generated
+     */
+    int LOGGER_TYPE1 = 12;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ManifestTypeImpl <em>Manifest Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ManifestTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getManifestType()
+     * @generated
+     */
+    int MANIFEST_TYPE = 13;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.MappingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getMappingType()
+     * @generated
+     */
+    int MAPPING_TYPE = 14;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__FROM = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__TO = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Mapping Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.InputMappingTypeImpl <em>Input Mapping Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.InputMappingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getInputMappingType()
+     * @generated
+     */
+    int INPUT_MAPPING_TYPE = 7;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__DOCUMENTATION = MAPPING_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__ANY_ATTRIBUTE = MAPPING_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__FROM = MAPPING_TYPE__FROM;
+
+    /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__TO = MAPPING_TYPE__TO;
+
+    /**
+     * The feature id for the '<em><b>Output</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE__OUTPUT = MAPPING_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Input Mapping Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_MAPPING_TYPE_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -923,16 +1092,6 @@ public interface RulesPackage extends EPackage {
     int INPUTS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ListenersTypeImpl <em>Listeners Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ListenersTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getListenersType()
-     * @generated
-     */
-    int LISTENERS_TYPE = 8;
-
-    /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -967,16 +1126,6 @@ public interface RulesPackage extends EPackage {
      * @ordered
      */
     int LISTENERS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ListenerTypeImpl <em>Listener Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ListenerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getListenerType()
-     * @generated
-     */
-    int LISTENER_TYPE = 9;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1015,16 +1164,6 @@ public interface RulesPackage extends EPackage {
     int LISTENER_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.LoggersTypeImpl <em>Loggers Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.LoggersTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggersType()
-     * @generated
-     */
-    int LOGGERS_TYPE = 10;
-
-    /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1059,16 +1198,6 @@ public interface RulesPackage extends EPackage {
      * @ordered
      */
     int LOGGERS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.LoggerType1Impl <em>Logger Type1</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.LoggerType1Impl
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerType1()
-     * @generated
-     */
-    int LOGGER_TYPE1 = 11;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1123,16 +1252,6 @@ public interface RulesPackage extends EPackage {
      * @ordered
      */
     int LOGGER_TYPE1_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ManifestTypeImpl <em>Manifest Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.ManifestTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getManifestType()
-     * @generated
-     */
-    int MANIFEST_TYPE = 12;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1198,61 +1317,6 @@ public interface RulesPackage extends EPackage {
     int MANIFEST_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.MappingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getMappingType()
-     * @generated
-     */
-    int MAPPING_TYPE = 13;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>From</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE__FROM = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE__TO = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Mapping Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MAPPING_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
-
-    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.OutputsTypeImpl <em>Outputs Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1260,7 +1324,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getOutputsType()
      * @generated
      */
-    int OUTPUTS_TYPE = 14;
+    int OUTPUTS_TYPE = 15;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1306,7 +1370,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getPropertiesType()
      * @generated
      */
-    int PROPERTIES_TYPE = 15;
+    int PROPERTIES_TYPE = 16;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1352,7 +1416,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getPropertyType()
      * @generated
      */
-    int PROPERTY_TYPE = 16;
+    int PROPERTY_TYPE = 17;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1407,7 +1471,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getResourceDetailType()
      * @generated
      */
-    int RESOURCE_DETAIL_TYPE = 17;
+    int RESOURCE_DETAIL_TYPE = 18;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1471,7 +1535,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getResourcesType()
      * @generated
      */
-    int RESOURCES_TYPE = 18;
+    int RESOURCES_TYPE = 19;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1517,7 +1581,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getResourceType()
      * @generated
      */
-	int RESOURCE_TYPE = 19;
+	int RESOURCE_TYPE = 20;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1581,7 +1645,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRulesImplementationType()
      * @generated
      */
-	int RULES_IMPLEMENTATION_TYPE = 20;
+	int RULES_IMPLEMENTATION_TYPE = 21;
 
 	/**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1690,7 +1754,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getFaultsType()
      * @generated
      */
-    int FAULTS_TYPE = 21;
+    int FAULTS_TYPE = 22;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1736,7 +1800,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteType()
      * @generated
      */
-    int REMOTE_TYPE = 22;
+    int REMOTE_TYPE = 23;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1818,7 +1882,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteJmsType()
      * @generated
      */
-    int REMOTE_JMS_TYPE = 23;
+    int REMOTE_JMS_TYPE = 24;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1972,7 +2036,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getRemoteRestType()
      * @generated
      */
-    int REMOTE_REST_TYPE = 24;
+    int REMOTE_REST_TYPE = 25;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -2072,7 +2136,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExtraJaxbClassesType()
      * @generated
      */
-    int EXTRA_JAXB_CLASSES_TYPE = 25;
+    int EXTRA_JAXB_CLASSES_TYPE = 26;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -2118,7 +2182,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getOperationType()
      * @generated
      */
-    int OPERATION_TYPE = 26;
+    int OPERATION_TYPE = 27;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ExpressionType <em>Expression Type</em>}' enum.
@@ -2128,7 +2192,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExpressionType()
      * @generated
      */
-    int EXPRESSION_TYPE = 27;
+    int EXPRESSION_TYPE = 28;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.LoggerType <em>Logger Type</em>}' enum.
@@ -2138,7 +2202,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerType()
      * @generated
      */
-    int LOGGER_TYPE = 28;
+    int LOGGER_TYPE = 29;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ScopeType <em>Scope Type</em>}' enum.
@@ -2148,7 +2212,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getScopeType()
      * @generated
      */
-    int SCOPE_TYPE = 29;
+    int SCOPE_TYPE = 30;
 
     /**
      * The meta object id for the '<em>Operation Type Object</em>' data type.
@@ -2158,7 +2222,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getOperationTypeObject()
      * @generated
      */
-    int OPERATION_TYPE_OBJECT = 30;
+    int OPERATION_TYPE_OBJECT = 31;
 
     /**
      * The meta object id for the '<em>Expression Type Object</em>' data type.
@@ -2168,7 +2232,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getExpressionTypeObject()
      * @generated
      */
-    int EXPRESSION_TYPE_OBJECT = 31;
+    int EXPRESSION_TYPE_OBJECT = 32;
 
     /**
      * The meta object id for the '<em>Logger Type Object</em>' data type.
@@ -2178,7 +2242,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getLoggerTypeObject()
      * @generated
      */
-    int LOGGER_TYPE_OBJECT = 32;
+    int LOGGER_TYPE_OBJECT = 33;
 
     /**
      * The meta object id for the '<em>Scope Type Object</em>' data type.
@@ -2188,7 +2252,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getScopeTypeObject()
      * @generated
      */
-    int SCOPE_TYPE_OBJECT = 33;
+    int SCOPE_TYPE_OBJECT = 34;
 
 
     /**
@@ -2766,6 +2830,27 @@ public interface RulesPackage extends EPackage {
      * @generated
      */
     EReference getGlobalsType_Global();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.InputMappingType <em>Input Mapping Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Input Mapping Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.InputMappingType
+     * @generated
+     */
+    EClass getInputMappingType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.InputMappingType#getOutput <em>Output</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Output</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.InputMappingType#getOutput()
+     * @see #getInputMappingType()
+     * @generated
+     */
+    EAttribute getInputMappingType_Output();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.InputsType <em>Inputs Type</em>}'.
@@ -4021,6 +4106,24 @@ public interface RulesPackage extends EPackage {
          * @generated
          */
         EReference GLOBALS_TYPE__GLOBAL = eINSTANCE.getGlobalsType_Global();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.InputMappingTypeImpl <em>Input Mapping Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.InputMappingTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getInputMappingType()
+         * @generated
+         */
+        EClass INPUT_MAPPING_TYPE = eINSTANCE.getInputMappingType();
+
+        /**
+         * The meta object literal for the '<em><b>Output</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_MAPPING_TYPE__OUTPUT = eINSTANCE.getInputMappingType_Output();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.InputsTypeImpl <em>Inputs Type</em>}' class.

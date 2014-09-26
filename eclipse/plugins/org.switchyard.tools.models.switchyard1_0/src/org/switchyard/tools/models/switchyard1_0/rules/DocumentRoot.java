@@ -333,13 +333,13 @@ public interface DocumentRoot extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Input</em>' containment reference.
-     * @see #setInput(MappingType)
+     * @see #setInput(InputMappingType)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Input()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='input' namespace='##targetNamespace'"
      * @generated
      */
-    MappingType getInput();
+    InputMappingType getInput();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getInput <em>Input</em>}' containment reference.
@@ -349,7 +349,7 @@ public interface DocumentRoot extends EObject {
      * @see #getInput()
      * @generated
      */
-    void setInput(MappingType value);
+    void setInput(InputMappingType value);
 
     /**
      * Returns the value of the '<em><b>Inputs</b></em>' containment reference.

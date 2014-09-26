@@ -479,9 +479,9 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
             }
         });
 
-        _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, "message.content", null, //$NON-NLS-1$
+        _inputsTable = new RulesMappingsTable(inputsSection, SWT.NONE, "message.content", null, null, //$NON-NLS-1$
                 RulesPackage.eINSTANCE.getRulesOperationType_Inputs(), RulesPackage.eINSTANCE.getInputsType_Input(),
-                Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN));
+                Arrays.asList(RulesMappingsTable.FROM_COLUMN, RulesMappingsTable.TO_COLUMN, RulesMappingsTable.OUTPUT_COLUMN));
         _inputsTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         factory.adapt(_inputsTable);
         inputsSection.setClient(_inputsTable);
