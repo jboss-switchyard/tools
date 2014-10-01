@@ -21,6 +21,20 @@
             <updatePolicy>never</updatePolicy>
           </snapshots>
         </repository>
+        <repository>
+          <id>jboss-enterprise-repository-group</id>
+          <name>JBoss Enterprise Maven Repository Group</name>
+          <url>http://maven.repository.redhat.com/techpreview/all/</url>
+          <layout>default</layout>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+        </repository>
       </repositories>
     </profile>
   </profiles>
