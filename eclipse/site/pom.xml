@@ -57,6 +57,9 @@
             </goals>
             <configuration>
               <target>
+                <!-- create site_assembly.zip for publish.sh scriptgenerate-repository-facade v0.21 does not use finalName so do the work ourselves.-->
+                <copy file="${project.build.directory}/${project.artifactId}-${project.version}.zip" toFile="${project.build.directory}/site_assembly.zip"/>
+                <!-- generate-repository-facade v0.21 does not use finalName so do the work ourselves. -->
                 <move file="${project.build.directory}/${project.artifactId}-${project.version}.zip" toFile="${project.build.directory}/${project.build.finalName}.zip"/>
               </target>
             </configuration>
