@@ -14,13 +14,15 @@
   <description>Eclipse update site for SwitchYard tooling.</description>
 
   <properties>
+    <qualifiedVersion>${unqualifiedVersion}.${buildQualifier}</qualifiedVersion>
     <update.site.name>SwitchYard</update.site.name>
-    <update.site.version>2.0.0.${buildQualifier}</update.site.version>
+    <update.site.version>${qualifiedVersion}</update.site.version>
     <update.site.description>Continuous Integration</update.site.description>
     <target.eclipse.version>4.3 (Kepler) or 4.4 (Luna)</target.eclipse.version>
   </properties>
 
   <build>
+    <finalName>${project.artifactId}-${qualifiedVersion}</finalName>
     <plugins>
       <plugin>
         <groupId>org.jboss.tools.tycho-plugins</groupId>
@@ -41,6 +43,22 @@
                 <update.site.description>${update.site.description}</update.site.description>
                 <target.eclipse.version>${target.eclipse.version}</target.eclipse.version>
               </symbols>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <move file="${project.build.directory}/${project.artifactId}-${project.version}.zip" toFile="${project.build.directory}/${project.build.finalName}.zip"/>
+              </target>
             </configuration>
           </execution>
         </executions>
