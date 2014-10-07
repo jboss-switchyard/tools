@@ -619,6 +619,10 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 dependency = dependency.clone();
                 if (!_projectMetatData.isSwitchYardDependencyBOMEnabled()) {
                     dependency.setVersion(versionString);
+                } else {
+                    if (dependency.getArtifactId().equals("switchyard-plugin")) {
+                        dependency.setVersion(versionString);
+                    } // else don't add it
                 }
                 model.getDependencies().add(dependency);
             }
