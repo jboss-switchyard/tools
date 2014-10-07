@@ -1,7 +1,16 @@
 <html>
 <head>
-<title>${update.site.name} - ${update.site.description} Update Site: ${update.site.version}</title>
+<title>SwitchYard Tooling - ${update.site.description} Eclipse Update Site: ${update.site.version}</title>
+<link rel="icon" type="image/png" href="http://www.jboss.org/switchyard/orgLayoutBody/favicon/switchyard_icon_16px.png" />
 <link rel="stylesheet" type="text/css" href="web/site.css">
+<style type="text/css">
+.td_header {
+	background:
+		url("http://www.jboss.org/dms/switchyard/images/switchyard-banner.png")
+		0 no-repeat;
+	height: 100px;
+}
+</style>
 </head>
 <body marginheight="0" marginwidth="0" leftmargin="0" topmargin="0">
 <center>
@@ -17,7 +26,29 @@
 	<tr>
 		<td>&#160;&#160;&#160;&#160;&#160;&#160;</td>
 		<td>
-		<h2 class="title">${update.site.name} - ${update.site.description} Update Site</h2>
+		<h2 class="title">SwitchYard Tooling - ${update.site.description} Eclipse Update Site</h2>
+
+	<table>
+		<tr>
+			<td><a href="http://switchyard.jboss.org/"><img width="256" alt="" height="256"
+				src="http://www.jboss.org/switchyard/mainColumnParagraphs/00/imageBinary/switchyard_icon_256px.png"
+				style="margin: 0 auto;" />
+				</a>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td />
+						<td><h5 class="title">A lightweight service delivery framework
+								providing full lifecycle support for developing, deploying, and
+								managing service-oriented applications.</h5></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+
 		<table width="100%">
 			<tr class="header">
 				<td class="sub-header" width="100%"><span>Latest Build: ${update.site.version}</span></td>
@@ -26,14 +57,31 @@
 			<tr class="light-row" style="height: 30px">
 				<td class="bodyText">
 				<p class="bodyText">This is the <b>${update.site.description}</b>
-				Update Site for ${update.site.name}.
+				Update Site for SwitchYard tooling.  The features/plugins provided by this site require additional
+				features/plugins which are not provided by this site.  For the best user experience,
+				please install SwitchYard tooling from the
+				<a href="http://tools.jboss.org/downloads/jbosstools_is/index.html">JBoss Tools Integration Stack</a>.
+				This site should be used for accessing newer releases of SwitchYard tooling than those packaged with JBTIS.
 								<blockquote style="border: 1px dashed #1778be; padding: 2px">
 									<ol>
 										<li>To <a class="link"
 											href="http://www.jboss.org/tools/download/installation">install</a>
-											from this site, start up Eclipse ${target.eclipse.version}, then do:
+											from this site, start up Eclipse ${target.eclipse.version}.
+										</li>
+										<li>Add the following update sites to the list of configured update sites<br/>
+										<code><strong>Window &rarr; Preferences</strong></code><br/>
+										<code><strong>Install/Update &rarr; Available Software Sites</strong></code>
+										<ul>For Kepler (4.3) add:
+										<ul><a href="http://download.jboss.org/jbosstools/updates/stable/kepler/integration-stack/">http://download.jboss.org/jbosstools/updates/stable/kepler/integration-stack/</a></ul>
+										<ul><a href="http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.1.1.201409261846_0.7.0.201308220617_luna/">http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.1.1.201409261846_0.7.0.201308220617_luna/</a></ul>
+										</ul>
+										<ul>For Luna (4.4) add:
+										<ul><a href="http://download.jboss.org/jbosstools/updates/development/luna/integration-stack/">http://download.jboss.org/jbosstools/updates/development/luna/integration-stack/</a></ul>
+										</ul>
+										</li>
+										<li>Install the SwitchYard tooling:
 											<ul>
-												<code><strong>Help > Install New Software... ></strong></code>
+												<code><strong>Help &rarr; Install New Software...</strong></code>
 											</ul>
 										</li>
 										<li>Copy this site's URL into Eclipse, and hit Enter.</li>
@@ -48,10 +96,8 @@
 										<p class="bodyText">
 											You can also download JBoss Tools as individual zips for
 											offline installation. See <a class="link"
-												href="http://www.jboss.org/tools/download">JBoss Tools
-												Downloads</a>.<br /> If you downloaded this site as a zip, see
-											<a href="README.installation.txt">Installation README</a>.
-											See also <a
+												href="http://tools.jboss.org/downloads/overview.html">JBoss Tools
+												Downloads</a>.<br />See also <a
 												href="http://www.jboss.org/tools/download/installation">Installation
 												methods</a>.
 										</p>
@@ -91,7 +137,7 @@
 				<td class="bodyText">
 				<h4>Stable Releases</h4>
 
-				<p><a href="https://www.jboss.org/tools/download/stable.html">Stable
+				<p><a href="http://download.jboss.org/jbosstools/updates/stable/kepler/integration-stack/switchyard">Stable
 				releases</a> are - as indicated by their name - stable.</p><br/>
 
 				</td>
@@ -101,7 +147,7 @@
 				<td class="bodyText">
 				<h4>Development Milestones</h4>
 
-				<p><a href="https://www.jboss.org/tools/download/dev.html">Development
+				<p><a href="http://download.jboss.org/jbosstools/updates/development/kepler/integration-stack/switchyard">Development
 				builds</a>, released once per milestone and only a few times a year, are
 				fairly stable, but there may be some things which do not yet work.
 				If you would like to try one of these milestones, we'd greatly
@@ -117,7 +163,7 @@
 				<h4>Continuous Integration Builds</h4>
 
 				<p>The <a
-					href="https://www.jboss.org/tools/download/nightly.html">bleeding
+					href="http://download.jboss.org/jbosstools/updates/integration/kepler/integration-stack/switchyard">bleeding
 				edge</a> contains the latest and greatest new features, but nothing is
 				stable or guaranteed - yet. If you're using a Milestone and need a
 				fix, you can update to the latest Nightly, or wait for the next
