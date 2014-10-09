@@ -12,6 +12,8 @@ package org.switchyard.tools.ui.validation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -32,6 +34,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.ExchangePattern;
 import org.switchyard.metadata.ServiceInterface;
 import org.switchyard.metadata.ServiceOperation;
+import org.switchyard.transform.TransformSequence;
 
 /**
  * ServiceWiringConstraints
@@ -51,6 +54,8 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
 
     private WiringValidationContext _wiring;
 
+    private int _hops = 2;
+    
     @Override
     public IStatus validate(IValidationContext ctx) {
         EObject eObj = ctx.getTarget();
@@ -242,14 +247,84 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
             // we can't validate
             return null;
         }
-        final Set<QName> tos = _wiring.getTranformers().get(fromType);
-        if (tos == null || !tos.contains(toType)) {
+        
+        TransformSequence tSeq = resolveSequence(fromType, toType);
+        if (tSeq == null) {
             final ValidationProblem problem = ValidationProblem.MissingTransformation;
             return ConstraintStatus.createStatus(ctx, source, Arrays.asList(new Contract[] {source, target }),
                     problem.getSeverity(), problem.ordinal(), problem.getMessage(), fromType, toType);
         }
         return null;
     }
+    
+    private TransformSequence resolveSequence(QName from, QName to) {
+        // if either one of these is null then there's no chance a sequence will be found
+        if (from == null || to == null) {
+            return null;
+        }
+        
+        // if there's a direct hit, set that and bail
+        Set<QName> tos = _wiring.getTranformers().get(from);
+        if (tos != null && tos.contains(to)) {
+            return TransformSequence.from(from).to(to);
+        }
+
+        TransformSequence transformSequence = null;
+        LinkedList<QName> path = new LinkedList<QName>();
+        
+        // walk the graph to see if we can resolve the path
+        if (resolvePath(path, from, to, _hops)) {
+            transformSequence = TransformSequence.from(from);
+            for (QName type : path) {
+                transformSequence.to(type);
+            }
+        }
+        return transformSequence;
+    }
+
+    /**
+     * Recursive depth-first(ish) search for connected types in the transform registry.  There
+     * is no path weighting applied, so the first connection wins. There is no logic to detect 
+     * cycles since the limit parameter prevents infinite loops.
+     */
+    boolean resolvePath(LinkedList<QName> path, QName fromType, QName toType, int limit) {
+        // check search limit
+        if (limit < 0) {
+            return false;
+        }
+        --limit;
+        
+        // have we arrived at our destination?
+        if (fromType.equals(toType)) {
+            return true;
+        }
+        
+        System.out.println("Looking for FROM: " + fromType + ", TO: " + toType);
+        
+        // go fish
+        Set<QName> transformers = _wiring.getTranformers().get(fromType);
+        if (transformers != null) {
+            Iterator<QName> transformIter = transformers.iterator();
+            while (transformIter.hasNext()) {
+                QName fromT = transformIter.next();
+                System.out.println("FROM-Type - " + fromT);
+                Set<QName> tos = _wiring.getTranformers().get(fromT);
+                System.out.println("Processing TOs");
+                Iterator<QName> tosIter = tos.iterator();
+                while (tosIter.hasNext()) {
+                    QName toT = tosIter.next();
+                    System.out.println("TO-Type - " + toT);
+                    if (resolvePath(path, toT, toType, limit)) {
+                        path.addFirst(toT);
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+    
 
     private IStatus validateInterfaceCompatibility(IValidationContext ctx, ComponentReference reference) {
         Set<Contract> targets = _wiring.getWires().get(reference);

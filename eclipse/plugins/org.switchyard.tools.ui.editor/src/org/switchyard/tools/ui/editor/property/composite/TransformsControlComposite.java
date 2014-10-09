@@ -69,6 +69,7 @@ import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
+import org.switchyard.tools.ui.editor.transform.NewAdHocTransformWizard;
 import org.switchyard.tools.ui.editor.transform.NewTransformWizard;
 import org.switchyard.tools.ui.editor.transform.TransformDetails;
 import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
@@ -84,10 +85,27 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
     private TransformType _transformer = null;
     private TableViewer _tableViewer;
     private FormToolkit _toolkit = null;
+    private Button _addRequiredButton;
     private Button _addButton;
     private Button _removeButton;
     private TransactionalEditingDomain _domain = null;
 
+    
+    private abstract class BaseSelectionListener implements SelectionListener {
+        
+        abstract void performAction();
+        
+        @Override
+        public void widgetSelected(SelectionEvent e) {
+            performAction();
+        }
+
+        @Override
+        public void widgetDefaultSelected(SelectionEvent e) {
+            widgetSelected(e);
+        }
+    }
+    
     /**
      * Create a new InterfaceControlComposite.
      * 
@@ -107,16 +125,19 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
 
         _toolkit = getWidgetFactory();
         
-        _addButton = _toolkit.createButton(this, Messages.button_add, SWT.PUSH);
-        _addButton.addSelectionListener(new SelectionListener() {
+        _addRequiredButton = _toolkit.createButton(this, "Add Required...", SWT.PUSH);
+        _addRequiredButton.addSelectionListener(new BaseSelectionListener() {
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            void performAction() {
                 addTransform();
             }
+        });
 
+        _addButton = _toolkit.createButton(this, Messages.button_add, SWT.PUSH);
+        _addButton.addSelectionListener(new BaseSelectionListener() {
             @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
+            void performAction() {
+                addAdHocTransform();
             }
         });
 
@@ -148,19 +169,26 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
         Label legend = new Label(this, SWT.NONE);
         legend.setText(Messages.label_starEqualsGeneratedTransform);
 
+        int btnWidth = 90;
         FormData data = new FormData();
         data.right = new FormAttachment(95, 0);
-        data.width = 80;
-        _addButton.setLayoutData(data);
+        data.width = btnWidth;
+        _addRequiredButton.setLayoutData(data);
         
         data = new FormData();
         data.right = new FormAttachment(95, 0);
-        data.width = 80;
+        data.width = btnWidth;
+        data.top = new FormAttachment(_addRequiredButton, 5);
+        _addButton.setLayoutData(data);
+
+        data = new FormData();
+        data.right = new FormAttachment(95, 0);
+        data.width = btnWidth;
         data.top = new FormAttachment(_addButton, 5);
         _removeButton.setLayoutData(data);
 
         data = new FormData();
-        data.right = new FormAttachment(_addButton, -5);
+        data.right = new FormAttachment(_addRequiredButton, -5);
         data.left = new FormAttachment(0, 0);
         data.top = new FormAttachment(0, 0);
         data.bottom = new FormAttachment(90,0);
@@ -279,6 +307,48 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
         return list.remove(index);
     }
 
+    private TransformType addAdHocTransform() {
+        TransformDetails details = null;
+        try {
+            final SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(_composite);
+            details = new TransformDetails(switchYardRoot);
+
+            final NewAdHocTransformWizard wizard = new NewAdHocTransformWizard();
+            wizard.init(details);
+            WizardDialog dialog = new WizardDialog(this.getShell(), wizard);
+            if (dialog.open() != Window.OK) {
+                return null;
+            }
+            if (_domain != null) {
+                _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                    @Override
+                    protected void doExecute() {
+                        final Collection<TransformType> newTransforms = wizard.getCreatedTransforms();
+                        if (newTransforms == null || newTransforms.isEmpty()) {
+                            refresh();
+                            return;
+                        }
+                        TransformsType transforms = switchYardRoot.getTransforms();
+                        if (transforms == null) {
+                            switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
+                            transforms = switchYardRoot.getTransforms();
+                        }
+                        Collection<TransformType> transformsList = transforms.getTransform();
+                        for (TransformType newTransform : newTransforms) {
+                            transformsList.add(newTransform);
+                        }
+                        refresh();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            MessageDialog.openError(this.getShell(), Messages.title_errorResolvingTransformers, Messages.description_errorResolvingTransformers
+                    + e.getMessage());
+            return null;
+        }
+        return null;
+    }
+    
     private TransformType addTransform() {
         TransformDetails details = null;
         try {
