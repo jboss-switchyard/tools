@@ -263,9 +263,10 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             @Override
             public void stateChanged(ChangeEvent e) {
                 boolean testRuntimeVersion = isSelectedRuntimeV2();
+                boolean testConfigVersion = isSelectedConfigurationVersionOkForRuntime();
                 _useSwitchYardDependencyBOMCheckbox.setEnabled(testRuntimeVersion);
                 _doesUseSwitchYardDependencyBOM = testRuntimeVersion;
-                _useSwitchYardDependencyBOMCheckbox.setSelection(_doesUseSwitchYardDependencyBOM);
+                _useSwitchYardDependencyBOMCheckbox.setSelection(_doesUseSwitchYardDependencyBOM & testConfigVersion);
 
                 validate();
             }
@@ -328,6 +329,11 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
              * logic and fail there instead of here. }
              */
             
+            if (!isSelectedConfigurationVersionOkForRuntime()) {
+                String configVersion = getMajorMinorFromVersion(getRuntimeVersion().toString());
+                setErrorMessage("The Configuration Version must be " + configVersion + " or lower to work with Library Version " + getRuntimeVersion().toString() + ".");
+            }
+
             // if the version < 2.0 and they want to use the BOM, it's not allowed
             if (_doesUseSwitchYardDependencyBOM) {
                 if (!isSelectedRuntimeV2()) {
@@ -339,8 +345,7 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     }
 
     private boolean isSelectedRuntimeV2() {
-        IStructuredSelection ssel = (IStructuredSelection) _settingsGroup.getRuntimeVersionsList().getSelection();
-        DefaultArtifactVersion artversion = (DefaultArtifactVersion) ssel.getFirstElement();
+        ArtifactVersion artversion = getRuntimeVersion();
         String versionString = artversion.toString();
         if (versionString.indexOf('.') > -1) {
             String majorVersionString = versionString.substring(0, versionString.indexOf('.'));
@@ -357,7 +362,50 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         
         return false;
     }
+
+    private float convertVersionStringToLong(String strVersion) {
+        float version;
+        try {
+            version = Float.parseFloat(strVersion);
+        } catch (NumberFormatException nfe) {
+            version = -1;
+        }
+        return version;
+    }
     
+    private String getMajorMinorFromVersion(String inString) {
+        try {
+            String[] versionSplit = inString.split("\\.");
+            if (versionSplit.length > 1) {
+                return versionSplit[0] + "." + versionSplit[1];
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
+    }
+    
+    private boolean isSelectedConfigurationVersionOkForRuntime() {
+        String configVersionStr = getConfigurationVersion().getVersionString();
+        String majorMinorConfig = getMajorMinorFromVersion(configVersionStr);
+        if (majorMinorConfig != null) {
+            float configVersion = convertVersionStringToLong(configVersionStr);
+            if (configVersion > -1) {
+                String runtimeVersionStr = getRuntimeVersion().toString();
+                String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
+                if (majorMinorRuntime != null) {
+                    float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
+                    if (runtimeVersion > -1) {
+                        if (configVersion <= runtimeVersion) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     private void updateNamespaceGroup(String oldGroupId, String newGroupId) {
         // strip off trailing .'s
         while (oldGroupId.endsWith(".")) { //$NON-NLS-1$

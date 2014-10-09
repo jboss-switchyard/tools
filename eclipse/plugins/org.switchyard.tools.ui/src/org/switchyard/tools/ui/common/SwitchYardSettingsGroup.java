@@ -469,6 +469,7 @@ public class SwitchYardSettingsGroup {
             }
             _runtimeVersionsList.getCombo().setEnabled(false);
         }
+        fireChangedEvent(this);
     }
 
     private ArtifactVersion getRuntimeVersion(IRuntimeComponent component) {
@@ -866,5 +867,16 @@ public class SwitchYardSettingsGroup {
         if (this._changeListeners != null && !this._changeListeners.isEmpty()) {
             this._changeListeners.remove(listener);
         }
+    }
+    
+    /**
+     * Enable/disable the Runtime version controls.
+     * 
+     * @param value Enable/disable version controls wholesale
+     */
+    public void setRuntimeControlEnablement(boolean value) {
+        _configVersionsList.getCombo().setEnabled(value);
+        _runtimesList.getCombo().setEnabled(value);
+        _runtimeVersionsList.getCombo().setEnabled(value);
     }
 }
