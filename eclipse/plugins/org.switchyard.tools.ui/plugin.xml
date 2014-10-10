@@ -786,10 +786,6 @@
         </dependency>
         <dependency>
            <groupId>org.switchyard</groupId>
-           <artifactId>switchyard-plugin</artifactId>
-        </dependency>
-        <dependency>
-           <groupId>org.switchyard</groupId>
            <artifactId>switchyard-test</artifactId>
            <scope>test</scope>
         </dependency>

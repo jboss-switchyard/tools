@@ -16,6 +16,7 @@ import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -211,7 +212,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
                         monitor.setTaskName(Messages.NewSwitchYardProjectWizard_taskLabel_resolvingSwitchYardArtifacts);
                         if (MavenPlugin.getMaven()
                                 .resolve("org.switchyard", "switchyard-api", version.toString(), "jar", null, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                                        MavenPlugin.getMaven().getArtifactRepositories(), monitor).isResolved()) {
+                                        MavenPlugin.getMaven().getArtifactRepositories(), new NullProgressMonitor()).isResolved()) {
                             retVal[0] = true;
                             return;
                         }
@@ -230,4 +231,5 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         }
         return retVal[0];
     }
+
 }

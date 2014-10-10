@@ -596,6 +596,7 @@ public class SwitchYardSettingsGroup {
                     previousWasSnapshot = version.endsWith("-SNAPSHOT"); //$NON-NLS-1$
                 } else if (version.endsWith("-SNAPSHOT")) { //$NON-NLS-1$
                     // skip snapshots
+                    previousWasSnapshot = true;
                     continue;
                 } else if (previousMajorMinor.equals(majorMinor) && !previousWasSnapshot) {
                     // we already have this version

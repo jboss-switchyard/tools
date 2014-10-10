@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -145,10 +146,13 @@ public final class M2EUtils {
      */
     public static List<ArtifactVersion> resolveSwitchYardVersionRange(IProgressMonitor monitor) throws CoreException {
         try {
-            return resolveVersionRange(
+            final List<ArtifactVersion> versions = resolveVersionRange(
                     ((MavenImpl) MavenPlugin.getMaven()).getPlexusContainer().lookup(RepositorySystem.class)
                             .createArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "[,]", "jar"),
                     monitor);
+            // make sure the versions are in order
+            Collections.sort(versions);
+            return versions;
         } catch (Exception e) {
             throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e)); //$NON-NLS-1$
         }
