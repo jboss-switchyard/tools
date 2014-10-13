@@ -1179,6 +1179,18 @@
            </artifactId>
         </dependency>
      </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-mqtt"
+           name="MQTT">
+        <description>
+           Provides support for Camel MQTT gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-mqtt</artifactId>
+        </dependency>
+     </component>
   </extension>
   <extension
         point="org.switchyard.tools.ui.switchYardTestMixIn">

@@ -63,12 +63,12 @@ public class CamelSAPComposite extends AbstractSYBindingComposite {
 
     @Override
     public String getTitle() {
-        return Messages.title_sqlBindingDetails;
+        return "SAP Binding Details";
     }
 
     @Override
     public String getDescription() {
-        return Messages.description_sqlBindingDetails;
+        return "Specify pertinent details for your SAP Binding.";
     }
 
     @Override

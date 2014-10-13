@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -73,15 +72,15 @@ public class CamelAdditionalURIPropertyTable extends Composite {
     private WritableValue _bindingValue;
 
     CamelAdditionalURIPropertyTable(Composite parent, int style, EReference additionalUriParametersFeature,
-            EReference parameterFeature, EClass parameterType, DataBindingContext context) {
-        this(parent, style, false, additionalUriParametersFeature, parameterFeature, parameterType, context);
+            EReference parameterFeature, EClass parameterType, DataBindingContext context, final EditingDomain domain) {
+        this(parent, style, false, additionalUriParametersFeature, parameterFeature, parameterType, context, domain);
     }
 
     CamelAdditionalURIPropertyTable(Composite parent, int style, boolean isReadOnly,
             EReference additionalUriParametersFeature, EReference parameterFeature, EClass parameterType,
-            DataBindingContext context) {
+            DataBindingContext context, final EditingDomain domain) {
         super(parent, style);
-        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
+//        final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
         _additionalUriParametersFeature = additionalUriParametersFeature;

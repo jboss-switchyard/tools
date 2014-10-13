@@ -74,7 +74,7 @@ public class AdvancedCamelBindingDetailsComposite extends AdvancedBindingDetails
         
         // add the additional URI properties table
         _propTable = new CamelAdditionalURIPropertyTable(getPanel(), SWT.NONE, _additionalUriParametersFeature,
-                _parameterFeature, _parameterType, context);
+                _parameterFeature, _parameterType, context, getDomain(getTargetObject()));
         GridData gd2 = new GridData(SWT.FILL, SWT.FILL, true, false);
         gd2.verticalSpan = 5;
         _propTable.setLayoutData(gd2);
