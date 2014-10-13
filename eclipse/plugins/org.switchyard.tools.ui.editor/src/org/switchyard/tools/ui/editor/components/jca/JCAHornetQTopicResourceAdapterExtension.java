@@ -72,7 +72,6 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
     private static final String DESTINATION_TYPE_DEFAULT = "javax.jms.Topic";  //$NON-NLS-1$
     private static final String DESTINATION_DEFAULT = "topic/YourTopicName";  //$NON-NLS-1$
     private static final String SUBSCRIPTION_DURABILITY_DEFAULT = "NonDurable"; //$NON-NLS-1$
-    private static final String ACKNOWLEDGE_MODE_DEFAULT = "Auto-acknowledge"; //$NON-NLS-1$
     private static final String RESOURCE_ADAPTER_NAME = "hornetq-ra.rar"; //$NON-NLS-1$
 
     private static final String OUTBOUND_CONNECTION_JNDINAME_DEFAULT = "java:/JmsXA"; //$NON-NLS-1$
@@ -85,8 +84,6 @@ public class JCAHornetQTopicResourceAdapterExtension extends AbstractResourceAda
                 put(DESTINATION_PROP, DESTINATION_DEFAULT);
                 put(SUBSCRIPTION_NAME_PROP, null);
                 put(SUBSCRIPTION_DURABILITY_PROP, SUBSCRIPTION_DURABILITY_DEFAULT);
-                put(MESSAGE_SELECTOR_PROP, null);
-                put(ACKNOWLEDGE_MODE_PROP, ACKNOWLEDGE_MODE_DEFAULT);
                 put(CLIENTID_PROP, null);
             }
         };

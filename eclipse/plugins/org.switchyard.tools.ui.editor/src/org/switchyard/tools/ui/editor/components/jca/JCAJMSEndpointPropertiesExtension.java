@@ -83,6 +83,7 @@ public class JCAJMSEndpointPropertiesExtension implements
             add(PASSWORD_PROP);
             add(REPLY_TO_PROP);
             add(USER_NAME_PROP);
+            add(DESTINATION_TYPE_PROP);
         }
     };
 

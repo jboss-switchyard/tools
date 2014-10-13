@@ -66,7 +66,6 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
 
     private static final String DESTINATION_TYPE_DEFAULT = "javax.jms.Queue";  //$NON-NLS-1$
     private static final String DESTINATION_DEFAULT = "queue/YourQueueName";  //$NON-NLS-1$
-    private static final String ACKNOWLEDGE_MODE_DEFAULT = "Auto-acknowledge"; //$NON-NLS-1$
     private static final String RESOURCE_ADAPTER_NAME = "hornetq-ra.rar"; //$NON-NLS-1$
     
     private static final String OUTBOUND_CONNECTION_JNDINAME_DEFAULT = "java:/JmsXA"; //$NON-NLS-1$
@@ -77,8 +76,6 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
             {
                 put(DESTINATION_TYPE_PROP, DESTINATION_TYPE_DEFAULT);
                 put(DESTINATION_PROP, DESTINATION_DEFAULT);
-                put(MESSAGE_SELECTOR_PROP, null);
-                put(ACKNOWLEDGE_MODE_PROP, ACKNOWLEDGE_MODE_DEFAULT);
             }
         };
 
@@ -155,6 +152,7 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
         private final Map<String, String> _processorProperties = new LinkedHashMap<String, String>() {
             {
                 put(DESTINATION_PROP, DESTINATION_DEFAULT);
+                put(DESTINATION_TYPE_PROP, DESTINATION_TYPE_DEFAULT);
             }
         };
         @Override

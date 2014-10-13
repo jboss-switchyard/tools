@@ -81,6 +81,7 @@ public class JCAJMSProcessorPropertiesExtension implements
             add(PASSWORD_PROP);
             add(MESSAGE_TYPE_PROP);
             add(DESTINATION_JNDI_PROPERTIES_FILE_PROP);
+            add(DESTINATION_TYPE_PROP);
         }
     };
 
@@ -129,7 +130,7 @@ public class JCAJMSProcessorPropertiesExtension implements
             _panel = getToolkit().createComposite(parent, style);
             _panel.setLayout(new GridLayout(2, false));
             
-            _jndiNameText = createLabelAndText(_panel, "JNDI Name");
+            _jndiNameText = createLabelAndText(_panel, "Connection Factory JNDI Name");
 
             Group processorPropsGroup = new Group(_panel, SWT.NONE);
             processorPropsGroup.setText(getTitle());
