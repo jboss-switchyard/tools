@@ -63,6 +63,11 @@ public class WSDL2JavaOperation implements IRunnableWithProgress {
                     context.addParameters(Collections.<String, Object> singletonMap(ToolConstants.CFG_GEN_TYPES,
                             Boolean.TRUE));
                 }
+                
+                // Add this so we handle generating any Faults that may come up
+                context.addParameters(Collections.<String, Object> singletonMap(ToolConstants.CFG_GEN_FAULT,
+                        Boolean.TRUE));
+                
                 wsdlToJava.run(context);
             } catch (Exception e) {
                 throw new InvocationTargetException(e);

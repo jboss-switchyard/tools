@@ -76,6 +76,11 @@ public class SwitchYardWSDLToJavaProcessor extends WSDLToJavaProcessor {
                 continue;
             }
             OperationProcessor operationProcessor = new OperationProcessor(context);
+            
+            // add these two lines in case there's a fault to be generated
+            dummyInterface.setPackageName(intf.getPackageName());
+            dummyInterface.setJavaModel(javaModel);
+            
             operationProcessor.process(dummyInterface, operation);
             
             // patch up the method name (need to preserve case)

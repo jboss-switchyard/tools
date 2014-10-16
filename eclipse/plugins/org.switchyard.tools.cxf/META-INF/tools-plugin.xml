@@ -10,6 +10,7 @@
     <generators>
       <!-- We're only concerned with the SEI. -->
       <generator name="SwitchYardSEIGenerator" />
+      <generator name="SwitchYardFaultGenerator" />
     </generators>
   </frontend>
 </plugin>
