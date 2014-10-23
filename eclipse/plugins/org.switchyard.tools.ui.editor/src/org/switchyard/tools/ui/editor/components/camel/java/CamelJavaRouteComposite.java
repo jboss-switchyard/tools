@@ -285,18 +285,25 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
             getContainer().validated(validate());
             if (!_updating) {
                 if (_mClassText != null && !_mClassText.isDisposed()) {
-                    if (_implementation == null) {
-                        _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
-                    }
-                    
-                    // handle java class name
-                    JavaDSLType javatype = _implementation.getJava();
-                    if (javatype == null) {
-                        javatype = CamelFactory.eINSTANCE.createJavaDSLType();
-                        _implementation.setJava(javatype);
-                    }
-                    javatype.setClass(_mClassText.getText());
-                    _implementation.setXml(null);
+                    wrapOperation(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (_implementation == null) {
+                                _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
+                            }
+                            
+                            // handle java class name
+                            JavaDSLType javatype = _implementation.getJava();
+                            if (javatype == null) {
+                                javatype = CamelFactory.eINSTANCE.createJavaDSLType();
+                                _implementation.setJava(javatype);
+                            }
+                            javatype.setClass(_mClassText.getText());
+                            _implementation.setXml(null);
+                        }
+                        
+                    });
                  }
             }
         }
