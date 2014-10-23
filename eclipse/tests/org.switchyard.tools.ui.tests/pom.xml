@@ -11,6 +11,13 @@
   <name>SwitchYard: Eclipse Tools UI Plugin Tests</name>
   <description>Test plugin for SwitchYard Eclipse UI tooling.</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>xmlunit</groupId>
+      <artifactId>xmlunit</artifactId>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
