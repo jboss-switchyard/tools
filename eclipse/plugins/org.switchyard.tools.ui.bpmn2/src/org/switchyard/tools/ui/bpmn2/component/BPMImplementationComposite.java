@@ -65,6 +65,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Link;
@@ -79,19 +80,21 @@ import org.eclipse.ui.forms.events.ExpansionAdapter;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.OperationsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.bpm.RemoteJmsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.RemoteRestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.bpmn2.Messages;
+import org.switchyard.tools.ui.editor.diagram.shared.PropertiesFileLoadDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.AbstractModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
@@ -135,6 +138,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
     private Text _userGroupCallbackClassText;
     private BPMUserGroupCallbackPropertyTable _userCallbackPropertiesTable;
     private Link _callbackLinkLabel;
+    private Text _propFileText;
 
     /**
      * Create a new BPMImplementationComposite.
@@ -233,6 +237,12 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 _container = _implementation.getManifest().getContainer();
                 _remoteJms = _implementation.getManifest().getRemoteJms();
                 _remoteRest = _implementation.getManifest().getRemoteRest();
+            }
+            if (_implementation != null && _implementation.getProperties() != null) {
+                PropertiesType properties = _implementation.getProperties();
+                if (properties != null && properties.getLoad() !=  null) {
+                    _propFileText.setText(properties.getLoad());
+                }
             }
         }
         _updating = true;
@@ -342,6 +352,7 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         } finally {
             _updating = false;
         }
+        getContainer().validated(validate());
     }
 
     private void createGeneralControls(TabFolder folder, TabItem item) {
@@ -685,10 +696,56 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
             }
         });
 
-        _propertiesTable = new BPMPropertyTable(propertiesSection, SWT.NONE);
-        _propertiesTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        Composite propsComposite = new Composite(propertiesSection, SWT.NONE);
+        propsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 5));
+        propsComposite.setLayout(new GridLayout(3, false));
+
+        Label propFileLabel = new Label(propsComposite, SWT.NONE);
+        propFileLabel.setText("Properties File:");
+        propFileLabel.setLayoutData(new GridData());
+        
+        _propFileText = new Text(propsComposite, SWT.BORDER);
+        _propFileText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+        _propFileText.addModifyListener(new ModifyListener() {
+
+            @Override
+            public void modifyText(ModifyEvent e) {
+                updateImplementationPropertiesLoadValue(_propFileText.getText());
+                getContainer().validated(validate());
+            }
+        });
+        
+        Button propFileBrowseBtn = new Button(propsComposite, SWT.PUSH);
+        propFileBrowseBtn.setText("...");
+        propFileBrowseBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
+        propFileBrowseBtn.addSelectionListener(new SelectionListener(){
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                final PropertiesFileLoadDialog dialog = new PropertiesFileLoadDialog(Display.getCurrent().getActiveShell());
+                if (!_propFileText.getText().isEmpty()) {
+                    dialog.setPropertiesFileValue(_propFileText.getText());
+                }
+                int rtn_value = dialog.open();
+                if (rtn_value == PropertiesFileLoadDialog.OK) {
+                    String value = dialog.getPropertiesFileValue();
+                    if (value == null) {
+                        value = "";
+                    }
+                    _propFileText.setText(value);
+                    updateImplementationPropertiesLoadValue(_propFileText.getText());
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+        _propertiesTable = new BPMPropertyTable(propsComposite, SWT.NONE);
+        _propertiesTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 5));
         factory.adapt(_propertiesTable);
-        propertiesSection.setClient(_propertiesTable);
+        propertiesSection.setClient(propsComposite);
 
         addUserGroupCallBackSection(factory, control);
 
@@ -712,6 +769,20 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
         item.setControl(control);
     }
     
+    private void updateImplementationPropertiesLoadValue(final String value) {
+        wrapOperation(new Runnable(){
+            @Override
+            public void run() {
+                PropertiesType properties = _implementation.getProperties();
+                if (properties == null) {
+                    properties = BPMFactory.eINSTANCE.createPropertiesType();
+                    _implementation.setProperties(properties);
+                }
+                properties.setLoad(value);
+            }
+        });
+}
+
     private void addUserGroupCallBackSection(final FormToolkit factory, final Composite control) {
         Section userGroupCallbackSection = factory.createSection(control, Section.TWISTIE | Section.TITLE_BAR);
         userGroupCallbackSection.setBackgroundMode(SWT.INHERIT_NONE);
@@ -979,6 +1050,13 @@ public class BPMImplementationComposite extends AbstractModelComposite<Component
                 if (restStatus != Status.OK_STATUS) {
                     return restStatus;
                 }
+            }
+        }
+        if (_implementation != null && _implementation.getProperties() != null && _implementation.getProperties().getLoad() != null) {
+            String loadPath = _implementation.getProperties().getLoad();
+            IStatus loadStatus = PropertiesFileLoadDialog.validatePropertiesLoadValue(loadPath);
+            if (loadStatus != Status.OK_STATUS) {
+                return loadStatus;
             }
         }
         

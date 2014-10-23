@@ -184,6 +184,7 @@
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//PropertiesType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//PropertiesType/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//PropertiesType/load"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//PropertyType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//PropertyType/name"/>
@@ -309,6 +310,7 @@
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//PropertiesType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//PropertiesType/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//PropertiesType/load"/>
     </genClasses>
     <genClasses ecoreClass="config.switchyard.ecore#//PropertyType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//PropertyType/name"/>
@@ -500,6 +502,7 @@
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//PropertiesType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//PropertiesType/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//PropertiesType/load"/>
     </genClasses>
     <genClasses ecoreClass="component.rules.ecore#//PropertyType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.rules.ecore#//PropertyType/name"/>
@@ -597,6 +600,7 @@
     </genClasses>
     <genClasses ecoreClass="component.soap.ecore#//PropertiesType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.soap.ecore#//PropertiesType/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//PropertiesType/load"/>
     </genClasses>
     <genClasses ecoreClass="component.soap.ecore#//PropertyType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//PropertyType/name"/>

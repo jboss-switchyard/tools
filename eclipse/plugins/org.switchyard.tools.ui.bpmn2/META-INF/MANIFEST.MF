@@ -25,6 +25,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.bpmn2.modeler.ui;bundle-version="[1.1.0,1.2.0)",
  org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5;bundle-version="[1.1.0,1.2.0)",
  org.eclipse.jdt.ui,
- org.jboss.ide.eclipse.freemarker;bundle-version="1.2.0"
+ org.jboss.ide.eclipse.freemarker;bundle-version="1.2.0",
+ org.eclipse.emf.workspace
 Bundle-ClassPath: .
 Bundle-Activator: org.switchyard.tools.ui.bpmn2.Activator

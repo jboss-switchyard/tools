@@ -16,7 +16,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.NotificationFilter;
@@ -29,6 +31,9 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.WorkbenchPartAction;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -41,6 +46,8 @@ import org.eclipse.swt.custom.CTabFolderEvent;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -48,6 +55,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -72,6 +81,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyInputDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyTable;
+import org.switchyard.tools.ui.editor.diagram.shared.PropertiesFileLoadDialog;
 import org.switchyard.tools.ui.editor.impl.security.SecurityInstanceTable;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
@@ -99,6 +109,10 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private DomainPropertyTable _domainProperties = null;
     private SecurityInstanceTable _securityInstanceTable;
     private FormToolkit _toolkit;
+
+    private Text _propFileText;
+
+    private ControlDecoration _propFileTextDecorator;
     
     /**
      * Creates a multi-page editor example.
@@ -480,17 +494,18 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         section2.setText("Domain Properties"); //$NON-NLS-1$
         section2.setLayout(new GridLayout(1, false));
         section2.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
-
+        
         // Composite for storing controls of the main section
         Composite client2 = toolkit.createComposite(section2, SWT.WRAP);
         GridLayout layout2 = new GridLayout();
-        layout2.numColumns = 2;
+        layout2.numColumns = 3;
         layout2.marginWidth = 2;
         layout2.marginHeight = 2;
         client2.setLayout(layout2);
-
+        
+        addDomainPropertiesLoadControls(toolkit, client2);
+        
         _domainProperties = new DomainPropertyTable(client2, SWT.MULTI) {
-
             @Override
             protected void removeFromList() {
                 final IStructuredSelection ssel = _domainProperties.getStructuredSelection();
@@ -528,12 +543,103 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
 
             }
         };
-        _domainProperties.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
+        _domainProperties.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 5));
 
         section2.setClient(client2);
         section.setClient(client);
     }
+    
+    private void addDomainPropertiesLoadControls(FormToolkit toolkit, Composite parent) {
+        Label propFileLabel = toolkit.createLabel(parent, "Properties File:");
+        propFileLabel.setLayoutData(new GridData());
+        
+        _propFileText = toolkit.createText(parent, "", SWT.BORDER);
+        _propFileText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+        _propFileTextDecorator = new ControlDecoration(_propFileText, SWT.TOP | SWT.LEFT);
+        _propFileText.addModifyListener(new ModifyListener() {
+            @Override
+            public void modifyText(ModifyEvent e) {
+                updateDomainPropertiesLoadValue(_propFileText.getText());
+                IStatus validStatus = validate();
+                if (validStatus != Status.OK_STATUS) {
+                    if (validStatus.getSeverity() == Status.ERROR) {
+                        FieldDecoration errorFieldIndicator = FieldDecorationRegistry.getDefault().
+                                getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+                        _propFileTextDecorator.setImage(errorFieldIndicator.getImage());
+                    } else if (validStatus.getSeverity() == Status.WARNING) {
+                        FieldDecoration warningFieldIndicator = FieldDecorationRegistry.getDefault().
+                                getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+                        _propFileTextDecorator.setImage(warningFieldIndicator.getImage());
+                    }
+                    _propFileTextDecorator.setDescriptionText(validStatus.getMessage());
+                } else {
+                    _propFileTextDecorator.setImage(null);
+                    _propFileTextDecorator.setDescriptionText(null);
+                }
+            }
+        });
+        
+        Button propFileBrowseBtn = toolkit.createButton(parent, "...", SWT.PUSH);
+        propFileBrowseBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
+        propFileBrowseBtn.addSelectionListener(new SelectionListener(){
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                final PropertiesFileLoadDialog dialog = new PropertiesFileLoadDialog(Display.getCurrent().getActiveShell());
+                if (!_propFileText.getText().isEmpty()) {
+                    dialog.setPropertiesFileValue(_propFileText.getText());
+                }
+                int rtn_value = dialog.open();
+                if (rtn_value == PropertiesFileLoadDialog.OK) {
+                    String value = dialog.getPropertiesFileValue();
+                    if (value == null) {
+                        value = "";
+                    }
+                    _propFileText.setText(value);
+                    updateDomainPropertiesLoadValue(_propFileText.getText());
+                }
+            }
 
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+    }
+
+    private void updateDomainPropertiesLoadValue(final String value) {
+        if (_syRoot != null) {
+            if (_editDomain != null) {
+                _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                    @Override
+                    protected void doExecute() {
+                        DomainType domain = _syRoot.getDomain();
+                        if (domain == null) {
+                            domain = SwitchyardFactory.eINSTANCE.createDomainType();
+                            _syRoot.setDomain(domain);
+                        }
+                        PropertiesType properties = domain.getProperties();
+                        if (properties == null) {
+                            properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
+                            domain.setProperties(properties);
+                        }
+                        properties.setLoad(value);
+                    }
+                });
+            } else {
+                DomainType domain = _syRoot.getDomain();
+                if (domain == null) {
+                    domain = SwitchyardFactory.eINSTANCE.createDomainType();
+                    _syRoot.setDomain(domain);
+                }
+                PropertiesType properties = domain.getProperties();
+                if (properties == null) {
+                    properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
+                    domain.setProperties(properties);
+                }
+                properties.setLoad(value);
+            }
+        }
+    }
+    
     private void createDomainSecuritySettingsSection(FormToolkit toolkit, Composite parent) {
         Section section3 = toolkit.createSection(_domainPage, Section.TITLE_BAR);
         section3.setText("Security Configurations"); //$NON-NLS-1$
@@ -827,6 +933,9 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                         if (!_securityInstanceTable.isDisposed()) {
                             _securityInstanceTable.setSecurity(domain.getSecurities());
                         }
+                        if (!_propFileText.isDisposed() && domain.getProperties() != null && domain.getProperties().getLoad() != null) {
+                            _propFileText.setText(domain.getProperties().getLoad());
+                        }
                     }
                 }
             }
@@ -862,5 +971,22 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     public boolean isPostcommitOnly() {
         return false;
     }
-    
+
+    /* (non-Javadoc)
+     * @see org.switchyard.tools.ui.editor.property.AbstractModelComposite#validate()
+     */
+    private IStatus validate() {
+        if (_syRoot != null && _syRoot.getDomain() != null 
+                && _syRoot.getDomain().getProperties() != null 
+                && _syRoot.getDomain().getProperties().getLoad() != null) {
+            String loadPath = _syRoot.getDomain().getProperties().getLoad();
+            IStatus loadStatus = PropertiesFileLoadDialog.validatePropertiesLoadValue(loadPath);
+            if (loadStatus != Status.OK_STATUS) {
+                return loadStatus;
+            }
+        }
+        
+        return Status.OK_STATUS;
+    }
+
 }

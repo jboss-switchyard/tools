@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -40,10 +41,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 import org.switchyard.tools.models.switchyard1_0.soap.InterceptorType;
+import org.switchyard.tools.models.switchyard1_0.soap.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.soap.PropertyType;
+import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
 
 /**
@@ -159,6 +163,7 @@ public abstract class InterceptorPropertyTable extends Composite implements ICel
     private EObject _targetObj = null;
     private String _mWarning = null;
     private ListenerList _changeListeners;
+    private Text _propFileText;
 
     /**
      * Constructor.
@@ -252,6 +257,7 @@ public abstract class InterceptorPropertyTable extends Composite implements ICel
         });
 
         updatePropertyTypeButtons();
+        
     }
 
     @Override
@@ -368,6 +374,13 @@ public abstract class InterceptorPropertyTable extends Composite implements ICel
      */
     public void setTargetObject(EObject target) {
         this._targetObj = target;
+        if (target instanceof InterceptorType && _propFileText != null && !_propFileText.isDisposed()) {
+            InterceptorType interceptor = (InterceptorType) target;
+            PropertiesType properties = interceptor.getProperties();
+            if (properties != null && properties.getLoad() !=  null) {
+                _propFileText.setText(properties.getLoad());
+            }
+        }        
     }
 
     protected EObject getTargetObject() {
@@ -452,5 +465,32 @@ public abstract class InterceptorPropertyTable extends Composite implements ICel
 
     protected TreeViewer getTreeViewer() {
         return this._propertyTreeTable;
+    }
+
+    /**
+     * Wraps a model update operation in a RecordingCommand, if required.
+     * 
+     * @param runner the model update operation.
+     */
+    protected void wrapOperation(final Runnable runner) {
+        TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getTargetObject());
+        if (domain != null) {
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    try {
+                        runner.run();
+                    } catch (Exception e) {
+                        Activator.logError(e);
+                    }
+                }
+            });
+        } else {
+            try {
+                runner.run();
+            } catch (Exception e) {
+                Activator.logError(e);
+            }
+        }
     }
 }

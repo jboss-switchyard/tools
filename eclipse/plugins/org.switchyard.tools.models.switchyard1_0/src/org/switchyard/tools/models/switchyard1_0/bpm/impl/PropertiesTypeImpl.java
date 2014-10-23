@@ -4,6 +4,7 @@ package org.switchyard.tools.models.switchyard1_0.bpm.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -28,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.PropertiesTypeImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.PropertiesTypeImpl#getLoad <em>Load</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,6 +46,25 @@ public class PropertiesTypeImpl extends CommonExtensionBaseImpl implements Prope
      * @ordered
      */
     protected EList<PropertyType> property;
+
+    /**
+     * The default value of the '{@link #getLoad() <em>Load</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLoad()
+     * @generated
+     * @ordered
+     */
+    protected static final String LOAD_EDEFAULT = null;
+    /**
+     * The cached value of the '{@link #getLoad() <em>Load</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLoad()
+     * @generated
+     * @ordered
+     */
+    protected String load = LOAD_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -80,6 +102,27 @@ public class PropertiesTypeImpl extends CommonExtensionBaseImpl implements Prope
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getLoad() {
+        return load;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLoad(String newLoad) {
+        String oldLoad = load;
+        load = newLoad;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.PROPERTIES_TYPE__LOAD, oldLoad, load));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -99,6 +142,8 @@ public class PropertiesTypeImpl extends CommonExtensionBaseImpl implements Prope
         switch (featureID) {
             case BPMPackage.PROPERTIES_TYPE__PROPERTY:
                 return getProperty();
+            case BPMPackage.PROPERTIES_TYPE__LOAD:
+                return getLoad();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -116,6 +161,9 @@ public class PropertiesTypeImpl extends CommonExtensionBaseImpl implements Prope
                 getProperty().clear();
                 getProperty().addAll((Collection<? extends PropertyType>)newValue);
                 return;
+            case BPMPackage.PROPERTIES_TYPE__LOAD:
+                setLoad((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -131,6 +179,9 @@ public class PropertiesTypeImpl extends CommonExtensionBaseImpl implements Prope
             case BPMPackage.PROPERTIES_TYPE__PROPERTY:
                 getProperty().clear();
                 return;
+            case BPMPackage.PROPERTIES_TYPE__LOAD:
+                setLoad(LOAD_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -145,8 +196,26 @@ public class PropertiesTypeImpl extends CommonExtensionBaseImpl implements Prope
         switch (featureID) {
             case BPMPackage.PROPERTIES_TYPE__PROPERTY:
                 return property != null && !property.isEmpty();
+            case BPMPackage.PROPERTIES_TYPE__LOAD:
+                return LOAD_EDEFAULT == null ? load != null : !LOAD_EDEFAULT.equals(load);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (load: ");
+        result.append(load);
+        result.append(')');
+        return result.toString();
     }
 
 } //PropertiesTypeImpl

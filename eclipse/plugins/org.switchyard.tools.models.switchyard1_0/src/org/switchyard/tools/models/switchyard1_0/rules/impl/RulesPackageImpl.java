@@ -1226,6 +1226,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getPropertiesType_Load() {
+        return (EAttribute)propertiesTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getPropertyType() {
         return propertyTypeEClass;
     }
@@ -1794,6 +1803,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
         propertiesTypeEClass = createEClass(PROPERTIES_TYPE);
         createEReference(propertiesTypeEClass, PROPERTIES_TYPE__PROPERTY);
+        createEAttribute(propertiesTypeEClass, PROPERTIES_TYPE__LOAD);
 
         propertyTypeEClass = createEClass(PROPERTY_TYPE);
         createEAttribute(propertyTypeEClass, PROPERTY_TYPE__NAME);
@@ -2016,6 +2026,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
         initEClass(propertiesTypeEClass, PropertiesType.class, "PropertiesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertiesType_Property(), this.getPropertyType(), null, "property", null, 0, -1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPropertiesType_Load(), theXMLTypePackage.getString(), "load", null, 0, 1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyTypeEClass, PropertyType.class, "PropertyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getPropertyType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2742,6 +2753,13 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "kind", "element",
              "name", "property",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getPropertiesType_Load(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "load"
            });		
         addAnnotation
           (propertyTypeEClass, 

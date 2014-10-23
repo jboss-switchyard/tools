@@ -1400,13 +1400,22 @@ public interface RulesPackage extends EPackage {
     int PROPERTIES_TYPE__PROPERTY = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Load</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTIES_TYPE__LOAD = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Properties Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROPERTIES_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+    int PROPERTIES_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.PropertyTypeImpl <em>Property Type</em>}' class.
@@ -3108,6 +3117,17 @@ public interface RulesPackage extends EPackage {
     EReference getPropertiesType_Property();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.PropertiesType#getLoad <em>Load</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Load</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.PropertiesType#getLoad()
+     * @see #getPropertiesType()
+     * @generated
+     */
+    EAttribute getPropertiesType_Load();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.PropertyType <em>Property Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4334,6 +4354,14 @@ public interface RulesPackage extends EPackage {
          * @generated
          */
         EReference PROPERTIES_TYPE__PROPERTY = eINSTANCE.getPropertiesType_Property();
+
+        /**
+         * The meta object literal for the '<em><b>Load</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTIES_TYPE__LOAD = eINSTANCE.getPropertiesType_Load();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.PropertyTypeImpl <em>Property Type</em>}' class.

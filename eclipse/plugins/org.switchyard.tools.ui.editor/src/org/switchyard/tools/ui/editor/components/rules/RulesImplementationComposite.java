@@ -32,6 +32,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -43,9 +45,12 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.events.ExpansionAdapter;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -53,6 +58,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.rules.OperationsType;
+import org.switchyard.tools.models.switchyard1_0.rules.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RemoteJmsType;
 import org.switchyard.tools.models.switchyard1_0.rules.RemoteRestType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
@@ -61,13 +67,14 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesOperationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.diagram.shared.PropertiesFileLoadDialog;
 import org.switchyard.tools.ui.editor.property.AbstractChangeAwareModelComposite;
 import org.switchyard.tools.ui.editor.property.ICompositeContainer;
 
 /**
- * BPMImplementationComposite
+ * RulesImplementationComposite
  * 
- * Composite for BPM component implementations.
+ * Composite for Rules component implementations.
  */
 public class RulesImplementationComposite extends AbstractChangeAwareModelComposite<Component> {
 
@@ -96,6 +103,7 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
     private RemoteJmsType _remoteJms;
     private RemoteRestType _remoteRest;
     private boolean _updating;
+    private Text _propFileText;
 
     /**
      * Create a new BPMImplementationComposite.
@@ -196,6 +204,12 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
                 _container = _implementation.getManifest().getContainer();
                 _remoteJms = _implementation.getManifest().getRemoteJms();
                 _remoteRest = _implementation.getManifest().getRemoteRest();
+            }
+            if (_implementation != null && _implementation.getProperties() != null) {
+                PropertiesType properties = _implementation.getProperties();
+                if (properties != null && properties.getLoad() !=  null) {
+                    _propFileText.setText(properties.getLoad());
+                }
             }
         }
         _updating = true;
@@ -608,13 +622,73 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
                 getContainer().layout();
             }
         });
+        
+        Composite propsComposite = new Composite(propertiesSection, SWT.NONE);
+        propsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 5));
+        propsComposite.setLayout(new GridLayout(3, false));
 
-        _propertiesTable = new RulesPropertyTable(propertiesSection, SWT.NONE);
-        _propertiesTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        Label propFileLabel = new Label(propsComposite, SWT.NONE);
+        propFileLabel.setText("Properties File:");
+        propFileLabel.setLayoutData(new GridData());
+        
+        _propFileText = new Text(propsComposite, SWT.BORDER);
+        _propFileText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+        _propFileText.addModifyListener(new ModifyListener() {
+
+            @Override
+            public void modifyText(ModifyEvent e) {
+                updateImplementationPropertiesLoadValue(_propFileText.getText());
+                getContainer().validated(validate());
+            }
+        });
+        
+        Button propFileBrowseBtn = new Button(propsComposite, SWT.PUSH);
+        propFileBrowseBtn.setText("...");
+        propFileBrowseBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
+        propFileBrowseBtn.addSelectionListener(new SelectionListener(){
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                final PropertiesFileLoadDialog dialog = new PropertiesFileLoadDialog(Display.getCurrent().getActiveShell());
+                if (!_propFileText.getText().isEmpty()) {
+                    dialog.setPropertiesFileValue(_propFileText.getText());
+                }
+                int rtn_value = dialog.open();
+                if (rtn_value == PropertiesFileLoadDialog.OK) {
+                    String value = dialog.getPropertiesFileValue();
+                    if (value == null) {
+                        value = "";
+                    }
+                    _propFileText.setText(value);
+                    updateImplementationPropertiesLoadValue(_propFileText.getText());
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+        _propertiesTable = new RulesPropertyTable(propsComposite, SWT.NONE);
+        _propertiesTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 5));
         factory.adapt(_propertiesTable);
-        propertiesSection.setClient(_propertiesTable);
+        propertiesSection.setClient(propsComposite);
 
         item.setControl(control);
+    }
+
+    private void updateImplementationPropertiesLoadValue(final String value) {
+            wrapOperation(new Runnable(){
+                @Override
+                public void run() {
+                    PropertiesType properties = _implementation.getProperties();
+                    if (properties == null) {
+                        properties = RulesFactory.eINSTANCE.createPropertiesType();
+                        _implementation.setProperties(properties);
+                    }
+                    properties.setLoad(value);
+                }
+            });
     }
 
     /* (non-Javadoc)
@@ -634,6 +708,13 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
                 IStatus restStatus = _remoteRestContainerDetailsControls.validate();
                 if (restStatus != Status.OK_STATUS) {
                     return restStatus;
+                }
+            }
+            if (_implementation != null && _implementation.getProperties() != null && _implementation.getProperties().getLoad() != null) {
+                String loadPath = _implementation.getProperties().getLoad();
+                IStatus loadStatus = PropertiesFileLoadDialog.validatePropertiesLoadValue(loadPath);
+                if (loadStatus != Status.OK_STATUS) {
+                    return loadStatus;
                 }
             }
         }
