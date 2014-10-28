@@ -195,6 +195,7 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         _catalogFileTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
  
         _failOnWarningText = createCheckbox(getPanel(), Messages.label_failOnWarning);
+        addGridData(_failOnWarningText, 1, GridData.FILL_HORIZONTAL);
         _failOnWarningText.addSelectionListener(new SelectionListener() {
             @Override
             public void widgetSelected(SelectionEvent e) {

@@ -254,7 +254,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @return reference to created Button
      */
     protected Button createCheckbox(Composite parent, String label) {
-        return createCheckbox(parent, label, 1);
+        return createCheckbox(parent, label, 2);
     }
 
     /**
@@ -302,7 +302,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @return reference to created Text control
      */
     protected Text createLabelAndText(Composite parent, String label, int horizSpan) {
-        return createLabelAndText(parent, label, 1, null);
+        return createLabelAndText(parent, label, horizSpan, null);
     }
 
     /**

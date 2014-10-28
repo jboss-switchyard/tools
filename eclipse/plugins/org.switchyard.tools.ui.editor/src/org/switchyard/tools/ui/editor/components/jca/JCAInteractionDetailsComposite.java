@@ -262,6 +262,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         });
 
         _transactedButton = createCheckbox(composite, Messages.label_transacted);
+        addGridData(_transactedButton, 1, GridData.FILL_HORIZONTAL);
         
         _batchGroup = new Group(composite, SWT.NONE);
         GridData bgGridData = new GridData(SWT.FILL, SWT.BEGINNING, true, false);

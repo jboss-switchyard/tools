@@ -139,7 +139,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         _usernameText = createLabelAndText(composite, Messages.label_userName);
         _passwordText = createLabelAndText(composite, Messages.label_password);
         _passwordText.setEchoChar('*');
-        _securedCheckbox = createCheckbox(composite, Messages.label_secured);
+        _securedCheckbox = createCheckbox(composite, Messages.label_secured, 2);
 
         Group consumeGroup = new Group(composite, SWT.NONE);
         consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
@@ -158,9 +158,9 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         getToolkit().adapt(_accountTypeCombo.getControl(), true, true);
 
         _folderNameText = createLabelAndText(consumeGroup, Messages.label_folderName);
-        _fetchSizeText = createLabelAndText(consumeGroup, Messages.label_fetchSize);
-        _unseenCheckbox = createCheckbox(consumeGroup, Messages.label_unreadOnly);
-        _deleteCheckbox = createCheckbox(consumeGroup, Messages.label_delete);
+        _fetchSizeText = createLabelAndText(consumeGroup, Messages.label_fetchSize, 2);
+        _unseenCheckbox = createCheckbox(consumeGroup, Messages.label_unreadOnly, 2);
+        _deleteCheckbox = createCheckbox(consumeGroup, Messages.label_delete, 2);
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE, this);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));

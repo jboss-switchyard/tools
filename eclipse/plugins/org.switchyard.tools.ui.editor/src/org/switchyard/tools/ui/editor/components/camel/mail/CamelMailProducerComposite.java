@@ -115,7 +115,7 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
         _usernameText = createLabelAndText(composite, Messages.label_userName);
         _passwordText = createLabelAndText(composite, Messages.label_password);
         _passwordText.setEchoChar('*');
-        _securedCheckbox = createCheckbox(composite, Messages.label_secured);
+        _securedCheckbox = createCheckbox(composite, Messages.label_secured, 2);
 
         Group producerGroup = new Group(composite, SWT.NONE);
         producerGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
