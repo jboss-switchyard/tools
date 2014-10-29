@@ -107,7 +107,7 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
 
         _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _hostURIText = createLabelAndText(composite, "Host URI*");
+        _hostURIText = createLabelAndText(composite, "Host URI (Default: tcp://127.0.0.1:1883)");
         _publishTopicNameText = createLabelAndText(composite, "Publish Topic Name");
         _connectAttemptsMaxText = createLabelAndText(composite, "Connect Attempts Max");
         _reconnectAttemptsMaxText = createLabelAndText(composite, "Reconnect Attempts Max");

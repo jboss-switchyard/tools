@@ -40,7 +40,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.mqtt;
 public interface CamelMqttBindingType extends BaseCamelBinding {
     /**
      * Returns the value of the '<em><b>Host</b></em>' attribute.
-     * The default value is <code>"tcp://127.0.0.1:1883"</code>.
+     * The default value is <code>""</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Host</em>' attribute isn't clear,
@@ -50,7 +50,7 @@ public interface CamelMqttBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Host</em>' attribute.
      * @see #setHost(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage#getCamelMqttBindingType_Host()
-     * @model default="tcp://127.0.0.1:1883" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='host' namespace='##targetNamespace'"
      * @generated
      */

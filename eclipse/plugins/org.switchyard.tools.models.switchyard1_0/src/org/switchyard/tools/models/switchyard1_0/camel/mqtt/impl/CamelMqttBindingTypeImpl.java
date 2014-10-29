@@ -54,7 +54,7 @@ public class CamelMqttBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final String HOST_EDEFAULT = "tcp://127.0.0.1:1883";
+    protected static final String HOST_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getHost() <em>Host</em>}' attribute.

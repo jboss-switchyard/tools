@@ -107,7 +107,7 @@ public class CamelMQTTConsumerComposite extends AbstractSYBindingComposite  {
 
         _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _hostURIText = createLabelAndText(composite, "Host URI*");
+        _hostURIText = createLabelAndText(composite, "Host URI (Default: tcp://127.0.0.1:1883)");
         _userNameText = createLabelAndText(composite, "User Name");
         _passwordText = createLabelAndText(composite, "Password");
         _subscribeTopicNameText = createLabelAndText(composite, "Subscribe Topic Name");

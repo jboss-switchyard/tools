@@ -37,6 +37,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.impl.CxfPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
@@ -261,6 +263,7 @@ public class MqttPackageImpl extends EPackageImpl implements MqttPackage {
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
         RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
         SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        CxfPackageImpl theCxfPackage = (CxfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) instanceof CxfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) : CxfPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -292,6 +295,7 @@ public class MqttPackageImpl extends EPackageImpl implements MqttPackage {
         theSqlPackage.createPackageContents();
         theRssPackage.createPackageContents();
         theSapPackage.createPackageContents();
+        theCxfPackage.createPackageContents();
 
         // Initialize created meta-data
         theMqttPackage.initializePackageContents();
@@ -320,6 +324,7 @@ public class MqttPackageImpl extends EPackageImpl implements MqttPackage {
         theSqlPackage.initializePackageContents();
         theRssPackage.initializePackageContents();
         theSapPackage.initializePackageContents();
+        theCxfPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -776,7 +781,7 @@ public class MqttPackageImpl extends EPackageImpl implements MqttPackage {
         initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelMqttBindingTypeEClass, CamelMqttBindingType.class, "CamelMqttBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelMqttBindingType_Host(), theXMLTypePackage.getString(), "host", "tcp://127.0.0.1:1883", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMqttBindingType_Host(), theXMLTypePackage.getString(), "host", "", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMqttBindingType_LocalAddress(), theXMLTypePackage.getString(), "localAddress", null, 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMqttBindingType_ConnectAttemptsMax(), theSwitchyardPackage.getPropInteger(), "connectAttemptsMax", "-1", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMqttBindingType_ReconnectAttemptsMax(), theSwitchyardPackage.getPropInteger(), "reconnectAttemptsMax", "-1", 0, 1, CamelMqttBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
