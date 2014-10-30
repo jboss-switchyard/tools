@@ -371,7 +371,7 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
         String runtimeVersionStr = getRuntimeVersion().toString();
         String majorMinorConfig = getMajorMinorFromVersion(runtimeVersionStr);
         if (majorMinorConfig != null) {
-            float runtimeVersion = convertVersionStringToLong(runtimeVersionStr);
+            float runtimeVersion = convertVersionStringToLong(majorMinorConfig);
             if (runtimeVersion > -1) {
                 if (runtimeVersion >= 2.0) {
                     return true;
