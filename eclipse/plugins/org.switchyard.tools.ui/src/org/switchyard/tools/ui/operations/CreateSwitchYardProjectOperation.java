@@ -454,7 +454,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 contents.append("\t<repository>mvn:org.switchyard.karaf/switchyard/"  //$NON-NLS-1$
                         + "${" + SWITCHYARD_VERSION + "}/xml/features</repository>\n"); //$NON-NLS-1$
                 contents.append("\t<feature name=\"" + _projectMetatData.getNewProjectHandle().getName()  //$NON-NLS-1$
-                        + "\" version=\"" + _projectMetatData._projectVersion + "\">\n"); //$NON-NLS-1$ //$NON-NLS-2$
+                        + "\" version=\"" + _projectMetatData._projectVersion + "\" resolver=\"(obr)\"" + ">\n"); //$NON-NLS-1$ //$NON-NLS-2$
                 for (ISwitchYardComponentExtension component : _projectMetatData.getComponents()) {
                     String featureId = component.getBundleId();
                     if (featureId != null && featureId.length() > 0) {
@@ -576,6 +576,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
         model.setName(_projectMetatData.getGroupId() + ":" + _projectMetatData.getNewProjectHandle().getName()); //$NON-NLS-1$
 
+        String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
+
         // add runtime dependencies
         model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
         if (_projectMetatData.isOSGIEnabled()) {
@@ -585,14 +587,14 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                     + "osgi.extender; filter:=\"(osgi.extender=pax.cdi)\""); //$NON-NLS-1$
 //            model.addProperty("switchyard.osgi.provide.capability", ""); //$NON-NLS-1$ //$NON-NLS-2$
             model.addProperty("switchyard.osgi.symbolic.name", _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$ //$NON-NLS-2$
+            model.addProperty("switchyard.osgi.import.switchyard.version", "version=\"[$(version;==;${switchyard.osgi.version}),$(version;=+;${switchyard.osgi.version}))\"");
+            model.addProperty("switchyard.osgi.import.default.version", "[$(version;==;$(@)),$(version;+;$(@)))");
             model.addProperty("switchyard.osgi.export", _projectMetatData.getPackageName() + "*"); //$NON-NLS-1$ //$NON-NLS-2$
             model.addProperty("switchyard.osgi.import",  //$NON-NLS-1$
-                    "org.switchyard.*;version=\"[$(version;==;${switchyard.version}),$(version;=+;${switchyard.version}))\"\n,*"); //$NON-NLS-1$
+                    "org.switchyard.*;${switchyard.osgi.import.switchyard.version},*"); //$NON-NLS-1$
             model.addProperty("switchyard.osgi.dynamic",  //$NON-NLS-1$
                     "org.switchyard,org.switchyard.*"); //$NON-NLS-1$
         }
-
-        String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
         
         // add dependency management for SwitchYard BOM
         if (_projectMetatData.isSwitchYardDependencyBOMEnabled()) {
@@ -747,6 +749,20 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         plugin.setGroupId("org.apache.felix"); //$NON-NLS-1$
         plugin.setVersion("2.4.0"); //$NON-NLS-1$
         plugin.setExtensions(true);
+
+        ArrayList<PluginExecution> executions = new ArrayList<PluginExecution>();
+        PluginExecution execution = new PluginExecution();
+        execution.setId("cleanVersions"); //$NON-NLS-1$
+        execution.setPhase("generate-sources"); //$NON-NLS-1$
+        execution.addGoal("cleanVersions"); //$NON-NLS-1$
+        Xpp3Dom exeuctionConfiguration = createNode("configuration"); //$NON-NLS-1$
+        Xpp3Dom exeuctionVersions = createNode("versions"); //$NON-NLS-1$
+        Xpp3Dom executionVersionsOSGIVersion = createNode("switchyard.osgi.version", "${switchyard.version}"); //$NON-NLS-1$ //$NON-NLS-2$
+        exeuctionVersions.addChild(executionVersionsOSGIVersion);
+        exeuctionConfiguration.addChild(exeuctionVersions);
+        execution.setConfiguration(exeuctionConfiguration);
+        executions.add(execution);
+        plugin.setExecutions(executions);
         
         Xpp3Dom configuration = createNode("configuration"); //$NON-NLS-1$
         Xpp3Dom excludeDeps = createNode("excludeDependencies", "false"); //$NON-NLS-1$ //$NON-NLS-2$
