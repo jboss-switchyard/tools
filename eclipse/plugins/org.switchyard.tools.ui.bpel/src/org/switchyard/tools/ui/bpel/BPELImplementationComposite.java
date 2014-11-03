@@ -169,8 +169,11 @@ public class BPELImplementationComposite extends AbstractChangeAwareModelComposi
 
                 // load process
                 final QName processName = Activator.getDefault().getProcessForFile(bpelFile);
-                // get process qname
-                _implementation.setProcess(processName);
+                wrapOperation(new Runnable() {
+                    public void run() {
+                        _implementation.setProcess(processName);
+                    }
+                });
 
                 // update the text box, which should trigger a validate
                 _bpelFileText.setText(processName.toString());
