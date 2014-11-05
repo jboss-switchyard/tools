@@ -18,6 +18,7 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.ComputedValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.runtime.Status;
@@ -26,19 +27,17 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -78,18 +77,10 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     private Button _transactedButton;
     private OperationSelectorComposite _opSelectorComposite;
     private WritableValue _bindingValue;
-    private org.eclipse.core.databinding.Binding _queueNameBinding;
-    private org.eclipse.core.databinding.Binding _topicNameBinding;
-    private StackLayout _stackLayout = null;
-    private Composite _contentPanel = null;
-    private Composite _queuePanel = null;
     private Text _queueNameText;
-    private Composite _topicPanel = null;
-    private Text _topicNameText;
-    private DataBindingContext _context;
     private IObservableValue _queueValue;
     private IObservableValue _topicValue;
-
+    
     CamelJmsComposite(FormToolkit toolkit) {
         super(toolkit);
     }
@@ -147,7 +138,6 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
 
     @Override
     public void createContents(Composite parent, int style, DataBindingContext context) {
-        _context = context;
         _panel = new Composite(parent, style);
         _panel.setLayout(new FillLayout());
 
@@ -163,16 +153,15 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         
         bindControls(context);
 
-        _typeCombo.addSelectionChangedListener(new ISelectionChangedListener() {
-            @Override
-            public void selectionChanged(SelectionChangedEvent event) {
-                if (event.getSelection().isEmpty()) {
-                    return;
-                }
-                handleSelectorTypeChanged((JMSType) ((IStructuredSelection) event.getSelection())
-                        .getFirstElement());
-            }
-        });
+//        _typeCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+//            @Override
+//            public void selectionChanged(SelectionChangedEvent event) {
+//                if (event.getSelection().isEmpty()) {
+//                    return;
+//                }
+//                _context.updateModels();
+//            }
+//        });
 
     }
 
@@ -196,26 +185,8 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         });
         _typeCombo.setInput(JMSType.values());
         
-        getToolkit().createLabel(composite, Messages.label_queueTopicName);
+        _queueNameText = createLabelAndText(composite, Messages.label_queueTopicName);
         
-        _contentPanel = new Composite(composite, SWT.NONE);
-        _stackLayout = new StackLayout();
-        _contentPanel.setLayout(_stackLayout);
-        GridData gd = new GridData(SWT.FILL, SWT.FILL, true, false);
-        gd.horizontalIndent = -5;
-        gd.verticalIndent = -5;
-        _contentPanel.setLayoutData(gd);
-
-        _queuePanel = new Composite(_contentPanel, SWT.NONE);
-        _queueNameText = createLabelAndText(_queuePanel, null);
-        _queuePanel.setLayout(new GridLayout(2, false));
-        _queueNameText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
-        
-        _topicPanel = new Composite(_contentPanel, SWT.NONE);
-        _topicNameText = createLabelAndText(_topicPanel, null);
-        _topicPanel.setLayout(new GridLayout(2, false));
-        _topicNameText.setLayoutData(new GridData(SWT.FILL, SWT.NULL, true, false));
-
         _connectionFactoryText = createLabelAndText(composite, Messages.label_connectionFactory);
         _connectionFactoryText.setText("#ConnectionFactory"); //$NON-NLS-1$
 
@@ -248,33 +219,6 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         return composite;
     }
 
-    private void handleSelectorTypeChanged(final JMSType typeToSelect) {
-        _queueNameText.setEnabled(false);
-        _topicNameText.setEnabled(false);
-
-        switch (typeToSelect) {
-        case QUEUE:
-            _queueNameText.setEnabled(true);
-            if (_topicValue.getValue() != null) {
-                _topicValue.setValue(null);
-            }
-            _stackLayout.topControl = _queuePanel;
-            _context.removeBinding(_topicNameBinding);
-            _context.addBinding(_queueNameBinding);
-            break;
-        case TOPIC:
-            _topicNameText.setEnabled(true);
-            if (_queueValue.getValue() != null) {
-                _queueValue.setValue(null);
-            }
-            _stackLayout.topControl = _topicPanel;
-            _context.removeBinding(_queueNameBinding);
-            _context.addBinding(_topicNameBinding);
-            break;
-        }
-        _contentPanel.layout();
-    }
-
     @Override
     public Composite getPanel() {
         return this._panel;
@@ -295,7 +239,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             super.handleUndo(control);
         }
     }
-
+   
     private void bindControls(final DataBindingContext context) {
         final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
         final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
@@ -328,26 +272,30 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         _queueValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
                 JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__QUEUE);
         
-        _queueNameBinding = context
-                .bindValue(
-                        SWTObservables.observeText(_queueNameText , new int[] {SWT.Modify }),
-                        _queueValue,
-                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
-                            .setAfterConvertValidator(new StringEmptyValidator(
-                                "Queue may not be empty.")), null);
-        ControlDecorationSupport.create(SWTValueUpdater.attach(_queueNameBinding), SWT.TOP | SWT.LEFT);
-
         _topicValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
                 JmsPackage.Literals.CAMEL_JMS_BINDING_TYPE__TOPIC);
-        _topicNameBinding = context
+
+        ComputedValue computedQueueTopicValue = new QueueTopicComputedValue(_queueValue, _topicValue);
+        
+        binding = context
                 .bindValue(
-                        SWTObservables.observeText(_topicNameText , new int[] {SWT.Modify }),
-                        _topicValue,
+                        SWTObservables.observeText(_queueNameText , new int[] {SWT.Modify }),
+                        computedQueueTopicValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                             .setAfterConvertValidator(new StringEmptyValidator(
-                                "Topic may not be empty.")), null);
-        ControlDecorationSupport.create(SWTValueUpdater.attach(_topicNameBinding), SWT.TOP | SWT.LEFT);
+                                "Queue or topic name may not be empty.")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
+        ComputedValue computedTypeComboValue = new TypeSelectorComputedValue(_queueValue, _topicValue);
+        
+        binding = context.bindValue(
+                ViewersObservables.observeSingleSelection(_typeCombo),
+                computedTypeComboValue,
+                new EMFUpdateValueStrategyNullForEmptyString(
+                        null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        
         binding = context
                 .bindValue(
                         SWTObservables.observeText(_connectionFactoryText , new int[] {SWT.Modify }),
@@ -466,8 +414,112 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         _bindingValue.dispose();
         _queueValue.dispose();
         _topicValue.dispose();
-        _topicNameBinding.dispose();
-        _queueNameBinding.dispose();
         super.dispose();
     }
+    
+    class TypeSelectorComputedValue extends ComputedValue {
+
+        final private IObservableValue _queueObsValue;
+        final private IObservableValue _topicObsValue;
+        
+        public TypeSelectorComputedValue(IObservableValue queue, IObservableValue topic) {
+            _queueObsValue = queue;
+            _topicObsValue = topic;
+        }
+        
+        @Override
+        protected Object calculate() {
+            if (_queueObsValue.getValue() != null) {
+                return JMSType.QUEUE;
+            }
+            if (_topicObsValue.getValue() != null) {
+                return JMSType.TOPIC;
+            }
+            return JMSType.QUEUE; // default
+        }
+
+        @Override
+        protected void doSetValue(Object value) {
+            String someValue = null;
+            String oldQueueValue = (String) _queueObsValue.getValue();
+            String oldTopicValue = (String) _topicObsValue.getValue();
+            if (oldQueueValue != null) {
+                someValue = oldQueueValue;
+            } else if (oldTopicValue != null) {
+                someValue = oldTopicValue;
+            }
+            if (!_typeCombo.getSelection().isEmpty()) {
+                final Object someSelection = 
+                        ((IStructuredSelection) _typeCombo.getSelection()).getFirstElement();
+                final JMSType jmsType = (JMSType) someSelection;
+
+                switch (jmsType) {
+                case QUEUE:
+                    _queueObsValue.setValue(someValue);
+                    _topicObsValue.setValue(null);
+                    break;
+                case TOPIC:
+                    _queueObsValue.setValue(null);
+                    _topicObsValue.setValue(someValue);
+                    break;
+                }
+            }
+            getValue();
+        }
+    }
+    
+    class QueueTopicComputedValue extends ComputedValue {
+        
+        final private IObservableValue _queueObsValue;
+        final private IObservableValue _topicObsValue;
+        
+        public QueueTopicComputedValue(IObservableValue queue, IObservableValue topic) {
+            _queueObsValue = queue;
+            _topicObsValue = topic;
+        }
+        
+        @Override
+        protected Object calculate() {
+            if (_queueObsValue.getValue() != null) {
+                return _queueObsValue.getValue();
+            }
+            if (_topicObsValue.getValue() != null) {
+                return _topicObsValue.getValue();
+            }
+            return null;
+        }
+        
+        protected void doSetValue(Object value) {
+            String someValue = null;
+            if (value instanceof String) {
+                someValue = (String) value;
+            } else if (value instanceof JMSType) {
+                String oldQueueValue = (String) _queueObsValue.getValue();
+                String oldTopicValue = (String) _topicObsValue.getValue();
+                if (oldQueueValue != null) {
+                    someValue = oldQueueValue;
+                } else if (oldTopicValue != null) {
+                    someValue = oldTopicValue;
+                }
+            }
+            if (!_typeCombo.getSelection().isEmpty()) {
+                final Object someSelection = 
+                        ((IStructuredSelection) _typeCombo.getSelection()).getFirstElement();
+                final JMSType jmsType = (JMSType) someSelection;
+
+                switch (jmsType) {
+                case QUEUE:
+                    _queueObsValue.setValue(someValue);
+                    _topicObsValue.setValue(null);
+                    break;
+                case TOPIC:
+                    _queueObsValue.setValue(null);
+                    _topicObsValue.setValue(someValue);
+                    break;
+                }
+            }
+            getValue();
+        }
+    }
+    
 }
