@@ -12,10 +12,14 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.common;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
@@ -41,6 +45,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wst.wsdl.Definition;
+import org.eclipse.wst.wsdl.Import;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
 import org.switchyard.tools.ui.Activator;
@@ -145,7 +150,7 @@ public class WSDLPortTypeSelectionDialog extends ClasspathResourceSelectionDialo
             definition = holder[0];
             _wsdlDefinitions.put(wsdlFile, definition);
         }
-        Collection<?> portTypes = definition == null ? Collections.emptyList() : definition.getEPortTypes();
+        Collection<?> portTypes = definition == null ? Collections.emptyList() : getAllPortTypes(definition).values();
         _portTypesList.setInput(portTypes);
         if (portTypes.size() > 0) {
             selection = new StructuredSelection(portTypes.iterator().next());
@@ -170,6 +175,34 @@ public class WSDLPortTypeSelectionDialog extends ClasspathResourceSelectionDialo
         // stash away the portType
         final StructuredSelection selection = (StructuredSelection) _portTypesList.getSelection();
         _result = (PortType) selection.getFirstElement();
+    }
+
+    @SuppressWarnings("rawtypes")
+    private Map getAllPortTypes(Definition definition) {
+        return getAllPortTypes(definition, new HashSet<String>());
+    }
+    
+    @SuppressWarnings({"unchecked", "rawtypes" })
+    private Map getAllPortTypes(Definition definition, Set<String> imported) {
+        Map allPortTypes = new HashMap(definition.getPortTypes());
+        Map importMap = definition.getImports();
+        Iterator<Import> mapIterator = (Iterator<Import>) importMap.values().iterator();
+        while (mapIterator.hasNext()) {
+            ArrayList<Definition> importDefs = (ArrayList) mapIterator.next();
+            Iterator<Definition> defsIterator = importDefs.iterator();
+            while (defsIterator.hasNext()) {
+                Import importDef = (Import) defsIterator.next(); 
+                if (!imported.contains(importDef.getLocationURI())) {
+                    imported.add(importDef.getLocationURI());
+                    Definition importedDef = (Definition) importDef.getDefinition();
+                    //importedDef may be null (e.g. if the javax.wsdl.importDocuments feature is disabled).
+                    if (importedDef != null) {
+                        allPortTypes.putAll(getAllPortTypes(importedDef, imported));
+                    }
+                }
+            }
+        }
+        return allPortTypes;
     }
 
 }

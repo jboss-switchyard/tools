@@ -16,7 +16,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
@@ -42,6 +45,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wst.wsdl.Definition;
+import org.eclipse.wst.wsdl.Import;
 import org.eclipse.wst.wsdl.Port;
 import org.eclipse.wst.wsdl.Service;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
@@ -148,7 +152,7 @@ public class WSDLPortSelectionDialog extends ClasspathResourceSelectionDialog {
             definition = holder[0];
             _wsdlDefinitions.put(wsdlFile, definition);
         }
-        Collection<?> services = definition == null ? Collections.emptyList() : definition.getServices().values();
+        Collection<?> services = definition == null ? Collections.emptyList() : getAllServices(definition).values();
         ArrayList<Port> ports = new ArrayList<Port>();
         for (Object object : services) {
             Service service = (Service) object;
@@ -185,4 +189,31 @@ public class WSDLPortSelectionDialog extends ClasspathResourceSelectionDialog {
         _result = (Port) selection.getFirstElement();
     }
 
+    @SuppressWarnings("rawtypes")
+    private Map getAllServices(Definition definition) {
+        return getAllServices(definition, new HashSet<String>());
+    }
+    
+    @SuppressWarnings({"rawtypes", "unchecked" })
+    private Map getAllServices(Definition definition, Set<String> imported) {
+        Map allServices = new HashMap(definition.getServices());
+        Map importMap = definition.getImports();
+        Iterator<Import> mapIterator = (Iterator<Import>) importMap.values().iterator();
+        while (mapIterator.hasNext()) {
+          ArrayList<Definition> importDefs = (ArrayList) mapIterator.next();
+          Iterator<Definition> defsIterator = importDefs.iterator();
+          while (defsIterator.hasNext()) {
+            Import importDef = (Import) defsIterator.next(); 
+            if (!imported.contains(importDef.getLocationURI())) {
+              imported.add(importDef.getLocationURI());
+              Definition importedDef = (Definition) importDef.getDefinition();
+                //importedDef may be null (e.g. if the javax.wsdl.importDocuments feature is disabled).
+                if (importedDef != null) {
+                    allServices.putAll(getAllServices(importedDef, imported));
+                }
+            }
+          }
+        }
+        return allServices;
+    }
 }
