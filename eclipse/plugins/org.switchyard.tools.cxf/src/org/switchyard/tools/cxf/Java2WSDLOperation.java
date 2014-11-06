@@ -36,9 +36,11 @@ import org.apache.cxf.tools.java2wsdl.processor.internal.ServiceBuilderFactory;
 import org.apache.cxf.wsdl11.ServiceWSDLBuilder;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -60,6 +62,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
     private Java2WSDLOptions _options;
     private Definition _definition;
     private Map<String, Element> _imports = new HashMap<String, Element>();
+    private static final int POLLING_DELAY = 10;
 
     /**
      * Create a new Java2WSDLOperation.
@@ -84,9 +87,49 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
     public Map<String, Element> getGeneratedSchema() {
         return _imports;
     }
-    
+
+    /**
+     * Wait for build jobs (taken from the M2E Tests project).
+     * @param matcher Matcher to specify which jobs to look for
+     * @param maxWaitMillis How long to wait
+     */
+    public void waitForJobs(IJobMatcher matcher, int maxWaitMillis) {
+        while (true) {
+            Job job = getJob(matcher);
+            if (job == null) {
+                return;
+            }
+            job.wakeUp();
+            try {
+                Thread.sleep(POLLING_DELAY);
+            } catch (InterruptedException e) {
+                // ignore and keep waiting
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Job getJob(IJobMatcher matcher) {
+        Job[] jobs = Job.getJobManager().find(null);
+        for (Job job : jobs) {
+            if (matcher.matches(job)) {
+                return job;
+            }
+        }
+        return null;
+    }  
+
+    private void waitForBuildJobs() {
+        waitForJobs(BuildJobMatcher.INSTANCE, 60 * 1000);
+    }
+
     @Override
     public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+        // now we wait in case there are build jobs going in the background to avoid any
+        // ordering conflicts with the service interface not being able to be found.
+        // SWITCHYARD-2291
+        waitForBuildJobs();
+        
         ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
         Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         if (!ResourcesPlugin.getWorkspace().isAutoBuilding()) {
@@ -95,7 +138,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
                     "The project must be built before a WSDL can be generated. Rebuild now?",
                     MessageDialog.QUESTION_WITH_CANCEL, 
                     new String[]{IDialogConstants.YES_LABEL
-                        , IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL},
+                    , IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL},
                     0);
             switch(dg.open()) {
             case 0: 
@@ -104,7 +147,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
                     @Override
                     public void run() {
                         try {
-                        _options.getServiceInterface().getJavaProject().getProject()
+                            _options.getServiceInterface().getJavaProject().getProject()
                             .build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
                         } catch (CoreException e) {
                             // ignore, this gets checked one more time in a bit
@@ -126,7 +169,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
             Thread.currentThread().setContextClassLoader(loader);
             ServiceBuilderFactory builderFactory = ServiceBuilderFactory.getInstance(null,
                     ToolConstants.JAXB_DATABINDING);
-            
+
             try {
                 Class<?> serviceInterfaceClass = 
                         loader.loadClass(_options.getServiceInterface().getFullyQualifiedName());
@@ -296,4 +339,26 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         }
     }
 
+    /**
+     * Copied from the M2E Tests projects.
+     */
+    public interface IJobMatcher {
+        /**
+         * Find the job specified by the matcher.
+         * @param job to find
+         * @return true or false 
+         */
+        boolean matches(Job job);
+    }
+
+    static class BuildJobMatcher implements IJobMatcher {
+
+        public static final IJobMatcher INSTANCE = new BuildJobMatcher();
+
+        public boolean matches(Job job) {
+            return (job instanceof WorkspaceJob) || job.getClass().getName().matches("(.*\\.AutoBuild.*)")
+                    || job.getClass().getName().endsWith("JREUpdateJob");
+        }
+
+    }
 }
