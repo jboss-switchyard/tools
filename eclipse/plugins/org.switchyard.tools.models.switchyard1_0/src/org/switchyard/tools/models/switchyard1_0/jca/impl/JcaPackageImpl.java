@@ -28,6 +28,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.impl.CxfPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
@@ -39,10 +41,16 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -267,6 +275,10 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
         QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
+        RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
+        CxfPackageImpl theCxfPackage = (CxfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) instanceof CxfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) : CxfPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -295,6 +307,10 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         theNettyPackage.createPackageContents();
         theQuartzPackage.createPackageContents();
         theSqlPackage.createPackageContents();
+        theRssPackage.createPackageContents();
+        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
+        theCxfPackage.createPackageContents();
 
         // Initialize created meta-data
         theJcaPackage.initializePackageContents();
@@ -320,6 +336,10 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         theNettyPackage.initializePackageContents();
         theQuartzPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
+        theRssPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
+        theCxfPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -965,7 +985,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
 
         initEClass(endpointEClass, Endpoint.class, "Endpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getEndpoint_Property(), this.getProperty(), null, "property", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEndpoint_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 1, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEndpoint_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(interactionSpecEClass, InteractionSpec.class, "InteractionSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getInteractionSpec_Property(), this.getProperty(), null, "property", null, 0, -1, InteractionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -987,7 +1007,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEClass(jcaInboundInteractionEClass, JCAInboundInteraction.class, "JCAInboundInteraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJCAInboundInteraction_Listener(), theXMLTypePackage.getString(), "listener", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCAInboundInteraction_Endpoint(), this.getEndpoint(), null, "endpoint", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJCAInboundInteraction_Transacted(), theXMLTypePackage.getBoolean(), "transacted", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJCAInboundInteraction_Transacted(), theSwitchyardPackage.getPropBoolean(), "transacted", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCAInboundInteraction_BatchCommit(), this.getBatchCommit(), null, "batchCommit", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jcaOutboundConnectionEClass, JCAOutboundConnection.class, "JCAOutboundConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1001,7 +1021,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
 
         initEClass(processorEClass, Processor.class, "Processor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getProcessor_Property(), this.getProperty(), null, "property", null, 0, -1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProcessor_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 1, 1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProcessor_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProperty_Name(), theXMLTypePackage.getNCName(), "name", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1009,7 +1029,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
 
         initEClass(resourceAdapterEClass, ResourceAdapter.class, "ResourceAdapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getResourceAdapter_Property(), this.getProperty(), null, "property", null, 0, -1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getResourceAdapter_Name(), theXMLTypePackage.getNMTOKEN(), "name", null, 0, 1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getResourceAdapter_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

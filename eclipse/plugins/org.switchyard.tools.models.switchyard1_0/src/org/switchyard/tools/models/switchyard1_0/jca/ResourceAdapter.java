@@ -56,7 +56,7 @@ public interface ResourceAdapter extends EObject {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getResourceAdapter_Name()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NMTOKEN"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='attribute' name='name'"
      * @generated
      */

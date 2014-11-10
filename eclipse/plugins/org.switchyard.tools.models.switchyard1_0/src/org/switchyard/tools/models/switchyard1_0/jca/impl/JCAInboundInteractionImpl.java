@@ -29,7 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getListener <em>Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getEndpoint <em>Endpoint</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#isTransacted <em>Transacted</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getBatchCommit <em>Batch Commit</em>}</li>
  * </ul>
  * </p>
@@ -68,33 +68,24 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
     protected Endpoint endpoint;
 
     /**
-     * The default value of the '{@link #isTransacted() <em>Transacted</em>}' attribute.
+     * The default value of the '{@link #getTransacted() <em>Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isTransacted()
+     * @see #getTransacted()
      * @generated
      * @ordered
      */
-    protected static final boolean TRANSACTED_EDEFAULT = false;
+    protected static final Object TRANSACTED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isTransacted() <em>Transacted</em>}' attribute.
+     * The cached value of the '{@link #getTransacted() <em>Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isTransacted()
+     * @see #getTransacted()
      * @generated
      * @ordered
      */
-    protected boolean transacted = TRANSACTED_EDEFAULT;
-
-    /**
-     * This is true if the Transacted attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean transactedESet;
+    protected Object transacted = TRANSACTED_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getBatchCommit() <em>Batch Commit</em>}' containment reference.
@@ -194,7 +185,7 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isTransacted() {
+    public Object getTransacted() {
         return transacted;
     }
 
@@ -203,36 +194,11 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTransacted(boolean newTransacted) {
-        boolean oldTransacted = transacted;
+    public void setTransacted(Object newTransacted) {
+        Object oldTransacted = transacted;
         transacted = newTransacted;
-        boolean oldTransactedESet = transactedESet;
-        transactedESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED, oldTransacted, transacted, !oldTransactedESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetTransacted() {
-        boolean oldTransacted = transacted;
-        boolean oldTransactedESet = transactedESet;
-        transacted = TRANSACTED_EDEFAULT;
-        transactedESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED, oldTransacted, TRANSACTED_EDEFAULT, oldTransactedESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetTransacted() {
-        return transactedESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED, oldTransacted, transacted));
     }
 
     /**
@@ -307,7 +273,7 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 return getEndpoint();
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
-                return isTransacted();
+                return getTransacted();
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 return getBatchCommit();
         }
@@ -329,7 +295,7 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 setEndpoint((Endpoint)newValue);
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
-                setTransacted((Boolean)newValue);
+                setTransacted(newValue);
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 setBatchCommit((BatchCommit)newValue);
@@ -353,7 +319,7 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 setEndpoint((Endpoint)null);
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
-                unsetTransacted();
+                setTransacted(TRANSACTED_EDEFAULT);
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 setBatchCommit((BatchCommit)null);
@@ -375,7 +341,7 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 return endpoint != null;
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
-                return isSetTransacted();
+                return TRANSACTED_EDEFAULT == null ? transacted != null : !TRANSACTED_EDEFAULT.equals(transacted);
             case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
                 return batchCommit != null;
         }
@@ -395,7 +361,7 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
         result.append(" (listener: ");
         result.append(listener);
         result.append(", transacted: ");
-        if (transactedESet) result.append(transacted); else result.append("<unset>");
+        result.append(transacted);
         result.append(')');
         return result.toString();
     }

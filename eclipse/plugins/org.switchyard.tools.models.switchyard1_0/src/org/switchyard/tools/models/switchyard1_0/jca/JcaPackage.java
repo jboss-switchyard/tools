@@ -1280,11 +1280,11 @@ public interface JcaPackage extends EPackage {
     EReference getJCAInboundInteraction_Endpoint();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getTransacted <em>Transacted</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Transacted</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted()
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getTransacted()
      * @see #getJCAInboundInteraction()
      * @generated
      */

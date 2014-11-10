@@ -101,8 +101,8 @@ public class JCAHornetQQueueResourceAdapterExtension extends AbstractResourceAda
     private static final IInboundInteractionSettings INBOUND_INTERACTION_SETTINGS = new IInboundInteractionSettings() {
         
         @Override
-        public Boolean isTransacted() {
-            return true;
+        public String isTransacted() {
+            return Boolean.TRUE.toString();
         }
         
         @Override

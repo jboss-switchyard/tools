@@ -43,7 +43,6 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -56,6 +55,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyBooleanValidator;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
@@ -71,7 +71,7 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
     private Composite _panel;
     private JCABinding _binding = null;
     private ComboViewer _endpointMappingTypeCombo;
-    private Button _transactedButton;
+    private Text _transactedText;
     private Group _batchGroup;
     private Text _batchSizeText;
     private Text _batchTimeoutText;
@@ -242,10 +242,10 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
     
     private Control getJCAInteractionDetailsTabControl(Composite tabFolder, DataBindingContext context) {
         Composite composite = getToolkit().createComposite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
         
-        _endpointMappingTypeCombo = new ComboViewer(createLabelAndCombo(composite, Messages.label_endpointMappingType, true));
+        _endpointMappingTypeCombo = new ComboViewer(createLabelAndCombo(composite, Messages.label_endpointMappingType, true, 2));
         _endpointMappingTypeCombo.setContentProvider(ArrayContentProvider.getInstance());
         _endpointMappingTypeCombo.setLabelProvider(new LabelProvider() {
             @Override
@@ -261,11 +261,10 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
             }
         });
 
-        _transactedButton = createCheckbox(composite, Messages.label_transacted);
-        addGridData(_transactedButton, 1, GridData.FILL_HORIZONTAL);
+        _transactedText = createLabelAndText(composite, Messages.label_transacted);
         
         _batchGroup = new Group(composite, SWT.NONE);
-        GridData bgGridData = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
+        GridData bgGridData = new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1);
         _batchGroup.setLayoutData(bgGridData);
         _batchGroup.setLayout(new GridLayout(2, false));
         _batchGroup.setText(Messages.label_batchCommitOptions);
@@ -323,10 +322,11 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         final FeaturePath transactedFeaturePath = FeaturePath.fromList(
                 JcaPackage.Literals.JCA_BINDING__INBOUND_INTERACTION,
                 JcaPackage.Literals.JCA_INBOUND_INTERACTION__TRANSACTED);
-        binding = context.bindValue(SWTObservables.observeSelection(_transactedButton),
+        binding = context.bindValue(SWTObservables.observeText(_transactedText, SWT.Modify),
                 EMFProperties.value(transactedFeaturePath).observeDetail(_bindingValue),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_UPDATE, domain,
-                        _bindingValue, transactedFeaturePath, false), null);
+                        _bindingValue, transactedFeaturePath, false).
+                        setAfterConvertValidator(new EscapedPropertyBooleanValidator("Transacted must be a valid boolean value or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         
         IObservableValue endpointType = ObservablesUtil.observeDetailValue(domain, _bindingValue, FeaturePath.fromList(
                 JcaPackage.Literals.JCA_BINDING__INBOUND_INTERACTION,

@@ -81,7 +81,7 @@ public interface IJCAResourceAdapterExtension {
         /**
          * @return true if transacted, false if not, null if no default.
          */
-        public Boolean isTransacted();
+        public String isTransacted();
 
         /**
          * @return the endpoint type, must extend

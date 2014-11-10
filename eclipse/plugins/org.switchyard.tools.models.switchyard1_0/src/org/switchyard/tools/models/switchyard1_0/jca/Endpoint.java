@@ -56,7 +56,7 @@ public interface Endpoint extends EObject {
      * @return the value of the '<em>Type</em>' attribute.
      * @see #setType(String)
      * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getEndpoint_Type()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NMTOKEN" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='attribute' name='type'"
      * @generated
      */

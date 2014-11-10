@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getListener <em>Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getEndpoint <em>Endpoint</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getBatchCommit <em>Batch Commit</em>}</li>
  * </ul>
  * </p>
@@ -91,50 +91,23 @@ public interface JCAInboundInteraction extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Transacted</em>' attribute.
-     * @see #isSetTransacted()
-     * @see #unsetTransacted()
-     * @see #setTransacted(boolean)
+     * @see #setTransacted(Object)
      * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAInboundInteraction_Transacted()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropBoolean"
      *        extendedMetaData="kind='element' name='transacted' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isTransacted();
+    Object getTransacted();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getTransacted <em>Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Transacted</em>' attribute.
-     * @see #isSetTransacted()
-     * @see #unsetTransacted()
-     * @see #isTransacted()
+     * @see #getTransacted()
      * @generated
      */
-    void setTransacted(boolean value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetTransacted()
-     * @see #isTransacted()
-     * @see #setTransacted(boolean)
-     * @generated
-     */
-    void unsetTransacted();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Transacted</em>' attribute is set.
-     * @see #unsetTransacted()
-     * @see #isTransacted()
-     * @see #setTransacted(boolean)
-     * @generated
-     */
-    boolean isSetTransacted();
+    void setTransacted(Object value);
 
     /**
      * Returns the value of the '<em><b>Batch Commit</b></em>' containment reference.

@@ -95,7 +95,8 @@ public abstract class AbstractResourceAdapterExtension implements IJCAResourceAd
         }
         
         if (settings.isTransacted() != null) {
-            if (interaction.isSetTransacted() && settings.isTransacted() == interaction.isTransacted()) {
+            String interactionTransacted = (String) interaction.getTransacted();
+            if (interactionTransacted != null && (settings.isTransacted()).equalsIgnoreCase(interactionTransacted)) {
                 ++score;
             }
         }
