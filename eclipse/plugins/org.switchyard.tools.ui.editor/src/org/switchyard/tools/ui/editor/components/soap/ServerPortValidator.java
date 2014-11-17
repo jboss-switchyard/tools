@@ -19,10 +19,14 @@ import org.switchyard.tools.ui.editor.databinding.EscapedPropertyValidator;
 
 /**
  * Property validator which checks for [hostname]:[port] format of the Server Port.
- * Valid values include ":1234" and "host:1234" and ":${prop}" and "${host}:${prop}" and null.
- * 
- * Regex: ^\w*:\d+ matches "[host]:1234"
- * Regex: ^\S*:\S+ matches "
+ * Valid values include 
+ * 1234
+ * :1234
+ * host:1234
+ * ${propValue}
+ * :${propValue}
+ * host:${propValue}
+ * null
  */
 public class ServerPortValidator extends EscapedPropertyValidator {
 
@@ -44,15 +48,26 @@ public class ServerPortValidator extends EscapedPropertyValidator {
                 if (numberStartsWithColon.matcher(strValue).matches()) {
                     return Status.OK_STATUS;
                 } else if (isEscapedProperty.equals(Status.OK_STATUS)) {
-                    Pattern pattern2 = Pattern.compile("^.*[:].+");
+                    // ${escapedProperty}:${escapedProperty}
+                    Pattern pattern2 = Pattern.compile("^?\\$\\{.+\\}$:?\\$\\{.+\\}$");
                     if (pattern2.matcher(strValue).matches()) {
                         return Status.OK_STATUS;
-                    } else {
-                        if (getMessage() != null) {
-                            return new Status(Status.WARNING, Activator.PLUGIN_ID, getMessage());
-                        }
-                        return new Status(Status.WARNING, Activator.PLUGIN_ID, MESSAGE);
                     }
+                    // {host}:${escapedProperty}
+                    Pattern pattern3 = Pattern.compile("^.*:?\\$\\{.+\\}$");
+                    if (pattern3.matcher(strValue).matches()) {
+                        return Status.OK_STATUS;
+                    }
+                    // ${escapedProperty}:{portNumber}
+                    Pattern pattern4 = Pattern.compile("^?\\$\\{.+\\}:\\d+$");
+                    if (pattern4.matcher(strValue).matches()) {
+                        return Status.OK_STATUS;
+                    }
+                    // anything else, we have issues
+                    if (getMessage() != null) {
+                        return new Status(Status.WARNING, Activator.PLUGIN_ID, getMessage());
+                    }
+                    return new Status(Status.WARNING, Activator.PLUGIN_ID, MESSAGE);
                 } else if (!isEscapedProperty.equals(Status.OK_STATUS)) {
                     return isEscapedProperty;
                 }
