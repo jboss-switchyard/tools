@@ -78,6 +78,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelec
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.databinding.AccessibleClassValidator;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
 import org.switchyard.tools.ui.editor.databinding.RegexValidator;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
@@ -321,7 +322,8 @@ public class OperationSelectorComposite extends Composite {
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context.bindValue(SWTObservables.observeText(_javaText, SWT.Modify), javaValue,
-                new UpdateValueStrategy(UpdateValueStrategy.POLICY_CONVERT), null);
+                new UpdateValueStrategy(UpdateValueStrategy.POLICY_CONVERT).
+                setAfterConvertValidator(new AccessibleClassValidator(_bindingValue)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         /*
