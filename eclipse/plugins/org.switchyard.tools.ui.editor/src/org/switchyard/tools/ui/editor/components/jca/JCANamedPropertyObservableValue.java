@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
@@ -140,6 +141,13 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
         }
         return _property.getValue();
     }
+    
+    private Property createProperty(String name, Object value) {
+        Property newProperty = JcaFactory.eINSTANCE.createProperty();
+        newProperty.setName(name);
+        newProperty.setValue(value);
+        return newProperty;
+    }
 
     @Override
     protected void doSetValue(Object value) {
@@ -151,26 +159,66 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
                 return;
             }
 
-            _property = JcaFactory.eINSTANCE.createProperty();
-            _property.setName(_name);
-            _property.setValue(value);
+            _property = createProperty(_name, value);
             _list.add(_property);
         } else {
             original = _property.getValue();
             if ((value == null && original == null) || (value != null && value.equals(original))) {
                 return;
             }
+            final EditingDomain domain = ((IEMFEditObservable) _list).getEditingDomain();
+            final EObject container = _property.eContainer();
+            final TransactionalEditingDomain ted = (TransactionalEditingDomain) domain;
+            if (findProperty() != null && !_removeNullProperties && value != null) {
+                if (container instanceof ActivationSpec) {
+                    ted.getCommandStack().execute(new RecordingCommand(ted) {
+                        @Override
+                        protected void doExecute() {
+                            ActivationSpec activationSpec = (ActivationSpec) container;
+                            boolean flag = activationSpec.getProperty().remove(_property);
+                            System.out.println("Property was removed: " + flag);
+                        }
+                    });
+                } else if (container instanceof Processor) {
+                    ted.getCommandStack().execute(new RecordingCommand(ted) {
+                        @Override
+                        protected void doExecute() {
+                            Processor processor = (Processor) container;
+                            boolean flag = processor.getProperty().remove(_property);
+                            System.out.println("Property was removed: " + flag);
+                        }
+                    });
+                }
+                _property = createProperty(_name, value);
+            }
             if (_list instanceof IEMFEditObservable) {
-                final EditingDomain domain = ((IEMFEditObservable) _list).getEditingDomain();
+                System.out.println("Container = " + container);
                 if (!_removeNullProperties) {
-                    domain.getCommandStack().execute(
-                            SetCommand.create(domain, _property, JcaPackage.Literals.PROPERTY__VALUE, value));
+                    if (container instanceof ActivationSpec) {
+                        ted.getCommandStack().execute(new RecordingCommand(ted) {
+                            @Override
+                            protected void doExecute() {
+                                ActivationSpec activationSpec = (ActivationSpec) container;
+                                boolean flag = activationSpec.getProperty().add(_property);
+                                System.out.println("Property was added: " + flag);
+                            }
+                        });
+                    } else if (container instanceof Processor) {
+                        ted.getCommandStack().execute(new RecordingCommand(ted) {
+                            @Override
+                            protected void doExecute() {
+                                Processor processor = (Processor) container;
+                                boolean flag = processor.getProperty().add(_property);
+                                System.out.println("Property was added: " + flag);
+                            }
+                        });
+                    }
+//                    domain.getCommandStack().execute(
+//                            SetCommand.create(domain, _property, JcaPackage.Literals.PROPERTY__VALUE, value));
                 } else {
                     if (value == null) {
-                        final EObject container = _property.eContainer();
                         if (container instanceof Processor) {
                             if (domain instanceof TransactionalEditingDomain) {
-                                TransactionalEditingDomain ted = (TransactionalEditingDomain) domain;
                                 ted.getCommandStack().execute(new RecordingCommand(ted) {
                                     @Override
                                     protected void doExecute() {
@@ -182,7 +230,6 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
                             }
                         } else if (container instanceof Endpoint) {
                             if (domain instanceof TransactionalEditingDomain) {
-                                TransactionalEditingDomain ted = (TransactionalEditingDomain) domain;
                                 ted.getCommandStack().execute(new RecordingCommand(ted) {
                                     @Override
                                     protected void doExecute() {
@@ -203,7 +250,6 @@ public class JCANamedPropertyObservableValue extends AbstractObservableValue {
                     _property.setValue(value);
                 } else {
                     if (value == null) {
-                        final EObject container = _property.eContainer();
                         if (container instanceof Processor) {
                             Processor processor = (Processor) container;
                             boolean flag = processor.getProperty().remove(_property);
