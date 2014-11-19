@@ -99,7 +99,7 @@ public class BeanImplementationComposite extends AbstractModelComposite<Componen
 
         });
 
-        _beanClassText = factory.createText(_panel, ""); //$NON-NLS-1$
+        _beanClassText = factory.createText(_panel, "", SWT.READ_ONLY | SWT.BORDER); //$NON-NLS-1$
         _beanClassText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _beanClassText.addModifyListener(new ModifyListener() {
             @Override

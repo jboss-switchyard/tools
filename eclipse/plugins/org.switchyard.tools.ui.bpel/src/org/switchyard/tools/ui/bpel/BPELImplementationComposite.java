@@ -29,15 +29,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.ide.IDE;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.property.AbstractChangeAwareModelComposite;
@@ -51,7 +45,7 @@ public class BPELImplementationComposite extends AbstractChangeAwareModelComposi
 
     private Composite _panel;
     private BPELImplementation _implementation;
-    private Link _newBPELLink;
+//    private Link _newBPELLink;
     private Text _bpelFileText;
     private Button _browseBPELButton;
     private IProject _project;
@@ -70,17 +64,19 @@ public class BPELImplementationComposite extends AbstractChangeAwareModelComposi
         _panel = this;
         _panel.setLayout(new GridLayout(3, false));
 
-        _newBPELLink = new Link(_panel, SWT.NONE);
-        factory.adapt(_newBPELLink, false, false);
-        _newBPELLink.setText("<a>" + Messages.BPELImplementationComposite_newBPELFileLinkLabel + "</a>"); //$NON-NLS-1$ //$NON-NLS-2$
-        _newBPELLink.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                openFile();
-            }
+//        _newBPELLink = new Link(_panel, SWT.NONE);
+//        factory.adapt(_newBPELLink, false, false);
+//        _newBPELLink.setText("<a>" + Messages.BPELImplementationComposite_newBPELFileLinkLabel + "</a>"); //$NON-NLS-1$ //$NON-NLS-2$
+//        _newBPELLink.addSelectionListener(new SelectionAdapter() {
+//            @Override
+//            public void widgetSelected(SelectionEvent event) {
+//                openFile();
+//            }
+//
+//        });
 
-        });
-
+        factory.createLabel(_panel, Messages.BPELImplementationComposite_newBPELFileLinkLabel);
+        
         _bpelFileText = factory.createText(_panel, "", SWT.READ_ONLY); //$NON-NLS-1$
         _bpelFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _bpelFileText.addModifyListener(new ModifyListener() {
@@ -136,18 +132,18 @@ public class BPELImplementationComposite extends AbstractChangeAwareModelComposi
         }
     }
 
-    private void openFile() {
-        final IFile resource = BPELResourceAdapterFactory.getFileForObject(_implementation, _project);
-        if (resource != null) {
-            try {
-                final IWorkbench wb = PlatformUI.getWorkbench();
-                final IWorkbenchPage activePage = wb.getActiveWorkbenchWindow().getActivePage();
-                IDE.openEditor(activePage, resource);
-            } catch (PartInitException e) {
-                Activator.getDefault().getLog().log(e.getStatus());
-            }
-        }
-    }
+//    private void openFile() {
+//        final IFile resource = BPELResourceAdapterFactory.getFileForObject(_implementation, _project);
+//        if (resource != null) {
+//            try {
+//                final IWorkbench wb = PlatformUI.getWorkbench();
+//                final IWorkbenchPage activePage = wb.getActiveWorkbenchWindow().getActivePage();
+//                IDE.openEditor(activePage, resource);
+//            } catch (PartInitException e) {
+//                Activator.getDefault().getLog().log(e.getStatus());
+//            }
+//        }
+//    }
 
     private void handleBrowse() {
         IContainer container;

@@ -49,7 +49,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -99,10 +98,10 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
             @Override
             public void widgetSelected(SelectionEvent e) {
                 if (_mClassText != null && !_mClassText.isDisposed()) {
-                    String classname = _mClassText.getText();
+//                    String classname = _mClassText.getText();
                     try {
-                        IType foundClass = canFindClass(classname);
-                        if (foundClass == null) {
+//                        IType foundClass = canFindClass(classname);
+//                        if (foundClass == null) {
                             String className = handleCreateJavaClass();
                             if (className != null) {
                                 _mClassText.setText(className);
@@ -110,9 +109,9 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
                                 fireChangedEvent(_newClassLink);
                             }
                             return;
-                        } else {
-                            handleOpenJavaClass(foundClass);
-                        }
+//                        } else {
+//                            handleOpenJavaClass(foundClass);
+//                        }
                     } catch (JavaModelException e1) {
                         e1.printStackTrace();
                     }
@@ -212,41 +211,41 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
         return (IType) types[0];
     }
 
-    private IType canFindClass(String classname) throws JavaModelException {
-        IProject project = null;
-        ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
-                .getSelection();
-        IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
-        if (selection instanceof IStructuredSelection) {
-            selectionToPass = (IStructuredSelection) selection;
-            if (selectionToPass.getFirstElement() instanceof IFile) {
-                project = ((IFile) selectionToPass.getFirstElement()).getProject();
-            }
-        }
-        if (selectionToPass == StructuredSelection.EMPTY) {
-            project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
-        }
-        if (project != null && classname != null) { //$NON-NLS-1$
-            IJavaProject javaProject = JavaCore.create(project);
-            IType superType = javaProject.findType(classname);
-            if (superType != null) {
-                return superType;
-            }
-        }
-        return null;
-    }
-
-    private void handleOpenJavaClass(IType classToOpen) {
-        if (classToOpen != null) {
-            try {
-                JavaUI.openInEditor(classToOpen);
-            } catch (PartInitException e) {
-                e.printStackTrace();
-            } catch (JavaModelException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    private IType canFindClass(String classname) throws JavaModelException {
+//        IProject project = null;
+//        ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+//                .getSelection();
+//        IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
+//        if (selection instanceof IStructuredSelection) {
+//            selectionToPass = (IStructuredSelection) selection;
+//            if (selectionToPass.getFirstElement() instanceof IFile) {
+//                project = ((IFile) selectionToPass.getFirstElement()).getProject();
+//            }
+//        }
+//        if (selectionToPass == StructuredSelection.EMPTY) {
+//            project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+//        }
+//        if (project != null && classname != null) { //$NON-NLS-1$
+//            IJavaProject javaProject = JavaCore.create(project);
+//            IType superType = javaProject.findType(classname);
+//            if (superType != null) {
+//                return superType;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    private void handleOpenJavaClass(IType classToOpen) {
+//        if (classToOpen != null) {
+//            try {
+//                JavaUI.openInEditor(classToOpen);
+//            } catch (PartInitException e) {
+//                e.printStackTrace();
+//            } catch (JavaModelException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     private String handleCreateJavaClass() throws JavaModelException {
         IProject project = null;
