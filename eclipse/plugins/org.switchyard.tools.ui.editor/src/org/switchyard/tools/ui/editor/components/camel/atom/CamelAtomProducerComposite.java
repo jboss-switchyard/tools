@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
@@ -223,9 +224,10 @@ public class CamelAtomProducerComposite extends AbstractSYBindingComposite {
                                 null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
+        ISWTObservableValue delayed1 = createDelayedObservableText(_lastUpdateText);
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_lastUpdateText, new int[] {SWT.Modify }),
+                        delayed1,
                         lastUpdateValue,
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 "Last Update must match the format yyyy-MM-ddTHH:mm:ss",

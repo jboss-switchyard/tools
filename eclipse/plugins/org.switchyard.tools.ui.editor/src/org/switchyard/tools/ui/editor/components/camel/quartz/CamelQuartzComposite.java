@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -283,10 +284,10 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         EMFUpdateValueStrategy startTimeStrategy = new EMFUpdateValueStrategyNullForEmptyString(
                 Messages.CamelQuartzComposite_Validation_Start_Time_Format,
                 UpdateValueStrategy.POLICY_CONVERT);
-        
+        ISWTObservableValue delayed1 = createDelayedObservableText(_startTimeText);
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_startTimeText, new int[] {SWT.Modify }),
+                        delayed1,
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME),
                         startTimeStrategy, null);
@@ -295,9 +296,9 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         EMFUpdateValueStrategy endTimeStrategy = new EMFUpdateValueStrategyNullForEmptyString(
                 Messages.CamelQuartzComposite_Validation_End_Time_Format,
                 UpdateValueStrategy.POLICY_CONVERT);
-
+        ISWTObservableValue delayed2 = createDelayedObservableText(_endTimeText);
         binding = context.bindValue(
-                SWTObservables.observeText(_endTimeText, new int[] {SWT.Modify }),
+                delayed2,
                 ObservablesUtil.observeDetailValue(domain, _bindingValue,
                         QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME),
                 endTimeStrategy, null);

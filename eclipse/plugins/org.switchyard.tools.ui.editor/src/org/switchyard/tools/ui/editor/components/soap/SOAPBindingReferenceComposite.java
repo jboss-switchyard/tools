@@ -35,6 +35,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -522,11 +523,13 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                                 null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
+        ISWTObservableValue delayed1 = createDelayedObservableText(_mtomThresholdText);
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_mtomThresholdText, SWT.Modify), mtomThreshold,
+                        delayed1, mtomThreshold,
                         new EMFUpdateValueStrategyNullForEmptyString(
-                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+                                "MTom Threshold must be a valid numeric value.", 
+                                UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         ComputedValue computedMtom = new ComputedValue() {

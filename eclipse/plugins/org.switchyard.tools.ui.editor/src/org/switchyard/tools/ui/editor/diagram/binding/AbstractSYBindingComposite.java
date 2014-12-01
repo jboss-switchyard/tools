@@ -17,6 +17,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
@@ -38,6 +40,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     private Binding _binding;
     private EObject _targetObj = null;
     private boolean _didSomething = false;
+    private static int DELAY_DEFAULT = 500;
 
     protected AbstractSYBindingComposite(FormToolkit toolkit) {
         super(toolkit);
@@ -201,5 +204,15 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         if (setFocus) {
             control.setFocus();
         }
+    }
+    
+    protected ISWTObservableValue createDelayedObservableText(int delay, Text control, int events) {
+        ISWTObservableValue delayed = 
+                SWTObservables.observeDelayedValue(delay, SWTObservables.observeText(control, events));
+        return delayed;
+    }
+
+    protected ISWTObservableValue createDelayedObservableText(Text control) {
+        return createDelayedObservableText(DELAY_DEFAULT, control, SWT.Modify);
     }
 }
