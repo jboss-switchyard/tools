@@ -257,7 +257,7 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-camel-cxf</artifactId>
+                  <artifactId>switchyard-camel-cxf-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-cxf-binding</outputDirectory>
                 </artifactItem>
