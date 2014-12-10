@@ -381,6 +381,304 @@ public interface FtpPackage extends EPackage {
     int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.GenericFtpBindingTypeImpl <em>Generic Ftp Binding Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.GenericFtpBindingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl#getGenericFtpBindingType()
+     * @generated
+     */
+    int GENERIC_FTP_BINDING_TYPE = 6;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+
+    /**
+     * The feature id for the '<em><b>Directory</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__DIRECTORY = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Auto Create</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__AUTO_CREATE = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Buffer Size</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__BUFFER_SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>File Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__FILE_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Flatten</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__FLATTEN = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Charset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__CHARSET = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__HOST = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__PORT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Username</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__USERNAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__PASSWORD = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
+
+    /**
+     * The feature id for the '<em><b>Binary</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__BINARY = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
+
+    /**
+     * The feature id for the '<em><b>Connect Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__CONNECT_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
+
+    /**
+     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__DISCONNECT = BASE_CAMEL_BINDING_FEATURE_COUNT + 12;
+
+    /**
+     * The feature id for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = BASE_CAMEL_BINDING_FEATURE_COUNT + 13;
+
+    /**
+     * The feature id for the '<em><b>Reconnect Delay</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__RECONNECT_DELAY = BASE_CAMEL_BINDING_FEATURE_COUNT + 14;
+
+    /**
+     * The feature id for the '<em><b>Separator</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__SEPARATOR = BASE_CAMEL_BINDING_FEATURE_COUNT + 15;
+
+    /**
+     * The feature id for the '<em><b>Stepwise</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__STEPWISE = BASE_CAMEL_BINDING_FEATURE_COUNT + 16;
+
+    /**
+     * The feature id for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = BASE_CAMEL_BINDING_FEATURE_COUNT + 17;
+
+    /**
+     * The number of structural features of the '<em>Generic Ftp Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 18;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpBindingTypeImpl <em>Camel Ftp Binding Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -397,7 +695,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+    int CAMEL_FTP_BINDING_TYPE__DOCUMENTATION = GENERIC_FTP_BINDING_TYPE__DOCUMENTATION;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -406,7 +704,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+    int CAMEL_FTP_BINDING_TYPE__ANY_ATTRIBUTE = GENERIC_FTP_BINDING_TYPE__ANY_ATTRIBUTE;
 
     /**
      * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
@@ -415,7 +713,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+    int CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT_GROUP = GENERIC_FTP_BINDING_TYPE__WIRE_FORMAT_GROUP;
 
     /**
      * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
@@ -424,7 +722,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+    int CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT = GENERIC_FTP_BINDING_TYPE__WIRE_FORMAT;
 
     /**
      * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
@@ -433,7 +731,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+    int CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = GENERIC_FTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
 
     /**
      * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
@@ -442,7 +740,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+    int CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR = GENERIC_FTP_BINDING_TYPE__OPERATION_SELECTOR;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -451,7 +749,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+    int CAMEL_FTP_BINDING_TYPE__NAME = GENERIC_FTP_BINDING_TYPE__NAME;
 
     /**
      * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
@@ -460,7 +758,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+    int CAMEL_FTP_BINDING_TYPE__POLICY_SETS = GENERIC_FTP_BINDING_TYPE__POLICY_SETS;
 
     /**
      * The feature id for the '<em><b>Requires</b></em>' attribute.
@@ -469,7 +767,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+    int CAMEL_FTP_BINDING_TYPE__REQUIRES = GENERIC_FTP_BINDING_TYPE__REQUIRES;
 
     /**
      * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -478,7 +776,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+    int CAMEL_FTP_BINDING_TYPE__URI = GENERIC_FTP_BINDING_TYPE__URI;
 
     /**
      * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
@@ -487,7 +785,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+    int CAMEL_FTP_BINDING_TYPE__CONTEXT_MAPPER = GENERIC_FTP_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
      * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
@@ -496,7 +794,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+    int CAMEL_FTP_BINDING_TYPE__MESSAGE_COMPOSER = GENERIC_FTP_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
      * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
@@ -505,7 +803,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+    int CAMEL_FTP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = GENERIC_FTP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS;
 
     /**
      * The feature id for the '<em><b>Directory</b></em>' attribute.
@@ -514,7 +812,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__DIRECTORY = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+    int CAMEL_FTP_BINDING_TYPE__DIRECTORY = GENERIC_FTP_BINDING_TYPE__DIRECTORY;
 
     /**
      * The feature id for the '<em><b>Auto Create</b></em>' attribute.
@@ -523,7 +821,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__AUTO_CREATE = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+    int CAMEL_FTP_BINDING_TYPE__AUTO_CREATE = GENERIC_FTP_BINDING_TYPE__AUTO_CREATE;
 
     /**
      * The feature id for the '<em><b>Buffer Size</b></em>' attribute.
@@ -532,7 +830,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__BUFFER_SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+    int CAMEL_FTP_BINDING_TYPE__BUFFER_SIZE = GENERIC_FTP_BINDING_TYPE__BUFFER_SIZE;
 
     /**
      * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -541,7 +839,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__FILE_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+    int CAMEL_FTP_BINDING_TYPE__FILE_NAME = GENERIC_FTP_BINDING_TYPE__FILE_NAME;
 
     /**
      * The feature id for the '<em><b>Flatten</b></em>' attribute.
@@ -550,7 +848,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__FLATTEN = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_FTP_BINDING_TYPE__FLATTEN = GENERIC_FTP_BINDING_TYPE__FLATTEN;
 
     /**
      * The feature id for the '<em><b>Charset</b></em>' attribute.
@@ -559,7 +857,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__CHARSET = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+    int CAMEL_FTP_BINDING_TYPE__CHARSET = GENERIC_FTP_BINDING_TYPE__CHARSET;
 
     /**
      * The feature id for the '<em><b>Host</b></em>' attribute.
@@ -568,7 +866,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__HOST = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+    int CAMEL_FTP_BINDING_TYPE__HOST = GENERIC_FTP_BINDING_TYPE__HOST;
 
     /**
      * The feature id for the '<em><b>Port</b></em>' attribute.
@@ -577,7 +875,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__PORT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+    int CAMEL_FTP_BINDING_TYPE__PORT = GENERIC_FTP_BINDING_TYPE__PORT;
 
     /**
      * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -586,7 +884,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__USERNAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+    int CAMEL_FTP_BINDING_TYPE__USERNAME = GENERIC_FTP_BINDING_TYPE__USERNAME;
 
     /**
      * The feature id for the '<em><b>Password</b></em>' attribute.
@@ -595,7 +893,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__PASSWORD = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
+    int CAMEL_FTP_BINDING_TYPE__PASSWORD = GENERIC_FTP_BINDING_TYPE__PASSWORD;
 
     /**
      * The feature id for the '<em><b>Binary</b></em>' attribute.
@@ -604,7 +902,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__BINARY = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
+    int CAMEL_FTP_BINDING_TYPE__BINARY = GENERIC_FTP_BINDING_TYPE__BINARY;
 
     /**
      * The feature id for the '<em><b>Connect Timeout</b></em>' attribute.
@@ -613,7 +911,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__CONNECT_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
+    int CAMEL_FTP_BINDING_TYPE__CONNECT_TIMEOUT = GENERIC_FTP_BINDING_TYPE__CONNECT_TIMEOUT;
 
     /**
      * The feature id for the '<em><b>Disconnect</b></em>' attribute.
@@ -622,7 +920,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__DISCONNECT = BASE_CAMEL_BINDING_FEATURE_COUNT + 12;
+    int CAMEL_FTP_BINDING_TYPE__DISCONNECT = GENERIC_FTP_BINDING_TYPE__DISCONNECT;
 
     /**
      * The feature id for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute.
@@ -631,7 +929,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = BASE_CAMEL_BINDING_FEATURE_COUNT + 13;
+    int CAMEL_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = GENERIC_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS;
 
     /**
      * The feature id for the '<em><b>Reconnect Delay</b></em>' attribute.
@@ -640,7 +938,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__RECONNECT_DELAY = BASE_CAMEL_BINDING_FEATURE_COUNT + 14;
+    int CAMEL_FTP_BINDING_TYPE__RECONNECT_DELAY = GENERIC_FTP_BINDING_TYPE__RECONNECT_DELAY;
 
     /**
      * The feature id for the '<em><b>Separator</b></em>' attribute.
@@ -649,7 +947,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__SEPARATOR = BASE_CAMEL_BINDING_FEATURE_COUNT + 15;
+    int CAMEL_FTP_BINDING_TYPE__SEPARATOR = GENERIC_FTP_BINDING_TYPE__SEPARATOR;
 
     /**
      * The feature id for the '<em><b>Stepwise</b></em>' attribute.
@@ -658,7 +956,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__STEPWISE = BASE_CAMEL_BINDING_FEATURE_COUNT + 16;
+    int CAMEL_FTP_BINDING_TYPE__STEPWISE = GENERIC_FTP_BINDING_TYPE__STEPWISE;
 
     /**
      * The feature id for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute.
@@ -667,7 +965,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = BASE_CAMEL_BINDING_FEATURE_COUNT + 17;
+    int CAMEL_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = GENERIC_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED;
 
     /**
      * The feature id for the '<em><b>Passive Mode</b></em>' attribute.
@@ -676,7 +974,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE = BASE_CAMEL_BINDING_FEATURE_COUNT + 18;
+    int CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Timeout</b></em>' attribute.
@@ -685,7 +983,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 19;
+    int CAMEL_FTP_BINDING_TYPE__TIMEOUT = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>So Timeout</b></em>' attribute.
@@ -694,7 +992,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 20;
+    int CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Site Command</b></em>' attribute.
@@ -703,7 +1001,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__SITE_COMMAND = BASE_CAMEL_BINDING_FEATURE_COUNT + 21;
+    int CAMEL_FTP_BINDING_TYPE__SITE_COMMAND = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Consume</b></em>' containment reference.
@@ -712,7 +1010,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__CONSUME = BASE_CAMEL_BINDING_FEATURE_COUNT + 22;
+    int CAMEL_FTP_BINDING_TYPE__CONSUME = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Produce</b></em>' containment reference.
@@ -721,7 +1019,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE__PRODUCE = BASE_CAMEL_BINDING_FEATURE_COUNT + 23;
+    int CAMEL_FTP_BINDING_TYPE__PRODUCE = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>Camel Ftp Binding Type</em>' class.
@@ -730,7 +1028,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 24;
+    int CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 6;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl <em>Camel Ftps Binding Type</em>}' class.
@@ -1146,7 +1444,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+    int CAMEL_SFTP_BINDING_TYPE__DOCUMENTATION = GENERIC_FTP_BINDING_TYPE__DOCUMENTATION;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -1155,7 +1453,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+    int CAMEL_SFTP_BINDING_TYPE__ANY_ATTRIBUTE = GENERIC_FTP_BINDING_TYPE__ANY_ATTRIBUTE;
 
     /**
      * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
@@ -1164,7 +1462,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+    int CAMEL_SFTP_BINDING_TYPE__WIRE_FORMAT_GROUP = GENERIC_FTP_BINDING_TYPE__WIRE_FORMAT_GROUP;
 
     /**
      * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
@@ -1173,7 +1471,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+    int CAMEL_SFTP_BINDING_TYPE__WIRE_FORMAT = GENERIC_FTP_BINDING_TYPE__WIRE_FORMAT;
 
     /**
      * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
@@ -1182,7 +1480,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+    int CAMEL_SFTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = GENERIC_FTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
 
     /**
      * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
@@ -1191,7 +1489,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+    int CAMEL_SFTP_BINDING_TYPE__OPERATION_SELECTOR = GENERIC_FTP_BINDING_TYPE__OPERATION_SELECTOR;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1200,7 +1498,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+    int CAMEL_SFTP_BINDING_TYPE__NAME = GENERIC_FTP_BINDING_TYPE__NAME;
 
     /**
      * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
@@ -1209,7 +1507,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+    int CAMEL_SFTP_BINDING_TYPE__POLICY_SETS = GENERIC_FTP_BINDING_TYPE__POLICY_SETS;
 
     /**
      * The feature id for the '<em><b>Requires</b></em>' attribute.
@@ -1218,7 +1516,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+    int CAMEL_SFTP_BINDING_TYPE__REQUIRES = GENERIC_FTP_BINDING_TYPE__REQUIRES;
 
     /**
      * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1227,7 +1525,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+    int CAMEL_SFTP_BINDING_TYPE__URI = GENERIC_FTP_BINDING_TYPE__URI;
 
     /**
      * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
@@ -1236,7 +1534,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+    int CAMEL_SFTP_BINDING_TYPE__CONTEXT_MAPPER = GENERIC_FTP_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
      * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
@@ -1245,7 +1543,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+    int CAMEL_SFTP_BINDING_TYPE__MESSAGE_COMPOSER = GENERIC_FTP_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
      * The feature id for the '<em><b>Additional Uri Parameters</b></em>' containment reference.
@@ -1254,7 +1552,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
+    int CAMEL_SFTP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = GENERIC_FTP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS;
 
     /**
      * The feature id for the '<em><b>Directory</b></em>' attribute.
@@ -1263,7 +1561,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__DIRECTORY = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+    int CAMEL_SFTP_BINDING_TYPE__DIRECTORY = GENERIC_FTP_BINDING_TYPE__DIRECTORY;
 
     /**
      * The feature id for the '<em><b>Auto Create</b></em>' attribute.
@@ -1272,7 +1570,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__AUTO_CREATE = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+    int CAMEL_SFTP_BINDING_TYPE__AUTO_CREATE = GENERIC_FTP_BINDING_TYPE__AUTO_CREATE;
 
     /**
      * The feature id for the '<em><b>Buffer Size</b></em>' attribute.
@@ -1281,7 +1579,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+    int CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE = GENERIC_FTP_BINDING_TYPE__BUFFER_SIZE;
 
     /**
      * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -1290,7 +1588,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__FILE_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+    int CAMEL_SFTP_BINDING_TYPE__FILE_NAME = GENERIC_FTP_BINDING_TYPE__FILE_NAME;
 
     /**
      * The feature id for the '<em><b>Flatten</b></em>' attribute.
@@ -1299,7 +1597,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__FLATTEN = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_SFTP_BINDING_TYPE__FLATTEN = GENERIC_FTP_BINDING_TYPE__FLATTEN;
 
     /**
      * The feature id for the '<em><b>Charset</b></em>' attribute.
@@ -1308,7 +1606,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__CHARSET = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+    int CAMEL_SFTP_BINDING_TYPE__CHARSET = GENERIC_FTP_BINDING_TYPE__CHARSET;
 
     /**
      * The feature id for the '<em><b>Host</b></em>' attribute.
@@ -1317,7 +1615,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__HOST = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+    int CAMEL_SFTP_BINDING_TYPE__HOST = GENERIC_FTP_BINDING_TYPE__HOST;
 
     /**
      * The feature id for the '<em><b>Port</b></em>' attribute.
@@ -1326,7 +1624,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__PORT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+    int CAMEL_SFTP_BINDING_TYPE__PORT = GENERIC_FTP_BINDING_TYPE__PORT;
 
     /**
      * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -1335,7 +1633,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__USERNAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+    int CAMEL_SFTP_BINDING_TYPE__USERNAME = GENERIC_FTP_BINDING_TYPE__USERNAME;
 
     /**
      * The feature id for the '<em><b>Password</b></em>' attribute.
@@ -1344,7 +1642,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__PASSWORD = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
+    int CAMEL_SFTP_BINDING_TYPE__PASSWORD = GENERIC_FTP_BINDING_TYPE__PASSWORD;
 
     /**
      * The feature id for the '<em><b>Binary</b></em>' attribute.
@@ -1353,7 +1651,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__BINARY = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
+    int CAMEL_SFTP_BINDING_TYPE__BINARY = GENERIC_FTP_BINDING_TYPE__BINARY;
 
     /**
      * The feature id for the '<em><b>Connect Timeout</b></em>' attribute.
@@ -1362,7 +1660,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__CONNECT_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
+    int CAMEL_SFTP_BINDING_TYPE__CONNECT_TIMEOUT = GENERIC_FTP_BINDING_TYPE__CONNECT_TIMEOUT;
 
     /**
      * The feature id for the '<em><b>Disconnect</b></em>' attribute.
@@ -1371,7 +1669,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__DISCONNECT = BASE_CAMEL_BINDING_FEATURE_COUNT + 12;
+    int CAMEL_SFTP_BINDING_TYPE__DISCONNECT = GENERIC_FTP_BINDING_TYPE__DISCONNECT;
 
     /**
      * The feature id for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute.
@@ -1380,7 +1678,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = BASE_CAMEL_BINDING_FEATURE_COUNT + 13;
+    int CAMEL_SFTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = GENERIC_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS;
 
     /**
      * The feature id for the '<em><b>Reconnect Delay</b></em>' attribute.
@@ -1389,7 +1687,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__RECONNECT_DELAY = BASE_CAMEL_BINDING_FEATURE_COUNT + 14;
+    int CAMEL_SFTP_BINDING_TYPE__RECONNECT_DELAY = GENERIC_FTP_BINDING_TYPE__RECONNECT_DELAY;
 
     /**
      * The feature id for the '<em><b>Separator</b></em>' attribute.
@@ -1398,7 +1696,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__SEPARATOR = BASE_CAMEL_BINDING_FEATURE_COUNT + 15;
+    int CAMEL_SFTP_BINDING_TYPE__SEPARATOR = GENERIC_FTP_BINDING_TYPE__SEPARATOR;
 
     /**
      * The feature id for the '<em><b>Stepwise</b></em>' attribute.
@@ -1407,7 +1705,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__STEPWISE = BASE_CAMEL_BINDING_FEATURE_COUNT + 16;
+    int CAMEL_SFTP_BINDING_TYPE__STEPWISE = GENERIC_FTP_BINDING_TYPE__STEPWISE;
 
     /**
      * The feature id for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute.
@@ -1416,7 +1714,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = BASE_CAMEL_BINDING_FEATURE_COUNT + 17;
+    int CAMEL_SFTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = GENERIC_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED;
 
     /**
      * The feature id for the '<em><b>Known Hosts File</b></em>' attribute.
@@ -1425,7 +1723,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__KNOWN_HOSTS_FILE = BASE_CAMEL_BINDING_FEATURE_COUNT + 18;
+    int CAMEL_SFTP_BINDING_TYPE__KNOWN_HOSTS_FILE = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Private Key File</b></em>' attribute.
@@ -1434,7 +1732,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE = BASE_CAMEL_BINDING_FEATURE_COUNT + 19;
+    int CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Private Key File Passphrase</b></em>' attribute.
@@ -1443,7 +1741,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE_PASSPHRASE = BASE_CAMEL_BINDING_FEATURE_COUNT + 20;
+    int CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE_PASSPHRASE = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Consume</b></em>' containment reference.
@@ -1452,7 +1750,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__CONSUME = BASE_CAMEL_BINDING_FEATURE_COUNT + 21;
+    int CAMEL_SFTP_BINDING_TYPE__CONSUME = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Produce</b></em>' containment reference.
@@ -1461,7 +1759,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE__PRODUCE = BASE_CAMEL_BINDING_FEATURE_COUNT + 22;
+    int CAMEL_SFTP_BINDING_TYPE__PRODUCE = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Camel Sftp Binding Type</em>' class.
@@ -1470,7 +1768,7 @@ public interface FtpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SFTP_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 23;
+    int CAMEL_SFTP_BINDING_TYPE_FEATURE_COUNT = GENERIC_FTP_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl <em>Remote File Consumer Type</em>}' class.
@@ -1480,7 +1778,7 @@ public interface FtpPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl#getRemoteFileConsumerType()
      * @generated
      */
-    int REMOTE_FILE_CONSUMER_TYPE = 7;
+    int REMOTE_FILE_CONSUMER_TYPE = 8;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl <em>Remote File Producer Type</em>}' class.
@@ -1490,7 +1788,7 @@ public interface FtpPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl#getRemoteFileProducerType()
      * @generated
      */
-    int REMOTE_FILE_PRODUCER_TYPE = 8;
+    int REMOTE_FILE_PRODUCER_TYPE = 9;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.TimeUnitType <em>Time Unit Type</em>}' enum.
@@ -1500,7 +1798,7 @@ public interface FtpPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl#getTimeUnitType()
      * @generated
      */
-    int TIME_UNIT_TYPE = 9;
+    int TIME_UNIT_TYPE = 10;
 
     /**
      * The meta object id for the '<em>Time Unit Type Object</em>' data type.
@@ -1510,7 +1808,7 @@ public interface FtpPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl#getTimeUnitTypeObject()
      * @generated
      */
-    int TIME_UNIT_TYPE_OBJECT = 10;
+    int TIME_UNIT_TYPE_OBJECT = 11;
 
 
     /**
@@ -1658,7 +1956,7 @@ public interface FtpPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl#getParameterType()
      * @generated
      */
-    int PARAMETER_TYPE = 6;
+    int PARAMETER_TYPE = 7;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2023,204 +2321,6 @@ public interface FtpPackage extends EPackage {
     EClass getCamelFtpBindingType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDirectory <em>Directory</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Directory</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDirectory()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Directory();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate <em>Auto Create</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Auto Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_AutoCreate();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBufferSize <em>Buffer Size</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Buffer Size</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBufferSize()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_BufferSize();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFileName <em>File Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>File Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFileName()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_FileName();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten <em>Flatten</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Flatten</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Flatten();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getCharset <em>Charset</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Charset</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getCharset()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Charset();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getHost <em>Host</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Host</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getHost()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Host();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPort <em>Port</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Port</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPort()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Port();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getUsername <em>Username</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Username</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getUsername()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Username();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassword <em>Password</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Password</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassword()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Password();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary <em>Binary</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Binary</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Binary();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getConnectTimeout <em>Connect Timeout</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Connect Timeout</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getConnectTimeout()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_ConnectTimeout();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect <em>Disconnect</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Disconnect();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Maximum Reconnect Attempts</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getMaximumReconnectAttempts()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_MaximumReconnectAttempts();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getReconnectDelay <em>Reconnect Delay</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Reconnect Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getReconnectDelay()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_ReconnectDelay();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getSeparator <em>Separator</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Separator</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getSeparator()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Separator();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise <em>Stepwise</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Stepwise</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Stepwise();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Throw Exception On Connect Failed</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_ThrowExceptionOnConnectFailed();
-
-    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2360,204 +2460,6 @@ public interface FtpPackage extends EPackage {
      * @generated
      */
     EClass getCamelSftpBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getDirectory <em>Directory</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Directory</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getDirectory()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Directory();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isAutoCreate <em>Auto Create</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Auto Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isAutoCreate()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_AutoCreate();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getBufferSize <em>Buffer Size</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Buffer Size</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getBufferSize()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_BufferSize();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getFileName <em>File Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>File Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getFileName()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_FileName();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isFlatten <em>Flatten</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Flatten</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isFlatten()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Flatten();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getCharset <em>Charset</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Charset</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getCharset()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Charset();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getHost <em>Host</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Host</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getHost()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Host();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getPort <em>Port</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Port</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getPort()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Port();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getUsername <em>Username</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Username</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getUsername()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Username();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getPassword <em>Password</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Password</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getPassword()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Password();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isBinary <em>Binary</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Binary</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isBinary()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Binary();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getConnectTimeout <em>Connect Timeout</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Connect Timeout</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getConnectTimeout()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_ConnectTimeout();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isDisconnect <em>Disconnect</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isDisconnect()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Disconnect();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Maximum Reconnect Attempts</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getMaximumReconnectAttempts()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_MaximumReconnectAttempts();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getReconnectDelay <em>Reconnect Delay</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Reconnect Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getReconnectDelay()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_ReconnectDelay();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getSeparator <em>Separator</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Separator</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getSeparator()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Separator();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isStepwise <em>Stepwise</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Stepwise</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isStepwise()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_Stepwise();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Throw Exception On Connect Failed</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isThrowExceptionOnConnectFailed()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_ThrowExceptionOnConnectFailed();
 
     /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getKnownHostsFile <em>Known Hosts File</em>}'.
@@ -3107,6 +3009,214 @@ public interface FtpPackage extends EPackage {
     EReference getDocumentRoot_BindingSftp();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType <em>Generic Ftp Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Generic Ftp Binding Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType
+     * @generated
+     */
+    EClass getGenericFtpBindingType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getDirectory <em>Directory</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Directory</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getDirectory()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Directory();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isAutoCreate <em>Auto Create</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Auto Create</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isAutoCreate()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_AutoCreate();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getBufferSize <em>Buffer Size</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Buffer Size</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getBufferSize()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_BufferSize();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getFileName <em>File Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>File Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getFileName()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_FileName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isFlatten <em>Flatten</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Flatten</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isFlatten()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Flatten();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getCharset <em>Charset</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Charset</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getCharset()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Charset();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getHost <em>Host</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Host</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getHost()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Host();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getPort <em>Port</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Port</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getPort()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Port();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getUsername <em>Username</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Username</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getUsername()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Username();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getPassword()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Password();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isBinary <em>Binary</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Binary</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isBinary()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Binary();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getConnectTimeout <em>Connect Timeout</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Connect Timeout</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getConnectTimeout()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_ConnectTimeout();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isDisconnect <em>Disconnect</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Disconnect</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isDisconnect()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Disconnect();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Maximum Reconnect Attempts</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getMaximumReconnectAttempts()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_MaximumReconnectAttempts();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getReconnectDelay <em>Reconnect Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Reconnect Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getReconnectDelay()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_ReconnectDelay();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getSeparator <em>Separator</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Separator</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#getSeparator()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Separator();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isStepwise <em>Stepwise</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Stepwise</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isStepwise()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_Stepwise();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Throw Exception On Connect Failed</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType#isThrowExceptionOnConnectFailed()
+     * @see #getGenericFtpBindingType()
+     * @generated
+     */
+    EAttribute getGenericFtpBindingType_ThrowExceptionOnConnectFailed();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.ParameterType <em>Parameter Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3223,150 +3333,6 @@ public interface FtpPackage extends EPackage {
         EClass CAMEL_FTP_BINDING_TYPE = eINSTANCE.getCamelFtpBindingType();
 
         /**
-         * The meta object literal for the '<em><b>Directory</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__DIRECTORY = eINSTANCE.getCamelFtpBindingType_Directory();
-
-        /**
-         * The meta object literal for the '<em><b>Auto Create</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__AUTO_CREATE = eINSTANCE.getCamelFtpBindingType_AutoCreate();
-
-        /**
-         * The meta object literal for the '<em><b>Buffer Size</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__BUFFER_SIZE = eINSTANCE.getCamelFtpBindingType_BufferSize();
-
-        /**
-         * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__FILE_NAME = eINSTANCE.getCamelFtpBindingType_FileName();
-
-        /**
-         * The meta object literal for the '<em><b>Flatten</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__FLATTEN = eINSTANCE.getCamelFtpBindingType_Flatten();
-
-        /**
-         * The meta object literal for the '<em><b>Charset</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__CHARSET = eINSTANCE.getCamelFtpBindingType_Charset();
-
-        /**
-         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__HOST = eINSTANCE.getCamelFtpBindingType_Host();
-
-        /**
-         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__PORT = eINSTANCE.getCamelFtpBindingType_Port();
-
-        /**
-         * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__USERNAME = eINSTANCE.getCamelFtpBindingType_Username();
-
-        /**
-         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__PASSWORD = eINSTANCE.getCamelFtpBindingType_Password();
-
-        /**
-         * The meta object literal for the '<em><b>Binary</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__BINARY = eINSTANCE.getCamelFtpBindingType_Binary();
-
-        /**
-         * The meta object literal for the '<em><b>Connect Timeout</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__CONNECT_TIMEOUT = eINSTANCE.getCamelFtpBindingType_ConnectTimeout();
-
-        /**
-         * The meta object literal for the '<em><b>Disconnect</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__DISCONNECT = eINSTANCE.getCamelFtpBindingType_Disconnect();
-
-        /**
-         * The meta object literal for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = eINSTANCE.getCamelFtpBindingType_MaximumReconnectAttempts();
-
-        /**
-         * The meta object literal for the '<em><b>Reconnect Delay</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__RECONNECT_DELAY = eINSTANCE.getCamelFtpBindingType_ReconnectDelay();
-
-        /**
-         * The meta object literal for the '<em><b>Separator</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__SEPARATOR = eINSTANCE.getCamelFtpBindingType_Separator();
-
-        /**
-         * The meta object literal for the '<em><b>Stepwise</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__STEPWISE = eINSTANCE.getCamelFtpBindingType_Stepwise();
-
-        /**
-         * The meta object literal for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = eINSTANCE.getCamelFtpBindingType_ThrowExceptionOnConnectFailed();
-
-        /**
          * The meta object literal for the '<em><b>Passive Mode</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3473,150 +3439,6 @@ public interface FtpPackage extends EPackage {
          * @generated
          */
         EClass CAMEL_SFTP_BINDING_TYPE = eINSTANCE.getCamelSftpBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Directory</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__DIRECTORY = eINSTANCE.getCamelSftpBindingType_Directory();
-
-        /**
-         * The meta object literal for the '<em><b>Auto Create</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__AUTO_CREATE = eINSTANCE.getCamelSftpBindingType_AutoCreate();
-
-        /**
-         * The meta object literal for the '<em><b>Buffer Size</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE = eINSTANCE.getCamelSftpBindingType_BufferSize();
-
-        /**
-         * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__FILE_NAME = eINSTANCE.getCamelSftpBindingType_FileName();
-
-        /**
-         * The meta object literal for the '<em><b>Flatten</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__FLATTEN = eINSTANCE.getCamelSftpBindingType_Flatten();
-
-        /**
-         * The meta object literal for the '<em><b>Charset</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__CHARSET = eINSTANCE.getCamelSftpBindingType_Charset();
-
-        /**
-         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__HOST = eINSTANCE.getCamelSftpBindingType_Host();
-
-        /**
-         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__PORT = eINSTANCE.getCamelSftpBindingType_Port();
-
-        /**
-         * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__USERNAME = eINSTANCE.getCamelSftpBindingType_Username();
-
-        /**
-         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__PASSWORD = eINSTANCE.getCamelSftpBindingType_Password();
-
-        /**
-         * The meta object literal for the '<em><b>Binary</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__BINARY = eINSTANCE.getCamelSftpBindingType_Binary();
-
-        /**
-         * The meta object literal for the '<em><b>Connect Timeout</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__CONNECT_TIMEOUT = eINSTANCE.getCamelSftpBindingType_ConnectTimeout();
-
-        /**
-         * The meta object literal for the '<em><b>Disconnect</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__DISCONNECT = eINSTANCE.getCamelSftpBindingType_Disconnect();
-
-        /**
-         * The meta object literal for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = eINSTANCE.getCamelSftpBindingType_MaximumReconnectAttempts();
-
-        /**
-         * The meta object literal for the '<em><b>Reconnect Delay</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__RECONNECT_DELAY = eINSTANCE.getCamelSftpBindingType_ReconnectDelay();
-
-        /**
-         * The meta object literal for the '<em><b>Separator</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__SEPARATOR = eINSTANCE.getCamelSftpBindingType_Separator();
-
-        /**
-         * The meta object literal for the '<em><b>Stepwise</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__STEPWISE = eINSTANCE.getCamelSftpBindingType_Stepwise();
-
-        /**
-         * The meta object literal for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = eINSTANCE.getCamelSftpBindingType_ThrowExceptionOnConnectFailed();
 
         /**
          * The meta object literal for the '<em><b>Known Hosts File</b></em>' attribute feature.
@@ -4027,6 +3849,160 @@ public interface FtpPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_SFTP = eINSTANCE.getDocumentRoot_BindingSftp();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.GenericFtpBindingTypeImpl <em>Generic Ftp Binding Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.GenericFtpBindingTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl#getGenericFtpBindingType()
+         * @generated
+         */
+        EClass GENERIC_FTP_BINDING_TYPE = eINSTANCE.getGenericFtpBindingType();
+
+        /**
+         * The meta object literal for the '<em><b>Directory</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__DIRECTORY = eINSTANCE.getGenericFtpBindingType_Directory();
+
+        /**
+         * The meta object literal for the '<em><b>Auto Create</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__AUTO_CREATE = eINSTANCE.getGenericFtpBindingType_AutoCreate();
+
+        /**
+         * The meta object literal for the '<em><b>Buffer Size</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__BUFFER_SIZE = eINSTANCE.getGenericFtpBindingType_BufferSize();
+
+        /**
+         * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__FILE_NAME = eINSTANCE.getGenericFtpBindingType_FileName();
+
+        /**
+         * The meta object literal for the '<em><b>Flatten</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__FLATTEN = eINSTANCE.getGenericFtpBindingType_Flatten();
+
+        /**
+         * The meta object literal for the '<em><b>Charset</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__CHARSET = eINSTANCE.getGenericFtpBindingType_Charset();
+
+        /**
+         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__HOST = eINSTANCE.getGenericFtpBindingType_Host();
+
+        /**
+         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__PORT = eINSTANCE.getGenericFtpBindingType_Port();
+
+        /**
+         * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__USERNAME = eINSTANCE.getGenericFtpBindingType_Username();
+
+        /**
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__PASSWORD = eINSTANCE.getGenericFtpBindingType_Password();
+
+        /**
+         * The meta object literal for the '<em><b>Binary</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__BINARY = eINSTANCE.getGenericFtpBindingType_Binary();
+
+        /**
+         * The meta object literal for the '<em><b>Connect Timeout</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__CONNECT_TIMEOUT = eINSTANCE.getGenericFtpBindingType_ConnectTimeout();
+
+        /**
+         * The meta object literal for the '<em><b>Disconnect</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__DISCONNECT = eINSTANCE.getGenericFtpBindingType_Disconnect();
+
+        /**
+         * The meta object literal for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = eINSTANCE.getGenericFtpBindingType_MaximumReconnectAttempts();
+
+        /**
+         * The meta object literal for the '<em><b>Reconnect Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__RECONNECT_DELAY = eINSTANCE.getGenericFtpBindingType_ReconnectDelay();
+
+        /**
+         * The meta object literal for the '<em><b>Separator</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__SEPARATOR = eINSTANCE.getGenericFtpBindingType_Separator();
+
+        /**
+         * The meta object literal for the '<em><b>Stepwise</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__STEPWISE = eINSTANCE.getGenericFtpBindingType_Stepwise();
+
+        /**
+         * The meta object literal for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute GENERIC_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = eINSTANCE.getGenericFtpBindingType_ThrowExceptionOnConnectFailed();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.ParameterTypeImpl <em>Parameter Type</em>}' class.

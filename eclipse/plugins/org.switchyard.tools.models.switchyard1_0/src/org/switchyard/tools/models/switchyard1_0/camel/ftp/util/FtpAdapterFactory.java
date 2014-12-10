@@ -97,6 +97,10 @@ public class FtpAdapterFactory extends AdapterFactoryImpl {
                 return createDocumentRootAdapter();
             }
             @Override
+            public Adapter caseGenericFtpBindingType(GenericFtpBindingType object) {
+                return createGenericFtpBindingTypeAdapter();
+            }
+            @Override
             public Adapter caseParameterType(ParameterType object) {
                 return createParameterTypeAdapter();
             }
@@ -235,6 +239,20 @@ public class FtpAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createDocumentRootAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType <em>Generic Ftp Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType
+     * @generated
+     */
+    public Adapter createGenericFtpBindingTypeAdapter() {
         return null;
     }
 

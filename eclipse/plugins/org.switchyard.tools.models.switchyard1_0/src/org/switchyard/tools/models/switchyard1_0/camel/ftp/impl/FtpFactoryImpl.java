@@ -28,7 +28,7 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
      */
     public static FtpFactory init() {
         try {
-            FtpFactory theFtpFactory = (FtpFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel-ftp:config:2.0"); 
+            FtpFactory theFtpFactory = (FtpFactory)EPackage.Registry.INSTANCE.getEFactory(FtpPackage.eNS_URI);
             if (theFtpFactory != null) {
                 return theFtpFactory;
             }
@@ -63,6 +63,7 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE: return createCamelFtpsBindingType();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE: return createCamelSftpBindingType();
             case FtpPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case FtpPackage.GENERIC_FTP_BINDING_TYPE: return createGenericFtpBindingType();
             case FtpPackage.PARAMETER_TYPE: return createParameterType();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE: return createRemoteFileConsumerType();
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE: return createRemoteFileProducerType();
@@ -221,6 +222,16 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GenericFtpBindingType createGenericFtpBindingType() {
+        GenericFtpBindingTypeImpl genericFtpBindingType = new GenericFtpBindingTypeImpl();
+        return genericFtpBindingType;
     }
 
     /**

@@ -129,7 +129,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
 
         _nameText = createLabelAndText(composite, Messages.label_name);
 
-        _hostText = createLabelAndText(composite, Messages.label_host);
+        _hostText = createLabelAndText(composite, Messages.label_hostStar);
         _portText = createLabelAndText(composite, Messages.label_portDefault21);
         _usernameText = createLabelAndText(composite, Messages.label_userName);
         _pwdText = createLabelAndText(composite, Messages.label_password);
@@ -141,7 +141,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
         fileGroup.setLayout(new GridLayout(2, false));
         fileGroup.setText(Messages.label_fileAndDirectoryOptions);
 
-        _directoryText = createLabelAndText(fileGroup, Messages.label_directoryStar);
+        _directoryText = createLabelAndText(fileGroup, "Directory");
         _fileNameText = createLabelAndText(fileGroup, Messages.label_fileName);
         _autoCreateButton = createCheckbox(fileGroup, Messages.label_autoCreateMissingDirectories, 2);
         _includeText = createLabelAndText(fileGroup, Messages.label_include);
@@ -216,17 +216,16 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
                 .bindValue(
                         SWTObservables.observeText(_directoryText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__DIRECTORY),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__DIRECTORY),
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
-                                .setAfterConvertValidator(new StringEmptyValidator(
-                                        Messages.error_emptyDirectory)), null);
+                                , null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context
                 .bindValue(
                         SWTObservables.observeText(_fileNameText , new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__FILE_NAME),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__FILE_NAME),
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 "", UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
@@ -235,16 +234,19 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
                 .bindValue(
                         SWTObservables.observeText(_hostText , new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__HOST),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__HOST),
                         new EMFUpdateValueStrategyNullForEmptyString(
-                                "", UpdateValueStrategy.POLICY_CONVERT), null);
+                                "", UpdateValueStrategy.POLICY_CONVERT)
+                            .setAfterConvertValidator(new StringEmptyValidator(
+                                Messages.error_emptyHost))
+                         , null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context
                 .bindValue(
                         SWTObservables.observeText(_portText , new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__PORT),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__PORT),
                         new EMFUpdateValueStrategyNullForEmptyString("", 
                                 UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
                                         new EscapedPropertyIntegerValidator("Port must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
@@ -255,7 +257,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
                 .bindValue(
                         SWTObservables.observeText(_usernameText , new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__USERNAME),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__USERNAME),
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 "", UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
@@ -264,7 +266,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
                 .bindValue(
                         SWTObservables.observeText(_pwdText , new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__PASSWORD),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__PASSWORD),
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 "", UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
@@ -273,7 +275,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
                 .bindValue(
                         SWTObservables.observeSelection(_autoCreateButton),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__AUTO_CREATE),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__AUTO_CREATE),
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
@@ -282,7 +284,7 @@ public class CamelFTPSConsumerComposite extends AbstractSYBindingComposite {
                 .bindValue(
                         SWTObservables.observeSelection(_binaryButton),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                                FtpPackage.Literals.CAMEL_FTP_BINDING_TYPE__BINARY),
+                                FtpPackage.Literals.GENERIC_FTP_BINDING_TYPE__BINARY),
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);

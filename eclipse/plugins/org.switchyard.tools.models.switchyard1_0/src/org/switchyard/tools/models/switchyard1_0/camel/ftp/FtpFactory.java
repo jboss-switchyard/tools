@@ -94,6 +94,15 @@ public interface FtpFactory extends EFactory {
     DocumentRoot createDocumentRoot();
 
     /**
+     * Returns a new object of class '<em>Generic Ftp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Generic Ftp Binding Type</em>'.
+     * @generated
+     */
+    GenericFtpBindingType createGenericFtpBindingType();
+
+    /**
      * Returns a new object of class '<em>Parameter Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

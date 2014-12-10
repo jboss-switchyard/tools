@@ -2892,24 +2892,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.ftp.ecore#//CamelFtpBindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/directory"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/autoCreate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/bufferSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/fileName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/flatten"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/charset"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/host"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/port"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/username"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/password"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/binary"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/connectTimeout"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/disconnect"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/maximumReconnectAttempts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/reconnectDelay"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/separator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/stepwise"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/throwExceptionOnConnectFailed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/passiveMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/timeout"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpBindingType/soTimeout"/>
@@ -2925,24 +2907,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelFtpsBindingType/disableSecureDataChannelDefaults"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.ftp.ecore#//CamelSftpBindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/directory"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/autoCreate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/bufferSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/fileName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/flatten"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/charset"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/host"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/port"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/username"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/password"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/binary"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/connectTimeout"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/disconnect"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/maximumReconnectAttempts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/reconnectDelay"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/separator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/stepwise"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/throwExceptionOnConnectFailed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/knownHostsFile"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/privateKeyFile"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//CamelSftpBindingType/privateKeyFilePassphrase"/>
@@ -2956,6 +2920,26 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//DocumentRoot/bindingFtp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//DocumentRoot/bindingFtps"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ftp.ecore#//DocumentRoot/bindingSftp"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.ftp.ecore#//GenericFtpBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/directory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/autoCreate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/bufferSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/fileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/flatten"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/charset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/binary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/connectTimeout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/disconnect"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/maximumReconnectAttempts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/reconnectDelay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/separator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/stepwise"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//GenericFtpBindingType/throwExceptionOnConnectFailed"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.ftp.ecore#//ParameterType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ftp.ecore#//ParameterType/name"/>

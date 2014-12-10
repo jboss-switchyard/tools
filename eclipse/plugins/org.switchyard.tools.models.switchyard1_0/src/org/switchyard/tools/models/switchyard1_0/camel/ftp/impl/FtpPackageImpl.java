@@ -26,6 +26,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.impl.CxfPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.AdditionalUriParametersType;
@@ -36,6 +38,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.GenericFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.ParameterType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType;
@@ -47,10 +50,16 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -156,6 +165,13 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass genericFtpBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass parameterTypeEClass = null;
 
     /**
@@ -232,6 +248,10 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
         QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
+        RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
+        CxfPackageImpl theCxfPackage = (CxfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) instanceof CxfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) : CxfPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -260,6 +280,10 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         theNettyPackage.createPackageContents();
         theQuartzPackage.createPackageContents();
         theSqlPackage.createPackageContents();
+        theRssPackage.createPackageContents();
+        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
+        theCxfPackage.createPackageContents();
 
         // Initialize created meta-data
         theFtpPackage.initializePackageContents();
@@ -285,6 +309,10 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         theNettyPackage.initializePackageContents();
         theQuartzPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
+        theRssPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
+        theCxfPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -366,7 +394,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelFtpBindingType_Directory() {
+    public EAttribute getCamelFtpBindingType_PassiveMode() {
         return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -375,7 +403,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelFtpBindingType_AutoCreate() {
+    public EAttribute getCamelFtpBindingType_Timeout() {
         return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
@@ -384,7 +412,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelFtpBindingType_BufferSize() {
+    public EAttribute getCamelFtpBindingType_SoTimeout() {
         return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
@@ -393,7 +421,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelFtpBindingType_FileName() {
+    public EAttribute getCamelFtpBindingType_SiteCommand() {
         return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
@@ -402,170 +430,8 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelFtpBindingType_Flatten() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Charset() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Host() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Port() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Username() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Password() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(9);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Binary() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(10);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_ConnectTimeout() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(11);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Disconnect() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(12);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_MaximumReconnectAttempts() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(13);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_ReconnectDelay() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(14);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Separator() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(15);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Stepwise() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(16);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_ThrowExceptionOnConnectFailed() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(17);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_PassiveMode() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(18);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Timeout() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(19);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_SoTimeout() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(20);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_SiteCommand() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(21);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getCamelFtpBindingType_Consume() {
-        return (EReference)camelFtpBindingTypeEClass.getEStructuralFeatures().get(22);
+        return (EReference)camelFtpBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -574,7 +440,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * @generated
      */
     public EReference getCamelFtpBindingType_Produce() {
-        return (EReference)camelFtpBindingTypeEClass.getEStructuralFeatures().get(23);
+        return (EReference)camelFtpBindingTypeEClass.getEStructuralFeatures().get(5);
     }
 
     /**
@@ -645,7 +511,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSftpBindingType_Directory() {
+    public EAttribute getCamelSftpBindingType_KnownHostsFile() {
         return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -654,7 +520,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSftpBindingType_AutoCreate() {
+    public EAttribute getCamelSftpBindingType_PrivateKeyFile() {
         return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
@@ -663,7 +529,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSftpBindingType_BufferSize() {
+    public EAttribute getCamelSftpBindingType_PrivateKeyFilePassphrase() {
         return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
@@ -672,170 +538,8 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSftpBindingType_FileName() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Flatten() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Charset() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Host() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Port() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Username() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Password() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(9);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Binary() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(10);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_ConnectTimeout() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(11);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Disconnect() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(12);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_MaximumReconnectAttempts() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(13);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_ReconnectDelay() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(14);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Separator() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(15);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_Stepwise() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(16);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_ThrowExceptionOnConnectFailed() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(17);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_KnownHostsFile() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(18);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_PrivateKeyFile() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(19);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_PrivateKeyFilePassphrase() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(20);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getCamelSftpBindingType_Consume() {
-        return (EReference)camelSftpBindingTypeEClass.getEStructuralFeatures().get(21);
+        return (EReference)camelSftpBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -844,7 +548,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * @generated
      */
     public EReference getCamelSftpBindingType_Produce() {
-        return (EReference)camelSftpBindingTypeEClass.getEStructuralFeatures().get(22);
+        return (EReference)camelSftpBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -1257,6 +961,177 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getGenericFtpBindingType() {
+        return genericFtpBindingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Directory() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_AutoCreate() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_BufferSize() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_FileName() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Flatten() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Charset() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Host() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Port() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Username() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Password() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Binary() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_ConnectTimeout() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Disconnect() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_MaximumReconnectAttempts() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(13);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_ReconnectDelay() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(14);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Separator() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(15);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_Stepwise() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(16);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getGenericFtpBindingType_ThrowExceptionOnConnectFailed() {
+        return (EAttribute)genericFtpBindingTypeEClass.getEStructuralFeatures().get(17);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getParameterType() {
         return parameterTypeEClass;
     }
@@ -1316,24 +1191,6 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS);
 
         camelFtpBindingTypeEClass = createEClass(CAMEL_FTP_BINDING_TYPE);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__DIRECTORY);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__AUTO_CREATE);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__BUFFER_SIZE);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__FILE_NAME);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__FLATTEN);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__CHARSET);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__HOST);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__PORT);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__USERNAME);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__PASSWORD);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__BINARY);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__CONNECT_TIMEOUT);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__DISCONNECT);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__RECONNECT_DELAY);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__SEPARATOR);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__STEPWISE);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED);
         createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE);
         createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__TIMEOUT);
         createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT);
@@ -1349,24 +1206,6 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         createEAttribute(camelFtpsBindingTypeEClass, CAMEL_FTPS_BINDING_TYPE__DISABLE_SECURE_DATA_CHANNEL_DEFAULTS);
 
         camelSftpBindingTypeEClass = createEClass(CAMEL_SFTP_BINDING_TYPE);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__DIRECTORY);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__AUTO_CREATE);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__FILE_NAME);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__FLATTEN);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__CHARSET);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__HOST);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__PORT);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__USERNAME);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__PASSWORD);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__BINARY);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__CONNECT_TIMEOUT);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__DISCONNECT);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__RECONNECT_DELAY);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__SEPARATOR);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__STEPWISE);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED);
         createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__KNOWN_HOSTS_FILE);
         createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE);
         createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE_PASSPHRASE);
@@ -1380,6 +1219,26 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FTP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FTPS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SFTP);
+
+        genericFtpBindingTypeEClass = createEClass(GENERIC_FTP_BINDING_TYPE);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__DIRECTORY);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__AUTO_CREATE);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__BUFFER_SIZE);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__FILE_NAME);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__FLATTEN);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__CHARSET);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__HOST);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__PORT);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__USERNAME);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__PASSWORD);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__BINARY);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__CONNECT_TIMEOUT);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__DISCONNECT);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__RECONNECT_DELAY);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__SEPARATOR);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__STEPWISE);
+        createEAttribute(genericFtpBindingTypeEClass, GENERIC_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED);
 
         parameterTypeEClass = createEClass(PARAMETER_TYPE);
         createEAttribute(parameterTypeEClass, PARAMETER_TYPE__NAME);
@@ -1463,9 +1322,10 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
 
         // Add supertypes to classes
         baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
-        camelFtpBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        camelFtpBindingTypeEClass.getESuperTypes().add(this.getGenericFtpBindingType());
         camelFtpsBindingTypeEClass.getESuperTypes().add(this.getCamelFtpBindingType());
-        camelSftpBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        camelSftpBindingTypeEClass.getESuperTypes().add(this.getGenericFtpBindingType());
+        genericFtpBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
         initEClass(additionalUriParametersTypeEClass, AdditionalUriParametersType.class, "AdditionalUriParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1477,24 +1337,6 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         initEReference(getBaseCamelBinding_AdditionalUriParameters(), this.getAdditionalUriParametersType(), null, "additionalUriParameters", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelFtpBindingTypeEClass, CamelFtpBindingType.class, "CamelFtpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelFtpBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 1, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_AutoCreate(), theXMLTypePackage.getBoolean(), "autoCreate", "true", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_BufferSize(), theSwitchyardPackage.getPropInteger(), "bufferSize", "131072", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_FileName(), theXMLTypePackage.getString(), "fileName", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Flatten(), theXMLTypePackage.getBoolean(), "flatten", "false", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Charset(), theXMLTypePackage.getString(), "charset", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Host(), theXMLTypePackage.getString(), "host", "", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Binary(), theXMLTypePackage.getBoolean(), "binary", "false", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_ConnectTimeout(), theSwitchyardPackage.getPropInteger(), "connectTimeout", "10000", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Disconnect(), theXMLTypePackage.getBoolean(), "disconnect", "false", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_MaximumReconnectAttempts(), theSwitchyardPackage.getPropInteger(), "maximumReconnectAttempts", "3", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_ReconnectDelay(), theSwitchyardPackage.getPropInteger(), "reconnectDelay", "1000", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Separator(), theXMLTypePackage.getString(), "separator", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Stepwise(), theXMLTypePackage.getBoolean(), "stepwise", "true", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_ThrowExceptionOnConnectFailed(), theXMLTypePackage.getBoolean(), "throwExceptionOnConnectFailed", "false", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelFtpBindingType_PassiveMode(), theXMLTypePackage.getBoolean(), "passiveMode", "false", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelFtpBindingType_Timeout(), theSwitchyardPackage.getPropInteger(), "timeout", "30000", 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelFtpBindingType_SoTimeout(), theSwitchyardPackage.getPropInteger(), "soTimeout", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1510,24 +1352,6 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         initEAttribute(getCamelFtpsBindingType_DisableSecureDataChannelDefaults(), theXMLTypePackage.getBoolean(), "disableSecureDataChannelDefaults", "false", 0, 1, CamelFtpsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelSftpBindingTypeEClass, CamelSftpBindingType.class, "CamelSftpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelSftpBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_AutoCreate(), theXMLTypePackage.getBoolean(), "autoCreate", "true", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_BufferSize(), theSwitchyardPackage.getPropInteger(), "bufferSize", "131072", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_FileName(), theXMLTypePackage.getString(), "fileName", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Flatten(), theXMLTypePackage.getBoolean(), "flatten", "false", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Charset(), theXMLTypePackage.getString(), "charset", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Binary(), theXMLTypePackage.getBoolean(), "binary", "false", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_ConnectTimeout(), theSwitchyardPackage.getPropInteger(), "connectTimeout", "10000", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Disconnect(), theXMLTypePackage.getBoolean(), "disconnect", "false", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_MaximumReconnectAttempts(), theSwitchyardPackage.getPropInteger(), "maximumReconnectAttempts", "3", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_ReconnectDelay(), theSwitchyardPackage.getPropInteger(), "reconnectDelay", "1000", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Separator(), theXMLTypePackage.getString(), "separator", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_Stepwise(), theXMLTypePackage.getBoolean(), "stepwise", "true", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_ThrowExceptionOnConnectFailed(), theXMLTypePackage.getBoolean(), "throwExceptionOnConnectFailed", "false", 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSftpBindingType_KnownHostsFile(), theXMLTypePackage.getString(), "knownHostsFile", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSftpBindingType_PrivateKeyFile(), theXMLTypePackage.getString(), "privateKeyFile", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSftpBindingType_PrivateKeyFilePassphrase(), theXMLTypePackage.getString(), "privateKeyFilePassphrase", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1541,6 +1365,26 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
         initEReference(getDocumentRoot_BindingFtp(), this.getCamelFtpBindingType(), null, "bindingFtp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingFtps(), this.getCamelFtpsBindingType(), null, "bindingFtps", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingSftp(), this.getCamelSftpBindingType(), null, "bindingSftp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(genericFtpBindingTypeEClass, GenericFtpBindingType.class, "GenericFtpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getGenericFtpBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_AutoCreate(), theXMLTypePackage.getBoolean(), "autoCreate", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_BufferSize(), theSwitchyardPackage.getPropInteger(), "bufferSize", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_FileName(), theXMLTypePackage.getString(), "fileName", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Flatten(), theXMLTypePackage.getBoolean(), "flatten", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Charset(), theXMLTypePackage.getString(), "charset", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Binary(), theXMLTypePackage.getBoolean(), "binary", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_ConnectTimeout(), theSwitchyardPackage.getPropInteger(), "connectTimeout", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Disconnect(), theXMLTypePackage.getBoolean(), "disconnect", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_MaximumReconnectAttempts(), theSwitchyardPackage.getPropInteger(), "maximumReconnectAttempts", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_ReconnectDelay(), theSwitchyardPackage.getPropInteger(), "reconnectDelay", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Separator(), theXMLTypePackage.getString(), "separator", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_Stepwise(), theXMLTypePackage.getBoolean(), "stepwise", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFtpBindingType_ThrowExceptionOnConnectFailed(), theXMLTypePackage.getBoolean(), "throwExceptionOnConnectFailed", null, 0, 1, GenericFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getParameterType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1612,14 +1456,14 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
         addAnnotation
           (additionalUriParametersTypeEClass, 
            source, 
            new String[] {
              "name", "additionalUriParameters_._type",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getAdditionalUriParametersType_Parameter(), 
            source, 
@@ -1627,14 +1471,14 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "parameter",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (baseCamelBindingEClass, 
            source, 
            new String[] {
              "name", "BaseCamelBinding",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getBaseCamelBinding_ContextMapper(), 
            source, 
@@ -1642,7 +1486,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "contextMapper",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getBaseCamelBinding_MessageComposer(), 
            source, 
@@ -1650,7 +1494,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "messageComposer",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getBaseCamelBinding_AdditionalUriParameters(), 
            source, 
@@ -1658,158 +1502,14 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "additionalUriParameters",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (camelFtpBindingTypeEClass, 
            source, 
            new String[] {
              "name", "CamelFtpBindingType",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Directory(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "directory",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_AutoCreate(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "autoCreate",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_BufferSize(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "bufferSize",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_FileName(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "fileName",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Flatten(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "flatten",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Charset(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "charset",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Host(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "host",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Port(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "port",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Username(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "username",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Password(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "password",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Binary(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binary",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_ConnectTimeout(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "connectTimeout",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Disconnect(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "disconnect",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_MaximumReconnectAttempts(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "maximumReconnectAttempts",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_ReconnectDelay(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "reconnectDelay",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Separator(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "separator",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Stepwise(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "stepwise",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_ThrowExceptionOnConnectFailed(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "throwExceptionOnConnectFailed",
-             "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpBindingType_PassiveMode(), 
            source, 
@@ -1817,7 +1517,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "passiveMode",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpBindingType_Timeout(), 
            source, 
@@ -1825,7 +1525,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "timeout",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpBindingType_SoTimeout(), 
            source, 
@@ -1833,7 +1533,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "soTimeout",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpBindingType_SiteCommand(), 
            source, 
@@ -1841,7 +1541,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "siteCommand",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpBindingType_Consume(), 
            source, 
@@ -1849,7 +1549,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "consume",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpBindingType_Produce(), 
            source, 
@@ -1857,14 +1557,14 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "produce",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (camelFtpsBindingTypeEClass, 
            source, 
            new String[] {
              "name", "CamelFtpsBindingType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getCamelFtpsBindingType_SecurityProtocol(), 
            source, 
@@ -1872,7 +1572,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "securityProtocol",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpsBindingType_IsImplicit(), 
            source, 
@@ -1880,7 +1580,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "isImplicit",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpsBindingType_ExecPbsz(), 
            source, 
@@ -1888,7 +1588,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "execPbsz",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpsBindingType_ExecProt(), 
            source, 
@@ -1896,7 +1596,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "execProt",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelFtpsBindingType_DisableSecureDataChannelDefaults(), 
            source, 
@@ -1904,158 +1604,14 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "disableSecureDataChannelDefaults",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (camelSftpBindingTypeEClass, 
            source, 
            new String[] {
              "name", "CamelSftpBindingType",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Directory(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "directory",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_AutoCreate(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "autoCreate",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_BufferSize(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "bufferSize",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_FileName(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "fileName",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Flatten(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "flatten",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Charset(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "charset",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Host(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "host",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Port(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "port",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Username(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "username",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Password(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "password",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Binary(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binary",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_ConnectTimeout(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "connectTimeout",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Disconnect(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "disconnect",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_MaximumReconnectAttempts(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "maximumReconnectAttempts",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_ReconnectDelay(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "reconnectDelay",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Separator(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "separator",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_Stepwise(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "stepwise",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_ThrowExceptionOnConnectFailed(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "throwExceptionOnConnectFailed",
-             "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelSftpBindingType_KnownHostsFile(), 
            source, 
@@ -2063,7 +1619,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "knownHostsFile",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelSftpBindingType_PrivateKeyFile(), 
            source, 
@@ -2071,7 +1627,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "privateKeyFile",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelSftpBindingType_PrivateKeyFilePassphrase(), 
            source, 
@@ -2079,7 +1635,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "privateKeyFilePassphrase",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelSftpBindingType_Consume(), 
            source, 
@@ -2087,7 +1643,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "consume",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getCamelSftpBindingType_Produce(), 
            source, 
@@ -2095,35 +1651,35 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "produce",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (documentRootEClass, 
            source, 
            new String[] {
              "name", "",
              "kind", "mixed"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_Mixed(), 
            source, 
            new String[] {
              "kind", "elementWildcard",
              "name", ":mixed"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_XMLNSPrefixMap(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "xmlns:prefix"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_XSISchemaLocation(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "xsi:schemaLocation"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_BindingFtp(), 
            source, 
@@ -2132,7 +1688,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "name", "binding.ftp",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_BindingFtps(), 
            source, 
@@ -2141,7 +1697,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "name", "binding.ftps",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_BindingSftp(), 
            source, 
@@ -2150,35 +1706,186 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "name", "binding.sftp",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
-           });		
+           });	
+        addAnnotation
+          (genericFtpBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "GenericFtpBindingType",
+             "kind", "elementOnly"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Directory(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "directory",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_AutoCreate(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "autoCreate",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_BufferSize(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "bufferSize",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_FileName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "fileName",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Flatten(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "flatten",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Charset(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "charset",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Host(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "host",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Port(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "port",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Username(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "username",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Binary(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binary",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_ConnectTimeout(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "connectTimeout",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Disconnect(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "disconnect",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_MaximumReconnectAttempts(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "maximumReconnectAttempts",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_ReconnectDelay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "reconnectDelay",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Separator(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "separator",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_Stepwise(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "stepwise",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getGenericFtpBindingType_ThrowExceptionOnConnectFailed(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "throwExceptionOnConnectFailed",
+             "namespace", "##targetNamespace"
+           });	
         addAnnotation
           (parameterTypeEClass, 
            source, 
            new String[] {
              "name", "parameter_._type",
              "kind", "empty"
-           });		
+           });	
         addAnnotation
           (getParameterType_Name(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "name"
-           });		
+           });	
         addAnnotation
           (getParameterType_Value(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "value"
-           });		
+           });	
         addAnnotation
           (remoteFileConsumerTypeEClass, 
            source, 
            new String[] {
              "name", "RemoteFileConsumerType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Delete(), 
            source, 
@@ -2186,7 +1893,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "delete",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Recursive(), 
            source, 
@@ -2194,7 +1901,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "recursive",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Noop(), 
            source, 
@@ -2202,7 +1909,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "noop",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_PreMove(), 
            source, 
@@ -2210,7 +1917,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "preMove",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Move(), 
            source, 
@@ -2218,7 +1925,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "move",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_MoveFailed(), 
            source, 
@@ -2226,7 +1933,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "moveFailed",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Include(), 
            source, 
@@ -2234,7 +1941,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "include",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Exclude(), 
            source, 
@@ -2242,7 +1949,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "exclude",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Idempotent(), 
            source, 
@@ -2250,7 +1957,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "idempotent",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_IdempotentRepository(), 
            source, 
@@ -2258,7 +1965,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "idempotentRepository",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_InProgressRepository(), 
            source, 
@@ -2266,7 +1973,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "inProgressRepository",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Filter(), 
            source, 
@@ -2274,7 +1981,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "filter",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Sorter(), 
            source, 
@@ -2282,7 +1989,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "sorter",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_SortBy(), 
            source, 
@@ -2290,7 +1997,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "sortBy",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_ReadLock(), 
            source, 
@@ -2298,7 +2005,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "readLock",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_ReadLockTimeout(), 
            source, 
@@ -2306,7 +2013,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "readLockTimeout",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_ReadLockCheckInterval(), 
            source, 
@@ -2314,7 +2021,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "readLockCheckInterval",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_ExclusiveReadLockStrategy(), 
            source, 
@@ -2322,7 +2029,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "exclusiveReadLockStrategy",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_ProcessStrategy(), 
            source, 
@@ -2330,7 +2037,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "processStrategy",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_StartingDirectoryMustExist(), 
            source, 
@@ -2338,7 +2045,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "startingDirectoryMustExist",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_DirectoryMustExist(), 
            source, 
@@ -2346,7 +2053,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "directoryMustExist",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_DoneFileName(), 
            source, 
@@ -2354,7 +2061,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "doneFileName",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_MaxMessagesPerPoll(), 
            source, 
@@ -2362,7 +2069,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "maxMessagesPerPoll",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_InitialDelay(), 
            source, 
@@ -2370,7 +2077,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "initialDelay",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_Delay(), 
            source, 
@@ -2378,7 +2085,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "delay",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_UseFixedDelay(), 
            source, 
@@ -2386,7 +2093,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "useFixedDelay",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_SendEmptyMessageWhenIdle(), 
            source, 
@@ -2394,7 +2101,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "sendEmptyMessageWhenIdle",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileConsumerType_TimeUnit(), 
            source, 
@@ -2402,14 +2109,14 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "timeUnit",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (remoteFileProducerTypeEClass, 
            source, 
            new String[] {
              "name", "RemoteFileProducerType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getRemoteFileProducerType_FileExist(), 
            source, 
@@ -2417,7 +2124,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "fileExist",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileProducerType_TempPrefix(), 
            source, 
@@ -2425,7 +2132,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "tempPrefix",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileProducerType_TempFileName(), 
            source, 
@@ -2433,7 +2140,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "tempFileName",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileProducerType_KeepLastModified(), 
            source, 
@@ -2441,7 +2148,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "keepLastModified",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileProducerType_EagerDeleteTargetFile(), 
            source, 
@@ -2449,7 +2156,7 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "eagerDeleteTargetFile",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getRemoteFileProducerType_DoneFileName(), 
            source, 
@@ -2457,13 +2164,13 @@ public class FtpPackageImpl extends EPackageImpl implements FtpPackage {
              "kind", "element",
              "name", "doneFileName",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (timeUnitTypeEEnum, 
            source, 
            new String[] {
              "name", "timeUnit_._type"
-           });		
+           });	
         addAnnotation
           (timeUnitTypeObjectEDataType, 
            source, 

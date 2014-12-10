@@ -92,6 +92,7 @@ public class FtpSwitch<T> extends Switch<T> {
             case FtpPackage.CAMEL_FTP_BINDING_TYPE: {
                 CamelFtpBindingType camelFtpBindingType = (CamelFtpBindingType)theEObject;
                 T result = caseCamelFtpBindingType(camelFtpBindingType);
+                if (result == null) result = caseGenericFtpBindingType(camelFtpBindingType);
                 if (result == null) result = caseBaseCamelBinding(camelFtpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelFtpBindingType);
                 if (result == null) result = caseBinding(camelFtpBindingType);
@@ -103,6 +104,7 @@ public class FtpSwitch<T> extends Switch<T> {
                 CamelFtpsBindingType camelFtpsBindingType = (CamelFtpsBindingType)theEObject;
                 T result = caseCamelFtpsBindingType(camelFtpsBindingType);
                 if (result == null) result = caseCamelFtpBindingType(camelFtpsBindingType);
+                if (result == null) result = caseGenericFtpBindingType(camelFtpsBindingType);
                 if (result == null) result = caseBaseCamelBinding(camelFtpsBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelFtpsBindingType);
                 if (result == null) result = caseBinding(camelFtpsBindingType);
@@ -113,6 +115,7 @@ public class FtpSwitch<T> extends Switch<T> {
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE: {
                 CamelSftpBindingType camelSftpBindingType = (CamelSftpBindingType)theEObject;
                 T result = caseCamelSftpBindingType(camelSftpBindingType);
+                if (result == null) result = caseGenericFtpBindingType(camelSftpBindingType);
                 if (result == null) result = caseBaseCamelBinding(camelSftpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelSftpBindingType);
                 if (result == null) result = caseBinding(camelSftpBindingType);
@@ -123,6 +126,16 @@ public class FtpSwitch<T> extends Switch<T> {
             case FtpPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case FtpPackage.GENERIC_FTP_BINDING_TYPE: {
+                GenericFtpBindingType genericFtpBindingType = (GenericFtpBindingType)theEObject;
+                T result = caseGenericFtpBindingType(genericFtpBindingType);
+                if (result == null) result = caseBaseCamelBinding(genericFtpBindingType);
+                if (result == null) result = caseSwitchYardBindingType(genericFtpBindingType);
+                if (result == null) result = caseBinding(genericFtpBindingType);
+                if (result == null) result = caseCommonExtensionBase(genericFtpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -250,6 +263,21 @@ public class FtpSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseDocumentRoot(DocumentRoot object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Generic Ftp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Generic Ftp Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseGenericFtpBindingType(GenericFtpBindingType object) {
         return null;
     }
 
