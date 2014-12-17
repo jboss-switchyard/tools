@@ -343,32 +343,37 @@ public class NewAdHocTransformWizardPage extends WizardPage implements ITransfor
         
         if (_fromCombo != null && _toCombo != null && (_fromCombo.getCombo().getText().isEmpty() || _toCombo.getCombo().getText().isEmpty())) {
             setErrorMessage("You must specify an input and an output for the new transformer.");
+            setPageComplete(getErrorMessage() == null);
+            return;
         } else if (_fromCombo != null && _toCombo != null) {
             String fromType = _fromCombo.getCombo().getText();
             String fromValidMsg = typeIsValid(fromType);
             if (fromValidMsg != null) {
                 setErrorMessage("From type: " + fromValidMsg);
+                setPageComplete(getErrorMessage() == null);
+                return;
             }
             String toType = _toCombo.getCombo().getText();
             String toValidMsg = typeIsValid(toType);
             if (toValidMsg != null) {
                 setErrorMessage("To type: " + toValidMsg);
+                setPageComplete(getErrorMessage() == null);
+                return;
             }
-        } else {
-            if (status == null && _selectedProvider != null && !_selectedProvider.providesWizard()) {
-                status = _activeControl.validate();
-            }
-            if (status != null && !status.isOK()) {
-                switch (status.getSeverity()) {
-                case IStatus.INFO:
-                    setMessage(status.getMessage(), INFORMATION);
-                    break;
-                case IStatus.WARNING:
-                    setMessage(status.getMessage(), WARNING);
-                    break;
-                default: // error or cancel?
-                    setErrorMessage(status.getMessage());
-                }
+        }
+        if (status == null && _selectedProvider != null && !_selectedProvider.providesWizard()) {
+            status = _activeControl.validate();
+        }
+        if (status != null && !status.isOK()) {
+            switch (status.getSeverity()) {
+            case IStatus.INFO:
+                setMessage(status.getMessage(), INFORMATION);
+                break;
+            case IStatus.WARNING:
+                setMessage(status.getMessage(), WARNING);
+                break;
+            default: // error or cancel?
+                setErrorMessage(status.getMessage());
             }
         }
         
