@@ -165,6 +165,10 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
             }
         }
         try {
+            // initialize bus using bundle classloader, to prevent project dependencies from leaking in
+            Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+            BusFactory.newInstance().createBus();
+
             ClassLoader loader = Activator.getProjectBuildClassLoader(_options.getServiceInterface().getJavaProject());
             Thread.currentThread().setContextClassLoader(loader);
             ServiceBuilderFactory builderFactory = ServiceBuilderFactory.getInstance(null,

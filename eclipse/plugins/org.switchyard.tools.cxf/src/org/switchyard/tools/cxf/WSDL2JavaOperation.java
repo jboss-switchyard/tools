@@ -51,6 +51,10 @@ public class WSDL2JavaOperation implements IRunnableWithProgress {
     public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
         try {
+            // initialize bus using bundle classloader, to prevent project dependencies from leaking in
+            Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+            BusFactory.newInstance().createBus();
+
             ClassLoader loader = Activator.getProjectBuildClassLoader(_options.getTargetPackage().getJavaProject());
             Thread.currentThread().setContextClassLoader(loader);
             final String[] args = createArgs();
