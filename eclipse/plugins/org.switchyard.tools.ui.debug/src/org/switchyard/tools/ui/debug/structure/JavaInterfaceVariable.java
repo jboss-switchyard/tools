@@ -88,6 +88,13 @@ public abstract class JavaInterfaceVariable extends DebugElement implements IJav
         _underlyingObject = underlyingObject;
     }
 
+    /**
+     * @return true if this variable uses a logical structure for its value.
+     */
+    public boolean hasGetterExpression() {
+        return _getterExpression != null;
+    }
+
     @Override
     public boolean isPublic() throws DebugException {
         return true;

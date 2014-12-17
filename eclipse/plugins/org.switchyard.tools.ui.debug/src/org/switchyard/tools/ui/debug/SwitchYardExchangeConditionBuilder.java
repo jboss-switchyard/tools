@@ -44,6 +44,7 @@ public class SwitchYardExchangeConditionBuilder implements IConditionBuilder {
         final StringBuffer buffer = new StringBuffer();
         buffer.append('(');
         buffer.append(_exchangeVariable).append(".getConsumer() != null && ");
+        buffer.append(_exchangeVariable).append(".getConsumer().getTargetServiceName() != null && ");
         buffer.append('"').append(name.toString()).append('"').append(".equals(").append(_exchangeVariable)
                 .append(".getConsumer().getTargetServiceName().toString())");
         buffer.append(')');
@@ -75,7 +76,7 @@ public class SwitchYardExchangeConditionBuilder implements IConditionBuilder {
                 return null;
             }
             buffer.append("org.switchyard.ExchangePhase.IN == ").append(_exchangeVariable)
-                    .append(".getProperty(\"org.switchyard.bus.camel.phase\", org.switchyard.ExchangePhase.class)");
+                    .append(".getPhase()");
             addOr = true;
         }
         if (triggers.contains(TriggerType.OUT)) {
@@ -83,7 +84,7 @@ public class SwitchYardExchangeConditionBuilder implements IConditionBuilder {
                 buffer.append("\n            || ");
             }
             buffer.append("org.switchyard.ExchangePhase.OUT == ").append(_exchangeVariable)
-                    .append(".getProperty(\"org.switchyard.bus.camel.phase\", org.switchyard.ExchangePhase.class)");
+                    .append(".getPhase()");
         } else if (triggers.contains(TriggerType.FAULT)) {
             if (addOr) {
                 buffer.append("\n            || ");
@@ -97,11 +98,12 @@ public class SwitchYardExchangeConditionBuilder implements IConditionBuilder {
     @Override
     public String exchangeState(boolean fault) {
         final StringBuffer buffer = new StringBuffer();
-        if (!fault) {
-            buffer.append('!');
+        if (fault) {
+            buffer.append("org.switchyard.ExchangeState.FAULT == ");
+        } else {
+            buffer.append("org.switchyard.ExchangeState.OK == ");
         }
-        buffer.append(_exchangeVariable).append(
-                ".getProperty(\"org.switchyard.bus.camel.fault\", false, Boolean.class)");
+        buffer.append(_exchangeVariable).append(".getState()");
         return buffer.toString();
     }
 

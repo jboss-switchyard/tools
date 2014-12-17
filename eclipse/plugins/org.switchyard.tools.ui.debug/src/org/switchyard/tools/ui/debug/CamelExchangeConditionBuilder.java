@@ -42,12 +42,14 @@ public class CamelExchangeConditionBuilder implements IConditionBuilder {
             return null;
         }
         final StringBuffer buffer = new StringBuffer();
+        final String serviceReferenceString = _exchangeVariable + ".getProperty(\"org.switchyard.bus.camel.consumer\", org.switchyard.ServiceReference.class)";
+        buffer.append(serviceReferenceString).append(" != null && ");
+        buffer.append(serviceReferenceString).append(".getTargetServiceName() != null && ");
         buffer.append('"')
                 .append(name.toString())
                 .append('"')
                 .append(".equals(")
-                .append(_exchangeVariable)
-                .append(".getProperty(\"org.switchyard.bus.camel.consumer\", org.switchyard.ServiceReference.class).getTargetServiceName().toString())");
+                .append(serviceReferenceString).append(".getTargetServiceName().toString())");
         return buffer.toString();
     }
 
@@ -56,13 +58,14 @@ public class CamelExchangeConditionBuilder implements IConditionBuilder {
         if (name == null) {
             return null;
         }
+        final String serviceReferenceString = _exchangeVariable + ".getProperty(\"org.switchyard.bus.camel.consumer\", org.switchyard.ServiceReference.class)";
         final StringBuffer buffer = new StringBuffer();
+        buffer.append(serviceReferenceString).append(" != null && ");
         buffer.append('"')
                 .append(name.toString())
                 .append('"')
                 .append(".equals(")
-                .append(_exchangeVariable)
-                .append(".getProperty(\"org.switchyard.bus.camel.consumer\", org.switchyard.ServiceReference.class).getName().toString())");
+                .append(serviceReferenceString).append(".getName().toString())");
         return buffer.toString();
     }
 

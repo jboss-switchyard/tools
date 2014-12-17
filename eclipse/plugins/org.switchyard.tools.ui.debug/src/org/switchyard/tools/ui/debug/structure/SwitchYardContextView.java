@@ -13,8 +13,11 @@ package org.switchyard.tools.ui.debug.structure;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.debug.internal.ui.views.variables.VariablesView;
+import org.eclipse.debug.ui.IDebugUIConstants;
 import org.eclipse.jdt.debug.core.IJavaStackFrame;
 import org.eclipse.jdt.debug.core.IJavaThread;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -53,6 +56,19 @@ public class SwitchYardContextView extends VariablesView {
             }
         }
         super.becomesHidden();
+    }
+
+    @Override
+    protected void configureToolBar(IToolBarManager tbm) {
+        tbm.add(new Separator(this.getClass().getName()));
+        tbm.add(new Separator(IDebugUIConstants.RENDER_GROUP));
+        tbm.add(getAction("ShowTypeNames")); //$NON-NLS-1$
+        tbm.add(getAction("CollapseAll")); //$NON-NLS-1$
+    }
+
+    @Override
+    public boolean isShowLogicalStructure() {
+        return true;
     }
 
 }

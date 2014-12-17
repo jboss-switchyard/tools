@@ -18,16 +18,20 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.internal.ui.DebugUIPlugin;
 import org.eclipse.debug.internal.ui.viewers.model.provisional.IColumnPresentationFactory;
+import org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider;
+import org.eclipse.debug.internal.ui.viewers.model.provisional.ILabelUpdate;
 import org.eclipse.debug.internal.ui.viewers.model.provisional.IModelProxyFactory;
 import org.eclipse.debug.ui.BreakpointTypeCategory;
 import org.eclipse.debug.ui.IBreakpointTypeCategory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.internal.debug.ui.variables.JavaVariableColumnPresentationFactory;
+import org.eclipse.jdt.internal.debug.ui.variables.JavaVariableLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
@@ -38,6 +42,7 @@ import org.eclipse.ui.model.IWorkbenchAdapter;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.IImageDescriptors;
+import org.switchyard.tools.ui.debug.structure.JavaInterfaceVariable;
 import org.switchyard.tools.ui.debug.structure.SwitchYardModelProxyFactory;
 
 /**
@@ -50,7 +55,18 @@ public class SwitchYardDebugAdapterFactory implements IAdapterFactory {
 
     private static final Class[] TYPES = new Class[] {IBreakpointTypeCategory.class, IWorkbenchAdapter.class,
             IModelProxyFactory.class, ServiceInteractionBreakpoint.class, TransformSequenceBreakpoint.class,
-            ValidateHandlerBreakpoint.class };
+            ValidateHandlerBreakpoint.class, IElementLabelProvider.class };
+
+    private static final IElementLabelProvider LABEL_PROVIDER = new JavaVariableLabelProvider() {
+        @Override
+        protected ISchedulingRule getRule(ILabelUpdate update) {
+            JavaInterfaceVariable element = (JavaInterfaceVariable) update.getElement();
+            if (element.hasGetterExpression()) {
+                return null;
+            }
+            return super.getRule(update);
+        };
+    };
 
     @Override
     public Class[] getAdapterList() {
@@ -73,6 +89,8 @@ public class SwitchYardDebugAdapterFactory implements IAdapterFactory {
             return adaptTransformSequenceBreakpoint(adaptableObject);
         } else if (adapterType == ValidateHandlerBreakpoint.class) {
             return adaptValidateHandlerBreakpoint(adaptableObject);
+        } else if (adapterType == IElementLabelProvider.class) {
+            return LABEL_PROVIDER;
         }
         return null;
     }

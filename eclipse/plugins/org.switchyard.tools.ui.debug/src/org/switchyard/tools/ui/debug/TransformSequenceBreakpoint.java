@@ -182,7 +182,7 @@ public class TransformSequenceBreakpoint extends DelegatingJavaBreakpoint<String
             buffer.append("javax.xml.namespace.QName.valueOf(\"").append(transform.getFrom())
                     .append("\").equals(_sequence.get(0))");
             buffer.append(" && ");
-            buffer.append("(javax.xml.namespace.QName.valueOf(\"").append(transform.getTo())
+            buffer.append("javax.xml.namespace.QName.valueOf(\"").append(transform.getTo())
                     .append("\").equals(_sequence.get(_sequence.size()-1))");
             buffer.append(")\n");
         }

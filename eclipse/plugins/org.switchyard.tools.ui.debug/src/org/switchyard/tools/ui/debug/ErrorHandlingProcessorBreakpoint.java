@@ -23,7 +23,7 @@ public class ErrorHandlingProcessorBreakpoint extends CamelProcessorBreakpoint {
 
     private static final String MARKER_ID = SwitchYardDebugUtil.BASE_BREAKPOINT_MARKER_ID;
     private static final String TYPE = "org.switchyard.bus.camel.processors.ErrorHandlingProcessor";
-    private static final String EXCHANGE_VARIABLE = "ex";
+    private static final String EXCHANGE_VARIABLE = "exchange";
 
     /**
      * Create a new ErrorHandlingProcessorBreakpoint.

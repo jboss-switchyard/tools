@@ -120,8 +120,8 @@ public class ValidateBreakpointEditor extends AbstractJavaBreakpointEditor {
         _typesTable.setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
-                if (element instanceof ValidateType) {
-                    final QName type = QName.valueOf(((ValidateType) element).getName());
+                if (element instanceof String) {
+                    final QName type = QName.valueOf((String) element);
                     final String localPart = type.getLocalPart();
                     final String namespaceUri = type.getNamespaceURI();
                     if (namespaceUri == null || XMLConstants.NULL_NS_URI.equals(namespaceUri)) {
@@ -145,8 +145,7 @@ public class ValidateBreakpointEditor extends AbstractJavaBreakpointEditor {
         _typesTable.addFilter(new ViewerFilter() {
             @Override
             public boolean select(Viewer viewer, Object parentElement, Object element) {
-                return element instanceof ValidateType && ((ValidateType) element).getName() != null
-                        && ((ValidateType) element).getName().length() > 0;
+                return element instanceof String && ((String) element).length() > 0;
             }
         });
         _typesTable.setContentProvider(ArrayContentProvider.getInstance());
@@ -209,7 +208,7 @@ public class ValidateBreakpointEditor extends AbstractJavaBreakpointEditor {
 
             final Set<String> types = new LinkedHashSet<String>();
             for (Object obj : _typesTable.getCheckedElements()) {
-                final String type = ((ValidateType) obj).getName();
+                final String type = (String) obj;
                 if (type != null && type.length() > 0) {
                     types.add(type);
                 }
@@ -268,7 +267,7 @@ public class ValidateBreakpointEditor extends AbstractJavaBreakpointEditor {
         _typesTable.getControl().setEnabled(_triggers != null && _triggers.size() > 0);
     }
 
-    private Collection<ValidateType> getValidators() {
+    private Collection<String> getValidators() {
         final IResource markerResource = _breakpoint.getMarker().getResource();
         if (markerResource == null || markerResource.getProject() == null) {
             return Collections.emptyList();
@@ -307,11 +306,15 @@ public class ValidateBreakpointEditor extends AbstractJavaBreakpointEditor {
         return Collections.emptyList();
     }
 
-    private Collection<ValidateType> getValidates(final SwitchYardType switchyard) {
+    private Collection<String> getValidates(final SwitchYardType switchyard) {
         if (switchyard == null || switchyard.getValidates() == null) {
             return Collections.emptyList();
         }
-        return switchyard.getValidates().getValidate();
+        final Set<String> validates = new LinkedHashSet<String>();
+        for (ValidateType validate : switchyard.getValidates().getValidate()) {
+            validates.add(validate.getName());
+        }
+        return validates;
     }
 
     private final class TriggerSelectionListener extends SelectionAdapter {

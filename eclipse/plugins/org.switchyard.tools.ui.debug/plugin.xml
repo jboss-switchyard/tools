@@ -150,6 +150,13 @@
          </adapter>
       </factory>
       <factory
+            adaptableType="org.switchyard.tools.ui.debug.structure.JavaInterfaceVariable"
+            class="org.switchyard.tools.ui.debug.SwitchYardDebugAdapterFactory">
+         <adapter
+               type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+         </adapter>
+      </factory>
+      <factory
             adaptableType="org.switchyard.tools.ui.debug.structure.SwitchYardContext"
             class="org.switchyard.tools.ui.debug.SwitchYardDebugAdapterFactory">
          <adapter

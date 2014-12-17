@@ -19,6 +19,7 @@ import org.eclipse.debug.internal.ui.viewers.model.provisional.IModelDelta;
 import org.eclipse.debug.internal.ui.viewers.model.provisional.ModelDelta;
 import org.eclipse.debug.internal.ui.viewers.update.DebugEventHandler;
 import org.eclipse.debug.internal.ui.viewers.update.EventHandlerModelProxy;
+import org.eclipse.jdt.debug.core.IJavaStackFrame;
 import org.eclipse.jface.viewers.Viewer;
 
 /**
@@ -64,12 +65,7 @@ public class SwitchYardContextModelProxy extends EventHandlerModelProxy {
                         }
                     }
 
-                    final ModelDelta delta;
-                    if (event.getSource() instanceof JavaInterfaceVariable) {
-                        delta = new ModelDelta(event.getSource(), IModelDelta.CONTENT);
-                    } else {
-                        delta = new ModelDelta(_context, IModelDelta.CONTENT);
-                    }
+                    final ModelDelta delta = new ModelDelta(_context.getAdapter(IJavaStackFrame.class), IModelDelta.CONTENT);
                     fireDelta(delta);
                 }
             }
