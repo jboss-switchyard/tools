@@ -88,8 +88,8 @@ public class TransformDetails {
 
         final ClassLoader oldTCCL = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(
-                JavaUtil.getProjectClassLoader(
-                        JavaCore.create(PlatformResourceAdapterFactory.getContainingProject(switchYard)), null));
+                JavaUtil.getProjectClassLoader(JavaCore.create(PlatformResourceAdapterFactory
+                        .getContainingProject(switchYard)), getClass().getClassLoader()));
         try {
             collectProvidedTransforms();
             collectRequiredTransforms(source, target);
