@@ -330,8 +330,12 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
              */
             
             if (!isSelectedConfigurationVersionOkForRuntime()) {
-                String configVersion = getMajorMinorFromVersion(getRuntimeVersion().toString());
-                setErrorMessage("The Configuration Version must be " + configVersion + " or lower to work with Library Version " + getRuntimeVersion().toString() + ".");
+                if (getRuntimeVersion() != null) {
+                    String configVersion = getMajorMinorFromVersion(getRuntimeVersion().toString());
+                    setErrorMessage("The Configuration Version must be " + configVersion + " or lower to work with Library Version " + getRuntimeVersion().toString() + ".");
+                } else {
+                    setErrorMessage("The Configuration and Library Versions must be set to work with the SwitchYard Runtime.");
+                }
             }
 
             // if the version < 2.0 and they want to use the BOM, it's not allowed
@@ -346,18 +350,20 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
 
     private boolean isSelectedRuntimeV2() {
         ArtifactVersion artversion = getRuntimeVersion();
-        String versionString = artversion.toString();
-        if (versionString.indexOf('.') > -1) {
-            String majorVersionString = versionString.substring(0, versionString.indexOf('.'));
-            try {
-                long major = Long.decode(majorVersionString);
-                if (major < 2) {
+        if (artversion != null) {
+            String versionString = artversion.toString();
+            if (versionString.indexOf('.') > -1) {
+                String majorVersionString = versionString.substring(0, versionString.indexOf('.'));
+                try {
+                    long major = Long.decode(majorVersionString);
+                    if (major < 2) {
+                        return false;
+                    }
+                } catch (NumberFormatException nfe) {
                     return false;
                 }
-            } catch (NumberFormatException nfe) {
-                return false;
+                return true;
             }
-            return true;
         }
         
         return false;
@@ -391,13 +397,15 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         if (majorMinorConfig != null) {
             float configVersion = convertVersionStringToLong(configVersionStr);
             if (configVersion > -1) {
-                String runtimeVersionStr = getRuntimeVersion().toString();
-                String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
-                if (majorMinorRuntime != null) {
-                    float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
-                    if (runtimeVersion > -1) {
-                        if (configVersion <= runtimeVersion) {
-                            return true;
+                if (getRuntimeVersion() != null) {
+                    String runtimeVersionStr = getRuntimeVersion().toString();
+                    String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
+                    if (majorMinorRuntime != null) {
+                        float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
+                        if (runtimeVersion > -1) {
+                            if (configVersion <= runtimeVersion) {
+                                return true;
+                            }
                         }
                     }
                 }
