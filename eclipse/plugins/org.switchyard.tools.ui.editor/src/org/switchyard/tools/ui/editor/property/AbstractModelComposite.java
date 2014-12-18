@@ -133,6 +133,39 @@ public abstract class AbstractModelComposite<T extends EObject> extends Composit
             }
         }
     }
+    
+    /**
+     * Wraps a model update operation in a RecordingCommand, if required.
+     * 
+     * @param runner the model update operation.
+     * @param target an EoOject to use for the domain processing
+     */
+    protected void wrapOperation(final Runnable runner, EObject target) {
+        if (target == null) {
+            wrapOperation(runner);
+            return;
+        }
+        TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(target);
+        if (domain != null) {
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    try {
+                        runner.run();
+                    } catch (Exception e) {
+                        Activator.logError(e);
+                    }
+                }
+            });
+        } else {
+            try {
+                runner.run();
+            } catch (Exception e) {
+                Activator.logError(e);
+            }
+        }
+    }
+    
 
     protected void adaptChildren(Control control) {
         if (control != null) {

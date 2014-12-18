@@ -59,6 +59,13 @@ public class CamelXMLImplementationWizard extends LinkedWizardBase implements II
         }
     }
 
+    /**
+    * @return the SwitchYard component object being modified.
+    */
+    public Component getComponentObject() {
+        return _component;
+    }
+
     @Override
     public Implementation getCreatedObject() {
         return _implementation;

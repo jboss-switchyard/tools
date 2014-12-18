@@ -18,6 +18,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -33,6 +34,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
@@ -284,6 +286,14 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
             getContainer().validated(validate());
             if (!_updating) {
                 if (_mClassText != null && !_mClassText.isDisposed()) {
+                    EObject targetForDomain = null;
+                    if (getContainer() instanceof WizardPage) {
+                        WizardPage page = (WizardPage) getContainer();
+                        if (page.getWizard() instanceof CamelJavaImplementationWizard) {
+                            CamelJavaImplementationWizard wizard = (CamelJavaImplementationWizard) page.getWizard();
+                            targetForDomain = wizard.getComponentObject();
+                        }
+                    }
                     wrapOperation(new Runnable() {
 
                         @Override
@@ -302,7 +312,7 @@ public class CamelJavaRouteComposite extends AbstractChangeAwareModelComposite<C
                             _implementation.setXml(null);
                         }
                         
-                    });
+                    }, targetForDomain);
                  }
             }
         }

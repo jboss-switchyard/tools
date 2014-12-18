@@ -60,6 +60,13 @@ public class CamelJavaImplementationWizard extends LinkedWizardBase implements I
         }
     }
 
+    /**
+    * @return the SwitchYard component being modified.
+    */
+    public Component getComponentObject() {
+        return _component;
+    }
+    
     @Override
     public CamelImplementationType getCreatedObject() {
         return _implementation;
