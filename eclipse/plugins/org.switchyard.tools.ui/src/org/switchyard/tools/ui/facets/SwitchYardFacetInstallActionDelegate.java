@@ -49,6 +49,7 @@ import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.osgi.service.prefs.BackingStoreException;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
@@ -138,6 +139,12 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
             node.putBoolean(XMLCorePreferenceNames.HONOUR_ALL_SCHEMA_LOCATIONS, false);
             if (contexts[0] instanceof ProjectScope) {
                 node.putBoolean(XMLCorePreferenceNames.USE_PROJECT_SETTINGS, true);
+            }
+            try {
+                node.flush();
+            } catch (BackingStoreException e) {
+                throw new CoreException(
+                        new Status(Status.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
             }
         }
     }
