@@ -21,6 +21,7 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.ui.debug.SwitchYardDebugUtil;
 
 /**
@@ -35,6 +36,12 @@ public class SwitchYardContextView extends VariablesView {
     @Override
     protected String getPresentationContextSecondaryId() {
         return SwitchYardDebugUtil.SWITCHYARD_CONTEXT_ID;
+    }
+
+    @Override
+    public void createPartControl(Composite parent) {
+        super.createPartControl(parent);
+        setShowLogicalStructure(true);
     }
 
     /*
@@ -64,11 +71,6 @@ public class SwitchYardContextView extends VariablesView {
         tbm.add(new Separator(IDebugUIConstants.RENDER_GROUP));
         tbm.add(getAction("ShowTypeNames")); //$NON-NLS-1$
         tbm.add(getAction("CollapseAll")); //$NON-NLS-1$
-    }
-
-    @Override
-    public boolean isShowLogicalStructure() {
-        return true;
     }
 
 }
