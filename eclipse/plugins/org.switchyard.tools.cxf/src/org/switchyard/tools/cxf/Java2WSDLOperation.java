@@ -36,10 +36,10 @@ import org.apache.cxf.tools.java2wsdl.processor.internal.ServiceBuilderFactory;
 import org.apache.cxf.wsdl11.ServiceWSDLBuilder;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -62,7 +62,6 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
     private Java2WSDLOptions _options;
     private Definition _definition;
     private Map<String, Element> _imports = new HashMap<String, Element>();
-    private static final int POLLING_DELAY = 10;
 
     /**
      * Create a new Java2WSDLOperation.
@@ -89,38 +88,23 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
     }
 
     /**
-     * Wait for build jobs (taken from the M2E Tests project).
-     * @param matcher Matcher to specify which jobs to look for
-     * @param maxWaitMillis How long to wait
+     * Wait for builds to complete
      */
-    public void waitForJobs(IJobMatcher matcher, int maxWaitMillis) {
-        while (true) {
-            Job job = getJob(matcher);
-            if (job == null) {
-                return;
-            }
-            job.wakeUp();
+    private void waitForBuild(IProgressMonitor monitor) {
+        boolean wasInterrupted = false;
+        do {
             try {
-                Thread.sleep(POLLING_DELAY);
-            } catch (InterruptedException e) {
-                // ignore and keep waiting
+                monitor.beginTask("Waiting for background operations to complete.", 100);
+                Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
+                Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
+                wasInterrupted = false;
+            } catch (OperationCanceledException e) {
                 e.printStackTrace();
+            } catch (InterruptedException e) {
+                wasInterrupted = true;
             }
-        }
-    }
-
-    private Job getJob(IJobMatcher matcher) {
-        Job[] jobs = Job.getJobManager().find(null);
-        for (Job job : jobs) {
-            if (matcher.matches(job)) {
-                return job;
-            }
-        }
-        return null;
-    }  
-
-    private void waitForBuildJobs() {
-        waitForJobs(BuildJobMatcher.INSTANCE, 60 * 1000);
+        } while (wasInterrupted);
+        monitor.done();
     }
 
     @Override
@@ -128,7 +112,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         // now we wait in case there are build jobs going in the background to avoid any
         // ordering conflicts with the service interface not being able to be found.
         // SWITCHYARD-2291
-        waitForBuildJobs();
+        waitForBuild(monitor);
         
         ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
         Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -341,28 +325,5 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         public Boolean isWrapped() {
             return _options.isWrapped();
         }
-    }
-
-    /**
-     * Copied from the M2E Tests projects.
-     */
-    public interface IJobMatcher {
-        /**
-         * Find the job specified by the matcher.
-         * @param job to find
-         * @return true or false 
-         */
-        boolean matches(Job job);
-    }
-
-    static class BuildJobMatcher implements IJobMatcher {
-
-        public static final IJobMatcher INSTANCE = new BuildJobMatcher();
-
-        public boolean matches(Job job) {
-            return (job instanceof WorkspaceJob) || job.getClass().getName().matches("(.*\\.AutoBuild.*)")
-                    || job.getClass().getName().endsWith("JREUpdateJob");
-        }
-
     }
 }

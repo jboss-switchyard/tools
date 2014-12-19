@@ -135,7 +135,7 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
         final WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                 newWizard);
         newWizard.init(PlatformUI.getWorkbench(), getResourceForInterface((JavaInterface) _related));
-        if (dialog.open() == Window.OK) {
+        if (dialog.open() == Window.OK && newWizard.getWSDLFile() != null && newWizard.getWSDLFile().exists()) {
             return updateInterfaceFromNewFile(newWizard.getWSDLFile(), project);
         }
         return false;
