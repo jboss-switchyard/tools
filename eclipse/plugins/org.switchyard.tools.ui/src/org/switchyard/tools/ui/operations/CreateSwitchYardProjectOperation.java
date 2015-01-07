@@ -246,7 +246,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
 
         /**
-         * @return flag true/false (default false) adding OSGI bundle (Karaf) support.
+         * @return flag true/false (default false) adding OSGI bundle (Karaf)
+         *         support.
          */
         public boolean isOSGIEnabled() {
             return _isOSGIEnabled;
@@ -260,7 +261,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
 
         /**
-         * @return flag true/false (default false) adding SwitchYard Dependency BOM support.
+         * @return flag true/false (default false) adding SwitchYard Dependency
+         *         BOM support.
          */
         public boolean isSwitchYardDependencyBOMEnabled() {
             return _useSwitchYardDependencyBOM;
@@ -337,7 +339,6 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
                 subMonitor.setTaskName(""); //$NON-NLS-1$
-
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH);
                 op = new CreateFolderOperation(folder, null,
                         Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultMainResourceFolder);
@@ -345,7 +346,6 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
                 subMonitor.setTaskName(""); //$NON-NLS-1$
-
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_JAVA_PATH)
                         .getFolder(packageFolder);
                 op = new CreateFolderOperation(folder, null,
@@ -354,7 +354,6 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
                 subMonitor.setTaskName(""); //$NON-NLS-1$
-
                 folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_RESOURCES_PATH);
                 op = new CreateFolderOperation(folder, null,
                         Messages.CreateSwitchYardProjectOperation_operationLabel_creatingDefaultTestResourceFolder);
@@ -427,6 +426,16 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 subMonitor.setTaskName(""); //$NON-NLS-1$
             }
 
+            // create log4j.xml
+            try {
+                createLog4jXMLFile(monitor, status);
+            } catch (Exception e) {
+                mergeStatus(status, "Error encountered while creating log4j.xml file.", e);
+            } finally {
+                subMonitor.done();
+                subMonitor.setTaskName(""); //$NON-NLS-1$
+            }
+
             // attach target runtime
             if (_projectMetatData.getTargetRuntime() != null) {
                 attachTargetRuntime(monitor, status);
@@ -443,17 +452,18 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     private void createFeaturesXML(IProgressMonitor monitor, MultiStatus status) throws IOException {
         if (_projectMetatData.isOSGIEnabled()) {
             // create features.xml
-            
+
             IProgressMonitor subMonitor = null;
-            try {                monitor.subTask(Messages.CreateSwitchYardProjectOperation_CreatingFeaturesXML);
+            try {
+                monitor.subTask(Messages.CreateSwitchYardProjectOperation_CreatingFeaturesXML);
                 IFile featuresFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
-                         .getFile("features.xml"); //$NON-NLS-1$
+                        .getFile("features.xml"); //$NON-NLS-1$
                 StringBuffer contents = new StringBuffer();
                 contents.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$
                 contents.append("<features xmlns=\"http://karaf.apache.org/xmlns/features/v1.0.0\">\n"); //$NON-NLS-1$
-                contents.append("\t<repository>mvn:org.switchyard.karaf/switchyard/"  //$NON-NLS-1$
+                contents.append("\t<repository>mvn:org.switchyard.karaf/switchyard/" //$NON-NLS-1$
                         + "${" + SWITCHYARD_VERSION + "}/xml/features</repository>\n"); //$NON-NLS-1$
-                contents.append("\t<feature name=\"" + _projectMetatData.getNewProjectHandle().getName()  //$NON-NLS-1$
+                contents.append("\t<feature name=\"" + _projectMetatData.getNewProjectHandle().getName() //$NON-NLS-1$
                         + "\" version=\"" + _projectMetatData._projectVersion + "\" resolver=\"(obr)\"" + ">\n"); //$NON-NLS-1$ //$NON-NLS-2$
                 for (ISwitchYardComponentExtension component : _projectMetatData.getComponents()) {
                     String featureId = component.getBundleId();
@@ -464,10 +474,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 contents.append("\t\t<bundle>mvn:${project.groupId}/${project.artifactId}/${project.version}</bundle>\n"); //$NON-NLS-1$
                 contents.append("\t</feature>\n"); //$NON-NLS-1$
 
-                
                 contents.append("</features>\n"); //$NON-NLS-1$
-                CreateFileOperation op = new CreateFileOperation(featuresFile, null, new ByteArrayInputStream(
-                        contents.toString().getBytes()), Messages.CreateSwitchYardProjectOperation_CreatingFeaturesXML);
+                CreateFileOperation op = new CreateFileOperation(featuresFile, null, new ByteArrayInputStream(contents
+                        .toString().getBytes()), Messages.CreateSwitchYardProjectOperation_CreatingFeaturesXML);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
             } catch (Exception e) {
@@ -480,18 +489,57 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             }
         }
     }
-    
+
+    private void createLog4jXMLFile(IProgressMonitor monitor, MultiStatus status) throws IOException {
+        IProgressMonitor subMonitor = null;
+        try {
+            monitor.subTask("Creating log4j.xml in Test Resources");
+            IFile featuresFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_RESOURCES_PATH)
+                    .getFile("log4j.xml"); //$NON-NLS-1$
+            StringBuffer contents = new StringBuffer();
+            contents.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$
+            contents.append("<log4j:configuration xmlns:log4j=\"http://jakarta.apache.org/log4j/\">\n"); //$NON-NLS-1$
+            contents.append("\t<appender name=\"STDOUT\" class=\"org.apache.log4j.ConsoleAppender\">\n"); //$NON-NLS-1$
+            contents.append("\t\t<layout class=\"org.apache.log4j.PatternLayout\">\n"); //$NON-NLS-1$
+            contents.append("\t\t\t<param name=\"ConversionPattern\" value=\"%d{HH:mm:ss,SSS} %-5p [%c] %m%n\"/>\n"); //$NON-NLS-1$
+            contents.append("\t\t</layout>\n"); //$NON-NLS-1$
+            contents.append("\t</appender>\n"); //$NON-NLS-1$
+            contents.append("\t<logger name=\"org.jboss.weld.Bootstrap\">\n"); //$NON-NLS-1$
+            contents.append("\t\t<level value=\"ERROR\"/>\n"); //$NON-NLS-1$
+            contents.append("\t</logger>\n"); //$NON-NLS-1$
+            contents.append("\t<root>\n"); //$NON-NLS-1$
+            contents.append("\t\t<level value=\"INFO\"/>\n"); //$NON-NLS-1$
+            contents.append("\t\t<appender-ref ref=\"STDOUT\"/>\n"); //$NON-NLS-1$
+            contents.append("\t</root>\n"); //$NON-NLS-1$
+            contents.append("</log4j:configuration>\n"); //$NON-NLS-1$
+            CreateFileOperation op = new CreateFileOperation(featuresFile, null, new ByteArrayInputStream(contents
+                    .toString().getBytes()), Messages.CreateSwitchYardProjectOperation_CreatingFeaturesXML);
+            subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+            op.execute(subMonitor, _uiInfo);
+        } catch (Exception e) {
+            mergeStatus(status, Messages.CreateSwitchYardProjectOperation_ErrorCreatingFeaturesXML, e);
+        } finally {
+            if (subMonitor != null) {
+                subMonitor.done();
+                subMonitor.setTaskName(""); //$NON-NLS-1$
+            }
+        }
+    }
+
     private void createSwitchYardConfig(IProgressMonitor monitor) throws IOException {
         ResourceSet rs = SwitchYardModelUtils.newResourceSet();
         try {
             _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
                     .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
 
-            // force the right content factory in case it gets changed elsewhere unexpectedly
-            rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().
-                put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
-            
-            XMLResource switchYardResource = (XMLResource) rs.createResource(org.eclipse.emf.common.util.URI.createPlatformResourceURI(_switchYardFile.getFullPath().toPortableString(), true), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
+            // force the right content factory in case it gets changed elsewhere
+            // unexpectedly
+            rs.getResourceFactoryRegistry().getContentTypeToFactoryMap()
+                    .put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
+
+            XMLResource switchYardResource = (XMLResource) rs.createResource(org.eclipse.emf.common.util.URI
+                    .createPlatformResourceURI(_switchYardFile.getFullPath().toPortableString(), true),
+                    SwitchyardResourceFactoryImpl.CONTENT_TYPE);
             final String namespace = _projectMetatData.getNamespace();
             SwitchYardType switchYardModel = newSwitchYardModel(
                     _projectMetatData.getNewProjectHandle().getName(),
@@ -500,9 +548,10 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                             _projectMetatData.getProjectVersion()) : namespace);
             switchYardResource.getContents().add(switchYardModel);
             IProjectFacetVersion configVersion = _projectMetatData.getConfigurationVersion();
-            NamespaceVersionConverter converter = (NamespaceVersionConverter) switchYardResource.getDefaultSaveOptions().get(XMLResource.OPTION_EXTENDED_META_DATA);
-            converter.setVersion(configVersion == null ? ISwitchYardFacetConstants.SWITCHYARD_FACET
-                    .getDefaultVersion().getVersionString() : configVersion.getVersionString());
+            NamespaceVersionConverter converter = (NamespaceVersionConverter) switchYardResource
+                    .getDefaultSaveOptions().get(XMLResource.OPTION_EXTENDED_META_DATA);
+            converter.setVersion(configVersion == null ? ISwitchYardFacetConstants.SWITCHYARD_FACET.getDefaultVersion()
+                    .getVersionString() : configVersion.getVersionString());
             switchYardResource.save(null);
         } finally {
             for (Resource resource : rs.getResources()) {
@@ -528,11 +577,12 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     private void attachTargetRuntime(IProgressMonitor monitor, MultiStatus status) {
         monitor.subTask(Messages.CreateSwitchYardProjectOperation_taskLabel_attachingTargetRuntimeToProject);
 
-        IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+        IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 50,
+                SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
         IFacetedProjectWorkingCopy ifpwc = null;
         try {
-            IFacetedProject ifp = ProjectFacetsManager.create(_projectMetatData.getNewProjectHandle(), true,
-                    subMonitor);
+            IFacetedProject ifp = ProjectFacetsManager
+                    .create(_projectMetatData.getNewProjectHandle(), true, subMonitor);
 
             subMonitor.done();
 
@@ -541,7 +591,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             ifpwc.commitChanges(subMonitor);
         } catch (Exception e) {
-            mergeStatus(status, Messages.CreateSwitchYardProjectOperation_errorMessage_errorAttachingTargetRuntimeToProject, e);
+            mergeStatus(status,
+                    Messages.CreateSwitchYardProjectOperation_errorMessage_errorAttachingTargetRuntimeToProject, e);
         } finally {
             if (ifpwc != null) {
                 ifpwc.dispose();
@@ -568,7 +619,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         model.setGroupId(_projectMetatData.getGroupId());
         model.setArtifactId(_projectMetatData.getNewProjectHandle().getName());
         model.setVersion(_projectMetatData.getProjectVersion());
-        
+
         if (_projectMetatData.isOSGIEnabled()) {
             model.setPackaging("bundle"); //$NON-NLS-1$
         } else {
@@ -585,19 +636,21 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         if (_projectMetatData.isOSGIEnabled()) {
             model.addProperty("switchyard.osgi.require.capability", //$NON-NLS-1$
                     "org.ops4j.pax.cdi.extension; filter:=\"(extension=switchyard-component-bean)\",\n" //$NON-NLS-1$
-                    + "org.ops4j.pax.cdi.extension; filter:=\"(extension=deltaspike-core-api)\",\n" //$NON-NLS-1$
-                    + "osgi.extender; filter:=\"(osgi.extender=pax.cdi)\""); //$NON-NLS-1$
-//            model.addProperty("switchyard.osgi.provide.capability", ""); //$NON-NLS-1$ //$NON-NLS-2$
-            model.addProperty("switchyard.osgi.symbolic.name", _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$ //$NON-NLS-2$
-            model.addProperty("switchyard.osgi.import.switchyard.version", "version=\"[$(version;==;${switchyard.osgi.version}),$(version;=+;${switchyard.osgi.version}))\"");
+                            + "org.ops4j.pax.cdi.extension; filter:=\"(extension=deltaspike-core-api)\",\n" //$NON-NLS-1$
+                            + "osgi.extender; filter:=\"(osgi.extender=pax.cdi)\""); //$NON-NLS-1$
+            //            model.addProperty("switchyard.osgi.provide.capability", ""); //$NON-NLS-1$ //$NON-NLS-2$
+            model.addProperty(
+                    "switchyard.osgi.symbolic.name", _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$ //$NON-NLS-2$
+            model.addProperty("switchyard.osgi.import.switchyard.version",
+                    "version=\"[$(version;==;${switchyard.osgi.version}),$(version;=+;${switchyard.osgi.version}))\"");
             model.addProperty("switchyard.osgi.import.default.version", "[$(version;==;$(@)),$(version;+;$(@)))");
             model.addProperty("switchyard.osgi.export", _projectMetatData.getPackageName() + "*"); //$NON-NLS-1$ //$NON-NLS-2$
-            model.addProperty("switchyard.osgi.import",  //$NON-NLS-1$
+            model.addProperty("switchyard.osgi.import", //$NON-NLS-1$
                     "org.switchyard.*;${switchyard.osgi.import.switchyard.version},*"); //$NON-NLS-1$
-            model.addProperty("switchyard.osgi.dynamic",  //$NON-NLS-1$
+            model.addProperty("switchyard.osgi.dynamic", //$NON-NLS-1$
                     "org.switchyard,org.switchyard.*"); //$NON-NLS-1$
         }
-        
+
         // add dependency management for SwitchYard BOM
         if (_projectMetatData.isSwitchYardDependencyBOMEnabled()) {
             Dependency bomDependency = new Dependency();
@@ -611,7 +664,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             }
             model.getDependencyManagement().addDependency(bomDependency);
         }
-        
+
         // add dependencies
         Set<String> scanners = new LinkedHashSet<String>();
         for (ISwitchYardComponentExtension component : _projectMetatData.getComponents()) {
@@ -634,7 +687,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
         // add build section
         model.setBuild(createBuildSection(versionString, scanners));
-        
+
         // add repository
         // Repository repository =
         // createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID);
@@ -643,7 +696,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
         return model;
     }
-    
+
     private Build createBuildSection(String versionString, Set<String> scanners) {
         Build build = new Build();
         build.addPlugin(createSwitchYardPlugin(versionString, scanners));
@@ -665,7 +718,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         mvnResource.setIncludes(includesList);
         return mvnResource;
     }
-    
+
     private org.apache.maven.model.Resource createUnFilteredResource() {
         org.apache.maven.model.Resource mvnResource = new org.apache.maven.model.Resource();
         mvnResource.setDirectory(MAVEN_MAIN_RESOURCES_PATH);
@@ -680,12 +733,12 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         Plugin plugin = new Plugin();
         plugin.setArtifactId("build-helper-maven-plugin"); //$NON-NLS-1$
         plugin.setGroupId("org.codehaus.mojo"); //$NON-NLS-1$
-        
+
         PluginExecution attachFeatureExecution = new PluginExecution();
         attachFeatureExecution.setId("attach-artifacts"); //$NON-NLS-1$
         attachFeatureExecution.setPhase("package"); //$NON-NLS-1$
         attachFeatureExecution.addGoal("attach-artifact"); //$NON-NLS-1$
-        
+
         Xpp3Dom configuration = createNode("configuration"); //$NON-NLS-1$
         Xpp3Dom artifacts = createNode("artifacts"); //$NON-NLS-1$
         Xpp3Dom artifact = createNode("artifact"); //$NON-NLS-1$
@@ -698,16 +751,16 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         artifacts.addChild(artifact);
         configuration.addChild(artifacts);
         attachFeatureExecution.setConfiguration(configuration);
-        
+
         plugin.addExecution(attachFeatureExecution);
-        
+
         return plugin;
     }
 
     private Xpp3Dom createNode(String tag) {
         return createNode(tag, null);
     }
-    
+
     private Xpp3Dom createNode(String tag, String value) {
         Xpp3Dom domNode = new Xpp3Dom(tag);
         if (value != null) {
@@ -715,7 +768,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
         return domNode;
     }
-    
+
     private Plugin createBundlePlugin() {
         Plugin plugin = new Plugin();
         plugin.setArtifactId("maven-bundle-plugin"); //$NON-NLS-1$
@@ -736,21 +789,23 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         execution.setConfiguration(exeuctionConfiguration);
         executions.add(execution);
         plugin.setExecutions(executions);
-        
+
         Xpp3Dom configuration = createNode("configuration"); //$NON-NLS-1$
         Xpp3Dom excludeDeps = createNode("excludeDependencies", "false"); //$NON-NLS-1$ //$NON-NLS-2$
         configuration.addChild(excludeDeps);
-        
+
         Xpp3Dom instructions = createNode("instructions"); //$NON-NLS-1$
         instructions.addChild(createNode("Bundle-Name", "${project.name}")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("Bundle-SymbolicName", "${project.groupId}" + "." + "${project.artifactId}")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         instructions.addChild(createNode("Import-Package", "${switchyard.osgi.import}")); //$NON-NLS-1$ //$NON-NLS-2$
-        instructions.addChild(createNode("Include-Resource", "{maven-resources}, META-INF/switchyard.xml=target/classes/META-INF/switchyard.xml")); //$NON-NLS-1$ //$NON-NLS-2$
+        instructions
+                .addChild(createNode(
+                        "Include-Resource", "{maven-resources}, META-INF/switchyard.xml=target/classes/META-INF/switchyard.xml")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("DynamicImport-Package", "${switchyard.osgi.dynamic}")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("_failok", "true")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("Embed-Dependency", "!*")); //$NON-NLS-1$ //$NON-NLS-2$
         instructions.addChild(createNode("Require-Capability", "${switchyard.osgi.require.capability}")); //$NON-NLS-1$ //$NON-NLS-2$
-        
+
         configuration.addChild(instructions);
 
         Xpp3Dom archive = createNode("archive"); //$NON-NLS-1$
@@ -762,7 +817,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         configuration.addChild(archive);
 
         plugin.setConfiguration(configuration);
-        
+
         return plugin;
     }
 
