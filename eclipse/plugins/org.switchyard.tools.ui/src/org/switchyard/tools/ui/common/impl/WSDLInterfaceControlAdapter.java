@@ -17,7 +17,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
@@ -91,8 +90,13 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
         dialog.setInitialPattern("*.wsdl"); //$NON-NLS-1$
         if (dialog.open() == WSDLPortTypeSelectionDialog.OK) {
             PortType result = dialog.getSelectedPortType();
+            Object[] selectedFile = dialog.getResult();
             if (result != null) {
-                _interface.setInterface(getInterfaceURL(element, result));
+                IFile wsdlFile = null;
+                if (selectedFile != null && selectedFile.length > 0) {
+                    wsdlFile = (IFile) selectedFile [0];
+                }
+                _interface.setInterface(getInterfaceURL(element, result, wsdlFile));
                 return true;
             }
         }
@@ -158,7 +162,7 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
         @SuppressWarnings("unchecked")
         List<PortType> portTypes = definition.getEPortTypes();
         if (portTypes.size() > 0) {
-            _interface.setInterface(getInterfaceURL(project, portTypes.get(0)));
+            _interface.setInterface(getInterfaceURL(project, portTypes.get(0), newFile));
             return true;
         }
         return false;
@@ -191,10 +195,10 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
         return Status.OK_STATUS;
     }
 
-    private String getInterfaceURL(IJavaElement element, PortType portType) {
-        IPath filePath = new Path(portType.eResource().getURI().toPlatformString(true));
-        IResource resource = element.getJavaProject().getProject().getWorkspace().getRoot().getFile(filePath);
-        filePath = JavaUtil.getJavaPathForResource(resource);
+    private String getInterfaceURL(IJavaElement element, PortType portType, Object selectedFile) {
+        IResource resource = (IFile) selectedFile;
+        IPath filePath = JavaUtil.getJavaPathForResource(resource);
         return filePath.toString() + "#wsdl.porttype(" + portType.getQName().getLocalPart() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
     }
+
 }
