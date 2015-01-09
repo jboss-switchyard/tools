@@ -214,6 +214,10 @@ public class OperationSelectorComposite extends Composite {
                     IType selected = selectType(_panel.getShell(), "org.switchyard.selector.OperationSelector", null); //$NON-NLS-1$
                     if (selected != null) {
                         _javaText.setText(selected.getFullyQualifiedName());
+                        _javaText.notifyListeners(SWT.Modify, null);
+                        // simulate "ENTER" to commit the change
+                        _javaText.notifyListeners(SWT.DefaultSelection, null);
+                        _javaText.setFocus();
                     }
                 } catch (JavaModelException e1) {
                     e1.printStackTrace();
@@ -323,7 +327,7 @@ public class OperationSelectorComposite extends Composite {
 
         binding = context.bindValue(SWTObservables.observeText(_javaText, SWT.Modify), javaValue,
                 new UpdateValueStrategy(UpdateValueStrategy.POLICY_CONVERT).
-                setAfterConvertValidator(new AccessibleClassValidator(_bindingValue)), null);
+                setAfterConvertValidator(new AccessibleClassValidator(javaValue, getTargetObject())), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         /*

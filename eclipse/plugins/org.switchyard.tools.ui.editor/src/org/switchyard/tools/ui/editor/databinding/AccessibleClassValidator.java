@@ -15,6 +15,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -29,6 +30,7 @@ import org.switchyard.tools.ui.editor.Activator;
 public class AccessibleClassValidator implements IValidator {
 
     private final IObservableValue _target;
+    private final EObject _container;
 
     /**
      * Create a new AccessibleClassValidator.
@@ -37,6 +39,19 @@ public class AccessibleClassValidator implements IValidator {
      */
     public AccessibleClassValidator(IObservableValue target) {
         _target = target;
+        _container = null;
+    }
+    
+    /**
+     * Create a new AccessibleClassValidator.
+     * 
+     * @param target the target value, used to reconcile the classpath.
+     * @param container is the target's container - useful if on the wizard where a binding
+     * doesn't have a container yet. 
+     */
+    public AccessibleClassValidator(IObservableValue target, EObject container) {
+        _target = target;
+        _container = container;
     }
 
     @Override
@@ -60,6 +75,9 @@ public class AccessibleClassValidator implements IValidator {
 
     private IJavaProject resolveCurrentJavaProject() {
         try {
+            if (_container != null) {
+                return JavaCore.create(PlatformResourceAdapterFactory.getContainingProject(_container));
+            }
             return JavaCore.create(PlatformResourceAdapterFactory.getContainingProject(_target.getValue()));
         } catch (Throwable e) {
             return null;
