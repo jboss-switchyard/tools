@@ -8,6 +8,8 @@
   <name>test.project.group:CreateSwitchYardProjectTest</name>
   <properties>
     <switchyard.version>2.0.0.Beta1</switchyard.version>
+	<maven.compiler.target>1.6</maven.compiler.target>
+	<maven.compiler.source>1.6</maven.compiler.source>
   </properties>
   <dependencies>
     <dependency>
@@ -65,17 +67,6 @@
           <scannerClassNames>
             <param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
           </scannerClassNames>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-          <debug>true</debug>
-          <showWarnings>true</showWarnings>
-          <showDeprecation>true</showDeprecation>
         </configuration>
       </plugin>
     </plugins>

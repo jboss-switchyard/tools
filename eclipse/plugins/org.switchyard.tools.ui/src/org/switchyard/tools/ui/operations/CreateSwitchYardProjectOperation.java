@@ -580,6 +580,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
         // add runtime dependencies
         model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
+        model.addProperty("maven.compiler.target", DEFAULT_JAVA_VERSION); //$NON-NLS-1$
+        model.addProperty("maven.compiler.source", DEFAULT_JAVA_VERSION); //$NON-NLS-1$
         if (_projectMetatData.isOSGIEnabled()) {
             model.addProperty("switchyard.osgi.require.capability", //$NON-NLS-1$
                     "org.ops4j.pax.cdi.extension; filter:=\"(extension=switchyard-component-bean)\",\n" //$NON-NLS-1$
@@ -650,8 +652,6 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             build.addPlugin(createAttachFeaturePlugin());
             build.addResource(createFilteredResource());
             build.addResource(createUnFilteredResource());
-        } else {
-            build.addPlugin(createCompilerPlugin());
         }
         return build;
     }
@@ -701,33 +701,6 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         
         plugin.addExecution(attachFeatureExecution);
         
-        return plugin;
-    }
-    
-    private Plugin createCompilerPlugin() {
-        Plugin plugin = new Plugin();
-        plugin.setArtifactId("maven-compiler-plugin"); //$NON-NLS-1$
-        plugin.setGroupId("org.apache.maven.plugins"); //$NON-NLS-1$
-        plugin.setVersion("2.3.2"); //$NON-NLS-1$
-
-        Xpp3Dom configuration = new Xpp3Dom("configuration"); //$NON-NLS-1$
-        Xpp3Dom source = new Xpp3Dom("source"); //$NON-NLS-1$
-        source.setValue(DEFAULT_JAVA_VERSION);
-        configuration.addChild(source);
-        Xpp3Dom target = new Xpp3Dom("target"); //$NON-NLS-1$
-        target.setValue(DEFAULT_JAVA_VERSION);
-        configuration.addChild(target);
-        Xpp3Dom debug = new Xpp3Dom("debug"); //$NON-NLS-1$
-        debug.setValue("true"); //$NON-NLS-1$
-        configuration.addChild(debug);
-        Xpp3Dom showWarnings = new Xpp3Dom("showWarnings"); //$NON-NLS-1$
-        showWarnings.setValue("true"); //$NON-NLS-1$
-        configuration.addChild(showWarnings);
-        Xpp3Dom showDeprecation = new Xpp3Dom("showDeprecation"); //$NON-NLS-1$
-        showDeprecation.setValue("true"); //$NON-NLS-1$
-        configuration.addChild(showDeprecation);
-        plugin.setConfiguration(configuration);
-
         return plugin;
     }
 
