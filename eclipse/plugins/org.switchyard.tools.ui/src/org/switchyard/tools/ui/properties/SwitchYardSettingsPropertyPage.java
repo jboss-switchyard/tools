@@ -23,6 +23,8 @@ import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.DependencyManagement;
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -259,8 +261,6 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                 }
             }
         }
-        _settingsGroup.getTargetRuntimesList().getControl()
-                .setEnabled(!_switchYardProject.isUsingDependencyManagement());
         _settingsGroup.getTargetRuntimesList().addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
@@ -341,8 +341,9 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
     }
     
     private boolean pomUsesSwitchYardBOM() {
-        final DependencyManagement depMgmt =
-                _switchYardProject.getMavenProject().getOriginalModel().getDependencyManagement();
+        final MavenProject project = _switchYardProject.getMavenProject();
+        final Model originalModel = project.getOriginalModel();
+        final DependencyManagement depMgmt = originalModel.getDependencyManagement();
         if (depMgmt != null && !depMgmt.getDependencies().isEmpty()) {
             Iterator<Dependency> depIter = depMgmt.getDependencies().iterator();
             while (depIter.hasNext()) {
