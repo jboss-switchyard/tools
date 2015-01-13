@@ -1547,6 +1547,25 @@
                    class="Contract">
              </target>
           </constraint>
+          <constraint
+                class="org.switchyard.tools.ui.validation.ServiceNameConstraint"
+                id="org.switchyard.tools.validation.constraint.service/composite/servicename"
+                isEnabledByDefault="true"
+                lang="Java"
+                mode="Batch"
+                name="%constraintCategory.childConstraintName.compositeServiceName"
+                severity="ERROR"
+                statusCode="1001">
+             <message>
+                %constraintCategory.childConstraintMessage.compositeServiceName
+             </message>
+             <description>
+                %constraintCategory.childConstraintDescription.compositeServiceName
+             </description>
+             <target
+                   class="Composite">
+             </target>
+          </constraint>
        </constraints>
     </constraintProvider>
     <constraintProvider

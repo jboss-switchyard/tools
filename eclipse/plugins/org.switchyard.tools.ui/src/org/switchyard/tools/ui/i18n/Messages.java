@@ -727,6 +727,8 @@ public final class Messages extends NLS {
     public static String ValidationProblem_AmbiguousReference;
 
     public static String ValidationProblem_DuplicateName;
+    
+    public static String ValidationProblem_DuplicateServiceName;
 
     public static String ValidationProblem_IncompatibleInterfaceType;
 

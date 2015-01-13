@@ -171,7 +171,10 @@ public enum ValidationProblem {
     /** To or From URI in camel route is invalid. */
     CamelRouteURIInvalid(
             Messages.ValidationProblem_CamelRouteURIInvalid,
-            IStatus.ERROR, false);
+            IStatus.ERROR, false),
+    /** The name used for the composite service is not unique. */
+    DuplicateServiceName(Messages.ValidationProblem_DuplicateServiceName,
+            false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
     public static final String PROBLEM_CODE = Messages.ValidationProblem_ValidateProblem;
