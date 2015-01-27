@@ -291,6 +291,9 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 // clear out any error the first time we are displayed
                 setErrorMessage(null);
                 _isInitialized = true;
+            } else if (!_packageNameText.getText().contentEquals(normalizePackageName(projectName))) {
+                _packageNameText.setText(normalizePackageName(projectName));
+                _namespaceText.setText("urn::" + projectName + ":1.0"); //$NON-NLS-1$ //$NON-NLS-2$
             }
             _artifactIdText.setText(projectName);
         }
