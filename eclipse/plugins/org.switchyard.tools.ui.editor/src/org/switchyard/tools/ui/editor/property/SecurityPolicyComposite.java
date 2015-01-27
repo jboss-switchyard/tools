@@ -372,9 +372,9 @@ public class SecurityPolicyComposite extends AbstractModelComposite<Contract> {
         public void run() throws Exception {
             if (_localFeature.contentEquals("securityAttr")) { //$NON-NLS-1$
                 if (_localValue instanceof String && !((String)_localValue).contentEquals(_defaultValue)) {
-                    setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_SecurityAttr(), "securityAttr", _localValue); //$NON-NLS-1$
+                    setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Security1(), "securityAttr", _localValue); //$NON-NLS-1$
                 } else {
-                    setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_SecurityAttr(), "securityAttr", null); //$NON-NLS-1$
+                    setFunkyAttributeValue(SwitchyardPackage.eINSTANCE.getDocumentRoot_Security1(), "securityAttr", null); //$NON-NLS-1$
                 }
             }
         }

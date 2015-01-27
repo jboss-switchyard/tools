@@ -27,35 +27,35 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  */
 public interface StaticOperationSelectorType extends SwitchYardOperationSelectorType {
 	/**
-     * Returns the value of the '<em><b>Operation Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operation Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operation Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * 
-     *                             Operation name.
-     *                         
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Operation Name</em>' attribute.
-     * @see #setOperationName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getStaticOperationSelectorType_OperationName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-     *        extendedMetaData="kind='attribute' name='operationName'"
-     * @generated
-     */
+	 * <!-- begin-model-doc -->
+	 * 
+	 *                             Operation name.
+	 *                         
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Operation Name</em>' attribute.
+	 * @see #setOperationName(String)
+	 * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getStaticOperationSelectorType_OperationName()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 *        extendedMetaData="kind='attribute' name='operationName'"
+	 * @generated
+	 */
 	String getOperationName();
 
 	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType#getOperationName <em>Operation Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType#getOperationName <em>Operation Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Operation Name</em>' attribute.
-     * @see #getOperationName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Operation Name</em>' attribute.
+	 * @see #getOperationName()
+	 * @generated
+	 */
 	void setOperationName(String value);
 
 } // StaticOperationSelectorType

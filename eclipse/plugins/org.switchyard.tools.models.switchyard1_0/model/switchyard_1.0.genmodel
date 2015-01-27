@@ -286,7 +286,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//DocumentRoot/validates"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/clustered"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/loadBalance"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/securityAttr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/preferLocal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/security1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/target"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//DocumentRoot/targetNamespace"/>
     </genClasses>

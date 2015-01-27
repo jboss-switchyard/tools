@@ -35,426 +35,426 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  */
 public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
     /**
-     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getProperties()
-     * @generated
-     * @ordered
-     */
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
     protected PropertiesType properties;
 
     /**
-     * The default value of the '{@link #getCallbackHandler() <em>Callback Handler</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCallbackHandler() <em>Callback Handler</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCallbackHandler()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCallbackHandler()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String CALLBACK_HANDLER_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getCallbackHandler() <em>Callback Handler</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCallbackHandler() <em>Callback Handler</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCallbackHandler()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCallbackHandler()
+	 * @generated
+	 * @ordered
+	 */
     protected String callbackHandler = CALLBACK_HANDLER_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected String name = NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getRolesAllowed() <em>Roles Allowed</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getRolesAllowed() <em>Roles Allowed</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRolesAllowed()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRolesAllowed()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String ROLES_ALLOWED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getRolesAllowed() <em>Roles Allowed</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRolesAllowed() <em>Roles Allowed</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRolesAllowed()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRolesAllowed()
+	 * @generated
+	 * @ordered
+	 */
     protected String rolesAllowed = ROLES_ALLOWED_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getRunAs() <em>Run As</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getRunAs() <em>Run As</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRunAs()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRunAs()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String RUN_AS_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getRunAs() <em>Run As</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRunAs() <em>Run As</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRunAs()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRunAs()
+	 * @generated
+	 * @ordered
+	 */
     protected String runAs = RUN_AS_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getSecurityDomain() <em>Security Domain</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getSecurityDomain() <em>Security Domain</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSecurityDomain()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSecurityDomain()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String SECURITY_DOMAIN_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getSecurityDomain() <em>Security Domain</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSecurityDomain() <em>Security Domain</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSecurityDomain()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSecurityDomain()
+	 * @generated
+	 * @ordered
+	 */
     protected String securityDomain = SECURITY_DOMAIN_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SecurityTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SwitchyardPackage.Literals.SECURITY_TYPE;
-    }
+		return SwitchyardPackage.Literals.SECURITY_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getCallbackHandler() {
-        return callbackHandler;
-    }
+		return callbackHandler;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setCallbackHandler(String newCallbackHandler) {
-        String oldCallbackHandler = callbackHandler;
-        callbackHandler = newCallbackHandler;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER, oldCallbackHandler, callbackHandler));
-    }
+		String oldCallbackHandler = callbackHandler;
+		callbackHandler = newCallbackHandler;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER, oldCallbackHandler, callbackHandler));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-        return name;
-    }
+		return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__NAME, oldName, name));
-    }
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__NAME, oldName, name));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public PropertiesType getProperties() {
-        return properties;
-    }
+		return properties;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetProperties(PropertiesType newProperties, NotificationChain msgs) {
-        PropertiesType oldProperties = properties;
-        properties = newProperties;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__PROPERTIES, oldProperties, newProperties);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		PropertiesType oldProperties = properties;
+		properties = newProperties;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__PROPERTIES, oldProperties, newProperties);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setProperties(PropertiesType newProperties) {
-        if (newProperties != properties) {
-            NotificationChain msgs = null;
-            if (properties != null)
-                msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SECURITY_TYPE__PROPERTIES, null, msgs);
-            if (newProperties != null)
-                msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SECURITY_TYPE__PROPERTIES, null, msgs);
-            msgs = basicSetProperties(newProperties, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__PROPERTIES, newProperties, newProperties));
-    }
+		if (newProperties != properties) {
+			NotificationChain msgs = null;
+			if (properties != null)
+				msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SECURITY_TYPE__PROPERTIES, null, msgs);
+			if (newProperties != null)
+				msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SECURITY_TYPE__PROPERTIES, null, msgs);
+			msgs = basicSetProperties(newProperties, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__PROPERTIES, newProperties, newProperties));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getRolesAllowed() {
-        return rolesAllowed;
-    }
+		return rolesAllowed;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setRolesAllowed(String newRolesAllowed) {
-        String oldRolesAllowed = rolesAllowed;
-        rolesAllowed = newRolesAllowed;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED, oldRolesAllowed, rolesAllowed));
-    }
+		String oldRolesAllowed = rolesAllowed;
+		rolesAllowed = newRolesAllowed;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED, oldRolesAllowed, rolesAllowed));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getRunAs() {
-        return runAs;
-    }
+		return runAs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setRunAs(String newRunAs) {
-        String oldRunAs = runAs;
-        runAs = newRunAs;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__RUN_AS, oldRunAs, runAs));
-    }
+		String oldRunAs = runAs;
+		runAs = newRunAs;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__RUN_AS, oldRunAs, runAs));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getSecurityDomain() {
-        return securityDomain;
-    }
+		return securityDomain;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setSecurityDomain(String newSecurityDomain) {
-        String oldSecurityDomain = securityDomain;
-        securityDomain = newSecurityDomain;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN, oldSecurityDomain, securityDomain));
-    }
+		String oldSecurityDomain = securityDomain;
+		securityDomain = newSecurityDomain;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN, oldSecurityDomain, securityDomain));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                return basicSetProperties(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+				return basicSetProperties(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                return getProperties();
-            case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
-                return getCallbackHandler();
-            case SwitchyardPackage.SECURITY_TYPE__NAME:
-                return getName();
-            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
-                return getRolesAllowed();
-            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
-                return getRunAs();
-            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
-                return getSecurityDomain();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+				return getProperties();
+			case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
+				return getCallbackHandler();
+			case SwitchyardPackage.SECURITY_TYPE__NAME:
+				return getName();
+			case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+				return getRolesAllowed();
+			case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+				return getRunAs();
+			case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+				return getSecurityDomain();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                setProperties((PropertiesType)newValue);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
-                setCallbackHandler((String)newValue);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__NAME:
-                setName((String)newValue);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
-                setRolesAllowed((String)newValue);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
-                setRunAs((String)newValue);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
-                setSecurityDomain((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+				setProperties((PropertiesType)newValue);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
+				setCallbackHandler((String)newValue);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__NAME:
+				setName((String)newValue);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+				setRolesAllowed((String)newValue);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+				setRunAs((String)newValue);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+				setSecurityDomain((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                setProperties((PropertiesType)null);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
-                setCallbackHandler(CALLBACK_HANDLER_EDEFAULT);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
-                setRolesAllowed(ROLES_ALLOWED_EDEFAULT);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
-                setRunAs(RUN_AS_EDEFAULT);
-                return;
-            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
-                setSecurityDomain(SECURITY_DOMAIN_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+				setProperties((PropertiesType)null);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
+				setCallbackHandler(CALLBACK_HANDLER_EDEFAULT);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+				setRolesAllowed(ROLES_ALLOWED_EDEFAULT);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+				setRunAs(RUN_AS_EDEFAULT);
+				return;
+			case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+				setSecurityDomain(SECURITY_DOMAIN_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
-                return properties != null;
-            case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
-                return CALLBACK_HANDLER_EDEFAULT == null ? callbackHandler != null : !CALLBACK_HANDLER_EDEFAULT.equals(callbackHandler);
-            case SwitchyardPackage.SECURITY_TYPE__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
-                return ROLES_ALLOWED_EDEFAULT == null ? rolesAllowed != null : !ROLES_ALLOWED_EDEFAULT.equals(rolesAllowed);
-            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
-                return RUN_AS_EDEFAULT == null ? runAs != null : !RUN_AS_EDEFAULT.equals(runAs);
-            case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
-                return SECURITY_DOMAIN_EDEFAULT == null ? securityDomain != null : !SECURITY_DOMAIN_EDEFAULT.equals(securityDomain);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
+				return properties != null;
+			case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
+				return CALLBACK_HANDLER_EDEFAULT == null ? callbackHandler != null : !CALLBACK_HANDLER_EDEFAULT.equals(callbackHandler);
+			case SwitchyardPackage.SECURITY_TYPE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+				return ROLES_ALLOWED_EDEFAULT == null ? rolesAllowed != null : !ROLES_ALLOWED_EDEFAULT.equals(rolesAllowed);
+			case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+				return RUN_AS_EDEFAULT == null ? runAs != null : !RUN_AS_EDEFAULT.equals(runAs);
+			case SwitchyardPackage.SECURITY_TYPE__SECURITY_DOMAIN:
+				return SECURITY_DOMAIN_EDEFAULT == null ? securityDomain != null : !SECURITY_DOMAIN_EDEFAULT.equals(securityDomain);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (callbackHandler: ");
-        result.append(callbackHandler);
-        result.append(", name: ");
-        result.append(name);
-        result.append(", rolesAllowed: ");
-        result.append(rolesAllowed);
-        result.append(", runAs: ");
-        result.append(runAs);
-        result.append(", securityDomain: ");
-        result.append(securityDomain);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (callbackHandler: ");
+		result.append(callbackHandler);
+		result.append(", name: ");
+		result.append(name);
+		result.append(", rolesAllowed: ");
+		result.append(rolesAllowed);
+		result.append(", runAs: ");
+		result.append(runAs);
+		result.append(", securityDomain: ");
+		result.append(securityDomain);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SecurityTypeImpl

@@ -31,37 +31,37 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  */
 public interface ValidatesType extends EObject {
 	/**
-     * Returns the value of the '<em><b>Validate Group</b></em>' attribute list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Validate Group</b></em>' attribute list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Validate Group</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Validate Group</em>' attribute list.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getValidatesType_ValidateGroup()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='group' name='validate:group' namespace='##targetNamespace'"
-     * @generated
-     */
+	 * @return the value of the '<em>Validate Group</em>' attribute list.
+	 * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getValidatesType_ValidateGroup()
+	 * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
+	 *        extendedMetaData="kind='group' name='validate:group' namespace='##targetNamespace'"
+	 * @generated
+	 */
 	FeatureMap getValidateGroup();
 
 	/**
-     * Returns the value of the '<em><b>Validate</b></em>' containment reference list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Validate</b></em>' containment reference list.
+	 * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Validate</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Validate</em>' containment reference list.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getValidatesType_Validate()
-     * @model containment="true" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='validate' namespace='##targetNamespace' group='validate:group'"
-     * @generated
-     */
+	 * @return the value of the '<em>Validate</em>' containment reference list.
+	 * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getValidatesType_Validate()
+	 * @model containment="true" transient="true" volatile="true" derived="true"
+	 *        extendedMetaData="kind='element' name='validate' namespace='##targetNamespace' group='validate:group'"
+	 * @generated
+	 */
 	EList<ValidateType> getValidate();
 
 } // ValidatesType

@@ -28,657 +28,657 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.*;
  */
 public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static SwitchyardFactory init() {
-        try {
-            SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory(SwitchyardPackage.eNS_URI);
-            if (theSwitchyardFactory != null) {
-                return theSwitchyardFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new SwitchyardFactoryImpl();
-    }
+		try {
+			SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory(SwitchyardPackage.eNS_URI);
+			if (theSwitchyardFactory != null) {
+				return theSwitchyardFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SwitchyardFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SwitchyardFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case SwitchyardPackage.ARTIFACTS_TYPE: return createArtifactsType();
-            case SwitchyardPackage.ARTIFACT_TYPE: return createArtifactType();
-            case SwitchyardPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
-            case SwitchyardPackage.DOCUMENT_ROOT: return createDocumentRoot();
-            case SwitchyardPackage.DOMAIN_TYPE: return createDomainType();
-            case SwitchyardPackage.ESB_INTERFACE: return createEsbInterface();
-            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: return createJavaOperationSelectorType();
-            case SwitchyardPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
-            case SwitchyardPackage.PROPERTIES_TYPE: return createPropertiesType();
-            case SwitchyardPackage.PROPERTY_TYPE: return createPropertyType();
-            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: return createRegexOperationSelectorType();
-            case SwitchyardPackage.RESOURCE_TYPE: return createResourceType();
-            case SwitchyardPackage.SECURITIES_TYPE: return createSecuritiesType();
-            case SwitchyardPackage.SECURITY_TYPE: return createSecurityType();
-            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: return createStaticOperationSelectorType();
-            case SwitchyardPackage.SWITCH_YARD_TYPE: return createSwitchYardType();
-            case SwitchyardPackage.THROTTLING_TYPE: return createThrottlingType();
-            case SwitchyardPackage.TRANSFORMS_TYPE: return createTransformsType();
-            case SwitchyardPackage.VALIDATES_TYPE: return createValidatesType();
-            case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE: return createXPathOperationSelectorType();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case SwitchyardPackage.ARTIFACTS_TYPE: return createArtifactsType();
+			case SwitchyardPackage.ARTIFACT_TYPE: return createArtifactType();
+			case SwitchyardPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
+			case SwitchyardPackage.DOCUMENT_ROOT: return createDocumentRoot();
+			case SwitchyardPackage.DOMAIN_TYPE: return createDomainType();
+			case SwitchyardPackage.ESB_INTERFACE: return createEsbInterface();
+			case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: return createJavaOperationSelectorType();
+			case SwitchyardPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
+			case SwitchyardPackage.PROPERTIES_TYPE: return createPropertiesType();
+			case SwitchyardPackage.PROPERTY_TYPE: return createPropertyType();
+			case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: return createRegexOperationSelectorType();
+			case SwitchyardPackage.RESOURCE_TYPE: return createResourceType();
+			case SwitchyardPackage.SECURITIES_TYPE: return createSecuritiesType();
+			case SwitchyardPackage.SECURITY_TYPE: return createSecurityType();
+			case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: return createStaticOperationSelectorType();
+			case SwitchyardPackage.SWITCH_YARD_TYPE: return createSwitchYardType();
+			case SwitchyardPackage.THROTTLING_TYPE: return createThrottlingType();
+			case SwitchyardPackage.TRANSFORMS_TYPE: return createTransformsType();
+			case SwitchyardPackage.VALIDATES_TYPE: return createValidatesType();
+			case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE: return createXPathOperationSelectorType();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
-        switch (eDataType.getClassifierID()) {
-            case SwitchyardPackage.PROP_BOOLEAN:
-                return createPropBooleanFromString(eDataType, initialValue);
-            case SwitchyardPackage.PROP_DOUBLE:
-                return createPropDoubleFromString(eDataType, initialValue);
-            case SwitchyardPackage.PROPERTY_VALUE:
-                return createPropertyValueFromString(eDataType, initialValue);
-            case SwitchyardPackage.PROP_FLOAT:
-                return createPropFloatFromString(eDataType, initialValue);
-            case SwitchyardPackage.PROP_INTEGER:
-                return createPropIntegerFromString(eDataType, initialValue);
-            case SwitchyardPackage.PROP_LONG:
-                return createPropLongFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case SwitchyardPackage.PROP_BOOLEAN:
+				return createPropBooleanFromString(eDataType, initialValue);
+			case SwitchyardPackage.PROP_DOUBLE:
+				return createPropDoubleFromString(eDataType, initialValue);
+			case SwitchyardPackage.PROPERTY_VALUE:
+				return createPropertyValueFromString(eDataType, initialValue);
+			case SwitchyardPackage.PROP_FLOAT:
+				return createPropFloatFromString(eDataType, initialValue);
+			case SwitchyardPackage.PROP_INTEGER:
+				return createPropIntegerFromString(eDataType, initialValue);
+			case SwitchyardPackage.PROP_LONG:
+				return createPropLongFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
-        switch (eDataType.getClassifierID()) {
-            case SwitchyardPackage.PROP_BOOLEAN:
-                return convertPropBooleanToString(eDataType, instanceValue);
-            case SwitchyardPackage.PROP_DOUBLE:
-                return convertPropDoubleToString(eDataType, instanceValue);
-            case SwitchyardPackage.PROPERTY_VALUE:
-                return convertPropertyValueToString(eDataType, instanceValue);
-            case SwitchyardPackage.PROP_FLOAT:
-                return convertPropFloatToString(eDataType, instanceValue);
-            case SwitchyardPackage.PROP_INTEGER:
-                return convertPropIntegerToString(eDataType, instanceValue);
-            case SwitchyardPackage.PROP_LONG:
-                return convertPropLongToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case SwitchyardPackage.PROP_BOOLEAN:
+				return convertPropBooleanToString(eDataType, instanceValue);
+			case SwitchyardPackage.PROP_DOUBLE:
+				return convertPropDoubleToString(eDataType, instanceValue);
+			case SwitchyardPackage.PROPERTY_VALUE:
+				return convertPropertyValueToString(eDataType, instanceValue);
+			case SwitchyardPackage.PROP_FLOAT:
+				return convertPropFloatToString(eDataType, instanceValue);
+			case SwitchyardPackage.PROP_INTEGER:
+				return convertPropIntegerToString(eDataType, instanceValue);
+			case SwitchyardPackage.PROP_LONG:
+				return convertPropLongToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ArtifactsType createArtifactsType() {
-        ArtifactsTypeImpl artifactsType = new ArtifactsTypeImpl();
-        return artifactsType;
-    }
+		ArtifactsTypeImpl artifactsType = new ArtifactsTypeImpl();
+		return artifactsType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ArtifactType createArtifactType() {
-        ArtifactTypeImpl artifactType = new ArtifactTypeImpl();
-        return artifactType;
-    }
+		ArtifactTypeImpl artifactType = new ArtifactTypeImpl();
+		return artifactType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ContextMapperType createContextMapperType() {
-        ContextMapperTypeImpl contextMapperType = new ContextMapperTypeImpl();
-        return contextMapperType;
-    }
+		ContextMapperTypeImpl contextMapperType = new ContextMapperTypeImpl();
+		return contextMapperType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DocumentRoot createDocumentRoot() {
-        DocumentRootImpl documentRoot = new DocumentRootImpl();
-        return documentRoot;
-    }
+		DocumentRootImpl documentRoot = new DocumentRootImpl();
+		return documentRoot;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DomainType createDomainType() {
-        DomainTypeImpl domainType = new DomainTypeImpl();
-        return domainType;
-    }
+		DomainTypeImpl domainType = new DomainTypeImpl();
+		return domainType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EsbInterface createEsbInterface() {
-        EsbInterfaceImpl esbInterface = new EsbInterfaceImpl();
-        return esbInterface;
-    }
+		EsbInterfaceImpl esbInterface = new EsbInterfaceImpl();
+		return esbInterface;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public MessageComposerType createMessageComposerType() {
-        MessageComposerTypeImpl messageComposerType = new MessageComposerTypeImpl();
-        return messageComposerType;
-    }
+		MessageComposerTypeImpl messageComposerType = new MessageComposerTypeImpl();
+		return messageComposerType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PropertiesType createPropertiesType() {
-        PropertiesTypeImpl propertiesType = new PropertiesTypeImpl();
-        return propertiesType;
-    }
+		PropertiesTypeImpl propertiesType = new PropertiesTypeImpl();
+		return propertiesType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PropertyType createPropertyType() {
-        PropertyTypeImpl propertyType = new PropertyTypeImpl();
-        return propertyType;
-    }
+		PropertyTypeImpl propertyType = new PropertyTypeImpl();
+		return propertyType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ResourceType createResourceType() {
-        ResourceTypeImpl resourceType = new ResourceTypeImpl();
-        return resourceType;
-    }
+		ResourceTypeImpl resourceType = new ResourceTypeImpl();
+		return resourceType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SwitchYardType createSwitchYardType() {
-        SwitchYardTypeImpl switchYardType = new SwitchYardTypeImpl();
-        return switchYardType;
-    }
+		SwitchYardTypeImpl switchYardType = new SwitchYardTypeImpl();
+		return switchYardType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ThrottlingType createThrottlingType() {
-        ThrottlingTypeImpl throttlingType = new ThrottlingTypeImpl();
-        return throttlingType;
-    }
+		ThrottlingTypeImpl throttlingType = new ThrottlingTypeImpl();
+		return throttlingType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TransformsType createTransformsType() {
-        TransformsTypeImpl transformsType = new TransformsTypeImpl();
-        return transformsType;
-    }
+		TransformsTypeImpl transformsType = new TransformsTypeImpl();
+		return transformsType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ValidatesType createValidatesType() {
-        ValidatesTypeImpl validatesType = new ValidatesTypeImpl();
-        return validatesType;
-    }
+		ValidatesTypeImpl validatesType = new ValidatesTypeImpl();
+		return validatesType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public JavaOperationSelectorType createJavaOperationSelectorType() {
-        JavaOperationSelectorTypeImpl javaOperationSelectorType = new JavaOperationSelectorTypeImpl();
-        return javaOperationSelectorType;
-    }
+		JavaOperationSelectorTypeImpl javaOperationSelectorType = new JavaOperationSelectorTypeImpl();
+		return javaOperationSelectorType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public RegexOperationSelectorType createRegexOperationSelectorType() {
-        RegexOperationSelectorTypeImpl regexOperationSelectorType = new RegexOperationSelectorTypeImpl();
-        return regexOperationSelectorType;
-    }
+		RegexOperationSelectorTypeImpl regexOperationSelectorType = new RegexOperationSelectorTypeImpl();
+		return regexOperationSelectorType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public StaticOperationSelectorType createStaticOperationSelectorType() {
-        StaticOperationSelectorTypeImpl staticOperationSelectorType = new StaticOperationSelectorTypeImpl();
-        return staticOperationSelectorType;
-    }
+		StaticOperationSelectorTypeImpl staticOperationSelectorType = new StaticOperationSelectorTypeImpl();
+		return staticOperationSelectorType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public XPathOperationSelectorType createXPathOperationSelectorType() {
-        XPathOperationSelectorTypeImpl xPathOperationSelectorType = new XPathOperationSelectorTypeImpl();
-        return xPathOperationSelectorType;
-    }
+		XPathOperationSelectorTypeImpl xPathOperationSelectorType = new XPathOperationSelectorTypeImpl();
+		return xPathOperationSelectorType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SecurityType createSecurityType() {
-        SecurityTypeImpl securityType = new SecurityTypeImpl();
-        return securityType;
-    }
+		SecurityTypeImpl securityType = new SecurityTypeImpl();
+		return securityType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SecuritiesType createSecuritiesType() {
-        SecuritiesTypeImpl securitiesType = new SecuritiesTypeImpl();
-        return securitiesType;
-    }
+		SecuritiesTypeImpl securitiesType = new SecuritiesTypeImpl();
+		return securitiesType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object createPropBooleanFromString(EDataType eDataType, String initialValue) {
-        if (initialValue == null) return null;
-        Object result = null;
-        RuntimeException exception = null;
-        try {
-            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        try {
-            result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        if (result != null || exception == null) return result;
+		if (initialValue == null) return null;
+		Object result = null;
+		RuntimeException exception = null;
+		try {
+			result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		try {
+			result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		if (result != null || exception == null) return result;
     
-        throw exception;
-    }
+		throw exception;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertPropBooleanToString(EDataType eDataType, Object instanceValue) {
-        if (instanceValue == null) return null;
-        if (XMLTypePackage.Literals.BOOLEAN.isInstance(instanceValue)) {
-            try {
-                String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.BOOLEAN, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
-            try {
-                String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
-    }
+		if (instanceValue == null) return null;
+		if (XMLTypePackage.Literals.BOOLEAN.isInstance(instanceValue)) {
+			try {
+				String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.BOOLEAN, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
+			try {
+				String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object createPropDoubleFromString(EDataType eDataType, String initialValue) {
-        if (initialValue == null) return null;
-        Object result = null;
-        RuntimeException exception = null;
-        try {
-            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.DOUBLE, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        try {
-            result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        if (result != null || exception == null) return result;
+		if (initialValue == null) return null;
+		Object result = null;
+		RuntimeException exception = null;
+		try {
+			result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.DOUBLE, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		try {
+			result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		if (result != null || exception == null) return result;
     
-        throw exception;
-    }
+		throw exception;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertPropDoubleToString(EDataType eDataType, Object instanceValue) {
-        if (instanceValue == null) return null;
-        if (XMLTypePackage.Literals.DOUBLE.isInstance(instanceValue)) {
-            try {
-                String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.DOUBLE, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
-            try {
-                String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
-    }
+		if (instanceValue == null) return null;
+		if (XMLTypePackage.Literals.DOUBLE.isInstance(instanceValue)) {
+			try {
+				String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.DOUBLE, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
+			try {
+				String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String createPropertyValueFromString(EDataType eDataType, String initialValue) {
-        return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
-    }
+		return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertPropertyValueToString(EDataType eDataType, Object instanceValue) {
-        return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
-    }
+		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object createPropFloatFromString(EDataType eDataType, String initialValue) {
-        if (initialValue == null) return null;
-        Object result = null;
-        RuntimeException exception = null;
-        try {
-            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.FLOAT, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        try {
-            result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        if (result != null || exception == null) return result;
+		if (initialValue == null) return null;
+		Object result = null;
+		RuntimeException exception = null;
+		try {
+			result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.FLOAT, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		try {
+			result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		if (result != null || exception == null) return result;
     
-        throw exception;
-    }
+		throw exception;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertPropFloatToString(EDataType eDataType, Object instanceValue) {
-        if (instanceValue == null) return null;
-        if (XMLTypePackage.Literals.FLOAT.isInstance(instanceValue)) {
-            try {
-                String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.FLOAT, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
-            try {
-                String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
-    }
+		if (instanceValue == null) return null;
+		if (XMLTypePackage.Literals.FLOAT.isInstance(instanceValue)) {
+			try {
+				String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.FLOAT, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
+			try {
+				String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object createPropIntegerFromString(EDataType eDataType, String initialValue) {
-        if (initialValue == null) return null;
-        Object result = null;
-        RuntimeException exception = null;
-        try {
-            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INTEGER, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        try {
-            result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        if (result != null || exception == null) return result;
+		if (initialValue == null) return null;
+		Object result = null;
+		RuntimeException exception = null;
+		try {
+			result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INTEGER, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		try {
+			result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		if (result != null || exception == null) return result;
     
-        throw exception;
-    }
+		throw exception;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertPropIntegerToStringGen(EDataType eDataType, Object instanceValue) {
-        if (instanceValue == null) return null;
-        if (XMLTypePackage.Literals.INTEGER.isInstance(instanceValue)) {
-            try {
-                String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.INTEGER, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
-            try {
-                String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
-    }
+		if (instanceValue == null) return null;
+		if (XMLTypePackage.Literals.INTEGER.isInstance(instanceValue)) {
+			try {
+				String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.INTEGER, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
+			try {
+				String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
+	}
 
     public String convertPropIntegerToString(EDataType eDataType, Object instanceValue) {
         if (instanceValue == null) return null;
         return instanceValue.toString();
     }
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object createPropLongFromString(EDataType eDataType, String initialValue) {
-        if (initialValue == null) return null;
-        Object result = null;
-        RuntimeException exception = null;
-        try {
-            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.LONG, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        try {
-            result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        if (result != null || exception == null) return result;
+		if (initialValue == null) return null;
+		Object result = null;
+		RuntimeException exception = null;
+		try {
+			result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.LONG, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		try {
+			result = createPropertyValueFromString(SwitchyardPackage.Literals.PROPERTY_VALUE, initialValue);
+			if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
+				return result;
+			}
+		}
+		catch (RuntimeException e) {
+			exception = e;
+		}
+		if (result != null || exception == null) return result;
     
-        throw exception;
-    }
+		throw exception;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertPropLongToString(EDataType eDataType, Object instanceValue) {
-        if (instanceValue == null) return null;
-        if (XMLTypePackage.Literals.LONG.isInstance(instanceValue)) {
-            try {
-                String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.LONG, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
-            try {
-                String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
-    }
+		if (instanceValue == null) return null;
+		if (XMLTypePackage.Literals.LONG.isInstance(instanceValue)) {
+			try {
+				String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.LONG, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		if (SwitchyardPackage.Literals.PROPERTY_VALUE.isInstance(instanceValue)) {
+			try {
+				String value = convertPropertyValueToString(SwitchyardPackage.Literals.PROPERTY_VALUE, instanceValue);
+				if (value != null) return value;
+			}
+			catch (Exception e) {
+				// Keep trying other member types until all have failed.
+			}
+		}
+		throw new IllegalArgumentException("Invalid value: '"+instanceValue+"' for datatype :"+eDataType.getName());
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SwitchyardPackage getSwitchyardPackage() {
-        return (SwitchyardPackage)getEPackage();
-    }
+		return (SwitchyardPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static SwitchyardPackage getPackage() {
-        return SwitchyardPackage.eINSTANCE;
-    }
+		return SwitchyardPackage.eINSTANCE;
+	}
 
 } //SwitchyardFactoryImpl

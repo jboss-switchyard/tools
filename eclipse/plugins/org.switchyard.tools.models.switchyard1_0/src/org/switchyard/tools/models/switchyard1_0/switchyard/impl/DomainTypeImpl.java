@@ -41,409 +41,409 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  */
 public class DomainTypeImpl extends EObjectImpl implements DomainType {
 	/**
-     * The cached value of the '{@link #getTransforms() <em>Transforms</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTransforms() <em>Transforms</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTransforms()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTransforms()
+	 * @generated
+	 * @ordered
+	 */
 	protected TransformsType transforms;
 
 	/**
-     * The cached value of the '{@link #getValidates() <em>Validates</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValidates() <em>Validates</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getValidates()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValidates()
+	 * @generated
+	 * @ordered
+	 */
 	protected ValidatesType validates;
 
 	/**
-     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getProperties()
-     * @generated
-     * @ordered
-     */
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
 	protected PropertiesType properties;
 
 	/**
-     * The cached value of the '{@link #getSecurities() <em>Securities</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSecurities() <em>Securities</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSecurities()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSecurities()
+	 * @generated
+	 * @ordered
+	 */
     protected SecuritiesType securities;
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
 	protected String name = NAME_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected DomainTypeImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return SwitchyardPackage.Literals.DOMAIN_TYPE;
-    }
+		return SwitchyardPackage.Literals.DOMAIN_TYPE;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TransformsType getTransforms() {
-        return transforms;
-    }
+		return transforms;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetTransforms(TransformsType newTransforms, NotificationChain msgs) {
-        TransformsType oldTransforms = transforms;
-        transforms = newTransforms;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, oldTransforms, newTransforms);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		TransformsType oldTransforms = transforms;
+		transforms = newTransforms;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, oldTransforms, newTransforms);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTransforms(TransformsType newTransforms) {
-        if (newTransforms != transforms) {
-            NotificationChain msgs = null;
-            if (transforms != null)
-                msgs = ((InternalEObject)transforms).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, null, msgs);
-            if (newTransforms != null)
-                msgs = ((InternalEObject)newTransforms).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, null, msgs);
-            msgs = basicSetTransforms(newTransforms, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, newTransforms, newTransforms));
-    }
+		if (newTransforms != transforms) {
+			NotificationChain msgs = null;
+			if (transforms != null)
+				msgs = ((InternalEObject)transforms).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, null, msgs);
+			if (newTransforms != null)
+				msgs = ((InternalEObject)newTransforms).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, null, msgs);
+			msgs = basicSetTransforms(newTransforms, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS, newTransforms, newTransforms));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ValidatesType getValidates() {
-        return validates;
-    }
+		return validates;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetValidates(ValidatesType newValidates, NotificationChain msgs) {
-        ValidatesType oldValidates = validates;
-        validates = newValidates;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__VALIDATES, oldValidates, newValidates);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		ValidatesType oldValidates = validates;
+		validates = newValidates;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__VALIDATES, oldValidates, newValidates);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setValidates(ValidatesType newValidates) {
-        if (newValidates != validates) {
-            NotificationChain msgs = null;
-            if (validates != null)
-                msgs = ((InternalEObject)validates).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__VALIDATES, null, msgs);
-            if (newValidates != null)
-                msgs = ((InternalEObject)newValidates).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__VALIDATES, null, msgs);
-            msgs = basicSetValidates(newValidates, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__VALIDATES, newValidates, newValidates));
-    }
+		if (newValidates != validates) {
+			NotificationChain msgs = null;
+			if (validates != null)
+				msgs = ((InternalEObject)validates).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__VALIDATES, null, msgs);
+			if (newValidates != null)
+				msgs = ((InternalEObject)newValidates).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__VALIDATES, null, msgs);
+			msgs = basicSetValidates(newValidates, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__VALIDATES, newValidates, newValidates));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PropertiesType getProperties() {
-        return properties;
-    }
+		return properties;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetProperties(PropertiesType newProperties, NotificationChain msgs) {
-        PropertiesType oldProperties = properties;
-        properties = newProperties;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, oldProperties, newProperties);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		PropertiesType oldProperties = properties;
+		properties = newProperties;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, oldProperties, newProperties);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setProperties(PropertiesType newProperties) {
-        if (newProperties != properties) {
-            NotificationChain msgs = null;
-            if (properties != null)
-                msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, null, msgs);
-            if (newProperties != null)
-                msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, null, msgs);
-            msgs = basicSetProperties(newProperties, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, newProperties, newProperties));
-    }
+		if (newProperties != properties) {
+			NotificationChain msgs = null;
+			if (properties != null)
+				msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, null, msgs);
+			if (newProperties != null)
+				msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, null, msgs);
+			msgs = basicSetProperties(newProperties, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__PROPERTIES, newProperties, newProperties));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getName() {
-        return name;
-    }
+		return name;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__NAME, oldName, name));
-    }
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__NAME, oldName, name));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SecuritiesType getSecurities() {
-        return securities;
-    }
+		return securities;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetSecurities(SecuritiesType newSecurities, NotificationChain msgs) {
-        SecuritiesType oldSecurities = securities;
-        securities = newSecurities;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITIES, oldSecurities, newSecurities);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		SecuritiesType oldSecurities = securities;
+		securities = newSecurities;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITIES, oldSecurities, newSecurities);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setSecurities(SecuritiesType newSecurities) {
-        if (newSecurities != securities) {
-            NotificationChain msgs = null;
-            if (securities != null)
-                msgs = ((InternalEObject)securities).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITIES, null, msgs);
-            if (newSecurities != null)
-                msgs = ((InternalEObject)newSecurities).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITIES, null, msgs);
-            msgs = basicSetSecurities(newSecurities, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITIES, newSecurities, newSecurities));
-    }
+		if (newSecurities != securities) {
+			NotificationChain msgs = null;
+			if (securities != null)
+				msgs = ((InternalEObject)securities).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITIES, null, msgs);
+			if (newSecurities != null)
+				msgs = ((InternalEObject)newSecurities).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.DOMAIN_TYPE__SECURITIES, null, msgs);
+			msgs = basicSetSecurities(newSecurities, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOMAIN_TYPE__SECURITIES, newSecurities, newSecurities));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
-                return basicSetTransforms(null, msgs);
-            case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
-                return basicSetValidates(null, msgs);
-            case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
-                return basicSetProperties(null, msgs);
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
-                return basicSetSecurities(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
+				return basicSetTransforms(null, msgs);
+			case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
+				return basicSetValidates(null, msgs);
+			case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
+				return basicSetProperties(null, msgs);
+			case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+				return basicSetSecurities(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
-                return getTransforms();
-            case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
-                return getValidates();
-            case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
-                return getProperties();
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
-                return getSecurities();
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                return getName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
+				return getTransforms();
+			case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
+				return getValidates();
+			case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
+				return getProperties();
+			case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+				return getSecurities();
+			case SwitchyardPackage.DOMAIN_TYPE__NAME:
+				return getName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
-                setTransforms((TransformsType)newValue);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
-                setValidates((ValidatesType)newValue);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
-                setProperties((PropertiesType)newValue);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
-                setSecurities((SecuritiesType)newValue);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                setName((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
+				setTransforms((TransformsType)newValue);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
+				setValidates((ValidatesType)newValue);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
+				setProperties((PropertiesType)newValue);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+				setSecurities((SecuritiesType)newValue);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__NAME:
+				setName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
-                setTransforms((TransformsType)null);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
-                setValidates((ValidatesType)null);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
-                setProperties((PropertiesType)null);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
-                setSecurities((SecuritiesType)null);
-                return;
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
+				setTransforms((TransformsType)null);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
+				setValidates((ValidatesType)null);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
+				setProperties((PropertiesType)null);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+				setSecurities((SecuritiesType)null);
+				return;
+			case SwitchyardPackage.DOMAIN_TYPE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
-                return transforms != null;
-            case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
-                return validates != null;
-            case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
-                return properties != null;
-            case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
-                return securities != null;
-            case SwitchyardPackage.DOMAIN_TYPE__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SwitchyardPackage.DOMAIN_TYPE__TRANSFORMS:
+				return transforms != null;
+			case SwitchyardPackage.DOMAIN_TYPE__VALIDATES:
+				return validates != null;
+			case SwitchyardPackage.DOMAIN_TYPE__PROPERTIES:
+				return properties != null;
+			case SwitchyardPackage.DOMAIN_TYPE__SECURITIES:
+				return securities != null;
+			case SwitchyardPackage.DOMAIN_TYPE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
+	}
 
 } //DomainTypeImpl

@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  */
 public abstract class SwitchYardBindingTypeImpl extends BindingImpl implements SwitchYardBindingType {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SwitchYardBindingTypeImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE;
-    }
+		return SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE;
+	}
 
 } //SwitchYardBindingTypeImpl
