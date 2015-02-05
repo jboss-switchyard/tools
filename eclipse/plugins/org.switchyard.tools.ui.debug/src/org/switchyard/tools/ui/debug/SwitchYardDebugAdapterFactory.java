@@ -42,7 +42,6 @@ import org.eclipse.ui.model.IWorkbenchAdapter;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.IImageDescriptors;
-import org.switchyard.tools.ui.debug.structure.JavaInterfaceVariable;
 import org.switchyard.tools.ui.debug.structure.SwitchYardModelProxyFactory;
 
 /**
@@ -60,11 +59,7 @@ public class SwitchYardDebugAdapterFactory implements IAdapterFactory {
     private static final IElementLabelProvider LABEL_PROVIDER = new JavaVariableLabelProvider() {
         @Override
         protected ISchedulingRule getRule(ILabelUpdate update) {
-            JavaInterfaceVariable element = (JavaInterfaceVariable) update.getElement();
-            if (element.hasGetterExpression()) {
-                return null;
-            }
-            return super.getRule(update);
+            return null;
         };
     };
 
