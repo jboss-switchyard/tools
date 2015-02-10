@@ -39,7 +39,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
@@ -106,9 +105,11 @@ import org.eclipse.graphiti.ui.editor.IDiagramContainerUI;
 import org.eclipse.graphiti.ui.editor.IDiagramEditorInput;
 import org.eclipse.graphiti.ui.internal.editor.DomainModelWorkspaceSynchronizerDelegate;
 import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.operation.IThreadListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
@@ -118,6 +119,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.internal.WorkbenchMessages;
+import org.jboss.tools.foundation.core.jobs.BarrierProgressWaitJob;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
@@ -883,7 +885,13 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 return null;
             }
 
-            switchYardResource.setGeneratedResource(loadGeneratedResource(_modelFile));
+            Resource r = loadGeneratedResource(_modelFile);
+            if( r == null ) {
+            	Activator.logStatus(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unable to load generated resource")); // TODO this message sucks, make a better one ;) 
+            	// TODO ERROR HANDLE THIS, Then Return
+            	return null;  // ?  Your choice here
+            }
+            switchYardResource.setGeneratedResource(r);
 
             try {
                 switchYardResource.load(getEditingDomain().getResourceSet().getLoadOptions());
@@ -993,11 +1001,32 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         }
 
         private Resource loadGeneratedResource(IFile sourceFile) {
-            ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(
-                    sourceFile.getProject());
-            if (switchYardProject.needsLoading()) {
-                switchYardProject.load(new NullProgressMonitor());
-            }
+        	final ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(
+        			sourceFile.getProject());
+        	if (switchYardProject.needsLoading()) {
+        		try {
+        			IRunnableWithProgress op = new IRunnableWithProgress() {
+        				@Override
+        				public void run(IProgressMonitor mon) throws InvocationTargetException,
+        				InterruptedException {
+        					try {
+        						loadSwitchYardProject(switchYardProject, mon);
+        					} catch(CoreException ce) {
+        						throw new InvocationTargetException(ce);
+        					}
+        				}
+        			};
+        			new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, true, op);
+        		} catch (InvocationTargetException e) {
+        			// handle exception
+        			return null;
+        		} catch (InterruptedException e) {
+        			// handle cancelation
+        			return null;
+        		}
+        	}
+        	
+        	
             IFile generatedFile = switchYardProject.getOutputSwitchYardConfigurationFile();
             if (generatedFile == null) {
                 return null;
@@ -1037,6 +1066,30 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             return generatedResource;
         }
 
+        
+        private void loadSwitchYardProject(final ISwitchYardProject project, IProgressMonitor monitor) throws CoreException {
+    		BarrierProgressWaitJob j = new BarrierProgressWaitJob("Load SwitchYard Project",  
+    				new BarrierProgressWaitJob.IRunnableWithProgress() {
+    			public Object run(IProgressMonitor mon) throws Exception {
+    				project.load(mon);
+    		    	return Boolean.TRUE;
+    			}
+    		});
+    		j.schedule();
+    		// This join will also poll the provided monitor for cancelations
+    		j.monitorSafeJoin(monitor);
+    		if( monitor.isCanceled()) {
+    			// User has canceled. Interrupt the running job so if it's blocked on IO, it gives up
+    			j.getThread().interrupt();
+    			throw new CoreException(new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "User canceled operation", j.getThrowable()));  // Customize this as you wish
+    		}
+    		if( j.getThrowable() != null ) {
+    			if( j.getThrowable() instanceof CoreException)
+    				throw (CoreException)j.getThrowable();
+    			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unable to load SwitchYard Project", j.getThrowable()));  // Customize this as you wish
+    		}
+        }
+        
         @Override
         protected Set<Resource> save(TransactionalEditingDomain editingDomain, Map<Resource, Map<?, ?>> saveOptions,
                 IProgressMonitor monitor) {
