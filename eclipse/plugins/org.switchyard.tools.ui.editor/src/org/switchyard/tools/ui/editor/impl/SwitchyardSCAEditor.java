@@ -119,7 +119,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.internal.WorkbenchMessages;
-import org.jboss.tools.foundation.core.jobs.BarrierProgressWaitJob;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
@@ -265,7 +264,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
     @Override
     protected DiagramBehavior createDiagramBehavior() {
-        SwitchYardDiagramBehavior diagramBehavior =  new SwitchYardDiagramBehavior(this);
+        SwitchYardDiagramBehavior diagramBehavior = new SwitchYardDiagramBehavior(this);
         diagramBehavior.setParentPart(this);
         diagramBehavior.initDefaultBehaviors();
         return diagramBehavior;
@@ -274,7 +273,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     @Override
     protected void createActions() {
         super.createActions();
-        
+
         getActionRegistry().registerAction(new PropertiesDialogAction(this));
     }
 
@@ -471,7 +470,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
     @Override
     public void gotoMarker(IMarker marker) {
-        final EObject target = getTargetObject(marker.getAttribute(EValidator.URI_ATTRIBUTE, null), MergedModelUtil.getAdapterFactory(getResourceSet()));
+        final EObject target = getTargetObject(marker.getAttribute(EValidator.URI_ATTRIBUTE, null),
+                MergedModelUtil.getAdapterFactory(getResourceSet()));
         if (target == null) {
             return;
         }
@@ -610,23 +610,25 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 public void breakpointsRemoved(final IBreakpoint[] breakpoints, final IMarkerDelta[] deltas) {
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
                         public void run() {
-                            if (breakpoints == null || getGraphicalControl() == null || getGraphicalControl().isDisposed()) {
+                            if (breakpoints == null || getGraphicalControl() == null
+                                    || getGraphicalControl().isDisposed()) {
                                 return;
                             }
                             removeBreakpoints(breakpoints);
                         };
                     });
                 }
-                
+
                 @Override
                 public void breakpointsChanged(final IBreakpoint[] breakpoints, final IMarkerDelta[] deltas) {
                 }
-                
+
                 @Override
                 public void breakpointsAdded(final IBreakpoint[] breakpoints) {
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
                         public void run() {
-                            if (breakpoints == null || getGraphicalControl() == null || getGraphicalControl().isDisposed()) {
+                            if (breakpoints == null || getGraphicalControl() == null
+                                    || getGraphicalControl().isDisposed()) {
                                 return;
                             }
                             final IFeatureProvider featureProvider = getDiagramTypeProvider().getFeatureProvider();
@@ -657,7 +659,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             _switchYardProjectListener = new ISwitchYardProjectListener() {
                 @Override
                 public void projectUpdated(final ISwitchYardProject project, Set<Type> types) {
-                    if ((getGraphicalControl() != null && getGraphicalControl().isDisposed()) || !types.contains(Type.CONFIG)) {
+                    if ((getGraphicalControl() != null && getGraphicalControl().isDisposed())
+                            || !types.contains(Type.CONFIG)) {
                         return;
                     } else if (_modelFile.equals(project.getSwitchYardConfigurationFile())) {
                         _needsSynchronization = true;
@@ -670,8 +673,9 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                         }
                         getEditorSite().getShell().getDisplay().asyncExec(new Runnable() {
                             public void run() {
-                                getDiagramBehavior().executeFeature(new SynchronizeGeneratedModelFeature(getDiagramTypeProvider()
-                                        .getFeatureProvider(), true), new CustomContext());
+                                getDiagramBehavior().executeFeature(
+                                        new SynchronizeGeneratedModelFeature(getDiagramTypeProvider()
+                                                .getFeatureProvider(), true), new CustomContext());
                             }
                         });
                     }
@@ -744,7 +748,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             }
         } else {
             for (IMarker marker : deletedMarkers) {
-                final EObject eobject = getTargetObject(marker.getAttribute(EValidator.URI_ATTRIBUTE, null), mergeAdapter);
+                final EObject eobject = getTargetObject(marker.getAttribute(EValidator.URI_ATTRIBUTE, null),
+                        mergeAdapter);
                 if (eobject == null) {
                     continue;
                 }
@@ -816,7 +821,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     private ResourceSet getResourceSet() {
         return getEditingDomain().getResourceSet();
     }
-    
+
     /**
      * Hook for use from workspace model synchronizer.
      * 
@@ -826,7 +831,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     }
 
     private static final class RuleTransferDelegatingRunnable implements IRunnableWithProgress, IThreadListener {
-        
+
         private final IRunnableWithProgress _delegate;
 
         private RuleTransferDelegatingRunnable(IRunnableWithProgress delegate) {
@@ -851,7 +856,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
             _delegate.run(monitor);
         }
-        
+
     }
 
     private final class SwitchYardPersistencyBehavior extends DefaultPersistencyBehavior {
@@ -886,10 +891,11 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             }
 
             Resource r = loadGeneratedResource(_modelFile);
-            if( r == null ) {
-            	Activator.logStatus(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unable to load generated resource")); // TODO this message sucks, make a better one ;) 
-            	// TODO ERROR HANDLE THIS, Then Return
-            	return null;  // ?  Your choice here
+            if (r == null) {
+                ErrorUtils.showErrorWithLogging(new Status(Status.ERROR, Activator.PLUGIN_ID, MessageFormat.format(
+                        Messages.error_errorLoadingFile, _modelFile.getName(), "Unable to load generated resource"),
+                        null));
+                return null;
             }
             switchYardResource.setGeneratedResource(r);
 
@@ -914,7 +920,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 final List<IBreakpoint> breakpoints = new ArrayList<IBreakpoint>();
                 for (IMarker marker : _modelFile.getProject().findMarkers(
                         SwitchYardDebugUtil.BASE_BREAKPOINT_MARKER_ID, true, IResource.DEPTH_ZERO)) {
-                    final IBreakpoint breakpoint = DebugPlugin.getDefault().getBreakpointManager().getBreakpoint(marker);
+                    final IBreakpoint breakpoint = DebugPlugin.getDefault().getBreakpointManager()
+                            .getBreakpoint(marker);
                     if (marker != null) {
                         breakpoints.add(breakpoint);
                     }
@@ -1001,32 +1008,30 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         }
 
         private Resource loadGeneratedResource(IFile sourceFile) {
-        	final ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(
-        			sourceFile.getProject());
-        	if (switchYardProject.needsLoading()) {
-        		try {
-        			IRunnableWithProgress op = new IRunnableWithProgress() {
-        				@Override
-        				public void run(IProgressMonitor mon) throws InvocationTargetException,
-        				InterruptedException {
-        					try {
-        						loadSwitchYardProject(switchYardProject, mon);
-        					} catch(CoreException ce) {
-        						throw new InvocationTargetException(ce);
-        					}
-        				}
-        			};
-        			new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, true, op);
-        		} catch (InvocationTargetException e) {
-        			// handle exception
-        			return null;
-        		} catch (InterruptedException e) {
-        			// handle cancelation
-        			return null;
-        		}
-        	}
-        	
-        	
+            final ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(
+                    sourceFile.getProject());
+            if (switchYardProject.needsLoading()) {
+                try {
+                    IRunnableWithProgress op = new IRunnableWithProgress() {
+                        @Override
+                        public void run(IProgressMonitor mon) throws InvocationTargetException, InterruptedException {
+                            try {
+                                loadSwitchYardProject(switchYardProject, mon);
+                            } catch (CoreException ce) {
+                                throw new InvocationTargetException(ce);
+                            }
+                        }
+                    };
+                    new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, true, op);
+                } catch (InvocationTargetException e) {
+                    // handle exception
+                    return null;
+                } catch (InterruptedException e) {
+                    // handle cancelation
+                    return null;
+                }
+            }
+
             IFile generatedFile = switchYardProject.getOutputSwitchYardConfigurationFile();
             if (generatedFile == null) {
                 return null;
@@ -1066,30 +1071,38 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             return generatedResource;
         }
 
-        
-        private void loadSwitchYardProject(final ISwitchYardProject project, IProgressMonitor monitor) throws CoreException {
-    		BarrierProgressWaitJob j = new BarrierProgressWaitJob("Load SwitchYard Project",  
-    				new BarrierProgressWaitJob.IRunnableWithProgress() {
-    			public Object run(IProgressMonitor mon) throws Exception {
-    				project.load(mon);
-    		    	return Boolean.TRUE;
-    			}
-    		});
-    		j.schedule();
-    		// This join will also poll the provided monitor for cancelations
-    		j.monitorSafeJoin(monitor);
-    		if( monitor.isCanceled()) {
-    			// User has canceled. Interrupt the running job so if it's blocked on IO, it gives up
-    			j.getThread().interrupt();
-    			throw new CoreException(new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "User canceled operation", j.getThrowable()));  // Customize this as you wish
-    		}
-    		if( j.getThrowable() != null ) {
-    			if( j.getThrowable() instanceof CoreException)
-    				throw (CoreException)j.getThrowable();
-    			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unable to load SwitchYard Project", j.getThrowable()));  // Customize this as you wish
-    		}
+        private void loadSwitchYardProject(final ISwitchYardProject project, IProgressMonitor monitor)
+                throws CoreException {
+            BarrierProgressWaitJob j = new BarrierProgressWaitJob("Load SwitchYard Project",
+                    new BarrierProgressWaitJob.IRunnableWithProgress() {
+                        public Object run(IProgressMonitor mon) throws Exception {
+                            project.load(mon);
+                            return Boolean.TRUE;
+                        }
+                    });
+            j.schedule();
+            // This join will also poll the provided monitor for cancelations
+            j.monitorSafeJoin(monitor);
+            if (monitor.isCanceled()) {
+                // User has canceled. Interrupt the running job so if it's
+                // blocked on IO, it gives up
+                j.getThread().interrupt();
+                throw new CoreException(new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "User canceled operation",
+                        j.getThrowable())); // Customize this as you wish
+            }
+            if (j.getThrowable() != null) {
+                if (j.getThrowable() instanceof CoreException) {
+                    throw (CoreException) j.getThrowable();
+                }
+                throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+                        "Unable to load SwitchYard Project", j.getThrowable())); // Customize
+                                                                                 // this
+                                                                                 // as
+                                                                                 // you
+                                                                                 // wish
+            }
         }
-        
+
         @Override
         protected Set<Resource> save(TransactionalEditingDomain editingDomain, Map<Resource, Map<?, ?>> saveOptions,
                 IProgressMonitor monitor) {
@@ -1172,9 +1185,10 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         protected void initializeEditingDomain(TransactionalEditingDomain domain) {
             ResourceSet resourceSet = domain.getResourceSet();
 
-            // force the right content factory in case it gets changed elsewhere unexpectedly
-            resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().
-                put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
+            // force the right content factory in case it gets changed elsewhere
+            // unexpectedly
+            resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap()
+                    .put(SwitchyardResourceFactoryImpl.CONTENT_TYPE, new SwitchyardResourceFactoryImpl());
 
             // add the adapter factory for tracking validation status
             resourceSet.getAdapterFactories().add(new ValidationStatusAdapterFactory());
@@ -1223,13 +1237,13 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             getDiagramBehavior().executeFeature(feature, context);
         }
     }
-    
+
     private final class SwitchYardDiagramBehavior extends DiagramBehavior {
 
         public SwitchYardDiagramBehavior(IDiagramContainerUI diagramContainer) {
             super(diagramContainer);
         }
-        
+
         @Override
         protected boolean isDirty() {
             return getPersistencyBehavior().isDirty();
@@ -1237,13 +1251,15 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
         @Override
         protected void initDefaultBehaviors() {
-            // this needs to be exposed to our create method in SwitchyardSCAEditor
+            // this needs to be exposed to our create method in
+            // SwitchyardSCAEditor
             super.initDefaultBehaviors();
         }
 
         @Override
         protected void setParentPart(IWorkbenchPart parentPart) {
-            // this needs to be exposed to our create method in SwitchyardSCAEditor
+            // this needs to be exposed to our create method in
+            // SwitchyardSCAEditor
             super.setParentPart(parentPart);
         }
 
@@ -1257,7 +1273,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             return new DefaultMarkerBehavior(this) {
                 @Override
                 public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-                    // we have an external validator that creates problem markers
+                    // we have an external validator that creates problem
+                    // markers
                     return Diagnostic.OK_INSTANCE;
                 }
             };
