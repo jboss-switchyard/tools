@@ -84,12 +84,18 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
         if (rtn_code == Window.OK) {
             if (dialog.getFaultType() != null && !dialog.getFaultType().trim().isEmpty()) {
                 _interface.setFaultType(dialog.getFaultType());
+            } else {
+                _interface.setFaultType(null);
             }
             if (dialog.getOutputType() != null && !dialog.getOutputType().trim().isEmpty()) {
                 _interface.setOutputType(dialog.getOutputType());
+            } else {
+                _interface.setOutputType(null);
             }
             if (dialog.getInputType() != null && !dialog.getInputType().trim().isEmpty()) {
                 _interface.setInputType(dialog.getInputType());
+            } else {
+                _interface.setInputType(null);
             }
             return true;
         }
