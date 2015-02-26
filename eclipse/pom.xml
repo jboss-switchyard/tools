@@ -22,7 +22,7 @@
   <properties>
     <tycho-version>0.21.0</tycho-version>
     <tycho-extras-version>${tycho-version}</tycho-extras-version>
-    <version.jbtis.target-platform>4.1.8.Final</version.jbtis.target-platform>
+    <version.jbtis.target-platform>4.2.1.Final</version.jbtis.target-platform>
   </properties>
 
   <modules>
@@ -175,7 +175,7 @@
               <artifactId>target-platform</artifactId>
               <version>${version.jbtis.target-platform}</version>
               <type>target</type>
-              <classifier>base</classifier>
+              <classifier>base-ea</classifier>
             </artifact>
           </target>
           <environments>
