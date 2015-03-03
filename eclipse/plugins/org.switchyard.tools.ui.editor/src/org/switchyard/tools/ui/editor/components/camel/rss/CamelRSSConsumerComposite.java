@@ -19,6 +19,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
@@ -37,6 +39,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.rss.CamelRSSBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.CompoundValidator;
@@ -85,6 +88,19 @@ public class CamelRSSConsumerComposite extends AbstractSYBindingComposite  {
             _binding = (CamelRSSBindingType) impl;
 
             _bindingValue.setValue(_binding);
+            
+            if (_binding.getConsume() == null) {
+                TransactionalEditingDomain domain = getDomain(_binding);
+                if (domain != null) {
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        protected void doExecute() {
+                            _binding.setConsume(RssFactory.eINSTANCE.createRSSScheduledPollConsumerType());
+                        }
+                    });
+                } else {
+                    _binding.setConsume(RssFactory.eINSTANCE.createRSSScheduledPollConsumerType());
+                }
+            }
 
             _filterCheckbox.setEnabled(_splitEntriesCheckbox.getSelection());
             _lastUpdateText.setEnabled(_splitEntriesCheckbox.getSelection());

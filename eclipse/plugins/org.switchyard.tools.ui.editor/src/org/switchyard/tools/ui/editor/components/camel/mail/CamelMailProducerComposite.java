@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -35,6 +37,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
@@ -87,6 +90,19 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
             _binding = (CamelMailBindingType) impl;
 
             _bindingValue.setValue(_binding);
+            
+            if (_binding.getProduce() == null) {
+                TransactionalEditingDomain domain = getDomain(_binding);
+                if (domain != null) {
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        protected void doExecute() {
+                            _binding.setProduce(MailFactory.eINSTANCE.createCamelMailProducerType());
+                        }
+                    });
+                } else {
+                    _binding.setProduce(MailFactory.eINSTANCE.createCamelMailProducerType());
+                }
+            }
 
         } else {
             _bindingValue.setValue(null);

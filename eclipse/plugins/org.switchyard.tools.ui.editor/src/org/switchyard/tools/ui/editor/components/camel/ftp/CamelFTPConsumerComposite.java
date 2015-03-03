@@ -24,6 +24,8 @@ import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -39,6 +41,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
@@ -93,6 +96,20 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
         if (impl instanceof CamelFtpBindingType) {
             this._binding = (CamelFtpBindingType) impl;
             _bindingValue.setValue(_binding);
+
+            if (_binding.getConsume() == null) {
+                TransactionalEditingDomain domain = getDomain(_binding);
+                if (domain != null) {
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        protected void doExecute() {
+                            _binding.setConsume(FtpFactory.eINSTANCE.createRemoteFileConsumerType());
+                        }
+                    });
+                } else {
+                    _binding.setConsume(FtpFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+            }
+
             // refresh the operation selector control
             if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed() && getTargetObject() != null) {
                 _opSelectorComposite.setTargetObject(getTargetObject());

@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -53,6 +55,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJpaBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
@@ -100,6 +103,20 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         if (impl instanceof CamelJpaBindingType) {
             this._binding = (CamelJpaBindingType) impl;
             _bindingValue.setValue(_binding);
+
+            if (_binding.getProduce() == null) {
+                TransactionalEditingDomain domain = getDomain(_binding);
+                if (domain != null) {
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        protected void doExecute() {
+                            _binding.setProduce(JpaFactory.eINSTANCE.createJpaProducerType());
+                        }
+                    });
+                } else {
+                    _binding.setProduce(JpaFactory.eINSTANCE.createJpaProducerType());
+                }
+            }
+
             final Resource resource = MergedModelUtil.getSwitchYard((EObject) getTargetObject()).eResource();
             if (resource.getURI().isPlatformResource()) {
                 final IFile file = ResourcesPlugin.getWorkspace().getRoot()

@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -33,6 +35,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
@@ -77,6 +80,19 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
         if (impl instanceof CamelFileBindingType) {
             this._binding = (CamelFileBindingType) impl;
             _bindingValue.setValue(_binding);
+
+            if (_binding.getProduce() == null) {
+                TransactionalEditingDomain domain = getDomain(_binding);
+                if (domain != null) {
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        protected void doExecute() {
+                            _binding.setProduce(FileFactory.eINSTANCE.createFileProducerType());
+                        }
+                    });
+                } else {
+                    _binding.setProduce(FileFactory.eINSTANCE.createFileProducerType());
+                }
+            }
         } else {
             _bindingValue.setValue(null);
         }
