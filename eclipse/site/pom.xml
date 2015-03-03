@@ -18,9 +18,75 @@
     <update.site.name>SwitchYard</update.site.name>
     <update.site.version>${qualifiedVersion}</update.site.version>
     <update.site.description>Continuous Integration</update.site.description>
-    <target.eclipse.version>4.3 (Kepler) or 4.4 (Luna)</target.eclipse.version>
+    <target.eclipse.version>4.4 (Luna)</target.eclipse.version>
   </properties>
 
+  <profiles>  
+
+    <!-- integration build profile -->
+    <profile>
+      <id>integration</id>
+
+      <activation>
+        <property>
+          <name>BUILD_TYPE</name>
+          <value>integration</value>
+        </property>
+      </activation>
+
+      <properties>
+        <update.site.description>Integration Build</update.site.description>
+      </properties>
+
+    </profile>
+
+    <!-- development build profile -->
+    <profile>
+      <id>development</id>
+
+      <activation>
+        <property>
+          <name>BUILD_TYPE</name>
+          <value>development</value>
+        </property>
+      </activation>
+
+      <properties>
+        <update.site.description>Development Milestone</update.site.description>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>stable</id>
+
+      <activation>
+        <property>
+          <name>BUILD_TYPE</name>
+          <value>stable</value>
+        </property>
+      </activation>
+
+      <properties>
+        <update.site.description>Stable Release</update.site.description>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>earlyaccess</id>
+
+      <activation>
+        <property>
+          <name>BUILD_TYPE</name>
+          <value>stable</value>
+        </property>
+      </activation>
+
+      <properties>
+        <update.site.description>Early Access Release</update.site.description>
+      </properties>
+    </profile>
+  </profiles>
+  
   <build>
     <finalName>${project.artifactId}-${qualifiedVersion}</finalName>
     <plugins>
