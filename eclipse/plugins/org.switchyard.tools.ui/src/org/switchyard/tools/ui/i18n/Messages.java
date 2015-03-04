@@ -765,6 +765,8 @@ public final class Messages extends NLS {
     public static String ValidationProblem_UnresolvableCamelRouteClass;
 
     public static String ValidationProblem_UnresolvableServiceInterface;
+    
+    public static String ValidationProblem_ServiceInterfaceHasMethodWithMultipleParameters;
 
     public static String ValidationProblem_UnresolvedReference;
 

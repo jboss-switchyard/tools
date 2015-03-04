@@ -245,8 +245,12 @@ public final class SwitchYardModelUtils {
      */
     public static ServiceInterface getServiceInterface(Interface intf) throws Exception {
         if (intf instanceof JavaInterface) {
-            JavaInterface javaIntfc = (JavaInterface) intf;
-            return JavaService.fromClass(Classes.forName(javaIntfc.getInterface()));
+            try {
+                JavaInterface javaIntfc = (JavaInterface) intf;
+                return JavaService.fromClass(Classes.forName(javaIntfc.getInterface()));
+            } catch (RuntimeException e) {
+                throw e;
+            }
         } else if (intf instanceof WSDLPortType) {
             WSDLPortType wsdlIntfc = (WSDLPortType) intf;
             return WSDLService.fromWSDL(wsdlIntfc.getInterface());

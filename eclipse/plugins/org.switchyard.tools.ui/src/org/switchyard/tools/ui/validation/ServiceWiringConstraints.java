@@ -149,6 +149,11 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
             return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
                     problem.getMessage());
         }
+        if (_wiring.getServiceInterfaces().get(contract) == WiringValidationContext.INVALID_SERVICE_INTERFACE) {
+            final ValidationProblem problem = ValidationProblem.ServiceInterfaceHasMultipleParameters;
+            return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
+                    problem.getMessage());
+        }
         return null;
     }
 

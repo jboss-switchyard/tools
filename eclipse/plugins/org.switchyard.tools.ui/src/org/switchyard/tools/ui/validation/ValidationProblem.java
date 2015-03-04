@@ -174,7 +174,10 @@ public enum ValidationProblem {
             IStatus.ERROR, false),
     /** The name used for the composite service is not unique. */
     DuplicateServiceName(Messages.ValidationProblem_DuplicateServiceName,
-            false);
+            false),
+    /** The service interface has a method with multiple parameters. */
+    ServiceInterfaceHasMultipleParameters(
+            Messages.ValidationProblem_ServiceInterfaceHasMethodWithMultipleParameters, false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
     public static final String PROBLEM_CODE = Messages.ValidationProblem_ValidateProblem;

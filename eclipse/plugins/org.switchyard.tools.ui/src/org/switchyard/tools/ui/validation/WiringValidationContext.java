@@ -262,7 +262,15 @@ final class WiringValidationContext {
                             _serviceInterfaces.put((Contract) eobject, si);
                         }
                     } catch (Exception e) {
-                        _serviceInterfaces.put((Contract) eobject, URESOLVABLE_SERVICE_INTERFACE);
+                        if (e instanceof RuntimeException) {
+                            if (e.getMessage().startsWith("SWITCHYARD010004")) {
+                                _serviceInterfaces.put((Contract) eobject, INVALID_SERVICE_INTERFACE);
+                            } else {
+                                _serviceInterfaces.put((Contract) eobject, URESOLVABLE_SERVICE_INTERFACE);
+                            }
+                        } else {
+                            _serviceInterfaces.put((Contract) eobject, URESOLVABLE_SERVICE_INTERFACE);
+                        }
                     }
                 }
             }
@@ -276,6 +284,23 @@ final class WiringValidationContext {
     }
 
     static final ServiceInterface URESOLVABLE_SERVICE_INTERFACE = new ServiceInterface() {
+        @Override
+        public String getType() {
+            return null;
+        }
+
+        @Override
+        public Set<ServiceOperation> getOperations() {
+            return Collections.emptySet();
+        }
+
+        @Override
+        public ServiceOperation getOperation(String name) {
+            return null;
+        }
+    };
+
+    static final ServiceInterface INVALID_SERVICE_INTERFACE = new ServiceInterface() {
         @Override
         public String getType() {
             return null;
