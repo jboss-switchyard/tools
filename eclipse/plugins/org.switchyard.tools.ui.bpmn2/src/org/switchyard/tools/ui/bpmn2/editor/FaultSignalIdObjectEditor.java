@@ -72,7 +72,7 @@ public class FaultSignalIdObjectEditor extends ComboObjectEditor {
     }
 
     @Override
-    protected boolean setValue(Object result) {
+	public boolean setValue(Object result) {
         if (result instanceof Signal) {
             return super.setValue(((Signal) result).getId());
         }

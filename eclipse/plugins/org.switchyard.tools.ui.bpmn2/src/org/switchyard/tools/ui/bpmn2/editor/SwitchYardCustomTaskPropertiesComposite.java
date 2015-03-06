@@ -190,7 +190,7 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                         editor = createTextObjectEditor(association, fromExpression, attribute);
                         ((TextObjectEditor) editor).setMultiLine(false);
                     }
-                    editor.createControl(getAttributesParent(), ModelUtil.toDisplayName(name));
+                    editor.createControl(getAttributesParent(), ModelUtil.toCanonicalString(name));
                 }
             }
         }
@@ -206,11 +206,11 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
                 if (sources == null || sources.isEmpty()) {
                     return super.getText();
                 }
-                return ModelUtil.getDisplayName(sources.get(0));
+                return ModelUtil.getTextValue(sources.get(0));
             }
 
             @Override
-            protected boolean setValue(Object result) {
+			public boolean setValue(Object result) {
                 if (result != null && result.equals(getText())) {
                     return false;
                 }

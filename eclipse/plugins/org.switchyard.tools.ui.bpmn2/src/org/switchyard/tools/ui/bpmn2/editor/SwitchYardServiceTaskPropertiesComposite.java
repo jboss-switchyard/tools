@@ -254,7 +254,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                             editor = new TextObjectEditor(this, fromExpression, attribute);
                             ((TextObjectEditor) editor).setMultiLine(false);
                         }
-                        editor.createControl(getAttributesParent(), ModelUtil.toDisplayName(name));
+                        editor.createControl(getAttributesParent(), ModelUtil.toCanonicalString(name));
                     }
                 }
             }
