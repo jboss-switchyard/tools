@@ -210,7 +210,7 @@ public class SwitchYardCustomTaskPropertiesComposite extends JbpmCustomTaskDetai
             }
 
             @Override
-			public boolean setValue(Object result) {
+            public boolean setValue(Object result) {
                 if (result != null && result.equals(getText())) {
                     return false;
                 }

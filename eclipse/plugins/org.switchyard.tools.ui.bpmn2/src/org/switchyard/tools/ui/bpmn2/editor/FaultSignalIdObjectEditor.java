@@ -72,14 +72,14 @@ public class FaultSignalIdObjectEditor extends ComboObjectEditor {
     }
 
     @Override
-	public boolean setValue(Object result) {
+    public boolean setValue(Object result) {
         if (result instanceof Signal) {
             return super.setValue(((Signal) result).getId());
         }
         return super.setValue(result);
     }
 
-    protected EObject createObject() throws Exception {
+   protected EObject createObject() throws Exception {
         FeatureEditingDialog dialog = new FeatureEditingDialog(getDiagramEditor(), ModelUtil.findNearestAncestor(
                 object, new Class[] {Definitions.class }), Bpmn2Package.eINSTANCE.getDefinitions_RootElements(), null);
         dialog.setFeatureEType(Bpmn2Package.eINSTANCE.getSignal());
