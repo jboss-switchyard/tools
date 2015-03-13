@@ -85,6 +85,46 @@ public class SapAdapterFactory extends AdapterFactoryImpl {
                 return createCamelSapBindingTypeAdapter();
             }
             @Override
+            public Adapter caseCamelSapIDocDestinationType(CamelSapIDocDestinationType object) {
+                return createCamelSapIDocDestinationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapIDocListDestinationType(CamelSapIDocListDestinationType object) {
+                return createCamelSapIDocListDestinationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapIDocListServerType(CamelSapIDocListServerType object) {
+                return createCamelSapIDocListServerTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapQIDocDestinationType(CamelSapQIDocDestinationType object) {
+                return createCamelSapQIDocDestinationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapQIDocListDestinationType(CamelSapQIDocListDestinationType object) {
+                return createCamelSapQIDocListDestinationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapQRfcDestinationType(CamelSapQRfcDestinationType object) {
+                return createCamelSapQRfcDestinationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapSRfcDestinationType(CamelSapSRfcDestinationType object) {
+                return createCamelSapSRfcDestinationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapSRfcServerType(CamelSapSRfcServerType object) {
+                return createCamelSapSRfcServerTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapTRfcDestinationType(CamelSapTRfcDestinationType object) {
+                return createCamelSapTRfcDestinationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSapTRfcServerType(CamelSapTRfcServerType object) {
+                return createCamelSapTRfcServerTypeAdapter();
+            }
+            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
             }
@@ -163,6 +203,146 @@ public class SapAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCamelSapBindingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType <em>Camel Sap IDoc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType
+     * @generated
+     */
+    public Adapter createCamelSapIDocDestinationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType <em>Camel Sap IDoc List Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType
+     * @generated
+     */
+    public Adapter createCamelSapIDocListDestinationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType <em>Camel Sap IDoc List Server Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType
+     * @generated
+     */
+    public Adapter createCamelSapIDocListServerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType <em>Camel Sap QI Doc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType
+     * @generated
+     */
+    public Adapter createCamelSapQIDocDestinationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType <em>Camel Sap QI Doc List Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType
+     * @generated
+     */
+    public Adapter createCamelSapQIDocListDestinationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType <em>Camel Sap QRfc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType
+     * @generated
+     */
+    public Adapter createCamelSapQRfcDestinationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType <em>Camel Sap SRfc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType
+     * @generated
+     */
+    public Adapter createCamelSapSRfcDestinationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType <em>Camel Sap SRfc Server Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType
+     * @generated
+     */
+    public Adapter createCamelSapSRfcServerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType <em>Camel Sap TRfc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType
+     * @generated
+     */
+    public Adapter createCamelSapTRfcDestinationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType <em>Camel Sap TRfc Server Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType
+     * @generated
+     */
+    public Adapter createCamelSapTRfcServerTypeAdapter() {
         return null;
     }
 

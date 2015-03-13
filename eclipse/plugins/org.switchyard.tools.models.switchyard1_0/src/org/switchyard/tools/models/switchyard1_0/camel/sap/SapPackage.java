@@ -507,40 +507,94 @@ public interface SapPackage extends EPackage {
     int CAMEL_SAP_BINDING_TYPE__ADDITIONAL_URI_PARAMETERS = BASE_CAMEL_BINDING__ADDITIONAL_URI_PARAMETERS;
 
     /**
-     * The feature id for the '<em><b>Server</b></em>' attribute.
+     * The feature id for the '<em><b>Idoclist Server</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_SAP_BINDING_TYPE__SERVER = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+    int CAMEL_SAP_BINDING_TYPE__IDOCLIST_SERVER = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Destination</b></em>' attribute.
+     * The feature id for the '<em><b>Srfc Server</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_SAP_BINDING_TYPE__DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+    int CAMEL_SAP_BINDING_TYPE__SRFC_SERVER = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Rfc Name</b></em>' attribute.
+     * The feature id for the '<em><b>Trfc Server</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_SAP_BINDING_TYPE__RFC_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+    int CAMEL_SAP_BINDING_TYPE__TRFC_SERVER = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
 
     /**
-     * The feature id for the '<em><b>Transacted</b></em>' attribute.
+     * The feature id for the '<em><b>Idoc Destination</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_SAP_BINDING_TYPE__TRANSACTED = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+    int CAMEL_SAP_BINDING_TYPE__IDOC_DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Idoclist Destination</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_BINDING_TYPE__IDOCLIST_DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Qidoc Destination</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_BINDING_TYPE__QIDOC_DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Qidoclist Destination</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_BINDING_TYPE__QIDOCLIST_DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Qrfc Destination</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_BINDING_TYPE__QRFC_DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Srfc Destination</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_BINDING_TYPE__SRFC_DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+
+    /**
+     * The feature id for the '<em><b>Trfc Destination</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_BINDING_TYPE__TRFC_DESTINATION = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
 
     /**
      * The number of structural features of the '<em>Camel Sap Binding Type</em>' class.
@@ -549,7 +603,566 @@ public interface SapPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SAP_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_SAP_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocDestinationTypeImpl <em>Camel Sap IDoc Destination Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocDestinationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapIDocDestinationType()
+     * @generated
+     */
+    int CAMEL_SAP_IDOC_DESTINATION_TYPE = 3;
+
+    /**
+     * The feature id for the '<em><b>Destination Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_DESTINATION_TYPE__DESTINATION_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_DESTINATION_TYPE__IDOC_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type Extension</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = 2;
+
+    /**
+     * The feature id for the '<em><b>System Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_DESTINATION_TYPE__SYSTEM_RELEASE = 3;
+
+    /**
+     * The feature id for the '<em><b>Application Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_DESTINATION_TYPE__APPLICATION_RELEASE = 4;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap IDoc Destination Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_DESTINATION_TYPE_FEATURE_COUNT = 5;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListDestinationTypeImpl <em>Camel Sap IDoc List Destination Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListDestinationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapIDocListDestinationType()
+     * @generated
+     */
+    int CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE = 4;
+
+    /**
+     * The feature id for the '<em><b>Destination Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__DESTINATION_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__IDOC_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type Extension</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = 2;
+
+    /**
+     * The feature id for the '<em><b>System Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__SYSTEM_RELEASE = 3;
+
+    /**
+     * The feature id for the '<em><b>Application Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__APPLICATION_RELEASE = 4;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap IDoc List Destination Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE_FEATURE_COUNT = 5;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListServerTypeImpl <em>Camel Sap IDoc List Server Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListServerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapIDocListServerType()
+     * @generated
+     */
+    int CAMEL_SAP_IDOC_LIST_SERVER_TYPE = 5;
+
+    /**
+     * The feature id for the '<em><b>Server Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_SERVER_TYPE__SERVER_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_SERVER_TYPE__IDOC_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type Extension</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_SERVER_TYPE__IDOC_TYPE_EXTENSION = 2;
+
+    /**
+     * The feature id for the '<em><b>System Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_SERVER_TYPE__SYSTEM_RELEASE = 3;
+
+    /**
+     * The feature id for the '<em><b>Application Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_SERVER_TYPE__APPLICATION_RELEASE = 4;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap IDoc List Server Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_IDOC_LIST_SERVER_TYPE_FEATURE_COUNT = 5;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocDestinationTypeImpl <em>Camel Sap QI Doc Destination Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocDestinationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapQIDocDestinationType()
+     * @generated
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE = 6;
+
+    /**
+     * The feature id for the '<em><b>Destination Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE__DESTINATION_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Queue Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE__QUEUE_NAME = 1;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE__IDOC_TYPE = 2;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type Extension</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = 3;
+
+    /**
+     * The feature id for the '<em><b>System Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE__SYSTEM_RELEASE = 4;
+
+    /**
+     * The feature id for the '<em><b>Application Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE__APPLICATION_RELEASE = 5;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap QI Doc Destination Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_DESTINATION_TYPE_FEATURE_COUNT = 6;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocListDestinationTypeImpl <em>Camel Sap QI Doc List Destination Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocListDestinationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapQIDocListDestinationType()
+     * @generated
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE = 7;
+
+    /**
+     * The feature id for the '<em><b>Destination Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__DESTINATION_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Queue Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__QUEUE_NAME = 1;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__IDOC_TYPE = 2;
+
+    /**
+     * The feature id for the '<em><b>Idoc Type Extension</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = 3;
+
+    /**
+     * The feature id for the '<em><b>System Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__SYSTEM_RELEASE = 4;
+
+    /**
+     * The feature id for the '<em><b>Application Release</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__APPLICATION_RELEASE = 5;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap QI Doc List Destination Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE_FEATURE_COUNT = 6;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQRfcDestinationTypeImpl <em>Camel Sap QRfc Destination Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQRfcDestinationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapQRfcDestinationType()
+     * @generated
+     */
+    int CAMEL_SAP_QRFC_DESTINATION_TYPE = 8;
+
+    /**
+     * The feature id for the '<em><b>Destination Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QRFC_DESTINATION_TYPE__DESTINATION_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Queue Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QRFC_DESTINATION_TYPE__QUEUE_NAME = 1;
+
+    /**
+     * The feature id for the '<em><b>Rfc Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QRFC_DESTINATION_TYPE__RFC_NAME = 2;
+
+    /**
+     * The feature id for the '<em><b>Transacted</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QRFC_DESTINATION_TYPE__TRANSACTED = 3;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap QRfc Destination Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_QRFC_DESTINATION_TYPE_FEATURE_COUNT = 4;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcDestinationTypeImpl <em>Camel Sap SRfc Destination Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcDestinationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapSRfcDestinationType()
+     * @generated
+     */
+    int CAMEL_SAP_SRFC_DESTINATION_TYPE = 9;
+
+    /**
+     * The feature id for the '<em><b>Destination Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_SRFC_DESTINATION_TYPE__DESTINATION_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Rfc Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_SRFC_DESTINATION_TYPE__RFC_NAME = 1;
+
+    /**
+     * The feature id for the '<em><b>Transacted</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_SRFC_DESTINATION_TYPE__TRANSACTED = 2;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap SRfc Destination Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_SRFC_DESTINATION_TYPE_FEATURE_COUNT = 3;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcServerTypeImpl <em>Camel Sap SRfc Server Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcServerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapSRfcServerType()
+     * @generated
+     */
+    int CAMEL_SAP_SRFC_SERVER_TYPE = 10;
+
+    /**
+     * The feature id for the '<em><b>Server Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_SRFC_SERVER_TYPE__SERVER_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Rfc Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_SRFC_SERVER_TYPE__RFC_NAME = 1;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap SRfc Server Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_SRFC_SERVER_TYPE_FEATURE_COUNT = 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcDestinationTypeImpl <em>Camel Sap TRfc Destination Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcDestinationTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapTRfcDestinationType()
+     * @generated
+     */
+    int CAMEL_SAP_TRFC_DESTINATION_TYPE = 11;
+
+    /**
+     * The feature id for the '<em><b>Destination Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_TRFC_DESTINATION_TYPE__DESTINATION_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Rfc Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_TRFC_DESTINATION_TYPE__RFC_NAME = 1;
+
+    /**
+     * The feature id for the '<em><b>Transacted</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_TRFC_DESTINATION_TYPE__TRANSACTED = 2;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap TRfc Destination Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_TRFC_DESTINATION_TYPE_FEATURE_COUNT = 3;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcServerTypeImpl <em>Camel Sap TRfc Server Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcServerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapTRfcServerType()
+     * @generated
+     */
+    int CAMEL_SAP_TRFC_SERVER_TYPE = 12;
+
+    /**
+     * The feature id for the '<em><b>Server Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_TRFC_SERVER_TYPE__SERVER_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Rfc Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_TRFC_SERVER_TYPE__RFC_NAME = 1;
+
+    /**
+     * The number of structural features of the '<em>Camel Sap TRfc Server Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SAP_TRFC_SERVER_TYPE_FEATURE_COUNT = 2;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -559,7 +1172,7 @@ public interface SapPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 3;
+    int DOCUMENT_ROOT = 13;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -614,7 +1227,7 @@ public interface SapPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getParameterType()
      * @generated
      */
-    int PARAMETER_TYPE = 4;
+    int PARAMETER_TYPE = 14;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -719,48 +1332,665 @@ public interface SapPackage extends EPackage {
     EClass getCamelSapBindingType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getServer <em>Server</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getIdoclistServer <em>Idoclist Server</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Server</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getServer()
+     * @return the meta object for the containment reference '<em>Idoclist Server</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getIdoclistServer()
      * @see #getCamelSapBindingType()
      * @generated
      */
-    EAttribute getCamelSapBindingType_Server();
+    EReference getCamelSapBindingType_IdoclistServer();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getDestination <em>Destination</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getSrfcServer <em>Srfc Server</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Destination</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getDestination()
+     * @return the meta object for the containment reference '<em>Srfc Server</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getSrfcServer()
      * @see #getCamelSapBindingType()
      * @generated
      */
-    EAttribute getCamelSapBindingType_Destination();
+    EReference getCamelSapBindingType_SrfcServer();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getRfcName <em>Rfc Name</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getTrfcServer <em>Trfc Server</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Trfc Server</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getTrfcServer()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_TrfcServer();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getIdocDestination <em>Idoc Destination</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Idoc Destination</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getIdocDestination()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_IdocDestination();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getIdoclistDestination <em>Idoclist Destination</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Idoclist Destination</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getIdoclistDestination()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_IdoclistDestination();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getQidocDestination <em>Qidoc Destination</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Qidoc Destination</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getQidocDestination()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_QidocDestination();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getQidoclistDestination <em>Qidoclist Destination</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Qidoclist Destination</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getQidoclistDestination()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_QidoclistDestination();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getQrfcDestination <em>Qrfc Destination</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Qrfc Destination</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getQrfcDestination()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_QrfcDestination();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getSrfcDestination <em>Srfc Destination</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Srfc Destination</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getSrfcDestination()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_SrfcDestination();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getTrfcDestination <em>Trfc Destination</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Trfc Destination</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getTrfcDestination()
+     * @see #getCamelSapBindingType()
+     * @generated
+     */
+    EReference getCamelSapBindingType_TrfcDestination();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType <em>Camel Sap IDoc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap IDoc Destination Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType
+     * @generated
+     */
+    EClass getCamelSapIDocDestinationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getDestinationName <em>Destination Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destination Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getDestinationName()
+     * @see #getCamelSapIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocDestinationType_DestinationName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getIdocType <em>Idoc Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getIdocType()
+     * @see #getCamelSapIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocDestinationType_IdocType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getIdocTypeExtension <em>Idoc Type Extension</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type Extension</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getIdocTypeExtension()
+     * @see #getCamelSapIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocDestinationType_IdocTypeExtension();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getSystemRelease <em>System Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>System Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getSystemRelease()
+     * @see #getCamelSapIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocDestinationType_SystemRelease();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getApplicationRelease <em>Application Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Application Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocDestinationType#getApplicationRelease()
+     * @see #getCamelSapIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocDestinationType_ApplicationRelease();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType <em>Camel Sap IDoc List Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap IDoc List Destination Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType
+     * @generated
+     */
+    EClass getCamelSapIDocListDestinationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getDestinationName <em>Destination Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destination Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getDestinationName()
+     * @see #getCamelSapIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListDestinationType_DestinationName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getIdocType <em>Idoc Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getIdocType()
+     * @see #getCamelSapIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListDestinationType_IdocType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getIdocTypeExtension <em>Idoc Type Extension</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type Extension</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getIdocTypeExtension()
+     * @see #getCamelSapIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListDestinationType_IdocTypeExtension();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getSystemRelease <em>System Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>System Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getSystemRelease()
+     * @see #getCamelSapIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListDestinationType_SystemRelease();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getApplicationRelease <em>Application Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Application Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListDestinationType#getApplicationRelease()
+     * @see #getCamelSapIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListDestinationType_ApplicationRelease();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType <em>Camel Sap IDoc List Server Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap IDoc List Server Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType
+     * @generated
+     */
+    EClass getCamelSapIDocListServerType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getServerName <em>Server Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Server Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getServerName()
+     * @see #getCamelSapIDocListServerType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListServerType_ServerName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getIdocType <em>Idoc Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getIdocType()
+     * @see #getCamelSapIDocListServerType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListServerType_IdocType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getIdocTypeExtension <em>Idoc Type Extension</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type Extension</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getIdocTypeExtension()
+     * @see #getCamelSapIDocListServerType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListServerType_IdocTypeExtension();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getSystemRelease <em>System Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>System Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getSystemRelease()
+     * @see #getCamelSapIDocListServerType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListServerType_SystemRelease();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getApplicationRelease <em>Application Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Application Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapIDocListServerType#getApplicationRelease()
+     * @see #getCamelSapIDocListServerType()
+     * @generated
+     */
+    EAttribute getCamelSapIDocListServerType_ApplicationRelease();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType <em>Camel Sap QI Doc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap QI Doc Destination Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType
+     * @generated
+     */
+    EClass getCamelSapQIDocDestinationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getDestinationName <em>Destination Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destination Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getDestinationName()
+     * @see #getCamelSapQIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocDestinationType_DestinationName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getQueueName <em>Queue Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Queue Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getQueueName()
+     * @see #getCamelSapQIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocDestinationType_QueueName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getIdocType <em>Idoc Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getIdocType()
+     * @see #getCamelSapQIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocDestinationType_IdocType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getIdocTypeExtension <em>Idoc Type Extension</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type Extension</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getIdocTypeExtension()
+     * @see #getCamelSapQIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocDestinationType_IdocTypeExtension();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getSystemRelease <em>System Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>System Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getSystemRelease()
+     * @see #getCamelSapQIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocDestinationType_SystemRelease();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getApplicationRelease <em>Application Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Application Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocDestinationType#getApplicationRelease()
+     * @see #getCamelSapQIDocDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocDestinationType_ApplicationRelease();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType <em>Camel Sap QI Doc List Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap QI Doc List Destination Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType
+     * @generated
+     */
+    EClass getCamelSapQIDocListDestinationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getDestinationName <em>Destination Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destination Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getDestinationName()
+     * @see #getCamelSapQIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocListDestinationType_DestinationName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getQueueName <em>Queue Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Queue Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getQueueName()
+     * @see #getCamelSapQIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocListDestinationType_QueueName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getIdocType <em>Idoc Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getIdocType()
+     * @see #getCamelSapQIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocListDestinationType_IdocType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getIdocTypeExtension <em>Idoc Type Extension</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Idoc Type Extension</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getIdocTypeExtension()
+     * @see #getCamelSapQIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocListDestinationType_IdocTypeExtension();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getSystemRelease <em>System Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>System Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getSystemRelease()
+     * @see #getCamelSapQIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocListDestinationType_SystemRelease();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getApplicationRelease <em>Application Release</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Application Release</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQIDocListDestinationType#getApplicationRelease()
+     * @see #getCamelSapQIDocListDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQIDocListDestinationType_ApplicationRelease();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType <em>Camel Sap QRfc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap QRfc Destination Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType
+     * @generated
+     */
+    EClass getCamelSapQRfcDestinationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getDestinationName <em>Destination Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destination Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getDestinationName()
+     * @see #getCamelSapQRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQRfcDestinationType_DestinationName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getQueueName <em>Queue Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Queue Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getQueueName()
+     * @see #getCamelSapQRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapQRfcDestinationType_QueueName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getRfcName <em>Rfc Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Rfc Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#getRfcName()
-     * @see #getCamelSapBindingType()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getRfcName()
+     * @see #getCamelSapQRfcDestinationType()
      * @generated
      */
-    EAttribute getCamelSapBindingType_RfcName();
+    EAttribute getCamelSapQRfcDestinationType_RfcName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#isTransacted <em>Transacted</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getTransacted <em>Transacted</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Transacted</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType#isTransacted()
-     * @see #getCamelSapBindingType()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapQRfcDestinationType#getTransacted()
+     * @see #getCamelSapQRfcDestinationType()
      * @generated
      */
-    EAttribute getCamelSapBindingType_Transacted();
+    EAttribute getCamelSapQRfcDestinationType_Transacted();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType <em>Camel Sap SRfc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap SRfc Destination Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType
+     * @generated
+     */
+    EClass getCamelSapSRfcDestinationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType#getDestinationName <em>Destination Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destination Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType#getDestinationName()
+     * @see #getCamelSapSRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapSRfcDestinationType_DestinationName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType#getRfcName <em>Rfc Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Rfc Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType#getRfcName()
+     * @see #getCamelSapSRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapSRfcDestinationType_RfcName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType#getTransacted <em>Transacted</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Transacted</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinationType#getTransacted()
+     * @see #getCamelSapSRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapSRfcDestinationType_Transacted();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType <em>Camel Sap SRfc Server Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap SRfc Server Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType
+     * @generated
+     */
+    EClass getCamelSapSRfcServerType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType#getServerName <em>Server Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Server Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType#getServerName()
+     * @see #getCamelSapSRfcServerType()
+     * @generated
+     */
+    EAttribute getCamelSapSRfcServerType_ServerName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType#getRfcName <em>Rfc Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Rfc Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerType#getRfcName()
+     * @see #getCamelSapSRfcServerType()
+     * @generated
+     */
+    EAttribute getCamelSapSRfcServerType_RfcName();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType <em>Camel Sap TRfc Destination Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap TRfc Destination Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType
+     * @generated
+     */
+    EClass getCamelSapTRfcDestinationType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType#getDestinationName <em>Destination Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destination Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType#getDestinationName()
+     * @see #getCamelSapTRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapTRfcDestinationType_DestinationName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType#getRfcName <em>Rfc Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Rfc Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType#getRfcName()
+     * @see #getCamelSapTRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapTRfcDestinationType_RfcName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType#getTransacted <em>Transacted</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Transacted</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType#getTransacted()
+     * @see #getCamelSapTRfcDestinationType()
+     * @generated
+     */
+    EAttribute getCamelSapTRfcDestinationType_Transacted();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType <em>Camel Sap TRfc Server Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Sap TRfc Server Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType
+     * @generated
+     */
+    EClass getCamelSapTRfcServerType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType#getServerName <em>Server Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Server Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType#getServerName()
+     * @see #getCamelSapTRfcServerType()
+     * @generated
+     */
+    EAttribute getCamelSapTRfcServerType_ServerName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType#getRfcName <em>Rfc Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Rfc Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType#getRfcName()
+     * @see #getCamelSapTRfcServerType()
+     * @generated
+     */
+    EAttribute getCamelSapTRfcServerType_RfcName();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.DocumentRoot <em>Document Root</em>}'.
@@ -933,20 +2163,376 @@ public interface SapPackage extends EPackage {
         EClass CAMEL_SAP_BINDING_TYPE = eINSTANCE.getCamelSapBindingType();
 
         /**
-         * The meta object literal for the '<em><b>Server</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Idoclist Server</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SAP_BINDING_TYPE__SERVER = eINSTANCE.getCamelSapBindingType_Server();
+        EReference CAMEL_SAP_BINDING_TYPE__IDOCLIST_SERVER = eINSTANCE.getCamelSapBindingType_IdoclistServer();
 
         /**
-         * The meta object literal for the '<em><b>Destination</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Srfc Server</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SAP_BINDING_TYPE__DESTINATION = eINSTANCE.getCamelSapBindingType_Destination();
+        EReference CAMEL_SAP_BINDING_TYPE__SRFC_SERVER = eINSTANCE.getCamelSapBindingType_SrfcServer();
+
+        /**
+         * The meta object literal for the '<em><b>Trfc Server</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__TRFC_SERVER = eINSTANCE.getCamelSapBindingType_TrfcServer();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Destination</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__IDOC_DESTINATION = eINSTANCE.getCamelSapBindingType_IdocDestination();
+
+        /**
+         * The meta object literal for the '<em><b>Idoclist Destination</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__IDOCLIST_DESTINATION = eINSTANCE.getCamelSapBindingType_IdoclistDestination();
+
+        /**
+         * The meta object literal for the '<em><b>Qidoc Destination</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__QIDOC_DESTINATION = eINSTANCE.getCamelSapBindingType_QidocDestination();
+
+        /**
+         * The meta object literal for the '<em><b>Qidoclist Destination</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__QIDOCLIST_DESTINATION = eINSTANCE.getCamelSapBindingType_QidoclistDestination();
+
+        /**
+         * The meta object literal for the '<em><b>Qrfc Destination</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__QRFC_DESTINATION = eINSTANCE.getCamelSapBindingType_QrfcDestination();
+
+        /**
+         * The meta object literal for the '<em><b>Srfc Destination</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__SRFC_DESTINATION = eINSTANCE.getCamelSapBindingType_SrfcDestination();
+
+        /**
+         * The meta object literal for the '<em><b>Trfc Destination</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CAMEL_SAP_BINDING_TYPE__TRFC_DESTINATION = eINSTANCE.getCamelSapBindingType_TrfcDestination();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocDestinationTypeImpl <em>Camel Sap IDoc Destination Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocDestinationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapIDocDestinationType()
+         * @generated
+         */
+        EClass CAMEL_SAP_IDOC_DESTINATION_TYPE = eINSTANCE.getCamelSapIDocDestinationType();
+
+        /**
+         * The meta object literal for the '<em><b>Destination Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_DESTINATION_TYPE__DESTINATION_NAME = eINSTANCE.getCamelSapIDocDestinationType_DestinationName();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_DESTINATION_TYPE__IDOC_TYPE = eINSTANCE.getCamelSapIDocDestinationType_IdocType();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type Extension</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = eINSTANCE.getCamelSapIDocDestinationType_IdocTypeExtension();
+
+        /**
+         * The meta object literal for the '<em><b>System Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_DESTINATION_TYPE__SYSTEM_RELEASE = eINSTANCE.getCamelSapIDocDestinationType_SystemRelease();
+
+        /**
+         * The meta object literal for the '<em><b>Application Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_DESTINATION_TYPE__APPLICATION_RELEASE = eINSTANCE.getCamelSapIDocDestinationType_ApplicationRelease();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListDestinationTypeImpl <em>Camel Sap IDoc List Destination Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListDestinationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapIDocListDestinationType()
+         * @generated
+         */
+        EClass CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE = eINSTANCE.getCamelSapIDocListDestinationType();
+
+        /**
+         * The meta object literal for the '<em><b>Destination Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__DESTINATION_NAME = eINSTANCE.getCamelSapIDocListDestinationType_DestinationName();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__IDOC_TYPE = eINSTANCE.getCamelSapIDocListDestinationType_IdocType();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type Extension</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = eINSTANCE.getCamelSapIDocListDestinationType_IdocTypeExtension();
+
+        /**
+         * The meta object literal for the '<em><b>System Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__SYSTEM_RELEASE = eINSTANCE.getCamelSapIDocListDestinationType_SystemRelease();
+
+        /**
+         * The meta object literal for the '<em><b>Application Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE__APPLICATION_RELEASE = eINSTANCE.getCamelSapIDocListDestinationType_ApplicationRelease();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListServerTypeImpl <em>Camel Sap IDoc List Server Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapIDocListServerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapIDocListServerType()
+         * @generated
+         */
+        EClass CAMEL_SAP_IDOC_LIST_SERVER_TYPE = eINSTANCE.getCamelSapIDocListServerType();
+
+        /**
+         * The meta object literal for the '<em><b>Server Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_SERVER_TYPE__SERVER_NAME = eINSTANCE.getCamelSapIDocListServerType_ServerName();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_SERVER_TYPE__IDOC_TYPE = eINSTANCE.getCamelSapIDocListServerType_IdocType();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type Extension</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_SERVER_TYPE__IDOC_TYPE_EXTENSION = eINSTANCE.getCamelSapIDocListServerType_IdocTypeExtension();
+
+        /**
+         * The meta object literal for the '<em><b>System Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_SERVER_TYPE__SYSTEM_RELEASE = eINSTANCE.getCamelSapIDocListServerType_SystemRelease();
+
+        /**
+         * The meta object literal for the '<em><b>Application Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_IDOC_LIST_SERVER_TYPE__APPLICATION_RELEASE = eINSTANCE.getCamelSapIDocListServerType_ApplicationRelease();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocDestinationTypeImpl <em>Camel Sap QI Doc Destination Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocDestinationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapQIDocDestinationType()
+         * @generated
+         */
+        EClass CAMEL_SAP_QI_DOC_DESTINATION_TYPE = eINSTANCE.getCamelSapQIDocDestinationType();
+
+        /**
+         * The meta object literal for the '<em><b>Destination Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_DESTINATION_TYPE__DESTINATION_NAME = eINSTANCE.getCamelSapQIDocDestinationType_DestinationName();
+
+        /**
+         * The meta object literal for the '<em><b>Queue Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_DESTINATION_TYPE__QUEUE_NAME = eINSTANCE.getCamelSapQIDocDestinationType_QueueName();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_DESTINATION_TYPE__IDOC_TYPE = eINSTANCE.getCamelSapQIDocDestinationType_IdocType();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type Extension</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = eINSTANCE.getCamelSapQIDocDestinationType_IdocTypeExtension();
+
+        /**
+         * The meta object literal for the '<em><b>System Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_DESTINATION_TYPE__SYSTEM_RELEASE = eINSTANCE.getCamelSapQIDocDestinationType_SystemRelease();
+
+        /**
+         * The meta object literal for the '<em><b>Application Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_DESTINATION_TYPE__APPLICATION_RELEASE = eINSTANCE.getCamelSapQIDocDestinationType_ApplicationRelease();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocListDestinationTypeImpl <em>Camel Sap QI Doc List Destination Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQIDocListDestinationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapQIDocListDestinationType()
+         * @generated
+         */
+        EClass CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE = eINSTANCE.getCamelSapQIDocListDestinationType();
+
+        /**
+         * The meta object literal for the '<em><b>Destination Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__DESTINATION_NAME = eINSTANCE.getCamelSapQIDocListDestinationType_DestinationName();
+
+        /**
+         * The meta object literal for the '<em><b>Queue Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__QUEUE_NAME = eINSTANCE.getCamelSapQIDocListDestinationType_QueueName();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__IDOC_TYPE = eINSTANCE.getCamelSapQIDocListDestinationType_IdocType();
+
+        /**
+         * The meta object literal for the '<em><b>Idoc Type Extension</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__IDOC_TYPE_EXTENSION = eINSTANCE.getCamelSapQIDocListDestinationType_IdocTypeExtension();
+
+        /**
+         * The meta object literal for the '<em><b>System Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__SYSTEM_RELEASE = eINSTANCE.getCamelSapQIDocListDestinationType_SystemRelease();
+
+        /**
+         * The meta object literal for the '<em><b>Application Release</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE__APPLICATION_RELEASE = eINSTANCE.getCamelSapQIDocListDestinationType_ApplicationRelease();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQRfcDestinationTypeImpl <em>Camel Sap QRfc Destination Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapQRfcDestinationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapQRfcDestinationType()
+         * @generated
+         */
+        EClass CAMEL_SAP_QRFC_DESTINATION_TYPE = eINSTANCE.getCamelSapQRfcDestinationType();
+
+        /**
+         * The meta object literal for the '<em><b>Destination Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QRFC_DESTINATION_TYPE__DESTINATION_NAME = eINSTANCE.getCamelSapQRfcDestinationType_DestinationName();
+
+        /**
+         * The meta object literal for the '<em><b>Queue Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_QRFC_DESTINATION_TYPE__QUEUE_NAME = eINSTANCE.getCamelSapQRfcDestinationType_QueueName();
 
         /**
          * The meta object literal for the '<em><b>Rfc Name</b></em>' attribute feature.
@@ -954,7 +2540,7 @@ public interface SapPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SAP_BINDING_TYPE__RFC_NAME = eINSTANCE.getCamelSapBindingType_RfcName();
+        EAttribute CAMEL_SAP_QRFC_DESTINATION_TYPE__RFC_NAME = eINSTANCE.getCamelSapQRfcDestinationType_RfcName();
 
         /**
          * The meta object literal for the '<em><b>Transacted</b></em>' attribute feature.
@@ -962,7 +2548,127 @@ public interface SapPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SAP_BINDING_TYPE__TRANSACTED = eINSTANCE.getCamelSapBindingType_Transacted();
+        EAttribute CAMEL_SAP_QRFC_DESTINATION_TYPE__TRANSACTED = eINSTANCE.getCamelSapQRfcDestinationType_Transacted();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcDestinationTypeImpl <em>Camel Sap SRfc Destination Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcDestinationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapSRfcDestinationType()
+         * @generated
+         */
+        EClass CAMEL_SAP_SRFC_DESTINATION_TYPE = eINSTANCE.getCamelSapSRfcDestinationType();
+
+        /**
+         * The meta object literal for the '<em><b>Destination Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_SRFC_DESTINATION_TYPE__DESTINATION_NAME = eINSTANCE.getCamelSapSRfcDestinationType_DestinationName();
+
+        /**
+         * The meta object literal for the '<em><b>Rfc Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_SRFC_DESTINATION_TYPE__RFC_NAME = eINSTANCE.getCamelSapSRfcDestinationType_RfcName();
+
+        /**
+         * The meta object literal for the '<em><b>Transacted</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_SRFC_DESTINATION_TYPE__TRANSACTED = eINSTANCE.getCamelSapSRfcDestinationType_Transacted();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcServerTypeImpl <em>Camel Sap SRfc Server Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapSRfcServerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapSRfcServerType()
+         * @generated
+         */
+        EClass CAMEL_SAP_SRFC_SERVER_TYPE = eINSTANCE.getCamelSapSRfcServerType();
+
+        /**
+         * The meta object literal for the '<em><b>Server Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_SRFC_SERVER_TYPE__SERVER_NAME = eINSTANCE.getCamelSapSRfcServerType_ServerName();
+
+        /**
+         * The meta object literal for the '<em><b>Rfc Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_SRFC_SERVER_TYPE__RFC_NAME = eINSTANCE.getCamelSapSRfcServerType_RfcName();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcDestinationTypeImpl <em>Camel Sap TRfc Destination Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcDestinationTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapTRfcDestinationType()
+         * @generated
+         */
+        EClass CAMEL_SAP_TRFC_DESTINATION_TYPE = eINSTANCE.getCamelSapTRfcDestinationType();
+
+        /**
+         * The meta object literal for the '<em><b>Destination Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_TRFC_DESTINATION_TYPE__DESTINATION_NAME = eINSTANCE.getCamelSapTRfcDestinationType_DestinationName();
+
+        /**
+         * The meta object literal for the '<em><b>Rfc Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_TRFC_DESTINATION_TYPE__RFC_NAME = eINSTANCE.getCamelSapTRfcDestinationType_RfcName();
+
+        /**
+         * The meta object literal for the '<em><b>Transacted</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_TRFC_DESTINATION_TYPE__TRANSACTED = eINSTANCE.getCamelSapTRfcDestinationType_Transacted();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcServerTypeImpl <em>Camel Sap TRfc Server Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.CamelSapTRfcServerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl#getCamelSapTRfcServerType()
+         * @generated
+         */
+        EClass CAMEL_SAP_TRFC_SERVER_TYPE = eINSTANCE.getCamelSapTRfcServerType();
+
+        /**
+         * The meta object literal for the '<em><b>Server Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_TRFC_SERVER_TYPE__SERVER_NAME = eINSTANCE.getCamelSapTRfcServerType_ServerName();
+
+        /**
+         * The meta object literal for the '<em><b>Rfc Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SAP_TRFC_SERVER_TYPE__RFC_NAME = eINSTANCE.getCamelSapTRfcServerType_RfcName();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sap.impl.DocumentRootImpl <em>Document Root</em>}' class.

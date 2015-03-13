@@ -20,6 +20,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
@@ -57,7 +58,7 @@ public class CamelSAPBindingTypeExtension implements IBindingTypeExtension {
 
     @Override
     public List<IBindingComposite> createComposites(FormToolkit toolkit, Binding binding) {
-        return createComposites(toolkit);
+        return createComposites(toolkit, binding.eContainer() instanceof Service);
     }
 
     @Override
@@ -70,9 +71,13 @@ public class CamelSAPBindingTypeExtension implements IBindingTypeExtension {
         return Messages.CamelSAPBindingTypeExtension_SAP_label;
     }
 
-    protected static List<IBindingComposite> createComposites(FormToolkit toolkit) {
+    protected static List<IBindingComposite> createComposites(FormToolkit toolkit, boolean forConsumer) {
         final List<IBindingComposite> composites = new ArrayList<IBindingComposite>(4);
-        composites.add(new CamelSAPComposite(toolkit));
+        if (forConsumer) {
+            composites.add(new CamelSAPConsumerComposite(toolkit));
+        } else {
+            composites.add(new CamelSAPProducerComposite(toolkit));
+        }
         composites.add(new MessageComposerComposite(toolkit,
                 SapPackage.Literals.BASE_CAMEL_BINDING__MESSAGE_COMPOSER,
                 SapPackage.Literals.BASE_CAMEL_BINDING__CONTEXT_MAPPER));

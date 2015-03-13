@@ -96,6 +96,66 @@ public class SapSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SapPackage.CAMEL_SAP_IDOC_DESTINATION_TYPE: {
+                CamelSapIDocDestinationType camelSapIDocDestinationType = (CamelSapIDocDestinationType)theEObject;
+                T result = caseCamelSapIDocDestinationType(camelSapIDocDestinationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_IDOC_LIST_DESTINATION_TYPE: {
+                CamelSapIDocListDestinationType camelSapIDocListDestinationType = (CamelSapIDocListDestinationType)theEObject;
+                T result = caseCamelSapIDocListDestinationType(camelSapIDocListDestinationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_IDOC_LIST_SERVER_TYPE: {
+                CamelSapIDocListServerType camelSapIDocListServerType = (CamelSapIDocListServerType)theEObject;
+                T result = caseCamelSapIDocListServerType(camelSapIDocListServerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_QI_DOC_DESTINATION_TYPE: {
+                CamelSapQIDocDestinationType camelSapQIDocDestinationType = (CamelSapQIDocDestinationType)theEObject;
+                T result = caseCamelSapQIDocDestinationType(camelSapQIDocDestinationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_QI_DOC_LIST_DESTINATION_TYPE: {
+                CamelSapQIDocListDestinationType camelSapQIDocListDestinationType = (CamelSapQIDocListDestinationType)theEObject;
+                T result = caseCamelSapQIDocListDestinationType(camelSapQIDocListDestinationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_QRFC_DESTINATION_TYPE: {
+                CamelSapQRfcDestinationType camelSapQRfcDestinationType = (CamelSapQRfcDestinationType)theEObject;
+                T result = caseCamelSapQRfcDestinationType(camelSapQRfcDestinationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_SRFC_DESTINATION_TYPE: {
+                CamelSapSRfcDestinationType camelSapSRfcDestinationType = (CamelSapSRfcDestinationType)theEObject;
+                T result = caseCamelSapSRfcDestinationType(camelSapSRfcDestinationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_SRFC_SERVER_TYPE: {
+                CamelSapSRfcServerType camelSapSRfcServerType = (CamelSapSRfcServerType)theEObject;
+                T result = caseCamelSapSRfcServerType(camelSapSRfcServerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_TRFC_DESTINATION_TYPE: {
+                CamelSapTRfcDestinationType camelSapTRfcDestinationType = (CamelSapTRfcDestinationType)theEObject;
+                T result = caseCamelSapTRfcDestinationType(camelSapTRfcDestinationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SapPackage.CAMEL_SAP_TRFC_SERVER_TYPE: {
+                CamelSapTRfcServerType camelSapTRfcServerType = (CamelSapTRfcServerType)theEObject;
+                T result = caseCamelSapTRfcServerType(camelSapTRfcServerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SapPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
@@ -154,6 +214,156 @@ public class SapSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCamelSapBindingType(CamelSapBindingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap IDoc Destination Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap IDoc Destination Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapIDocDestinationType(CamelSapIDocDestinationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap IDoc List Destination Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap IDoc List Destination Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapIDocListDestinationType(CamelSapIDocListDestinationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap IDoc List Server Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap IDoc List Server Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapIDocListServerType(CamelSapIDocListServerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap QI Doc Destination Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap QI Doc Destination Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapQIDocDestinationType(CamelSapQIDocDestinationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap QI Doc List Destination Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap QI Doc List Destination Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapQIDocListDestinationType(CamelSapQIDocListDestinationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap QRfc Destination Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap QRfc Destination Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapQRfcDestinationType(CamelSapQRfcDestinationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap SRfc Destination Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap SRfc Destination Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapSRfcDestinationType(CamelSapSRfcDestinationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap SRfc Server Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap SRfc Server Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapSRfcServerType(CamelSapSRfcServerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap TRfc Destination Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap TRfc Destination Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapTRfcDestinationType(CamelSapTRfcDestinationType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Camel Sap TRfc Server Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Camel Sap TRfc Server Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelSapTRfcServerType(CamelSapTRfcServerType object) {
         return null;
     }
 

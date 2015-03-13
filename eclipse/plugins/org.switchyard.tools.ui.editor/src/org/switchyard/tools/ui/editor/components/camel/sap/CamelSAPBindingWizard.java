@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.editor.components.camel.sap;
 import java.util.List;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.SapFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractBindingWizard;
@@ -38,7 +39,7 @@ public class CamelSAPBindingWizard extends AbstractBindingWizard implements IBin
 
     @Override
     protected List<IBindingComposite> createComposites() {
-        return CamelSAPBindingTypeExtension.createComposites(getToolkit());
+        return CamelSAPBindingTypeExtension.createComposites(getToolkit(), getTargetContainer() instanceof Service);
     }
 
 }

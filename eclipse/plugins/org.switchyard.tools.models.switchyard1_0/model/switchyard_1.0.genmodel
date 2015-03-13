@@ -3332,10 +3332,77 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//BaseCamelBinding/additionalUriParameters"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapBindingType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/server"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/destination"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/rfcName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapBindingType/transacted"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/idoclistServer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/srfcServer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/trfcServer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/idocDestination"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/idoclistDestination"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/qidocDestination"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/qidoclistDestination"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/qrfcDestination"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/srfcDestination"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.sap.ecore#//CamelSapBindingType/trfcDestination"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapIDocDestinationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocDestinationType/destinationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocDestinationType/idocType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocDestinationType/idocTypeExtension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocDestinationType/systemRelease"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocDestinationType/applicationRelease"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapIDocListDestinationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListDestinationType/destinationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListDestinationType/idocType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListDestinationType/idocTypeExtension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListDestinationType/systemRelease"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListDestinationType/applicationRelease"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapIDocListServerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListServerType/serverName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListServerType/idocType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListServerType/idocTypeExtension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListServerType/systemRelease"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapIDocListServerType/applicationRelease"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapQIDocDestinationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocDestinationType/destinationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocDestinationType/queueName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocDestinationType/idocType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocDestinationType/idocTypeExtension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocDestinationType/systemRelease"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocDestinationType/applicationRelease"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapQIDocListDestinationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocListDestinationType/destinationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocListDestinationType/queueName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocListDestinationType/idocType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocListDestinationType/idocTypeExtension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocListDestinationType/systemRelease"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQIDocListDestinationType/applicationRelease"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapQRfcDestinationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQRfcDestinationType/destinationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQRfcDestinationType/queueName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQRfcDestinationType/rfcName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapQRfcDestinationType/transacted"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapSRfcDestinationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapSRfcDestinationType/destinationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapSRfcDestinationType/rfcName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapSRfcDestinationType/transacted"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapSRfcServerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapSRfcServerType/serverName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapSRfcServerType/rfcName"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapTRfcDestinationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapTRfcDestinationType/destinationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapTRfcDestinationType/rfcName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapTRfcDestinationType/transacted"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.sap.ecore#//CamelSapTRfcServerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapTRfcServerType/serverName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//CamelSapTRfcServerType/rfcName"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.sap.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.sap.ecore#//DocumentRoot/mixed"/>
