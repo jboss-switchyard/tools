@@ -83,7 +83,7 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
         waitForJobsToComplete();
         markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
                 IFile.DEPTH_ZERO);
-        assertEquals(WorkspaceHelpers.toString(markers), 23, markers.length);
+        assertEquals(WorkspaceHelpers.toString(markers), 20, markers.length);
         
         MavenPlugin.getProjectConfigurationManager().updateProjectConfiguration(project, monitor);
         project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
@@ -95,7 +95,7 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
         waitForJobsToComplete();
         markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
                 IFile.DEPTH_ZERO);
-        assertEquals(WorkspaceHelpers.toString(markers), 23, markers.length);
+        assertEquals(WorkspaceHelpers.toString(markers), 20, markers.length);
     }
 
     /**
