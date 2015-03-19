@@ -24,20 +24,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SecuritiesType extends EObject {
     /**
-	 * Returns the value of the '<em><b>Security</b></em>' containment reference list.
-	 * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Security</b></em>' containment reference list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType}.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Security</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Security</em>' containment reference list.
-	 * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSecuritiesType_Security()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='security' namespace='##targetNamespace'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Security</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSecuritiesType_Security()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='security' namespace='##targetNamespace'"
+     * @generated
+     */
     EList<SecurityType> getSecurity();
 
 } // SecuritiesType

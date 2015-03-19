@@ -52,6 +52,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -63,6 +64,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyBooleanValidator;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
@@ -78,8 +80,8 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
     private Composite _panel;
     private SCABinding _binding = null;
     private Text _nameText;
-    private Button _clusteredCheckbox;
-    private Button _preferLocalCheckbox;
+    private Combo _clusteredCombo;
+    private Combo _preferLocalCombo;
     private ComboViewer _loadBalancingCombo;
     private Text _loadBalancingCustomClassText;
     private Button _browseLoadBalancingClassButton;
@@ -153,16 +155,26 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
 
         Group clusteringGroup = new Group(composite, SWT.NONE);
         clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
-        clusteringGroup.setLayout(new GridLayout(3, false));
+        clusteringGroup.setLayout(new GridLayout(2, false));
         clusteringGroup.setText(Messages.label_clustering);
         toolkit.adapt(clusteringGroup);
         
-        _clusteredCheckbox = createCheckbox(clusteringGroup, Messages.label_clustered);
-        addGridData(_clusteredCheckbox, 3, GridData.FILL_HORIZONTAL);
-        
+        getToolkit().createLabel(clusteringGroup, Messages.label_clustered);
+        _clusteredCombo = new Combo(clusteringGroup, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_clusteredCombo);
+        _clusteredCombo.add("true");
+        _clusteredCombo.add("false");
+        _clusteredCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
         if (!_showConsumer) {
-            _preferLocalCheckbox = createCheckbox(clusteringGroup, "Prefer Local");
-            addGridData(_preferLocalCheckbox, 3, GridData.FILL_HORIZONTAL);
+            getToolkit().createLabel(clusteringGroup, "Prefer Local");
+            _preferLocalCombo = new Combo(clusteringGroup, SWT.DROP_DOWN | SWT.BORDER);
+            getToolkit().adapt(_preferLocalCombo);
+            _preferLocalCombo.add("true");
+            _preferLocalCombo.add("false");
+            _preferLocalCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
+            addGridData(_preferLocalCombo, 3, GridData.FILL_HORIZONTAL);
             _loadBalancingCombo = createLabelAndComboViewer(clusteringGroup, Messages.label_loadBalancing, true);
             addGridData(_loadBalancingCombo.getCombo(), 2, GridData.FILL_HORIZONTAL);
             _loadBalancingCombo.setContentProvider(ArrayContentProvider.getInstance());
@@ -272,119 +284,139 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         final IObservableValue clusteredValue =  ObservablesUtil.observeDetailValue(domain, _bindingValue,
                 SwitchyardPackage.eINSTANCE.getDocumentRoot_Clustered());
         binding = context.bindValue(
-                SWTObservables.observeSelection(_clusteredCheckbox), clusteredValue,
-                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+                SWTObservables.observeText(_clusteredCombo),
+                clusteredValue,
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                    .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                        "Clustered  must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         if (!_showConsumer) {
-            final IObservableValue loadBalanceValue = new WritableValue(realm, null, String.class);
-            final IObservableValue loadBalanceCustomValue = new WritableValue(realm, null, String.class);
-            final IObservableValue preferLocalValue =  ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                    SwitchyardPackage.eINSTANCE.getDocumentRoot_PreferLocal());
-
-            clusteredValue.addChangeListener(new IChangeListener() {
-                @Override
-                public void handleChange(ChangeEvent event) {
-                    boolean isClustered = ((Boolean) clusteredValue.getValue()).booleanValue();
-                    _loadBalancingCombo.getControl().setEnabled(isClustered);
-                    _preferLocalCheckbox.setEnabled(isClustered);
-                    String value = (String) loadBalanceValue.getValue();
-                    if (!isClustered && value != null) {
-                        loadBalanceValue.setValue(null);
-                        preferLocalValue.setValue(null);
-                    }
-                }
-            });
-    
-            binding = context.bindValue(
-                    SWTObservables.observeSelection(_preferLocalCheckbox), preferLocalValue,
-                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
-            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-
-            loadBalanceValue.addChangeListener(new IChangeListener() {
-                @Override
-                public void handleChange(ChangeEvent event) {
-                    String value = (String) loadBalanceValue.getValue();
-                    boolean isCustom = false;
-                    if (value != null) {
-                        isCustom = value.equals(Messages.constant_customLoadBalanceStrategy);
-                    }
-                    _loadBalancingCustomClassText.setEnabled(isCustom);
-                    _browseLoadBalancingClassButton.setEnabled(isCustom);
-                    if (!isCustom) {
-                        loadBalanceCustomValue.setValue(null);
-                    }
-                }
-            });
-    
-            binding = context.bindValue(
-                    SWTObservables.observeText(_targetServiceText, new int[] {SWT.Modify }),
-                    ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                            SwitchyardPackage.eINSTANCE.getDocumentRoot_Target()),
-                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
-            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-    
-            binding = context.bindValue(
-                    SWTObservables.observeText(_targetNamespaceText, new int[] {SWT.Modify }),
-                    ObservablesUtil.observeDetailValue(domain, _bindingValue,
-                            SwitchyardPackage.eINSTANCE.getDocumentRoot_TargetNamespace()),
-                    new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
-            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-    
-            binding = 
-                    context.bindValue(ViewersObservables.observeSingleSelection(_loadBalancingCombo), 
-                            loadBalanceValue, new EMFUpdateValueStrategyNullForEmptyString(null,
-                                    UpdateValueStrategy.POLICY_CONVERT), null);
-            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-    
-            binding = 
-                    context.bindValue(SWTObservables.observeText(_loadBalancingCustomClassText, SWT.Modify), 
-                            loadBalanceCustomValue, new EMFUpdateValueStrategyNullForEmptyString(null,
-                                    UpdateValueStrategy.POLICY_CONVERT), null);
-            ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-    
-            ComputedValue computedLoadBalanceValue = new ComputedValue() {
-                @Override
-                protected Object calculate() {
-                    final String loadBalance = (String) loadBalanceValue.getValue();
-                    final String customLoadBalance = (String) loadBalanceCustomValue.getValue();
-                    if (loadBalance != null 
-                            && loadBalance.equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy) 
-                            && customLoadBalance != null) {
-                        return customLoadBalance;
-                    } else if (loadBalance != null
-                            && !loadBalance.equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy)) {
-                        loadBalanceCustomValue.setValue(null);
-                        return loadBalance;
-                    }
-                    return null;
-                }
-    
-                protected void doSetValue(Object value) {
-                    final String strValue = (String) value;
-                    //"RoundRobinStrategy", "RandomStrategy"
-                    if (strValue != null 
-                            && !strValue.equalsIgnoreCase("RoundRobinStrategy")
-                            && !strValue.equalsIgnoreCase("RandomStrategy")) {
-                        loadBalanceValue.setValue(Messages.constant_customLoadBalanceStrategy);
-                        loadBalanceCustomValue.setValue(strValue);
-                    } else if (strValue != null) {
-                        loadBalanceValue.setValue(strValue);
-                        loadBalanceCustomValue.setValue(null);
-                        setTextValueAndNotify(_loadBalancingCustomClassText, "", false);
-                    } else {
-                        loadBalanceValue.setValue(null);
-                        loadBalanceCustomValue.setValue(null);
-                    }
-                    getValue();
-                }
-            };
-    
-            // now bind the proxy into the binding
-            binding = context.bindValue(
-                    computedLoadBalanceValue, ObservablesUtil.observeDetailValue(domain, _bindingValue, 
-                            SwitchyardPackage.eINSTANCE.getDocumentRoot_LoadBalance()));
+            bindReferenceControls(context, domain, realm, clusteredValue);
         }
     }
+    
+    private void bindReferenceControls(final DataBindingContext context, final EditingDomain domain, 
+            final Realm realm, final IObservableValue clusteredValue) {
+        final IObservableValue loadBalanceValue = new WritableValue(realm, null, String.class);
+        final IObservableValue loadBalanceCustomValue = new WritableValue(realm, null, String.class);
+        final IObservableValue preferLocalValue =  ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                SwitchyardPackage.eINSTANCE.getDocumentRoot_PreferLocal());
+
+        clusteredValue.addChangeListener(new IChangeListener() {
+            @Override
+            public void handleChange(ChangeEvent event) {
+                Object something = clusteredValue.getValue();
+                boolean isClustered = false;
+                if (something instanceof Boolean && ((Boolean)something).booleanValue()) {
+                    isClustered = true;
+                } else if (something instanceof String) {
+                    String clusteredvalue = (String) clusteredValue.getValue();
+                    isClustered = clusteredvalue != null && !clusteredvalue.trim().isEmpty();
+                }
+                
+                _loadBalancingCombo.getControl().setEnabled(isClustered);
+                _preferLocalCombo.setEnabled(isClustered);
+                String value = (String) loadBalanceValue.getValue();
+                if (!isClustered && value != null) {
+                    loadBalanceValue.setValue(null);
+                    preferLocalValue.setValue(null);
+                }
+            }
+        });
+
+        org.eclipse.core.databinding.Binding binding = context.bindValue(
+                SWTObservables.observeText(_preferLocalCombo),
+                preferLocalValue,
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                    .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                        "Prefer Local must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        loadBalanceValue.addChangeListener(new IChangeListener() {
+            @Override
+            public void handleChange(ChangeEvent event) {
+                String value = (String) loadBalanceValue.getValue();
+                boolean isCustom = false;
+                if (value != null) {
+                    isCustom = value.equals(Messages.constant_customLoadBalanceStrategy);
+                }
+                _loadBalancingCustomClassText.setEnabled(isCustom);
+                _browseLoadBalancingClassButton.setEnabled(isCustom);
+                if (!isCustom) {
+                    loadBalanceCustomValue.setValue(null);
+                }
+            }
+        });
+
+        binding = context.bindValue(
+                SWTObservables.observeText(_targetServiceText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        SwitchyardPackage.eINSTANCE.getDocumentRoot_Target()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context.bindValue(
+                SWTObservables.observeText(_targetNamespaceText, new int[] {SWT.Modify }),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                        SwitchyardPackage.eINSTANCE.getDocumentRoot_TargetNamespace()),
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(ViewersObservables.observeSingleSelection(_loadBalancingCombo), 
+                        loadBalanceValue, new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = 
+                context.bindValue(SWTObservables.observeText(_loadBalancingCustomClassText, SWT.Modify), 
+                        loadBalanceCustomValue, new EMFUpdateValueStrategyNullForEmptyString(null,
+                                UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        ComputedValue computedLoadBalanceValue = new ComputedValue() {
+            @Override
+            protected Object calculate() {
+                final String loadBalance = (String) loadBalanceValue.getValue();
+                final String customLoadBalance = (String) loadBalanceCustomValue.getValue();
+                if (loadBalance != null 
+                        && loadBalance.equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy) 
+                        && customLoadBalance != null) {
+                    return customLoadBalance;
+                } else if (loadBalance != null
+                        && !loadBalance.equalsIgnoreCase(Messages.constant_customLoadBalanceStrategy)) {
+                    loadBalanceCustomValue.setValue(null);
+                    return loadBalance;
+                }
+                return null;
+            }
+
+            protected void doSetValue(Object value) {
+                final String strValue = (String) value;
+                //"RoundRobinStrategy", "RandomStrategy"
+                if (strValue != null 
+                        && !strValue.equalsIgnoreCase("RoundRobinStrategy")
+                        && !strValue.equalsIgnoreCase("RandomStrategy")) {
+                    loadBalanceValue.setValue(Messages.constant_customLoadBalanceStrategy);
+                    loadBalanceCustomValue.setValue(strValue);
+                } else if (strValue != null) {
+                    loadBalanceValue.setValue(strValue);
+                    loadBalanceCustomValue.setValue(null);
+                    setTextValueAndNotify(_loadBalancingCustomClassText, "", false);
+                } else {
+                    loadBalanceValue.setValue(null);
+                    loadBalanceCustomValue.setValue(null);
+                }
+                getValue();
+            }
+        };
+
+        // now bind the proxy into the binding
+        binding = context.bindValue(
+                computedLoadBalanceValue, ObservablesUtil.observeDetailValue(domain, _bindingValue, 
+                        SwitchyardPackage.eINSTANCE.getDocumentRoot_LoadBalance()));
+    }
+    
     
 }

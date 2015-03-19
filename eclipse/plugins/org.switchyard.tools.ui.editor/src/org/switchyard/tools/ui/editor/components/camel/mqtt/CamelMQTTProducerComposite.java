@@ -29,7 +29,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
@@ -40,6 +40,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.mqtt.QualityOfServiceType
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.CompoundValidator;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyBooleanValidator;
 import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
@@ -58,7 +59,7 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
     private Text _nameText;
     private Text _hostURIText;
     private Text _publishTopicNameText;
-    private Button _byDefaultRetainCheckbox;
+    private Combo _byDefaultRetainCombo;
     private WritableValue _bindingValue;
     private Text _connectAttemptsMaxText;
     private Text _reconnectAttemptsMaxText;
@@ -123,7 +124,12 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
         _qosCombo.setInput(qosTypes);
         getToolkit().adapt(_qosCombo.getControl(), true, true);
         
-        _byDefaultRetainCheckbox = createCheckbox(composite, "Retain By Default", 2);
+        getToolkit().createLabel(composite, "Retain By Default");
+        _byDefaultRetainCombo = new Combo(composite, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_byDefaultRetainCombo);
+        _byDefaultRetainCombo.add("true");
+        _byDefaultRetainCombo.add("false");
+        _byDefaultRetainCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
         return composite;
     }
@@ -205,11 +211,13 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeSelection(_byDefaultRetainCheckbox),
+                        SWTObservables.observeText(_byDefaultRetainCombo),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                 MqttPackage.Literals.CAMEL_MQTT_BINDING_TYPE__BY_DEFAULT_RETAIN),
                         new EMFUpdateValueStrategyNullForEmptyString(
-                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+                                null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                                "Retain By Default must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
     }
 

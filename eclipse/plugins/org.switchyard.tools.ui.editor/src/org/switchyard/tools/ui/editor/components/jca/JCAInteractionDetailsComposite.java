@@ -43,6 +43,7 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -71,7 +72,8 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
     private Composite _panel;
     private JCABinding _binding = null;
     private ComboViewer _endpointMappingTypeCombo;
-    private Text _transactedText;
+//    private Text _transactedText;
+    private Combo _transactedCombo;
     private Group _batchGroup;
     private Text _batchSizeText;
     private Text _batchTimeoutText;
@@ -261,7 +263,13 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
             }
         });
 
-        _transactedText = createLabelAndText(composite, Messages.label_transacted);
+//        _transactedText = createLabelAndText(composite, Messages.label_transacted);
+        getToolkit().createLabel(composite, Messages.label_transacted);
+        _transactedCombo = new Combo(composite, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_transactedCombo);
+        _transactedCombo.add("true");
+        _transactedCombo.add("false");
+        _transactedCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         
         _batchGroup = new Group(composite, SWT.NONE);
         GridData bgGridData = new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1);
@@ -322,8 +330,9 @@ public class JCAInteractionDetailsComposite extends AbstractSYBindingComposite {
         final FeaturePath transactedFeaturePath = FeaturePath.fromList(
                 JcaPackage.Literals.JCA_BINDING__INBOUND_INTERACTION,
                 JcaPackage.Literals.JCA_INBOUND_INTERACTION__TRANSACTED);
-        binding = context.bindValue(SWTObservables.observeText(_transactedText, SWT.Modify),
-                EMFProperties.value(transactedFeaturePath).observeDetail(_bindingValue),
+        binding = context.bindValue(
+                SWTObservables.observeText(_transactedCombo),
+                ObservablesUtil.observeDetailValue(domain, _bindingValue, transactedFeaturePath),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_UPDATE, domain,
                         _bindingValue, transactedFeaturePath, false).
                         setAfterConvertValidator(new EscapedPropertyBooleanValidator("Transacted must be a valid boolean value or follow the pattern for escaped properties (i.e. '${propName}').")), null);
