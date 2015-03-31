@@ -14,7 +14,8 @@
   <description>Eclipse update site for SwitchYard tooling.</description>
 
   <properties>
-    <qualifiedVersion>${unqualifiedVersion}.${buildQualifier}</qualifiedVersion>
+  	<BUILD_ALIAS>${buildQualifier}</BUILD_ALIAS>
+    <qualifiedVersion>${unqualifiedVersion}.${BUILD_ALIAS}</qualifiedVersion>
     <update.site.name>SwitchYard</update.site.name>
     <update.site.version>${qualifiedVersion}</update.site.version>
     <update.site.description>Continuous Integration</update.site.description>
