@@ -248,6 +248,8 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                     new StructuredSelection(SwitchYardSettingsGroup.NULL_RUNTIME));
             _settingsGroup.getTargetRuntimesList().getControl().setEnabled(false);
             return;
+        } else {
+            _ifpwc = SharedWorkingCopyManager.getWorkingCopy(_ifp);
         }
         final IRuntime runtime = _ifpwc.getPrimaryRuntime();
         if (runtime == null) {
@@ -268,6 +270,9 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                 if (selection.isEmpty() || selection.getFirstElement() == SwitchYardSettingsGroup.NULL_RUNTIME) {
                     final IRuntime primaryRuntime = _ifpwc.getPrimaryRuntime();
                     if (primaryRuntime != null && !_configuredRuntimes.contains(primaryRuntime)) {
+                        _ifpwc.removeTargetedRuntime(primaryRuntime);
+                    } else if (primaryRuntime != null
+                            && selection.getFirstElement() == SwitchYardSettingsGroup.NULL_RUNTIME) {
                         _ifpwc.removeTargetedRuntime(primaryRuntime);
                     }
                 } else {
@@ -342,8 +347,14 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
     
     private boolean pomUsesSwitchYardBOM() {
         final MavenProject project = _switchYardProject.getMavenProject();
-        final Model originalModel = project.getOriginalModel();
-        final DependencyManagement depMgmt = originalModel.getDependencyManagement();
+        DependencyManagement depMgmt = null;
+        if (project != null && project.getOriginalModel() != null) {
+            final Model originalModel = project.getOriginalModel();
+            depMgmt = originalModel.getDependencyManagement();
+        } else if (project != null && project.getModel() != null) {
+            final Model originalModel = project.getOriginalModel();
+            depMgmt = originalModel.getDependencyManagement();
+        }
         if (depMgmt != null && !depMgmt.getDependencies().isEmpty()) {
             Iterator<Dependency> depIter = depMgmt.getDependencies().iterator();
             while (depIter.hasNext()) {
