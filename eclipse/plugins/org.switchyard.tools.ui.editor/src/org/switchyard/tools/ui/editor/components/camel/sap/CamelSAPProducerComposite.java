@@ -32,7 +32,6 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -48,9 +47,9 @@ import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcDestinati
 import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcDestinationType;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.SapFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyBooleanValidator;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.databinding.StringEmptyControlAwareValidator;
@@ -125,15 +124,15 @@ public class CamelSAPProducerComposite extends AbstractSYBindingComposite {
 
     private Text _qrfcDestinationText;
     private Text _qrfcQueueNameText;
-    private Button _qrfcTransactedCheckbox;
+    private Combo _qrfcTransactedCombo;
     private Text _qrfcRFCNameText;
 
     private Text _srfcDestinationText;
-    private Button _srfcTransactedCheckbox;
+    private Combo _srfcTransactedCombo;
     private Text _srfcRFCNameText;
 
     private Text _trfcDestinationText;
-    private Button _trfcTransactedCheckbox;
+    private Combo _trfcTransactedCombo;
     private Text _trfcRFCNameText;
 
     CamelSAPProducerComposite(FormToolkit toolkit) {
@@ -264,19 +263,34 @@ public class CamelSAPProducerComposite extends AbstractSYBindingComposite {
         _qrfcDestinationText = createLabelAndText(_qRFCPage, "Destination Name*");
         _qrfcQueueNameText = createLabelAndText(_qRFCPage, "Queue Name");
         _qrfcRFCNameText = createLabelAndText(_qRFCPage, "RFC Name*");
-        _qrfcTransactedCheckbox = createCheckbox(_qRFCPage, "Transacted", 2);
+        getToolkit().createLabel(_qRFCPage, "Transacted");
+        _qrfcTransactedCombo = new Combo(_qRFCPage, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_qrfcTransactedCombo);
+        _qrfcTransactedCombo.add("true");
+        _qrfcTransactedCombo.add("false");
+        _qrfcTransactedCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
         _sRFCPage = new Composite(_contentPanel, SWT.NONE);
         _sRFCPage.setLayout(new GridLayout(2, false));
         _srfcDestinationText = createLabelAndText(_sRFCPage, "Destination Name*");
         _srfcRFCNameText = createLabelAndText(_sRFCPage, "RFC Name*");
-        _srfcTransactedCheckbox = createCheckbox(_sRFCPage, "Transacted", 2);
+        getToolkit().createLabel(_sRFCPage, "Transacted");
+        _srfcTransactedCombo = new Combo(_sRFCPage, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_srfcTransactedCombo);
+        _srfcTransactedCombo.add("true");
+        _srfcTransactedCombo.add("false");
+        _srfcTransactedCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
         _tRFCPage = new Composite(_contentPanel, SWT.NONE);
         _tRFCPage.setLayout(new GridLayout(2, false));
         _trfcDestinationText = createLabelAndText(_tRFCPage, "Destination Name*");
         _trfcRFCNameText = createLabelAndText(_tRFCPage, "RFC Name*");
-        _trfcTransactedCheckbox = createCheckbox(_tRFCPage, "Transacted", 2);
+        getToolkit().createLabel(_tRFCPage, "Transacted");
+        _trfcTransactedCombo = new Combo(_tRFCPage, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_trfcTransactedCombo);
+        _trfcTransactedCombo.add("true");
+        _trfcTransactedCombo.add("false");
+        _trfcTransactedCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
         _typeCombo.addSelectionListener(new SelectionListener() {
 
@@ -671,9 +685,11 @@ public class CamelSAPProducerComposite extends AbstractSYBindingComposite {
         path = FeaturePath.fromList(SapPackage.Literals.CAMEL_SAP_BINDING_TYPE__QRFC_DESTINATION,
                 SapPackage.Literals.CAMEL_SAP_QRFC_DESTINATION_TYPE__TRANSACTED);
         org.eclipse.core.databinding.Binding binding = context.bindValue(
-                SWTObservables.observeSelection(_qrfcTransactedCheckbox),
+                SWTObservables.observeText(_qrfcTransactedCombo),
                 ObservablesUtil.observeDetailValue(domain, _bindingValue, path),
-                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                    .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                        "Transacted must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
     }
 
@@ -700,9 +716,11 @@ public class CamelSAPProducerComposite extends AbstractSYBindingComposite {
         path = FeaturePath.fromList(SapPackage.Literals.CAMEL_SAP_BINDING_TYPE__SRFC_DESTINATION,
                 SapPackage.Literals.CAMEL_SAP_SRFC_DESTINATION_TYPE__TRANSACTED);
         org.eclipse.core.databinding.Binding binding = context.bindValue(
-                SWTObservables.observeSelection(_srfcTransactedCheckbox),
+                SWTObservables.observeText(_srfcTransactedCombo),
                 ObservablesUtil.observeDetailValue(domain, _bindingValue, path),
-                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                    .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                        "Transacted must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
     }
 
@@ -729,9 +747,11 @@ public class CamelSAPProducerComposite extends AbstractSYBindingComposite {
         path = FeaturePath.fromList(SapPackage.Literals.CAMEL_SAP_BINDING_TYPE__TRFC_DESTINATION,
                 SapPackage.Literals.CAMEL_SAP_TRFC_DESTINATION_TYPE__TRANSACTED);
         org.eclipse.core.databinding.Binding binding = context.bindValue(
-                SWTObservables.observeSelection(_trfcTransactedCheckbox),
+                SWTObservables.observeText(_trfcTransactedCombo),
                 ObservablesUtil.observeDetailValue(domain, _bindingValue, path),
-                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                    .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                        "Transacted must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
     }
 
@@ -739,7 +759,7 @@ public class CamelSAPProducerComposite extends AbstractSYBindingComposite {
         final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
         final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
 
-        _bindingValue = new WritableValue(realm, null, CamelSqlBindingType.class);
+        _bindingValue = new WritableValue(realm, null, CamelSapBindingType.class);
 
         org.eclipse.core.databinding.Binding binding = context.bindValue(SWTObservables.observeText(_nameText,
                 new int[] {SWT.Modify }), ObservablesUtil.observeDetailValue(domain, _bindingValue,

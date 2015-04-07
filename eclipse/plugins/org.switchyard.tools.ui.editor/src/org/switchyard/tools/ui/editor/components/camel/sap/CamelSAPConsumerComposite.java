@@ -43,7 +43,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapSRfcServerTyp
 import org.switchyard.tools.models.switchyard1_0.camel.sap.CamelSapTRfcServerType;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.SapFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
@@ -261,7 +260,7 @@ public class CamelSAPConsumerComposite extends AbstractSYBindingComposite {
         final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
         final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
 
-        _bindingValue = new WritableValue(realm, null, CamelSqlBindingType.class);
+        _bindingValue = new WritableValue(realm, null, CamelSapBindingType.class);
 
         org.eclipse.core.databinding.Binding binding = context.bindValue(SWTObservables.observeText(_nameText,
                 new int[] {SWT.Modify }), ObservablesUtil.observeDetailValue(domain, _bindingValue,

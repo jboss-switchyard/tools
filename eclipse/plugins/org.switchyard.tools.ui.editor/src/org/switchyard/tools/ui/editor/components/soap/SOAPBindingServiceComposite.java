@@ -57,6 +57,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -79,6 +80,8 @@ import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.databinding.EMFUpdateValueStrategyNullForEmptyString;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyBooleanValidator;
+import org.switchyard.tools.ui.editor.databinding.EscapedPropertyIntegerValidator;
 import org.switchyard.tools.ui.editor.databinding.ObservablesUtil;
 import org.switchyard.tools.ui.editor.databinding.SWTValueUpdater;
 import org.switchyard.tools.ui.editor.databinding.StringEmptyValidator;
@@ -107,8 +110,8 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     private Button _browseBtnConfigWorkspace;
     private Link _newWSDLLink;
     private Button _enableMtomCheckbox = null;
-    private Button _enableXopExpandCheckbox = null;
-    private Button _disableMtomCheckbox =  null;
+    private Combo _enableXopExpandCombo;
+    private Combo _disableMtomCombo;
     private Text _configFileText;
     private Text _configNameText;
     private Text _mtomThresholdText = null;
@@ -267,7 +270,7 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     private void addMtomControls(Composite composite) {
         Group mtomGroup = new Group(composite, SWT.NONE);
         mtomGroup.setText(Messages.label_mtom);
-        mtomGroup.setLayout(new GridLayout(4, false));
+        mtomGroup.setLayout(new GridLayout(2, false));
         GridData epConfigGroupGD = new GridData(GridData.FILL_HORIZONTAL);
         epConfigGroupGD.horizontalSpan = 3;
         epConfigGroupGD.horizontalIndent = -5;
@@ -275,18 +278,23 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
 
         _enableMtomCheckbox = createCheckbox(mtomGroup, Messages.label_enable);
         GridData enableMtomChxGD = new GridData();
-        enableMtomChxGD.horizontalSpan = 4;
+        enableMtomChxGD.horizontalSpan = 2;
         _enableMtomCheckbox.setLayoutData(enableMtomChxGD);
 
-        _disableMtomCheckbox = createCheckbox(mtomGroup, Messages.label_temporarilyDisable);
-        GridData disableMtomChxGD = new GridData();
-        disableMtomChxGD.horizontalIndent = 10;
-        _disableMtomCheckbox.setLayoutData(disableMtomChxGD);
+        getToolkit().createLabel(mtomGroup, Messages.label_temporarilyDisable);
+        _disableMtomCombo = new Combo(mtomGroup, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_disableMtomCombo);
+        _disableMtomCombo.add("true");
+        _disableMtomCombo.add("false");
+        _disableMtomCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-        _enableXopExpandCheckbox = createCheckbox(mtomGroup, Messages.label_xopExpand);
-        GridData enableXopExpandChxGD = new GridData();
-        _enableXopExpandCheckbox.setLayoutData(enableXopExpandChxGD);
-        
+        getToolkit().createLabel(mtomGroup, Messages.label_xopExpand);
+        _enableXopExpandCombo = new Combo(mtomGroup, SWT.DROP_DOWN | SWT.BORDER);
+        getToolkit().adapt(_enableXopExpandCombo);
+        _enableXopExpandCombo.add("true");
+        _enableXopExpandCombo.add("false");
+        _enableXopExpandCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
         _mtomThresholdText = createLabelAndText(mtomGroup, Messages.label_threshold);
         GridData mtomThresholdGD = new GridData(GridData.FILL_HORIZONTAL);
         _mtomThresholdText.setLayoutData(mtomThresholdGD);
@@ -641,9 +649,9 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
     private void bindMtomControls(final DataBindingContext context, 
             final EditingDomain domain, final Realm realm) {
         final IObservableValue mtomEnabled = new WritableValue(realm, null, Boolean.class);
-        final IObservableValue mtomDisabled = new WritableValue(realm, null, Boolean.class);
-        final IObservableValue mtomXopExpand = new WritableValue(realm, null, Boolean.class);
-        final IObservableValue mtomThreshold = new WritableValue(realm, null, BigInteger.class);
+        final IObservableValue mtomDisabled = new WritableValue(realm, null, String.class);
+        final IObservableValue mtomXopExpand = new WritableValue(realm, null, String.class);
+        final IObservableValue mtomThreshold = new WritableValue(realm, null, String.class);
 
         org.eclipse.core.databinding.Binding binding = context
                 .bindValue(
@@ -654,16 +662,20 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeSelection(_disableMtomCheckbox), mtomDisabled,
+                        SWTObservables.observeText(_disableMtomCombo), mtomDisabled,
                         new EMFUpdateValueStrategyNullForEmptyString(
-                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+                                null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                                "Temporarily Disable must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeSelection(_enableXopExpandCheckbox), mtomXopExpand,
+                        SWTObservables.observeText(_enableXopExpandCombo), mtomXopExpand,
                         new EMFUpdateValueStrategyNullForEmptyString(
-                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+                                null, UpdateValueStrategy.POLICY_CONVERT)
+                        .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
+                                "XopExpand must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         ISWTObservableValue delayed1 = createDelayedObservableText(_mtomThresholdText);
@@ -671,17 +683,18 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 .bindValue(
                         delayed1, mtomThreshold,
                         new EMFUpdateValueStrategyNullForEmptyString(
-                                "MTom Threshold must be a valid numeric value.", 
-                                UpdateValueStrategy.POLICY_CONVERT), null);
+                                null, UpdateValueStrategy.POLICY_CONVERT)
+                                .setAfterConvertValidator(new EscapedPropertyIntegerValidator(
+                                        "MTom Threshold must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}').")), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         ComputedValue computedMtom = new ComputedValue() {
             @Override
             protected Object calculate() {
                 final Boolean enabled = (Boolean) mtomEnabled.getValue();
-                final Boolean disabled = (Boolean) mtomDisabled.getValue();
-                final Boolean xopExpand = (Boolean) mtomXopExpand.getValue();
-                final BigInteger threshold = (BigInteger) mtomThreshold.getValue();
+                final String disabled = (String) mtomDisabled.getValue();
+                final String xopExpand = (String) mtomXopExpand.getValue();
+                final String threshold = (String) mtomThreshold.getValue();
                 if (enabled != null && enabled.booleanValue()) {
                     final MtomType mtom = SOAPFactory.eINSTANCE
                             .createMtomType();
@@ -693,13 +706,29 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                 return null;
             }
             
+            private String getDataValue(Object income) {
+                if (income == null) {
+                    return null;
+                }
+                if (income instanceof Boolean) {
+                    return ((Boolean)income).toString();
+                }
+                if (income instanceof BigInteger) {
+                    return ((BigInteger)income).toString();
+                }
+                if (income instanceof String) {
+                    return (String) income;
+                }
+                return null;
+            }
+            
             protected void doSetValue(Object value) {
                 if (value instanceof MtomType) {
                     final MtomType mtom = (MtomType) value;
                     mtomEnabled.setValue(new Boolean(true));
-                    mtomDisabled.setValue(mtom.getEnabled());
-                    mtomXopExpand.setValue(mtom.getXopExpand());
-                    mtomThreshold.setValue(mtom.getThreshold());
+                    mtomDisabled.setValue(getDataValue(mtom.getEnabled()));
+                    mtomXopExpand.setValue(getDataValue(mtom.getXopExpand()));
+                    mtomThreshold.setValue(getDataValue(mtom.getThreshold()));
                 } else {
                     mtomEnabled.setValue(new Boolean(false));
                     mtomDisabled.setValue(null);
@@ -715,8 +744,8 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             @Override
             public void handleChange(ChangeEvent event) {
                 Boolean value = (Boolean) mtomEnabled.getValue();
-                _disableMtomCheckbox.setEnabled(value.booleanValue());
-                _enableXopExpandCheckbox.setEnabled(value.booleanValue());
+                _disableMtomCombo.setEnabled(value.booleanValue());
+                _enableXopExpandCombo.setEnabled(value.booleanValue());
                 _mtomThresholdText.setEnabled(value.booleanValue());
             }
         });
