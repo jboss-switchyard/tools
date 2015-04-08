@@ -34,9 +34,3 @@ Here's how to setup Eclipse...
 
 Now your Eclipse has set the target platform you need for running _JBoss SwitchYard Tooling_. A rebuild of all imported projects is done directly after setting the target platform. Make sure there are no more errors displayed in any of the projects.
 
-## Errors and Warnings
-
-Right now because of what's provided as part of the BPMN2 Editor SDK, the org.switchyard.tools.ui.bpmn2 plug-in does not build within Eclipse. It does build at the maven command line. 
-
-It is a known problem. For now, unless you are working specifically with that plug-in, you can close it to avoid the issue.
-
