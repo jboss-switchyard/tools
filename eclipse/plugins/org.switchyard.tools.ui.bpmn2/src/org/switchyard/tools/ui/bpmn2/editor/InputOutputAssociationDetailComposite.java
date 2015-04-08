@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.bpmn2.editor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ReadonlyTextObjectEditor;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmDataAssociationDetailComposite;
+import org.eclipse.bpmn2.modeler.ui.property.tasks.DataInputOutputDetailComposite;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
