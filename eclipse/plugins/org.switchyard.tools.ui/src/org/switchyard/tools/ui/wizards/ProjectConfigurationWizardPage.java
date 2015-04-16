@@ -264,9 +264,12 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             public void stateChanged(ChangeEvent e) {
                 boolean testRuntimeVersion = isSelectedRuntimeV2();
                 boolean testConfigVersion = isSelectedConfigurationVersionOkForRuntime();
+                boolean isKaraf = isKarafRuntime();
                 _useSwitchYardDependencyBOMCheckbox.setEnabled(testRuntimeVersion);
                 _doesUseSwitchYardDependencyBOM = testRuntimeVersion;
                 _useSwitchYardDependencyBOMCheckbox.setSelection(_doesUseSwitchYardDependencyBOM & testConfigVersion);
+                _isBundleCheckbox.setSelection(isKaraf);
+                _isBundled = isKaraf;
 
                 validate();
             }
@@ -351,6 +354,15 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         setPageComplete(getErrorMessage() == null);
     }
 
+    private boolean isKarafRuntime() {
+        IRuntimeComponent runtime = _settingsGroup.getSelectedTargetRuntime();
+        String label = runtime.getProperty("switchyard.label");
+        if (label.contains("SwitchYard: Karaf Extension")) {
+            return true;
+        }
+        return false;
+    }
+    
     private boolean isSelectedRuntimeV2() {
         ArtifactVersion artversion = getRuntimeVersion();
         if (artversion != null) {
