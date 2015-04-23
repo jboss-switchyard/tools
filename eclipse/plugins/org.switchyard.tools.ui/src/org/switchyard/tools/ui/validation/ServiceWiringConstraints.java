@@ -26,14 +26,17 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.ExchangePattern;
 import org.switchyard.metadata.ServiceInterface;
 import org.switchyard.metadata.ServiceOperation;
+import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
 import org.switchyard.transform.TransformSequence;
 
 /**
@@ -106,12 +109,56 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
         if (status != null) {
             statuses.add(status);
         }
+        status = validateBindingOperationSelection(ctx, contract);
+        if (status != null) {
+            statuses.add(status);
+        }
         if (statuses.isEmpty()) {
             return ctx.createSuccessStatus();
         }
         return ConstraintStatus.createMultiStatus(ctx, statuses);
     }
 
+    private IStatus validateBindingOperationSelection(IValidationContext ctx, Contract contract) {
+        if (contract.getBinding() != null && contract.getBinding().size() > 0) {
+            Iterator<Binding> bindingIter = contract.getBinding().iterator();
+            while (bindingIter.hasNext()) {
+                Binding binding = bindingIter.next();
+                
+                // we are only interested in Java interfaces
+                if (!(contract.getInterface() instanceof JavaInterface)) {
+                    continue;
+                }
+                
+                // there is always an empty string in the list, so for one operation
+                // the count is 2, for more than one it's three or more
+                String[] operations = InterfaceOpsUtil.gatherOperations(contract);
+                boolean hasMoreThanOneOperation = (operations.length > 2);
+                
+                if (binding.getOperationSelector() != null 
+                        && binding.getOperationSelector() instanceof StaticOperationSelectorType) {
+                    StaticOperationSelectorType staticOpSelector = 
+                            (StaticOperationSelectorType) binding.getOperationSelector();
+                    
+                    // if it already specifies which one, then we're good to go, otherwise...
+                    if (staticOpSelector.getOperationName() == null && hasMoreThanOneOperation) {
+                        // the user needs to specify the operation name when there is more than
+                        // one operation in a Java interface
+                        final ValidationProblem problem = ValidationProblem.NoBindingOperationSelected;
+                        return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
+                                problem.getMessage(), contract.getName(), binding.getName());
+                    }
+                } else if (binding.getOperationSelector() == null) {
+                    // if there is no operation selector specified, we have a problem
+                    final ValidationProblem problem = ValidationProblem.NoBindingOperationSelected;
+                    return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
+                            problem.getMessage(), contract.getName(), binding.getName());
+                }
+            }
+        }
+        return null;
+    }
+    
     private IStatus validateInterfaceCompatibility(IValidationContext ctx, Contract contract) {
         if (contract instanceof Reference) {
             return validateInterfaceCompatibility(ctx, (Reference) contract);

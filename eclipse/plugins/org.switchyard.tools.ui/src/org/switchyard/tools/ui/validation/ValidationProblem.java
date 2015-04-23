@@ -177,7 +177,11 @@ public enum ValidationProblem {
             false),
     /** The service interface has a method with multiple parameters. */
     ServiceInterfaceHasMultipleParameters(
-            Messages.ValidationProblem_ServiceInterfaceHasMethodWithMultipleParameters, false);
+            Messages.ValidationProblem_ServiceInterfaceHasMethodWithMultipleParameters, false),
+    /** The service binding doesn't specify an operation in the operation selector...
+     * Even though the service interface specifies more than one operation. */
+    NoBindingOperationSelected(Messages.ValidationProblem_NoOperationSelectedForInterface,
+            false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
     public static final String PROBLEM_CODE = Messages.ValidationProblem_ValidateProblem;

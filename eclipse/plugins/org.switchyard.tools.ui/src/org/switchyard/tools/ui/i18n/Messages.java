@@ -846,6 +846,8 @@ public final class Messages extends NLS {
     
     public static String ValidationProblem_CamelRouteURIInvalid;
     
+    public static String ValidationProblem_NoOperationSelectedForInterface;
+    
     static {
         // initialize resource bundle
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
