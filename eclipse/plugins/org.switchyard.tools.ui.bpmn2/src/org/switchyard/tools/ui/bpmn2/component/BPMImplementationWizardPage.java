@@ -229,6 +229,8 @@ public class BPMImplementationWizardPage extends WizardPage {
 
         resourcesRadio.addSelectionListener(radioListener);
         containerRadio.addSelectionListener(radioListener);
+        remoteJMSRadio.addSelectionListener(radioListener);
+        remoteRESTRadio.addSelectionListener(radioListener);
 
         setControl(contents);
     }
