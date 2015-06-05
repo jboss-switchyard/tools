@@ -1178,6 +1178,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-atom"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-atom"
            name="Atom">
@@ -1194,6 +1195,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-rss"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-rss"
            name="RSS">
@@ -1210,6 +1212,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-sap"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-sap"
            name="SAP">
@@ -1222,6 +1225,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-cxf"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-cxf"
            name="CXF">
@@ -1238,6 +1242,7 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-mqtt"
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-mqtt"
            name="MQTT">
