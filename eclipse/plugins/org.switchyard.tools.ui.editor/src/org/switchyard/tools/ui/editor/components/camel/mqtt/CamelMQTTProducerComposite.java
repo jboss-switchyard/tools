@@ -64,6 +64,8 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
     private Text _connectAttemptsMaxText;
     private Text _reconnectAttemptsMaxText;
     private ComboViewer _qosCombo;
+    private Text _userNameText;
+    private Text _passwordText;
 
     CamelMQTTProducerComposite(FormToolkit toolkit) {
         super(toolkit);
@@ -109,6 +111,8 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
         _nameText = createLabelAndText(composite, Messages.label_name);
 
         _hostURIText = createLabelAndText(composite, "Host URI (Default: tcp://127.0.0.1:1883)");
+        _userNameText = createLabelAndText(composite, "User Name");
+        _passwordText = createLabelAndText(composite, "Password");
         _publishTopicNameText = createLabelAndText(composite, "Publish Topic Name");
         _connectAttemptsMaxText = createLabelAndText(composite, "Connect Attempts Max");
         _reconnectAttemptsMaxText = createLabelAndText(composite, "Reconnect Attempts Max");
@@ -172,6 +176,24 @@ public class CamelMQTTProducerComposite extends AbstractSYBindingComposite {
                                 .setAfterConvertValidator(uriValidator), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
         
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_userNameText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                MqttPackage.Literals.CAMEL_MQTT_BINDING_TYPE__USER_NAME),
+                                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        binding = context
+                .bindValue(
+                        SWTObservables.observeText(_passwordText, new int[] {SWT.Modify }),
+                        ObservablesUtil.observeDetailValue(domain, _bindingValue,
+                                MqttPackage.Literals.CAMEL_MQTT_BINDING_TYPE__PASSWORD),
+                                new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
+                                , null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
         binding = context
                 .bindValue(
                         SWTObservables.observeText(_publishTopicNameText, new int[] {SWT.Modify }),
