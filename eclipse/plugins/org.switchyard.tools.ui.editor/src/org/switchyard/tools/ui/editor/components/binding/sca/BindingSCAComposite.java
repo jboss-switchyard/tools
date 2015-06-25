@@ -154,8 +154,8 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         }
 
         Group clusteringGroup = new Group(composite, SWT.NONE);
-        clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
-        clusteringGroup.setLayout(new GridLayout(2, false));
+        clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
+        clusteringGroup.setLayout(new GridLayout(3, false));
         clusteringGroup.setText(Messages.label_clustering);
         toolkit.adapt(clusteringGroup);
         
@@ -165,6 +165,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
         _clusteredCombo.add("true");
         _clusteredCombo.add("false");
         _clusteredCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+        addGridData(_clusteredCombo, 2, GridData.FILL_HORIZONTAL);
 
         if (!_showConsumer) {
             getToolkit().createLabel(clusteringGroup, "Prefer Local");
@@ -172,9 +173,8 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
             getToolkit().adapt(_preferLocalCombo);
             _preferLocalCombo.add("true");
             _preferLocalCombo.add("false");
-            _preferLocalCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+            _preferLocalCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
-            addGridData(_preferLocalCombo, 3, GridData.FILL_HORIZONTAL);
             _loadBalancingCombo = createLabelAndComboViewer(clusteringGroup, Messages.label_loadBalancing, true);
             addGridData(_loadBalancingCombo.getCombo(), 2, GridData.FILL_HORIZONTAL);
             _loadBalancingCombo.setContentProvider(ArrayContentProvider.getInstance());
@@ -320,7 +320,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 String value = (String) loadBalanceValue.getValue();
                 if (!isClustered && value != null) {
                     loadBalanceValue.setValue(null);
-                    preferLocalValue.setValue(null);
+                    preferLocalValue.setValue("true"); // return to default
                 }
             }
         });
