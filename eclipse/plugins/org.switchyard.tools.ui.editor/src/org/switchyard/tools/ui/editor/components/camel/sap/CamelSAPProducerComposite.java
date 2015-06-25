@@ -324,7 +324,6 @@ public class CamelSAPProducerComposite extends AbstractSYBindingComposite {
                         _binding.setTrfcDestination(null);
                     } else if (clazz.equals(CamelSapIDocListDestinationType.class)) {
                         _binding.setIdocDestination(null);
-                        _binding.setIdoclistDestination(null);
                         _binding.setQidocDestination(null);
                         if (_binding.getIdoclistDestination() == null) {
                             _binding.setIdoclistDestination(SapFactory.eINSTANCE
