@@ -22,6 +22,7 @@
   <properties>
     <tycho-version>0.23.1</tycho-version>
     <tycho-extras-version>${tycho-version}</tycho-extras-version>
+    <jbossTychoPluginsVersion>0.22.1-SNAPSHOT</jbossTychoPluginsVersion>
     <version.jbtis.target-platform>4.3.0.Beta1b-SNAPSHOT</version.jbtis.target-platform>
   </properties>
 

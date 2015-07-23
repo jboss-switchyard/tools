@@ -94,7 +94,7 @@
       <plugin>
         <groupId>org.jboss.tools.tycho-plugins</groupId>
         <artifactId>repository-utils</artifactId>
-        <version>${tycho-version}</version>
+        <version>${jbossTychoPluginsVersion}</version>
         <executions>
           <execution>
             <id>generate-facade</id>
