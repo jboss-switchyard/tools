@@ -20,9 +20,9 @@
   <description>Parent project for Eclipse based SwitchYard tooling.</description>
 
   <properties>
-    <tycho-version>0.21.0</tycho-version>
+    <tycho-version>0.23.1</tycho-version>
     <tycho-extras-version>${tycho-version}</tycho-extras-version>
-    <version.jbtis.target-platform>4.2.4.Final</version.jbtis.target-platform>
+    <version.jbtis.target-platform>${jbtis.version}</version.jbtis.target-platform>
   </properties>
 
   <modules>
@@ -81,7 +81,7 @@
     -->
     <repository>
       <id>bpmn2-editor-update-site</id>
-      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.1.2.Final_1.1.0.Final_luna//</url>
+      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.2.0.201504151830_1.2.0.Final_mars//</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>

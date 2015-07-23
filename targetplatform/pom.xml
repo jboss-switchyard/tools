@@ -17,9 +17,9 @@
 
    <properties>  
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <tychoVersion>0.21.0</tychoVersion>
+      <tychoVersion>0.23.1</tychoVersion>
       <tychoExtrasVersion>${tychoVersion}</tychoExtrasVersion>
-      <jboss-tycho-version>0.21.0</jboss-tycho-version>
+      <jboss-tycho-version>0.23.1</jboss-tycho-version>
    </properties>
 
    <build>
