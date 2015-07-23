@@ -14,7 +14,8 @@
   <description>Eclipse update site for SwitchYard tooling.</description>
 
   <properties>
-  	<BUILD_ALIAS>${buildQualifier}</BUILD_ALIAS>
+    <BUILD_TYPE>snapshots</BUILD_TYPE>
+    <BUILD_ALIAS>${buildQualifier}</BUILD_ALIAS>
     <qualifiedVersion>${unqualifiedVersion}.${BUILD_ALIAS}</qualifiedVersion>
     <update.site.name>SwitchYard</update.site.name>
     <update.site.version>${qualifiedVersion}</update.site.version>
@@ -27,31 +28,26 @@
     <!-- integration build profile -->
     <profile>
       <id>integration</id>
-
       <activation>
         <property>
           <name>BUILD_TYPE</name>
-          <value>integration</value>
+          <value>staging</value>
         </property>
       </activation>
-
       <properties>
         <update.site.description>Integration Build</update.site.description>
       </properties>
-
     </profile>
 
     <!-- development build profile -->
     <profile>
       <id>development</id>
-
       <activation>
         <property>
           <name>BUILD_TYPE</name>
           <value>development</value>
         </property>
       </activation>
-
       <properties>
         <update.site.description>Development Milestone</update.site.description>
       </properties>
@@ -59,14 +55,12 @@
 
     <profile>
       <id>stable</id>
-
       <activation>
         <property>
           <name>BUILD_TYPE</name>
           <value>stable</value>
         </property>
       </activation>
-
       <properties>
         <update.site.description>Stable Release</update.site.description>
       </properties>
@@ -74,17 +68,101 @@
 
     <profile>
       <id>earlyaccess</id>
-
       <activation>
         <property>
           <name>BUILD_TYPE</name>
-          <value>stable</value>
+          <value>earlyaccess</value>
         </property>
       </activation>
-
       <properties>
         <update.site.description>Early Access Release</update.site.description>
       </properties>
+    </profile>
+
+    <profile>
+      <id>deploy-to-jboss.org</id>
+      <properties>
+        <jbosstoolsRelengPublishVersion>4.3.0.CR1-SNAPSHOT</jbosstoolsRelengPublishVersion>
+
+        <deployScriptDir>${project.build.directory}/releng-scripts</deployScriptDir>
+        <deployScript>${deployScriptDir}/publish/rsync.sh</deployScript>
+        <deploySourceFolder>${project.build.directory}/repository</deploySourceFolder>
+        <deployDestination>tools@filemgmt.jboss.org:downloads_htdocs/jbosstools</deployDestination>
+        <deployTargetFolder>mars/snapshots/builds/switchyard-tools/${BUILD_ID}-B${BUILD_NUMBER}/all/repo/</deployTargetFolder>
+        <maven.deploy.skip>false</maven.deploy.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>deploy-releng-scripts</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>org.jboss.tools.releng</groupId>
+                      <artifactId>jbosstools-releng-publish</artifactId>
+                      <version>${jbosstoolsRelengPublishVersion}</version>
+                      <type>tar.gz</type>
+                      <outputDirectory>${deployScriptDir}</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.3.2</version>
+            <configuration>
+              <executable>${deployScript}</executable>
+            </configuration>
+            <executions>
+              <execution>
+                <id>deploy-snapshot-build</id>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <arguments>
+                    <arg>-DESTINATION</arg>
+                    <arg>${deployDestination}</arg>
+                    <arg>-s</arg>
+                    <arg>${deploySourceFolder}</arg>
+                    <arg>-t</arg>
+                    <arg>${deployTargetFolder}</arg>
+                  </arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>deploy-snapshot-updatesite</id>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <arguments>
+                    <arg>--del</arg>
+                    <arg>-DESTINATION</arg>
+                    <arg>${deployDestination}</arg>
+                    <arg>-s</arg>
+                    <arg>${project.build.directory}/repository</arg>
+                    <arg>-t</arg>
+                    <arg>mars/${BUILD_TYPE}/updates/integration-stack/switchyard-tools/${jbosstools_site_stream}/</arg>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
   
