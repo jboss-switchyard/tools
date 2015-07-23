@@ -15,7 +15,7 @@
   <properties>
     <!-- Just in case the Eclipse project version does not match the parent. -->
     <version.switchyard.runtime>2.1.0-SNAPSHOT</version.switchyard.runtime>
-    <jbtis.version>4.2.4.Final</jbtis.version>
+    <jbtis.version>4.3.0.Beta1b-SNAPSHOT</jbtis.version>
   </properties>
 
   <modules>

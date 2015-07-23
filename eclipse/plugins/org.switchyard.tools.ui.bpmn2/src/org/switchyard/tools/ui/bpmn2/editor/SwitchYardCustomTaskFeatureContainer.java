@@ -71,7 +71,7 @@ public class SwitchYardCustomTaskFeatureContainer extends JbpmCustomTaskFeatureC
 
     private boolean isSwitchYardProject(IFeatureProvider fp) {
         try {
-            BPMN2Editor editor = (BPMN2Editor) fp.getDiagramTypeProvider().getDiagramEditor();
+            BPMN2Editor editor = (BPMN2Editor) fp.getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer();
             return FacetedProjectFramework.hasProjectFacet(editor.getModelFile().getProject(),
                     ISwitchYardFacetConstants.SWITCHYARD_FACET_ID);
         } catch (CoreException e) {

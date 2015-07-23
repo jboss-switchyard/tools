@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?>
-<!--
-	JBTIS TP + BPMN2 for SwitchYard tooling development
--->
-<target name="switchyard-dev" sequenceNumber="1">
-   <locations>
-
-      <!-- BPMN2 Modeler Dependencies -->
-      <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-         <unit id="org.eclipse.bpmn2.feature.group" version="1.1.0.Final"/>
-         <unit id="org.eclipse.bpmn2.modeler.feature.group" version="1.1.2.Final"/>
-         <unit id="org.eclipse.bpmn2.modeler.runtime.jboss.feature.group" version="1.1.2.Final"/>
-         <repository location="http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.1.2.Final_1.1.0.Final_luna/"/>
-      </location>
-   </locations>
+<?pde version="3.8"?><target name="switchyard-dev" sequenceNumber="2">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.bpmn2.feature.feature.group" version="1.2.0.Final"/>
+<unit id="org.eclipse.bpmn2.modeler.feature.group" version="1.2.0.201504151830"/>
+<unit id="org.eclipse.bpmn2.modeler.runtime.jboss.feature.group" version="1.2.0.201504151830"/>
+<repository location="http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.2.0.201504151830_1.2.0.Final_mars/"/>
+</location>
+</locations>
 </target>
