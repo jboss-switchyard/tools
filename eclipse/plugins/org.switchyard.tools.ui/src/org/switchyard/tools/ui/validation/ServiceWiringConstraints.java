@@ -120,6 +120,11 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
     }
 
     private IStatus validateBindingOperationSelection(IValidationContext ctx, Contract contract) {
+        // we are only interested in services and not references 
+        if (contract instanceof Reference) {
+            return null;
+        }        
+        
         if (contract.getBinding() != null && contract.getBinding().size() > 0) {
             Iterator<Binding> bindingIter = contract.getBinding().iterator();
             while (bindingIter.hasNext()) {
@@ -148,8 +153,9 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
                         return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
                                 problem.getMessage(), contract.getName(), binding.getName());
                     }
-                } else if (binding.getOperationSelector() == null) {
-                    // if there is no operation selector specified, we have a problem
+                } else if (binding.getOperationSelector() == null && hasMoreThanOneOperation) {
+                    // if there is no operation selector specified and the interface specifies two
+                    // or more operations, we have a problem
                     final ValidationProblem problem = ValidationProblem.NoBindingOperationSelected;
                     return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
                             problem.getMessage(), contract.getName(), binding.getName());
