@@ -295,10 +295,19 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
         return this._supportedInterfaceTypes;
     }
 
-    private class ServiceImplementationFileCreationPage extends WizardNewFileCreationPage {
+    /**
+     * Made internal page public so we can get to the contract control.
+     * @author brianf
+     */
+    public class ServiceImplementationFileCreationPage extends WizardNewFileCreationPage {
 
         private ContractControl _contractControl;
 
+        /**
+         * Constructor.
+         * @param pageName name of the page
+         * @param selection incoming selection
+         */
         public ServiceImplementationFileCreationPage(String pageName, IStructuredSelection selection) {
             super(pageName, selection);
         }
@@ -306,6 +315,14 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
         @Override
         protected InputStream getInitialContents() {
             return BaseNewServiceFileWizard.this.getInitialContents();
+        }
+        
+        /**
+         * Need to get the contract control to fix a BPEL implementation wizard issue.
+         * @return Contract control
+         */
+        public ContractControl getContractControl() {
+            return _contractControl;
         }
 
         @Override
