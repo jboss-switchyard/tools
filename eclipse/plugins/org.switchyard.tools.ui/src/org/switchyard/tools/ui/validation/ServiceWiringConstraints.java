@@ -120,11 +120,11 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
     }
 
     private IStatus validateBindingOperationSelection(IValidationContext ctx, Contract contract) {
-    	// we are only interested in services and not references 
-    	if (contract instanceof Reference) {
-    		return null;
-    	}
-    	
+        // we are only interested in services and not references
+        if (contract instanceof Reference) {
+            return null;
+        }
+
         if (contract.getBinding() != null && contract.getBinding().size() > 0) {
             Iterator<Binding> bindingIter = contract.getBinding().iterator();
             while (bindingIter.hasNext()) {
