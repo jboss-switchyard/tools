@@ -33,6 +33,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.ui.INewWizard;
@@ -223,7 +224,14 @@ public class BPELComponentWizard extends BaseNewServiceFileWizard implements INe
 
         @Override
         public String getWsdlUrl() {
-            final String intf = ((WSDLPortType) getService().getInterface()).getInterface();
+            // SWITCHYARD-2727 workaround to grab the corrected interface
+            // from the wizard controls and ensure the service is populated
+            // correctly.
+            ServiceImplementationFileCreationPage page = (ServiceImplementationFileCreationPage) getFileCreationPage();
+            Interface wizardInterface = page.getContractControl().getInterfaceControl().getInterface();
+            getService().setInterface(wizardInterface);
+            final WSDLPortType portType = (WSDLPortType) getService().getInterface();
+            final String intf = portType.getInterface();
             return intf.substring(0, intf.indexOf('#'));
         }
 
