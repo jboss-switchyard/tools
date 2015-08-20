@@ -278,4 +278,11 @@ public class ContractControl implements ISelectionProvider {
                         .equals(currentValue)));
     }
 
+    /**
+     * Workaround for some strange issues with BPEL implementation and various wizards (SWITCHYARD-2727).
+     * @return Interface Control
+     */
+    public InterfaceControl getInterfaceControl() {
+        return _interfaceControl;
+    }
 }
