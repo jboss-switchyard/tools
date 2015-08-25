@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.util.FormToolkitUtil;
 
 /**
  * AbstractModelComposite
@@ -85,7 +86,9 @@ public abstract class AbstractModelComposite<T extends EObject> extends Composit
      * @return the widget factory.
      */
     protected FormToolkit getWidgetFactory() {
-        return _container.getToolkit();
+        FormToolkit toolkit = _container.getToolkit();
+        FormToolkitUtil.updateFormToolkit(toolkit);
+        return toolkit;
     }
 
     /**

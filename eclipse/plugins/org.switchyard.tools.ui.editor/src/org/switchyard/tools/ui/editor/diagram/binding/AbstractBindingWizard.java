@@ -28,6 +28,7 @@ import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.util.FormToolkitUtil;
 
 /**
  * AbstractBindingWizard
@@ -49,6 +50,7 @@ public abstract class AbstractBindingWizard extends LinkedWizardBase implements 
         colors.setBackground(null);
         colors.setForeground(null);
         _toolkit = new FormToolkit(colors);
+        FormToolkitUtil.updateFormToolkit(_toolkit);
     }
 
     @Override

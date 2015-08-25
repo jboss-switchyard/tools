@@ -58,8 +58,10 @@ public class ThrottlingPropertyComposite extends AbstractModelComposite<Contract
 
         FormToolkit factory = getWidgetFactory();
 
+        factory.setBorderStyle(SWT.NULL);
         factory.createText(this, Messages.tooltip_enableThrottling,
                 SWT.READ_ONLY | SWT.WRAP).setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
+        factory.setBorderStyle(SWT.BORDER);
         _enableCheck = factory.createButton(this, Messages.label_enableThrottling, SWT.CHECK);
         _enableCheck.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 2, 1));
         _enableCheck.addSelectionListener(new SelectionAdapter() {
