@@ -33,6 +33,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.FormToolkitUtil;
 
 /**
  * AbstractTabbedPropertySection
@@ -60,7 +61,9 @@ public abstract class AbstractTabbedPropertySection<T extends EObject> extends G
 
     @Override
     public FormToolkit getToolkit() {
-        return _page.getWidgetFactory();
+        FormToolkit toolkit = _page.getWidgetFactory();
+        FormToolkitUtil.updateFormToolkit(toolkit);
+        return toolkit;
     }
 
     @Override

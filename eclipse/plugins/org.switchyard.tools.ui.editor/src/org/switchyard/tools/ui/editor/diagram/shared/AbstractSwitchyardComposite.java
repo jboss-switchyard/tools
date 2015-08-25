@@ -61,6 +61,7 @@ import org.eclipse.ui.internal.dialogs.PropertyDialog;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.ErrorUtils;
+import org.switchyard.tools.ui.editor.util.FormToolkitUtil;
 
 /**
  * @author bfitzpat
@@ -95,6 +96,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      */
     public AbstractSwitchyardComposite(FormToolkit toolkit) {
         _toolkit = toolkit;
+        FormToolkitUtil.updateFormToolkit(_toolkit);
     }
 
     /**

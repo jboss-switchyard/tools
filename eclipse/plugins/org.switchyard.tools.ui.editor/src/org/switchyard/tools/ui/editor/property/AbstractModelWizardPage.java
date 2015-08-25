@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.switchyard.tools.ui.editor.util.FormToolkitUtil;
 
 /**
  * AbstractPropertyPage
@@ -92,6 +93,7 @@ public abstract class AbstractModelWizardPage<T extends EObject> extends WizardP
             colors.setBackground(null);
             colors.setForeground(null);
             _toolkit = new FormToolkit(colors);
+            FormToolkitUtil.updateFormToolkit(_toolkit);
         }
 
         _composite = createComposite(parent, SWT.NONE);

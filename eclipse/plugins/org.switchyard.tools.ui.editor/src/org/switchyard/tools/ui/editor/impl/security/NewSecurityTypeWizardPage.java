@@ -54,6 +54,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyInputDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyTable;
 import org.switchyard.tools.ui.editor.impl.DomainPropertyTextValueChangeListener;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.FormToolkitUtil;
 
 /**
  * @author bfitzpat
@@ -97,7 +98,7 @@ public class NewSecurityTypeWizardPage extends WizardPage {
     @Override
     public void createControl(Composite parent) {
         if (_toolkit == null) {
-            _toolkit = new FormToolkit(parent.getDisplay());
+            _toolkit = FormToolkitUtil.getFormToolkit();
         }
         Composite client3 = _toolkit.createComposite(parent, SWT.WRAP);
         GridLayout layout3 = new GridLayout();

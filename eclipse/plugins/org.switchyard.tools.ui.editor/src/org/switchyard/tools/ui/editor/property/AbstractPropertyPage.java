@@ -34,6 +34,7 @@ import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
+import org.switchyard.tools.ui.editor.util.FormToolkitUtil;
 
 /**
  * AbstractPropertyPage
@@ -136,6 +137,7 @@ public abstract class AbstractPropertyPage<T extends EObject> extends PropertyPa
             colors.setBackground(null);
             colors.setForeground(null);
             _toolkit = new FormToolkit(colors);
+            FormToolkitUtil.updateFormToolkit(_toolkit);
         }
 
         _observablesManager.runAndCollect(new Runnable() {
