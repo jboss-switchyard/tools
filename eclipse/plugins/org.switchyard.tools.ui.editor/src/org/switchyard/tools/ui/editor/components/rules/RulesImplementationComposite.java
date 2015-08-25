@@ -180,8 +180,6 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
                 getContainer().layout();
             }
         });
-        
-        adaptChildren(folder);
     }
 
     @Override
