@@ -4,6 +4,8 @@
       label="%featureName"
       version="2.1.0.qualifier"
       provider-name="%featureProvider"
+      license-feature="org.jboss.tools.foundation.license.feature"
+      license-feature-version="0.0.0"
       plugin="org.switchyard.tools">
 
    <description url="http://www.jboss.org/switchyard">

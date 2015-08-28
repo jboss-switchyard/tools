@@ -3,7 +3,9 @@
       id="org.switchyard.tools.bpel.feature"
       label="%featureName"
       version="2.1.0.qualifier"
-      provider-name="%featureProvider">
+      provider-name="%featureProvider"
+      license-feature="org.jboss.tools.foundation.license.feature"
+      license-feature-version="0.0.0">
 
    <description url="http://www.jboss.org/switchyard">
       %description
@@ -30,4 +32,8 @@
          version="0.0.0"
          unpack="false"/>
 
+    <license url="%licenseURL">
+      %license
+    </license>
+    
 </feature>
