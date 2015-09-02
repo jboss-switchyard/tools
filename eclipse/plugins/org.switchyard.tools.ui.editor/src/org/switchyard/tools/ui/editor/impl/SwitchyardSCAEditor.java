@@ -39,6 +39,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
@@ -118,7 +119,9 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.ide.IGotoMarker;
+import org.eclipse.ui.internal.Workbench;
 import org.eclipse.ui.internal.WorkbenchMessages;
+import org.jboss.tools.foundation.core.jobs.BarrierProgressWaitJob;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
@@ -1011,24 +1014,33 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             final ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(
                     sourceFile.getProject());
             if (switchYardProject.needsLoading()) {
-                try {
-                    IRunnableWithProgress op = new IRunnableWithProgress() {
-                        @Override
-                        public void run(IProgressMonitor mon) throws InvocationTargetException, InterruptedException {
-                            try {
-                                loadSwitchYardProject(switchYardProject, mon);
-                            } catch (CoreException ce) {
-                                throw new InvocationTargetException(ce);
+                
+                // SWITCHYARD-2767 workaround - since the workbench window isn't active yet,
+                // the barrier job in loadSwitchYardProject() was hanging. We can avoid it by 
+                // checking to see if the workbench window is visible - if not, we just have the
+                // splash window. A bit hacky, but it works!
+                if (!Workbench.getInstance().getActiveWorkbenchWindow().getShell().isVisible()) {
+                    switchYardProject.load(new NullProgressMonitor());
+                } else {
+                    try {
+                        IRunnableWithProgress op = new IRunnableWithProgress() {
+                            @Override
+                            public void run(IProgressMonitor mon) throws InvocationTargetException, InterruptedException {
+                                try {
+                                    loadSwitchYardProject(switchYardProject, mon);
+                                } catch (CoreException ce) {
+                                    throw new InvocationTargetException(ce);
+                                }
                             }
-                        }
-                    };
-                    new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, true, op);
-                } catch (InvocationTargetException e) {
-                    // handle exception
-                    return null;
-                } catch (InterruptedException e) {
-                    // handle cancelation
-                    return null;
+                        };
+                        new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, true, op);
+                    } catch (InvocationTargetException e) {
+                        // handle exception
+                        return null;
+                    } catch (InterruptedException e) {
+                        // handle cancelation
+                        return null;
+                    }
                 }
             }
 
@@ -1073,16 +1085,23 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
         private void loadSwitchYardProject(final ISwitchYardProject project, IProgressMonitor monitor)
                 throws CoreException {
-            BarrierProgressWaitJob j = new BarrierProgressWaitJob("Load SwitchYard Project",
-                    new BarrierProgressWaitJob.IRunnableWithProgress() {
-                        public Object run(IProgressMonitor mon) throws Exception {
-                            project.load(mon);
-                            return Boolean.TRUE;
-                        }
-                    });
+            
+            // SWITCHYARD-2767 - removed the cached version of this class and just using
+            // the one in the framework since Luna
+            org.jboss.tools.foundation.core.jobs.BarrierProgressWaitJob.IRunnableWithProgress barrierRunnable = 
+                    new org.jboss.tools.foundation.core.jobs.BarrierProgressWaitJob.IRunnableWithProgress() {
+                public Object run(IProgressMonitor monitor) throws Exception {
+                    project.load(monitor);
+                    return Boolean.TRUE;
+                }
+            };
+            
+            BarrierProgressWaitJob j = new BarrierProgressWaitJob("Load SwitchYard Project", barrierRunnable);
             j.schedule();
-            // This join will also poll the provided monitor for cancelations
+            
+            //  This join will also poll the provided monitor for cancelations
             j.monitorSafeJoin(monitor);
+
             if (monitor.isCanceled()) {
                 // User has canceled. Interrupt the running job so if it's
                 // blocked on IO, it gives up
@@ -1212,6 +1231,21 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             getEditingDomain().removeResourceSetListener(_listener);
             super.dispose();
         }
+        
+        @Override
+        public TransactionalEditingDomain getEditingDomain() {
+            if (super.getEditingDomain() == null) {
+                createEditingDomain(getDiagramEditorInput());
+                initializeEditingDomain(getEditingDomain());
+            }
+
+            return super.getEditingDomain();
+        }
+
+        @Override
+        protected boolean isAdapterActive() {
+            return false;
+        }        
 
     }
 

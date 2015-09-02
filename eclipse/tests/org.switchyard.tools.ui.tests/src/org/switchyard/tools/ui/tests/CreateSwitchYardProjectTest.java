@@ -164,7 +164,7 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         workspace.run(op, new NullProgressMonitor());
 
         waitForJobs();
-        newProjectHandle.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        newProjectHandle.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
         waitForJobs();
         assertNoErrors(newProjectHandle);
 

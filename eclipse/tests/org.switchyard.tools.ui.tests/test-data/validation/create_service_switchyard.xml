@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<switchyard xmlns="urn:switchyard-config:switchyard:2.0" name="CreateSwitchYardProjectTest" targetNamespace="urn:test.project.group:CreateSwitchYardProjectTest:0.0.1-SNAPSHOT">
-    <composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="CreateSwitchYardProjectTest" targetNamespace="urn:test.project.group:CreateSwitchYardProjectTest:0.0.1-SNAPSHOT"/>
-</switchyard>
+<sy:switchyard xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="CreateSwitchYardProjectTest" targetNamespace="urn:test.project.group:CreateSwitchYardProjectTest:0.0.1-SNAPSHOT">
+    <sca:composite  name="CreateSwitchYardProjectTest" targetNamespace="urn:test.project.group:CreateSwitchYardProjectTest:0.0.1-SNAPSHOT"/>
+</sy:switchyard>
