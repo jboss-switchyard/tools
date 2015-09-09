@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -25,6 +27,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
@@ -215,4 +218,32 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     protected ISWTObservableValue createDelayedObservableText(Text control) {
         return createDelayedObservableText(DELAY_DEFAULT, control, SWT.Modify);
     }
+
+    /**
+     * Wraps a model update operation in a RecordingCommand, if required.
+     * 
+     * @param runner the model update operation.
+     */
+    protected void wrapOperation(final Runnable runner) {
+        TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getTargetObject());
+        if (domain != null) {
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    try {
+                        runner.run();
+                    } catch (Exception e) {
+                        Activator.logError(e);
+                    }
+                }
+            });
+        } else {
+            try {
+                runner.run();
+            } catch (Exception e) {
+                Activator.logError(e);
+            }
+        }
+    }
+
 }

@@ -282,7 +282,12 @@ public class CamelCxfConsumerComposite extends AbstractSYBindingComposite  {
                     if (isPojo) {
                         relayHeaders.setValue(Boolean.TRUE); // default to true
                     } else {
-                        relayHeaders.setValue(Boolean.FALSE);
+                        wrapOperation(new Runnable() {
+                            @Override
+                            public void run() {
+                                _binding.unsetRelayHeaders();
+                            }
+                        });
                     }
                 }
             }
