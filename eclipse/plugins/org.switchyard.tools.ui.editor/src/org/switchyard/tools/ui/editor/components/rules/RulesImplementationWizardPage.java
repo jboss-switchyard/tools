@@ -154,6 +154,8 @@ public class RulesImplementationWizardPage extends WizardPage {
         final Button containerRadio = factory.createButton(resourceButtonsComposite, Messages.label_knowledgeContainer, SWT.RADIO);
         final Button remoteJMSRadio = factory.createButton(resourceButtonsComposite, "Remote JMS", SWT.RADIO);
         final Button remoteRESTRadio = factory.createButton(resourceButtonsComposite, "Remote REST", SWT.RADIO);
+        remoteJMSRadio.setVisible(false);
+        remoteRESTRadio.setVisible(false);
 
         Composite resourceDetailsComposite = factory.createComposite(contents);
         resourceDetailsComposite.setLayout(manifestLayout);
