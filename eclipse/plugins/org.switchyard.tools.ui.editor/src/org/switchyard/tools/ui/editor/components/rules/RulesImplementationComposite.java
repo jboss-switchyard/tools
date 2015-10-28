@@ -351,6 +351,8 @@ public class RulesImplementationComposite extends AbstractChangeAwareModelCompos
         _remoteJMSRadio.addSelectionListener(radioListener);
         _remoteRESTRadio = factory.createButton(resourceButtonsComposite, "Remote REST", SWT.RADIO);
         _remoteRESTRadio.addSelectionListener(radioListener);
+        _remoteJMSRadio.setVisible(false);
+        _remoteRESTRadio.setVisible(false);
 
         Composite resourceDetailsComposite = factory.createComposite(resourcesComposite);
         _manifestLayout = new StackLayout();
