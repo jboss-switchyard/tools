@@ -360,6 +360,8 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             String label = runtime.getProperty("switchyard.label");
             if (label.contains("SwitchYard: Karaf Extension")) {
                 return true;
+            } else if (label.contains("SwitchYard: Integration Extension")) {
+                return true;
             }
         }
         return false;
@@ -373,6 +375,11 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 String majorVersionString = versionString.substring(0, versionString.indexOf('.'));
                 try {
                     long major = Long.decode(majorVersionString);
+                    String label = getTargetRuntime().getProperty("switchyard.label");
+                    boolean isIntegration = label.contains("Integration"); // hack
+                    if (isIntegration && major < 2) {
+                        return true;
+                    }
                     if (major < 2) {
                         return false;
                     }
@@ -419,8 +426,14 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                     String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
                     if (majorMinorRuntime != null) {
                         float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
-                        if (runtimeVersion > -1) {
+                        String label = getTargetRuntime().getProperty("switchyard.label");
+                        boolean isIntegration = label.contains("Integration"); // hack
+                        if (runtimeVersion > -1 && !isIntegration) {
                             if (configVersion <= runtimeVersion) {
+                                return true;
+                            }
+                        } else if (isIntegration) {
+                            if (runtimeVersion > -1) {
                                 return true;
                             }
                         }
