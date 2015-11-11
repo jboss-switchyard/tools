@@ -193,7 +193,9 @@ public final class M2EUtils {
 
         plugin.setArtifactId(SWITCHYARD_PLUGIN_ARTIFACT_ID);
         plugin.setGroupId(SWITCHYARD_CORE_GROUP_ID);
-        plugin.setVersion(version);
+        if (version != null) {
+            plugin.setVersion(version);
+        }
 
         if (createExecution) {
             PluginExecution execution = new PluginExecution();

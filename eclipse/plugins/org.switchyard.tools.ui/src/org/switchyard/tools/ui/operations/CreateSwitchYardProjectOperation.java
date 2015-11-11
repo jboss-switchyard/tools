@@ -627,10 +627,20 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
         model.setName(_projectMetatData.getGroupId() + ":" + _projectMetatData.getNewProjectHandle().getName()); //$NON-NLS-1$
 
+        String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
+        boolean isIntegration = label.contains("Integration"); // hack
+
         String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
+        if (isIntegration) {
+            versionString = "${integration.version}";
+        }
 
         // add runtime dependencies
-        model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
+        if (isIntegration) {
+            model.addProperty("integration.version", _projectMetatData.getRuntimeVersion());
+        } else {
+            model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
+        }
         model.addProperty("maven.compiler.target", DEFAULT_JAVA_VERSION); //$NON-NLS-1$
         model.addProperty("maven.compiler.source", DEFAULT_JAVA_VERSION); //$NON-NLS-1$
         if (_projectMetatData.isOSGIEnabled()) {
@@ -638,9 +648,10 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                     "org.ops4j.pax.cdi.extension; filter:=\"(extension=switchyard-component-bean)\",\n" //$NON-NLS-1$
                             + "org.ops4j.pax.cdi.extension; filter:=\"(extension=deltaspike-core-api)\",\n" //$NON-NLS-1$
                             + "osgi.extender; filter:=\"(osgi.extender=pax.cdi)\""); //$NON-NLS-1$
-            //            model.addProperty("switchyard.osgi.provide.capability", ""); //$NON-NLS-1$ //$NON-NLS-2$
-            model.addProperty(
-                    "switchyard.osgi.symbolic.name", _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$ //$NON-NLS-2$
+            // model.addProperty("switchyard.osgi.provide.capability", "");
+            // //$NON-NLS-1$ //$NON-NLS-2$
+            model.addProperty("switchyard.osgi.symbolic.name", //$NON-NLS-1$
+                    _projectMetatData.getGroupId() + "." + model.getArtifactId()); //$NON-NLS-1$
             model.addProperty("switchyard.osgi.import.switchyard.version",
                     "version=\"[$(version;==;${switchyard.osgi.version}),$(version;=+;${switchyard.osgi.version}))\"");
             model.addProperty("switchyard.osgi.import.default.version", "[$(version;==;$(@)),$(version;+;$(@)))");
@@ -653,10 +664,17 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
         // add dependency management for SwitchYard BOM
         if (_projectMetatData.isSwitchYardDependencyBOMEnabled()) {
+
             Dependency bomDependency = new Dependency();
-            bomDependency.setGroupId(M2EUtils.SWITCHYARD_CORE_GROUP_ID);
-            bomDependency.setArtifactId(M2EUtils.SWITCHYARD_BOM_ARTIFACT_ID);
-            bomDependency.setVersion("${" + M2EUtils.SWITCHYARD_VERSION + "}"); //$NON-NLS-1$ //$NON-NLS-2$
+            if (!isIntegration) {
+                bomDependency.setGroupId(M2EUtils.SWITCHYARD_CORE_GROUP_ID);
+                bomDependency.setArtifactId(M2EUtils.SWITCHYARD_BOM_ARTIFACT_ID);
+                bomDependency.setVersion("${" + M2EUtils.SWITCHYARD_VERSION + "}"); //$NON-NLS-1$ //$NON-NLS-2$
+            } else {
+                bomDependency.setGroupId("org.jboss.integration.fuse");
+                bomDependency.setArtifactId("fuse-integration-bom");
+                bomDependency.setVersion("${integration.version}"); //$NON-NLS-1$ //$NON-NLS-2$
+            }
             bomDependency.setScope("import"); //$NON-NLS-1$
             bomDependency.setType("pom"); //$NON-NLS-1$
             if (model.getDependencyManagement() == null) {
@@ -776,6 +794,13 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         plugin.setVersion("2.4.0"); //$NON-NLS-1$
         plugin.setExtensions(true);
 
+        String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
+        boolean isIntegration = label.contains("Integration"); // hack
+        String versionStr = "${switchyard.version}";
+        if (isIntegration) {
+            versionStr = "${integration.version}";
+        }
+
         ArrayList<PluginExecution> executions = new ArrayList<PluginExecution>();
         PluginExecution execution = new PluginExecution();
         execution.setId("cleanVersions"); //$NON-NLS-1$
@@ -783,7 +808,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         execution.addGoal("cleanVersions"); //$NON-NLS-1$
         Xpp3Dom exeuctionConfiguration = createNode("configuration"); //$NON-NLS-1$
         Xpp3Dom exeuctionVersions = createNode("versions"); //$NON-NLS-1$
-        Xpp3Dom executionVersionsOSGIVersion = createNode("switchyard.osgi.version", "${switchyard.version}"); //$NON-NLS-1$ //$NON-NLS-2$
+        Xpp3Dom executionVersionsOSGIVersion = createNode("switchyard.osgi.version", versionStr); //$NON-NLS-1$ //$NON-NLS-2$
         exeuctionVersions.addChild(executionVersionsOSGIVersion);
         exeuctionConfiguration.addChild(exeuctionVersions);
         execution.setConfiguration(exeuctionConfiguration);
@@ -822,6 +847,12 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     }
 
     private Plugin createSwitchYardPlugin(String versionString, Set<String> scanners) {
+        String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
+        boolean isIntegration = label.contains("Integration"); // hack
+
+        if (isIntegration) {
+            return M2EUtils.createSwitchYardPlugin(null, true, scanners);
+        }
         return M2EUtils.createSwitchYardPlugin(versionString, true, scanners);
     }
 }

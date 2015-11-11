@@ -219,6 +219,17 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
                     } catch (CoreException e) {
                         e.fillInStackTrace();
                     }
+                    try {
+                        monitor.setTaskName(Messages.NewSwitchYardProjectWizard_taskLabel_resolvingSwitchYardArtifacts);
+                        if (MavenPlugin.getMaven()
+                                .resolve("org.jboss.integration.fuse", "switchyard-component-bpm", version.toString(), "jar", null, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                                        MavenPlugin.getMaven().getArtifactRepositories(), new NullProgressMonitor()).isResolved()) {
+                            retVal[0] = true;
+                            return;
+                        }
+                    } catch (CoreException e) {
+                        e.fillInStackTrace();
+                    }
                     retVal[0] = MessageDialog.openConfirm(getShell(),
                             Messages.NewSwitchYardProjectWizard_confirmTitle_cannotResolveSwitchYardDependencies,
                             Messages.NewSwitchYardProjectWizard_confirmText_cannotResolveSwitchYardDependencies);

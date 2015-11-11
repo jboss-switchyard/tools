@@ -103,7 +103,9 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
             public void stateChanged(ChangeEvent e) {
                 String errmsg = null;
                 if (pomUsesSwitchYardBOM()) {
-                    if (!isSelectedRuntimeVersion2OrHigher()) {
+                    String label = _settingsGroup.getSelectedTargetRuntime().getProperty("switchyard.label");
+                    boolean isIntegration = label.contains("Integration"); // hack
+                    if (!isIntegration && !isSelectedRuntimeVersion2OrHigher()) {
                         // only valid versions with BOM dependency support are 2.0+
                         errmsg = "SwitchYard projects using BOM dependencies must use Runtime Version 2.0 or higher.";
                     }
@@ -227,13 +229,21 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
         if (majorMinorConfig != null) {
             float configVersion = convertVersionStringToLong(configVersionStr);
             if (configVersion > -1) {
-                String runtimeVersionStr = getRuntimeVersion().toString();
-                String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
-                if (majorMinorRuntime != null) {
-                    float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
-                    if (runtimeVersion > -1) {
-                        if (configVersion <= runtimeVersion) {
-                            return true;
+                if (getRuntimeVersion() != null) {
+                    String runtimeVersionStr = getRuntimeVersion().toString();
+                    String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
+                    if (majorMinorRuntime != null) {
+                        float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
+                        String label = _settingsGroup.getSelectedTargetRuntime().getProperty("switchyard.label");
+                        boolean isIntegration = label.contains("Integration"); // hack
+                        if (runtimeVersion > -1 && !isIntegration) {
+                            if (configVersion <= runtimeVersion) {
+                                return true;
+                            }
+                        } else if (isIntegration) {
+                            if (runtimeVersion > -1) {
+                                return true;
+                            }
                         }
                     }
                 }
@@ -360,6 +370,8 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
             while (depIter.hasNext()) {
                 Dependency tempDep = depIter.next();
                 if (tempDep.getArtifactId().equals(M2EUtils.SWITCHYARD_BOM_ARTIFACT_ID)) {
+                    return true;
+                } else if (tempDep.getArtifactId().equals("fuse-integration-bom")) {
                     return true;
                 }
             }
