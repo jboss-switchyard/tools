@@ -103,8 +103,11 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
             public void stateChanged(ChangeEvent e) {
                 String errmsg = null;
                 if (pomUsesSwitchYardBOM()) {
-                    String label = _settingsGroup.getSelectedTargetRuntime().getProperty("switchyard.label");
-                    boolean isIntegration = label.contains("Integration"); // hack
+                    boolean isIntegration = false;
+                    if (_settingsGroup.getSelectedTargetRuntime() != null) {
+                        String label = _settingsGroup.getSelectedTargetRuntime().getProperty("switchyard.label");
+                        isIntegration = label.contains("Integration"); // hack
+                    }
                     if (!isIntegration && !isSelectedRuntimeVersion2OrHigher()) {
                         // only valid versions with BOM dependency support are 2.0+
                         errmsg = "SwitchYard projects using BOM dependencies must use Runtime Version 2.0 or higher.";
@@ -234,8 +237,11 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                     String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
                     if (majorMinorRuntime != null) {
                         float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
-                        String label = _settingsGroup.getSelectedTargetRuntime().getProperty("switchyard.label");
-                        boolean isIntegration = label.contains("Integration"); // hack
+                        boolean isIntegration = false;
+                        if (_settingsGroup.getSelectedTargetRuntime() != null) {
+                            String label = _settingsGroup.getSelectedTargetRuntime().getProperty("switchyard.label");
+                            isIntegration = label.contains("Integration"); // hack
+                        }
                         if (runtimeVersion > -1 && !isIntegration) {
                             if (configVersion <= runtimeVersion) {
                                 return true;

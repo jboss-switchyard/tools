@@ -627,9 +627,12 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         }
         model.setName(_projectMetatData.getGroupId() + ":" + _projectMetatData.getNewProjectHandle().getName()); //$NON-NLS-1$
 
-        String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
-        boolean isIntegration = label.contains("Integration"); // hack
-
+        boolean isIntegration = false;
+        if (_projectMetatData.getTargetRuntime() != null) {
+            String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
+            isIntegration = label.contains("Integration"); // hack
+        }
+        
         String versionString = "${" + SWITCHYARD_VERSION + "}"; //$NON-NLS-1$ //$NON-NLS-2$
         if (isIntegration) {
             versionString = "${integration.version}";
@@ -847,9 +850,12 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     }
 
     private Plugin createSwitchYardPlugin(String versionString, Set<String> scanners) {
-        String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
-        boolean isIntegration = label.contains("Integration"); // hack
-
+        boolean isIntegration = false;
+        if (_projectMetatData.getTargetRuntime() != null) {
+            String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
+            isIntegration = label.contains("Integration"); // hack
+        }
+        
         if (isIntegration) {
             return M2EUtils.createSwitchYardPlugin(null, true, scanners);
         }

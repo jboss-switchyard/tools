@@ -375,8 +375,11 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 String majorVersionString = versionString.substring(0, versionString.indexOf('.'));
                 try {
                     long major = Long.decode(majorVersionString);
-                    String label = getTargetRuntime().getProperty("switchyard.label");
-                    boolean isIntegration = label.contains("Integration"); // hack
+                    boolean isIntegration = false;
+                    if (getTargetRuntime() != null) {
+                        String label = getTargetRuntime().getProperty("switchyard.label");
+                        isIntegration = label.contains("Integration"); // hack
+                    }
                     if (isIntegration && major < 2) {
                         return true;
                     }
@@ -426,8 +429,11 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                     String majorMinorRuntime = getMajorMinorFromVersion(runtimeVersionStr);
                     if (majorMinorRuntime != null) {
                         float runtimeVersion = convertVersionStringToLong(majorMinorRuntime);
-                        String label = getTargetRuntime().getProperty("switchyard.label");
-                        boolean isIntegration = label.contains("Integration"); // hack
+                        boolean isIntegration = false;
+                        if (getTargetRuntime() != null) {
+                            String label = getTargetRuntime().getProperty("switchyard.label");
+                            isIntegration = label.contains("Integration"); // hack
+                        }
                         if (runtimeVersion > -1 && !isIntegration) {
                             if (configVersion <= runtimeVersion) {
                                 return true;
