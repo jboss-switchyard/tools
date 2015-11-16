@@ -209,7 +209,7 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
         }
         final Map<String, String> properties = new HashMap<String, String>();
         properties.put(SWITCHYARD_RUNTIME_LABEL_KEY, switchYardMetaData.createLabel());
-        properties.put(SWITCHYARD_RUNTIME_VERSION_KEY, switchYardMetaData._libraryVersion);
+        properties.put(SWITCHYARD_RUNTIME_VERSION_KEY, switchYardMetaData.getVersion());
         return properties;
     }
 
@@ -458,6 +458,13 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
                 version = _runtimeVersion;
             }
             return "" + _name + ' ' + version; //$NON-NLS-1$
+        }
+        
+        private String getVersion() {
+            if (_integrationBOMVersion != null && _integrationBOMVersion.length() > 0) {
+                return _integrationBOMVersion;
+            }
+            return _libraryVersion;
         }
     }
 }
