@@ -23,6 +23,7 @@ import static org.switchyard.tools.ui.validation.ValidationProblem.CamelXMLNotFo
 import static org.switchyard.tools.ui.validation.ValidationProblem.CamelXMLUnspecified;
 import static org.switchyard.tools.ui.validation.ValidationProblem.MissingReferenceDeclaration;
 import static org.switchyard.tools.ui.validation.ValidationProblem.MissingServiceDeclaration;
+import static org.switchyard.tools.ui.validation.ValidationProblem.CamelRouteNoSYFromFound;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -95,6 +96,7 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
     private static final String TO_TAG = "to"; //$NON-NLS-1$
     private static final String URI_ATTRIBUTE = "uri"; //$NON-NLS-1$
     private static final String FROM_TAG = "from"; //$NON-NLS-1$
+    private static final String ROUTE_TAG = "route"; //$NON-NLS-1$
 
     @Override
     public IStatus validate(IValidationContext ctx) {
@@ -151,25 +153,52 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
             try {
                 db = dbf.newDocumentBuilder();
                 Document document = db.parse(file);
-                NodeList fromTags = document.getElementsByTagName(FROM_TAG);
-                
-                if (fromTags.getLength() > 0) {
-                    if (fromTags.getLength() > 1) {
-                        // only one "from" supported per component
-                        return ConstraintStatus.createStatus(ctx, component, null, CamelRouteMoreThanOneFromFound.getSeverity(),
-                                CamelRouteMoreThanOneFromFound.ordinal(), CamelRouteMoreThanOneFromFound.getMessage(), component.getName());
-                    }
-                    for (int i = 0; i < fromTags.getLength(); i++) {
-                        Node fromTag = fromTags.item(i);
-                        Node uriAttribute = fromTag.getAttributes().getNamedItem(URI_ATTRIBUTE);
-                        if (uriAttribute != null) {
-                            String switchyardString = uriAttribute.getNodeValue();
-                            IStatus status = verifyURI(switchyardString, ctx, component, true, javaProject);
-                            if (status != Status.OK_STATUS) {
+                NodeList routeTags = document.getElementsByTagName(ROUTE_TAG);
+                if (routeTags.getLength() > 0) {
+                    for (int i = 0; i < routeTags.getLength(); i++) {
+                        Node routeTag = routeTags.item(i);
+                        
+                        int switchyardFromCount = 0;
+                        if (routeTag.hasChildNodes()) {
+                            for (int j = 0; j < routeTag.getChildNodes().getLength(); j++) {
+                                Node childNode = routeTag.getChildNodes().item(j);
+                                if (childNode.getNodeName().equals(FROM_TAG)) {
+                                    Node uriAttribute = childNode.getAttributes().getNamedItem(URI_ATTRIBUTE);
+                                    if (uriAttribute != null) {
+                                        String switchyardString = uriAttribute.getNodeValue();
+                                        IStatus status = verifyURI(switchyardString, ctx, component, true, javaProject);
+                                        if (status != Status.OK_STATUS) {
+                                            statuses.add(status);
+                                        }
+                                        if (switchyardString.startsWith("switchyard://")) {
+                                            switchyardFromCount++;
+                                        }
+                                    }
+                                }
+                            }
+                            if (switchyardFromCount > 1) {
+                                // only one SwitchYard "from" supported per component
+                                IStatus nodeStatus = ConstraintStatus.createStatus(ctx, component, null, CamelRouteMoreThanOneFromFound.getSeverity(),
+                                        CamelRouteMoreThanOneFromFound.ordinal(), CamelRouteMoreThanOneFromFound.getMessage(), component.getName());
+                                statuses.add(nodeStatus);
+                            } else if (switchyardFromCount == 0) {
+                                // no from tags found referencing SwitchYard endpoint
+                                IStatus status =  ConstraintStatus.createStatus(ctx, component, null, CamelRouteNoSYFromFound.getSeverity(),
+                                        CamelRouteNoSYFromFound.ordinal(), CamelRouteNoSYFromFound.getMessage(), component.getName());
                                 statuses.add(status);
                             }
+                        } else {
+                            // no from tags found referencing SwitchYard endpoint
+                            IStatus status =  ConstraintStatus.createStatus(ctx, component, null, CamelRouteNoSYFromFound.getSeverity(),
+                                    CamelRouteNoSYFromFound.ordinal(), CamelRouteNoSYFromFound.getMessage(), component.getName());
+                            statuses.add(status);
                         }
                     }
+                } else {
+                    // no from tags found referencing SwitchYard endpoint
+                    IStatus status =  ConstraintStatus.createStatus(ctx, component, null, CamelRouteNoSYFromFound.getSeverity(),
+                            CamelRouteNoSYFromFound.ordinal(), CamelRouteNoSYFromFound.getMessage(), component.getName());
+                    statuses.add(status);
                 }
                 
                 NodeList toTags = document.getElementsByTagName(TO_TAG);
@@ -269,7 +298,6 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
                 if (configureMethod != null) {
                     String source = configureMethod.getSource();
                     
-                    
                     // first pass just to make sure we're dealing with one FROM
                     String tryThis = ".?from\\(\".*?\"\\)(.?)"; //$NON-NLS-1$
                     Pattern fromPattern = Pattern.compile(tryThis); //$NON-NLS-1$
@@ -278,26 +306,73 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
                     while (fromMatcher.find()) {
                         fromCount++;
                     }
-                    if (fromCount > 1) {
-                        // only one "from" supported per component
-                        return ConstraintStatus.createStatus(ctx, component, null, CamelRouteMoreThanOneFromFound.getSeverity(),
-                                CamelRouteMoreThanOneFromFound.ordinal(), CamelRouteMoreThanOneFromFound.getMessage(), component.getName());
+
+                    if (fromCount > 0) {
+                        // now process the FROMs and TOs to verify URIs
+                        int switchyardFromCount = 0;
+                        String tryThisNext = ".?(from)\\(\".*?\"\\)(.?)"; //$NON-NLS-1$
+                        Pattern fromToPattern = Pattern.compile(tryThisNext);
+                        Matcher fromToMatcher = fromToPattern.matcher(source);
+                        while (fromToMatcher.find()) {
+                            String fromToString = source.substring(fromToMatcher.start(), fromToMatcher.end());
+                            Pattern switchyardPattern = Pattern.compile("switchyard://.*\""); //$NON-NLS-1$
+                            Matcher switchyardMatcher = switchyardPattern.matcher(fromToString);
+                            boolean isFrom = (fromToString.matches(tryThis)); //$NON-NLS-1$
+                            while (switchyardMatcher.find()) {
+                                String switchyardString = fromToString.substring(switchyardMatcher.start(), switchyardMatcher.end() - 1);
+                                IStatus status = verifyURI(switchyardString, ctx, component, isFrom, javaProject);
+                                if (status != Status.OK_STATUS) {
+                                    statuses.add(status);
+                                }
+                                if (switchyardString.startsWith("switchyard://")) {
+                                    switchyardFromCount++;
+                                } else if (switchyardFromCount == 0) {
+                                    // no from tags found referencing SwitchYard endpoint
+                                }
+                            }
+                        }
+                        
+                        if (switchyardFromCount > 1) {
+                            // only one SwitchYard "from" supported per component
+                            IStatus status =  ConstraintStatus.createStatus(ctx, component, null, CamelRouteMoreThanOneFromFound.getSeverity(),
+                                    CamelRouteMoreThanOneFromFound.ordinal(), CamelRouteMoreThanOneFromFound.getMessage(), component.getName());
+                            statuses.add(status);
+                        } else if (switchyardFromCount == 0) {
+                            // no from tags found referencing SwitchYard endpoint
+                            IStatus status =  ConstraintStatus.createStatus(ctx, component, null, CamelRouteNoSYFromFound.getSeverity(),
+                                    CamelRouteNoSYFromFound.ordinal(), CamelRouteNoSYFromFound.getMessage(), component.getName());
+                            statuses.add(status);
+                        }
+                    } else {
+                        // no from tags found referencing SwitchYard endpoint
+                        IStatus status =  ConstraintStatus.createStatus(ctx, component, null, CamelRouteNoSYFromFound.getSeverity(),
+                                CamelRouteNoSYFromFound.ordinal(), CamelRouteNoSYFromFound.getMessage(), component.getName());
+                        statuses.add(status);
+                    }
+                    
+                    String tryThisNext = ".?to\\(\".*?\"\\)(.?)"; //$NON-NLS-1$
+                    Pattern toPattern = Pattern.compile(tryThisNext); //$NON-NLS-1$
+                    Matcher toMatcher = fromPattern.matcher(source);
+                    int toCount = 0;
+                    while (toMatcher.find()) {
+                        toCount++;
                     }
 
-                    // now process the FROMs and TOs to verify URIs
-                    String tryThisNext = ".?(from|to)\\(\".*?\"\\)(.?)"; //$NON-NLS-1$
-                    Pattern fromToPattern = Pattern.compile(tryThisNext);
-                    Matcher fromToMatcher = fromToPattern.matcher(source);
-                    while (fromToMatcher.find()) {
-                        String fromToString = source.substring(fromToMatcher.start(), fromToMatcher.end());
-                        Pattern switchyardPattern = Pattern.compile("switchyard://.*\""); //$NON-NLS-1$
-                        Matcher switchyardMatcher = switchyardPattern.matcher(fromToString);
-                        boolean isFrom = (fromToString.matches(tryThis)); //$NON-NLS-1$
-                        while (switchyardMatcher.find()) {
-                            String switchyardString = fromToString.substring(switchyardMatcher.start(), switchyardMatcher.end() - 1);
-                            IStatus status = verifyURI(switchyardString, ctx, component, isFrom, javaProject);
-                            if (status != Status.OK_STATUS) {
-                                statuses.add(status);
+                    if (toCount > 0) {
+                        // now process the TOs to verify URIs
+                        String tryThisPatternNext = ".?(to)\\(\".*?\"\\)(.?)"; //$NON-NLS-1$
+                        toPattern = Pattern.compile(tryThisPatternNext);
+                        toMatcher = toPattern.matcher(source);
+                        while (toMatcher.find()) {
+                            String toString = source.substring(toMatcher.start(), toMatcher.end());
+                            Pattern switchyardPattern = Pattern.compile("switchyard://.*\""); //$NON-NLS-1$
+                            Matcher switchyardMatcher = switchyardPattern.matcher(toString);
+                            while (switchyardMatcher.find()) {
+                                String switchyardString = toString.substring(switchyardMatcher.start(), switchyardMatcher.end() - 1);
+                                IStatus status = verifyURI(switchyardString, ctx, component, false, javaProject);
+                                if (status != Status.OK_STATUS) {
+                                    statuses.add(status);
+                                }
                             }
                         }
                     }
