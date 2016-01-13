@@ -783,6 +783,8 @@ public final class Messages extends NLS {
     public static String ValidationProblem_UnusedReturnValue;
 
     public static String ValidationProblem_ValidateProblem;
+    
+    public static String ValidationProblem_CamelRouteNoSYFromFound;
 
     public static String WiringValidationContext_statusMessage_errorLoadingServiceInterfaceMetadata;
 
@@ -847,6 +849,8 @@ public final class Messages extends NLS {
     public static String ValidationProblem_CamelRouteURIInvalid;
     
     public static String ValidationProblem_NoOperationSelectedForInterface;
+    
+    public static String ValidationProblem_CamelRouteInvalidSYToFound;
     
     static {
         // initialize resource bundle

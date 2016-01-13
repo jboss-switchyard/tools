@@ -138,7 +138,8 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
             }
         }
 
-        assertEquals("Expecting 10 errors: " + WorkspaceHelpers.toString(markers), 10, errorCount);
+        int expectedErrorCount = 12;
+        assertEquals("Expecting " + expectedErrorCount + " errors: " + WorkspaceHelpers.toString(markers), expectedErrorCount, errorCount);
         assertEquals("Expecting 0 warnings: " + WorkspaceHelpers.toString(markers), 0, warningCount);
         assertEquals("Expecting 0 infos: " + WorkspaceHelpers.toString(markers), 0, infoCount);
         assertEquals("Unexpected marker severity (not info, warning, error): " + WorkspaceHelpers.toString(markers), 0,
@@ -153,7 +154,7 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
         waitForJobsToComplete();
         markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
                 IFile.DEPTH_ZERO);
-        assertEquals(WorkspaceHelpers.toString(markers), 10, markers.length);
+        assertEquals(WorkspaceHelpers.toString(markers), expectedErrorCount, markers.length);
 
         MavenPlugin.getProjectConfigurationManager().updateProjectConfiguration(project, monitor);
         project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
@@ -165,6 +166,6 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
         waitForJobsToComplete();
         markers = switchYardFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true,
                 IFile.DEPTH_ZERO);
-        assertEquals(WorkspaceHelpers.toString(markers), 10, markers.length);
+        assertEquals(WorkspaceHelpers.toString(markers), expectedErrorCount, markers.length);
     }
 }

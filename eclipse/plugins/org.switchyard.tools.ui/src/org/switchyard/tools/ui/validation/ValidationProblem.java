@@ -181,7 +181,16 @@ public enum ValidationProblem {
     /** The service binding doesn't specify an operation in the operation selector...
      * Even though the service interface specifies more than one operation. */
     NoBindingOperationSelected(Messages.ValidationProblem_NoOperationSelectedForInterface,
-            false);
+            false),
+    /** Route for implementation.camel must specify at least one "from" referencing a SY 
+     * endpoint. */
+    CamelRouteNoSYFromFound(
+            Messages.ValidationProblem_CamelRouteNoSYFromFound,
+            IStatus.ERROR, false),
+    /** Route for implementation.camel must specify a valid SY endpoint for a TO reference. */
+    CamelRouteInvalidSYTOFound(
+            Messages.ValidationProblem_CamelRouteInvalidSYToFound,
+            IStatus.ERROR, false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
     public static final String PROBLEM_CODE = Messages.ValidationProblem_ValidateProblem;
