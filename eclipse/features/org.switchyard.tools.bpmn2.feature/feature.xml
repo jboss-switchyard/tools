@@ -2,7 +2,7 @@
 <feature
       id="org.switchyard.tools.bpmn2.feature"
       label="%featureName"
-      version="2.0.1.qualifier"
+      version="2.0.2.qualifier"
       provider-name="%featureProvider">
 
    <description url="http://www.jboss.org/switchyard">
@@ -18,7 +18,7 @@
    </license>
 
    <requires>
-      <import feature="org.switchyard.tools.feature" version="2.0.1.qualifier"/>
+      <import feature="org.switchyard.tools.feature" version="2.0.2.qualifier"/>
       <import feature="org.eclipse.bpmn2.modeler" version="1.1.0" match="equivalent"/>
       <import feature="org.eclipse.bpmn2.modeler.runtime.jboss" version="1.1.0" match="equivalent"/>
    </requires>

@@ -2,7 +2,7 @@
 <feature
       id="org.switchyard.tools.editor.feature"
       label="%featureName"
-      version="2.0.1.qualifier"
+      version="2.0.2.qualifier"
       provider-name="%featureProvider">
 
    <description url="http://www.jboss.org/switchyard">
