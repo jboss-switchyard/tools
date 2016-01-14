@@ -41,7 +41,7 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
 
     private JCABinding _binding = null;
 
-    private enum ENDPOINT_MAPPING_TYPE {
+    private enum EndpointMappingType {
         JMSENDPOINT, CCIENDPOINT
     }
 
@@ -150,16 +150,16 @@ public abstract class AbstractJCABindingComposite extends AbstractSYBindingCompo
 
     class EndpointOp extends ModelOperation {
         
-        private ENDPOINT_MAPPING_TYPE _selType = ENDPOINT_MAPPING_TYPE.JMSENDPOINT;
+        private EndpointMappingType _selType = EndpointMappingType.JMSENDPOINT;
         
-        public void setEndpointMappingType(ENDPOINT_MAPPING_TYPE inType) {
+        public void setEndpointMappingType(EndpointMappingType inType) {
             this._selType = inType;
         }
         
         @Override
         public void run() throws Exception {
             JCAInboundInteraction interaction = _binding.getInboundInteraction();
-            ENDPOINT_MAPPING_TYPE type = _selType;
+            EndpointMappingType type = _selType;
             String listener = null;
             // String inboundOpName = null;
             String endpointClass = null;
