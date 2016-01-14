@@ -328,6 +328,9 @@ public class CamelComponentConstraint extends AbstractModelConstraint {
                                     switchyardFromCount++;
                                 } else if (switchyardFromCount == 0) {
                                     // no from tags found referencing SwitchYard endpoint
+                                    status =  ConstraintStatus.createStatus(ctx, component, null, CamelRouteNoSYFromFound.getSeverity(),
+                                            CamelRouteNoSYFromFound.ordinal(), CamelRouteNoSYFromFound.getMessage(), component.getName());
+                                    statuses.add(status);
                                 }
                             }
                         }
