@@ -40,7 +40,6 @@ import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.ObjectEditor;
 import org.eclipse.bpmn2.modeler.core.merrimac.dialogs.TextObjectEditor;
 import org.eclipse.bpmn2.modeler.core.runtime.ModelExtensionDescriptor;
 import org.eclipse.bpmn2.modeler.core.runtime.TargetRuntime;
-import org.eclipse.bpmn2.modeler.core.runtime.ModelExtensionDescriptor;
 import org.eclipse.bpmn2.modeler.core.runtime.ModelExtensionDescriptor.Property;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmCustomTaskDetailComposite;
@@ -133,21 +132,21 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
     }
 
     protected void createInputParameterBindings(Task task) {
-		// Get the Model Extension Descriptor for this Custom Task.
-		// This will contain the Data Inputs and Outputs that were
-		// defined for the Custom Task either in the plugin.xml
-		// or by way of Work Item Definition files contained in
-		// the project or the project's classpath.
-		ModelExtensionDescriptor med = getModelExtensionDescriptor(task);
-		
-		if (med!=null) {
-			// This Task object has additional properties defined either by way of the
-			// <modelExtension> defined in the plugin.xml or in Work Item Definitions.
-			// Check if any of the extension properties extend the DataInputs or DataOutputs
-			// (i.e. the I/O Parameter mappings) and create Object Editors for them.
-			// If the Task does not define these parameter mappings, create temporary objects
-			// for the editors (these will go away if they are not touched by the user)
-			List<Property> props = med.getProperties("ioSpecification/dataInputs/name"); //$NON-NLS-1$
+        // Get the Model Extension Descriptor for this Custom Task.
+        // This will contain the Data Inputs and Outputs that were
+        // defined for the Custom Task either in the plugin.xml
+        // or by way of Work Item Definition files contained in
+        // the project or the project's classpath.
+        ModelExtensionDescriptor med = getModelExtensionDescriptor(task);
+
+        if (med != null) {
+            // This Task object has additional properties defined either by way of the
+            // <modelExtension> defined in the plugin.xml or in Work Item Definitions.
+            // Check if any of the extension properties extend the DataInputs or DataOutputs
+            // (i.e. the I/O Parameter mappings) and create Object Editors for them.
+            // If the Task does not define these parameter mappings, create temporary objects
+            // for the editors (these will go away if they are not touched by the user)
+            List<Property> props = med.getProperties("ioSpecification/dataInputs/name"); //$NON-NLS-1$
             InputOutputSpecification ioSpec = task.getIoSpecification();
             if (ioSpec == null) {
                 ioSpec = copyCreateModelObject(InputOutputSpecification.class);
@@ -270,7 +269,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
     }
 
     protected void createOutputParameterBindings(Task task) {
-    	ModelExtensionDescriptor med = getModelExtensionDescriptor(task);
+        ModelExtensionDescriptor med = getModelExtensionDescriptor(task);
         if (med != null) {
             Resource resource = task.eResource();
             List<Property> props = med.getProperties("ioSpecification/dataOutputs/name"); //$NON-NLS-1$
@@ -336,7 +335,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                     outputSection.setClient(outputComposite);
                     outputComposite.setBusinessObject(result);
                     outputSection.setText(Messages.label_resultMappingDetails);
-//                    outputSection.setExpanded(false);
+                    //                    outputSection.setExpanded(false);
                 } else if ("Fault".equals(name)) { //$NON-NLS-1$
                     Section faultSection = createSection(this, "Fault", false); //$NON-NLS-1$
                     faultSection.setLayout(new FillLayout());
@@ -346,7 +345,7 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
                     faultSection.setClient(faultComposite);
                     faultComposite.setBusinessObject(result);
                     faultSection.setText(Messages.label_faultMappingDetails);
-//                    faultSection.setExpanded(false);
+                    //                    faultSection.setExpanded(false);
                 }
             }
         }
@@ -372,25 +371,25 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
         }
         return object;
     }
-    
-    private ModelExtensionDescriptor getModelExtensionDescriptor(EObject task) {
-		ModelExtensionDescriptor med = null;
-		ExtendedPropertiesAdapter<?> adapter = ExtendedPropertiesAdapter.adapt(task);
-		if (adapter!=null) {
-			// look for it in the property adapter first
-			med = adapter.getProperty(ModelExtensionDescriptor.class);
-		}
 
-		if (med==null) {
-			// not found? get the Custom Task ID from the Task object
-			String id = CustomElementFeatureContainer.findId(task);
-			if (id!=null) {
-				// and look it up in the Target Runtime's list of
-				// Custom Task Descriptors
-		    	TargetRuntime rt = TargetRuntime.getRuntime(task);
-		    	med = rt.getCustomTask(id);
-			}
-		}
-		return med;
+    private ModelExtensionDescriptor getModelExtensionDescriptor(EObject task) {
+        ModelExtensionDescriptor med = null;
+        ExtendedPropertiesAdapter<?> adapter = ExtendedPropertiesAdapter.adapt(task);
+        if (adapter != null) {
+            // look for it in the property adapter first
+            med = adapter.getProperty(ModelExtensionDescriptor.class);
+        }
+
+        if (med == null) {
+            // not found? get the Custom Task ID from the Task object
+            String id = CustomElementFeatureContainer.findId(task);
+            if (id != null) {
+                // and look it up in the Target Runtime's list of
+                // Custom Task Descriptors
+                TargetRuntime rt = TargetRuntime.getRuntime(task);
+                med = rt.getCustomTask(id);
+            }
+        }
+        return med;
     }
 }
