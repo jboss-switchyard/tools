@@ -19,7 +19,7 @@
         class="org.switchyard.tools.ui.bpmn2.editor.SwitchYardCustomTaskPropertySection"
         id="org.switchyard.tools.ui.bpmn2.switchYardCustomTask.tab"
         label="SwitchYard Service Task"
-        replaceTab="bpmn2.jbpm.task.tab org.eclipse.bpmn2.modeler.task.tab"
+        replaceTab="bpmn2.jbpm.customTask.tab bpmn2.jbpm.task.tab org.eclipse.bpmn2.modeler.task.tab"
         runtimeId="org.jboss.runtime.jbpm5">
 		</propertyTab>
 
