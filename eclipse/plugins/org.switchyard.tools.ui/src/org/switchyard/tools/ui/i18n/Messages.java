@@ -704,6 +704,14 @@ public final class Messages extends NLS {
 
     public static String SwitchYardSettingsGroup_ImplementationSupportLabel;
 
+    public static String SwitchYardSettingsGroup_Integration_Pack_Group_Label;
+
+    public static String SwitchYardSettingsGroup_Integration_Pack_Version_Checkbox;
+
+    public static String SwitchYardSettingsGroup_Integration_Pack_Version_Label;
+
+    public static String SwitchYardSettingsGroup_Kie_Version_Label;
+
     public static String SwitchYardSettingsGroup_LibraryVersionLabel;
 
     public static String SwitchYardSettingsGroup_LoadingAvailableCapabilitiesMessage;

@@ -55,6 +55,31 @@ public final class M2EUtils {
     public static final String SWITCHYARD_PLUGIN_ARTIFACT_ID = "switchyard-plugin"; //$NON-NLS-1$
     /** The core SwitchYard BOM Artifact ID. */
     public static final String SWITCHYARD_BOM_ARTIFACT_ID = "switchyard-bom"; //$NON-NLS-1$
+    
+    /** Integration bom Group ID */
+    public static final String INTEGRATION_GROUP_ID = "org.jboss.integration.fuse"; //$NON-NLS-1$
+    /** Integration bom artifact ID */
+    public static final String INTEGRATION_BOM_ARTIFACT_ID = "fuse-integration-bom"; //$NON-NLS-1$
+    /** Integration version */
+    public static final String INTEGRATION_VERSION = "integration.version";
+    /** KIE bom Group ID */
+    public static final String KIE_GROUP_ID = "org.kie"; //$NON-NLS-1$
+    /** KIE bom artifact ID */
+    public static final String KIE_BOM_ARTIFACT_ID = "kie-bom"; //$NON-NLS-1$
+    /** KIE version */
+    public static final String KIE_VERSION = "kie.version";
+    /** Drools bom Group ID */
+    public static final String DROOLS_GROUP_ID = "org.drools"; //$NON-NLS-1$
+    /** Drools bom artifact ID */
+    public static final String DROOLS_BOM_ARTIFACT_ID = "drools-bom"; //$NON-NLS-1$
+    /** Drools version */
+    public static final String DROOLS_VERSION = "drools.version";
+    /** JBPM bom Group ID */
+    public static final String JBPM_GROUP_ID = "org.jbpm"; //$NON-NLS-1$
+    /** JBPM bom artifact ID */
+    public static final String JBPM_BOM_ARTIFACT_ID = "jbpm-bom"; //$NON-NLS-1$
+    /** JBPM version */
+    public static final String JBPM_VERSION = "jbpm.version";
 
     /** src/main/java. */
     public static final String MAVEN_MAIN_JAVA_PATH = "src/main/java"; //$NON-NLS-1$
@@ -159,6 +184,50 @@ public final class M2EUtils {
     }
 
     /**
+     * Utility method for resolving the version range for Kie components.
+     * 
+     * @param monitor the progress monitor
+     * @return the version range for org.kie:kie-bom
+     * @throws CoreException if an error occurs.
+     */
+    public static List<ArtifactVersion> resolveKieVersionRange(IProgressMonitor monitor) throws CoreException {
+        try {
+            final List<ArtifactVersion> versions = resolveVersionRange(
+                    ((MavenImpl) MavenPlugin.getMaven()).getPlexusContainer().lookup(RepositorySystem.class)
+                            .createArtifact("org.kie", "kie-bom", "[,]", "jar"),
+                    monitor);
+            // make sure the versions are in order
+            Collections.sort(versions);
+            return versions;
+        } catch (Exception e) {
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e)); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * Utility method for resolving the version range for Kie components.
+     * 
+     * @param monitor the progress monitor
+     * @return the version range for
+     *         org.jboss.integration.fuse:fuse-integration-bom
+     * @throws CoreException if an error occurs.
+     */
+    public static List<ArtifactVersion> resolveFuseIntegrationVersionRange(IProgressMonitor monitor)
+            throws CoreException {
+        try {
+            final List<ArtifactVersion> versions = resolveVersionRange(
+                    ((MavenImpl) MavenPlugin.getMaven()).getPlexusContainer().lookup(RepositorySystem.class)
+                            .createArtifact("org.jboss.integration.fuse", "fuse-integration-bom", "[,]", "jar"),
+                    monitor);
+            // make sure the versions are in order
+            Collections.sort(versions);
+            return versions;
+        } catch (Exception e) {
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e)); //$NON-NLS-1$
+        }
+    }
+
+    /**
      * Utility method for resolving the version range for a particular artifact.
      * 
      * It would be nice if this were exposed directly from m2e.
@@ -174,14 +243,14 @@ public final class M2EUtils {
         try {
             final IMaven maven = MavenPlugin.getMaven();
             final ArtifactMetadataSource source = ((MavenImpl) maven).getPlexusContainer().lookup(
-                    ArtifactMetadataSource.class, "org.apache.maven.artifact.metadata.ArtifactMetadataSource", "maven"); //$NON-NLS-1$  $NON-NLS-2$
+                    ArtifactMetadataSource.class, "org.apache.maven.artifact.metadata.ArtifactMetadataSource", "maven"); //$NON-NLS-1$ $NON-NLS-2$
             return source.retrieveAvailableVersions(artifact, maven.getLocalRepository(),
                     maven.getArtifactRepositories());
         } catch (Exception e) {
             throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e)); //$NON-NLS-1$
         }
     }
-    
+
     /**
      * @param version the plugin version
      * @param createExecution true to create an execution with a configure goal

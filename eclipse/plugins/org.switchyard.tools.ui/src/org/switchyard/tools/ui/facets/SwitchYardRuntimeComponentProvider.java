@@ -20,8 +20,9 @@ import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYAR
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_1_1;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_2_0;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_KEY;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.KIE_RUNTIME_VERSION_KEY;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FUSE_INTEG_RUNTIME_VERSION_KEY;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -29,10 +30,12 @@ import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.jar.Attributes.Name;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
@@ -59,14 +62,16 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
 
     private static final Pattern DEPLOY_JAR_NAME_PATTERN = Pattern.compile("switchyard-deploy-(jboss-as7|wildfly)-(.*?)\\.jar"); //$NON-NLS-1$
     private static final Pattern INTEGRATION_DEPLOY_JAR_NAME_PATTERN = Pattern.compile("switchyard-component-bpm-(.*?)\\.jar"); //$NON-NLS-1$
+    private static final Pattern KIE_DEPLOY_JAR_NAME_PATTERN = Pattern.compile("kie-api-(.*?)\\.jar"); //$NON-NLS-1$
     private static final String SWITCHYARD_AS_DEPLOY_MODULE_PATH = "modules/system/layers/soa/org/switchyard/main"; //$NON-NLS-1$
+    private static final String KIE_AS_DEPLOY_MODULE_PATH = "modules/system/layers/bpms/org/kie/main"; //$NON-NLS-1$
     private static final String INTEGRATION_AS_DEPLOY_MODULE_PATH = "modules/system/layers/fuse-integration/org/fuse/integration/switchyard/component/bpm/main"; //$NON-NLS-1$
     private static final String FSW_PRODUCT_MANIFEST_PATH = "modules/system/layers/soa/org/jboss/as/product/soa/dir/META-INF/MANIFEST.MF"; //$NON-NLS-1$
     private static final String FUSE_BUNDLE_INFO_FILE = "bundle.info"; //$NON-NLS-1$
     private static final String FUSE_DATA_DIR = "data"; //$NON-NLS-1$
     private static final String FUSE_DATA_CACHE_DIR = "cache"; //$NON-NLS-1$
     private static final String BUNDLE_VERSION = "Bundle-Version"; //$NON-NLS-1$
-    
+
     private static final Name JBOSS_PRODUCT_RELEASE_NAME = new Name("JBoss-Product-Release-Name"); //$NON-NLS-1$
     private static final Name JBOSS_PRODUCT_RELEASE_VERSION = new Name("JBoss-Product-Release-Version"); //$NON-NLS-1$
 
@@ -85,62 +90,66 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
              */
             switchYardRuntime = getDefaultRuntimeComponent(null);
         } else {
-            if (runtime.getRuntimeType().getId().startsWith("org.fusesource.ide")) {
-                switchYardMetaData = getSwitchYardVersionFromKarafRuntime(runtimeLocation);
-            } else {
-                switchYardMetaData = getIntegrationVersionFromRuntime(runtimeLocation);
-                if (switchYardMetaData == null) {
-                    switchYardMetaData = getSwitchYardVersionFromRuntime(runtimeLocation);
-                }
-                final File productManifest = runtimeLocation.append(FSW_PRODUCT_MANIFEST_PATH).toFile();
-                if (productManifest.exists()) {
+//            System.out.println("getRuntimeComponents(IRuntime): " + Calendar.getInstance().getTime().toString());
+            switchYardMetaData = getMetadataFromRuntime(runtime, runtimeLocation);
+            final File productManifest = runtimeLocation.append(FSW_PRODUCT_MANIFEST_PATH).toFile();
+            if (productManifest.exists()) {
+                try {
+                    InputStream is = new FileInputStream(productManifest);
                     try {
-                        InputStream is = new FileInputStream(productManifest);
-                        try {
-                            Manifest manifest = new Manifest(is);
-                            if (manifest.getMainAttributes().containsKey(JBOSS_PRODUCT_RELEASE_NAME)) {
-                                String productName = String.class.cast(manifest.getMainAttributes().get(
-                                        JBOSS_PRODUCT_RELEASE_NAME));
-                                if (productName.matches(".* Fuse Service Works")) { //$NON-NLS-1$
-                                    switchYardMetaData._name = productName;
-                                    if (manifest.getMainAttributes().containsKey(JBOSS_PRODUCT_RELEASE_VERSION)) {
-                                        switchYardMetaData._runtimeVersion = String.class.cast(manifest.getMainAttributes()
-                                                .get(JBOSS_PRODUCT_RELEASE_VERSION));
-                                    }
-                                    if (switchYardMetaData._runtimeVersion != null) {
-                                        if (switchYardMetaData._runtimeVersion.startsWith("6.0.")) { //$NON-NLS-1$
-                                            switchYardRuntime = RuntimeManager.createRuntimeComponent(
-                                                    RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
-                                                            FSW_RUNTIME_VERSION_6_0),
-                                                    createRuntimeComponentProperties(switchYardMetaData));
-                                        } else if (switchYardMetaData._runtimeVersion.startsWith("6.1.")) { //$NON-NLS-1$
-                                            switchYardRuntime = RuntimeManager.createRuntimeComponent(
-                                                    RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
-                                                            FSW_RUNTIME_VERSION_6_1),
-                                                    createRuntimeComponentProperties(switchYardMetaData));
-                                        }
-                                    }
-                                    if (switchYardRuntime == null) {
-                                        /*
-                                         * we know it's FSW, so we'll assume the
-                                         * latest version.
-                                         */
-                                        switchYardRuntime = getDefaultFSWRuntimeComponent(null);
+                        Manifest manifest = new Manifest(is);
+                        if (manifest.getMainAttributes().containsKey(JBOSS_PRODUCT_RELEASE_NAME)) {
+                            String productName = String.class.cast(manifest.getMainAttributes().get(
+                                    JBOSS_PRODUCT_RELEASE_NAME));
+                            if (productName.matches(".* Fuse Service Works")) { //$NON-NLS-1$
+                                switchYardMetaData._name = productName;
+                                if (manifest.getMainAttributes().containsKey(JBOSS_PRODUCT_RELEASE_VERSION)) {
+                                    switchYardMetaData._runtimeVersion = String.class.cast(manifest.getMainAttributes()
+                                            .get(JBOSS_PRODUCT_RELEASE_VERSION));
+                                }
+                                if (switchYardMetaData._runtimeVersion != null) {
+                                    if (switchYardMetaData._runtimeVersion.startsWith("6.0.")) { //$NON-NLS-1$
+                                        switchYardRuntime = RuntimeManager.createRuntimeComponent(
+                                                RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
+                                                        FSW_RUNTIME_VERSION_6_0),
+                                                createRuntimeComponentProperties(switchYardMetaData));
+                                    } else if (switchYardMetaData._runtimeVersion.startsWith("6.1.")) { //$NON-NLS-1$
+                                        switchYardRuntime = RuntimeManager.createRuntimeComponent(
+                                                RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
+                                                        FSW_RUNTIME_VERSION_6_1),
+                                                createRuntimeComponentProperties(switchYardMetaData));
+                                    } else if (switchYardMetaData._runtimeVersion.startsWith("6.2.")) { //$NON-NLS-1$
+                                        switchYardRuntime = RuntimeManager.createRuntimeComponent(
+                                                RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
+                                                        ISwitchYardFacetConstants.FSW_RUNTIME_VERSION_6_2),
+                                                createRuntimeComponentProperties(switchYardMetaData));
+                                    } else if (switchYardMetaData._runtimeVersion.startsWith("6.3.")) { //$NON-NLS-1$
+                                        switchYardRuntime = RuntimeManager.createRuntimeComponent(
+                                                RuntimeManager.getRuntimeComponentType(FSW_RUNTIME_ID).getVersion(
+                                                        ISwitchYardFacetConstants.FSW_RUNTIME_VERSION_6_3),
+                                                createRuntimeComponentProperties(switchYardMetaData));
                                     }
                                 }
-                            }
-                        } catch (Exception e) {
-                            e.fillInStackTrace();
-                        } finally {
-                            try {
-                                is.close();
-                            } catch (IOException e) {
-                                e.fillInStackTrace();
+                                if (switchYardRuntime == null) {
+                                    /*
+                                     * we know it's FSW, so we'll assume the
+                                     * latest version.
+                                     */
+                                    switchYardRuntime = getDefaultFSWRuntimeComponent(null);
+                                }
                             }
                         }
                     } catch (Exception e) {
                         e.fillInStackTrace();
+                    } finally {
+                        try {
+                            is.close();
+                        } catch (IOException e) {
+                            e.fillInStackTrace();
+                        }
                     }
+                } catch (Exception e) {
+                    e.fillInStackTrace();
                 }
             }
             if (switchYardRuntime == null && switchYardMetaData != null) {
@@ -148,26 +157,21 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
                  * if we don't have the runtime from product, check for
                  * community release
                  */
-                if (switchYardMetaData._runtimeVersion == null && switchYardMetaData._integrationBOMVersion != null) {
-                    switchYardRuntime = RuntimeManager.createRuntimeComponent(
-                            RuntimeManager.getRuntimeComponentType(SWITCHYARD_RUNTIME_ID)
-                                    .getVersion(SWITCHYARD_RUNTIME_VERSION_2_0),
-                            createRuntimeComponentProperties(switchYardMetaData));
-                } else if (switchYardMetaData._runtimeVersion.startsWith("1.0.") //$NON-NLS-1$
+                if (switchYardMetaData._runtimeVersion.startsWith("1.0.") //$NON-NLS-1$
                         || switchYardMetaData._runtimeVersion.startsWith("0.")) { //$NON-NLS-1$
                     switchYardRuntime = RuntimeManager.createRuntimeComponent(
                             RuntimeManager.getRuntimeComponentType(SWITCHYARD_RUNTIME_ID)
-                                    .getVersion(SWITCHYARD_RUNTIME_VERSION_1_0),
+                            .getVersion(SWITCHYARD_RUNTIME_VERSION_1_0),
                             createRuntimeComponentProperties(switchYardMetaData));
                 } else if (switchYardMetaData._runtimeVersion.startsWith("1.1.")) { //$NON-NLS-1$
                     switchYardRuntime = RuntimeManager.createRuntimeComponent(
                             RuntimeManager.getRuntimeComponentType(SWITCHYARD_RUNTIME_ID)
-                                    .getVersion(SWITCHYARD_RUNTIME_VERSION_1_1),
+                            .getVersion(SWITCHYARD_RUNTIME_VERSION_1_1),
                             createRuntimeComponentProperties(switchYardMetaData));
                 } else if (switchYardMetaData._runtimeVersion.startsWith("2.0.")) { //$NON-NLS-1$
                     switchYardRuntime = RuntimeManager.createRuntimeComponent(
                             RuntimeManager.getRuntimeComponentType(SWITCHYARD_RUNTIME_ID)
-                                    .getVersion(SWITCHYARD_RUNTIME_VERSION_2_0),
+                            .getVersion(SWITCHYARD_RUNTIME_VERSION_2_0),
                             createRuntimeComponentProperties(switchYardMetaData));
                 } else {
                     switchYardRuntime = getDefaultRuntimeComponent(switchYardMetaData);
@@ -183,6 +187,28 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
             return Collections.emptyList();
         }
         return Collections.singletonList(switchYardRuntime);
+    }
+
+    private SwitchYardRuntimeMetaData getMetadataFromRuntime(IRuntime runtime, IPath runtimeLocation) {
+        SwitchYardRuntimeMetaData switchYardMetaData = null;
+        SwitchYardRuntimeMetaData integrationMetadata = null;
+        SwitchYardRuntimeMetaData kieMetadata = null;
+
+        boolean isKaraf = runtime.getRuntimeType().getId().startsWith("org.fusesource.ide"); //$NON-NLS-1$
+        if (isKaraf) {
+            switchYardMetaData = getSwitchYardVersionFromKarafRuntime(runtimeLocation);
+        } else {
+            switchYardMetaData = getSwitchYardVersionFromRuntime(runtimeLocation);
+            integrationMetadata = getIntegrationVersionFromRuntime(runtimeLocation);
+            kieMetadata = getKieVersionFromRuntime(runtimeLocation);
+        }
+        if (switchYardMetaData != null && integrationMetadata != null) {
+            switchYardMetaData._integrationBOMVersion = integrationMetadata._integrationBOMVersion;
+        }
+        if (switchYardMetaData != null && kieMetadata != null) {
+            switchYardMetaData._kieVersion = kieMetadata._kieVersion;
+        }
+        return switchYardMetaData;
     }
 
     private IRuntimeComponent getDefaultRuntimeComponent(final SwitchYardRuntimeMetaData switchYardVersion) {
@@ -210,41 +236,25 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
         final Map<String, String> properties = new HashMap<String, String>();
         properties.put(SWITCHYARD_RUNTIME_LABEL_KEY, switchYardMetaData.createLabel());
         properties.put(SWITCHYARD_RUNTIME_VERSION_KEY, switchYardMetaData.getVersion());
+        properties.put(KIE_RUNTIME_VERSION_KEY, switchYardMetaData.getKieVersion());
+        properties.put(FUSE_INTEG_RUNTIME_VERSION_KEY, switchYardMetaData.getIntegrationVersion());
         return properties;
     }
 
-    private String readBundleInfoFileForSwitchYardAPIString(File file) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        try {
-            String line = br.readLine();
-
-            while (line != null) {
-                if (line.contains("org.switchyard")) {
-                    return line;
-                }
-                line = br.readLine();
-            }
-            return null;
-        } finally {
-            br.close();
-        }
-    }    
-    
-    private String readBundleInfoFileForIntegrationString(File[] fileList) throws IOException {
+    private String readBundleInfoFileForString(File[] fileList, String toFind) throws IOException {
         for (File file : fileList) {
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            Scanner in = null;
+            boolean result = false;
             try {
-                String line = br.readLine();
-
-                while (line != null) {
-                    if (line.contains("org.jboss.integration.fuse")) {
+                in = new Scanner(new FileReader(file));
+                while(in.hasNextLine() && !result) {
+                    String line = in.nextLine();
+                    if (line.indexOf(toFind) >= 0) {
                         return line;
                     }
-                    line = br.readLine();
                 }
-                return null;
             } finally {
-                br.close();
+                try { in.close() ; } catch(Exception e) { /* ignore */ }  
             }
         }
         return null;
@@ -285,11 +295,10 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
                     return null;
                 }
                 SwitchYardRuntimeMetaData symetadata = null;
-                SwitchYardRuntimeMetaData integmetadata = null;
-                
+
                 for (File folder : folders) {
                     File[] fileList = folder.listFiles(new FilenameFilter() {
-                        
+
                         @Override
                         public boolean accept(File dir, String name) {
                             if (name.equalsIgnoreCase(FUSE_BUNDLE_INFO_FILE)) {
@@ -300,36 +309,44 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
                     });
                     if (fileList != null && fileList.length >= 1) {
                         try {
-                            String integContents = readBundleInfoFileForIntegrationString(fileList);
+                            String orgSwitchYardString = readBundleInfoFileForString(fileList, "org.switchyard");
+                            if (orgSwitchYardString != null) {
+                                String[] splitStr = orgSwitchYardString.split("/"); //$NON-NLS-1$
+                                if (splitStr != null && splitStr.length > 1) {
+                                    if (symetadata == null) {
+                                        symetadata = new SwitchYardRuntimeMetaData();
+                                    }
+                                    String version = splitStr[splitStr.length - 1];
+                                    symetadata._runtimeVersion = version;
+                                    symetadata._name = "SwitchYard: Karaf Extension"; //$NON-NLS-1$
+                                    symetadata._libraryVersion = version;
+                                }
+                            }
+                            String integContents = readBundleInfoFileForString(fileList, "org.jboss.integration.fuse");
                             if (integContents != null) {
                                 String[] splitStr = integContents.split("/"); //$NON-NLS-1$
                                 if (splitStr != null && splitStr.length > 1) {
-                                    integmetadata = new SwitchYardRuntimeMetaData();
-                                    String version = splitStr[splitStr.length - 1];
-                                    integmetadata._integrationBOMVersion = version;
-                                    integmetadata._name = "SwitchYard: Integration Extension";
-                                    integmetadata._libraryVersion = version;
+                                    if (symetadata == null) {
+                                        symetadata = new SwitchYardRuntimeMetaData();
+                                    }
+                                    symetadata._integrationBOMVersion = splitStr[splitStr.length - 1];
                                 }
                             }
-                            String contents = readBundleInfoFileForSwitchYardAPIString(fileList[0]);
-                            if (contents == null) {
-                                continue;
+                            String kieContents = readBundleInfoFileForString(fileList, "org.kie");
+                            if (kieContents != null) {
+                                String[] splitStr = kieContents.split("/"); //$NON-NLS-1$
+                                if (splitStr != null && splitStr.length > 1) {
+                                    if (symetadata == null) {
+                                        symetadata = new SwitchYardRuntimeMetaData();
+                                    }
+                                    symetadata._kieVersion = splitStr[splitStr.length - 1];
+                                }
                             }
-                            String[] splitStr = contents.split("/"); //$NON-NLS-1$
-                            if (splitStr != null && splitStr.length > 1) {
-                                symetadata = new SwitchYardRuntimeMetaData();
-                                String version = splitStr[splitStr.length - 1];
-                                symetadata._runtimeVersion = version;
-                                symetadata._name = "SwitchYard: Karaf Extension";
-                                symetadata._libraryVersion = version;
-                            }
+                            continue;
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                }
-                if (integmetadata != null) {
-                    return integmetadata;
                 }
                 if (symetadata != null) {
                     return symetadata;
@@ -338,7 +355,7 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
         }
         return null;
     }
-    
+
     private SwitchYardRuntimeMetaData getSwitchYardVersionFromRuntime(IPath runtimeLocation) {
         final File mainDirectory = runtimeLocation.append(SWITCHYARD_AS_DEPLOY_MODULE_PATH).toFile();
         final String[] files = mainDirectory.list();
@@ -371,6 +388,51 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
                         metadata._name = Messages.SwitchYardRuntimeComponentProvider_label_runtimeComponentName;
                         metadata._libraryVersion = matcher.group(1);
                         metadata._runtimeVersion = metadata._libraryVersion;
+                        return metadata;
+                    } finally {
+                        try {
+                            runtimeJar.close();
+                        } catch (IOException e) {
+                            e.fillInStackTrace();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    private SwitchYardRuntimeMetaData getKieVersionFromRuntime(IPath runtimeLocation) {
+        final File mainDirectory = runtimeLocation.append(KIE_AS_DEPLOY_MODULE_PATH).toFile();
+        final String[] files = mainDirectory.list();
+        if (files == null) {
+            return null;
+        }
+        for (String file : files) {
+            final Matcher matcher = KIE_DEPLOY_JAR_NAME_PATTERN.matcher(file);
+            if (matcher.matches()) {
+                try {
+                    final JarFile runtimeJar = new JarFile(new File(mainDirectory, file));
+                    try {
+                        final Manifest manifest = runtimeJar.getManifest();
+                        if (manifest == null) {
+                            continue;
+                        }
+                        SwitchYardRuntimeMetaData metadata = new SwitchYardRuntimeMetaData();
+                        if (manifest.getMainAttributes().containsKey(Name.IMPLEMENTATION_VERSION)) {
+                            metadata._kieVersion = String.class.cast(manifest.getMainAttributes().get(
+                                    Name.IMPLEMENTATION_VERSION));
+                        } else {
+                            metadata._kieVersion = matcher.group(1);
+                        }
+                        metadata._name = String.class.cast(manifest.getMainAttributes().get(Name.IMPLEMENTATION_TITLE));
+                        return metadata;
+                    } catch (IOException e) {
+                        SwitchYardRuntimeMetaData metadata = new SwitchYardRuntimeMetaData();
+                        metadata._name = Messages.SwitchYardRuntimeComponentProvider_label_runtimeComponentName;
+                        metadata._kieVersion = matcher.group(1);
                         return metadata;
                     } finally {
                         try {
@@ -443,12 +505,11 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
         private String _name;
         private String _runtimeVersion;
         private String _integrationBOMVersion;
+        private String _kieVersion;
 
         private String createLabel() {
             final String version;
-            if (_integrationBOMVersion != null && _integrationBOMVersion.length() > 0) {
-                version = _integrationBOMVersion;
-            } else if (_runtimeVersion == null || _runtimeVersion.length() == 0) {
+            if (_runtimeVersion == null || _runtimeVersion.length() == 0) {
                 if (_libraryVersion == null || _libraryVersion.length() == 0) {
                     version = null;
                 } else {
@@ -459,12 +520,17 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
             }
             return "" + _name + ' ' + version; //$NON-NLS-1$
         }
-        
+
         private String getVersion() {
-            if (_integrationBOMVersion != null && _integrationBOMVersion.length() > 0) {
-                return _integrationBOMVersion;
-            }
             return _libraryVersion;
+        }
+
+        private String getIntegrationVersion() {
+            return _integrationBOMVersion;
+        }
+
+        private String getKieVersion() {
+            return _kieVersion;
         }
     }
 }

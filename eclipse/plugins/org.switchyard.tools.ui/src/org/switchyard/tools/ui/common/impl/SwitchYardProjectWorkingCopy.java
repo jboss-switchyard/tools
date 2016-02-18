@@ -71,6 +71,8 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     private Map<String, ISwitchYardComponentExtension> _removedComponents = new LinkedHashMap<String, ISwitchYardComponentExtension>();
     private Set<ISwitchYardComponentExtension> _mergedComponents = new LinkedHashSet<ISwitchYardComponentExtension>();
     private volatile String _newVersion;
+    private volatile String _newKieVersion;
+    private volatile String _newIntegrationVersion;
 
     /**
      * Create a new SwitchYardProjectWorkingCopy.
@@ -189,6 +191,30 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     }
 
     @Override
+    public void setIntegrationVersion(String version) {
+        if (version == null) {
+            _newIntegrationVersion = null;
+            return;
+        }
+        _newIntegrationVersion = version;
+        if (_newIntegrationVersion.equals(_switchYardProject.getIntegrationVersion())) {
+            _newIntegrationVersion = null;
+        }
+    }
+
+    @Override
+    public void setKieVersion(String version) {
+        if (version == null) {
+            _newKieVersion = null;
+            return;
+        }
+        _newKieVersion = version;
+        if (_newKieVersion.equals(_switchYardProject.getKieVersion())) {
+            _newKieVersion = null;
+        }
+    }
+
+    @Override
     public void addComponent(ISwitchYardComponentExtension component) {
         _switchYardProject.readLock();
         try {
@@ -250,7 +276,8 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     public boolean isModified() {
         _switchYardProject.readLock();
         try {
-            return _newVersion != null || !_removedComponents.isEmpty() || !_addedComponents.isEmpty();
+            return _newVersion != null || _newKieVersion != null || _newIntegrationVersion != null 
+                    || !_removedComponents.isEmpty() || !_addedComponents.isEmpty();
         } finally {
             _switchYardProject.readUnlock();
         }
@@ -404,6 +431,28 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 operations.add(new UpdatePropertyOperation(switchYardVersionPropertyKey, _newVersion));
             } else if (currentSwitchYardVersion == null) {
                 operations.add(new UpdatePropertyOperation(switchYardVersionPropertyKey, "")); //$NON-NLS-1$
+            }
+        }
+
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingVersionProperty);
+        final String integrationVersionPropertyKey = getIntegrationVersionPropertyKey();
+        final String currentIntegrationVersion = _switchYardProject.getIntegrationVersion();
+        if (integrationVersionPropertyKey != null) {
+            if (_newIntegrationVersion != null) {
+                operations.add(new UpdatePropertyOperation(integrationVersionPropertyKey, _newIntegrationVersion));
+            } else if (currentIntegrationVersion == null) {
+                operations.add(new UpdatePropertyOperation(integrationVersionPropertyKey, "")); //$NON-NLS-1$
+            }
+        }
+
+        monitor.subTask(Messages.SwitchYardProjectWorkingCopy_taskMessage_validatingVersionProperty);
+        final String kieVersionPropertyKey = getKieVersionPropertyKey();
+        final String currentkieVersion = _switchYardProject.getKieVersion();
+        if (kieVersionPropertyKey != null) {
+            if (_newKieVersion != null) {
+                operations.add(new UpdatePropertyOperation(kieVersionPropertyKey, _newKieVersion));
+            } else if (currentkieVersion == null) {
+                operations.add(new UpdatePropertyOperation(kieVersionPropertyKey, "")); //$NON-NLS-1$
             }
         }
         monitor.worked(10);
@@ -872,6 +921,31 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     @Override
     public IFile getSwitchYardFeaturesFile() {
         return _switchYardProject.getSwitchYardFeaturesFile();
+    }
+
+    @Override
+    public boolean isUsingIntegrationPack() {
+        return _switchYardProject.isUsingIntegrationPack();
+    }
+
+    @Override
+    public String getIntegrationVersion() {
+        return _newIntegrationVersion == null ? _switchYardProject.getIntegrationVersion() : _newIntegrationVersion;
+    }
+
+    @Override
+    public String getIntegrationVersionPropertyKey() {
+        return _switchYardProject.getIntegrationVersionPropertyKey();
+    }
+
+    @Override
+    public String getKieVersion() {
+        return _newKieVersion == null ? _switchYardProject.getKieVersion() : _newKieVersion;
+    }
+
+    @Override
+    public String getKieVersionPropertyKey() {
+        return _switchYardProject.getKieVersionPropertyKey();
     }
 
 }

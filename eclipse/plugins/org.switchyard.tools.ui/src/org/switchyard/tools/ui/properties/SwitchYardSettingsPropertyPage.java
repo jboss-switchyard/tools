@@ -103,11 +103,8 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
             public void stateChanged(ChangeEvent e) {
                 String errmsg = null;
                 if (pomUsesSwitchYardBOM()) {
-                    boolean isIntegration = false;
-                    if (_settingsGroup.getSelectedTargetRuntime() != null) {
-                        String label = _settingsGroup.getSelectedTargetRuntime().getProperty("switchyard.label");
-                        isIntegration = label.contains("Integration"); // hack
-                    }
+                    boolean isIntegration = _switchYardProject.getIntegrationVersion() != null 
+                            && _switchYardProject.getKieVersion() != null; 
                     if (!isIntegration && !isSelectedRuntimeVersion2OrHigher()) {
                         // only valid versions with BOM dependency support are 2.0+
                         errmsg = "SwitchYard projects using BOM dependencies must use Runtime Version 2.0 or higher.";
@@ -291,10 +288,32 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                             && selection.getFirstElement() == SwitchYardSettingsGroup.NULL_RUNTIME) {
                         _ifpwc.removeTargetedRuntime(primaryRuntime);
                     }
+                    _settingsGroup.getIntegrationVersionsList().setSelection(new StructuredSelection(""));
+                    _switchYardProject.setIntegrationVersion(null);
+                    _settingsGroup.getKieVersionsList().setSelection(new StructuredSelection(""));
+                    _switchYardProject.setKieVersion(null);
                 } else {
-                    final IRuntime runtime = ((IRuntimeComponent) selection.getFirstElement()).getRuntime();
-                    _ifpwc.addTargetedRuntime(runtime);
+                    final IRuntimeComponent component = (IRuntimeComponent) selection.getFirstElement();
+                    final IRuntime runtime = component.getRuntime();
+                    if (!_ifpwc.isTargeted(runtime)) { // if it's already targeted, we don't need to add it
+                        _ifpwc.addTargetedRuntime(runtime);
+                    }
                     _ifpwc.setPrimaryRuntime(runtime);
+                    
+                    if (component != null) {
+                        ArtifactVersion intVersion = _settingsGroup.getIntegVersion(component);
+                        if (intVersion != null) {
+                            _settingsGroup.getIntegrationVersionsList().setSelection(new StructuredSelection(intVersion));
+                        } else {
+                            _settingsGroup.getIntegrationVersionsList().setSelection(new StructuredSelection(""));
+                        }
+                        ArtifactVersion kieVersion = _settingsGroup.getKieVersion(component);
+                        if (kieVersion != null) {
+                            _settingsGroup.getKieVersionsList().setSelection(new StructuredSelection(kieVersion));
+                        } else {
+                            _settingsGroup.getKieVersionsList().setSelection(new StructuredSelection(""));
+                        }
+                    }
                 }
             }
         });
@@ -311,6 +330,10 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
         }
         _settingsGroup.getRuntimeVersionsList().getControl()
                 .setEnabled(!_switchYardProject.isUsingDependencyManagement());
+        
+        boolean integCheckSelected = pomDefinesIntegrationVersion() && pomDefinesKieVersion() && pomUsesSwitchYardBOM();
+        _settingsGroup.getConfigureIntegrationCheckbox().setSelection(integCheckSelected);
+        
         _settingsGroup.getRuntimeVersionsList().addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
@@ -319,6 +342,28 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                     return;
                 }
                 _switchYardProject.setRuntimeVersion(((IStructuredSelection) selection).getFirstElement().toString());
+            }
+        });
+        
+        _settingsGroup.getIntegrationVersionsList().addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                ISelection selection = event.getSelection();
+                if (selection == null || selection.isEmpty() || !(selection instanceof IStructuredSelection)) {
+                    return;
+                }
+                _switchYardProject.setIntegrationVersion(((IStructuredSelection) selection).getFirstElement().toString());
+            }
+        });
+
+        _settingsGroup.getKieVersionsList().addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                ISelection selection = event.getSelection();
+                if (selection == null || selection.isEmpty() || !(selection instanceof IStructuredSelection)) {
+                    return;
+                }
+                _switchYardProject.setKieVersion(((IStructuredSelection) selection).getFirstElement().toString());
             }
         });
     }
@@ -361,6 +406,16 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                 .containsKey(M2EUtils.SWITCHYARD_VERSION);
     }
     
+    private boolean pomDefinesIntegrationVersion() {
+        return _switchYardProject.getMavenProject().getProperties()
+                .containsKey(M2EUtils.INTEGRATION_VERSION);
+    }
+
+    private boolean pomDefinesKieVersion() {
+        return _switchYardProject.getMavenProject().getProperties()
+                .containsKey(M2EUtils.KIE_VERSION);
+    }
+
     private boolean pomUsesSwitchYardBOM() {
         final MavenProject project = _switchYardProject.getMavenProject();
         DependencyManagement depMgmt = null;
@@ -377,8 +432,8 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
                 Dependency tempDep = depIter.next();
                 if (tempDep.getArtifactId().equals(M2EUtils.SWITCHYARD_BOM_ARTIFACT_ID)) {
                     return true;
-                } else if (tempDep.getArtifactId().equals("fuse-integration-bom")) {
-                    return true;
+//                } else if (tempDep.getArtifactId().equals("fuse-integration-bom")) {
+//                    return true;
                 }
             }
         }

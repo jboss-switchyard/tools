@@ -52,6 +52,14 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
     public static final String DEFAULT_RUNTIME_VERSION = "2.0.0.Final"; //$NON-NLS-1$
     private static final String DEFAULT_PROJECT_NAME = "switchyard-example"; //$NON-NLS-1$
     private static final String DEFAULT_PROJECT_VERSION = "0.0.1-SNAPSHOT"; //$NON-NLS-1$
+    /**
+     * Default version for the Integration stack.
+     */
+    public static final String DEFAULT_INTEG_VERSION = "1.3.0.redhat-05"; //$NON-NLS-1$
+    /**
+     * Default version for the Kie runtime.
+     */
+    public static final String DEFAULT_KIE_VERSION = "6.2.0.Final"; //$NON-NLS-1$
 
     private WizardNewProjectCreationPage _newProjectPage;
     private ProjectConfigurationWizardPage _configurationPage;
@@ -115,6 +123,9 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         if (!_newProjectPage.useDefaults()) {
             projectMetaData.setProjectLocation(_newProjectPage.getLocationURI());
         }
+        
+        final ArtifactVersion kieVersion = _configurationPage.getKieVersion();
+        final ArtifactVersion integVersion = _configurationPage.getIntegrationVersion();
 
         projectMetaData.setPackageName(_configurationPage.getPackageName());
         projectMetaData.setNamespace(_configurationPage.getNamespace());
@@ -126,6 +137,8 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         projectMetaData.setConfigurationVersion(_configurationPage.getConfigurationVersion());
         projectMetaData.setIsOSGIEnabled(_configurationPage.isBundled());
         projectMetaData.setIsSwitchYardDependencyBOMEnabled(_configurationPage.isSwitchYardBOMEnabled());
+        projectMetaData.setKieVersion(kieVersion == null ? DEFAULT_KIE_VERSION : kieVersion.toString());
+        projectMetaData.setIntegrationVersion(integVersion == null ? DEFAULT_INTEG_VERSION : integVersion.toString());
 
         // create the new project operation
         final CreateSwitchYardProjectOperation op = new CreateSwitchYardProjectOperation(projectMetaData,

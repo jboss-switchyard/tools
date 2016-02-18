@@ -15,6 +15,8 @@ import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FSW_RUNTI
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_FACET;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_ID;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_KEY;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FUSE_INTEG_RUNTIME_VERSION_KEY;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.KIE_RUNTIME_VERSION_KEY;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -84,6 +86,7 @@ import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.eclipse.wst.common.project.facet.core.runtime.RuntimeManager;
 import org.eclipse.wst.common.project.facet.ui.IRuntimeComponentLabelProvider;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.i18n.Messages;
@@ -106,21 +109,30 @@ public class SwitchYardSettingsGroup {
     private ComboViewer _runtimesList;
     private ComboViewer _runtimeVersionsList;
     private ComboViewer _configVersionsList;
+    private ComboViewer _kieVersionsList;
+    private ComboViewer _integVersionsList;
+    private Button _configureBxMSVersionDetailsCheckbox;
     private Button _runtimeProvidedCheckbox;
     private CheckboxTreeViewer _componentsTable;
     private Text _descriptionText;
     private IRuntimeComponent _initialComponent;
     private List<Object> _compatibleRuntimes;
     private Set<ArtifactVersion> _availableVersions;
+    private Set<ArtifactVersion> _availableKieVersions;
+    private Set<ArtifactVersion> _availableIntegVersions;
+    private boolean _isInitialized = false;
+
     private IFacetedProjectWorkingCopy _project;
     private IFacetedProjectListener _projectListener = new IFacetedProjectListener() {
         @Override
         public void handleEvent(IFacetedProjectEvent event) {
             switch (event.getType()) {
             case PROJECT_FACETS_CHANGED:
-                _configVersionsList.setSelection(
-                        new StructuredSelection(_project
-                                .getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
+                _configVersionsList
+                        .setSelection(
+                                new StructuredSelection(
+                                        _project.getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)),
+                                true);
                 // filter out any invalid runtimes
             case TARGETABLE_RUNTIMES_CHANGED:
                 repopulateRuntimesList();
@@ -170,9 +182,83 @@ public class SwitchYardSettingsGroup {
 
         createRuntimeControls(content);
 
+        createBxMSIntegrationControls(content);
+
         createComponentControls(content);
 
         initControls();
+    }
+
+    private void createBxMSIntegrationControls(Composite content) {
+
+        _configureBxMSVersionDetailsCheckbox = new Button(content, SWT.CHECK);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        gd.horizontalIndent = 5;
+        _configureBxMSVersionDetailsCheckbox.setLayoutData(gd);
+        _configureBxMSVersionDetailsCheckbox.setText(Messages.SwitchYardSettingsGroup_Integration_Pack_Version_Checkbox);
+
+        _configureBxMSVersionDetailsCheckbox.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                if (_configureBxMSVersionDetailsCheckbox.getSelection()) {
+                    handleRuntimeSelected();
+                } else {
+                    _kieVersionsList.setSelection(new StructuredSelection("")); //$NON-NLS-1$
+                    _kieVersionsList.getCombo().setEnabled(false);
+                    _integVersionsList.setSelection(new StructuredSelection("")); //$NON-NLS-1$
+                    _integVersionsList.getCombo().setEnabled(false);
+                    fireChangedEvent(this);
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+        Group integControls = new Group(content, SWT.NONE);
+        integControls.setLayout(new GridLayout(2, false));
+        integControls.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        integControls.setText(Messages.SwitchYardSettingsGroup_Integration_Pack_Group_Label);
+
+        Label label = new Label(integControls, SWT.NONE);
+        label.setText(Messages.SwitchYardSettingsGroup_Kie_Version_Label);
+
+        _kieVersionsList = new VersionComboViewer(integControls);
+        _kieVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+        _kieVersionsList.setLabelProvider(new LabelProvider());
+        _kieVersionsList.setContentProvider(ArrayContentProvider.getInstance());
+        _kieVersionsList.getCombo().addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                fireChangedEvent(this);
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+        label = new Label(integControls, SWT.NONE);
+        label.setText(Messages.SwitchYardSettingsGroup_Integration_Pack_Version_Label);
+
+        _integVersionsList = new VersionComboViewer(integControls);
+        _integVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+        _integVersionsList.setLabelProvider(new LabelProvider());
+        _integVersionsList.setContentProvider(ArrayContentProvider.getInstance());
+        _integVersionsList.getCombo().addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                fireChangedEvent(this);
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
     }
 
     private void createRuntimeControls(Composite content) {
@@ -200,7 +286,7 @@ public class SwitchYardSettingsGroup {
             }
         });
         _configVersionsList.setInput(ISwitchYardFacetConstants.SWITCHYARD_FACET.getVersions());
-        
+
         // spacer
         new Label(runtimeControls, SWT.NONE);
 
@@ -214,8 +300,8 @@ public class SwitchYardSettingsGroup {
             public String getText(Object element) {
                 if (element instanceof IRuntimeComponent) {
                     final IRuntimeComponent component = (IRuntimeComponent) element;
-                    final StringBuffer text = new StringBuffer(IRuntimeComponentLabelProvider.class.cast(
-                            component.getAdapter(IRuntimeComponentLabelProvider.class)).getLabel());
+                    final StringBuffer text = new StringBuffer(IRuntimeComponentLabelProvider.class
+                            .cast(component.getAdapter(IRuntimeComponentLabelProvider.class)).getLabel());
                     text.append(" [").append(component.getRuntime().getName()).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
                     return text.toString();
                 }
@@ -249,8 +335,8 @@ public class SwitchYardSettingsGroup {
                 String id = "org.eclipse.wst.server.ui.preferencePage"; //$NON-NLS-1$
                 String id2 = "org.eclipse.wst.server.ui.runtime.preferencePage"; //$NON-NLS-1$
                 String id3 = "org.jboss.tools.runtime.preferences.RuntimePreferencePage"; //$NON-NLS-1$
-                final PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(newRuntimeLink.getShell(),
-                        id2, new String[] {id, id2, id3 }, null);
+                final PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(newRuntimeLink.getShell(), id2,
+                        new String[] {id, id2, id3 }, null);
                 if (dialog.open() == PreferenceDialog.OK) {
                     repopulateRuntimesList();
                 }
@@ -264,7 +350,7 @@ public class SwitchYardSettingsGroup {
         _runtimeVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _runtimeVersionsList.setLabelProvider(new LabelProvider());
         _runtimeVersionsList.setContentProvider(ArrayContentProvider.getInstance());
-        _runtimeVersionsList.getCombo().addSelectionListener(new SelectionListener(){
+        _runtimeVersionsList.getCombo().addSelectionListener(new SelectionListener() {
 
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -286,8 +372,8 @@ public class SwitchYardSettingsGroup {
         componentControls.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         componentControls.setText(Messages.SwitchYardSettingsGroup_SYComponentsGroupLabel);
 
-        _componentsTable = new CheckboxTreeViewer(componentControls, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
-                | SWT.V_SCROLL);
+        _componentsTable = new CheckboxTreeViewer(componentControls,
+                SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.V_SCROLL);
         _componentsTable.setLabelProvider(new ComponentsLabelProvider());
         _componentsTable.setContentProvider(new ComponentsContentProvider());
         _componentsTable.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -351,10 +437,8 @@ public class SwitchYardSettingsGroup {
         _project = project;
         _runtimesList.refresh();
         if (_project != null) {
-            _configVersionsList
-                    .setSelection(
-                            new StructuredSelection(_project
-                                    .getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
+            _configVersionsList.setSelection(new StructuredSelection(
+                    _project.getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
             _project.addListener(_projectListener, IFacetedProjectEvent.Type.TARGETABLE_RUNTIMES_CHANGED,
                     IFacetedProjectEvent.Type.PROJECT_FACETS_CHANGED);
         }
@@ -401,6 +485,27 @@ public class SwitchYardSettingsGroup {
      */
     public StructuredViewer getRuntimeVersionsList() {
         return _runtimeVersionsList;
+    }
+
+    /**
+     * @return the integration versions viewer.
+     */
+    public StructuredViewer getIntegrationVersionsList() {
+        return _integVersionsList;
+    }
+
+    /**
+     * @return the kie versions viewer.
+     */
+    public StructuredViewer getKieVersionsList() {
+        return _kieVersionsList;
+    }
+
+    /**
+     * @return the configure integration checkbox.
+     */
+    public Button getConfigureIntegrationCheckbox() {
+        return _configureBxMSVersionDetailsCheckbox;
     }
 
     /**
@@ -460,14 +565,57 @@ public class SwitchYardSettingsGroup {
 
     private void handleRuntimeSelected() {
         IStructuredSelection selection = (IStructuredSelection) _runtimesList.getSelection();
+
+        if (selection != null && getSelectedTargetRuntime() != null) {
+            boolean runtimeHasIntegInstalled = getIntegVersion(getSelectedTargetRuntime()) != null;
+            _configureBxMSVersionDetailsCheckbox.setEnabled(runtimeHasIntegInstalled);
+            if (!runtimeHasIntegInstalled) {
+                _configureBxMSVersionDetailsCheckbox.setSelection(false);
+            }
+        } else {
+            boolean enableIntegCheckbox = (_kieVersionsList.getCombo().getItemCount() > 0)
+                    && (_integVersionsList.getCombo().getItemCount() > 0);
+            _configureBxMSVersionDetailsCheckbox.setEnabled(enableIntegCheckbox);
+        }
+        if (!_configureBxMSVersionDetailsCheckbox.isEnabled()) {
+            _kieVersionsList.setSelection(new StructuredSelection("")); //$NON-NLS-1$
+            _kieVersionsList.getCombo().setEnabled(false);
+            _integVersionsList.setSelection(new StructuredSelection("")); //$NON-NLS-1$
+            _integVersionsList.getCombo().setEnabled(false);
+        }
+
+        boolean updateInteg = _configureBxMSVersionDetailsCheckbox.getEnabled()
+                && _configureBxMSVersionDetailsCheckbox.getSelection();
+
         if (selection == null || selection.isEmpty() || selection.getFirstElement() == NULL_RUNTIME) {
             _runtimeVersionsList.getCombo().setEnabled(true);
+
+            _kieVersionsList.getCombo().setEnabled(updateInteg);
+            _integVersionsList.getCombo().setEnabled(updateInteg);
+
         } else {
             final ArtifactVersion version = getRuntimeVersion((IRuntimeComponent) selection.getFirstElement());
             if (version != null) {
                 _runtimeVersionsList.setSelection(new StructuredSelection(version));
             }
             _runtimeVersionsList.getCombo().setEnabled(false);
+
+            if (updateInteg) {
+                final ArtifactVersion kieVersion = getKieVersion((IRuntimeComponent) selection.getFirstElement());
+                if (kieVersion != null) {
+                    _kieVersionsList.setSelection(new StructuredSelection(kieVersion));
+                } else {
+                    _kieVersionsList.setSelection(new StructuredSelection("")); //$NON-NLS-1$
+                }
+                final ArtifactVersion integVersion = getIntegVersion((IRuntimeComponent) selection.getFirstElement());
+                if (integVersion != null) {
+                    _integVersionsList.setSelection(new StructuredSelection(integVersion));
+                } else {
+                    _integVersionsList.setSelection(new StructuredSelection("")); //$NON-NLS-1$
+                }
+                _kieVersionsList.getCombo().setEnabled(false);
+                _integVersionsList.getCombo().setEnabled(false);
+            }
         }
         fireChangedEvent(this);
     }
@@ -476,15 +624,40 @@ public class SwitchYardSettingsGroup {
         return parseVersion(component.getProperty(SWITCHYARD_RUNTIME_VERSION_KEY));
     }
 
+    /**
+     * @param component
+     * @return
+     */
+    public ArtifactVersion getKieVersion(IRuntimeComponent component) {
+        return parseVersion(component.getProperty(KIE_RUNTIME_VERSION_KEY));
+    }
+
+    /**
+     * @param component
+     * @return
+     */
+    public ArtifactVersion getIntegVersion(IRuntimeComponent component) {
+        return parseVersion(component.getProperty(FUSE_INTEG_RUNTIME_VERSION_KEY));
+    }
+    
+    /**
+     * @param component IRuntimeComponent passed in
+     * @return true/false if artifact version found
+     */
+    public boolean hasIntegrationVersion(IRuntimeComponent component) {
+        return getIntegVersion(component) != null;
+    }
+
     private void initControls() {
+        if (_isInitialized) {
+            return;
+        }
         if (_project == null) {
             _configVersionsList.setSelection(
                     new StructuredSelection(ISwitchYardFacetConstants.SWITCHYARD_FACET.getDefaultVersion()), true);
         } else {
-            _configVersionsList
-                    .setSelection(
-                            new StructuredSelection(_project
-                                    .getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
+            _configVersionsList.setSelection(new StructuredSelection(
+                    _project.getProjectFacetVersion(ISwitchYardFacetConstants.SWITCHYARD_FACET)), true);
         }
         try {
             _context.run(false, true, new IRunnableWithProgress() {
@@ -496,65 +669,137 @@ public class SwitchYardSettingsGroup {
                         monitor.worked(25);
                         populateRuntimesList();
                         monitor.worked(25);
-                        populateRuntimeVersionsList(new SubProgressMonitor(monitor, 50));
+                        populateRuntimeVersionsList(new SubProgressMonitor(monitor, 15));
+                        populateKieVersionsList(new SubProgressMonitor(monitor, 15));
+                        populateIntegVersionsList(new SubProgressMonitor(monitor, 15));
+                        if (_kieVersionsList.getCombo().getItemCount() > 0
+                                && _integVersionsList.getCombo().getItemCount() > 0) {
+                            _configureBxMSVersionDetailsCheckbox.setEnabled(true);
+                        } else {
+                            _configureBxMSVersionDetailsCheckbox.setEnabled(false);
+                            _configureBxMSVersionDetailsCheckbox.setSelection(false);
+                        }
+                        boolean updateInteg = _configureBxMSVersionDetailsCheckbox.getEnabled()
+                                && _configureBxMSVersionDetailsCheckbox.getSelection();
                         if (_initialComponent == null) {
                             _runtimesList.setSelection(new StructuredSelection(NULL_RUNTIME), true);
-                            _runtimeVersionsList.setSelection(new StructuredSelection(_availableVersions.iterator().next()));
+                            _runtimeVersionsList
+                                    .setSelection(new StructuredSelection(_availableVersions.iterator().next()));
+                            if (updateInteg) {
+                                _kieVersionsList
+                                        .setSelection(new StructuredSelection(_availableKieVersions.iterator().next()));
+                                _integVersionsList.setSelection(
+                                        new StructuredSelection(_availableIntegVersions.iterator().next()));
+                            }
                         } else {
                             // TODO: use preferences
                             _runtimesList.setSelection(new StructuredSelection(_initialComponent), true);
+                            _runtimeVersionsList.setSelection(new StructuredSelection(_initialComponent));
+                            if (updateInteg) {
+                                _kieVersionsList.setSelection(new StructuredSelection(_initialComponent));
+                                _integVersionsList.setSelection(new StructuredSelection(_initialComponent));
+                            }
+                            _kieVersionsList.getControl().setEnabled(false);
+                            _integVersionsList.getControl().setEnabled(false);
                         }
                     } finally {
                         monitor.done();
+                        _isInitialized = true;
                     }
                 }
 
             });
         } catch (Exception e) {
             if (e.getCause() instanceof CoreException) {
-                Activator
-                        .getDefault()
-                        .getLog()
-                        .log(new MultiStatus(Activator.PLUGIN_ID, -1, new IStatus[] {((CoreException) e.getCause())
-                                .getStatus() }, Messages.SwitchYardSettingsGroup_ErrorLoadingCapabilitiesMessage, e));
-            } else {
-                Activator
-                        .getDefault()
-                        .getLog()
-                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+                Activator.getDefault().getLog()
+                        .log(new MultiStatus(Activator.PLUGIN_ID, -1,
+                                new IStatus[] {((CoreException) e.getCause()).getStatus() },
                                 Messages.SwitchYardSettingsGroup_ErrorLoadingCapabilitiesMessage, e));
+            } else {
+                Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+                        Messages.SwitchYardSettingsGroup_ErrorLoadingCapabilitiesMessage, e));
             }
         }
     }
 
     private void populateRuntimesList() {
-        final Set<IRuntimeComponent> compatibleRuntimes = new LinkedHashSet<IRuntimeComponent>();
-        for (IProjectFacetVersion ipfv : SWITCHYARD_FACET.getVersions()) {
-            final Set<IRuntime> runtimes = RuntimeManager.getRuntimes(Collections.singleton(ipfv));
-            final ViewerSorter sorter = new RuntimesListSorter();
-            for (IRuntime runtime : runtimes) {
-                for (IRuntimeComponent component : runtime.getRuntimeComponents()) {
-                    if (SWITCHYARD_RUNTIME_ID.equals(component.getRuntimeComponentType().getId())
-                            || FSW_RUNTIME_ID.equals(component.getRuntimeComponentType().getId())) {
-                        compatibleRuntimes.add(component);
-                        if (_runtimesFilter.select(null, null, component)) {
-                            if (_initialComponent == null) {
-                                _initialComponent = component;
-                            } else {
-                                if (sorter.compare(null, component, _initialComponent) < 0) {
+        if (_compatibleRuntimes == null) {
+            final Set<IRuntimeComponent> compatibleRuntimes = new LinkedHashSet<IRuntimeComponent>();
+            for (IProjectFacetVersion ipfv : SWITCHYARD_FACET.getVersions()) {
+                final Set<IRuntime> runtimes = RuntimeManager.getRuntimes(Collections.singleton(ipfv));
+                final ViewerSorter sorter = new RuntimesListSorter();
+                for (IRuntime runtime : runtimes) {
+                    for (IRuntimeComponent component : runtime.getRuntimeComponents()) {
+                        if (SWITCHYARD_RUNTIME_ID.equals(component.getRuntimeComponentType().getId())
+                                || FSW_RUNTIME_ID.equals(component.getRuntimeComponentType().getId())) {
+                            compatibleRuntimes.add(component);
+                            if (_runtimesFilter.select(null, null, component)) {
+                                if (_initialComponent == null) {
                                     _initialComponent = component;
+                                } else {
+                                    if (sorter.compare(null, component, _initialComponent) < 0) {
+                                        _initialComponent = component;
+                                    }
                                 }
                             }
+                            break;
                         }
-                        break;
                     }
                 }
             }
+            _compatibleRuntimes = new ArrayList<Object>(compatibleRuntimes.size() + 1);
+            _compatibleRuntimes.add(NULL_RUNTIME);
+            _compatibleRuntimes.addAll(compatibleRuntimes);
         }
-        _compatibleRuntimes = new ArrayList<Object>(compatibleRuntimes.size() + 1);
-        _compatibleRuntimes.add(NULL_RUNTIME);
-        _compatibleRuntimes.addAll(compatibleRuntimes);
         _runtimesList.setInput(_compatibleRuntimes);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void populateKieVersionsList(IProgressMonitor monitor) {
+        try {
+            _availableKieVersions = filterSwitchYardVersions(M2EUtils.resolveKieVersionRange(monitor));
+        } catch (Exception e) {
+            _availableKieVersions = new LinkedHashSet<ArtifactVersion>();
+        }
+        // add default version
+        final ArtifactVersion defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_KIE_VERSION);
+        _availableKieVersions.add(defaultVersion);
+
+        // add known runtime versions
+        for (Object obj : (List<Object>) _runtimesList.getInput()) {
+            if (obj == NULL_RUNTIME) {
+                continue;
+            }
+            ArtifactVersion version = getRuntimeVersion((IRuntimeComponent) obj);
+            if (version != null && !_availableVersions.contains(version)) {
+                _availableKieVersions.add(version);
+            }
+        }
+        _kieVersionsList.setInput(_availableKieVersions);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void populateIntegVersionsList(IProgressMonitor monitor) {
+        try {
+            _availableIntegVersions = filterSwitchYardVersions(M2EUtils.resolveFuseIntegrationVersionRange(monitor));
+        } catch (Exception e) {
+            _availableIntegVersions = new LinkedHashSet<ArtifactVersion>();
+        }
+        // add default version
+        final ArtifactVersion defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_INTEG_VERSION);
+        _availableIntegVersions.add(defaultVersion);
+
+        // add known runtime versions
+        for (Object obj : (List<Object>) _runtimesList.getInput()) {
+            if (obj == NULL_RUNTIME) {
+                continue;
+            }
+            ArtifactVersion version = getRuntimeVersion((IRuntimeComponent) obj);
+            if (version != null && !_availableVersions.contains(version)) {
+                _availableIntegVersions.add(version);
+            }
+        }
+        _integVersionsList.setInput(_availableIntegVersions);
     }
 
     @SuppressWarnings("unchecked")
@@ -669,6 +914,7 @@ public class SwitchYardSettingsGroup {
             public void run() {
                 IStructuredSelection selection = (IStructuredSelection) _runtimesList.getSelection();
                 _initialComponent = null;
+                _compatibleRuntimes = null;
                 populateRuntimesList();
                 if (selection.isEmpty() || !_runtimesFilter.select(null, null, selection.getFirstElement())) {
                     if (_initialComponent == null) {
@@ -868,7 +1114,7 @@ public class SwitchYardSettingsGroup {
             this._changeListeners.remove(listener);
         }
     }
-    
+
     /**
      * Enable/disable the Runtime version controls.
      * 
@@ -878,5 +1124,30 @@ public class SwitchYardSettingsGroup {
         _configVersionsList.getCombo().setEnabled(value);
         _runtimesList.getCombo().setEnabled(value);
         _runtimeVersionsList.getCombo().setEnabled(value);
+        _kieVersionsList.getCombo().setEnabled(value);
+        _integVersionsList.getCombo().setEnabled(value);
+        _configureBxMSVersionDetailsCheckbox.setEnabled(value);
+    }
+
+    /**
+     * @return the ArtifactVersion for the integration version selected.
+     */
+    public ArtifactVersion getIntegrationVersion() {
+        ISelection integrationVersionListSelection = _integVersionsList.getSelection();
+        if (integrationVersionListSelection.isEmpty()) {
+            return null;
+        }
+        return (ArtifactVersion) ((IStructuredSelection) integrationVersionListSelection).getFirstElement();
+    }
+
+    /**
+     * @return the ArtifactVersion for the kie version selected.
+     */
+    public ArtifactVersion getKieVersion() {
+        ISelection kieVersionListSelection = _kieVersionsList.getSelection();
+        if (kieVersionListSelection.isEmpty()) {
+            return null;
+        }
+        return (ArtifactVersion) ((IStructuredSelection) kieVersionListSelection).getFirstElement();
     }
 }

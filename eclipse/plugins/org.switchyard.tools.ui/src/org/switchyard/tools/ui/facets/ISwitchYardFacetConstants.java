@@ -67,7 +67,7 @@ public interface ISwitchYardFacetConstants {
 
     /** The SwitchYard facet. */
     public static final IProjectFacet SWITCHYARD_FACET = ProjectFacetsManager.getProjectFacet(SWITCHYARD_FACET_ID);
-    
+
     // runtime components
     /** The SwitchYard runtime component ID. */
     public static final String SWITCHYARD_RUNTIME_ID = "switchyard.runtime"; //$NON-NLS-1$
@@ -80,10 +80,15 @@ public interface ISwitchYardFacetConstants {
 
     /** The SwitchYard FSW runtime component ID. */
     public static final String FSW_RUNTIME_ID = "fuseServiceWorks.runtime"; //$NON-NLS-1$
+    
     /** The FSW 6.0 runtime version. */
     public static final String FSW_RUNTIME_VERSION_6_0 = "6.0"; //$NON-NLS-1$
     /** The FSW 6.1 runtime version. */
     public static final String FSW_RUNTIME_VERSION_6_1 = "6.1"; //$NON-NLS-1$
+    /** The FSW 6.2 runtime version. */
+    public static final String FSW_RUNTIME_VERSION_6_2 = "6.2"; //$NON-NLS-1$
+    /** The FSW 6.3 runtime version. */
+    public static final String FSW_RUNTIME_VERSION_6_3 = "6.3"; //$NON-NLS-1$
 
     /**
      * Key for retrieving SY runtime version (String) from runtime component
@@ -96,4 +101,13 @@ public interface ISwitchYardFacetConstants {
      */
     public static final String SWITCHYARD_RUNTIME_LABEL_KEY = "switchyard.label"; //$NON-NLS-1$
 
+    /**
+     * Key for retrieving Kie version details. 
+     */
+    public static final String KIE_RUNTIME_VERSION_KEY = "kie.version"; //$NON-NLS-1$
+
+    /**
+     * Key for retrieving BxMS Integration version details.
+     */
+    public static final String FUSE_INTEG_RUNTIME_VERSION_KEY = "fuse.integ.version"; //$NON-NLS-1$
 }

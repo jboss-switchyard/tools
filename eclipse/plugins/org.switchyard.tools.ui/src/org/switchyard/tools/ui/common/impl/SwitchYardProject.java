@@ -68,6 +68,7 @@ import org.switchyard.config.model.ModelPuller;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.config.model.switchyard.SwitchYardNamespace;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
@@ -100,6 +101,11 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
     private final SwitchYardProjectManager _manager;
     private ReadWriteLock _loadLock = new ReentrantReadWriteLock();
     private volatile IFile _featuresFile;
+    private volatile boolean _usingIntegrationPack;
+    private volatile String _integrationVersion;
+    private volatile String _integrationVersionPropertyKey;
+    private volatile String _kieVersion;
+    private volatile String _kieVersionPropertyKey;
 
     /**
      * Create a new SwitchYardProject.
@@ -405,6 +411,19 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                 _rawVersionString = null;
             }
         }
+        if (_usingDependencyManagement) {
+            _integrationVersionPropertyKey = M2EUtils.INTEGRATION_VERSION;
+            _kieVersionPropertyKey = M2EUtils.KIE_VERSION;
+            String integVersion = readIntegrationVersionPropertyString(mavenProject);
+            String kieVersion = readKieVersionPropertyString(mavenProject);
+            if (integVersion != null && kieVersion != null) {
+                _usingIntegrationPack = true;
+                _integrationVersion = integVersion;
+                _kieVersion = kieVersion;
+            }
+        } else {
+            _usingIntegrationPack = false;
+        }
         _components = readComponents(mavenProject);
 
         for (IPath resourceLocation : MavenProjectUtils.getResourceLocations(_project, mavenProject.getResources())) {
@@ -472,6 +491,20 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
             }
         }
         return UNKNOWN_VERSION_STRING;
+    }
+    
+    private String readIntegrationVersionPropertyString(MavenProject mavenProject) {
+        if (mavenProject.getProperties() != null) {
+            return mavenProject.getProperties().getProperty(_integrationVersionPropertyKey);
+        }
+        return null;
+    }
+
+    private String readKieVersionPropertyString(MavenProject mavenProject) {
+        if (mavenProject.getProperties() != null) {
+            return mavenProject.getProperties().getProperty(_kieVersionPropertyKey);
+        }
+        return null;
     }
 
     private Set<ISwitchYardComponentExtension> readComponents(MavenProject mavenProject) {
@@ -741,5 +774,30 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
     @Override
     public IFile getSwitchYardFeaturesFile() {
         return this._featuresFile;
+    }
+
+    @Override
+    public boolean isUsingIntegrationPack() {
+        return this._usingIntegrationPack;
+    }
+
+    @Override
+    public String getIntegrationVersion() {
+        return _integrationVersion;
+    }
+
+    @Override
+    public String getIntegrationVersionPropertyKey() {
+        return _integrationVersionPropertyKey;
+    }
+
+    @Override
+    public String getKieVersion() {
+        return _kieVersion;
+    }
+
+    @Override
+    public String getKieVersionPropertyKey() {
+        return _kieVersionPropertyKey;
     }
 }

@@ -131,6 +131,28 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     }
 
     /**
+     * @return the selected Kie runtime version.
+     */
+    public ArtifactVersion getKieVersion() {
+        ISelection kieVersionListSelection = _settingsGroup.getKieVersionsList().getSelection();
+        if (kieVersionListSelection.isEmpty()) {
+            return null;
+        }
+        return (ArtifactVersion) ((IStructuredSelection) kieVersionListSelection).getFirstElement();
+    }
+
+    /**
+     * @return the selected Integration runtime version.
+     */
+    public ArtifactVersion getIntegrationVersion() {
+        ISelection integVersionListSelection = _settingsGroup.getIntegrationVersionsList().getSelection();
+        if (integVersionListSelection.isEmpty()) {
+            return null;
+        }
+        return (ArtifactVersion) ((IStructuredSelection) integVersionListSelection).getFirstElement();
+    }
+
+    /**
      * @return the selected target runtime.
      */
     public IRuntimeComponent getTargetRuntime() {
@@ -150,7 +172,14 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
     public Set<ISwitchYardComponentExtension> getSelectedComponents() {
         return _settingsGroup.getSelectedComponents();
     }
-
+    
+    /**
+     * @return boolean true/false if the configure integration checkbox is selected.
+     */
+    public boolean isUsingIntegrationPack() {
+        return _settingsGroup.getConfigureIntegrationCheckbox().getSelection();
+    }
+    
     @Override
     public void createControl(Composite parent) {
         initializeDialogUnits(parent);
@@ -326,6 +355,19 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             if (version == null) {
                 setErrorMessage(Messages.ProjectConfigurationWizardPage_errorMessage_pleaseSpecifySwitchYardVersion);
             }
+            
+            final boolean isUsingIntegrationPack = isUsingIntegrationPack();
+            if (isUsingIntegrationPack) {
+                final ArtifactVersion integVersion = _settingsGroup.getIntegrationVersion();
+                if (integVersion == null) {
+                    setErrorMessage("Please specify a valid Integration Pack Version to continue.");
+                }
+                final ArtifactVersion kieVersion = _settingsGroup.getKieVersion();
+                if (kieVersion == null) {
+                    setErrorMessage("Please specify a valid Kie Version to continue.");
+                }
+            }
+            
             /*
              * else {
              * Don't validate artifact resolution here as this can cause a lot

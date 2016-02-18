@@ -10,6 +10,9 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.tests;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Collections;
@@ -194,6 +197,34 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         // TODO: validate contents of generated files
     }
 
+    // convert InputStream to String
+    private static String getStringFromInputStream(InputStream is) {
+
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            br = new BufferedReader(new InputStreamReader(is));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return sb.toString();
+
+    }
+    
     private void assertXMLFilesMatch(String label, IFile testFile, String expectedFileLocation) throws Exception {
         Reader testReader = null;
         Reader expectedReader = null;
@@ -204,6 +235,11 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
             XMLUnit.setIgnoreWhitespace(true);
             XMLUnit.setIgnoreAttributeOrder(true);
             Diff diff = XMLUnit.compareXML(testReader, expectedReader);
+            
+            System.out.println("Actual string: " + getStringFromInputStream(testFile.getContents()));
+            System.out.println("Expected string: " + getStringFromInputStream(CreateSwitchYardProjectTest.class.getClassLoader()
+                    .getResourceAsStream(expectedFileLocation)));
+            
             assertTrue(label + ": " + diff.toString(), diff.similar());
         } finally {
             if (testReader != null) {
@@ -233,4 +269,95 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
 //        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
     }
 
+    /**
+     * New test to ensure that the new integration configuration bits work as well.
+     * @throws Exception
+     */
+    public void testCreateSwitchYardProjectOperationWithIntegrationBits() throws Exception {
+        final IWorkspace workspace = ResourcesPlugin.getWorkspace();
+        final IProject newProjectHandle = workspace.getRoot().getProject(
+                CreateSwitchYardProjectTest.class.getSimpleName() + "WithIntegration");
+        String packageName = "test.package_name";
+        String groupId = "test.project.group";
+        String version = "0.0.1-SNAPSHOT";
+        String runtimeVersion = NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION;
+        String kieVersion = NewSwitchYardProjectWizard.DEFAULT_KIE_VERSION;
+        String integVersion = NewSwitchYardProjectWizard.DEFAULT_INTEG_VERSION;
+
+        assertTrue("Project already exists.", !newProjectHandle.exists());
+
+        final NewSwitchYardProjectMetaData projectMetaData = new NewSwitchYardProjectMetaData();
+        projectMetaData.setNewProjectHandle(newProjectHandle);
+        projectMetaData.setPackageName(packageName);
+        projectMetaData.setGroupId(groupId);
+        projectMetaData.setProjectVersion(version);
+        projectMetaData.setRuntimeVersion(runtimeVersion);
+        projectMetaData.setKieVersion(kieVersion);
+        projectMetaData.setIntegrationVersion(integVersion);
+        projectMetaData.setIsSwitchYardDependencyBOMEnabled(true);
+        projectMetaData.setComponents(Collections.singleton(SwitchYardComponentExtensionManager.instance()
+                .getRuntimeComponentExtension()));
+
+        IWorkspaceRunnable op = new CreateSwitchYardProjectOperation(projectMetaData, null);
+        workspace.run(op, new NullProgressMonitor());
+
+        waitForJobs();
+        newProjectHandle.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobs();
+
+        IFile switchyardFile = newProjectHandle.getFile("src/main/resources/META-INF/switchyard.xml");
+        assertTrue("Failed to create switchyard.xml", switchyardFile.exists());
+        assertTrue("switchyard.xml file is out of sync after project creation",
+                switchyardFile.isSynchronized(IFile.DEPTH_ZERO));
+
+        IFile pomFile = newProjectHandle.getFile("pom.xml");
+        assertTrue("Failed to create pom.xml", pomFile.exists());
+        assertTrue("pom.xml file is out of sync after project creation", pomFile.isSynchronized(IFile.DEPTH_ZERO));
+
+        IFacetedProject fp = ProjectFacetsManager.create(newProjectHandle, false, new NullProgressMonitor());
+        assertNotNull("Project is not a faceted project.", fp);
+        assertTrue("switchyard.core facet not configured on project",
+                fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("switchyard.core")));
+        assertTrue("jst.utility facet not configured on project",
+                fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("jst.utility")));
+        assertTrue("java facet not configured on project",
+                fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("java")));
+
+        System.out.println(pomFile.getFullPath().makeAbsolute().toOSString());
+        assertXMLFilesMatch("pom creation failed", pomFile, "test-data/validation/add_integ_dependency_pom_no_bpm.xml");
+
+        /**
+         * This is where we fail.
+         */
+        // Test project update
+        op = new AbstractSwitchYardProjectOperation(null, Collections.singleton(SwitchYardComponentExtensionManager
+                .instance().getComponentExtension("org.switchyard.components:switchyard-component-bpm")), true,
+                "Testing SwitchYard project update", null) {
+
+            @Override
+            protected IProject getProject() {
+                return newProjectHandle;
+            }
+
+            @Override
+            protected void execute(IProgressMonitor monitor) throws CoreException {
+                monitor.done();
+            }
+        };
+        workspace.run(op, new NullProgressMonitor());
+
+        waitForJobs();
+        newProjectHandle.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobs();
+
+        assertTrue("Failed to update pom.xml", pomFile.exists());
+        assertTrue("pom.xml file is out of sync after project update", pomFile.isSynchronized(IFile.DEPTH_ZERO));
+        
+        System.out.println(pomFile.getFullPath().makeAbsolute().toOSString());
+        assertXMLFilesMatch("pom dependency update failed", pomFile, "test-data/validation/add_integ_dependency_pom.xml");
+        
+        waitForJobs();
+        
+    }
+    
 }

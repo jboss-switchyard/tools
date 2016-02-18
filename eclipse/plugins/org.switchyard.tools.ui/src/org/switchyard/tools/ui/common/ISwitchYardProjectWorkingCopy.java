@@ -74,4 +74,14 @@ public interface ISwitchYardProjectWorkingCopy extends ISwitchYardProject {
      * Releases resources held by the working copy.
      */
     void dispose();
+
+    /**
+     * @param new integration version
+     */
+    void setIntegrationVersion(String version);
+
+    /**
+     * @param new kie version
+     */
+    void setKieVersion(String version);
 }

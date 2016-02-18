@@ -63,6 +63,11 @@ public interface ISwitchYardProject {
     boolean isUsingDependencyManagement();
 
     /**
+     * @return true if the project has the integration pack configured.
+     */
+    boolean isUsingIntegrationPack();
+
+    /**
      * @return the raw version string (e.g. ${switchyard.version}); may be null;
      */
     String getRawVersionString();
@@ -121,4 +126,24 @@ public interface ISwitchYardProject {
      * @return the location of the features.xml file.
      */
     public IFile getSwitchYardFeaturesFile();
+
+    /**
+     * @return the Integration version.
+     */
+    String getIntegrationVersion();
+
+    /**
+     * @return the property key used to define the Integration version.
+     */
+    String getIntegrationVersionPropertyKey();
+
+    /**
+     * @return the kie version.
+     */
+    String getKieVersion();
+
+    /**
+     * @return the property key used to define the kie version.
+     */
+    String getKieVersionPropertyKey();
 }
