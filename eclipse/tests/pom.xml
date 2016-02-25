@@ -37,9 +37,9 @@
                 used by the tests. This should ensure the tests can resolve any required dependencies. Specific
                 plugin tests must configure a settings.xml. This file can be set automatically by extending AbstractMavenProjectTestCase
                 or through plugin_customization.ini. -->
-          <argLine>${tycho.test.jvmArgs} -Dusage_reporting_enabled=false -DLOCAL_TEST_REPO=${settings.localRepository}</argLine>
+          <argLine>${tycho.test.jvmArgs} -Dusage_reporting_enabled=false -DLOCAL_TEST_REPO="${settings.localRepository}"</argLine>
           <product>org.eclipse.platform.ide</product>
-          <appArgLine>-pluginCustomization ${basedir}/plugin_customization.ini -consoleLog</appArgLine>
+          <appArgLine>-pluginCustomization "${basedir}/plugin_customization.ini" -consoleLog</appArgLine>
           <forkedProcessTimeoutInSeconds>1200</forkedProcessTimeoutInSeconds>
         </configuration>
       </plugin>
