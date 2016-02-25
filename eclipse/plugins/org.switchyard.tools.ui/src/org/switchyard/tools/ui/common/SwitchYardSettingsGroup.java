@@ -625,16 +625,16 @@ public class SwitchYardSettingsGroup {
     }
 
     /**
-     * @param component
-     * @return
+     * @param component Component to check.
+     * @return ArtifactVersion for KIE version in component.
      */
     public ArtifactVersion getKieVersion(IRuntimeComponent component) {
         return parseVersion(component.getProperty(KIE_RUNTIME_VERSION_KEY));
     }
 
     /**
-     * @param component
-     * @return
+     * @param component Component to check.
+     * @return ArtifactVersion for Integration version in component.
      */
     public ArtifactVersion getIntegVersion(IRuntimeComponent component) {
         return parseVersion(component.getProperty(FUSE_INTEG_RUNTIME_VERSION_KEY));

@@ -76,12 +76,12 @@ public interface ISwitchYardProjectWorkingCopy extends ISwitchYardProject {
     void dispose();
 
     /**
-     * @param new integration version
+     * @param version new integration version
      */
     void setIntegrationVersion(String version);
 
     /**
-     * @param new kie version
+     * @param version new kie version
      */
     void setKieVersion(String version);
 }

@@ -56,29 +56,29 @@ public final class M2EUtils {
     /** The core SwitchYard BOM Artifact ID. */
     public static final String SWITCHYARD_BOM_ARTIFACT_ID = "switchyard-bom"; //$NON-NLS-1$
     
-    /** Integration bom Group ID */
+    /** Integration bom Group ID. */
     public static final String INTEGRATION_GROUP_ID = "org.jboss.integration.fuse"; //$NON-NLS-1$
-    /** Integration bom artifact ID */
+    /** Integration bom artifact ID. */
     public static final String INTEGRATION_BOM_ARTIFACT_ID = "fuse-integration-bom"; //$NON-NLS-1$
-    /** Integration version */
+    /** Integration version. */
     public static final String INTEGRATION_VERSION = "integration.version";
-    /** KIE bom Group ID */
+    /** KIE bom Group ID. */
     public static final String KIE_GROUP_ID = "org.kie"; //$NON-NLS-1$
-    /** KIE bom artifact ID */
+    /** KIE bom artifact ID. */
     public static final String KIE_BOM_ARTIFACT_ID = "kie-bom"; //$NON-NLS-1$
-    /** KIE version */
+    /** KIE version. */
     public static final String KIE_VERSION = "kie.version";
-    /** Drools bom Group ID */
+    /** Drools bom Group ID. */
     public static final String DROOLS_GROUP_ID = "org.drools"; //$NON-NLS-1$
-    /** Drools bom artifact ID */
+    /** Drools bom artifact ID. */
     public static final String DROOLS_BOM_ARTIFACT_ID = "drools-bom"; //$NON-NLS-1$
-    /** Drools version */
+    /** Drools version. */
     public static final String DROOLS_VERSION = "drools.version";
-    /** JBPM bom Group ID */
+    /** JBPM bom Group ID. */
     public static final String JBPM_GROUP_ID = "org.jbpm"; //$NON-NLS-1$
-    /** JBPM bom artifact ID */
+    /** JBPM bom artifact ID. */
     public static final String JBPM_BOM_ARTIFACT_ID = "jbpm-bom"; //$NON-NLS-1$
-    /** JBPM version */
+    /** JBPM version. */
     public static final String JBPM_VERSION = "jbpm.version";
 
     /** src/main/java. */

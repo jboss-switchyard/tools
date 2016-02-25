@@ -82,7 +82,7 @@
     -->
     <repository>
       <id>bpmn2-editor-update-site</id>
-      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.2.3.CR2_1.2.1.Final_mars/</url>
+      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.2.3.Final_1.2.1.Final_mars/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>

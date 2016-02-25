@@ -271,7 +271,7 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
 
     /**
      * New test to ensure that the new integration configuration bits work as well.
-     * @throws Exception
+     * @throws Exception  if an error occurs or test fails.
      */
     public void testCreateSwitchYardProjectOperationWithIntegrationBits() throws Exception {
         final IWorkspace workspace = ResourcesPlugin.getWorkspace();

@@ -30,7 +30,6 @@ import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -247,14 +246,18 @@ public class SwitchYardRuntimeComponentProvider extends RuntimeFacetComponentPro
             boolean result = false;
             try {
                 in = new Scanner(new FileReader(file));
-                while(in.hasNextLine() && !result) {
+                while (in.hasNextLine() && !result) {
                     String line = in.nextLine();
                     if (line.indexOf(toFind) >= 0) {
                         return line;
                     }
                 }
             } finally {
-                try { in.close() ; } catch(Exception e) { /* ignore */ }  
+                try {
+                    in.close();
+                } catch (Exception e) {
+                    /* ignore */ 
+                }
             }
         }
         return null;
