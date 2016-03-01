@@ -137,8 +137,10 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         projectMetaData.setConfigurationVersion(_configurationPage.getConfigurationVersion());
         projectMetaData.setIsOSGIEnabled(_configurationPage.isBundled());
         projectMetaData.setIsSwitchYardDependencyBOMEnabled(_configurationPage.isSwitchYardBOMEnabled());
-        projectMetaData.setKieVersion(kieVersion == null ? DEFAULT_KIE_VERSION : kieVersion.toString());
-        projectMetaData.setIntegrationVersion(integVersion == null ? DEFAULT_INTEG_VERSION : integVersion.toString());
+        if (kieVersion != null && integVersion != null) {
+            projectMetaData.setKieVersion(kieVersion.toString());
+            projectMetaData.setIntegrationVersion(integVersion.toString());
+        }
 
         // create the new project operation
         final CreateSwitchYardProjectOperation op = new CreateSwitchYardProjectOperation(projectMetaData,
