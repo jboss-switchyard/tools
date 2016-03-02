@@ -854,8 +854,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         plugin.setVersion("2.4.0"); //$NON-NLS-1$
         plugin.setExtensions(true);
 
-        String label = _projectMetatData.getTargetRuntime().getProperty("switchyard.label");
-        boolean isIntegration = label.contains("Integration"); // hack
+        boolean isIntegration = _projectMetatData.getIntegrationVersion() != null;
         String versionStr = "${switchyard.version}";
         if (isIntegration) {
             versionStr = "${integration.version}";
