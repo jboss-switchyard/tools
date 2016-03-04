@@ -2,7 +2,7 @@
 <feature
       id="org.switchyard.tools.bpel.feature"
       label="%featureName"
-      version="2.0.2.qualifier"
+      version="2.0.3.qualifier"
       provider-name="%featureProvider">
 
    <description url="http://www.jboss.org/switchyard">
@@ -18,7 +18,7 @@
    </license>
 
    <requires>
-      <import feature="org.switchyard.tools.feature" version="2.0.2.qualifier"/>
+      <import feature="org.switchyard.tools.feature" version="2.0.3.qualifier"/>
       <import feature="org.eclipse.bpel.feature" version="1.0.2" match="compatible"/>
       <import feature="org.eclipse.bpel.common.feature" version="1.0.2" match="compatible"/>
    </requires>
