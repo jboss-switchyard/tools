@@ -9,9 +9,9 @@
       <!-- BPMN2 Modeler Dependencies -->
       <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
          <unit id="org.eclipse.bpmn2.feature.group" version="1.1.0.Final"/>
-         <unit id="org.eclipse.bpmn2.modeler.feature.group" version="1.1.2.Final"/>
-         <unit id="org.eclipse.bpmn2.modeler.runtime.jboss.feature.group" version="1.1.2.Final"/>
-         <repository location="http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.1.2.Final_1.1.0.Final_luna/"/>
+         <unit id="org.eclipse.bpmn2.modeler.feature.group" version="1.1.5.Final-v20160226-1727-B1298"/>
+         <unit id="org.eclipse.bpmn2.modeler.runtime.jboss.feature.group" version="1.1.5.Final-v20160226-1727-B1298"/>
+         <repository location="http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.1.5.Final_1.1.0.Final_luna/"/>
       </location>
    </locations>
 </target>
