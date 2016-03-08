@@ -700,14 +700,6 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 model.setDependencyManagement(new DependencyManagement());
             }
 
-            Dependency bomDependency = new Dependency();
-            bomDependency.setGroupId(M2EUtils.SWITCHYARD_CORE_GROUP_ID);
-            bomDependency.setArtifactId(M2EUtils.SWITCHYARD_BOM_ARTIFACT_ID);
-            bomDependency.setVersion("${" + M2EUtils.SWITCHYARD_VERSION + "}"); //$NON-NLS-1$ //$NON-NLS-2$
-            bomDependency.setScope("import"); //$NON-NLS-1$
-            bomDependency.setType("pom"); //$NON-NLS-1$
-            model.getDependencyManagement().addDependency(bomDependency);
-
             if (isIntegration) {
                 Dependency integrationBomDependency = new Dependency();
                 integrationBomDependency.setGroupId(M2EUtils.INTEGRATION_GROUP_ID);
@@ -741,6 +733,15 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 jbpmBomDependency.setType("pom"); //$NON-NLS-1$
                 model.getDependencyManagement().addDependency(jbpmBomDependency);
             }
+            
+            Dependency bomDependency = new Dependency();
+            bomDependency.setGroupId(M2EUtils.SWITCHYARD_CORE_GROUP_ID);
+            bomDependency.setArtifactId(M2EUtils.SWITCHYARD_BOM_ARTIFACT_ID);
+            bomDependency.setVersion("${" + M2EUtils.SWITCHYARD_VERSION + "}"); //$NON-NLS-1$ //$NON-NLS-2$
+            bomDependency.setScope("import"); //$NON-NLS-1$
+            bomDependency.setType("pom"); //$NON-NLS-1$
+            model.getDependencyManagement().addDependency(bomDependency);
+            
         }
 
         // add dependencies
@@ -854,12 +855,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         plugin.setVersion("2.4.0"); //$NON-NLS-1$
         plugin.setExtensions(true);
 
-        boolean isIntegration = _projectMetatData.getIntegrationVersion() != null;
         String versionStr = "${switchyard.version}";
-        if (isIntegration) {
-            versionStr = "${integration.version}";
-        }
-
         ArrayList<PluginExecution> executions = new ArrayList<PluginExecution>();
         PluginExecution execution = new PluginExecution();
         execution.setId("cleanVersions"); //$NON-NLS-1$

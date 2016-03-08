@@ -16,13 +16,6 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.switchyard</groupId>
-        <artifactId>switchyard-bom</artifactId>
-        <version>${switchyard.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>fuse-integration-bom</artifactId>
         <version>${integration.version}</version>
@@ -47,6 +40,13 @@
         <groupId>org.jbpm</groupId>
         <artifactId>jbpm-bom</artifactId>
         <version>${kie.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.switchyard</groupId>
+        <artifactId>switchyard-bom</artifactId>
+        <version>${switchyard.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
