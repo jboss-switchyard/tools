@@ -17,10 +17,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType#getMappingFiles <em>Mapping Files</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDozerTransformType()
  * @model extendedMetaData="name='DozerTransformType' kind='elementOnly'"

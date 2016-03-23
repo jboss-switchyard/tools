@@ -23,11 +23,11 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JavaTransformType1Impl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JavaTransformType1Impl#getBean <em>Bean</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

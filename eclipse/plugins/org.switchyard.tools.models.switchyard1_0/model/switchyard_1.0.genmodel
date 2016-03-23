@@ -652,10 +652,14 @@
     </genEnums>
     <genDataTypes ecoreDataType="config.transform.ecore#//JavaTransformTypeObject"/>
     <genDataTypes ecoreDataType="config.transform.ecore#//SmooksTransformTypeObject"/>
+    <genClasses ecoreClass="config.transform.ecore#//CamelTransformType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//CamelTransformType/endpointUri"/>
+    </genClasses>
     <genClasses ecoreClass="config.transform.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformCamel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformDozer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformJava"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.transform.ecore#//DocumentRoot/transformJaxb"/>

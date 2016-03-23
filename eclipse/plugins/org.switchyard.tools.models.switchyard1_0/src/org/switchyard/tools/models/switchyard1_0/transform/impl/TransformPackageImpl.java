@@ -30,6 +30,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.CxfPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.cxf.impl.CxfPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
@@ -41,10 +43,16 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.MqttPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mqtt.impl.MqttPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.RssPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.rss.impl.RssPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.SapPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sap.impl.SapPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -63,6 +71,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
 import org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType;
 import org.switchyard.tools.models.switchyard1_0.transform.DozerMappingFilesType;
@@ -87,6 +96,13 @@ import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageIm
  */
 public class TransformPackageImpl extends EPackageImpl implements TransformPackage {
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelTransformTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -251,6 +267,10 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
         QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
         SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
+        RssPackageImpl theRssPackage = (RssPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) instanceof RssPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RssPackage.eNS_URI) : RssPackage.eINSTANCE);
+        SapPackageImpl theSapPackage = (SapPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) instanceof SapPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SapPackage.eNS_URI) : SapPackage.eINSTANCE);
+        MqttPackageImpl theMqttPackage = (MqttPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) instanceof MqttPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MqttPackage.eNS_URI) : MqttPackage.eINSTANCE);
+        CxfPackageImpl theCxfPackage = (CxfPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) instanceof CxfPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CxfPackage.eNS_URI) : CxfPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -279,6 +299,10 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         theNettyPackage.createPackageContents();
         theQuartzPackage.createPackageContents();
         theSqlPackage.createPackageContents();
+        theRssPackage.createPackageContents();
+        theSapPackage.createPackageContents();
+        theMqttPackage.createPackageContents();
+        theCxfPackage.createPackageContents();
 
         // Initialize created meta-data
         theTransformPackage.initializePackageContents();
@@ -304,6 +328,10 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         theNettyPackage.initializePackageContents();
         theQuartzPackage.initializePackageContents();
         theSqlPackage.initializePackageContents();
+        theRssPackage.initializePackageContents();
+        theSapPackage.initializePackageContents();
+        theMqttPackage.initializePackageContents();
+        theCxfPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -318,6 +346,24 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelTransformType() {
+        return camelTransformTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelTransformType_EndpointUri() {
+        return (EAttribute)camelTransformTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -358,8 +404,17 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_TransformDozer() {
+    public EReference getDocumentRoot_TransformCamel() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_TransformDozer() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -368,15 +423,6 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
      * @generated
      */
 	public EReference getDocumentRoot_TransformJava() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getDocumentRoot_TransformJaxb() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
     }
 
@@ -385,7 +431,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformJson() {
+	public EReference getDocumentRoot_TransformJaxb() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
     }
 
@@ -394,7 +440,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformSmooks() {
+	public EReference getDocumentRoot_TransformJson() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
     }
 
@@ -403,8 +449,17 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TransformXslt() {
+	public EReference getDocumentRoot_TransformSmooks() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_TransformXslt() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
     }
 
 	/**
@@ -642,10 +697,14 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         isCreated = true;
 
         // Create classes and their features
+        camelTransformTypeEClass = createEClass(CAMEL_TRANSFORM_TYPE);
+        createEAttribute(camelTransformTypeEClass, CAMEL_TRANSFORM_TYPE__ENDPOINT_URI);
+
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_CAMEL);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_DOZER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_JAVA);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TRANSFORM_JAXB);
@@ -713,14 +772,15 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
-        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
         SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
+        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
 
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        camelTransformTypeEClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
         dozerTransformTypeEClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
         javaTransformType1EClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
         jaxbTransformTypeEClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
@@ -729,10 +789,14 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         xsltTransformTypeEClass.getESuperTypes().add(theSwitchyardPackage.getTransformType());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(camelTransformTypeEClass, CamelTransformType.class, "CamelTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelTransformType_EndpointUri(), theXMLTypePackage.getString(), "endpointUri", null, 1, 1, CamelTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_TransformCamel(), this.getCamelTransformType(), null, "transformCamel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformDozer(), this.getDozerTransformType(), null, "transformDozer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformJava(), this.getJavaTransformType1(), null, "transformJava", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TransformJaxb(), this.getJAXBTransformType(), null, "transformJaxb", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -796,35 +860,58 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
      * @generated
      */
 	protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
+        addAnnotation
+          (camelTransformTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelTransformType",
+             "kind", "empty"
+           });	
+        addAnnotation
+          (getCamelTransformType_EndpointUri(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "endpointUri"
+           });	
         addAnnotation
           (documentRootEClass, 
            source, 
            new String[] {
              "name", "",
              "kind", "mixed"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_Mixed(), 
            source, 
            new String[] {
              "kind", "elementWildcard",
              "name", ":mixed"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_XMLNSPrefixMap(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "xmlns:prefix"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_XSISchemaLocation(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "xsi:schemaLocation"
-           });		
+           });	
+        addAnnotation
+          (getDocumentRoot_TransformCamel(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "transform.camel",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
+           });	
         addAnnotation
           (getDocumentRoot_TransformDozer(), 
            source, 
@@ -833,7 +920,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "transform.dozer",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_TransformJava(), 
            source, 
@@ -842,7 +929,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "transform.java",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_TransformJaxb(), 
            source, 
@@ -851,7 +938,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "transform.jaxb",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_TransformJson(), 
            source, 
@@ -860,7 +947,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "transform.json",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_TransformSmooks(), 
            source, 
@@ -869,7 +956,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "transform.smooks",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_TransformXslt(), 
            source, 
@@ -878,28 +965,28 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "name", "transform.xslt",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#transform"
-           });		
+           });	
         addAnnotation
           (dozerFileEntryTypeEClass, 
            source, 
            new String[] {
              "name", "dozerFileEntryType",
              "kind", "empty"
-           });		
+           });	
         addAnnotation
           (getDozerFileEntryType_File(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "file"
-           });			
+           });	
         addAnnotation
           (dozerMappingFilesTypeEClass, 
            source, 
            new String[] {
              "name", "dozerMappingFilesType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getDozerMappingFilesType_Entry(), 
            source, 
@@ -907,14 +994,14 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "entry",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (dozerTransformTypeEClass, 
            source, 
            new String[] {
              "name", "DozerTransformType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getDozerTransformType_MappingFiles(), 
            source, 
@@ -922,96 +1009,96 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
              "kind", "element",
              "name", "mappingFiles",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (javaTransformTypeEEnum, 
            source, 
            new String[] {
              "name", "javaTransformType"
-           });					
+           });	
         addAnnotation
           (javaTransformType1EClass, 
            source, 
            new String[] {
              "name", "JavaTransformType",
              "kind", "empty"
-           });		
+           });	
         addAnnotation
           (getJavaTransformType1_Class(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "class"
-           });		
+           });	
         addAnnotation
           (getJavaTransformType1_Bean(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "bean"
-           });		
+           });	
         addAnnotation
           (javaTransformTypeObjectEDataType, 
            source, 
            new String[] {
              "name", "javaTransformType:Object",
              "baseType", "javaTransformType"
-           });			
+           });	
         addAnnotation
           (jaxbTransformTypeEClass, 
            source, 
            new String[] {
              "name", "JAXBTransformType",
              "kind", "empty"
-           });			
+           });	
         addAnnotation
           (jsonTransformTypeEClass, 
            source, 
            new String[] {
              "name", "JsonTransformType",
              "kind", "empty"
-           });		
+           });	
         addAnnotation
           (smooksTransformTypeEEnum, 
            source, 
            new String[] {
              "name", "smooksTransformType"
-           });						
+           });	
         addAnnotation
           (smooksTransformType1EClass, 
            source, 
            new String[] {
              "name", "SmooksTransformType",
              "kind", "empty"
-           });		
+           });	
         addAnnotation
           (getSmooksTransformType1_Type(), 
            source, 
            new String[] {
              "name", "type",
              "kind", "attribute"
-           });		
+           });	
         addAnnotation
           (getSmooksTransformType1_Config(), 
            source, 
            new String[] {
              "name", "config",
              "kind", "attribute"
-           });		
+           });	
         addAnnotation
           (getSmooksTransformType1_ReportPath(), 
            source, 
            new String[] {
              "name", "reportPath",
              "kind", "attribute"
-           });		
+           });	
         addAnnotation
           (smooksTransformTypeObjectEDataType, 
            source, 
            new String[] {
              "name", "smooksTransformType:Object",
              "baseType", "smooksTransformType"
-           });			
+           });	
         addAnnotation
           (xsltTransformTypeEClass, 
            source, 

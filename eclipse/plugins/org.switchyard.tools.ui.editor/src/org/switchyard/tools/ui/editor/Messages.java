@@ -37,6 +37,8 @@ public class Messages extends NLS {
     public static String button_selectAll;
     public static String button_up;
     public static String button_workspace;
+    public static String CamelComponentPaletteEntry_SwitchYard_Camel_Palette_title;
+    public static String CamelComponentPaletteEntry_SwitchYard_Camel_Palette_tooltip;
     public static String CamelFTPConsumerMoveAndPollComposite_MoveAndPoll_wizard_page_description;
     public static String CamelFTPConsumerMoveAndPollComposite_MoveAndPoll_wizard_page_title;
     public static String CamelQuartzComposite_Validation_CRON_Empty;
@@ -68,6 +70,7 @@ public class Messages extends NLS {
     public static String constant_jaxb;
     public static String constant_json;
     public static String constant_smooks;
+    public static String constant_camel;
     public static String constant_unknown;
     public static String constant_unknownBindingType;
     public static String constant_wsdl;

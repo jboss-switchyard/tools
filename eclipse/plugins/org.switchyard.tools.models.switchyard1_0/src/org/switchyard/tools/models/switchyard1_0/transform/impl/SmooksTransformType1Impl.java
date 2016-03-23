@@ -21,12 +21,12 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.SmooksTransformType1Impl#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.SmooksTransformType1Impl#getConfig <em>Config</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.SmooksTransformType1Impl#getReportPath <em>Report Path</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

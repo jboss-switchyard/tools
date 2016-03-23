@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
@@ -38,10 +39,12 @@ import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformCamel <em>Transform Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformDozer <em>Transform Dozer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformJava <em>Transform Java</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformJaxb <em>Transform Jaxb</em>}</li>
@@ -49,7 +52,6 @@ import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformSmooks <em>Transform Smooks</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl#getTransformXslt <em>Transform Xslt</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -140,6 +142,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelTransformType getTransformCamel() {
+        return (CamelTransformType)getMixed().get(TransformPackage.Literals.DOCUMENT_ROOT__TRANSFORM_CAMEL, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetTransformCamel(CamelTransformType newTransformCamel, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(TransformPackage.Literals.DOCUMENT_ROOT__TRANSFORM_CAMEL, newTransformCamel, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTransformCamel(CamelTransformType newTransformCamel) {
+        ((FeatureMap.Internal)getMixed()).set(TransformPackage.Literals.DOCUMENT_ROOT__TRANSFORM_CAMEL, newTransformCamel);
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -315,6 +344,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_CAMEL:
+                return basicSetTransformCamel(null, msgs);
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
                 return basicSetTransformDozer(null, msgs);
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:
@@ -348,6 +379,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_CAMEL:
+                return getTransformCamel();
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
                 return getTransformDozer();
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:
@@ -380,6 +413,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
+                return;
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_CAMEL:
+                setTransformCamel((CamelTransformType)newValue);
                 return;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
                 setTransformDozer((DozerTransformType)newValue);
@@ -420,6 +456,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_CAMEL:
+                setTransformCamel((CamelTransformType)null);
+                return;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
                 setTransformDozer((DozerTransformType)null);
                 return;
@@ -456,6 +495,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case TransformPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
+            case TransformPackage.DOCUMENT_ROOT__TRANSFORM_CAMEL:
+                return getTransformCamel() != null;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_DOZER:
                 return getTransformDozer() != null;
             case TransformPackage.DOCUMENT_ROOT__TRANSFORM_JAVA:

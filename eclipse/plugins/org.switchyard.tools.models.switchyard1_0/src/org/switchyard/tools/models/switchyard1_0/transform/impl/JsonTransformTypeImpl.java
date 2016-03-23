@@ -16,8 +16,6 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Json Transform Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

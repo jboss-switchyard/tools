@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2016 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -42,6 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
+import org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.DozerTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
@@ -204,6 +205,8 @@ public final class LabelAdapter {
             label = Messages.constant_json;
         } else if (transform instanceof SmooksTransformType1) {
             label = Messages.constant_smooks;
+        } else if (transform instanceof CamelTransformType) {
+            label = Messages.constant_camel;
         }
         URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile()
                 .getFullPath().toString(), true);

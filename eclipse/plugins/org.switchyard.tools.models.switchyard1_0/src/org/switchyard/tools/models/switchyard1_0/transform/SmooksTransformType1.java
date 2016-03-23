@@ -21,12 +21,12 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getConfig <em>Config</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getReportPath <em>Report Path</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getSmooksTransformType1()
  * @model extendedMetaData="name='SmooksTransformType' kind='empty'"

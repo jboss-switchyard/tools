@@ -20,11 +20,11 @@ import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.XsltTransformTypeImpl#getXsltFile <em>Xslt File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.XsltTransformTypeImpl#getFailOnWarning <em>Fail On Warning</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

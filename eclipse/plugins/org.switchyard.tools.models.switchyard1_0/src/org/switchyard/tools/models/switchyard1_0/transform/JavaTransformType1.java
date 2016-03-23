@@ -21,11 +21,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1#getBean <em>Bean</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getJavaTransformType1()
  * @model extendedMetaData="name='JavaTransformType' kind='empty'"

@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2016 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -13,29 +13,16 @@
 package org.switchyard.tools.ui.editor.components.camel.xml;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
-import org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot;
-import org.switchyard.tools.models.switchyard1_0.spring.FromDefinition;
-import org.switchyard.tools.models.switchyard1_0.spring.LogDefinition;
-import org.switchyard.tools.models.switchyard1_0.spring.RouteDefinition;
-import org.switchyard.tools.models.switchyard1_0.spring.RoutesDefinition;
-import org.switchyard.tools.models.switchyard1_0.spring.SpringFactory;
-import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
-import org.switchyard.tools.models.switchyard1_0.spring.util.SpringResourceFactoryImpl;
-import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
@@ -91,46 +78,27 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
         return Collections.emptyList();
     }
 
+    String getSpringStubText(String serviceName) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+        sb.append("<beans xmlns=\"http://www.springframework.org/schema/beans\"\n");
+        sb.append("       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd\">\n");
+        sb.append("   <camelContext id=\"camelContext1\" xmlns=\"http://camel.apache.org/schema/spring\">\n");
+        sb.append("      <route id=\"_route1\">\n");
+        sb.append("         <from id=\"_from1\" uri=\"switchyard://" + serviceName + "\"/>\n");
+        sb.append("         <log id=\"_log1\" message=\"" + serviceName + " - message received: ${body}\"/>\n");
+        sb.append("      </route>\n");
+        sb.append("   </camelContext>\n");
+        sb.append("</beans>\n");
+        return sb.toString();
+    }
+    
+    
     @Override
     protected InputStream getInitialContents() {
-        ByteArrayOutputStream baos = null;
-        try {
-            DocumentRoot doc = SpringFactory.eINSTANCE.createDocumentRoot();
-            RoutesDefinition routes = SpringFactory.eINSTANCE.createRoutesDefinition();
-            RouteDefinition route = SpringFactory.eINSTANCE.createRouteDefinition();
-            FromDefinition from = SpringFactory.eINSTANCE.createFromDefinition();
-            LogDefinition log = SpringFactory.eINSTANCE.createLogDefinition();
-            String serviceName = getService().getName();
-
-            from.setUri("switchyard://" + serviceName); //$NON-NLS-1$
-            log.setMessage("" + serviceName + " - message received: ${body}"); //$NON-NLS-1$ //$NON-NLS-2$
-
-            doc.setRoutes(routes);
-            doc.setRoute(route);
-            route.getFrom().add(from);
-            route.getLog().add(log);
-            routes.getRoute().add(route);
-
-            doc.getXMLNSPrefixMap().put("", SpringPackage.eNS_URI); //$NON-NLS-1$
-
-            Resource routeResource = new SpringResourceFactoryImpl().createResource(URI.createGenericURI("temp", //$NON-NLS-1$
-                    "temp", null)); //$NON-NLS-1$
-            routeResource.getContents().add(doc);
-
-            baos = new ByteArrayOutputStream();
-            routeResource.save(baos, null);
-            return new ByteArrayInputStream(baos.toByteArray());
-        } catch (IOException e2) {
-            e2.printStackTrace();
-            Activator.logError(e2);
-        } finally {
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (IOException e) {
-                    e.fillInStackTrace();
-                }
-            }
+        String serviceName = getService().getName();
+        if (serviceName != null) {
+            return new ByteArrayInputStream(getSpringStubText(serviceName).getBytes());
         }
         return null;
     }

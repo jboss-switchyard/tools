@@ -20,10 +20,10 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JAXBTransformTypeImpl#getContextPath <em>Context Path</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

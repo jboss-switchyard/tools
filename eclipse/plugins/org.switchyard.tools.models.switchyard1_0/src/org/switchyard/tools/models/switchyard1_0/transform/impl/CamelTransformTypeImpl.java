@@ -7,51 +7,52 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.switchyard.tools.models.switchyard1_0.transform.DozerFileEntryType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl;
+
+import org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Dozer File Entry Type</b></em>'.
+ * An implementation of the model object '<em><b>Camel Transform Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerFileEntryTypeImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.impl.CamelTransformTypeImpl#getEndpointUri <em>Endpoint Uri</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntryType {
+public class CamelTransformTypeImpl extends TransformTypeImpl implements CamelTransformType {
     /**
-     * The default value of the '{@link #getFile() <em>File</em>}' attribute.
+     * The default value of the '{@link #getEndpointUri() <em>Endpoint Uri</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFile()
+     * @see #getEndpointUri()
      * @generated
      * @ordered
      */
-    protected static final String FILE_EDEFAULT = null;
+    protected static final String ENDPOINT_URI_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getFile() <em>File</em>}' attribute.
+     * The cached value of the '{@link #getEndpointUri() <em>Endpoint Uri</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFile()
+     * @see #getEndpointUri()
      * @generated
      * @ordered
      */
-    protected String file = FILE_EDEFAULT;
+    protected String endpointUri = ENDPOINT_URI_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected DozerFileEntryTypeImpl() {
+    protected CamelTransformTypeImpl() {
         super();
     }
 
@@ -62,7 +63,7 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
      */
     @Override
     protected EClass eStaticClass() {
-        return TransformPackage.Literals.DOZER_FILE_ENTRY_TYPE;
+        return TransformPackage.Literals.CAMEL_TRANSFORM_TYPE;
     }
 
     /**
@@ -70,8 +71,8 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getFile() {
-        return file;
+    public String getEndpointUri() {
+        return endpointUri;
     }
 
     /**
@@ -79,11 +80,11 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFile(String newFile) {
-        String oldFile = file;
-        file = newFile;
+    public void setEndpointUri(String newEndpointUri) {
+        String oldEndpointUri = endpointUri;
+        endpointUri = newEndpointUri;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.DOZER_FILE_ENTRY_TYPE__FILE, oldFile, file));
+            eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.CAMEL_TRANSFORM_TYPE__ENDPOINT_URI, oldEndpointUri, endpointUri));
     }
 
     /**
@@ -94,8 +95,8 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TransformPackage.DOZER_FILE_ENTRY_TYPE__FILE:
-                return getFile();
+            case TransformPackage.CAMEL_TRANSFORM_TYPE__ENDPOINT_URI:
+                return getEndpointUri();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -108,8 +109,8 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TransformPackage.DOZER_FILE_ENTRY_TYPE__FILE:
-                setFile((String)newValue);
+            case TransformPackage.CAMEL_TRANSFORM_TYPE__ENDPOINT_URI:
+                setEndpointUri((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -123,8 +124,8 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case TransformPackage.DOZER_FILE_ENTRY_TYPE__FILE:
-                setFile(FILE_EDEFAULT);
+            case TransformPackage.CAMEL_TRANSFORM_TYPE__ENDPOINT_URI:
+                setEndpointUri(ENDPOINT_URI_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -138,8 +139,8 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TransformPackage.DOZER_FILE_ENTRY_TYPE__FILE:
-                return FILE_EDEFAULT == null ? file != null : !FILE_EDEFAULT.equals(file);
+            case TransformPackage.CAMEL_TRANSFORM_TYPE__ENDPOINT_URI:
+                return ENDPOINT_URI_EDEFAULT == null ? endpointUri != null : !ENDPOINT_URI_EDEFAULT.equals(endpointUri);
         }
         return super.eIsSet(featureID);
     }
@@ -154,10 +155,10 @@ public class DozerFileEntryTypeImpl extends EObjectImpl implements DozerFileEntr
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (file: ");
-        result.append(file);
+        result.append(" (endpointUri: ");
+        result.append(endpointUri);
         result.append(')');
         return result.toString();
     }
 
-} //DozerFileEntryTypeImpl
+} //CamelTransformTypeImpl

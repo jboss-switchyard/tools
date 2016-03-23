@@ -26,6 +26,15 @@ public interface TransformFactory extends EFactory {
 	TransformFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.transform.impl.TransformFactoryImpl.init();
 
 	/**
+     * Returns a new object of class '<em>Camel Transform Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Camel Transform Type</em>'.
+     * @generated
+     */
+    CamelTransformType createCamelTransformType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

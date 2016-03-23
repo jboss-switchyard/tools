@@ -61,6 +61,7 @@ public class TransformFactoryImpl extends EFactoryImpl implements TransformFacto
 	@Override
 	public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case TransformPackage.CAMEL_TRANSFORM_TYPE: return createCamelTransformType();
             case TransformPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case TransformPackage.DOZER_FILE_ENTRY_TYPE: return createDozerFileEntryType();
             case TransformPackage.DOZER_MAPPING_FILES_TYPE: return createDozerMappingFilesType();
@@ -118,6 +119,16 @@ public class TransformFactoryImpl extends EFactoryImpl implements TransformFacto
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelTransformType createCamelTransformType() {
+        CamelTransformTypeImpl camelTransformType = new CamelTransformTypeImpl();
+        return camelTransformType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

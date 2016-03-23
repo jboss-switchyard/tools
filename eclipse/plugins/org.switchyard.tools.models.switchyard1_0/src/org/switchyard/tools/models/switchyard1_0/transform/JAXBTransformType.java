@@ -21,10 +21,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType#getContextPath <em>Context Path</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getJAXBTransformType()
  * @model extendedMetaData="name='JAXBTransformType' kind='empty'"

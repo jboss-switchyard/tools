@@ -904,4 +904,14 @@
             name="SwitchYard">
       </category>
    </extension>
+   <extension
+         point="org.fusesource.ide.editor.paletteContributor">
+      <PaletteContribution
+            categoryName="COMPONENTS"
+            class="org.switchyard.tools.ui.editor.components.camel.CamelComponentPaletteEntry"
+            diagramImage="icons/16/switchyard_24x24px.png"
+            id="switchyard"
+            paletteIcon="icons/16/switchyard_24x24px.png">
+      </PaletteContribution>
+   </extension>
 </plugin>

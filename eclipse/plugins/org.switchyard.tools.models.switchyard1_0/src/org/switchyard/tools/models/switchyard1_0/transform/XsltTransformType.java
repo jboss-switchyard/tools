@@ -21,11 +21,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType#getXsltFile <em>Xslt File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType#getFailOnWarning <em>Fail On Warning</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getXsltTransformType()
  * @model extendedMetaData="name='XsltTransformType' kind='empty'"

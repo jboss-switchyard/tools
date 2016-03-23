@@ -19,10 +19,12 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformCamel <em>Transform Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformDozer <em>Transform Dozer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformJava <em>Transform Java</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformJaxb <em>Transform Jaxb</em>}</li>
@@ -30,7 +32,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformSmooks <em>Transform Smooks</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformXslt <em>Transform Xslt</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot()
  * @model extendedMetaData="name='' kind='mixed'"
@@ -91,6 +92,33 @@ public interface DocumentRoot extends EObject {
 	EMap<String, String> getXSISchemaLocation();
 
 	/**
+     * Returns the value of the '<em><b>Transform Camel</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Transform Camel</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Transform Camel</em>' containment reference.
+     * @see #setTransformCamel(CamelTransformType)
+     * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getDocumentRoot_TransformCamel()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='transform.camel' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:2.0#transform'"
+     * @generated
+     */
+    CamelTransformType getTransformCamel();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformCamel <em>Transform Camel</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Transform Camel</em>' containment reference.
+     * @see #getTransformCamel()
+     * @generated
+     */
+    void setTransformCamel(CamelTransformType value);
+
+    /**
      * Returns the value of the '<em><b>Transform Dozer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>

@@ -26,6 +26,164 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *     <h1>About the XML namespace</h1>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema document describes the XML namespace, in a form
+ *       suitable for import by other schema documents.
+ *      </p>
+ *      <p>
+ *       See <a href="http://www.w3.org/XML/1998/namespace.html">
+ *       http://www.w3.org/XML/1998/namespace.html</a> and
+ *       <a href="http://www.w3.org/TR/REC-xml">
+ *       http://www.w3.org/TR/REC-xml</a> for information 
+ *       about this namespace.
+ *      </p>
+ *      <p>
+ *       Note that local names in this namespace are intended to be
+ *       defined only by the World Wide Web Consortium or its subgroups.
+ *       The names currently defined in this namespace are listed below.
+ *       They should not be used with conflicting semantics by any Working
+ *       Group, specification, or document instance.
+ *      </p>
+ *      <p>   
+ *       See further below in this document for more information about <a href="#usage">how to refer to this schema document from your own
+ *       XSD schema documents</a> and about <a href="#nsversioning">the
+ *       namespace-versioning policy governing this schema document</a>.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div xmlns="http://www.w3.org/1999/xhtml">
+ *    
+ *     <h3>Father (in any context at all)</h3> 
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       denotes Jon Bosak, the chair of 
+ *       the original XML Working Group.  This name is reserved by 
+ *       the following decision of the W3C XML Plenary and 
+ *       XML Coordination groups:
+ *      </p>
+ *      <blockquote>
+ *        <p>
+ * 	In appreciation for his vision, leadership and
+ * 	dedication the W3C XML Plenary on this 10th day of
+ * 	February, 2000, reserves for Jon Bosak in perpetuity
+ * 	the XML name "xml:Father".
+ *        </p>
+ *      </blockquote>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="usage" xml:id="usage" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="usage">About this schema document</a>
+ *     </h2>
+ * 
+ *     <div class="bodytext">
+ *      <p>
+ *       This schema defines attributes and an attribute group suitable
+ *       for use by schemas wishing to allow <code>xml:base</code>,
+ *       <code>xml:lang</code>, <code>xml:space</code> or
+ *       <code>xml:id</code> attributes on elements they define.
+ *      </p>
+ *      <p>
+ *       To enable this, such a schema must import this schema for
+ *       the XML namespace, e.g. as follows:
+ *      </p>
+ *      <pre>
+ *           &lt;schema . . .&gt;
+ *            . . .
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2001/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       or
+ *      </p>
+ *      <pre>
+ *            &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+ *                       schemaLocation="http://www.w3.org/2009/01/xml.xsd"/&gt;
+ *      </pre>
+ *      <p>
+ *       Subsequently, qualified reference to any of the attributes or the
+ *       group defined below will have the desired effect, e.g.
+ *      </p>
+ *      <pre>
+ *           &lt;type . . .&gt;
+ *            . . .
+ *            &lt;attributeGroup ref="xml:specialAttrs"/&gt;
+ *      </pre>
+ *      <p>
+ *       will define a type which will schema-validate an instance element
+ *       with any of those attributes.
+ *      </p>
+ *     </div>
+ *    </div>
+ *   
+ * 
+ *    <div id="nsversioning" xml:id="nsversioning" xmlns="http://www.w3.org/1999/xhtml">
+ *     <h2>
+ *       <a name="nsversioning">Versioning policy for this schema document</a>
+ *     </h2>
+ *     <div class="bodytext">
+ *      <p>
+ *       In keeping with the XML Schema WG's standard versioning
+ *       policy, this schema document will persist at
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       At the date of issue it can also be found at
+ *       <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd</a>.
+ *      </p>
+ *      <p>
+ *       The schema document at that URI may however change in the future,
+ *       in order to remain compatible with the latest version of XML
+ *       Schema itself, or with the XML namespace itself.  In other words,
+ *       if the XML Schema or XML namespaces change, the version of this
+ *       document at <a href="http://www.w3.org/2001/xml.xsd">
+ *        http://www.w3.org/2001/xml.xsd 
+ *       </a> 
+ *       will change accordingly; the version at 
+ *       <a href="http://www.w3.org/2009/01/xml.xsd">
+ *        http://www.w3.org/2009/01/xml.xsd 
+ *       </a> 
+ *       will not change.
+ *      </p>
+ *      <p>
+ *       Previous dated (and unchanging) versions of this schema 
+ *       document are at:
+ *      </p>
+ *      <ul>
+ *       <li>
+ *           <a href="http://www.w3.org/2009/01/xml.xsd">
+ * 	http://www.w3.org/2009/01/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2007/08/xml.xsd">
+ * 	http://www.w3.org/2007/08/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2004/10/xml.xsd">
+ * 	http://www.w3.org/2004/10/xml.xsd</a>
+ *         </li>
+ *       <li>
+ *           <a href="http://www.w3.org/2001/03/xml.xsd">
+ * 	http://www.w3.org/2001/03/xml.xsd</a>
+ *         </li>
+ *      </ul>
+ *     </div>
+ *    </div>
+ *   
+ * <!-- end-model-doc -->
  * @see org.switchyard.tools.models.switchyard1_0.transform.TransformFactory
  * @model kind="package"
  * @generated
@@ -64,6 +222,52 @@ public interface TransformPackage extends EPackage {
 	TransformPackage eINSTANCE = org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl.init();
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.CamelTransformTypeImpl <em>Camel Transform Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.CamelTransformTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getCamelTransformType()
+     * @generated
+     */
+    int CAMEL_TRANSFORM_TYPE = 0;
+
+    /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_TRANSFORM_TYPE__FROM = SwitchyardPackage.TRANSFORM_TYPE__FROM;
+
+    /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_TRANSFORM_TYPE__TO = SwitchyardPackage.TRANSFORM_TYPE__TO;
+
+    /**
+     * The feature id for the '<em><b>Endpoint Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_TRANSFORM_TYPE__ENDPOINT_URI = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Camel Transform Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl <em>Document Root</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +275,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDocumentRoot()
      * @generated
      */
-	int DOCUMENT_ROOT = 0;
+	int DOCUMENT_ROOT = 1;
 
 	/**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -101,13 +305,22 @@ public interface TransformPackage extends EPackage {
 	int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
 
 	/**
+     * The feature id for the '<em><b>Transform Camel</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__TRANSFORM_CAMEL = 3;
+
+    /**
      * The feature id for the '<em><b>Transform Dozer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__TRANSFORM_DOZER = 3;
+    int DOCUMENT_ROOT__TRANSFORM_DOZER = 4;
 
     /**
      * The feature id for the '<em><b>Transform Java</b></em>' containment reference.
@@ -116,7 +329,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_JAVA = 4;
+	int DOCUMENT_ROOT__TRANSFORM_JAVA = 5;
 
 	/**
      * The feature id for the '<em><b>Transform Jaxb</b></em>' containment reference.
@@ -125,7 +338,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_JAXB = 5;
+	int DOCUMENT_ROOT__TRANSFORM_JAXB = 6;
 
 	/**
      * The feature id for the '<em><b>Transform Json</b></em>' containment reference.
@@ -134,7 +347,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_JSON = 6;
+	int DOCUMENT_ROOT__TRANSFORM_JSON = 7;
 
 	/**
      * The feature id for the '<em><b>Transform Smooks</b></em>' containment reference.
@@ -143,7 +356,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_SMOOKS = 7;
+	int DOCUMENT_ROOT__TRANSFORM_SMOOKS = 8;
 
 	/**
      * The feature id for the '<em><b>Transform Xslt</b></em>' containment reference.
@@ -152,7 +365,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM_XSLT = 8;
+	int DOCUMENT_ROOT__TRANSFORM_XSLT = 9;
 
 	/**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -161,7 +374,7 @@ public interface TransformPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 9;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 10;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DozerFileEntryTypeImpl <em>Dozer File Entry Type</em>}' class.
@@ -171,7 +384,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerFileEntryType()
      * @generated
      */
-    int DOZER_FILE_ENTRY_TYPE = 1;
+    int DOZER_FILE_ENTRY_TYPE = 2;
 
     /**
      * The feature id for the '<em><b>File</b></em>' attribute.
@@ -199,7 +412,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerMappingFilesType()
      * @generated
      */
-    int DOZER_MAPPING_FILES_TYPE = 2;
+    int DOZER_MAPPING_FILES_TYPE = 3;
 
     /**
      * The feature id for the '<em><b>Entry</b></em>' containment reference list.
@@ -227,7 +440,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getDozerTransformType()
      * @generated
      */
-    int DOZER_TRANSFORM_TYPE = 3;
+    int DOZER_TRANSFORM_TYPE = 4;
 
     /**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -273,7 +486,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJavaTransformType1()
      * @generated
      */
-	int JAVA_TRANSFORM_TYPE1 = 4;
+	int JAVA_TRANSFORM_TYPE1 = 5;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -328,7 +541,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJAXBTransformType()
      * @generated
      */
-	int JAXB_TRANSFORM_TYPE = 5;
+	int JAXB_TRANSFORM_TYPE = 6;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -374,7 +587,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJsonTransformType()
      * @generated
      */
-	int JSON_TRANSFORM_TYPE = 6;
+	int JSON_TRANSFORM_TYPE = 7;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -411,7 +624,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getSmooksTransformType1()
      * @generated
      */
-	int SMOOKS_TRANSFORM_TYPE1 = 7;
+	int SMOOKS_TRANSFORM_TYPE1 = 8;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -475,7 +688,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getXsltTransformType()
      * @generated
      */
-	int XSLT_TRANSFORM_TYPE = 8;
+	int XSLT_TRANSFORM_TYPE = 9;
 
 	/**
      * The feature id for the '<em><b>From</b></em>' attribute.
@@ -530,7 +743,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJavaTransformType()
      * @generated
      */
-	int JAVA_TRANSFORM_TYPE = 9;
+	int JAVA_TRANSFORM_TYPE = 10;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType <em>Smooks Transform Type</em>}' enum.
@@ -540,7 +753,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getSmooksTransformType()
      * @generated
      */
-	int SMOOKS_TRANSFORM_TYPE = 10;
+	int SMOOKS_TRANSFORM_TYPE = 11;
 
 	/**
      * The meta object id for the '<em>Java Transform Type Object</em>' data type.
@@ -550,7 +763,7 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getJavaTransformTypeObject()
      * @generated
      */
-	int JAVA_TRANSFORM_TYPE_OBJECT = 11;
+	int JAVA_TRANSFORM_TYPE_OBJECT = 12;
 
 	/**
      * The meta object id for the '<em>Smooks Transform Type Object</em>' data type.
@@ -560,10 +773,31 @@ public interface TransformPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getSmooksTransformTypeObject()
      * @generated
      */
-	int SMOOKS_TRANSFORM_TYPE_OBJECT = 12;
+	int SMOOKS_TRANSFORM_TYPE_OBJECT = 13;
 
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType <em>Camel Transform Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Camel Transform Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType
+     * @generated
+     */
+    EClass getCamelTransformType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType#getEndpointUri <em>Endpoint Uri</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Endpoint Uri</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType#getEndpointUri()
+     * @see #getCamelTransformType()
+     * @generated
+     */
+    EAttribute getCamelTransformType_EndpointUri();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -607,6 +841,17 @@ public interface TransformPackage extends EPackage {
 	EReference getDocumentRoot_XSISchemaLocation();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformCamel <em>Transform Camel</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Transform Camel</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformCamel()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_TransformCamel();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot#getTransformDozer <em>Transform Dozer</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -940,6 +1185,24 @@ public interface TransformPackage extends EPackage {
      */
 	interface Literals {
 		/**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.CamelTransformTypeImpl <em>Camel Transform Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.CamelTransformTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl#getCamelTransformType()
+         * @generated
+         */
+        EClass CAMEL_TRANSFORM_TYPE = eINSTANCE.getCamelTransformType();
+
+        /**
+         * The meta object literal for the '<em><b>Endpoint Uri</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_TRANSFORM_TYPE__ENDPOINT_URI = eINSTANCE.getCamelTransformType_EndpointUri();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.DocumentRootImpl <em>Document Root</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -974,6 +1237,14 @@ public interface TransformPackage extends EPackage {
 		EReference DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = eINSTANCE.getDocumentRoot_XSISchemaLocation();
 
 		/**
+         * The meta object literal for the '<em><b>Transform Camel</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__TRANSFORM_CAMEL = eINSTANCE.getDocumentRoot_TransformCamel();
+
+        /**
          * The meta object literal for the '<em><b>Transform Dozer</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

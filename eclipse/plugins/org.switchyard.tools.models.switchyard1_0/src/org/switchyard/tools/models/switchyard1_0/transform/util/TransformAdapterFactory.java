@@ -73,6 +73,10 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 	protected TransformSwitch<Adapter> modelSwitch =
 		new TransformSwitch<Adapter>() {
             @Override
+            public Adapter caseCamelTransformType(CamelTransformType object) {
+                return createCamelTransformTypeAdapter();
+            }
+            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
             }
@@ -133,6 +137,20 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType <em>Camel Transform Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.CamelTransformType
+     * @generated
+     */
+    public Adapter createCamelTransformTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.transform.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
