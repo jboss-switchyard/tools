@@ -152,7 +152,13 @@
       </releases>
     </repository>
     -->
-    <repository>
+     <repository>
+        <id>fuseide</id>
+        <name>JBoss Fuse IS Tooling</name>
+        <url>${fuse-tooling-url}</url>
+        <layout>p2</layout>
+     </repository>
+     <repository>
       <id>fusesource.ea.repo</id>
       <name>JBoss Fuse Early Access Repository</name>
       <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
