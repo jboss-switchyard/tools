@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getTransforms <em>Transforms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getValidates <em>Validates</em>}</li>
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurities <em>Securities</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDomainType()
  * @model extendedMetaData="name='DomainType' kind='elementOnly'"

@@ -21,12 +21,12 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl#getFaultType <em>Fault Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl#getInputType <em>Input Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl#getOutputType <em>Output Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

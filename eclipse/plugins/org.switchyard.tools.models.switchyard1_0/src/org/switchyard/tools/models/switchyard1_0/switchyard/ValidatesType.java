@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType#getValidateGroup <em>Validate Group</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType#getValidate <em>Validate</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getValidatesType()
  * @model extendedMetaData="name='ValidatesType' kind='elementOnly'"

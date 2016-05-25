@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType#getTransformGroup <em>Transform Group</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType#getTransform <em>Transform</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getTransformsType()
  * @model extendedMetaData="name='TransformsType' kind='elementOnly'"

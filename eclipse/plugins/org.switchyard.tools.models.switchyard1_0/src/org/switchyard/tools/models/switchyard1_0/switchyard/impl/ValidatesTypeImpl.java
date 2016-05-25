@@ -30,11 +30,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidatesTypeImpl#getValidateGroup <em>Validate Group</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidatesTypeImpl#getValidate <em>Validate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

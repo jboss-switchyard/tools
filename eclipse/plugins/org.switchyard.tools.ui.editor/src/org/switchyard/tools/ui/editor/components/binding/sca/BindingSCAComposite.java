@@ -322,6 +322,10 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                     loadBalanceValue.setValue(null);
                     preferLocalValue.setValue("true"); // return to default
                 }
+                String plValue = (String) preferLocalValue.getValue();
+                if (isClustered && plValue == null) {
+                    preferLocalValue.setValue("true"); // set to default
+                }
             }
         });
 

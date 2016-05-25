@@ -32,11 +32,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.PropertiesTypeImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.PropertiesTypeImpl#getLoad <em>Load</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

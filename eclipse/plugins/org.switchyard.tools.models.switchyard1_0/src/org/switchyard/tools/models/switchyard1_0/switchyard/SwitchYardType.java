@@ -17,6 +17,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType#getComposite <em>Composite</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType#getTransforms <em>Transforms</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType#getTargetNamespace <em>Target Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSwitchYardType()
  * @model extendedMetaData="name='SwitchYardType' kind='elementOnly'"

@@ -51,6 +51,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
@@ -83,7 +84,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getTargetNamespace <em>Target Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -166,7 +166,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * @generated
      * @ordered
      */
-	protected static final Object PREFER_LOCAL_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropBoolean(), "true");
+	protected static final Object PREFER_LOCAL_EDEFAULT = null;
 
 				/**
      * The cached value of the '{@link #getPreferLocal() <em>Prefer Local</em>}' attribute.
@@ -177,15 +177,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * @ordered
      */
 	protected Object preferLocal = PREFER_LOCAL_EDEFAULT;
-
-				/**
-     * This is true if the Prefer Local attribute has been set.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	protected boolean preferLocalESet;
 
 				/**
      * The default value of the '{@link #getSecurity1() <em>Security1</em>}' attribute.
@@ -923,36 +914,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     public void setPreferLocal(Object newPreferLocal) {
         Object oldPreferLocal = preferLocal;
         preferLocal = newPreferLocal;
-        boolean oldPreferLocalESet = preferLocalESet;
-        preferLocalESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOCUMENT_ROOT__PREFER_LOCAL, oldPreferLocal, preferLocal, !oldPreferLocalESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOCUMENT_ROOT__PREFER_LOCAL, oldPreferLocal, preferLocal));
     }
 
                 /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void unsetPreferLocal() {
-        Object oldPreferLocal = preferLocal;
-        boolean oldPreferLocalESet = preferLocalESet;
-        preferLocal = PREFER_LOCAL_EDEFAULT;
-        preferLocalESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, SwitchyardPackage.DOCUMENT_ROOT__PREFER_LOCAL, oldPreferLocal, PREFER_LOCAL_EDEFAULT, oldPreferLocalESet));
-    }
-
-																/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean isSetPreferLocal() {
-        return preferLocalESet;
-    }
-
-																/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1300,7 +1266,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 setLoadBalance(LOAD_BALANCE_EDEFAULT);
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__PREFER_LOCAL:
-                unsetPreferLocal();
+                setPreferLocal(PREFER_LOCAL_EDEFAULT);
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY1:
                 setSecurity1(SECURITY1_EDEFAULT);
@@ -1376,7 +1342,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
                 return LOAD_BALANCE_EDEFAULT == null ? loadBalance != null : !LOAD_BALANCE_EDEFAULT.equals(loadBalance);
             case SwitchyardPackage.DOCUMENT_ROOT__PREFER_LOCAL:
-                return isSetPreferLocal();
+                return PREFER_LOCAL_EDEFAULT == null ? preferLocal != null : !PREFER_LOCAL_EDEFAULT.equals(preferLocal);
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY1:
                 return SECURITY1_EDEFAULT == null ? security1 != null : !SECURITY1_EDEFAULT.equals(security1);
             case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
@@ -1404,7 +1370,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
         result.append(", loadBalance: ");
         result.append(loadBalance);
         result.append(", preferLocal: ");
-        if (preferLocalESet) result.append(preferLocal); else result.append("<unset>");
+        result.append(preferLocal);
         result.append(", security1: ");
         result.append(security1);
         result.append(", target: ");

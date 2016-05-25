@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType#getLocation <em>Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getResourceType()
  * @model extendedMetaData="name='ResourceType' kind='empty'"

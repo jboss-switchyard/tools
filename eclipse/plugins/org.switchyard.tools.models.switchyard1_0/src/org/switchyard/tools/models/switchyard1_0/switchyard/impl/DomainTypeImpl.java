@@ -28,6 +28,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getTransforms <em>Transforms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getValidates <em>Validates</em>}</li>
@@ -35,7 +36,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getSecurities <em>Securities</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

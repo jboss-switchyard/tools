@@ -21,6 +21,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getCallbackHandler <em>Callback Handler</em>}</li>
@@ -29,7 +30,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getRunAs <em>Run As</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getSecurityDomain <em>Security Domain</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

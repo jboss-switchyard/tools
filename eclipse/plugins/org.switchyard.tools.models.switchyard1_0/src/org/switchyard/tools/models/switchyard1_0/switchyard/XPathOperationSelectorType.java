@@ -16,10 +16,10 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getXPathOperationSelectorType()
  * @model extendedMetaData="name='XPathOperationSelectorType' kind='empty'"

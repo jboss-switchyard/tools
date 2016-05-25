@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.TransformType#getFrom <em>From</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.TransformType#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getTransformType()
  * @model abstract="true"

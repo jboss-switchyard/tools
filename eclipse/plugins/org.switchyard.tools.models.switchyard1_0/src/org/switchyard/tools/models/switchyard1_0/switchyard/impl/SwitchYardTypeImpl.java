@@ -30,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getComposite <em>Composite</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getTransforms <em>Transforms</em>}</li>
@@ -39,7 +40,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl#getTargetNamespace <em>Target Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
