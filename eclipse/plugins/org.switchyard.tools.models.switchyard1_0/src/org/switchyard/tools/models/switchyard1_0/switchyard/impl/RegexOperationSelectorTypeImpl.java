@@ -17,10 +17,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.RegexOperationSelectorTypeImpl#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

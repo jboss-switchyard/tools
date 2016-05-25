@@ -22,11 +22,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl#getFrom <em>From</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -16,10 +16,10 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType#getClass_ <em>Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getJavaOperationSelectorType()
  * @model extendedMetaData="name='JavaOperationSelectorType' kind='empty'"

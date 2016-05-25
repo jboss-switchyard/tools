@@ -22,6 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ContextMapperTypeImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ContextMapperTypeImpl#getExcludeNamespaces <em>Exclude Namespaces</em>}</li>
@@ -29,7 +30,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ContextMapperTypeImpl#getIncludeNamespaces <em>Include Namespaces</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ContextMapperTypeImpl#getIncludes <em>Includes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

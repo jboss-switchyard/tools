@@ -17,10 +17,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.XPathOperationSelectorTypeImpl#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

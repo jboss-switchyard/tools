@@ -310,8 +310,7 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferLocal" eType="#//PropBoolean"
-        defaultValueLiteral="true" unsettable="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferLocal" eType="#//PropBoolean">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="preferLocal"/>

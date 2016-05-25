@@ -19,11 +19,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ThrottlingType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ThrottlingTypeImpl#getMaxRequests <em>Max Requests</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ThrottlingTypeImpl#getTimePeriod <em>Time Period</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType#getExcludeNamespaces <em>Exclude Namespaces</em>}</li>
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType#getIncludeNamespaces <em>Include Namespaces</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType#getIncludes <em>Includes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getContextMapperType()
  * @model extendedMetaData="name='ContextMapperType' kind='empty'"

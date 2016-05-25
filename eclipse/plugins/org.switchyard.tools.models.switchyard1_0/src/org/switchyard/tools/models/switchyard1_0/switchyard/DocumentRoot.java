@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTarget <em>Target</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTargetNamespace <em>Target Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot()
  * @model extendedMetaData="name='' kind='mixed'"
@@ -717,7 +717,6 @@ public interface DocumentRoot extends EObject {
 
                 /**
      * Returns the value of the '<em><b>Prefer Local</b></em>' attribute.
-     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Prefer Local</em>' attribute isn't clear,
@@ -725,11 +724,9 @@ public interface DocumentRoot extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Prefer Local</em>' attribute.
-     * @see #isSetPreferLocal()
-     * @see #unsetPreferLocal()
      * @see #setPreferLocal(Object)
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_PreferLocal()
-     * @model default="true" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropBoolean"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropBoolean"
      *        extendedMetaData="kind='attribute' name='preferLocal' namespace='##targetNamespace'"
      * @generated
      */
@@ -740,37 +737,12 @@ public interface DocumentRoot extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Prefer Local</em>' attribute.
-     * @see #isSetPreferLocal()
-     * @see #unsetPreferLocal()
      * @see #getPreferLocal()
      * @generated
      */
     void setPreferLocal(Object value);
 
                 /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getPreferLocal <em>Prefer Local</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #isSetPreferLocal()
-     * @see #getPreferLocal()
-     * @see #setPreferLocal(Object)
-     * @generated
-     */
-	void unsetPreferLocal();
-
-																/**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getPreferLocal <em>Prefer Local</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Prefer Local</em>' attribute is set.
-     * @see #unsetPreferLocal()
-     * @see #getPreferLocal()
-     * @see #setPreferLocal(Object)
-     * @generated
-     */
-	boolean isSetPreferLocal();
-
-																/**
      * Returns the value of the '<em><b>Security1</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>

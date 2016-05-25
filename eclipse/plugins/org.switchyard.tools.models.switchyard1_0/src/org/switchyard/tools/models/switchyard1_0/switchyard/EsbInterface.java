@@ -15,12 +15,12 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getFaultType <em>Fault Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getInputType <em>Input Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getOutputType <em>Output Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getEsbInterface()
  * @model extendedMetaData="name='EsbInterface' kind='elementOnly'"

@@ -30,11 +30,11 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformsTypeImpl#getTransformGroup <em>Transform Group</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformsTypeImpl#getTransform <em>Transform</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
