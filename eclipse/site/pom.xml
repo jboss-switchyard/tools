@@ -20,7 +20,7 @@
     <update.site.name>SwitchYard</update.site.name>
     <update.site.version>${qualifiedVersion}</update.site.version>
     <update.site.description>Continuous Integration</update.site.description>
-    <target.eclipse.version>4.5 (Mars)</target.eclipse.version>
+    <target.eclipse.version>4.6 (Neon)</target.eclipse.version>
   </properties>
 
   <profiles>  
