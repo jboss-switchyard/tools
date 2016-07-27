@@ -35,8 +35,8 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
+import org.eclipse.jface.databinding.swt.DisplayRealm;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
-import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -98,6 +98,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
     private SOAPBindingType _binding = null;
     private ComboViewer _soapHeadersTypeCombo = null;
     private Button _unwrappedPayloadCheckbox = null;
+    private Button _copyNamespacesCheckbox = null;
     private Text _portNameText = null;
     private Button _browseBtnWorkspace;
     private Link _newWSDLLink;
@@ -174,7 +175,6 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         _mWSDLURIText.setEnabled(canEdit());
 
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
-        // uriGD.horizontalSpan = 2;
         _mWSDLURIText.setLayoutData(uriGD);
 
         _browseBtnWorkspace = new Button(composite, SWT.PUSH);
@@ -201,6 +201,11 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         GridData upChxGD = new GridData(GridData.FILL_HORIZONTAL);
         upChxGD.horizontalSpan = 3;
         _unwrappedPayloadCheckbox.setLayoutData(upChxGD);
+
+        _copyNamespacesCheckbox = createCheckbox(composite, Messages.SOAPBindingReferenceComposite_label_copyNamespaces);
+        GridData cnChxGD = new GridData(GridData.FILL_HORIZONTAL);
+        cnChxGD.horizontalSpan = 3;
+        _copyNamespacesCheckbox.setLayoutData(upChxGD);
 
         _soapHeadersTypeCombo = createLabelAndComboViewer(composite, Messages.label_soapHeadersType, true);
         GridData cmcGD = new GridData(GridData.FILL_HORIZONTAL);
@@ -238,15 +243,15 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         getToolkit().createLabel(mtomGroup, Messages.label_temporarilyDisable);
         _disableMtomCombo = new Combo(mtomGroup, SWT.DROP_DOWN | SWT.BORDER);
         getToolkit().adapt(_disableMtomCombo);
-        _disableMtomCombo.add("true");
-        _disableMtomCombo.add("false");
+        _disableMtomCombo.add("true"); //$NON-NLS-1$
+        _disableMtomCombo.add("false"); //$NON-NLS-1$
         _disableMtomCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
         getToolkit().createLabel(mtomGroup, Messages.label_xopExpand);
         _enableXopExpandCombo = new Combo(mtomGroup, SWT.DROP_DOWN | SWT.BORDER);
         getToolkit().adapt(_enableXopExpandCombo);
-        _enableXopExpandCombo.add("true");
-        _enableXopExpandCombo.add("false");
+        _enableXopExpandCombo.add("true"); //$NON-NLS-1$
+        _enableXopExpandCombo.add("false"); //$NON-NLS-1$
         _enableXopExpandCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         
         _mtomThresholdText = createLabelAndText(mtomGroup, Messages.label_threshold);
@@ -353,17 +358,17 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
 
     private void bindControls(final DataBindingContext context) {
         final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
-        final Realm realm = SWTObservables.getRealm(_nameText.getDisplay());
+        final Realm realm = DisplayRealm.getRealm(_nameText.getDisplay());
 
         _bindingValue = new WritableValue(realm, null, CamelFileBindingType.class);
 
         org.eclipse.core.databinding.Binding binding = context.bindValue(
-                SWTObservables.observeText(_nameText, new int[] {SWT.Modify }),
+                observeText(_nameText, new int[] {SWT.Modify }),
                 ObservablesUtil.observeDetailValue(domain, _bindingValue,
                         ScaPackage.eINSTANCE.getBinding_Name()),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new StringEmptyValidator(
-                                "SOAP binding name should not be empty", Status.WARNING)), null);
+                                Messages.SOAPBindingReferenceComposite_validmsg_Soap_binding_name_should_not_be_empty, Status.WARNING)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         /*
@@ -371,18 +376,18 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
          * the model to target updater is configured to NEVER update. we want
          * the camel binding name to be the definitive source for this field.
          */
-        binding = context.bindValue(SWTObservables.observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
+        binding = context.bindValue(observeText(_nameText, new int[] {SWT.Modify }), ObservablesUtil
                 .observeDetailValue(domain, _bindingValue,
                         ScaPackage.eINSTANCE.getBinding_Name()),
                 new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new StringEmptyValidator(
-                                "SOAP binding name should not be empty", Status.WARNING)), new UpdateValueStrategy(
+                                Messages.SOAPBindingReferenceComposite_validmsg_Soap_binding_name_should_not_be_empty, Status.WARNING)), new UpdateValueStrategy(
                         UpdateValueStrategy.POLICY_NEVER));
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_mWSDLURIText, new int[] {SWT.Modify }),
+                        observeText(_mWSDLURIText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                 SOAPPackage.Literals.SOAP_BINDING_TYPE__WSDL),
                                 new EMFUpdateValueStrategyNullForEmptyString(
@@ -393,7 +398,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_portNameText, new int[] {SWT.Modify }),
+                        observeText(_portNameText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                 SOAPPackage.Literals.SOAP_BINDING_TYPE__WSDL_PORT),
                         new EMFUpdateValueStrategyNullForEmptyString(
@@ -403,18 +408,18 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_requestTimeoutText, new int[] {SWT.Modify }),
+                        observeText(_requestTimeoutText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                 SOAPPackage.Literals.SOAP_BINDING_TYPE__TIMEOUT),
-                        new EMFUpdateValueStrategyNullForEmptyString("", 
+                        new EMFUpdateValueStrategyNullForEmptyString("",  //$NON-NLS-1$
                                 UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
-                                        new EscapedPropertyIntegerValidator("Request Timeout must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
+                                        new EscapedPropertyIntegerValidator(Messages.SOAPBindingReferenceComposite_validmsg_RequestTimeout_invalid))
                                         , null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_endpointAddressText, new int[] {SWT.Modify }),
+                        observeText(_endpointAddressText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                 SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS),
                         new EMFUpdateValueStrategyNullForEmptyString(
@@ -422,43 +427,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        final IObservableValue msgComposerUnwrappedValue = new WritableValue(realm, null, Boolean.class);
-
-        binding = context
-                .bindValue(
-                        SWTObservables.observeSelection(_unwrappedPayloadCheckbox), msgComposerUnwrappedValue,
-                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
-        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
-
-        ComputedValue computedMessageComposer = new ComputedValue() {
-            @Override
-            protected Object calculate() {
-                final Boolean unwrapped = (Boolean) msgComposerUnwrappedValue.getValue();
-                if (unwrapped != null) {
-                    final MessageComposerType msgComposer = SOAPFactory.eINSTANCE
-                            .createMessageComposerType();
-                    msgComposer.setUnwrapped(unwrapped.booleanValue());
-                    return msgComposer;
-                }
-                return null;
-            }
-
-            protected void doSetValue(Object value) {
-                if (value instanceof MessageComposerType) {
-                    final MessageComposerType msgComposer = (MessageComposerType) value;
-                    msgComposerUnwrappedValue.setValue(new Boolean(msgComposer.isUnwrapped()));
-                } else {
-                    msgComposerUnwrappedValue.setValue(null);
-                }
-                getValue();
-            }
-        };
-
-        // now bind the message composer into the binding
-        binding = context.bindValue(
-                computedMessageComposer,
-                ObservablesUtil.observeDetailValue(domain, _bindingValue, 
-                        SOAPPackage.Literals.SOAP_BINDING_TYPE__MESSAGE_COMPOSER));
+        bindMessageComposerControls(context, domain, realm);
         
         final IObservableValue contextMapperSOAPHeaders = new WritableValue(realm, null, SoapHeadersType.class);
 
@@ -494,13 +463,74 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         };
 
         // now bind the context mapper into the binding
-        binding = context.bindValue(
+        context.bindValue(
                 computedContextMapper,
                 ObservablesUtil.observeDetailValue(domain, _bindingValue, 
                         SOAPPackage.Literals.SOAP_BINDING_TYPE__CONTEXT_MAPPER));
         
         bindMtomControls(context, domain, realm);
     }
+
+    private void bindMessageComposerControls(final DataBindingContext context, 
+            final EditingDomain domain, final Realm realm) {
+
+        final IObservableValue msgComposerUnwrappedValue = new WritableValue(realm, null, Boolean.class);
+        final IObservableValue msgComposerCopyNamespacesValue = new WritableValue(realm, null, Boolean.class);
+
+        org.eclipse.core.databinding.Binding binding = context
+                .bindValue(
+                        observeSelection(_unwrappedPayloadCheckbox), msgComposerUnwrappedValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
+
+        org.eclipse.core.databinding.Binding cnBinding = context
+                .bindValue(
+                        observeSelection(_copyNamespacesCheckbox), msgComposerCopyNamespacesValue,
+                        new EMFUpdateValueStrategyNullForEmptyString(
+                                null, UpdateValueStrategy.POLICY_CONVERT), null);
+        ControlDecorationSupport.create(SWTValueUpdater.attach(cnBinding), SWT.TOP | SWT.LEFT);
+
+        ComputedValue computedMessageComposer = new ComputedValue() {
+            @Override
+            protected Object calculate() {
+                final Boolean unwrapped = (Boolean) msgComposerUnwrappedValue.getValue();
+                final Boolean copyNamespaces = (Boolean) msgComposerCopyNamespacesValue.getValue();
+                
+                if (unwrapped != null || copyNamespaces != null) {
+                    final MessageComposerType msgComposer = SOAPFactory.eINSTANCE
+                            .createMessageComposerType();
+                    if (unwrapped != null) {
+                        msgComposer.setUnwrapped(unwrapped.booleanValue());
+                    }
+                    if (copyNamespaces != null) {
+                        msgComposer.setCopyNamespaces(copyNamespaces.booleanValue());
+                    }
+                    return msgComposer;
+                }
+                return null;
+            }
+
+            protected void doSetValue(Object value) {
+                if (value instanceof MessageComposerType) {
+                    final MessageComposerType msgComposer = (MessageComposerType) value;
+                    msgComposerUnwrappedValue.setValue(new Boolean(msgComposer.isUnwrapped()));
+                    msgComposerCopyNamespacesValue.setValue(new Boolean(msgComposer.isCopyNamespaces()));
+                } else {
+                    msgComposerUnwrappedValue.setValue(null);
+                    msgComposerCopyNamespacesValue.setValue(null);
+                }
+                getValue();
+            }
+        };
+
+        // now bind the message composer into the binding
+        context.bindValue(
+                computedMessageComposer,
+                ObservablesUtil.observeDetailValue(domain, _bindingValue, 
+                        SOAPPackage.Literals.SOAP_BINDING_TYPE__MESSAGE_COMPOSER));
+        
+    }
+
     
     private void bindMtomControls(final DataBindingContext context, 
             final EditingDomain domain, final Realm realm) {
@@ -511,27 +541,27 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
 
         org.eclipse.core.databinding.Binding binding = context
                 .bindValue(
-                        SWTObservables.observeSelection(_enableMtomCheckbox), mtomEnabled,
+                        observeSelection(_enableMtomCheckbox), mtomEnabled,
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_disableMtomCombo), mtomDisabled,
+                        observeText(_disableMtomCombo), mtomDisabled,
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
-                                "Temporarily Disable must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
+                                Messages.SOAPBindingReferenceComposite_validmsg_tempDisable_invalid)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = context
                 .bindValue(
-                        SWTObservables.observeText(_enableXopExpandCombo), mtomXopExpand,
+                        observeText(_enableXopExpandCombo), mtomXopExpand,
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 null, UpdateValueStrategy.POLICY_CONVERT)
                         .setAfterConvertValidator(new EscapedPropertyBooleanValidator(
-                                "XopExpand must be a valid boolean value (true or false) or follow the pattern for escaped properties (i.e. '${propName}').")), null);
+                                Messages.SOAPBindingReferenceComposite_validmsg_XopExpand_invalid)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         ISWTObservableValue delayed1 = createDelayedObservableText(_mtomThresholdText);
@@ -541,7 +571,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 null, UpdateValueStrategy.POLICY_CONVERT)
                                 .setAfterConvertValidator(new EscapedPropertyIntegerValidator(
-                                        "MTom Threshold must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}').")), null);
+                                        Messages.SOAPBindingReferenceComposite_validmsg_MtomThreshold_invalid)), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         ComputedValue computedMtom = new ComputedValue() {
@@ -607,7 +637,7 @@ public class SOAPBindingReferenceComposite extends AbstractSYBindingComposite {
         });
 
         // now bind the mtom into the binding
-        binding = context.bindValue(
+        context.bindValue(
                 computedMtom,
                 ObservablesUtil.observeDetailValue(domain, _bindingValue, 
                         SOAPPackage.Literals.SOAP_BINDING_TYPE__MTOM));

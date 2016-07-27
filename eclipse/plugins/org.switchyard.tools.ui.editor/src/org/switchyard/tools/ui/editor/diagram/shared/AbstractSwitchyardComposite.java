@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
-import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.internal.databinding.swt.SWTObservableValueDecorator;
 import org.eclipse.jface.internal.databinding.swt.SWTVetoableValueDecorator;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -56,6 +56,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.internal.dialogs.PropertyDialog;
 import org.switchyard.tools.ui.editor.Activator;
@@ -430,7 +431,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
             }
             if (ctrl instanceof Text) {
                 Text newText = (Text) ctrl;
-                ISWTObservableValue focusObserver = SWTObservables.observeText(newText, SWT.FocusOut | styleBit);
+                ISWTObservableValue focusObserver = observeText(newText, SWT.FocusOut | styleBit);
                 _observables.add(focusObserver);
                 // focusObserver.removeValueChangeListener(_textValueChangeListener);
                 focusObserver.addValueChangeListener(_textValueChangeListener);
@@ -488,14 +489,14 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                     });
                 }
 
-                ISWTObservableValue selectionObserver = SWTObservables.observeSelection(newCombo);
+                ISWTObservableValue selectionObserver = observeSelection(newCombo);
                 _observables.add(selectionObserver);
                 // selectionObserver.removeValueChangeListener(_comboValueChangeListener);
                 selectionObserver.addValueChangeListener(_comboValueChangeListener);
 
             } else if (ctrl instanceof Button) {
                 Button newButton = (Button) ctrl;
-                ISWTObservableValue buttonObserver = SWTObservables.observeSelection(newButton);
+                ISWTObservableValue buttonObserver = observeSelection(newButton);
                 _observables.add(buttonObserver);
                 // buttonObserver.removeValueChangeListener(_buttonValueChangeListener);
                 buttonObserver.addValueChangeListener(_buttonValueChangeListener);
@@ -818,5 +819,21 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         GridData controlGD = new GridData(style);
         controlGD.horizontalSpan = columns;
         control.setLayoutData(controlGD);
+    }
+
+    protected ISWTObservableValue observeText(Control control, int[] events) {
+        return WidgetProperties.text(events).observe(control);
+    }
+
+    protected ISWTObservableValue observeSelection(Widget widget) {
+        return WidgetProperties.selection().observe(widget);
+    }
+
+    protected ISWTObservableValue observeText(Widget widget) {
+        return WidgetProperties.text().observe(widget);
+    }
+
+    protected ISWTObservableValue observeText(Control control, int event) {
+        return WidgetProperties.text(event).observe(control);
     }
 }

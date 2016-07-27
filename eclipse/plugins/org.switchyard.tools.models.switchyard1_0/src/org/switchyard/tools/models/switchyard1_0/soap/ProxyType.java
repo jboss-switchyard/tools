@@ -12,6 +12,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getHost <em>Host</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getUser <em>User</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.ProxyType#getPassword <em>Password</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getProxyType()
  * @model extendedMetaData="name='ProxyType' kind='elementOnly'"

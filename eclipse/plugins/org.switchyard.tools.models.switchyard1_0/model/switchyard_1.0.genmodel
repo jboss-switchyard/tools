@@ -592,6 +592,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//InterceptorType/class"/>
     </genClasses>
     <genClasses ecoreClass="component.soap.ecore#//MessageComposerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//MessageComposerType/copyNamespaces"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//MessageComposerType/unwrapped"/>
     </genClasses>
     <genClasses ecoreClass="component.soap.ecore#//MtomType">

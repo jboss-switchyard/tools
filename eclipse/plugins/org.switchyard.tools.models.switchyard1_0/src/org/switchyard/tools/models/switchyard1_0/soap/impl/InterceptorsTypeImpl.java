@@ -26,10 +26,10 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.InterceptorsTypeImpl#getInterceptor <em>Interceptor</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

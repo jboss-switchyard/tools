@@ -20,12 +20,12 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MtomTypeImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MtomTypeImpl#getThreshold <em>Threshold</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MtomTypeImpl#getXopExpand <em>Xop Expand</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
