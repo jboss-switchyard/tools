@@ -10,10 +10,10 @@ package org.switchyard.tools.models.switchyard1_0.soap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.NTLMAuthenticationType#getDomain <em>Domain</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getNTLMAuthenticationType()
  * @model extendedMetaData="name='NTLMAuthenticationType' kind='elementOnly'"

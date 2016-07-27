@@ -14,10 +14,10 @@ package org.switchyard.tools.models.switchyard1_0.soap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType#getSoapHeadersType <em>Soap Headers Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getContextMapperType()
  * @model extendedMetaData="name='ContextMapperType' kind='empty'"

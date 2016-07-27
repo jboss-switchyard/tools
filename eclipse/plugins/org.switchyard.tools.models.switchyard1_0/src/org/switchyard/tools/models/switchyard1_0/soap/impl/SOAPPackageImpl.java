@@ -683,8 +683,17 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getMessageComposerType_Unwrapped() {
+    public EAttribute getMessageComposerType_CopyNamespaces() {
         return (EAttribute)messageComposerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMessageComposerType_Unwrapped() {
+        return (EAttribute)messageComposerTypeEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -964,6 +973,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         createEAttribute(interceptorTypeEClass, INTERCEPTOR_TYPE__CLASS);
 
         messageComposerTypeEClass = createEClass(MESSAGE_COMPOSER_TYPE);
+        createEAttribute(messageComposerTypeEClass, MESSAGE_COMPOSER_TYPE__COPY_NAMESPACES);
         createEAttribute(messageComposerTypeEClass, MESSAGE_COMPOSER_TYPE__UNWRAPPED);
 
         mtomTypeEClass = createEClass(MTOM_TYPE);
@@ -1089,6 +1099,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         initEAttribute(getInterceptorType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, InterceptorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(messageComposerTypeEClass, MessageComposerType.class, "MessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getMessageComposerType_CopyNamespaces(), theXMLTypePackage.getBoolean(), "copyNamespaces", null, 0, 1, MessageComposerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getMessageComposerType_Unwrapped(), theXMLTypePackage.getBoolean(), "unwrapped", null, 0, 1, MessageComposerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(mtomTypeEClass, MtomType.class, "MtomType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1161,49 +1172,49 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
         addAnnotation
           (contextMapperTypeEClass, 
            source, 
            new String[] {
              "name", "ContextMapperType",
              "kind", "empty"
-           });		
+           });	
         addAnnotation
           (getContextMapperType_SoapHeadersType(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "soapHeadersType"
-           });		
+           });	
         addAnnotation
           (documentRootEClass, 
            source, 
            new String[] {
              "name", "",
              "kind", "mixed"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_Mixed(), 
            source, 
            new String[] {
              "kind", "elementWildcard",
              "name", ":mixed"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_XMLNSPrefixMap(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "xmlns:prefix"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_XSISchemaLocation(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "xsi:schemaLocation"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_BindingSoap(), 
            source, 
@@ -1212,7 +1223,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "name", "binding.soap",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:2.0#binding.switchyard"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_Interceptor(), 
            source, 
@@ -1220,7 +1231,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "interceptor",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_Properties(), 
            source, 
@@ -1228,7 +1239,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "properties",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getDocumentRoot_Property(), 
            source, 
@@ -1236,35 +1247,35 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "property",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (endpointConfigTypeEClass, 
            source, 
            new String[] {
              "name", "EndpointConfigType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getEndpointConfigType_ConfigFile(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "configFile"
-           });		
+           });	
         addAnnotation
           (getEndpointConfigType_ConfigName(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "configName"
-           });		
+           });	
         addAnnotation
           (interceptorsTypeEClass, 
            source, 
            new String[] {
              "name", "InterceptorsType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getInterceptorsType_Interceptor(), 
            source, 
@@ -1272,14 +1283,14 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "interceptor",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (interceptorTypeEClass, 
            source, 
            new String[] {
              "name", "InterceptorType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getInterceptorType_Properties(), 
            source, 
@@ -1287,63 +1298,70 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "properties",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getInterceptorType_Class(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "class"
-           });		
+           });	
         addAnnotation
           (messageComposerTypeEClass, 
            source, 
            new String[] {
              "name", "MessageComposerType",
              "kind", "empty"
-           });		
+           });	
+        addAnnotation
+          (getMessageComposerType_CopyNamespaces(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "copyNamespaces"
+           });	
         addAnnotation
           (getMessageComposerType_Unwrapped(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "unwrapped"
-           });		
+           });	
         addAnnotation
           (mtomTypeEClass, 
            source, 
            new String[] {
              "name", "MtomType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getMtomType_Enabled(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "enabled"
-           });		
+           });	
         addAnnotation
           (getMtomType_Threshold(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "threshold"
-           });		
+           });	
         addAnnotation
           (getMtomType_XopExpand(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "xopExpand"
-           });		
+           });	
         addAnnotation
           (propertiesTypeEClass, 
            source, 
            new String[] {
              "name", "PropertiesType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getPropertiesType_Property(), 
            source, 
@@ -1351,42 +1369,42 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "property",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getPropertiesType_Load(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "load"
-           });		
+           });	
         addAnnotation
           (propertyTypeEClass, 
            source, 
            new String[] {
              "name", "PropertyType",
              "kind", "elementOnly"
-           });		
+           });	
         addAnnotation
           (getPropertyType_Name(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "name"
-           });		
+           });	
         addAnnotation
           (getPropertyType_Value(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "value"
-           });		
+           });	
         addAnnotation
           (proxyTypeEClass, 
            source, 
            new String[] {
              "name", "ProxyType",
              "kind", "elementOnly"
-           });			
+           });	
         addAnnotation
           (getProxyType_Type(), 
            source, 
@@ -1394,7 +1412,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "type",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getProxyType_Host(), 
            source, 
@@ -1402,7 +1420,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "host",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getProxyType_Port(), 
            source, 
@@ -1410,7 +1428,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "port",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getProxyType_User(), 
            source, 
@@ -1418,7 +1436,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "user",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getProxyType_Password(), 
            source, 
@@ -1426,14 +1444,14 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "password",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (soapBindingTypeEClass, 
            source, 
            new String[] {
              "name", "SOAPBindingType",
              "kind", "elementOnly"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_ContextMapper(), 
            source, 
@@ -1441,7 +1459,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "contextMapper",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_MessageComposer(), 
            source, 
@@ -1449,7 +1467,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "messageComposer",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_Wsdl(), 
            source, 
@@ -1457,7 +1475,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "wsdl",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_WsdlPort(), 
            source, 
@@ -1465,7 +1483,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "wsdlPort",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_SocketAddr(), 
            source, 
@@ -1473,7 +1491,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "socketAddr",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_ContextPath(), 
            source, 
@@ -1481,7 +1499,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "contextPath",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_EndpointConfig(), 
            source, 
@@ -1489,7 +1507,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "endpointConfig",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_EndpointAddress(), 
            source, 
@@ -1497,7 +1515,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "endpointAddress",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_Timeout(), 
            source, 
@@ -1505,7 +1523,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "timeout",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getSOAPBindingType_Basic(), 
            source, 
@@ -1513,7 +1531,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "basic",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (getSOAPBindingType_Ntlm(), 
            source, 
@@ -1521,7 +1539,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "ntlm",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_Proxy(), 
            source, 
@@ -1529,7 +1547,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "proxy",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_Mtom(), 
            source, 
@@ -1537,7 +1555,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "mtom",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_InInterceptors(), 
            source, 
@@ -1545,7 +1563,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "inInterceptors",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getSOAPBindingType_OutInterceptors(), 
            source, 
@@ -1553,20 +1571,20 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "outInterceptors",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (soapHeadersTypeEEnum, 
            source, 
            new String[] {
              "name", "soapHeadersType"
-           });		
+           });	
         addAnnotation
           (soapHeadersTypeObjectEDataType, 
            source, 
            new String[] {
              "name", "soapHeadersType:Object",
              "baseType", "soapHeadersType"
-           });		
+           });	
         addAnnotation
           (wsdlPortTypeEDataType, 
            source, 
@@ -1574,14 +1592,14 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "name", "wsdlPortType",
              "baseType", "http://www.eclipse.org/emf/2003/XMLType#string",
              "pattern", "\\{.+\\}.+:[^:]+|.+:[^:]+|[^:]+"
-           });		
+           });	
         addAnnotation
           (basicAuthenticationTypeEClass, 
            source, 
            new String[] {
              "name", "BasicAuthenticationType",
              "kind", "elementOnly"
-           });			
+           });	
         addAnnotation
           (getBasicAuthenticationType_User(), 
            source, 
@@ -1589,7 +1607,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "user",
              "namespace", "##targetNamespace"
-           });			
+           });	
         addAnnotation
           (getBasicAuthenticationType_Password(), 
            source, 
@@ -1597,14 +1615,14 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "element",
              "name", "password",
              "namespace", "##targetNamespace"
-           });		
+           });	
         addAnnotation
           (ntlmAuthenticationTypeEClass, 
            source, 
            new String[] {
              "name", "NTLMAuthenticationType",
              "kind", "elementOnly"
-           });			
+           });	
         addAnnotation
           (getNTLMAuthenticationType_Domain(), 
            source, 

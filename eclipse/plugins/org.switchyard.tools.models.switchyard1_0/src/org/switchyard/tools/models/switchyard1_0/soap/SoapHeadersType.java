@@ -148,6 +148,8 @@ public enum SoapHeadersType implements Enumerator {
      * Returns the '<em><b>Soap Headers Type</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param literal the literal.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static SoapHeadersType get(String literal) {
@@ -164,6 +166,8 @@ public enum SoapHeadersType implements Enumerator {
      * Returns the '<em><b>Soap Headers Type</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param name the name.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static SoapHeadersType getByName(String name) {
@@ -180,6 +184,8 @@ public enum SoapHeadersType implements Enumerator {
      * Returns the '<em><b>Soap Headers Type</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the integer value.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static SoapHeadersType get(int value) {

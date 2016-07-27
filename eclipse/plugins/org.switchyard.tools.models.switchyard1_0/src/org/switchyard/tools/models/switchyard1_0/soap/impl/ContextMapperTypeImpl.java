@@ -22,10 +22,10 @@ import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.ContextMapperTypeImpl#getSoapHeadersType <em>Soap Headers Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -17,10 +17,10 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.NTLMAuthenticationTypeImpl#getDomain <em>Domain</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

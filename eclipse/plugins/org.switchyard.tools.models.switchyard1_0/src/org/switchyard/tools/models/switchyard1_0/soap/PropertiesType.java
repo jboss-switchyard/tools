@@ -13,11 +13,11 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.PropertiesType#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.PropertiesType#getLoad <em>Load</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getPropertiesType()
  * @model extendedMetaData="name='PropertiesType' kind='elementOnly'"

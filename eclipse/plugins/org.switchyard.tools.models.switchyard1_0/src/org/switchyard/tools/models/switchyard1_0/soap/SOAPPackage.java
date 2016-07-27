@@ -593,13 +593,22 @@ public interface SOAPPackage extends EPackage {
     int MESSAGE_COMPOSER_TYPE__CLASS = SwitchyardPackage.MESSAGE_COMPOSER_TYPE__CLASS;
 
     /**
+     * The feature id for the '<em><b>Copy Namespaces</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE_COMPOSER_TYPE__COPY_NAMESPACES = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Unwrapped</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MESSAGE_COMPOSER_TYPE__UNWRAPPED = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
+    int MESSAGE_COMPOSER_TYPE__UNWRAPPED = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Message Composer Type</em>' class.
@@ -608,7 +617,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 1;
+    int MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1588,6 +1597,17 @@ public interface SOAPPackage extends EPackage {
     EClass getMessageComposerType();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType#isCopyNamespaces <em>Copy Namespaces</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Copy Namespaces</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType#isCopyNamespaces()
+     * @see #getMessageComposerType()
+     * @generated
+     */
+    EAttribute getMessageComposerType_CopyNamespaces();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType#isUnwrapped <em>Unwrapped</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2175,6 +2195,14 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EClass MESSAGE_COMPOSER_TYPE = eINSTANCE.getMessageComposerType();
+
+        /**
+         * The meta object literal for the '<em><b>Copy Namespaces</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MESSAGE_COMPOSER_TYPE__COPY_NAMESPACES = eINSTANCE.getMessageComposerType_CopyNamespaces();
 
         /**
          * The meta object literal for the '<em><b>Unwrapped</b></em>' attribute feature.

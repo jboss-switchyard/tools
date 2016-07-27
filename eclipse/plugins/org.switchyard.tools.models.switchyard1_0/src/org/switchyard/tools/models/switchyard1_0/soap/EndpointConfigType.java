@@ -11,11 +11,11 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType#getConfigFile <em>Config File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.EndpointConfigType#getConfigName <em>Config Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getEndpointConfigType()
  * @model extendedMetaData="name='EndpointConfigType' kind='elementOnly'"

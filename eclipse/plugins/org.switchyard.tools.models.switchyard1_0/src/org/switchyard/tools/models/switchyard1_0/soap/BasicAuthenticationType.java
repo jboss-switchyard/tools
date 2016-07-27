@@ -11,11 +11,11 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType#getUser <em>User</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.BasicAuthenticationType#getPassword <em>Password</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getBasicAuthenticationType()
  * @model extendedMetaData="name='BasicAuthenticationType' kind='elementOnly'"

@@ -610,6 +610,13 @@ public class Messages extends NLS {
     public static String message_creatingXslTransformerFile;
     public static String OperationSelectorComposite_OperationSelectorGroup_label;
     public static String SimpleDateFormatValidator_Only_Call_for_String_Data;
+    public static String SOAPBindingReferenceComposite_label_copyNamespaces;
+    public static String SOAPBindingReferenceComposite_validmsg_MtomThreshold_invalid;
+    public static String SOAPBindingReferenceComposite_validmsg_RequestTimeout_invalid;
+    public static String SOAPBindingReferenceComposite_validmsg_Soap_binding_name_should_not_be_empty;
+    public static String SOAPBindingReferenceComposite_validmsg_tempDisable_invalid;
+    public static String SOAPBindingReferenceComposite_validmsg_XopExpand_invalid;
+    public static String SOAPBindingServiceComposite_validmsg_WSDLPort_invalid;
     public static String StringEmptyValidator_Only_Call_for_String_Data;
     public static String title_addInterceptor;
     public static String title_advancedBindingDetails;

@@ -20,6 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl#getHost <em>Host</em>}</li>
@@ -27,7 +28,6 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.ProxyTypeImpl#getPassword <em>Password</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

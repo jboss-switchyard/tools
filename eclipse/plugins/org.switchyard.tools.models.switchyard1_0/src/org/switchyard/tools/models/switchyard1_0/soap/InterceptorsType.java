@@ -13,10 +13,10 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.InterceptorsType#getInterceptor <em>Interceptor</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getInterceptorsType()
  * @model extendedMetaData="name='InterceptorsType' kind='elementOnly'"
