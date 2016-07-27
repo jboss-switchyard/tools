@@ -310,6 +310,8 @@ public class Messages extends NLS {
     public static String featureName_wsdlToJava;
     public static String info_specifyInterfaceDetails;
     public static String info_specifyInterfaceDetailsDefaultSelected;
+    public static String JAXBTransformProvider_label_enableAttachment;
+    public static String JAXBTransformProvider_label_enableXopPackage;
     public static String JCACCIEndpointPropertiesExtension_Title;
     public static String JCAJMSEndpointPropertiesExtension_ConnectionFactoryJNDIName_label;
     public static String JCAJMSEndpointPropertiesExtension_DestinationJNDIPropertiesFileName_label;

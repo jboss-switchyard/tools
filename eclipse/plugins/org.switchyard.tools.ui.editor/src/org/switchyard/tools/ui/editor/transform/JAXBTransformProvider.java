@@ -82,6 +82,8 @@ public class JAXBTransformProvider implements ITransformProvider {
         private Collection<TransformType> _transforms;
         private Set<String> _packages = new LinkedHashSet<String>();
         private ListViewer _packagesView;
+        private Button _enableAttachmentCheckbox;
+        private Button _enableXOPPackageCheckbox;
 
         private JAXBTransformControl(Composite parent, IContainer container) {
             _container = container;
@@ -127,6 +129,19 @@ public class JAXBTransformProvider implements ITransformProvider {
                     }
                 }
             });
+            
+            _enableAttachmentCheckbox = new Button(_content, SWT.CHECK);
+            _enableAttachmentCheckbox.setText(Messages.JAXBTransformProvider_label_enableAttachment);
+            GridData enableAttChxGD = new GridData(GridData.FILL_HORIZONTAL);
+            enableAttChxGD.horizontalSpan = 2;
+            _enableAttachmentCheckbox.setLayoutData(enableAttChxGD);
+            
+            _enableXOPPackageCheckbox = new Button(_content, SWT.CHECK);
+            _enableXOPPackageCheckbox.setText(Messages.JAXBTransformProvider_label_enableXopPackage);
+            _enableXOPPackageCheckbox.setSelection(true);
+            GridData enableXopChxGD = new GridData(GridData.FILL_HORIZONTAL);
+            enableXopChxGD.horizontalSpan = 2;
+            _enableXOPPackageCheckbox.setLayoutData(enableXopChxGD);
         }
 
         @Override
@@ -170,12 +185,16 @@ public class JAXBTransformProvider implements ITransformProvider {
                 return Collections.emptyList();
             }
             final String contextPath = createContextPath();
+            final String enableAttachment = Boolean.toString(_enableAttachmentCheckbox.getSelection());
+            final String enableXop = Boolean.toString(_enableXOPPackageCheckbox.getSelection());
             final List<TransformType> jaxbTransforms = new ArrayList<TransformType>(_transforms.size());
             for (TransformType transform : _transforms) {
                 JAXBTransformType jaxbTransform = TransformFactory.eINSTANCE.createJAXBTransformType();
                 jaxbTransform.setFrom(transform.getFrom());
                 jaxbTransform.setTo(transform.getTo());
                 jaxbTransform.setContextPath(contextPath);
+                jaxbTransform.setEnableAttachment(enableAttachment);
+                jaxbTransform.setEnableXOPPackage(enableXop);
                 jaxbTransforms.add(jaxbTransform);
             }
             return jaxbTransforms;

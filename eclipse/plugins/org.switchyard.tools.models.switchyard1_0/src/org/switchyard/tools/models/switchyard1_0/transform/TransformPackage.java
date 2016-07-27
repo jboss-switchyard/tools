@@ -571,13 +571,31 @@ public interface TransformPackage extends EPackage {
     int JAXB_TRANSFORM_TYPE__CONTEXT_PATH = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Enable Attachment</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAXB_TRANSFORM_TYPE__ENABLE_ATTACHMENT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Enable XOP Package</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAXB_TRANSFORM_TYPE__ENABLE_XOP_PACKAGE = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>JAXB Transform Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int JAXB_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+	int JAXB_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JsonTransformTypeImpl <em>Json Transform Type</em>}' class.
@@ -1034,6 +1052,28 @@ public interface TransformPackage extends EPackage {
     EAttribute getJAXBTransformType_ContextPath();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType#getEnableAttachment <em>Enable Attachment</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Enable Attachment</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType#getEnableAttachment()
+     * @see #getJAXBTransformType()
+     * @generated
+     */
+    EAttribute getJAXBTransformType_EnableAttachment();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType#getEnableXOPPackage <em>Enable XOP Package</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Enable XOP Package</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType#getEnableXOPPackage()
+     * @see #getJAXBTransformType()
+     * @generated
+     */
+    EAttribute getJAXBTransformType_EnableXOPPackage();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType <em>Json Transform Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1389,6 +1429,22 @@ public interface TransformPackage extends EPackage {
          * @generated
          */
         EAttribute JAXB_TRANSFORM_TYPE__CONTEXT_PATH = eINSTANCE.getJAXBTransformType_ContextPath();
+
+        /**
+         * The meta object literal for the '<em><b>Enable Attachment</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JAXB_TRANSFORM_TYPE__ENABLE_ATTACHMENT = eINSTANCE.getJAXBTransformType_EnableAttachment();
+
+        /**
+         * The meta object literal for the '<em><b>Enable XOP Package</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JAXB_TRANSFORM_TYPE__ENABLE_XOP_PACKAGE = eINSTANCE.getJAXBTransformType_EnableXOPPackage();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JsonTransformTypeImpl <em>Json Transform Type</em>}' class.
