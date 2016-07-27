@@ -683,6 +683,8 @@
     </genClasses>
     <genClasses ecoreClass="config.transform.ecore#//JAXBTransformType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//JAXBTransformType/contextPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//JAXBTransformType/enableAttachment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.transform.ecore#//JAXBTransformType/enableXOPPackage"/>
     </genClasses>
     <genClasses ecoreClass="config.transform.ecore#//JsonTransformType"/>
     <genClasses ecoreClass="config.transform.ecore#//SmooksTransformType1">

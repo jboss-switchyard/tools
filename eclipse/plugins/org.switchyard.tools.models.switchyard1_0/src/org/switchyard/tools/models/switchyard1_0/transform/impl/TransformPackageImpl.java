@@ -563,6 +563,24 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJAXBTransformType_EnableAttachment() {
+        return (EAttribute)jaxbTransformTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJAXBTransformType_EnableXOPPackage() {
+        return (EAttribute)jaxbTransformTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -727,6 +745,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
         jaxbTransformTypeEClass = createEClass(JAXB_TRANSFORM_TYPE);
         createEAttribute(jaxbTransformTypeEClass, JAXB_TRANSFORM_TYPE__CONTEXT_PATH);
+        createEAttribute(jaxbTransformTypeEClass, JAXB_TRANSFORM_TYPE__ENABLE_ATTACHMENT);
+        createEAttribute(jaxbTransformTypeEClass, JAXB_TRANSFORM_TYPE__ENABLE_XOP_PACKAGE);
 
         jsonTransformTypeEClass = createEClass(JSON_TRANSFORM_TYPE);
 
@@ -819,6 +839,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
         initEClass(jaxbTransformTypeEClass, JAXBTransformType.class, "JAXBTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJAXBTransformType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, JAXBTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJAXBTransformType_EnableAttachment(), theSwitchyardPackage.getPropBoolean(), "enableAttachment", "false", 0, 1, JAXBTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJAXBTransformType_EnableXOPPackage(), theSwitchyardPackage.getPropBoolean(), "enableXOPPackage", "true", 0, 1, JAXBTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jsonTransformTypeEClass, JsonTransformType.class, "JsonTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1050,6 +1072,27 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
            new String[] {
              "name", "JAXBTransformType",
              "kind", "empty"
+           });	
+        addAnnotation
+          (getJAXBTransformType_ContextPath(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "contextPath"
+           });	
+        addAnnotation
+          (getJAXBTransformType_EnableAttachment(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "enableAttachment"
+           });	
+        addAnnotation
+          (getJAXBTransformType_EnableXOPPackage(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "enableXOPPackage"
            });	
         addAnnotation
           (jsonTransformTypeEClass, 
