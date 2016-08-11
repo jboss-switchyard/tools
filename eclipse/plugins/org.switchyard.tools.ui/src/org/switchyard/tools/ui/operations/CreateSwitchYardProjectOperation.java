@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2011 Red Hat, Inc. and others.
+ * Copyright (c) 2016 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -62,12 +62,14 @@ import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.eclipse.wst.common.project.facet.core.runtime.IRuntime;
 import org.eclipse.wst.common.project.facet.core.runtime.IRuntimeComponent;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl.NamespaceVersionConverter;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
+import org.switchyard.tools.ui.RuntimeUtils;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
@@ -85,7 +87,10 @@ import org.switchyard.tools.ui.i18n.Messages;
  */
 public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
-    private static final String DEFAULT_JAVA_VERSION = "1.6"; //$NON-NLS-1$
+    /**
+     * Default Java Version used elsewhere.
+     */
+    public static final String DEFAULT_JAVA_VERSION = "1.7"; //$NON-NLS-1$
 
     /**
      * Simple bean used for specifying details about the project to be created.
@@ -672,8 +677,22 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             model.addProperty("kie.version", _projectMetatData.getKieVersion());
         }
         model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
-        model.addProperty("maven.compiler.target", DEFAULT_JAVA_VERSION); //$NON-NLS-1$
-        model.addProperty("maven.compiler.source", DEFAULT_JAVA_VERSION); //$NON-NLS-1$
+        
+        String javaVersion = DEFAULT_JAVA_VERSION;
+
+        // if we have a target runtime, get the java version from it
+        if (_projectMetatData.getTargetRuntime() != null) {
+            IRuntimeComponent rtc = _projectMetatData.getTargetRuntime();
+            IRuntime rt = rtc.getRuntime();
+            String tempVersion = RuntimeUtils.getJavaExecutionEnvironment(rt);
+            if (tempVersion != null) {
+                javaVersion = tempVersion;
+            }
+        }
+        
+        model.addProperty("maven.compiler.target", javaVersion); //$NON-NLS-1$
+        model.addProperty("maven.compiler.source", javaVersion); //$NON-NLS-1$
+        
         if (_projectMetatData.isOSGIEnabled()) {
             model.addProperty("switchyard.osgi.require.capability", //$NON-NLS-1$
                     "org.ops4j.pax.cdi.extension; filter:=\"(extension=switchyard-component-bean)\",\n" //$NON-NLS-1$

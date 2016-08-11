@@ -55,11 +55,11 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
     /**
      * Default version for the Integration stack.
      */
-    public static final String DEFAULT_INTEG_VERSION = "1.3.0.redhat-05"; //$NON-NLS-1$
+    public static final String DEFAULT_INTEG_VERSION = "1.4.0.redhat-621043"; //$NON-NLS-1$
     /**
      * Default version for the Kie runtime.
      */
-    public static final String DEFAULT_KIE_VERSION = "6.2.0.Final"; //$NON-NLS-1$
+    public static final String DEFAULT_KIE_VERSION = "6.4.0.Final"; //$NON-NLS-1$
 
     private WizardNewProjectCreationPage _newProjectPage;
     private ProjectConfigurationWizardPage _configurationPage;
