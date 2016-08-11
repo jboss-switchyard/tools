@@ -8,10 +8,10 @@
   <name>test.project.group:CreateSwitchYardProjectTestWithIntegration</name>
   <properties>
     <switchyard.version>2.0.0.Final</switchyard.version>
-    <kie.version>6.2.0.Final</kie.version>
-    <integration.version>1.3.0.redhat-05</integration.version>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <kie.version>6.4.0.Final</kie.version>
+    <integration.version>1.4.0.redhat-621043</integration.version>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
   <dependencyManagement>
     <dependencies>
