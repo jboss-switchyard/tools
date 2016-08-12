@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2012 Red Hat, Inc. and others.
+ * Copyright (c) 2012-2016 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,6 +32,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.ExchangePattern;
 import org.switchyard.metadata.ServiceInterface;
@@ -140,6 +141,12 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
                 String[] operations = InterfaceOpsUtil.gatherOperations(contract);
                 boolean hasMoreThanOneOperation = (operations.length > 2);
                 
+                // check to see if the binding is SCA. if it is SCA, per FUSETOOLS-1927
+                // "sca binding doesn't support operationSelector and the operation would be 
+                // explicitly invoked through RemoteInvoker or through an injection in a SCA 
+                // reference binding - FUSETOOLS-1927
+                boolean isSCABinding = binding instanceof SCABinding;
+
                 if (binding.getOperationSelector() != null 
                         && binding.getOperationSelector() instanceof StaticOperationSelectorType) {
                     StaticOperationSelectorType staticOpSelector = 
@@ -153,8 +160,9 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
                         return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
                                 problem.getMessage(), contract.getName(), binding.getName());
                     }
-                } else if (binding.getOperationSelector() == null && hasMoreThanOneOperation) {
-                    // if there is no operation selector specified and the interface specifies two or more operations, we have a problem
+                } else if (binding.getOperationSelector() == null && hasMoreThanOneOperation && !isSCABinding) {
+                    // if there is no operation selector specified and the interface specifies two or more operations, 
+                    // and it's not an SCA binding, we have a problem (FUSETOOLS-1927)
                     final ValidationProblem problem = ValidationProblem.NoBindingOperationSelected;
                     return ConstraintStatus.createStatus(ctx, contract, null, problem.getSeverity(), problem.ordinal(),
                             problem.getMessage(), contract.getName(), binding.getName());
