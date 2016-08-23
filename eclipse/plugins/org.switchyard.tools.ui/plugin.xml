@@ -273,6 +273,9 @@
       <runtime-component-version
             type="org.fusesource.ide.karaf.runtime.component"
             version="2.4"/>
+      <runtime-component-version
+            type="org.fusesource.ide.karaf.runtime.component"
+            version="3.0"/>
       <supported>
         <runtime-component
          	id="org.fusesource.ide.karaf.runtime.component"
@@ -288,10 +291,16 @@
       <runtime-component-version
             type="org.fusesource.ide.fuseesb.runtime.component"
             version="6.2"/>
+      <runtime-component-version
+            type="org.fusesource.ide.fuseesb.runtime.component"
+            version="6.3"/>
       <supported>
         <runtime-component
          	id="org.fusesource.ide.fuseesb.runtime.component"
          	version="6.2"/>
+        <runtime-component
+            id="org.fusesource.ide.fuseesb.runtime.component"
+            version="6.3"/>
  		<facet id="jst.java" version="1.3,1.4,5.0,6.0,1.7,1.8"/>
 		<facet id="jst.utility" version="1.0"/>
      </supported>
@@ -308,9 +317,17 @@
             runtime-component="org.fusesource.ide.karaf.runtime.component"
             version="2.4"/>
       <runtimeFacetMapping
+            runtimeTypeId="org.fusesource.ide.karaf.runtime.30"
+            runtime-component="org.fusesource.ide.karaf.runtime.component"
+            version="3.0"/>
+      <runtimeFacetMapping
             runtimeTypeId="org.fusesource.ide.fuseesb.runtime.62"
             runtime-component="org.fusesource.ide.fuseesb.runtime.component"
             version="6.2"/>
+      <runtimeFacetMapping
+            runtimeTypeId="org.fusesource.ide.fuseesb.runtime.63"
+            runtime-component="org.fusesource.ide.fuseesb.runtime.component"
+            version="6.3"/>
   </extension>
   
   <extension
@@ -396,11 +413,15 @@
         </runtime-component>
         <runtime-component
               id="org.fusesource.ide.karaf.runtime.component"
-              version="[2.3-2.4]">
+              version="[2.3-3.0]">
         </runtime-component>
         <runtime-component
               id="org.fusesource.ide.fuseesb.runtime.component"
               version="6.2">
+        </runtime-component>
+        <runtime-component
+              id="org.fusesource.ide.fuseesb.runtime.component"
+              version="6.3">
         </runtime-component>
      </supported>
      <adapter>
@@ -446,7 +467,7 @@
     <runtimeComponentProvider
           class="org.switchyard.tools.ui.facets.SwitchYardRuntimeComponentProvider"
           id="org.switchyard.tools.ui.runtimeComponentProvider2"
-          runtimeTypeIds="org.jboss.ide.eclipse.as.runtime.eap.61,org.jboss.ide.eclipse.as.runtime.wildfly.80,org.fusesource.ide.karaf.runtime.23,org.fusesource.ide.fuseesb.runtime.62">
+          runtimeTypeIds="org.jboss.ide.eclipse.as.runtime.eap.61,org.jboss.ide.eclipse.as.runtime.wildfly.80,org.fusesource.ide.karaf.runtime.23,org.fusesource.ide.karaf.runtime.24,org.fusesource.ide.karaf.runtime.30,org.fusesource.ide.fuseesb.runtime.62,org.fusesource.ide.fuseesb.runtime.63">
     </runtimeComponentProvider>
  </extension>
 
