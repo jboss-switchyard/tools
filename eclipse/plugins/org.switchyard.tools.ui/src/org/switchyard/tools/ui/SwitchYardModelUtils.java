@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2011 Red Hat, Inc. and others.
+ * Copyright (c) 2011-2016 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
+import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.i18n.Messages;
 
@@ -57,9 +58,26 @@ import org.switchyard.tools.ui.i18n.Messages;
  * 
  * Utility methods for working with SwitchYard models.
  * 
- * @author Rob Cernich
+ * @author Rob Cernich and bfitzpat
  */
 public final class SwitchYardModelUtils {
+
+    /**
+     * Returns the runtime version for the SY project.
+     * 
+     * @param project incoming SY project
+     * @return String for runtime version
+     */
+    public static String getSwitchYardProjectRuntimeVersion(IProject project) {
+        if (project != null) {
+            ISwitchYardProjectWorkingCopy isypwc = 
+                SwitchYardProjectManager.instance().getSwitchYardProject(project).createWorkingCopy();
+            if (isypwc != null) {
+                return isypwc.getVersion();
+            }
+        }
+        return null;
+    }
 
     /**
      * Creates a new SwitchYardModel.
