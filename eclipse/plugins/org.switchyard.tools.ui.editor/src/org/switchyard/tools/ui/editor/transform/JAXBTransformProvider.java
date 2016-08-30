@@ -17,6 +17,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IJavaElement;
@@ -43,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.Messages;
 
@@ -78,16 +80,19 @@ public class JAXBTransformProvider implements ITransformProvider {
 
         private final IContainer _container;
         private final IJavaProject _project;
+        private final boolean _is21Model;
         private Composite _content;
         private Collection<TransformType> _transforms;
         private Set<String> _packages = new LinkedHashSet<String>();
         private ListViewer _packagesView;
         private Button _enableAttachmentCheckbox;
         private Button _enableXOPPackageCheckbox;
-
+        
         private JAXBTransformControl(Composite parent, IContainer container) {
             _container = container;
             _project = JavaCore.create(container.getContainingProject());
+            _is21Model = isVersion21OrHigher();
+            
             _content = new Composite(parent, SWT.NONE);
             _content.setLayout(new GridLayout(3, false));
 
@@ -129,19 +134,20 @@ public class JAXBTransformProvider implements ITransformProvider {
                     }
                 }
             });
-            
-            _enableAttachmentCheckbox = new Button(_content, SWT.CHECK);
-            _enableAttachmentCheckbox.setText(Messages.JAXBTransformProvider_label_enableAttachment);
-            GridData enableAttChxGD = new GridData(GridData.FILL_HORIZONTAL);
-            enableAttChxGD.horizontalSpan = 2;
-            _enableAttachmentCheckbox.setLayoutData(enableAttChxGD);
-            
-            _enableXOPPackageCheckbox = new Button(_content, SWT.CHECK);
-            _enableXOPPackageCheckbox.setText(Messages.JAXBTransformProvider_label_enableXopPackage);
-            _enableXOPPackageCheckbox.setSelection(true);
-            GridData enableXopChxGD = new GridData(GridData.FILL_HORIZONTAL);
-            enableXopChxGD.horizontalSpan = 2;
-            _enableXOPPackageCheckbox.setLayoutData(enableXopChxGD);
+
+            if (_is21Model) {
+                _enableAttachmentCheckbox = new Button(_content, SWT.CHECK);
+                _enableAttachmentCheckbox.setText(Messages.JAXBTransformProvider_label_enableAttachment);
+                GridData enableAttChxGD = new GridData(GridData.FILL_HORIZONTAL);
+                enableAttChxGD.horizontalSpan = 2;
+                _enableAttachmentCheckbox.setLayoutData(enableAttChxGD);
+                _enableXOPPackageCheckbox = new Button(_content, SWT.CHECK);
+                _enableXOPPackageCheckbox.setText(Messages.JAXBTransformProvider_label_enableXopPackage);
+                _enableXOPPackageCheckbox.setSelection(true);
+                GridData enableXopChxGD = new GridData(GridData.FILL_HORIZONTAL);
+                enableXopChxGD.horizontalSpan = 2;
+                _enableXOPPackageCheckbox.setLayoutData(enableXopChxGD);
+            }
         }
 
         @Override
@@ -185,16 +191,25 @@ public class JAXBTransformProvider implements ITransformProvider {
                 return Collections.emptyList();
             }
             final String contextPath = createContextPath();
-            final String enableAttachment = Boolean.toString(_enableAttachmentCheckbox.getSelection());
-            final String enableXop = Boolean.toString(_enableXOPPackageCheckbox.getSelection());
+            final String enableAttachment;
+            final String enableXop;
+            if (_is21Model) {
+                enableAttachment = Boolean.toString(_enableAttachmentCheckbox.getSelection());
+                enableXop = Boolean.toString(_enableXOPPackageCheckbox.getSelection());
+            } else {
+                enableAttachment = null;
+                enableXop = null;
+            }
             final List<TransformType> jaxbTransforms = new ArrayList<TransformType>(_transforms.size());
             for (TransformType transform : _transforms) {
                 JAXBTransformType jaxbTransform = TransformFactory.eINSTANCE.createJAXBTransformType();
                 jaxbTransform.setFrom(transform.getFrom());
                 jaxbTransform.setTo(transform.getTo());
                 jaxbTransform.setContextPath(contextPath);
-                jaxbTransform.setEnableAttachment(enableAttachment);
-                jaxbTransform.setEnableXOPPackage(enableXop);
+                if (_is21Model) {
+                    jaxbTransform.setEnableAttachment(enableAttachment);
+                    jaxbTransform.setEnableXOPPackage(enableXop);
+                }
                 jaxbTransforms.add(jaxbTransform);
             }
             return jaxbTransforms;
@@ -252,6 +267,17 @@ public class JAXBTransformProvider implements ITransformProvider {
                 changed = _packages.remove(obj) || changed;
             }
             return changed;
+        }
+
+        private boolean isVersion21OrHigher() {
+            IProject project = _project.getProject();
+            String version = SwitchYardModelUtils.getSwitchYardProjectRuntimeVersion(project);
+            // if it's 1.0, 1.1, or 2.0.x ...
+            if (version.startsWith("2.0") || version.startsWith("1")) {
+                return false;
+            }
+            // otherwise, it's higher
+            return true;
         }
 
     }
