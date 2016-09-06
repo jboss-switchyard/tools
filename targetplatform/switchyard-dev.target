@@ -2,11 +2,11 @@
 <?pde version="3.8"?><target name="switchyard-dev" sequenceNumber="3">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.bpmn2.modeler.runtime.jboss.source.feature.group" version="1.2.5.Final-v20160830-1832-B113"/>
+<unit id="org.eclipse.bpmn2.modeler.runtime.jboss.source.feature.group" version="1.2.5.Final-v20160831-1132-B114"/>
 <unit id="org.eclipse.bpmn2.feature.feature.group" version="1.2.1.Final-v20160218-1950-B212"/>
-<unit id="org.eclipse.bpmn2.modeler.feature.group" version="1.2.5.Final-v20160830-1832-B113"/>
-<unit id="org.eclipse.bpmn2.modeler.runtime.jboss.feature.group" version="1.2.5.Final-v20160830-1832-B113"/>
-<unit id="org.eclipse.bpmn2.modeler.source.feature.group" version="1.2.5.Final-v20160830-1832-B113"/>
+<unit id="org.eclipse.bpmn2.modeler.feature.group" version="1.2.5.Final-v20160831-1132-B114"/>
+<unit id="org.eclipse.bpmn2.modeler.runtime.jboss.feature.group" version="1.2.5.Final-v20160831-1132-B114"/>
+<unit id="org.eclipse.bpmn2.modeler.source.feature.group" version="1.2.5.Final-v20160831-1132-B114"/>
 <repository location="http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.2.5.Final_1.2.1.Final_mars/"/>
 </location>
 </locations>
