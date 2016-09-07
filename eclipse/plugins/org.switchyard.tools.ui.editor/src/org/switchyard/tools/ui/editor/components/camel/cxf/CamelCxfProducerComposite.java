@@ -257,8 +257,7 @@ public class CamelCxfProducerComposite extends AbstractSYBindingComposite {
         CompoundValidator uriValidator = new CompoundValidator(
                 new StringEmptyValidator("CXF URI may not be empty."),
                 new URLValidator("Potential problem with CXF URI")); 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_feedURIText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__CXF_URI),
@@ -266,8 +265,7 @@ public class CamelCxfProducerComposite extends AbstractSYBindingComposite {
                                 .setAfterConvertValidator(uriValidator), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_wsdlURLText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__WSDL_URL),
@@ -276,8 +274,7 @@ public class CamelCxfProducerComposite extends AbstractSYBindingComposite {
         
         IObservableValue dataFormatModelValue = ObservablesUtil.observeDetailValue(domain, _bindingValue,
                 CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__DATA_FORMAT);
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         ViewersObservables.observeSingleSelection(_dataFormatComboViewer),
                         dataFormatModelValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
@@ -297,46 +294,46 @@ public class CamelCxfProducerComposite extends AbstractSYBindingComposite {
                     if (isPojo) {
                         relayHeaders.setValue(Boolean.TRUE); // default to true
                     } else {
-                        relayHeaders.setValue(Boolean.FALSE);
+                        wrapOperation(new Runnable() {
+                            @Override
+                            public void run() {
+                                _binding.unsetRelayHeaders();
+                            }
+                        });
                     }
                 }
             }
         });
         
         binding = context
-                .bindValue(
-                        SWTObservables.observeText(_serviceClassText, new int[] {SWT.Modify }),
+                .bindValue(SWTObservables.observeText(_serviceClassText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__SERVICE_CLASS),
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_serviceNameText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__SERVICE_NAME),
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_portNameText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__PORT_NAME),
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeSelection(_relayHeadersCheckbox),
                         relayHeaders,
                         new EMFUpdateValueStrategyNullForEmptyString(
                                 null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeSelection(_wrappedCheckbox),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                 CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__WRAPPED),
@@ -347,32 +344,28 @@ public class CamelCxfProducerComposite extends AbstractSYBindingComposite {
         _wrappedStyleDetail = ObservablesUtil.observeDetailValue(domain, _bindingValue,
                 CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__WRAPPED_STYLE);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_cxfClientPasswordText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__PASSWORD),
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
         
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_cxfClientUserNameText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__USERNAME),
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_defaultOpNameText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__DEFAULT_OPERATION_NAME),
                         new EMFUpdateValueStrategyNullForEmptyString(null, UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        binding = context
-                .bindValue(
+        binding = context.bindValue(
                         SWTObservables.observeText(_defaultOpNamespaceText, new int[] {SWT.Modify }),
                         ObservablesUtil.observeDetailValue(domain, _bindingValue,
                                CxfPackage.Literals.CAMEL_CXF_BINDING_TYPE__DEFAULT_OPERATION_NAMESPACE),
