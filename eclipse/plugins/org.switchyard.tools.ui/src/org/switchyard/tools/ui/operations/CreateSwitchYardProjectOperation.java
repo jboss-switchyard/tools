@@ -48,11 +48,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IProjectConfigurationManager;
+import org.eclipse.m2e.core.ui.internal.UpdateMavenProjectJob;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
@@ -395,8 +397,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
             } catch (Exception e) {
-                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingDefaultFolders,
-                        e);
+                mergeStatus(status, Messages.CreateSwitchYardProjectOperation_statusMessage_errorCreatingDefaultFolders, e);
             } finally {
                 subMonitor.done();
                 subMonitor.setTaskName(""); //$NON-NLS-1$
@@ -475,12 +476,26 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             if (_projectMetatData.getTargetRuntime() != null) {
                 attachTargetRuntime(monitor, status);
             }
+            refreshProject(monitor);
 
             if (!status.isOK()) {
                 throw new CoreException(status);
             }
         } finally {
             monitor.done();
+        }
+    }
+
+    private void refreshProject(IProgressMonitor monitor) throws CoreException {
+        // update the project so we ensure a Project->Clean is done so the
+        // MANIFEST.MF is built and we don't run into trouble deploying the 
+        // project on a Fuse server.
+        IProject project = _projectMetatData.getNewProjectHandle();
+        if (project != null) {
+            // update the maven project so we start in a deployable state
+            // with a valid MANIFEST.MF built as part of the build process.
+            Job updateJob = new UpdateMavenProjectJob(new IProject[] {project});
+            updateJob.schedule();
         }
     }
 

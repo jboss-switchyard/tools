@@ -61,7 +61,7 @@ public interface ISwitchYardFacetConstants {
     /** The ID of the Java facet. */
     public static final String JAVA_FACET_ID = "java"; //$NON-NLS-1$
     /** Our preferred version of Java. */
-    public static final String JAVA_FACET_VERSION = "1.6"; //$NON-NLS-1$
+    public static final String JAVA_FACET_VERSION = "1.7"; //$NON-NLS-1$
     /** The ID of the JBoss Maven Integration facet. */
     public static final String JBOSS_M2_FACET_ID = "jboss.m2"; //$NON-NLS-1$
 
