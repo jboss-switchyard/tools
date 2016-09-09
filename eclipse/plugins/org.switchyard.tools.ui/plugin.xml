@@ -264,7 +264,7 @@
     </wizard-pages>
   </extension>
 
-  <extension
+<!--  <extension
          point="org.eclipse.wst.common.project.facet.core.runtimes">
       <runtime-component-type id="org.fusesource.ide.karaf.runtime.component"/>
       <runtime-component-version
@@ -328,7 +328,7 @@
             runtimeTypeId="org.fusesource.ide.fuseesb.runtime.63"
             runtime-component="org.fusesource.ide.fuseesb.runtime.component"
             version="6.3"/>
-  </extension>
+  </extension> -->
   
   <extension
         point="org.eclipse.wst.common.project.facet.core.runtimes">
