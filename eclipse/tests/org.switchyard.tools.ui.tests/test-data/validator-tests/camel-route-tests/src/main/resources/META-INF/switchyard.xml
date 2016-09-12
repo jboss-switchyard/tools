@@ -3,7 +3,7 @@
   <sca:composite name="camel-route-tests" targetNamespace="urn:com.tests.switchyard:camel-route-tests:1.0">
     <sca:component name="Route">
       <camel:implementation.camel>
-        <camel:xml path="route.xml"/>
+        <camel:xml path="META-INF/spring/route.xml"/>
       </camel:implementation.camel>
       <sca:service name="MyFirstService">
         <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
@@ -82,7 +82,7 @@
     </sca:reference>
     <sca:component name="Correctroute">
       <camel:implementation.camel>
-        <camel:xml path="correctroute.xml"/>
+        <camel:xml path="META-INF/spring/correctroute.xml"/>
       </camel:implementation.camel>
       <sca:service name="MyOtherFirstService2">
         <sca:interface.java interface="com.switchyard.camel_route_tests.MyFirstService"/>
