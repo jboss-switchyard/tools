@@ -32,6 +32,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.configurator.MojoExecutionBuildParticipant;
 import org.eclipse.wst.validation.ValidationFramework;
+import org.eclipse.wst.validation.Validator;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
 /**
@@ -241,6 +242,21 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
             }
         }
         return scanDirectories;
+    }
+    
+    @Override
+    public void clean(IProgressMonitor monitor) throws CoreException {
+        super.clean(monitor);
+        IProject project = getMavenProjectFacade().getProject();
+        for (IPath resourceFolder : getMavenProjectFacade().getResourceLocations()) {
+            IFile sourceFile = project.getFile(resourceFolder.append(SWITCHYARD_DEFAULT_OUTPUT_FILE_PATH));
+            if (sourceFile.exists()) {
+                for (Validator validator : ValidationFramework.getDefault().getValidatorsFor(sourceFile)) {
+                    ValidationFramework.getDefault().clearMessages(sourceFile, validator.getId());
+                }
+                break;
+            }
+        }
     }
 
 }
