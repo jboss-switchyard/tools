@@ -23,7 +23,7 @@
     <tychoExtrasVersion>${tychoVersion}</tychoExtrasVersion>
     
     <!-- Fuse version -->
-    <fuse-tooling-url>http://download.jboss.org/jbosstools/mars/development/updates/integration-stack/fuse-tooling/8.0.0.Beta2/all/repo/</fuse-tooling-url>
+    <fuse-tooling-url>http://download.jboss.org/jbosstools/neon/development/updates/integration-stack/fuse-tooling/9.0.0.Alpha1/</fuse-tooling-url>
     
     <illegaltransitivereportonly>true</illegaltransitivereportonly>
   </properties>

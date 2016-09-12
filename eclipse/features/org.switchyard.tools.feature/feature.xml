@@ -39,8 +39,8 @@
       <import plugin="javax.wsdl" version="1.6.2" match="equivalent"/>
       <import feature="org.jboss.ide.eclipse.freemarker.feature" version="1.2.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.zest" version="1.5.0" match="compatible"/>
-      <import feature="org.fusesource.ide.core.feature" version="8.0.0" match="compatible"/>
-      <import feature="org.fusesource.ide.camel.editor.feature" version="8.0.0" match="compatible"/>
+      <import feature="org.fusesource.ide.core.feature" version="9.0.0" match="compatible"/>
+      <import feature="org.fusesource.ide.camel.editor.feature" version="9.0.0" match="compatible"/>
    </requires>
 
    <plugin
