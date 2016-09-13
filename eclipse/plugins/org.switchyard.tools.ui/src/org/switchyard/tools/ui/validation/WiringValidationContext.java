@@ -262,8 +262,11 @@ final class WiringValidationContext {
                             _serviceInterfaces.put((Contract) eobject, si);
                         }
                     } catch (Exception e) {
+                       
+                        Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "Service Interface cannot be loaded.", e)); //$NON-NLS-1$
                         if (e instanceof RuntimeException) {
-                            if (e.getMessage().startsWith("SWITCHYARD010004")) {
+                            String message = e.getMessage();
+                            if (message != null && message.startsWith("SWITCHYARD010004")) { //$NON-NLS-1$
                                 _serviceInterfaces.put((Contract) eobject, INVALID_SERVICE_INTERFACE);
                             } else {
                                 _serviceInterfaces.put((Contract) eobject, URESOLVABLE_SERVICE_INTERFACE);
@@ -275,9 +278,8 @@ final class WiringValidationContext {
                 }
             }
         } catch (Exception e) {
-            e.fillInStackTrace();
             _problems.add(new Status(Status.WARNING, Activator.PLUGIN_ID,
-                    Messages.WiringValidationContext_statusMessage_errorLoadingServiceInterfaceMetadata));
+                    Messages.WiringValidationContext_statusMessage_errorLoadingServiceInterfaceMetadata, e));
         } finally {
             Thread.currentThread().setContextClassLoader(oldTCCL);
         }

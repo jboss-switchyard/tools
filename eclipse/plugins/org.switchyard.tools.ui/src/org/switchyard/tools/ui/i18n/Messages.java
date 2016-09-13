@@ -22,7 +22,7 @@ public final class Messages extends NLS {
      * Bundle name of the actual messages.properties file.
      */
     private static final String BUNDLE_NAME = "org.switchyard.tools.ui.i18n.messages"; //$NON-NLS-1$
-    
+
     public static String AbstractSwitchYardProjectOperation_exceptionMessage_errorUpdatingSYXML;
 
     public static String AbstractSwitchYardProjectOperation_operationLabel_creatingBeansXMLFile;
@@ -636,6 +636,8 @@ public final class Messages extends NLS {
     /**
      * Exception message when the Interface Type is Unsupported.
      */
+    public static String SwitchYardModelUtils_InterfaceClassNotFound;
+    
     public static String SwitchYardModelUtils_InterfaceTypeUnsupportedException;
     
     public static String SwitchYardProject_errorMessage_exceptionWhileLodingSYFile;
