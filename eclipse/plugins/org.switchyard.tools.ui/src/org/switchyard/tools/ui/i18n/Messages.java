@@ -636,8 +636,10 @@ public final class Messages extends NLS {
     /**
      * Exception message when the Interface Type is Unsupported.
      */
+    public static String SwitchYardModelUtils_InterfaceClassNotFound;
+
     public static String SwitchYardModelUtils_InterfaceTypeUnsupportedException;
-    
+
     public static String SwitchYardProject_errorMessage_exceptionWhileLodingSYFile;
 
     public static String SwitchYardProject_taskMessage_loadingMavenConfig;

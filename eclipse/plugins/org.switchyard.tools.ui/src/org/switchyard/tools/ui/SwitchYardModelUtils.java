@@ -25,6 +25,7 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
@@ -265,7 +266,13 @@ public final class SwitchYardModelUtils {
         if (intf instanceof JavaInterface) {
             try {
                 JavaInterface javaIntfc = (JavaInterface) intf;
-                return JavaService.fromClass(Classes.forName(javaIntfc.getInterface()));
+                Class<?> interfaceClasses = Classes.forName(javaIntfc.getInterface());
+                if (interfaceClasses != null) {
+                    return JavaService.fromClass(interfaceClasses);
+                } else {
+                    throw new IllegalArgumentException(
+                            NLS.bind(Messages.SwitchYardModelUtils_InterfaceClassNotFound, javaIntfc.getInterface()));
+                }
             } catch (RuntimeException e) {
                 throw e;
             }
