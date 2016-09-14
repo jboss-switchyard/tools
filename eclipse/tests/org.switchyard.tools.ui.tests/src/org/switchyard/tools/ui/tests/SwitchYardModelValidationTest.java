@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2011 Red Hat, Inc. and others.
+ * Copyright (c) 2011-2016 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
@@ -31,8 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResou
  * @author bfitzpat
  * 
  */
-@SuppressWarnings("restriction")
-public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase {
+public class SwitchYardModelValidationTest extends AbstractSwitchYardTest {
 
     /**
      * Tests import and configuration of bean-service quickstart.
@@ -341,10 +339,6 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
      */
     public void testDemosPolicySecurityCertQuickstart() throws Exception {
         runModelTest("demos/policy-security-cert");
-    }
-
-    private void waitForJobs() throws Exception {
-        waitForJobsToComplete();
     }
 
     /**

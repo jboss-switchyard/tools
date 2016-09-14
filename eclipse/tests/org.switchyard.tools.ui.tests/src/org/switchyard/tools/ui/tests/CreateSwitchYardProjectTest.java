@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2011 Red Hat, Inc. and others.
+ * Copyright (c) 2011-2016 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,7 +31,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
@@ -51,7 +50,7 @@ import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
  * @author Rob Cernich
  */
 @SuppressWarnings("restriction")
-public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
+public class CreateSwitchYardProjectTest extends AbstractSwitchYardTest {
 
     /**
      * TODO: this is probably not the best way to do things. This one test
@@ -261,12 +260,6 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
                 expectedReader = null;
             }
         }
-    }
-
-    private void waitForJobs() throws Exception {
-        waitForJobsToComplete();
-//        Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
-//        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
     }
 
     /**

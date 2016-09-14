@@ -21,7 +21,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.m2e.core.project.ResolverConfiguration;
-import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 
 /**
  * SwitchYardConfigurationTest
@@ -31,7 +30,7 @@ import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
  * @author Rob Cernich
  */
 @SuppressWarnings("restriction")
-public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
+public class SwitchYardConfigurationTest extends AbstractSwitchYardTest {
 
     /**
      * Tests import and configuration of bean-service quickstart.
@@ -107,11 +106,4 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
             }
         }
     }
-
-    private void waitForJobs() throws Exception {
-        waitForJobsToComplete();
-        // Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
-        // Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
-    }
-
 }
