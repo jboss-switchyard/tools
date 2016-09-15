@@ -27,6 +27,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
@@ -166,8 +167,10 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
                 capabilities.add(capability);
             }
         }
-        try {
-            ResourcesPlugin.getWorkspace().run(
+        Display.getDefault().asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                try {
                     new AbstractSwitchYardProjectOperation(null, capabilities, false,
                             Messages.description_updateSwitchYardCapabilities, null) {
                         @Override
@@ -179,10 +182,12 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
                         protected void execute(IProgressMonitor monitor) throws CoreException {
                             // no extra work
                         }
-                    }, new NullProgressMonitor());
-        } catch (CoreException e) {
-            Activator.logStatus(e.getStatus());
-        }
+                    }.run(new NullProgressMonitor());
+                } catch (CoreException e) {
+                    Activator.logStatus(e.getStatus());
+                }
+            }
+        });
     }
 
     private IProject getContainingProject(T newObject) {
