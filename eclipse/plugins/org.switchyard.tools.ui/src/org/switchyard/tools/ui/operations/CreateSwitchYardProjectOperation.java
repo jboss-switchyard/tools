@@ -87,6 +87,7 @@ import org.switchyard.tools.ui.i18n.Messages;
  * 
  * @author Rob Cernich
  */
+@SuppressWarnings("restriction")
 public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
     /**

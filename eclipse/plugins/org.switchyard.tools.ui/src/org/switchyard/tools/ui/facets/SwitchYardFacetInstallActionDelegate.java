@@ -108,7 +108,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
                 // make sure test folders get removed, save initiating a maven
                 // project update
                 IMavenProjectFacade projectFacade = MavenPlugin.getMavenProjectRegistry().getProject(getProject());
-                if (projectFacade == null || projectFacade.getMavenProject() == null) {
+                if (projectFacade == null || projectFacade.getMavenProject(monitor) == null) {
                     throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.SwitchYardFacetInstallActionDelegate_errorMessage_notAMavenProject));
                 }
                 WTPProjectsUtil.removeTestFolderLinks(getProject(), workingCopy.getMavenProject(), monitor, "/"); //$NON-NLS-1$
