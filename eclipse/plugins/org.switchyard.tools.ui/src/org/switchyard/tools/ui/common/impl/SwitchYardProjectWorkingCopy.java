@@ -31,16 +31,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.text.DocumentRewriteSession;
 import org.eclipse.jface.text.DocumentRewriteSessionType;
 import org.eclipse.jface.text.IDocumentExtension4;
-import org.eclipse.m2e.core.ui.internal.UpdateMavenProjectJob;
 import org.eclipse.m2e.core.ui.internal.editing.AddDependencyOperation;
 import org.eclipse.m2e.core.ui.internal.editing.PomEdits;
 import org.eclipse.m2e.core.ui.internal.editing.PomHelper;
 import org.eclipse.m2e.core.ui.internal.editing.RemoveDependencyOperation;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.wst.sse.core.StructuredModelManager;
 import org.eclipse.wst.sse.core.internal.undo.IStructuredTextUndoManager;
 import org.eclipse.wst.xml.core.internal.provisional.document.IDOMDocument;
@@ -329,32 +326,10 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         } finally {
             _switchYardProject.readUnlock();
             _switchYardProject.getSwitchYardFeaturesFile().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
-            refreshProject(new NullProgressMonitor());
+            M2EUtils.refreshProject(_switchYardProject.getProject(), new NullProgressMonitor());
         }
     }
 
-    private void refreshProject(IProgressMonitor monitor) throws CoreException {
-        Display.getDefault().asyncExec(new Runnable() {
-            @Override
-            public void run() {
-                // update the project so we ensure a Project->Clean is done so
-                // the
-                // MANIFEST.MF is built and we don't run into trouble deploying
-                // the
-                // project on a Fuse server.
-                IProject project = _switchYardProject.getSwitchYardFeaturesFile().getProject();
-                if (project != null) {
-                    // update the maven project so we start in a deployable
-                    // state
-                    // with a valid MANIFEST.MF built as part of the build
-                    // process.
-                    Job updateJob = new UpdateMavenProjectJob(new IProject[] {project });
-                    updateJob.schedule();
-                }
-            }
-        });
-    }
-    
     @Override
     public void revert() {
         _switchYardProject.readLock();

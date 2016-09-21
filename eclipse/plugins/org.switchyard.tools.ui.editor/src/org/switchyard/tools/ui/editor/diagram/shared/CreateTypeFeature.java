@@ -159,35 +159,39 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
         if (componentIDs == null || componentIDs.isEmpty()) {
             return;
         }
+        boolean addingCapability = false;
         final Set<ISwitchYardComponentExtension> capabilities = new HashSet<ISwitchYardComponentExtension>();
         for (String id : componentIDs) {
             final ISwitchYardComponentExtension capability = SwitchYardComponentExtensionManager.instance()
                     .getComponentExtension(id);
             if (capability != null) {
                 capabilities.add(capability);
+                addingCapability = true;
             }
         }
-        Display.getDefault().asyncExec(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    ResourcesPlugin.getWorkspace().run(new AbstractSwitchYardProjectOperation(null, capabilities, false,
-                            Messages.description_updateSwitchYardCapabilities, null) {
-                        @Override
-                        protected IProject getProject() {
-                            return project;
-                        }
-
-                        @Override
-                        protected void execute(IProgressMonitor monitor) throws CoreException {
-                            // no extra work
-                        }
-                    }, new NullProgressMonitor());
-                } catch (CoreException e) {
-                    Activator.logStatus(e.getStatus());
+        if (addingCapability) {
+            Display.getDefault().asyncExec(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        ResourcesPlugin.getWorkspace().run(new AbstractSwitchYardProjectOperation(null, capabilities, false,
+                                Messages.description_updateSwitchYardCapabilities, null) {
+                            @Override
+                            protected IProject getProject() {
+                                return project;
+                            }
+    
+                            @Override
+                            protected void execute(IProgressMonitor monitor) throws CoreException {
+                                // no extra work
+                            }
+                        }, new NullProgressMonitor());
+                    } catch (CoreException e) {
+                        Activator.logStatus(e.getStatus());
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     private IProject getContainingProject(T newObject) {
