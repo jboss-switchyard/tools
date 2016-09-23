@@ -324,7 +324,7 @@ public class CreateSwitchYardProjectTest extends AbstractSwitchYardTest {
          */
         // Test project update
         op = new AbstractSwitchYardProjectOperation(null, Collections.singleton(SwitchYardComponentExtensionManager
-                .instance().getComponentExtension("org.switchyard.components:switchyard-component-bpm")), true,
+                .instance().getComponentExtension("org.jboss.integration.fuse:switchyard-component-bpm")), true,
                 "Testing SwitchYard project update", null) {
 
             @Override

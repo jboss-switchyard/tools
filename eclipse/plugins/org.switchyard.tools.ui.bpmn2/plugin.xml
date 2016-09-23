@@ -229,6 +229,18 @@
            <artifactId>switchyard-component-bpm</artifactId>
         </dependency>
      </component>
+     <component
+           category="implementation"
+           id="org.jboss.integration.fuse:switchyard-component-bpm"
+           name="BPM (jBPM) (Fuse Integration Pack)">
+        <description>
+           Provides support for BPM based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.jboss.integration.fuse</groupId>
+           <artifactId>switchyard-component-bpm</artifactId>
+        </dependency>
+     </component>
    </extension>
    <extension
          point="org.switchyard.tools.ui.editor.editorExtension">

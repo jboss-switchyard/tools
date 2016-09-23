@@ -308,6 +308,37 @@ public final class SwitchYardModelUtils {
         return rs;
     }
     
+    /**
+     * Returns the integration pack version for the SY project.
+     * 
+     * @param project incoming SY project
+     * @return String for integration version
+     */
+    public static String getSwitchYardProjectIntegrationVersion(IProject project) {
+        if (project != null) {
+            ISwitchYardProject syProject = SwitchYardProjectManager.instance().getSwitchYardProject(project);
+            if (syProject != null) {
+                ISwitchYardProjectWorkingCopy isypwc = syProject.createWorkingCopy();
+                if (isypwc != null) {
+                    return isypwc.getIntegrationVersion();
+                }
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Returns true/false whether the SY project uses the integration pack or not.
+     * 
+     * @param project incoming SY project
+     * @return true if it uses the integration pack or false if not
+     */
+    public static boolean projectUsesIntegrationPack(IProject project) {
+        String intVersion = SwitchYardModelUtils.getSwitchYardProjectIntegrationVersion(project);
+        // TODO change to Strings.isBlank when we get all projects updated to Java 7 or 8 
+        return intVersion != null && !intVersion.trim().isEmpty();
+    }
+
     private static IFile getSwitchYardConfigurationFile(IProject project) {
         ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(project);
         if (switchYardProject == null) {

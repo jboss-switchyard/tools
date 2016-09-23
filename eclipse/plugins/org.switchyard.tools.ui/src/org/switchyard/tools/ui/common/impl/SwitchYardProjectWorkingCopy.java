@@ -521,6 +521,9 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                     }
                     dependency = dependency.clone();
                     dependency.setVersion(versionString);
+                    if (getIntegrationVersion() != null && !getIntegrationVersion().isEmpty()) { // hack for SWITCHYARD-2936
+                        M2EUtils.hackIntegrationPackDependency(dependency);
+                    }
                     addedDependencies.add(dependency);
                 }
             }

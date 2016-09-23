@@ -16,12 +16,15 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.bpmn2.Messages;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.IComponentTypeExtension;
@@ -60,7 +63,14 @@ public class BPMComponentTypeExtension implements IComponentTypeExtension {
 
     @Override
     public List<String> getRequiredCapabilities(Implementation object) {
-        return Collections.singletonList("org.switchyard.components:switchyard-component-bpm"); //$NON-NLS-1$
+        String defaultRequirement = "org.switchyard.components:switchyard-component-bpm"; //$NON-NLS-1$
+        IProject project = PlatformResourceAdapterFactory.getContainingProject(object);
+        if (project != null) {
+            if (SwitchYardModelUtils.projectUsesIntegrationPack(project)) {
+                defaultRequirement = "org.jboss.integration.fuse:switchyard-component-bpm"; //$NON-NLS-1$
+            }
+        }
+        return Collections.singletonList(defaultRequirement);
     }
 
     @Override
