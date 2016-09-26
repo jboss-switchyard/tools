@@ -990,6 +990,19 @@
         </dependency>
      </component>
      <component
+           bundleId="switchyard-rules"
+           category="implementation"
+           id="org.jboss.integration.fuse:switchyard-component-rules"
+           name="Rules (Drools) (Fuse Integration Pack)">
+        <description>
+           Provides support for Drools based service implementations from the Fuse Integration Pack.
+        </description>
+        <dependency>
+           <groupId>org.jboss.integration.fuse</groupId>
+           <artifactId>switchyard-component-rules</artifactId>
+        </dependency>
+     </component>
+     <component
            bundleId="switchyard-soap"
            category="gateway"
            id="org.switchyard.components:switchyard-component-soap"

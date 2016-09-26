@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -494,15 +495,31 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
     }
     
     private String readIntegrationVersionPropertyString(MavenProject mavenProject) {
-        if (mavenProject.getProperties() != null) {
-            return mavenProject.getProperties().getProperty(_integrationVersionPropertyKey);
+        if (mavenProject != null && mavenProject.getProperties() != null) {
+            Properties properties = mavenProject.getProperties();
+            if (properties.getProperty(_integrationVersionPropertyKey) != null) {
+                return properties.getProperty(_integrationVersionPropertyKey);
+            } else if (mavenProject.getDependencyManagement() != null) {
+                // try getting version from the dependency management section
+                for (Dependency dependency : mavenProject.getDependencyManagement().getDependencies()) {
+                    if (M2EUtils.INTEGRATION_GROUP_ID.equals(dependency.getGroupId())) {
+                        return dependency.getVersion();
+                    }
+                }
+            }
         }
         return null;
     }
 
     private String readKieVersionPropertyString(MavenProject mavenProject) {
-        if (mavenProject.getProperties() != null) {
-            return mavenProject.getProperties().getProperty(_kieVersionPropertyKey);
+        if (mavenProject != null && mavenProject.getProperties() != null) {
+            Properties properties = mavenProject.getProperties();
+            if (properties.getProperty(_kieVersionPropertyKey) != null) {
+                return properties.getProperty(_kieVersionPropertyKey);
+            } else {
+                // try the alternate version
+                return properties.getProperty(M2EUtils.ALT_KIE_VERSION);
+            }
         }
         return null;
     }

@@ -780,6 +780,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                         dependency.setVersion(versionString);
                     } // else don't add it
                 }
+                if (isIntegration) { // hack for SWITCHYARD-2936
+                    M2EUtils.hackIntegrationPackDependency(dependency);
+                }
                 model.getDependencies().add(dependency);
             }
         }

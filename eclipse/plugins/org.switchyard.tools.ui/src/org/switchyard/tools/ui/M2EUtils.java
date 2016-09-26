@@ -72,6 +72,8 @@ public final class M2EUtils {
     public static final String KIE_BOM_ARTIFACT_ID = "kie-bom"; //$NON-NLS-1$
     /** KIE version. */
     public static final String KIE_VERSION = "kie.version";
+    /** Alternate KIE version property string. */
+    public static final String ALT_KIE_VERSION = "version.org.kie";  //$NON-NLS-1$    
     /** Drools bom Group ID. */
     public static final String DROOLS_GROUP_ID = "org.drools"; //$NON-NLS-1$
     /** Drools bom artifact ID. */
@@ -84,6 +86,10 @@ public final class M2EUtils {
     public static final String JBPM_BOM_ARTIFACT_ID = "jbpm-bom"; //$NON-NLS-1$
     /** JBPM version. */
     public static final String JBPM_VERSION = "jbpm.version";
+    /** SwitchYard BPM Component artifact ID. **/
+    public static final String BPM_COMPONENT_ARTIFACT_ID = "switchyard-component-bpm";  //$NON-NLS-1$ 
+    /** SwitchYard Rules Component artifact ID. **/
+    public static final String RULES_COMPONENT_ARTIFACT_ID = "switchyard-component-rules";  //$NON-NLS-1$     
 
     /** src/main/java. */
     public static final String MAVEN_MAIN_JAVA_PATH = "src/main/java"; //$NON-NLS-1$
@@ -390,6 +396,23 @@ public final class M2EUtils {
             // Workaround to bug
             // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335251
             waitJob(decreasingCounter--, monitor);
+        }
+    }
+
+    /**
+     * Hack for SWITCHYARD-2936. This essentially replaces the GroupID for the
+     * BPM or Rules dependency to use the one for the integration pack instead
+     * of the one for the base SwitchYard components.
+     * 
+     * @param dependency Dependency to hack for BPM & Rules components
+     */
+    public static void hackIntegrationPackDependency(final Dependency dependency) {
+        if (dependency != null) {
+            if (dependency.getArtifactId().equalsIgnoreCase(M2EUtils.BPM_COMPONENT_ARTIFACT_ID)
+                    || dependency.getArtifactId().equalsIgnoreCase(M2EUtils.RULES_COMPONENT_ARTIFACT_ID)) {
+                dependency.setGroupId(M2EUtils.INTEGRATION_GROUP_ID);
+            }
+            // otherwise just leave it alone
         }
     }
 
