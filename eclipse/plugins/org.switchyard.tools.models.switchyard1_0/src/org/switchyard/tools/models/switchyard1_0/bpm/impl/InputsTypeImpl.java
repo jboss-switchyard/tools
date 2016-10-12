@@ -19,7 +19,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputMappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.InputsType;
-import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 
 /**
  * <!-- begin-user-doc -->

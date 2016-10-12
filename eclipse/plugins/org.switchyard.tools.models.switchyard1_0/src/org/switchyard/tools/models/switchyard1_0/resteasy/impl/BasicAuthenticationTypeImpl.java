@@ -2,8 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.resteasy.impl;
 
-import java.math.BigInteger;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;

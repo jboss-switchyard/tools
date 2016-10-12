@@ -14,8 +14,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->

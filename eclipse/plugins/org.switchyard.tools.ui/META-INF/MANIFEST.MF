@@ -45,7 +45,7 @@ Require-Bundle: org.eclipse.ui,
  org.fusesource.ide.server.karaf.core,
  org.eclipse.jdt.launching,
  org.jboss.ide.eclipse.as.wtp.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui,
  org.switchyard.tools.ui.actions,

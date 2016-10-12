@@ -6,8 +6,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.bpm.impl;
 
-import java.math.BigInteger;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -19,7 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationImpl;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMOperationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ListenersType;

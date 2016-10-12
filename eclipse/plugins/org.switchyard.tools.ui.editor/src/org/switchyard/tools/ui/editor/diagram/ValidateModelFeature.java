@@ -29,7 +29,6 @@ import org.switchyard.tools.ui.editor.Messages;
  * <p/>
  * Custom feature used for validating the current state of the model.
  */
-@SuppressWarnings("restriction")
 public class ValidateModelFeature extends AbstractCustomFeature {
 
     /**

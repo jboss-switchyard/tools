@@ -24,8 +24,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.soa.sca.core.model.addressing.AddressingFactory;
-import org.eclipse.soa.sca.core.model.addressing.AddressingPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.CInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;

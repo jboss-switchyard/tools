@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.switchyard.tools.ui.editor.tests.swt
 Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: JBoss.org
 Bundle-Activator: org.switchyard.tools.ui.editor.tests.swt.Activator
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
  org.eclipse.swtbot.eclipse.core,
  org.eclipse.swtbot.eclipse.finder,

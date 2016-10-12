@@ -525,7 +525,6 @@ public class TransformsControlComposite extends AbstractModelComposite<org.eclip
         /**
          * Compares the object for sorting
          */
-        @SuppressWarnings("unchecked")
         public int compare(Viewer viewer, Object e1, Object e2) {
             int rc = 0;
             TransformType p1 = (TransformType) e1;

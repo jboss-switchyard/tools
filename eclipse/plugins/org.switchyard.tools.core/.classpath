@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-common.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-config.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-transform.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-validate.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/camel-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-bean.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-bpel.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-bpm.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-http.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-rules.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-soap.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-extensions-wsdl.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-common.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-common-knowledge.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-clojure.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-sca.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-amqp.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-atom.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-file.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-ftp.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-jms.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-jpa.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-mail.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-netty.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-quartz.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-rss.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-sap.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-sql.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-common-camel.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-switchyard.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-test.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-common-camel.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-extensions-java.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jboss-logging.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/switchyard-component-camel-mqtt.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

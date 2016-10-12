@@ -8,8 +8,6 @@ package org.eclipse.soa.sca.core.model.policy.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
