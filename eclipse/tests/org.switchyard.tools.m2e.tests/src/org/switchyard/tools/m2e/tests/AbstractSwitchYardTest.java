@@ -10,7 +10,10 @@
  ************************************************************************************/
 package org.switchyard.tools.m2e.tests;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.m2e.tests.common.JobHelpers;
@@ -26,15 +29,6 @@ import org.eclipse.m2e.tests.common.JobHelpers.IJobMatcher;
 public abstract class AbstractSwitchYardTest extends AbstractMavenProjectTestCase {
 
     private static final int DEFAULT_TIMEOUT_MS = 300 * 1000; // 5 minute max
-
-    /**
-     * Wait for all build jobs with a default timeout.
-     * 
-     * @throws Exception
-     */
-    protected void waitForJobs() throws Exception {
-        waitForJobs(DEFAULT_TIMEOUT_MS);
-    }
 
     /**
      * Wait for all build jobs with a parameterized timeout.
@@ -76,6 +70,20 @@ public abstract class AbstractSwitchYardTest extends AbstractMavenProjectTestCas
         public boolean matches(Job job) {
             return (job instanceof WorkspaceJob) || job.getClass().getName().matches("(.*\\.AutoBuild.*)") //$NON-NLS-1$
                     || job.getClass().getName().endsWith("JREUpdateJob"); //$NON-NLS-1$
+        }
+    }
+
+    protected void waitForJobs() throws OperationCanceledException, InterruptedException {
+        try {
+            Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, new NullProgressMonitor());
+            Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_REFRESH, new NullProgressMonitor());
+            Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_REFRESH, new NullProgressMonitor());
+            Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, new NullProgressMonitor());
+        } catch (InterruptedException ex) {
+            // Workaround to bug
+            // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335251
+            System.out.println("Have a trace in case of infinite loop in AbstractSwitchYardTest.waitJob()");
+            waitForJobs();
         }
     }
 }

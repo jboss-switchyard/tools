@@ -52,7 +52,8 @@ Require-Bundle: org.eclipse.graphiti;bundle-version="[0.10.0,0.14.0)",
  com.google.guava,
  org.jboss.tools.foundation.core,
  org.fusesource.ide.camel.model.service.core,
- org.fusesource.ide.camel.editor
+ org.fusesource.ide.camel.editor,
+ org.fusesource.ide.projecttemplates
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui.editor,

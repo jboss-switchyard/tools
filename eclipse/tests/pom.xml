@@ -13,7 +13,7 @@
   <description>Parent project for SwitchYard Eclipse plugin tests</description>
 
   <properties>
-    <tycho.test.jvmArgs>-XX:MaxPermSize=256m</tycho.test.jvmArgs>
+    <tycho.test.jvmArgs>-XX:MaxMetaspaceSize=256m</tycho.test.jvmArgs>
   </properties>
 
   <modules>
@@ -56,7 +56,7 @@
         </property>
       </activation>
       <properties>
-        <tycho.test.jvmArgs>-Xmx800m -XX:MaxPermSize=256m -XstartOnFirstThread</tycho.test.jvmArgs>
+        <tycho.test.jvmArgs>-Xmx800m -XX:MaxMetaspaceSize=256m -XstartOnFirstThread</tycho.test.jvmArgs>
       </properties>
       <build>
         <pluginManagement>

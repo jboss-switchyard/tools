@@ -12,5 +12,9 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.4.0",
  org.eclipse.wst.common.project.facet.core;bundle-version="1.4.0",
  org.eclipse.m2e.wtp;bundle-version="0.16.0",
  org.eclipse.jdt.core;bundle-version="3.3.0",
- org.switchyard.tools.models.switchyard1_0
+ org.switchyard.tools.models.switchyard1_0,
+ org.eclipse.wst.jsdt.web.core,
+ org.eclipse.jpt.jpa.core,
+ org.eclipse.jst.common.project.facet.core,
+ org.eclipse.wst.common.project.facet.core
 Bundle-Vendor: %Bundle-Vendor
