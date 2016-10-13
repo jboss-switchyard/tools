@@ -172,6 +172,14 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
                 for (ComponentReference componentReference : component.getReference()) {
                     if (reference.getName().equals(componentReference.getName())) {
                         promotedReferences.add(componentReference);
+                        
+                        // fix the promote issue if we can here for SWITCHYARD-2836
+                        if (reference.getPromote().isEmpty()) {
+                            if (reference.getInterface().eClass().getName()
+                                    .equals(componentReference.getInterface().eClass().getName())) {
+                                reference.getPromote().add(componentReference);
+                            }
+                        }
                     }
                 }
             }
