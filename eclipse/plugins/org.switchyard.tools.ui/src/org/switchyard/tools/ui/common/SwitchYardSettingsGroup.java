@@ -12,11 +12,11 @@ package org.switchyard.tools.ui.common;
 
 import static org.switchyard.tools.ui.M2EUtils.resolveSwitchYardVersionRange;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FSW_RUNTIME_ID;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FUSE_INTEG_RUNTIME_VERSION_KEY;
+import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.KIE_RUNTIME_VERSION_KEY;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_FACET;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_ID;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.SWITCHYARD_RUNTIME_VERSION_KEY;
-import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FUSE_INTEG_RUNTIME_VERSION_KEY;
-import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.KIE_RUNTIME_VERSION_KEY;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -228,16 +228,13 @@ public class SwitchYardSettingsGroup {
         _kieVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _kieVersionsList.setLabelProvider(new LabelProvider());
         _kieVersionsList.setContentProvider(ArrayContentProvider.getInstance());
-        _kieVersionsList.getCombo().addSelectionListener(new SelectionListener() {
+        _kieVersionsList.getCombo().addModifyListener(new ModifyListener() {
 
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void modifyText(ModifyEvent event) {
                 fireChangedEvent(this);
             }
 
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
         });
 
         label = new Label(integControls, SWT.NONE);
@@ -247,16 +244,13 @@ public class SwitchYardSettingsGroup {
         _integVersionsList.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
         _integVersionsList.setLabelProvider(new LabelProvider());
         _integVersionsList.setContentProvider(ArrayContentProvider.getInstance());
-        _integVersionsList.getCombo().addSelectionListener(new SelectionListener() {
+        _integVersionsList.getCombo().addModifyListener(new ModifyListener() {
 
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void modifyText(ModifyEvent event) {
                 fireChangedEvent(this);
             }
 
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
         });
 
     }
