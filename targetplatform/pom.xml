@@ -15,13 +15,6 @@
    <packaging>pom</packaging>
    <name>SwitchYard tooling :: Target Platform Generation</name>
 
-   <properties>  
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <tychoVersion>0.23.1</tychoVersion>
-      <tychoExtrasVersion>${tychoVersion}</tychoExtrasVersion>
-      <jboss-tycho-version>0.23.1</jboss-tycho-version>
-   </properties>
-
    <build>
 
       <plugins>
@@ -57,7 +50,7 @@
                            <groupId>org.jboss.tools.integration-stack</groupId>
                            <artifactId>target-platform</artifactId>
                            <version>${jbtis.version}</version>
-                           <classifier>base-ea</classifier>
+                           <classifier>${jbtis.classifier}</classifier>
                         </item>
                      </sourceTargetArtifacts>
 
