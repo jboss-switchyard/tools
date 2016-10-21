@@ -24,7 +24,7 @@
     <tychoExtrasVersion>${tychoVersion}</tychoExtrasVersion>
     
     <!-- Fuse version -->
-    <fuse-tooling-url>http://download.jboss.org/jbosstools/neon/staging/builds/integration-stack/fuse-tooling/9.0.0.CI/</fuse-tooling-url>
+    <fuse-tooling-url>http://download.jboss.org/jbosstools/neon/staging/builds/integration-stack/fuse-tooling/9.1.0.CI/</fuse-tooling-url>
     
     <illegaltransitivereportonly>true</illegaltransitivereportonly>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -52,5 +52,5 @@
     </repository>
   </repositories>
   
-  <version>2.2.0-SNAPSHOT</version>
+  <version>2.3.0-SNAPSHOT</version>
 </project>
