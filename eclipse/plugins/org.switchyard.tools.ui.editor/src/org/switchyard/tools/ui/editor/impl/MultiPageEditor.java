@@ -907,15 +907,18 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private void refresh() {
         Display.getDefault().asyncExec(new Runnable() {
             public void run() {
-                IEditorInput input = getSourceViewer().getEditorInput();
-                if (input instanceof IFileEditorInput) {
-                    IFile oldFile = ((IFileEditorInput)input).getFile();
-                    boolean doesFileExist = oldFile.exists();
-                    if (!doesFileExist) {
-                        // close the editor, it's been deleted
-                        IEditorPart editorPart = ResourceUtil.findEditor(getSite().getPage(), oldFile);
-                        getSite().getPage().closeEditor(editorPart, false);
-                        return;
+                StructuredTextEditor editor = getSourceViewer();
+                if (editor != null) {
+                    IEditorInput input = editor.getEditorInput();
+                    if (input instanceof IFileEditorInput) {
+                        IFile oldFile = ((IFileEditorInput)input).getFile();
+                        boolean doesFileExist = oldFile.exists();
+                        if (!doesFileExist) {
+                            // close the editor, it's been deleted
+                            IEditorPart editorPart = ResourceUtil.findEditor(getSite().getPage(), oldFile);
+                            getSite().getPage().closeEditor(editorPart, false);
+                            return;
+                        }
                     }
                 }
                 if (!_messageTraceCheckbox.isDisposed()) {
