@@ -217,15 +217,19 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
             _mWSDLSocketText.setLayoutData(portGD);
         }
 
+        refreshIs21Model();
+        
         _unwrappedPayloadCheckbox = createCheckbox(composite, Messages.label_unwrappedPayload);
         GridData upChxGD = new GridData(GridData.FILL_HORIZONTAL);
         upChxGD.horizontalSpan = 3;
         _unwrappedPayloadCheckbox.setLayoutData(upChxGD);
+        _unwrappedPayloadCheckbox.setEnabled(is21Model());
         
         _copyNamespacesCheckbox = createCheckbox(composite, Messages.SOAPBindingReferenceComposite_label_copyNamespaces);
         GridData cnChxGD = new GridData(GridData.FILL_HORIZONTAL);
         cnChxGD.horizontalSpan = 3;
         _copyNamespacesCheckbox.setLayoutData(upChxGD);
+        _copyNamespacesCheckbox.setEnabled(is21Model());
 
         _soapHeadersTypeCombo = createLabelAndComboViewer(composite, Messages.label_soapHeadersType, true);
         GridData cmcGD = new GridData(GridData.FILL_HORIZONTAL);

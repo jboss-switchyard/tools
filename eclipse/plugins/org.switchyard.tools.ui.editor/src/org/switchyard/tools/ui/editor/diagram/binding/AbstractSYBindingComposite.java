@@ -15,6 +15,11 @@ package org.switchyard.tools.ui.editor.diagram.binding;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -27,6 +32,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
@@ -44,6 +50,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     private EObject _targetObj = null;
     private boolean _didSomething = false;
     private static int DELAY_DEFAULT = 500;
+    private boolean _is21Model = true;
 
     protected AbstractSYBindingComposite(FormToolkit toolkit) {
         super(toolkit);
@@ -246,4 +253,29 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         }
     }
 
+    protected boolean isVersion21OrHigher() {
+        String version = null;
+        if (getTargetObject() != null) {
+            URI uri = getTargetObject().eResource().getURI();
+            IFile tempFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
+            if (tempFile != null) {
+                IProject project = tempFile.getProject();
+                version = SwitchYardModelUtils.getSwitchYardProjectRuntimeVersion(project);
+            }
+        }
+        // if it's 1.0, 1.1, or 2.0.x ...
+        if (version != null && (version.startsWith("2.0") || version.startsWith("1"))) {
+            return false;
+        }
+        // otherwise it's higher
+        return true;
+    }
+
+    protected boolean is21Model() {
+        return _is21Model;
+    }
+    
+    protected void refreshIs21Model() {
+        _is21Model = isVersion21OrHigher();
+    }
 }
