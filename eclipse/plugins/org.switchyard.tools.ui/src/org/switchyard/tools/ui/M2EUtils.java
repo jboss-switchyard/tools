@@ -12,11 +12,14 @@ package org.switchyard.tools.ui;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.versioning.ArtifactVersion;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
@@ -37,6 +40,7 @@ import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.embedder.IMaven;
 import org.eclipse.m2e.core.internal.embedder.MavenImpl;
 import org.eclipse.m2e.core.ui.internal.UpdateMavenProjectJob;
+import org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard;
 
 /**
  * M2EUtils
@@ -416,6 +420,106 @@ public final class M2EUtils {
         }
     }
 
+    /**
+     * Surf through the list of available artifact versions. 
+     * @param versions list incoming
+     * @return list outgoing
+     */
+    public static Set<ArtifactVersion> filterSwitchYardVersions(List<ArtifactVersion> versions) {
+        final String onePointZero = "1.0"; //$NON-NLS-1$
+        final Set<ArtifactVersion> filtered = new LinkedHashSet<ArtifactVersion>();
+        String previousMajorMinor = null;
+        boolean previousWasSnapshot = false;
+        /* assumes list is sorted lowest to highest. */
+        for (ListIterator<ArtifactVersion> it = versions.listIterator(versions.size()); it.hasPrevious();) {
+            ArtifactVersion next = it.previous();
+            String version = next.toString();
+            String majorMinor = getMajorMinor(version);
+            try {
+                if (previousMajorMinor == null) {
+                    filtered.add(next);
+                    previousWasSnapshot = version.endsWith("-SNAPSHOT"); //$NON-NLS-1$
+                } else if (version.endsWith("-SNAPSHOT")) { //$NON-NLS-1$
+                    // skip snapshots
+                    previousWasSnapshot = true;
+                    continue;
+                } else if (previousMajorMinor.equals(majorMinor) && !previousWasSnapshot) {
+                    // we already have this version
+                    continue;
+                } else {
+                    // don't have this one yet
+                    filtered.add(next);
+                    previousWasSnapshot = false;
+                    if (onePointZero.equals(majorMinor)) {
+                        // nothing before 1.0
+                        break;
+                    }
+                }
+            } finally {
+                previousMajorMinor = majorMinor;
+            }
+        }
+        return filtered;
+    }
+
+    /**
+     * Parse the whole version string to get the Major/Minor versions.
+     * @param version string
+     * @return string
+     */
+    public static String getMajorMinor(final String version) {
+        final int firstDot = version.indexOf('.');
+        final int secondDot = firstDot < 0 ? -1 : version.indexOf('.', firstDot + 1);
+        if (secondDot < 0) {
+            return version;
+        }
+        return version.substring(0, secondDot);
+    }
+    
+    /**
+     * Ensure that the default and previous SwitchYard versions show up in the available versions list.
+     * @param versions list incoming
+     * @return list outgoing
+     */
+    public static Set<ArtifactVersion> ensureDefaultAndPreviousVersionAvailable(final Set<ArtifactVersion> versions) {
+        // add default version
+        final ArtifactVersion defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
+        versions.add(defaultVersion);
+
+        // add previous version as well 
+        final ArtifactVersion previousVersion = parseVersion(NewSwitchYardProjectWizard.PREVIOUS_RUNTIME_VERSION);
+        versions.add(previousVersion);
+        
+        return versions;
+    }
+    
+    /**
+     * Turn a version string back into an ArtifactVersion
+     * @param text for version
+     * @return ArtifactVersion
+     */
+    public static ArtifactVersion parseVersion(final String text) {
+        if (text == null || text.length() == 0) {
+            return null;
+        }
+        return new DefaultArtifactVersion(text);
+    }
+    
+    /**
+     * Get list of available SwitchYard versions from the Maven repository.
+     * @param monitor for progress
+     * @return list of versions
+     */
+    public static Set<ArtifactVersion> populateSwitchYardVersionList(IProgressMonitor monitor) {
+        try {
+            final Set<ArtifactVersion> versions = filterSwitchYardVersions(resolveSwitchYardVersionRange(monitor));
+            return versions;
+        } catch (CoreException e) {
+            final Set<ArtifactVersion> versions = new LinkedHashSet<ArtifactVersion>();
+            return versions;
+        }        
+    }
+    
     private M2EUtils() {
     }
 

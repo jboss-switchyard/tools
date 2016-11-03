@@ -16,7 +16,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.eclipse.core.resources.IFile;
@@ -33,6 +37,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
@@ -353,4 +358,14 @@ public class CreateSwitchYardProjectTest extends AbstractSwitchYardTest {
         
     }
     
+    public void testVersionsListHasDefaultAndPreviousVersions() throws Exception {    
+        Set<ArtifactVersion> versions = new LinkedHashSet<ArtifactVersion>();
+        versions = M2EUtils.ensureDefaultAndPreviousVersionAvailable(versions);
+
+        final ArtifactVersion defaultVersion = M2EUtils.parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
+        final ArtifactVersion previousVersion = M2EUtils.parseVersion(NewSwitchYardProjectWizard.PREVIOUS_RUNTIME_VERSION);
+        
+        assertTrue("Versions list missing default SwitchYard Version", versions.contains(defaultVersion));
+        assertTrue("Versions list missing previous SwitchYard Version", versions.contains(previousVersion));
+    }
 }

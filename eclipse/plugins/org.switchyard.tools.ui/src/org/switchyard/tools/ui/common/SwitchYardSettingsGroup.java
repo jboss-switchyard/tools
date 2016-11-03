@@ -10,7 +10,6 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.common;
 
-import static org.switchyard.tools.ui.M2EUtils.resolveSwitchYardVersionRange;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FSW_RUNTIME_ID;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.FUSE_INTEG_RUNTIME_VERSION_KEY;
 import static org.switchyard.tools.ui.facets.ISwitchYardFacetConstants.KIE_RUNTIME_VERSION_KEY;
@@ -26,14 +25,12 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.apache.maven.artifact.versioning.ArtifactVersion;
-import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -618,7 +615,7 @@ public class SwitchYardSettingsGroup {
     }
 
     private ArtifactVersion getRuntimeVersion(IRuntimeComponent component) {
-        return parseVersion(component.getProperty(SWITCHYARD_RUNTIME_VERSION_KEY));
+        return M2EUtils.parseVersion(component.getProperty(SWITCHYARD_RUNTIME_VERSION_KEY));
     }
 
     /**
@@ -626,7 +623,7 @@ public class SwitchYardSettingsGroup {
      * @return ArtifactVersion for KIE version in component.
      */
     public ArtifactVersion getKieVersion(IRuntimeComponent component) {
-        return parseVersion(component.getProperty(KIE_RUNTIME_VERSION_KEY));
+        return M2EUtils.parseVersion(component.getProperty(KIE_RUNTIME_VERSION_KEY));
     }
 
     /**
@@ -634,7 +631,7 @@ public class SwitchYardSettingsGroup {
      * @return ArtifactVersion for Integration version in component.
      */
     public ArtifactVersion getIntegVersion(IRuntimeComponent component) {
-        return parseVersion(component.getProperty(FUSE_INTEG_RUNTIME_VERSION_KEY));
+        return M2EUtils.parseVersion(component.getProperty(FUSE_INTEG_RUNTIME_VERSION_KEY));
     }
     
     /**
@@ -754,12 +751,12 @@ public class SwitchYardSettingsGroup {
     @SuppressWarnings("unchecked")
     private void populateKieVersionsList(IProgressMonitor monitor) {
         try {
-            _availableKieVersions = filterSwitchYardVersions(M2EUtils.resolveKieVersionRange(monitor));
+            _availableKieVersions = M2EUtils.filterSwitchYardVersions(M2EUtils.resolveKieVersionRange(monitor));
         } catch (Exception e) {
             _availableKieVersions = new LinkedHashSet<ArtifactVersion>();
         }
         // add default version
-        final ArtifactVersion defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_KIE_VERSION);
+        final ArtifactVersion defaultVersion = M2EUtils.parseVersion(NewSwitchYardProjectWizard.DEFAULT_KIE_VERSION);
         _availableKieVersions.add(defaultVersion);
 
         // add known runtime versions
@@ -778,12 +775,12 @@ public class SwitchYardSettingsGroup {
     @SuppressWarnings("unchecked")
     private void populateIntegVersionsList(IProgressMonitor monitor) {
         try {
-            _availableIntegVersions = filterSwitchYardVersions(M2EUtils.resolveFuseIntegrationVersionRange(monitor));
+            _availableIntegVersions = M2EUtils.filterSwitchYardVersions(M2EUtils.resolveFuseIntegrationVersionRange(monitor));
         } catch (Exception e) {
             _availableIntegVersions = new LinkedHashSet<ArtifactVersion>();
         }
         // add default version
-        final ArtifactVersion defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_INTEG_VERSION);
+        final ArtifactVersion defaultVersion = M2EUtils.parseVersion(NewSwitchYardProjectWizard.DEFAULT_INTEG_VERSION);
         _availableIntegVersions.add(defaultVersion);
 
         // add known runtime versions
@@ -802,13 +799,13 @@ public class SwitchYardSettingsGroup {
     @SuppressWarnings("unchecked")
     private void populateRuntimeVersionsList(IProgressMonitor monitor) {
         try {
-            _availableVersions = filterSwitchYardVersions(resolveSwitchYardVersionRange(monitor));
+            _availableVersions = M2EUtils.populateSwitchYardVersionList(monitor);
         } catch (Exception e) {
             _availableVersions = new LinkedHashSet<ArtifactVersion>();
         }
-        // add default version
-        final ArtifactVersion defaultVersion = parseVersion(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION);
-        _availableVersions.add(defaultVersion);
+        
+        // make sure that the current default and previous defaults are set as well
+        _availableVersions = M2EUtils.ensureDefaultAndPreviousVersionAvailable(_availableVersions);
 
         // add known runtime versions
         for (Object obj : (List<Object>) _runtimesList.getInput()) {
@@ -821,52 +818,6 @@ public class SwitchYardSettingsGroup {
             }
         }
         _runtimeVersionsList.setInput(_availableVersions);
-    }
-
-    private Set<ArtifactVersion> filterSwitchYardVersions(List<ArtifactVersion> versions) {
-        final String onePointZero = "1.0"; //$NON-NLS-1$
-        final Set<ArtifactVersion> filtered = new LinkedHashSet<ArtifactVersion>();
-        String previousMajorMinor = null;
-        boolean previousWasSnapshot = false;
-        /* assumes list is sorted lowest to highest. */
-        for (ListIterator<ArtifactVersion> it = versions.listIterator(versions.size()); it.hasPrevious();) {
-            ArtifactVersion next = it.previous();
-            String version = next.toString();
-            String majorMinor = getMajorMinor(version);
-            try {
-                if (previousMajorMinor == null) {
-                    filtered.add(next);
-                    previousWasSnapshot = version.endsWith("-SNAPSHOT"); //$NON-NLS-1$
-                } else if (version.endsWith("-SNAPSHOT")) { //$NON-NLS-1$
-                    // skip snapshots
-                    previousWasSnapshot = true;
-                    continue;
-                } else if (previousMajorMinor.equals(majorMinor) && !previousWasSnapshot) {
-                    // we already have this version
-                    continue;
-                } else {
-                    // don't have this one yet
-                    filtered.add(next);
-                    previousWasSnapshot = false;
-                    if (onePointZero.equals(majorMinor)) {
-                        // nothing before 1.0
-                        break;
-                    }
-                }
-            } finally {
-                previousMajorMinor = majorMinor;
-            }
-        }
-        return filtered;
-    }
-
-    private String getMajorMinor(final String version) {
-        final int firstDot = version.indexOf('.');
-        final int secondDot = firstDot < 0 ? -1 : version.indexOf('.', firstDot + 1);
-        if (secondDot < 0) {
-            return version;
-        }
-        return version.substring(0, secondDot);
     }
 
     private void populateComponentsTable() {
@@ -897,13 +848,6 @@ public class SwitchYardSettingsGroup {
                 _componentsTable.setGrayChecked(parent, true);
             }
         }
-    }
-
-    private ArtifactVersion parseVersion(final String text) {
-        if (text == null || text.length() == 0) {
-            return null;
-        }
-        return new DefaultArtifactVersion(text);
     }
 
     private void repopulateRuntimesList() {
@@ -942,7 +886,7 @@ public class SwitchYardSettingsGroup {
         protected List<?> getSelectionFromWidget() {
             if (getCombo().getSelectionIndex() < 0) {
                 List<ArtifactVersion> selected = new ArrayList<ArtifactVersion>();
-                ArtifactVersion version = parseVersion(getCombo().getText());
+                ArtifactVersion version = M2EUtils.parseVersion(getCombo().getText());
                 if (version != null) {
                     selected.add(version);
                 }
