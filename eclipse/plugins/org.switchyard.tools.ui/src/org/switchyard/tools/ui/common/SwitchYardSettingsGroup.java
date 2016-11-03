@@ -591,6 +591,9 @@ public class SwitchYardSettingsGroup {
             final ArtifactVersion version = getRuntimeVersion((IRuntimeComponent) selection.getFirstElement());
             if (version != null) {
                 _runtimeVersionsList.setSelection(new StructuredSelection(version));
+                
+                // to address SWITCHYARD-2968, force the text for Mac OS/X or doesn't get set on selection
+                _runtimeVersionsList.getCombo().setText(version.toString());
             }
             _runtimeVersionsList.getCombo().setEnabled(false);
 

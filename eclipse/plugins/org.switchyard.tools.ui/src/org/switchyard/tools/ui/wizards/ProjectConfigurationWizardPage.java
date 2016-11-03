@@ -296,7 +296,7 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 boolean isKaraf = isKarafRuntime();
                 _useSwitchYardDependencyBOMCheckbox.setEnabled(testRuntimeVersion);
                 _doesUseSwitchYardDependencyBOM = testRuntimeVersion;
-                _useSwitchYardDependencyBOMCheckbox.setSelection(_doesUseSwitchYardDependencyBOM & testConfigVersion);
+                _useSwitchYardDependencyBOMCheckbox.setSelection(_doesUseSwitchYardDependencyBOM && testConfigVersion);
                 _isBundleCheckbox.setSelection(isKaraf);
                 _isBundled = isKaraf;
 
