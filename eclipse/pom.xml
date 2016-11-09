@@ -94,6 +94,15 @@
         <version>${tychoVersion}</version>
         <configuration>
           <resolver>p2</resolver>
+          <dependency-resolution>
+			<extraRequirements>
+				<requirement>
+					<type>p2-installable-unit</type>
+					<id>org.eclipse.osgi.compatibility.state</id>
+					<versionRange>0.0.0</versionRange>
+				</requirement>
+			</extraRequirements>
+		  </dependency-resolution>
           <target>
             <artifact>
               <groupId>org.jboss.tools.integration-stack</groupId>
