@@ -10,13 +10,14 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.fusesource.ide.camel.editor.features.create.ext.CreateEndpointFigureFeature;
 import org.fusesource.ide.camel.editor.provider.ext.ICustomPaletteEntry;
+import org.fusesource.ide.camel.model.service.core.catalog.CamelModelFactory;
 import org.fusesource.ide.camel.model.service.core.catalog.Dependency;
 import org.switchyard.tools.ui.editor.Messages;
 
@@ -35,12 +36,12 @@ public class CamelComponentPaletteEntry implements ICustomPaletteEntry {
     public ICreateFeature newCreateFeature(IFeatureProvider fp) {
         return new CreateEndpointFigureFeature(fp, Messages.CamelComponentPaletteEntry_SwitchYard_Camel_Palette_title,
                 Messages.CamelComponentPaletteEntry_SwitchYard_Camel_Palette_tooltip, DEFAULT_URI,
-                getRequiredDependencies());
+                getRequiredDependencies(null));
     }
 
     @Override
-    public List<Dependency> getRequiredDependencies() {
-        return new ArrayList<Dependency>();
+    public List<Dependency> getRequiredDependencies(String runtimeProvider) {
+        return Collections.emptyList();
     }
 
     @Override
@@ -51,6 +52,11 @@ public class CamelComponentPaletteEntry implements ICustomPaletteEntry {
     @Override
     public String getProtocol() {
         return PROTOCOL;
+    }
+    
+    @Override
+    public boolean isValid(String runtimeProvider) {
+    	return CamelModelFactory.RUNTIME_PROVIDER_KARAF.equals(runtimeProvider);
     }
 
 }
