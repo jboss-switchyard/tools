@@ -615,16 +615,20 @@ public class SOAPBindingServiceComposite extends AbstractSYBindingComposite {
                     	msgComposer.setUnwrapped(oldMsgComposer.isUnwrapped());
                     }
                     boolean copyNamespacesChanged = true;
-                    if (oldMsgComposer == null && copyNamespaces != null) {
-                    	copyNamespacesChanged = true;
-                    } else if (oldMsgComposer != null && oldMsgComposer.isCopyNamespaces() == copyNamespaces.booleanValue()) {
-                    	copyNamespacesChanged = false;
-                    }
-                    if (copyNamespaces != null && copyNamespaces.booleanValue() && copyNamespacesChanged) {
-                    	// if we have a change, push it up to the message composer
-                		msgComposer.setCopyNamespaces(copyNamespaces.booleanValue());
-                    } else if (oldMsgComposer != null && !copyNamespacesChanged) {
-                    	msgComposer.setCopyNamespaces(oldMsgComposer.isCopyNamespaces());
+                    if (is21Model()) {
+	                    if (oldMsgComposer == null && copyNamespaces != null) {
+	                    	copyNamespacesChanged = true;
+	                    } else if (oldMsgComposer != null && oldMsgComposer.isCopyNamespaces() == copyNamespaces.booleanValue()) {
+	                    	copyNamespacesChanged = false;
+	                    }
+	                    if (copyNamespaces != null && copyNamespaces.booleanValue() && copyNamespacesChanged) {
+	                    	// if we have a change, push it up to the message composer
+	                		msgComposer.setCopyNamespaces(copyNamespaces.booleanValue());
+	                    } else if (oldMsgComposer != null && !copyNamespacesChanged) {
+	                    	msgComposer.setCopyNamespaces(oldMsgComposer.isCopyNamespaces());
+	                    }
+                    } else {
+                    	msgComposer.unsetCopyNamespaces();
                     }
                     return msgComposer;
                 }
