@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012-2014 Red Hat, Inc. 
+ * Copyright (c) 2012-2017 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -26,7 +26,7 @@ import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
-import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.swt.DisplayRealm;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -65,7 +65,10 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
     private Text _authHostText;
     private Text _authPortText;
     private Text _authDomainText;
-    private WritableValue _bindingValue;
+    private WritableValue<HTTPBindingType> _bindingValue;
+
+    protected static final String BASIC_AUTH = "Basic";
+    protected static final String NTLM_AUTH = "NTLM";
 
     HttpAuthenticationComposite(FormToolkit toolkit) {
         super(toolkit);
@@ -99,7 +102,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         _authTypeCombo = createLabelAndComboViewer(composite, Messages.label_authenticationType, true);
         _authTypeCombo.setContentProvider(ArrayContentProvider.getInstance());
         _authTypeCombo.setLabelProvider(new LabelProvider());
-        String[] authTypes = new String[] {"Basic", "NTLM"};
+        String[] authTypes = new String[] {BASIC_AUTH, NTLM_AUTH};
         _authTypeCombo.setInput(authTypes);
 
         _authUserText = createLabelAndText(composite, Messages.label_user);
@@ -112,6 +115,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         return composite;
     }
     
+    @Override
     protected void handleModify(Control control) {
         setHasChanged(false);
         setDidSomething(true);
@@ -120,6 +124,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
     /**
      * @return panel
      */
+    @Override
     public Composite getPanel() {
         return _panel;
     }
@@ -127,6 +132,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
     /**
      * @param switchYardBindingType binding
      */
+    @Override
     public void setBinding(Binding switchYardBindingType) {
         super.setBinding(switchYardBindingType);
         if (switchYardBindingType instanceof HTTPBindingType) {
@@ -138,26 +144,28 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         }
     }
 
+    @Override
     protected void handleUndo(Control control) {
         if (_binding != null) {
             super.handleUndo(control);
         }
     }
 
-    class AuthComputedValue extends ComputedValue {
+    class AuthComputedValue extends ComputedValue<Object> {
 
-        private IObservableValue _authType = null;
-        private IObservableValue _basicAuthUser = null;
-        private IObservableValue _basicAuthPwd = null;
-        private IObservableValue _basicAuthRealm = null;
-        private IObservableValue _basicAuthHost = null;
-        private IObservableValue _basicAuthPort = null;
-        private IObservableValue _ntlmAuthDomain = null;
+        private IObservableValue<String> _authType = null;
+        private IObservableValue<String> _basicAuthUser = null;
+        private IObservableValue<String> _basicAuthPwd = null;
+        private IObservableValue<String> _basicAuthRealm = null;
+        private IObservableValue<String> _basicAuthHost = null;
+        private IObservableValue<String> _basicAuthPort = null;
+        private IObservableValue<String> _ntlmAuthDomain = null;
 
         public AuthComputedValue(
-                IObservableValue authType, IObservableValue user, IObservableValue pwd,
-                IObservableValue authrealm, IObservableValue host, IObservableValue port,
-                IObservableValue domain) {
+                IObservableValue<String> authType, IObservableValue<String> user, 
+                IObservableValue<String> pwd, IObservableValue<String> authrealm, 
+                IObservableValue<String> host, IObservableValue<String> port,
+                IObservableValue<String> domain) {
             super();
             this._authType = authType; 
             this._basicAuthUser = user; 
@@ -170,13 +178,13 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         
         @Override
         protected Object calculate() {
-            final String authTypeStr = (String) _authType.getValue();
-            final String user = (String) _basicAuthUser.getValue();
-            final String pwd = (String) _basicAuthPwd.getValue();
-            final String realm = (String) _basicAuthRealm.getValue();
-            final String host = (String) _basicAuthHost.getValue();
-            final String port = (String) _basicAuthPort.getValue();
-            final String domain = (String) _ntlmAuthDomain.getValue();
+            final String authTypeStr = _authType.getValue();
+            final String user = _basicAuthUser.getValue();
+            final String pwd = _basicAuthPwd.getValue();
+            final String realm = _basicAuthRealm.getValue();
+            final String host = _basicAuthHost.getValue();
+            final String port = _basicAuthPort.getValue();
+            final String domain = _ntlmAuthDomain.getValue();
             
             boolean isBasic = false;
             boolean isNtlm = false;
@@ -185,7 +193,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                 return null;
             }
             // "Basic", "NTLM"
-            if (authTypeStr.equalsIgnoreCase("Basic")) {
+            if (authTypeStr.equalsIgnoreCase(BASIC_AUTH)) {
                 isBasic = true;
                 if (user != null || pwd != null || realm != null || host != null || port != null) {
                     final BasicAuthenticationType basicAuth =
@@ -201,7 +209,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                     updateControls(isBasic, isNtlm);
                     return null;
                 }
-            } else if (authTypeStr.equalsIgnoreCase("NTLM")) {
+            } else if (authTypeStr.equalsIgnoreCase(NTLM_AUTH)) {
                 isNtlm = true;
                 if (user != null || pwd != null || realm != null || host != null || port != null || domain != null) {
                     final NTLMAuthenticationType ntlmAuth =
@@ -222,13 +230,14 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
             return null;
         }
 
+        @Override
         protected void doSetValue(Object value) {
             if (value instanceof NTLMAuthenticationType) {
                 _authType.setValue("NTLM");
                 final NTLMAuthenticationType ntlmAuth = (NTLMAuthenticationType) value;
                 _basicAuthHost.setValue(ntlmAuth.getHost());
                 _basicAuthPwd.setValue(ntlmAuth.getPassword());
-                _basicAuthPort.setValue(ntlmAuth.getPort());
+                _basicAuthPort.setValue(ntlmAuth.getPort().toString());
                 _basicAuthUser.setValue(ntlmAuth.getUser());
                 _basicAuthRealm.setValue(ntlmAuth.getRealm());
                 _ntlmAuthDomain.setValue(ntlmAuth.getDomain());
@@ -237,7 +246,7 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
                 _authType.setValue("Basic");
                 _basicAuthHost.setValue(basicAuth.getHost());
                 _basicAuthPwd.setValue(basicAuth.getPassword());
-                _basicAuthPort.setValue(basicAuth.getPort());
+                _basicAuthPort.setValue(basicAuth.getPort().toString());
                 _basicAuthUser.setValue(basicAuth.getUser());
                 _basicAuthRealm.setValue(basicAuth.getRealm());
                 _ntlmAuthDomain.setValue(null);
@@ -266,48 +275,48 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
     
     private void bindControls(final DataBindingContext context) {
         final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
-        final Realm realm = SWTObservables.getRealm(_authTypeCombo.getCombo().getDisplay());
+        final Realm realm = DisplayRealm.getRealm(_authTypeCombo.getCombo().getDisplay());
 
-        _bindingValue = new WritableValue(realm, null, HTTPBindingType.class);
-        final IObservableValue authType = new WritableValue(realm, null, String.class);
-        final IObservableValue basicAuthUser = new WritableValue(realm, null, String.class);
-        final IObservableValue basicAuthPwd = new WritableValue(realm, null, String.class);
-        final IObservableValue basicAuthRealm = new WritableValue(realm, null, String.class);
-        final IObservableValue basicAuthHost = new WritableValue(realm, null, String.class);
-        final IObservableValue basicAuthPort = new WritableValue(realm, null, String.class);
-        final IObservableValue ntlmAuthDomain = new WritableValue(realm, null, String.class);
+        _bindingValue = new WritableValue<>(realm, null, HTTPBindingType.class);
+        final IObservableValue<String> authType = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> basicAuthUser = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> basicAuthPwd = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> basicAuthRealm = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> basicAuthHost = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> basicAuthPort = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> ntlmAuthDomain = new WritableValue<>(realm, null, String.class);
 
 
         org.eclipse.core.databinding.Binding binding = 
-                context.bindValue(SWTObservables.observeSelection(_authTypeCombo.getCombo()), authType);
+                context.bindValue(observeSelection(_authTypeCombo.getCombo()), authType);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_authUserText, SWT.Modify), basicAuthUser,
+                context.bindValue(observeText(_authUserText, SWT.Modify), basicAuthUser,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_authPasswordText, SWT.Modify), basicAuthPwd,
+                context.bindValue(observeText(_authPasswordText, SWT.Modify), basicAuthPwd,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_authRealmText, SWT.Modify), basicAuthRealm,
+                context.bindValue(observeText(_authRealmText, SWT.Modify), basicAuthRealm,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_authHostText, SWT.Modify), basicAuthHost,
+                context.bindValue(observeText(_authHostText, SWT.Modify), basicAuthHost,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_authPortText, SWT.Modify), basicAuthPort,
+                context.bindValue(observeText(_authPortText, SWT.Modify), basicAuthPort,
                     new EMFUpdateValueStrategyNullForEmptyString("", 
                             UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
                                     new EscapedPropertyIntegerValidator("Port must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
@@ -315,21 +324,22 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_authDomainText, SWT.Modify), ntlmAuthDomain,
+                context.bindValue(observeText(_authDomainText, SWT.Modify), ntlmAuthDomain,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        final IObservableValue computed = new AuthComputedValue(authType, basicAuthUser, basicAuthPwd, basicAuthRealm, basicAuthHost, basicAuthPort, ntlmAuthDomain);
-        final IObservableValue ntlmValue = ObservablesUtil.observeDetailValue(domain, _bindingValue, HttpPackage.Literals.HTTP_BINDING_TYPE__NTLM);
-        final IObservableValue basicValue = ObservablesUtil.observeDetailValue(domain, _bindingValue, HttpPackage.Literals.HTTP_BINDING_TYPE__BASIC);
+        final IObservableValue<?> computed = new AuthComputedValue(authType, basicAuthUser, basicAuthPwd, basicAuthRealm, basicAuthHost, basicAuthPort, ntlmAuthDomain);
+        final IObservableValue<String> ntlmValue = (IObservableValue<String>) ObservablesUtil.observeDetailValue(domain, _bindingValue, HttpPackage.Literals.HTTP_BINDING_TYPE__NTLM);
+        final IObservableValue<String> basicValue = (IObservableValue<String>) ObservablesUtil.observeDetailValue(domain, _bindingValue, HttpPackage.Literals.HTTP_BINDING_TYPE__BASIC);
         final org.eclipse.core.databinding.Binding ntlmBinding = context.bindValue(computed, ntlmValue, new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST), new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST));
         final org.eclipse.core.databinding.Binding basicBinding = context.bindValue(computed, basicValue, new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST), new EMFUpdateValueStrategy(UpdateValueStrategy.POLICY_ON_REQUEST));
 
-        final IValueChangeListener changeListener = new IValueChangeListener() {
+        final IValueChangeListener<Object> changeListener = new IValueChangeListener<Object>() {
             private boolean _updating = false;
             
-            public void handleValueChange(ValueChangeEvent event) {
+            @Override
+            public void handleValueChange(ValueChangeEvent<?> event) {
                 if (!_updating) {
                     _updating = true;
                     if (event.getSource() == ntlmValue || event.getSource() == basicValue) {
@@ -356,8 +366,9 @@ public class HttpAuthenticationComposite extends AbstractSYBindingComposite {
           };
 
           IDisposeListener disposeListener = new IDisposeListener() {
-            public void handleDispose(DisposeEvent event) {
-              ((IObservableValue) event.getSource()).removeValueChangeListener(changeListener);
+        	  @Override
+        	  public void handleDispose(DisposeEvent event) {
+        		  ((IObservableValue<?>) event.getSource()).removeValueChangeListener(changeListener);
             }
           };
 
