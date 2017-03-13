@@ -15,7 +15,7 @@
   <properties>
     <!-- Just in case the Eclipse project version does not match the parent. -->
     <version.switchyard.runtime>2.1.0.Final</version.switchyard.runtime>
-    <jbtis.version>4.4.1.Final</jbtis.version>
+    <jbtis.version>4.4.2.Final</jbtis.version>
     <jbtis.classifier>base</jbtis.classifier> <!-- base-ea -->
     
     <!-- Tycho versions -->
