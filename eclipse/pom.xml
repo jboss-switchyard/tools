@@ -29,7 +29,7 @@
   <repositories>
     <repository>
       <id>bpmn2-editor-update-site</id>
-      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/1.3.1.Final_1.3.0.Final_neon/</url>
+      <url>http://download.jboss.org/jbosstools/updates/requirements/bpmn2-modeler/oxygen/1.4.0.Final_1.3.1.Final_oxygen/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>

@@ -20,9 +20,9 @@
    </license>
 
    <requires>
-      <import feature="org.switchyard.tools.feature" version="2.2.0.qualifier"/>
-      <import feature="org.eclipse.bpmn2.modeler" version="1.3.0" match="equivalent"/>
-      <import feature="org.eclipse.bpmn2.modeler.runtime.jboss" version="1.3.0" match="equivalent"/>
+      <import feature="org.switchyard.tools.feature" version="2.4.0.qualifier"/>
+      <import feature="org.eclipse.bpmn2.modeler" version="1.3.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.bpmn2.modeler.runtime.jboss" version="1.3.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
