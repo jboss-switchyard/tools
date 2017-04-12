@@ -15,7 +15,7 @@
   <properties>
     <!-- Just in case the Eclipse project version does not match the parent. -->
     <version.switchyard.runtime>2.1.0.Final</version.switchyard.runtime>
-    <jbtis.version>4.4.1.Final</jbtis.version>
+    <jbtis.version>4.4.2.Final</jbtis.version>
     <jbtis.classifier>base</jbtis.classifier> <!-- base-ea -->
     
     <!-- Tycho versions -->
@@ -24,7 +24,7 @@
     <tychoExtrasVersion>${tychoVersion}</tychoExtrasVersion>
     
     <!-- Fuse version -->
-    <fuse-tooling-url>http://download.jboss.org/jbosstools/neon/staging/builds/integration-stack/fuse-tooling/9.1.0.CI/</fuse-tooling-url>
+    <fuse-tooling-url>http://download.jboss.org/jbosstools/neon/staging/builds/integration-stack/fuse-tooling/9.2.0.CI/</fuse-tooling-url>
     
     <illegaltransitivereportonly>true</illegaltransitivereportonly>
     <maven.compiler.source>1.8</maven.compiler.source>
