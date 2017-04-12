@@ -19,7 +19,7 @@
     <update.site.name>SwitchYard</update.site.name>
     <update.site.version>${qualifiedVersion}</update.site.version>
     <update.site.description>Continuous Integration</update.site.description>
-    <target.eclipse.version>4.6 (Neon)</target.eclipse.version>
+    <target.eclipse.version>4.7 (Oxygen)</target.eclipse.version>
   </properties>
 
   <profiles>  
@@ -87,7 +87,7 @@
         <deployScript>${deployScriptDir}/publish/rsync.sh</deployScript>
         <deploySourceFolder>${project.build.directory}/repository</deploySourceFolder>
         <deployDestination>tools@filemgmt.jboss.org:downloads_htdocs/jbosstools</deployDestination>
-        <deployTargetFolder>neon/snapshots/builds/switchyard-tools/${BUILD_ID}-B${BUILD_NUMBER}/all/repo/</deployTargetFolder>
+        <deployTargetFolder>oxygen/snapshots/builds/switchyard-tools/${BUILD_ID}-B${BUILD_NUMBER}/all/repo/</deployTargetFolder>
         <maven.deploy.skip>false</maven.deploy.skip>
       </properties>
       <build>
@@ -154,7 +154,7 @@
                     <arg>-s</arg>
                     <arg>${project.build.directory}/repository</arg>
                     <arg>-t</arg>
-                    <arg>neon/${BUILD_TYPE}/updates/integration-stack/switchyard-tools/${jbosstools_site_stream}/</arg>
+                    <arg>oxygen/${BUILD_TYPE}/updates/integration-stack/switchyard-tools/${jbosstools_site_stream}/</arg>
                   </arguments>
                 </configuration>
               </execution>
