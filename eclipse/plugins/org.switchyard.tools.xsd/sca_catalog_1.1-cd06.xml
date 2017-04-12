@@ -20,7 +20,4 @@
   <public publicId="http://www.w3.org/2005/08/addressing" uri="ws-addr.xsd" />
   <systemSuffix systemIdSuffix="www.w3.org/2006/03/addressing/ws-addr.xsd" uri="ws-addr.xsd" />
 
-  <public publicId="http://camel.apache.org/schema/spring" uri="camel-spring.xsd" />
-  <systemSuffix systemIdSuffix="camel.apache.org/schema/spring/camel-spring.xsd" uri="camel-spring.xsd" />
-
 </catalog>
