@@ -37,7 +37,7 @@ public final class ObservablesUtil {
      * @param eStructuralFeature the structural feature to observe
      * @return a new observable value
      */
-    public static IObservableValue observeDetailValue(EditingDomain domain, IObservableValue value,
+    public static IObservableValue<?> observeDetailValue(EditingDomain domain, IObservableValue<?> value,
             EStructuralFeature eStructuralFeature) {
         return observeDetailValue(domain, value, FeaturePath.fromList(eStructuralFeature));
     }
@@ -51,7 +51,7 @@ public final class ObservablesUtil {
      * @param featurePath the path to the feature to observe
      * @return a new observable value
      */
-    public static IObservableValue observeDetailValue(EditingDomain domain, IObservableValue value,
+    public static IObservableValue<?> observeDetailValue(EditingDomain domain, IObservableValue<?> value,
             FeaturePath featurePath) {
         return domain == null ? EMFProperties.value(featurePath).observeDetail(value) : EMFEditProperties.value(domain,
                 featurePath).observeDetail(value);

@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012-2014 Red Hat, Inc. 
+ * Copyright (c) 2012-2017 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -21,7 +21,7 @@ import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
-import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.swt.DisplayRealm;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -53,7 +53,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
     private Text _proxyPortText;
     private Text _proxyUserText;
     private Text _proxyPasswordText;
-    private WritableValue _bindingValue;
+    private WritableValue<RESTBindingType> _bindingValue;
 
     ResteasyProxyComposite(FormToolkit toolkit) {
         super(toolkit);
@@ -92,6 +92,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
         return composite;
     }
 
+    @Override
     protected void handleModify(Control control) {
         setHasChanged(false);
         setDidSomething(true);
@@ -100,6 +101,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
     /**
      * @return panel
      */
+    @Override
     public Composite getPanel() {
         return _panel;
     }
@@ -107,6 +109,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
     /**
      * @param switchYardBindingType binding
      */
+    @Override
     public void setBinding(Binding switchYardBindingType) {
         super.setBinding(switchYardBindingType);
         if (switchYardBindingType instanceof RESTBindingType) {
@@ -118,6 +121,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
         }
     }
 
+    @Override
     protected void handleUndo(Control control) {
         if (_binding != null) {
             super.handleUndo(control);
@@ -126,28 +130,28 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
 
     private void bindControls(final DataBindingContext context) {
         final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
-        final Realm realm = SWTObservables.getRealm(_proxyHostText.getDisplay());
+        final Realm realm = DisplayRealm.getRealm(_proxyHostText.getDisplay());
 
-        _bindingValue = new WritableValue(realm, null, RESTBindingType.class);
-        final IObservableValue hostValue = new WritableValue(realm, null, String.class);
-        final IObservableValue passwordValue = new WritableValue(realm, null, String.class);
-        final IObservableValue portValue = new WritableValue(realm, null, String.class);
-        final IObservableValue userValue = new WritableValue(realm, null, String.class);
+        _bindingValue = new WritableValue<>(realm, null, RESTBindingType.class);
+        final IObservableValue<String> hostValue = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> passwordValue = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> portValue = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> userValue = new WritableValue<>(realm, null, String.class);
 
         org.eclipse.core.databinding.Binding binding = 
-                context.bindValue(SWTObservables.observeText(_proxyHostText, SWT.Modify), hostValue,
+                context.bindValue(observeText(_proxyHostText, SWT.Modify), hostValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_proxyPasswordText, SWT.Modify), passwordValue,
+                context.bindValue(observeText(_proxyPasswordText, SWT.Modify), passwordValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_proxyPortText, SWT.Modify), portValue,
+                context.bindValue(observeText(_proxyPortText, SWT.Modify), portValue,
                     new EMFUpdateValueStrategyNullForEmptyString("", 
                             UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
                                     new EscapedPropertyIntegerValidator("Port must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
@@ -155,18 +159,18 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_proxyUserText, SWT.Modify), userValue,
+                context.bindValue(observeText(_proxyUserText, SWT.Modify), userValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        ComputedValue computedProxy = new ComputedValue() {
+        ComputedValue<?> computedProxy = new ComputedValue<Object>() {
             @Override
             protected Object calculate() {
-                final String host = (String) hostValue.getValue();
-                final String pwd = (String) passwordValue.getValue();
-                final String port = (String) portValue.getValue();
-                final String user = (String) userValue.getValue();
+                final String host = hostValue.getValue();
+                final String pwd = passwordValue.getValue();
+                final String port = portValue.getValue();
+                final String user = userValue.getValue();
                 if (host != null || pwd != null || port != null || user != null) {
                     final ProxyType proxy = ResteasyFactory.eINSTANCE
                             .createProxyType();
@@ -179,12 +183,13 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
                 return null;
             }
 
+            @Override
             protected void doSetValue(Object value) {
                 if (value instanceof ProxyType) {
                     final ProxyType proxy = (ProxyType) value;
                     hostValue.setValue(proxy.getHost());
                     passwordValue.setValue(proxy.getPassword());
-                    portValue.setValue(proxy.getPort());
+                    portValue.setValue(proxy.getPort().toString());
                     userValue.setValue(proxy.getUser());
                 } else {
                     hostValue.setValue(null);
@@ -197,7 +202,7 @@ public class ResteasyProxyComposite extends AbstractSYBindingComposite {
         };
         
         // now bind the proxy into the binding
-        binding = context.bindValue(
+        context.bindValue(
                 computedProxy,
                 ObservablesUtil.observeDetailValue(domain, _bindingValue, 
                         ResteasyPackage.Literals.REST_BINDING_TYPE__PROXY));

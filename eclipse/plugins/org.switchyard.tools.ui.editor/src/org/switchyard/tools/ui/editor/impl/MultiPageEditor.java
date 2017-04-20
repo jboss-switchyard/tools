@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012-2014 Red Hat, Inc. 
+ * Copyright (c) 2012-2017 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -27,7 +27,6 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.WorkbenchPartAction;
 import org.eclipse.jface.action.IAction;
@@ -44,10 +43,10 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolder2Listener;
 import org.eclipse.swt.custom.CTabFolderEvent;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -88,6 +87,8 @@ import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 
+import com.google.common.base.Strings;
+
 /**
  * @author bfitzpat
  * 
@@ -96,11 +97,9 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
 
     private static final String MESSAGE_TRACE_KEY = "org.switchyard.handlers.messageTrace.enabled"; //$NON-NLS-1$
 
-    /** The text editor used in page 0. */
     private SwitchyardSCAEditor _diagramEditor;
     private StructuredTextEditor _sourceViewer;
     private Composite _domainPage;
-    // private TextEditor _textEditor;
     private CTabFolder _tabFolder;
     private int _defaultTabHeight;
     private Button _messageTraceCheckbox;
@@ -109,7 +108,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private DomainPropertyTable _domainProperties = null;
     private SecurityInstanceTable _securityInstanceTable;
     private FormToolkit _toolkit;
-
     private Text _propFileText;
 
     private ControlDecoration _propFileTextDecorator;
@@ -138,7 +136,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
 
     private void addDomainListener() {
         if (_editDomain == null) {
-            _editDomain = (TransactionalEditingDomainImpl) getDiagramEditor().getEditingDomain();
+            _editDomain = getDiagramEditor().getEditingDomain();
             _editDomain.addResourceSetListener(this);
         }
     }
@@ -238,6 +236,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                     return true;
                 }
 
+                @Override
                 public void run() {
                     if (_sourceViewer == null) {
                         createSourceViewer();
@@ -338,8 +337,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
             if (domain != null) {
                 PropertiesType properties = domain.getProperties();
                 if (properties != null) {
-                    EList<PropertyType> propertyList = properties.getProperty();
-                    return propertyList;
+                    return properties.getProperty();
                 }
             }
         }
@@ -446,7 +444,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
 
     private void createDomainSettingsSection(FormToolkit toolkit, Composite parent) {
         // Creating the Main Domain Settings section
-        Section section = toolkit.createSection(_domainPage, Section.TITLE_BAR);
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
         section.setText("Domain Settings"); //$NON-NLS-1$
         section.setLayout(new GridLayout(1, false));
         section.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
@@ -490,7 +488,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
             }
         });
 
-        Section section2 = toolkit.createSection(_domainPage, Section.TITLE_BAR);
+        Section section2 = toolkit.createSection(parent, Section.TITLE_BAR);
         section2.setText("Domain Properties"); //$NON-NLS-1$
         section2.setLayout(new GridLayout(1, false));
         section2.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
@@ -549,6 +547,19 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         section.setClient(client);
     }
     
+    private String getDomainPropertiesFileNameFromModel() {
+    	if (_syRoot != null) {
+            DomainType domain = _syRoot.getDomain();
+            if (domain != null) {
+            	PropertiesType properties = domain.getProperties();
+            	if (properties != null && properties.getLoad() != null) {
+            			return properties.getLoad();
+            	}
+            }
+    	}
+    	return null;
+    }
+    
     private void addDomainPropertiesLoadControls(FormToolkit toolkit, Composite parent) {
         Label propFileLabel = toolkit.createLabel(parent, "Properties File:");
         propFileLabel.setLayoutData(new GridData());
@@ -556,29 +567,46 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         _propFileText = toolkit.createText(parent, "", SWT.BORDER);
         _propFileText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
         _propFileTextDecorator = new ControlDecoration(_propFileText, SWT.TOP | SWT.LEFT);
-        _propFileText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                updateDomainPropertiesLoadValue(_propFileText.getText());
-                IStatus validStatus = validate();
-                if (validStatus != Status.OK_STATUS) {
-                    if (validStatus.getSeverity() == Status.ERROR) {
-                        FieldDecoration errorFieldIndicator = FieldDecorationRegistry.getDefault().
-                                getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
-                        _propFileTextDecorator.setImage(errorFieldIndicator.getImage());
-                    } else if (validStatus.getSeverity() == Status.WARNING) {
-                        FieldDecoration warningFieldIndicator = FieldDecorationRegistry.getDefault().
-                                getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
-                        _propFileTextDecorator.setImage(warningFieldIndicator.getImage());
-                    }
-                    _propFileTextDecorator.setDescriptionText(validStatus.getMessage());
-                } else {
-                    _propFileTextDecorator.setImage(null);
-                    _propFileTextDecorator.setDescriptionText(null);
-                }
-            }
+        _propFileText.addFocusListener(new FocusListener() {
+
+        	@Override
+        	public void focusGained(FocusEvent e) {
+        		// empty
+        	}
+
+        	@Override
+        	public void focusLost(FocusEvent e) {
+        		String value = getDomainPropertiesFileNameFromModel(); // old value
+        		String newvalue = _propFileText.getText(); // new value
+        		if (Strings.isNullOrEmpty(newvalue)) { // blank or null
+        			updateDomainPropertiesLoadValue(null); // remove it
+        		} else if (value != null && !newvalue.contentEquals(value)) { // values differ
+        			updateDomainPropertiesLoadValue(newvalue); // update to new value
+        		} else if (value != null && newvalue.contentEquals(value)) { // same value
+        			// fall through, let it be
+        		} else {
+        			updateDomainPropertiesLoadValue(newvalue); // new value, old value was null
+        		}
+        		IStatus validStatus = validate();
+        		if (validStatus != Status.OK_STATUS) {
+        			if (validStatus.getSeverity() == Status.ERROR) {
+        				FieldDecoration errorFieldIndicator = FieldDecorationRegistry.getDefault().
+        						getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+        				_propFileTextDecorator.setImage(errorFieldIndicator.getImage());
+        			} else if (validStatus.getSeverity() == Status.WARNING) {
+        				FieldDecoration warningFieldIndicator = FieldDecorationRegistry.getDefault().
+        						getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+        				_propFileTextDecorator.setImage(warningFieldIndicator.getImage());
+        			}
+        			_propFileTextDecorator.setDescriptionText(validStatus.getMessage());
+        		} else {
+        			_propFileTextDecorator.setImage(null);
+        			_propFileTextDecorator.setDescriptionText(null);
+        		}
+        	}
+
         });
-        
+
         Button propFileBrowseBtn = toolkit.createButton(parent, "...", SWT.PUSH);
         propFileBrowseBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
         propFileBrowseBtn.addSelectionListener(new SelectionListener(){
@@ -605,37 +633,31 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         });
     }
 
+    private void handleDomainPropertiesLoadValueUpdate(final String value) {
+        DomainType domain = _syRoot.getDomain();
+        if (domain == null) {
+            domain = SwitchyardFactory.eINSTANCE.createDomainType();
+            _syRoot.setDomain(domain);
+        }
+        PropertiesType properties = domain.getProperties();
+        if (properties == null) {
+            properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
+            domain.setProperties(properties);
+        }
+        properties.setLoad(value);
+    }
+    
     private void updateDomainPropertiesLoadValue(final String value) {
         if (_syRoot != null) {
             if (_editDomain != null) {
                 _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
                     @Override
                     protected void doExecute() {
-                        DomainType domain = _syRoot.getDomain();
-                        if (domain == null) {
-                            domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                            _syRoot.setDomain(domain);
-                        }
-                        PropertiesType properties = domain.getProperties();
-                        if (properties == null) {
-                            properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
-                            domain.setProperties(properties);
-                        }
-                        properties.setLoad(value);
+                    	handleDomainPropertiesLoadValueUpdate(value);
                     }
                 });
             } else {
-                DomainType domain = _syRoot.getDomain();
-                if (domain == null) {
-                    domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                    _syRoot.setDomain(domain);
-                }
-                PropertiesType properties = domain.getProperties();
-                if (properties == null) {
-                    properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
-                    domain.setProperties(properties);
-                }
-                properties.setLoad(value);
+            	handleDomainPropertiesLoadValueUpdate(value);
             }
         }
     }
@@ -784,6 +806,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
      */
     @Override
     public void doSaveAs() {
+    	// empty
     }
 
     /*
@@ -836,33 +859,18 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
 
             protected StructuredSelection getNewSelection(Node node) {
                 int type = node.getNodeType();
-                if (type == 1) {
-                    // node type = element
-                    // Element elem = (Element) node;
+                if (type == Node.ELEMENT_NODE || type == Node.TEXT_NODE) { 
                     // TODO: Somehow map the element back to a pictogram
                     return getNewSelection(node.getParentNode());
-                } else if (type == 2) {
-                    // node type = attribute
+                } else if (type == Node.ATTRIBUTE_NODE) {
                     // search the attribute's owner
                     Attr attr = (Attr) node;
                     return getNewSelection(attr.getOwnerElement());
-                } else if (type == 3) {
-                    // node type = text
-                    return getNewSelection(node.getParentNode());
                 }
                 return null;
             }
 
         };
-    }
-
-    @Override
-    protected void pageChange(int newPageIndex) {
-        super.pageChange(newPageIndex);
-        // if (newPageIndex > 0 && newPageIndex == _tabFolder.getItemCount() -
-        // 1) {
-        // // TODO: sync source viewer's DOM with model
-        // }
     }
 
     /*

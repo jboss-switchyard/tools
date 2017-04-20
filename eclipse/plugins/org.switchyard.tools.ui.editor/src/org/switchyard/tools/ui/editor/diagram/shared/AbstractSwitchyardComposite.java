@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012 Red Hat, Inc. 
+ * Copyright (c) 2012-2017 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -88,7 +88,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
     private final FormToolkit _toolkit;
 
     // change listeners
-    private ListenerList _changeListeners;
+    private ListenerList<ChangeListener> _changeListeners;
 
     /**
      * Empty constructor.
@@ -168,7 +168,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      */
     public void addChangeListener(ChangeListener listener) {
         if (this._changeListeners == null) {
-            this._changeListeners = new ListenerList();
+            this._changeListeners = new ListenerList<ChangeListener>();
         }
         this._changeListeners.add(listener);
     }
@@ -343,9 +343,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         fireChangedEvent(this);
     }
 
-    class TextValueChangeListener implements IValueChangeListener {
+    class TextValueChangeListener implements IValueChangeListener<Object> {
         @Override
-        public void handleValueChange(final ValueChangeEvent e) {
+        public void handleValueChange(final ValueChangeEvent<?> e) {
             if (!inUpdate() && e.diff != null && !e.diff.getOldValue().equals(e.diff.getNewValue())) {
                 System.out.println("AbstractSwitchyardComposite:TextValueChanged: " + e.diff); //$NON-NLS-1$
                 SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
@@ -358,9 +358,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         }
     }
 
-    class ComboValueChangeListener implements IValueChangeListener {
+    class ComboValueChangeListener implements IValueChangeListener<Object> {
         @Override
-        public void handleValueChange(final ValueChangeEvent e) {
+        public void handleValueChange(final ValueChangeEvent<?> e) {
             if (!inUpdate() && e.diff != null) {
                 System.out.println("AbstractSwitchyardComposite:ComboValueChanged: " + e.diff); //$NON-NLS-1$
                 SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
@@ -370,9 +370,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         }
     }
 
-    class ButtonValueChangeListener implements IValueChangeListener {
+    class ButtonValueChangeListener implements IValueChangeListener<Object> {
         @Override
-        public void handleValueChange(final ValueChangeEvent e) {
+        public void handleValueChange(final ValueChangeEvent<?> e) {
             if (!inUpdate() && e.diff != null) {
                 if (!inUpdate() && e.diff != null) {
                     System.out.println("AbstractSwitchyardComposite:ButtonValueChanged: " + e.diff); //$NON-NLS-1$

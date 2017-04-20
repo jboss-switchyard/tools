@@ -1,5 +1,5 @@
 /******************************************************************************* 
- * Copyright (c) 2012-2014 Red Hat, Inc. 
+ * Copyright (c) 2012-2017 Red Hat, Inc. 
  *  All rights reserved. 
  * This program is made available under the terms of the 
  * Eclipse Public License v1.0 which accompanies this distribution, 
@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.soap;
 
+import java.math.BigInteger;
+
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.Realm;
@@ -21,7 +23,7 @@ import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
-import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.databinding.swt.DisplayRealm;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -58,7 +60,7 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
     private Text _proxyUserText;
     private Text _proxyPasswordText;
     private ComboViewer _proxyTypeCombo;
-    private WritableValue _bindingValue;
+    private WritableValue<SOAPBindingType> _bindingValue;
 
     SOAPProxyComposite(FormToolkit toolkit) {
         super(toolkit);
@@ -103,11 +105,13 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
         return composite;
     }
     
+    @Override
     protected void handleModify(Control control) {
         setHasChanged(false);
         setDidSomething(true);
     }
 
+    @Override
     protected void handleUndo(Control control) {
         if (_binding != null) {
             super.handleUndo(control);
@@ -117,6 +121,7 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
     /**
      * @return panel
      */
+    @Override
     public Composite getPanel() {
         return _panel;
     }
@@ -124,6 +129,7 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
     /**
      * @param switchYardBindingType binding
      */
+    @Override
     public void setBinding(Binding switchYardBindingType) {
         super.setBinding(switchYardBindingType);
         if (switchYardBindingType instanceof SOAPBindingType) {
@@ -137,17 +143,17 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
 
     private void bindControls(final DataBindingContext context) {
         final EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(getTargetObject());
-        final Realm realm = SWTObservables.getRealm(_proxyHostText.getDisplay());
+        final Realm realm = DisplayRealm.getRealm(_proxyHostText.getDisplay());
 
-        _bindingValue = new WritableValue(realm, null, SOAPBindingType.class);
-        final IObservableValue proxyTypeValue = new WritableValue(realm, null, String.class);
-        final IObservableValue hostValue = new WritableValue(realm, null, String.class);
-        final IObservableValue passwordValue = new WritableValue(realm, null, String.class);
-        final IObservableValue portValue = new WritableValue(realm, null, String.class);
-        final IObservableValue userValue = new WritableValue(realm, null, String.class);
+        _bindingValue = new WritableValue<>(realm, null, SOAPBindingType.class);
+        final IObservableValue<String> proxyTypeValue = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> hostValue = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> passwordValue = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> portValue = new WritableValue<>(realm, null, String.class);
+        final IObservableValue<String> userValue = new WritableValue<>(realm, null, String.class);
 
         org.eclipse.core.databinding.Binding binding = 
-                context.bindValue(SWTObservables.observeText(_proxyHostText, SWT.Modify), hostValue,
+                context.bindValue(observeText(_proxyHostText, SWT.Modify), hostValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
@@ -157,13 +163,13 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_proxyPasswordText, SWT.Modify), passwordValue,
+                context.bindValue(observeText(_proxyPasswordText, SWT.Modify), passwordValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_proxyPortText, SWT.Modify), portValue,
+                context.bindValue(observeText(_proxyPortText, SWT.Modify), portValue,
                     new EMFUpdateValueStrategyNullForEmptyString("", 
                             UpdateValueStrategy.POLICY_CONVERT).setAfterConvertValidator(
                                     new EscapedPropertyIntegerValidator("Port must be a valid numeric value or follow the pattern for escaped properties (i.e. '${propName}')."))
@@ -171,19 +177,19 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
         binding = 
-                context.bindValue(SWTObservables.observeText(_proxyUserText, SWT.Modify), userValue,
+                context.bindValue(observeText(_proxyUserText, SWT.Modify), userValue,
                         new EMFUpdateValueStrategyNullForEmptyString(null,
                                 UpdateValueStrategy.POLICY_CONVERT), null);
         ControlDecorationSupport.create(SWTValueUpdater.attach(binding), SWT.TOP | SWT.LEFT);
 
-        ComputedValue computedProxy = new ComputedValue() {
+        ComputedValue<Object> computedProxy = new ComputedValue<Object>() {
             @Override
             protected Object calculate() {
-                final String proxyType = (String) proxyTypeValue.getValue();
-                final String host = (String) hostValue.getValue();
-                final String pwd = (String) passwordValue.getValue();
-                final String port = (String) portValue.getValue();
-                final String user = (String) userValue.getValue();
+                final String proxyType = proxyTypeValue.getValue();
+                final String host = hostValue.getValue();
+                final String pwd = passwordValue.getValue();
+                final String port = portValue.getValue();
+                final String user = userValue.getValue();
                 if (host != null || pwd != null || port != null || user != null) {
                     final ProxyType proxy = SOAPFactory.eINSTANCE
                             .createProxyType();
@@ -197,12 +203,13 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
                 return null;
             }
 
+            @Override
             protected void doSetValue(Object value) {
                 if (value instanceof ProxyType) {
                     final ProxyType proxy = (ProxyType) value;
                     hostValue.setValue(proxy.getHost());
                     passwordValue.setValue(proxy.getPassword());
-                    portValue.setValue(proxy.getPort());
+                    portValue.setValue(proxy.getPort().toString());
                     userValue.setValue(proxy.getUser());
                     proxyTypeValue.setValue(proxy.getType());
                 } else {
@@ -217,7 +224,7 @@ public class SOAPProxyComposite extends AbstractSYBindingComposite {
         };
         
         // now bind the proxy into the binding
-        binding = context.bindValue(
+        context.bindValue(
                 computedProxy,
                 ObservablesUtil.observeDetailValue(domain, _bindingValue, 
                         SOAPPackage.Literals.SOAP_BINDING_TYPE__PROXY));
