@@ -23,9 +23,6 @@
     <tychoVersion>0.26.0</tychoVersion>
     <tychoExtrasVersion>${tychoVersion}</tychoExtrasVersion>
     
-    <!-- Fuse version -->
-    <fuse-tooling-url>http://download.jboss.org/jbosstools/oxygen/staging/updates/integration-stack/proto/2017-06-02_13-53-35-B8/all/repo/</fuse-tooling-url>
-    
     <illegaltransitivereportonly>true</illegaltransitivereportonly>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
