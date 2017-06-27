@@ -69,6 +69,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
@@ -161,6 +162,8 @@ public class SwitchYardSettingsGroup {
     };
     // change listeners
     private ListenerList _changeListeners;
+
+	private Label deprecationLabel;
 
     /**
      * Create a new SwitchYardSettingsGroup.
@@ -278,8 +281,10 @@ public class SwitchYardSettingsGroup {
         });
         _configVersionsList.setInput(ISwitchYardFacetConstants.SWITCHYARD_FACET.getVersions());
 
-        // spacer
-        new Label(runtimeControls, SWT.NONE);
+        deprecationLabel = new Label(runtimeControls, SWT.NONE);
+        deprecationLabel.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED));
+        deprecationLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
+        deprecationLabel.setText(""); //$NON-NLS-1$
 
         label = new Label(runtimeControls, SWT.NONE);
         label.setText(Messages.SwitchYardSettingsGroup_TargetRuntimeLabel);
@@ -546,12 +551,23 @@ public class SwitchYardSettingsGroup {
         if (selection == null || selection.isEmpty()) {
             return;
         }
-        if (_project != null) {
-            _project.changeProjectFacetVersion((IProjectFacetVersion) selection.getFirstElement());
+        IProjectFacetVersion facetVersion = (IProjectFacetVersion) selection.getFirstElement();
+        if (_project != null && facetVersion != null) {
+            _project.changeProjectFacetVersion(facetVersion);
+        }
+        if (facetVersion != null) {
+            deprecationLabel.setText(getDeprecationMethodForFacetVersion(facetVersion));
         }
         // update in the event the selected runtime is no longer compatible
         repopulateRuntimesList();
         fireChangedEvent(this);
+    }
+    
+    private String getDeprecationMethodForFacetVersion(IProjectFacetVersion version) {
+    	if (version.getVersionString().startsWith("1.")) { //$NON-NLS-1$
+    		return Messages.DeprecationMessageFor1xVersions_labeltext;
+    	}
+    	return "";
     }
 
     private void handleRuntimeSelected() {

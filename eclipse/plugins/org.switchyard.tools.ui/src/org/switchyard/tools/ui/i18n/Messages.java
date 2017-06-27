@@ -862,6 +862,8 @@ public final class Messages extends NLS {
     
     public static String ValidationProblem_CamelRouteInvalidSYToFound;
     
+    public static String DeprecationMessageFor1xVersions_labeltext;
+    
     static {
         // initialize resource bundle
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
