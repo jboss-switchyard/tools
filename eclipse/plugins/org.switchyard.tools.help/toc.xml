@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<toc label="Red Hat JBoss SwitchYard Tooling for Eclipse" topic="index.html">
+        <topic label="JBoss Integration and SOA Development" href="chap-JBoss_Integration_and_SOA_Development.html"/>
+        <topic label="Running a SwitchYard Project on a JBoss Fuse Server" href="SetupFuseServer.html"/>
+        <topic label="Running a SwitchYard Project on a JBoss Enterprise Application Server" href="SetupEAPServer.html"/>
+</toc>

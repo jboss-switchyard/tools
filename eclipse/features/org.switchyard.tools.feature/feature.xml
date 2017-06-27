@@ -4,9 +4,9 @@
       label="%featureName"
       version="2.4.0.qualifier"
       provider-name="%featureProvider"
+      plugin="org.switchyard.tools"
       license-feature="org.jboss.tools.foundation.license.feature"
-      license-feature-version="0.0.0"
-      plugin="org.switchyard.tools">
+      license-feature-version="0.0.0">
 
    <description url="http://www.jboss.org/switchyard">
       %description
@@ -127,6 +127,13 @@
 
    <plugin
          id="org.switchyard.tools.ui.debug"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.switchyard.tools.help"
          download-size="0"
          install-size="0"
          version="0.0.0"
