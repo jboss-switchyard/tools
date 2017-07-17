@@ -17,8 +17,8 @@ import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.fusesource.ide.camel.editor.features.create.ext.CreateEndpointFigureFeature;
 import org.fusesource.ide.camel.editor.provider.ext.ICustomPaletteEntry;
-import org.fusesource.ide.camel.model.service.core.catalog.CamelModelFactory;
 import org.fusesource.ide.camel.model.service.core.catalog.Dependency;
+import org.fusesource.ide.camel.model.service.core.util.CamelCatalogUtils;
 import org.switchyard.tools.ui.editor.Messages;
 
 /**
@@ -56,7 +56,7 @@ public class CamelComponentPaletteEntry implements ICustomPaletteEntry {
     
     @Override
     public boolean isValid(String runtimeProvider) {
-    	return CamelModelFactory.RUNTIME_PROVIDER_KARAF.equals(runtimeProvider);
+    	return CamelCatalogUtils.RUNTIME_PROVIDER_KARAF.equals(runtimeProvider);
     }
 
 }
